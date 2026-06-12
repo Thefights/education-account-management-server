@@ -1,4 +1,6 @@
-namespace Models
+using Models;
+
+namespace education_account_management.DAL.Models
 {
     public class UserRole : Entity
     {
@@ -7,7 +9,7 @@ namespace Models
         public User User { get; set; } = null!;
 
         [NotDefaultValue]
-        public int RoleId { get; set; } = 1;
+        public int RoleId { get; set; }
         public Role Role { get; set; } = null!;
     }
 }

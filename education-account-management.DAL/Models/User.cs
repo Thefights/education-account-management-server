@@ -1,4 +1,5 @@
-﻿using EntityAnnotations.RegExAttributes;
+﻿using education_account_management.DAL.Models;
+using EntityAnnotations.RegExAttributes;
 
 namespace Models
 {

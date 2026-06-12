@@ -1,4 +1,4 @@
-using Models;
+using education_account_management.DAL.Models;
 using Persistence.Seeding.Constants;
 
 namespace Persistence.Seeding

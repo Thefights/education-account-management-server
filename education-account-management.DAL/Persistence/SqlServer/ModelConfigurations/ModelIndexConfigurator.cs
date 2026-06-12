@@ -1,3 +1,4 @@
+using education_account_management.DAL.Models;
 using Models;
 
 namespace Persistence.SqlServer.ModelConfigurations

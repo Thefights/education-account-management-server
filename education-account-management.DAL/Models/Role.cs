@@ -1,3 +1,5 @@
+using education_account_management.DAL.Models;
+
 namespace Models
 {
     public class Role : AuditEntity
