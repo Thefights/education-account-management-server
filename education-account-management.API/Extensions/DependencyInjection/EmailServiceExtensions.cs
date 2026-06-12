@@ -21,8 +21,6 @@ public static class EmailServiceExtensions
         services.AddScoped<IOutboxMessageProcessor, OutboxMessageProcessor>();
         services.AddHostedService<OutboxEmailWorker>();
 
-        services.AddScoped<IEmailWhitelistPolicyService, EmailWhitelistPolicyService>();
-
         services.AddScoped<EmailTemplateBuilder>();
 
         services.AddResend(options =>

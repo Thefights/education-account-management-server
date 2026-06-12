@@ -37,8 +37,6 @@ namespace DTOs.Product
         public string? ImageUrl { get; set; }
 
         public string? Status { get; set; }
-
-        public bool IsFavorited { get; set; }
     }
 
     public class UpdateProductDTO : IUploadImageDTO

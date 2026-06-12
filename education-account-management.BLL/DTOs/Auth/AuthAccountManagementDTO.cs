@@ -21,8 +21,6 @@ namespace DTOs.Auth
         [MinLength(1)]
         public List<int> RoleIds { get; set; } = [];
 
-        [MinLength(1)]
-        public List<AuthAccountProductAssignmentDTO> ProductAssignments { get; set; } = [];
     }
 
     public class GetAuthAccountDTO
@@ -47,23 +45,6 @@ namespace DTOs.Auth
 
         public List<int> RoleIds { get; set; } = [];
 
-        public List<GetAuthAccountProductAssignmentDTO> ProductAssignments { get; set; } = [];
-    }
-
-    public class AuthAccountProductAssignmentDTO
-    {
-        [NotDefaultValue]
-        public int ProductId { get; set; }
-
-        [EnumDefined]
-        public ProductAssignmentRole RoleInProduct { get; set; }
-    }
-
-    public class GetAuthAccountProductAssignmentDTO
-    {
-        public int ProductId { get; set; }
-
-        public string? RoleInProduct { get; set; }
     }
 
     public class GetAuthAccountProfileDTO
@@ -101,8 +82,6 @@ namespace DTOs.Auth
         [MinLength(1)]
         public List<int> RoleIds { get; set; } = [];
 
-        [MinLength(1)]
-        public List<AuthAccountProductAssignmentDTO> ProductAssignments { get; set; } = [];
     }
 
     public class UpdateAuthAccountProfileDTO : IUploadImageDTO

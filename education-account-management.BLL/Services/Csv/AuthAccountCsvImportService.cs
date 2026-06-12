@@ -13,7 +13,6 @@ namespace Services.Csv
         private readonly IAuthEmailService _authEmailService = authEmailService;
         private readonly IGenericRepository<User> _userRepository = unitOfWork.Repository<User>();
         private readonly IGenericRepository<Role> _roleRepository = unitOfWork.Repository<Role>();
-        private readonly IGenericRepository<Product> _productRepository = unitOfWork.Repository<Product>();
 
         public override async Task<BatchImportResultDTO> ImportAsync(
             IFormFile file,
@@ -112,7 +111,6 @@ namespace Services.Csv
             var fullName = CsvImportHelper.RequireText(row.FullName, nameof(ImportAuthAccountCsvRowDTO.FullName), rowNumber, errors);
             var gender = CsvImportHelper.ParseRequiredEnum<UserGender>(row.Gender, nameof(ImportAuthAccountCsvRowDTO.Gender), rowNumber, errors);
             var roleIds = CsvImportHelper.ParseRequiredIds(row.RoleIds, nameof(ImportAuthAccountCsvRowDTO.RoleIds), rowNumber, errors);
-            var productAssignments = ParseProductAssignments(row.ProductAssignments, rowNumber, errors);
             var phoneNumber = string.IsNullOrWhiteSpace(row.PhoneNumber) ? null : row.PhoneNumber.Trim();
             var imageUrl = string.IsNullOrWhiteSpace(row.ImageUrl) ? null : row.ImageUrl.Trim();
 
@@ -125,8 +123,7 @@ namespace Services.Csv
                 || string.IsNullOrWhiteSpace(email)
                 || string.IsNullOrWhiteSpace(fullName)
                 || !gender.HasValue
-                || roleIds.Count == 0
-                || productAssignments.Count == 0)
+                || roleIds.Count == 0)
             {
                 return null;
             }
@@ -138,61 +135,8 @@ namespace Services.Csv
                 fullName,
                 gender.Value,
                 roleIds,
-                productAssignments,
                 phoneNumber,
                 imageUrl);
-        }
-
-        private static List<ParsedProductAssignment> ParseProductAssignments(
-            string? value,
-            int rowNumber,
-            List<BatchImportErrorDTO> errors)
-        {
-            var assignments = new List<ParsedProductAssignment>();
-            const string field = nameof(ImportAuthAccountCsvRowDTO.ProductAssignments);
-
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                errors.Add(BatchImportErrorDTO.Create(rowNumber, field, $"{field} is required."));
-                return assignments;
-            }
-
-            foreach (var item in value.Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
-            {
-                var parts = item.Split(':', StringSplitOptions.TrimEntries);
-                if (parts.Length != 2
-                    || !int.TryParse(parts[0], out var productId)
-                    || productId <= 0)
-                {
-                    errors.Add(BatchImportErrorDTO.Create(rowNumber, field, $"{field} item must use format productId:roleInProduct."));
-                    continue;
-                }
-
-                var roleInProduct = CsvImportHelper.ParseRequiredEnum<ProductAssignmentRole>(parts[1], field, rowNumber, errors);
-                if (!roleInProduct.HasValue)
-                {
-                    continue;
-                }
-
-                assignments.Add(new ParsedProductAssignment(productId, roleInProduct.Value));
-            }
-
-            if (assignments.Count == 0)
-            {
-                errors.Add(BatchImportErrorDTO.Create(rowNumber, field, $"{field} must contain at least one assignment."));
-            }
-
-            var duplicateProductIds = assignments
-                .GroupBy(assignment => assignment.ProductId)
-                .Where(group => group.Count() > 1)
-                .Select(group => group.Key)
-                .ToList();
-            foreach (var productId in duplicateProductIds)
-            {
-                errors.Add(BatchImportErrorDTO.Create(rowNumber, field, $"Product {productId} is assigned more than once."));
-            }
-
-            return assignments;
         }
 
         private static void AddCsvDuplicateErrors(
@@ -229,14 +173,6 @@ namespace Services.Csv
                 .Select(role => role.Id)
                 .ToListAsync(cancellationToken);
             var missingRoleIds = roleIds.Except(existingRoleIds).ToHashSet();
-
-            var productIds = rows.SelectMany(row => row.ProductAssignments.Select(assignment => assignment.ProductId)).Distinct().ToList();
-            var existingProductIds = await _productRepository
-                .Query()
-                .Where(product => productIds.Contains(product.Id))
-                .Select(product => product.Id)
-                .ToListAsync(cancellationToken);
-            var missingProductIds = productIds.Except(existingProductIds).ToHashSet();
 
             var userIdTexts = rows.Select(row => row.UserIdText).Distinct(StringComparer.OrdinalIgnoreCase).ToList();
             var existingUserIdTexts = await Repository
@@ -275,10 +211,6 @@ namespace Services.Csv
                     errors.Add(BatchImportErrorDTO.Create(row.RowNumber, nameof(ImportAuthAccountCsvRowDTO.RoleIds), $"Role {roleId} was not found."));
                 }
 
-                foreach (var productId in row.ProductAssignments.Select(assignment => assignment.ProductId).Where(missingProductIds.Contains))
-                {
-                    errors.Add(BatchImportErrorDTO.Create(row.RowNumber, nameof(ImportAuthAccountCsvRowDTO.ProductAssignments), $"Product {productId} was not found."));
-                }
             }
         }
 
@@ -297,13 +229,6 @@ namespace Services.Csv
                     ImageUrl = row.ImageUrl,
                     UserRoles = row.RoleIds
                         .Select(roleId => new UserRole { RoleId = roleId })
-                        .ToList(),
-                    UserProductAssignments = row.ProductAssignments
-                        .Select(assignment => new UserProductAssignment
-                        {
-                            ProductId = assignment.ProductId,
-                            RoleInProduct = assignment.RoleInProduct
-                        })
                         .ToList()
                 }
             };
@@ -318,11 +243,8 @@ namespace Services.Csv
             string FullName,
             UserGender Gender,
             List<int> RoleIds,
-            List<ParsedProductAssignment> ProductAssignments,
             string? PhoneNumber,
             string? ImageUrl);
-
-        private sealed record ParsedProductAssignment(int ProductId, ProductAssignmentRole RoleInProduct);
 
         private sealed record ImportedAuthAccount(AuthAccount AuthAccount);
     }

@@ -1,6 +1,4 @@
-using Models;
-
-namespace education_account_management.DAL.Models
+namespace Models
 {
     public class UserRole : Entity
     {

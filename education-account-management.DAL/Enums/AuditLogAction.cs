@@ -22,19 +22,12 @@ namespace Enums
         ImportAccounts = 105,
         UnlockAccount = 106,
 
-        UpdateMfaSetting = 200,
-        UpdateEmailWhitelistSetting = 201,
-        SaveEmailWhitelist = 202,
-
         CreateProduct = 300,
         UpdateProduct = 301,
         DeleteProduct = 302,
         DeleteProducts = 303,
         ImportProducts = 304,
         UpdateProductStatus = 305,
-
-        AddFavoriteProduct = 400,
-        RemoveFavoriteProduct = 401,
 
         ViewAuditLogs = 500
     }

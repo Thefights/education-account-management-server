@@ -55,25 +55,10 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(socialLogin => socialLogin.ProviderEmail);
             });
 
-            modelBuilder.Entity<EmailWhitelist>(entity =>
-            {
-                entity.HasIndex(emailWhitelist => emailWhitelist.Value).IsUnique();
-            });
-
             modelBuilder.Entity<Product>(entity =>
             {
                 entity.HasIndex(product => product.Status);
                 entity.HasIndex(product => product.Name);
-            });
-
-            modelBuilder.Entity<UserFavoriteProduct>(entity =>
-            {
-                entity.HasIndex(userFavoriteProduct => userFavoriteProduct.ProductId);
-            });
-
-            modelBuilder.Entity<UserProductAssignment>(entity =>
-            {
-                entity.HasIndex(userProductAssignment => userProductAssignment.ProductId);
             });
 
             modelBuilder.Entity<UserRole>(entity =>

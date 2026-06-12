@@ -35,7 +35,6 @@ namespace Services.Auth
         private readonly IGenericRepository<User> _userRepository = unitOfWork.Repository<User>();
         private readonly IGenericRepository<AuthAccount> _authAccountRepository = unitOfWork.Repository<AuthAccount>();
         private readonly IGenericRepository<Role> _roleRepository = unitOfWork.Repository<Role>();
-        private readonly IGenericRepository<MfaSetting> _mfaSettingRepository = unitOfWork.Repository<MfaSetting>();
         private readonly IGenericRepository<RefreshToken> _refreshTokenRepository = unitOfWork.Repository<RefreshToken>();
         private readonly IGenericRepository<PasswordResetToken> _passwordResetTokenRepository = unitOfWork.Repository<PasswordResetToken>();
         private readonly IGenericRepository<SocialLogin> _socialLoginRepository = unitOfWork.Repository<SocialLogin>();
@@ -160,30 +159,6 @@ namespace Services.Auth
 
             authAccount.FailedLoginCount = 0;
             authAccount.LockedUntil = null;
-
-            var mfaSetting = await _mfaSettingRepository
-                .Query(tracking: false)
-                .FirstOrDefaultAsync(cancellationToken);
-            if (mfaSetting?.IsEnabled == true && mfaSetting.EmailEnabled)
-            {
-                var otp = await _authMfaService.CreateLoginMfaOtpAsync(
-                    authAccount,
-                    now,
-                    cancellationToken);
-
-                await _authEmailService.SendOtpEmailAsync(
-                    authAccount.Email,
-                    otp.Code,
-                    otp.ExpiresAt,
-                    cancellationToken);
-                await _unitOfWork.SaveChangeAsync(cancellationToken);
-
-                return new LoginResponseDTO
-                {
-                    MfaRequired = true,
-                    SessionId = otp.SessionId
-                };
-            }
 
             authAccount.LastLoginAt = now;
             var (tokens, _) = await _authTokenService.IssueTokensAsync(

@@ -31,7 +31,7 @@ namespace Services.Auth
             _sendRegisterEmailOtpValidator.Validate(request);
 
             var now = DateTime.UtcNow;
-            var normalizedEmail = EmailWhitelistValueUtil.Normalize(request.Email);
+            var normalizedEmail = NormalizeEmail(request.Email);
             var activeOtps = await _otpVerificationRepository
                 .Query(tracking: true)
                 .Where(otp => otp.Target == normalizedEmail
@@ -93,7 +93,7 @@ namespace Services.Auth
             _verifyRegisterEmailOtpValidator.Validate(request);
 
             var now = DateTime.UtcNow;
-            var normalizedEmail = EmailWhitelistValueUtil.Normalize(request.Email);
+            var normalizedEmail = NormalizeEmail(request.Email);
             var otpVerification = await this.GetRegistrationEmailOtpQuery(tracking: true)
                 .FirstOrDefaultAsync(
                     otp => otp.SessionId == request.SessionId
@@ -141,7 +141,7 @@ namespace Services.Auth
                 throw new InvalidDataException("Email must be verified before registration.");
             }
 
-            var normalizedEmail = EmailWhitelistValueUtil.Normalize(email);
+            var normalizedEmail = NormalizeEmail(email);
             var otpVerification = await this.GetRegistrationEmailOtpQuery(tracking: false)
                 .FirstOrDefaultAsync(
                     otp => otp.SessionId == sessionId.Trim()
@@ -162,6 +162,11 @@ namespace Services.Auth
                 .Query(tracking: tracking)
                 .Where(otp => otp.Purpose == OtpVerificationPurpose.RegistrationEmailVerification
                     && otp.DeliveryMethod == OtpVerificationDeliveryMethod.Email);
+        }
+
+        private static string NormalizeEmail(string? email)
+        {
+            return email?.Trim().ToLowerInvariant() ?? string.Empty;
         }
     }
 }

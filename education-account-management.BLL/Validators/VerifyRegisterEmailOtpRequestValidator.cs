@@ -41,7 +41,7 @@ namespace Validators
 
         private static bool IsValidEmail(string email)
         {
-            var normalizedEmail = EmailWhitelistValueUtil.Normalize(email);
+            var normalizedEmail = email.Trim().ToLowerInvariant();
             return new EmailValidatorAttribute().IsValid(normalizedEmail);
         }
     }

@@ -14,7 +14,6 @@ namespace Extensions
             services.AddEmailServices(configuration);
             services.AddStorageServices(configuration);
             services.AddProductServices();
-            services.AddSettingsServices();
             services.AddAuditServices();
             services.AddCsvServices();
             services.AddMappers();

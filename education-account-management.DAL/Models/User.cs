@@ -19,11 +19,5 @@ namespace Models
 
         [OnDelete(OnDeleteBehavior.Cascade)]
         public ICollection<UserRole> UserRoles { get; set; } = [];
-
-        [OnDelete(OnDeleteBehavior.Cascade)]
-        public ICollection<UserFavoriteProduct> UserFavoriteProducts { get; set; } = [];
-
-        [OnDelete(OnDeleteBehavior.Cascade)]
-        public ICollection<UserProductAssignment> UserProductAssignments { get; set; } = [];
     }
 }

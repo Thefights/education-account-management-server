@@ -36,7 +36,6 @@ namespace Services.Auth
 
         private readonly IGenericRepository<User> _userRepository = unitOfWork.Repository<User>();
         private readonly IGenericRepository<Role> _roleRepository = unitOfWork.Repository<Role>();
-        private readonly IGenericRepository<Product> _productRepository = unitOfWork.Repository<Product>();
 
         public override async Task<GetAuthAccountDTO> CreateAsync(
             CreateAuthAccountDTO createDTO,
@@ -46,10 +45,6 @@ namespace Services.Auth
             createDTO.TryValidate();
 
             await EnsureRolesExistAsync(createDTO.RoleIds, cancellationToken);
-            ValidateProductAssignments(createDTO.ProductAssignments);
-            await EnsureProductsExistAsync(
-                createDTO.ProductAssignments.Select(assignment => assignment.ProductId).ToList(),
-                cancellationToken);
 
             var generatedPassword = PasswordHashUtil.GenerateTemporaryPassword();
             var resetToken = TokenUtil.GenerateRefreshToken();
@@ -69,13 +64,6 @@ namespace Services.Auth
                     UserRoles = createDTO.RoleIds
                         .Distinct()
                         .Select(roleId => new UserRole { RoleId = roleId })
-                        .ToList(),
-                    UserProductAssignments = createDTO.ProductAssignments
-                        .Select(assignment => new UserProductAssignment
-                        {
-                            ProductId = assignment.ProductId,
-                            RoleInProduct = assignment.RoleInProduct
-                        })
                         .ToList()
                 },
                 PasswordResetTokens =
@@ -161,17 +149,11 @@ namespace Services.Auth
             updateDTO.TryValidate();
 
             await EnsureRolesExistAsync(updateDTO.RoleIds, cancellationToken);
-            ValidateProductAssignments(updateDTO.ProductAssignments);
-            await EnsureProductsExistAsync(
-                updateDTO.ProductAssignments.Select(assignment => assignment.ProductId).ToList(),
-                cancellationToken);
 
             var authAccount = await _repository
                 .Query(tracking: true)
                 .Include(account => account.User)
                 .ThenInclude(user => user.UserRoles)
-                .Include(account => account.User)
-                .ThenInclude(user => user.UserProductAssignments)
                 .FirstOrDefaultAsync(account => account.Id == id, cancellationToken)
                 ?? throw new DataNotFoundException(typeof(AuthAccount), id);
 
@@ -182,7 +164,6 @@ namespace Services.Auth
             authAccount.User.PhoneNumber = updateDTO.PhoneNumber;
             authAccount.User.Gender = updateDTO.Gender;
             ReplaceUserRoles(authAccount.User, updateDTO.RoleIds);
-            ReplaceUserProductAssignments(authAccount.User, updateDTO.ProductAssignments);
 
             authAccount.TryValidate();
             authAccount.User.TryValidate();
@@ -380,49 +361,6 @@ namespace Services.Auth
             }
         }
 
-        private async Task EnsureProductsExistAsync(
-            List<int> productIds,
-            CancellationToken cancellationToken)
-        {
-            var distinctProductIds = productIds.Distinct().ToList();
-            if (distinctProductIds.Count == 0)
-            {
-                throw new InvalidDataException("At least one product assignment is required.");
-            }
-
-            var existingProductCount = await _productRepository.CountAsync(
-                product => distinctProductIds.Contains(product.Id),
-                cancellationToken);
-            if (existingProductCount != distinctProductIds.Count)
-            {
-                throw new DataNotFoundException("One or more products were not found.");
-            }
-        }
-
-        private static void ValidateProductAssignments(List<AuthAccountProductAssignmentDTO> productAssignments)
-        {
-            if (productAssignments.Count == 0)
-            {
-                throw new InvalidDataException("At least one product assignment is required.");
-            }
-
-            foreach (var productAssignment in productAssignments)
-            {
-                productAssignment.TryValidate();
-            }
-
-            var duplicateProductId = productAssignments
-                .GroupBy(assignment => assignment.ProductId)
-                .Where(group => group.Count() > 1)
-                .Select(group => group.Key)
-                .FirstOrDefault();
-
-            if (duplicateProductId != 0)
-            {
-                throw new InvalidDataException($"Product {duplicateProductId} is assigned more than once.");
-            }
-        }
-
         private static void ReplaceUserRoles(User user, List<int> roleIds)
         {
             var targetRoleIds = roleIds.Distinct().ToHashSet();
@@ -443,42 +381,6 @@ namespace Services.Auth
                     UserId = user.Id,
                     RoleId = roleId
                 });
-            }
-        }
-
-        private static void ReplaceUserProductAssignments(
-            User user,
-            List<AuthAccountProductAssignmentDTO> productAssignments)
-        {
-            var targetProductIds = productAssignments
-                .Select(assignment => assignment.ProductId)
-                .ToHashSet();
-
-            var removedAssignments = user.UserProductAssignments
-                .Where(assignment => !targetProductIds.Contains(assignment.ProductId))
-                .ToList();
-            foreach (var removedAssignment in removedAssignments)
-            {
-                user.UserProductAssignments.Remove(removedAssignment);
-            }
-
-            foreach (var productAssignment in productAssignments)
-            {
-                var existingAssignment = user.UserProductAssignments
-                    .FirstOrDefault(assignment => assignment.ProductId == productAssignment.ProductId);
-
-                if (existingAssignment == null)
-                {
-                    user.UserProductAssignments.Add(new UserProductAssignment
-                    {
-                        UserId = user.Id,
-                        ProductId = productAssignment.ProductId,
-                        RoleInProduct = productAssignment.RoleInProduct
-                    });
-                    continue;
-                }
-
-                existingAssignment.RoleInProduct = productAssignment.RoleInProduct;
             }
         }
 

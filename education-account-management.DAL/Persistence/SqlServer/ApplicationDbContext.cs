@@ -20,19 +20,9 @@ namespace Persistence.SqlServer
 
         public DbSet<OtpVerification> OtpVerification { get; set; }
 
-        public DbSet<MfaSetting> MfaSetting { get; set; }
-
         public DbSet<PasswordResetToken> PasswordResetToken { get; set; }
 
         public DbSet<SocialLogin> SocialLogin { get; set; }
-
-        public DbSet<UserFavoriteProduct> UserFavoriteProduct { get; set; }
-
-        public DbSet<UserProductAssignment> UserProductAssignment { get; set; }
-
-        public DbSet<EmailWhitelistSetting> EmailWhitelistSetting { get; set; }
-
-        public DbSet<EmailWhitelist> EmailWhitelist { get; set; }
 
         public DbSet<AuditLog> AuditLog { get; set; }
 
@@ -60,11 +50,6 @@ namespace Persistence.SqlServer
             modelBuilder.Entity<UserRole>()
                 .HasKey(userRole => new { userRole.UserId, userRole.RoleId });
 
-            modelBuilder.Entity<UserFavoriteProduct>()
-                .HasKey(userFavoriteProduct => new { userFavoriteProduct.UserId, userFavoriteProduct.ProductId });
-
-            modelBuilder.Entity<UserProductAssignment>()
-                .HasKey(userProductAssignment => new { userProductAssignment.UserId, userProductAssignment.ProductId });
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

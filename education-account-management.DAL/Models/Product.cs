@@ -10,10 +10,5 @@ namespace Models
 
         [MessageRequired, MessageMaxLength(500)]
         public string Description { get; set; } = string.Empty;
-
-        [OnDelete(OnDeleteBehavior.Cascade)]
-        public ICollection<UserFavoriteProduct> UserFavoriteProducts { get; set; } = [];
-
-        public ICollection<UserProductAssignment> UserProductAssignments { get; set; } = [];
     }
 }

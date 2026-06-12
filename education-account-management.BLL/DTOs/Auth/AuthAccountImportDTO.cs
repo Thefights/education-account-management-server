@@ -20,8 +20,6 @@ namespace DTOs.Auth
 
         public string? RoleIds { get; set; }
 
-        public string? ProductAssignments { get; set; }
-
         public string? PhoneNumber { get; set; }
 
         public string? ImageUrl { get; set; }

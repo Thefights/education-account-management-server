@@ -19,14 +19,7 @@ namespace Mappers
                 PhoneNumber = model.User.PhoneNumber,
                 Gender = model.User.Gender.ToString(),
                 ImageUrl = model.User.ImageUrl,
-                RoleIds = model.User.UserRoles.Select(userRole => userRole.RoleId).ToList(),
-                ProductAssignments = model.User.UserProductAssignments
-                    .Select(assignment => new GetAuthAccountProductAssignmentDTO
-                    {
-                        ProductId = assignment.ProductId,
-                        RoleInProduct = assignment.RoleInProduct.ToString()
-                    })
-                    .ToList()
+                RoleIds = model.User.UserRoles.Select(userRole => userRole.RoleId).ToList()
             };
         }
 
@@ -46,7 +39,6 @@ namespace Mappers
         [MapperIgnoreSource(nameof(CreateAuthAccountDTO.Gender))]
         [MapperIgnoreSource(nameof(CreateAuthAccountDTO.ImageUrl))]
         [MapperIgnoreSource(nameof(CreateAuthAccountDTO.RoleIds))]
-        [MapperIgnoreSource(nameof(CreateAuthAccountDTO.ProductAssignments))]
         public partial AuthAccount MapFromCreateDTO(CreateAuthAccountDTO createDTO);
 
         [MapperIgnoreSource(nameof(UpdateAuthAccountDTO.FullName))]
@@ -54,7 +46,6 @@ namespace Mappers
         [MapperIgnoreSource(nameof(UpdateAuthAccountDTO.Gender))]
         [MapperIgnoreSource(nameof(UpdateAuthAccountDTO.ImageUrl))]
         [MapperIgnoreSource(nameof(UpdateAuthAccountDTO.RoleIds))]
-        [MapperIgnoreSource(nameof(UpdateAuthAccountDTO.ProductAssignments))]
         public partial void MapFromUpdateDTO(UpdateAuthAccountDTO updateDTO, AuthAccount model);
 
         [MapProperty(nameof(UpdateAuthAccountProfileDTO.FullName), "User.FullName")]
@@ -76,14 +67,7 @@ namespace Mappers
                 PhoneNumber = model.User.PhoneNumber,
                 Gender = model.User.Gender.ToString(),
                 ImageUrl = model.User.ImageUrl,
-                RoleIds = model.User.UserRoles.Select(userRole => userRole.RoleId).ToList(),
-                ProductAssignments = model.User.UserProductAssignments
-                    .Select(assignment => new GetAuthAccountProductAssignmentDTO
-                    {
-                        ProductId = assignment.ProductId,
-                        RoleInProduct = assignment.RoleInProduct.ToString()
-                    })
-                    .ToList()
+                RoleIds = model.User.UserRoles.Select(userRole => userRole.RoleId).ToList()
             });
         }
 
