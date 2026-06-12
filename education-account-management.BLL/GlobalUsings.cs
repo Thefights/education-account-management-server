@@ -1,0 +1,16 @@
+global using Common;
+global using EntityAnnotations;
+global using Enums;
+global using Exceptions;
+global using Filters.Base;
+global using Infrastructure.Interface;
+global using Mappers;
+global using Mappers.Base;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.Extensions.Logging;
+global using Models;
+global using Persistence.SqlServer.Transactions;
+global using Repositories.Interfaces;
+global using Utils;
+global using Validators;

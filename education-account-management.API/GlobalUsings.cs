@@ -1,0 +1,9 @@
+global using Asp.Versioning;
+global using Authorization;
+global using AvepointMosPlatform.BLL;
+global using Common.HttpResults;
+global using Controllers.Base;
+global using Filters;
+global using Infrastructure.Interface;
+global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.AspNetCore.Mvc;
