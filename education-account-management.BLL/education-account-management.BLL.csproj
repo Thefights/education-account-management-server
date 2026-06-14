@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\education-account-management.DAL\education-account-management.DAL.csproj" />
+  </ItemGroup>
+
 </Project>
