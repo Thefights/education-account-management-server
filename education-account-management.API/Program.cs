@@ -9,7 +9,6 @@ builder.Host.UseDefaultServiceProvider(options =>
 });
 
 builder.Logging.ClearProviders();
-builder.Logging.AddLog4Net("log4net.config");
 
 var configuration = builder.Configuration.Get<AppConfiguration>()!;
 builder.Services.AddSingleton(configuration);

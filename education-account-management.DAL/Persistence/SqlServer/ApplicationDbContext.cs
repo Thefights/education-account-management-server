@@ -1,10 +1,9 @@
-﻿using Common;
-using Models;
+﻿using Models;
 using Persistence.SqlServer.ModelConfigurations;
 
 namespace Persistence.SqlServer
 {
-    public class ApplicationDbContext(DbContextOptions options) : DbContext(options)
+    public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
     {
         public DbSet<Citizen> Citizen { get; set; }
 
