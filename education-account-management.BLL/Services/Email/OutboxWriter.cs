@@ -1,4 +1,4 @@
-using education_account_management.BLL.DTOs.Email;
+using DTOs.Email;
 using Emails;
 using Enums;
 using Interfaces.Email;

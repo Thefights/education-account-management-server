@@ -1,4 +1,4 @@
-using education_account_management.BLL.Mappers;
+using Mappers;
 
 namespace Extensions.DependencyInjection;
 

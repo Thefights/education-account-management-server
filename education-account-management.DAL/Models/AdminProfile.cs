@@ -1,5 +1,3 @@
-using Common;
-
 namespace Models
 {
     public class AdminProfile : AuditEntity

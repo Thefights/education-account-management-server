@@ -1,4 +1,4 @@
-using education_account_management.BLL.Emails;
+using Emails;
 using System.Text.Json;
 using Repositories.Interfaces;
 using Enums;

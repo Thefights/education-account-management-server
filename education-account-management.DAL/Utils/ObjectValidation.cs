@@ -1,4 +1,4 @@
-using education_account_management.DAL.Exceptions;
+using Exceptions;
 
 namespace Utils
 {
