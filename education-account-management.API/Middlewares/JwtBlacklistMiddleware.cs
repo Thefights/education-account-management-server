@@ -1,3 +1,5 @@
+using Infrastructure.Interface;
+
 namespace Middlewares;
 
 public class JwtBlacklistMiddleware(RequestDelegate next)

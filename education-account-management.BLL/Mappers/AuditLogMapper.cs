@@ -1,7 +1,9 @@
 ﻿using DTOs.Audit;
+using Mappers.Base;
+using Models;
 using Riok.Mapperly.Abstractions;
 
-namespace Mappers
+namespace education_account_management.BLL.Mappers
 {
     [Mapper(RequiredMappingStrategy = RequiredMappingStrategy.None)]
     public partial class AuditLogMapper : IReadMapper<AuditLog, GetAuditLogDTO>

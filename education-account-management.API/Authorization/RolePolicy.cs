@@ -4,7 +4,9 @@ namespace Authorization
 {
     public static class RolePolicy
     {
-        public const string Admin = nameof(RoleEnum.Admin);
-        public const string AdminOrTenantUser = $"{nameof(RoleEnum.Admin)},{nameof(RoleEnum.TenantUser)}";
+        public const string Admin = nameof(UserRole.SystemAdmin);
+
+        public const string AdminStaff =
+            $"{nameof(UserRole.SystemAdmin)},{nameof(UserRole.FinanceAdmin)},{nameof(UserRole.CourseAdmin)}";
     }
 }

@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+﻿using Common;
+using EntityAnnotations.OnDeleteAttributes;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Persistence.SqlServer.ModelConfigurations
 {
@@ -82,7 +84,7 @@ namespace Persistence.SqlServer.ModelConfigurations
                         if (relatedEntity is AuditEntity auditEntity && !auditEntity.IsDeleted)
                         {
                             auditEntity.IsDeleted = true;
-                            auditEntity.DeletionDate = DateTime.UtcNow;
+                            auditEntity.DeletedAt = DateTime.UtcNow;
 
                             await ProcessEntityCascadeAsync(context, relatedEntity, cancellationToken);
                         }

@@ -1,4 +1,4 @@
-namespace AvepointMosPlatform.BLL
+namespace education_account_management.BLL
 {
     public class AppConfiguration
     {
@@ -15,9 +15,6 @@ namespace AvepointMosPlatform.BLL
         public EmailConfig EmailConfig { get; set; } = null!;
         public RedisConfig RedisConfig { get; set; } = null!;
         public R2Config R2Config { get; set; } = null!;
-        public GoogleConfig GoogleConfig { get; set; } = null!;
-        public Microsoft365Config Microsoft365Config { get; set; } = null!;
-        public FacebookConfig FacebookConfig { get; set; } = null!;
     }
 
     #region AppInfo
@@ -60,7 +57,6 @@ namespace AvepointMosPlatform.BLL
         public bool Secure { get; set; }
         public string SameSite { get; set; } = null!;
         public int ExpirationDays { get; set; }
-        public int StaySignedInExpirationDays { get; set; }
     }
     #endregion
 
@@ -86,9 +82,6 @@ namespace AvepointMosPlatform.BLL
     #region ResilienceConfig
     public class ResilienceConfig
     {
-        public int SocialProviderTimeoutSeconds { get; set; }
-        public int SocialProviderRetryCount { get; set; }
-        public int SocialProviderCircuitBreakSeconds { get; set; }
         public int EmailTimeoutSeconds { get; set; }
         public int EmailRetryCount { get; set; }
         public int EmailCircuitBreakSeconds { get; set; }
@@ -123,7 +116,6 @@ namespace AvepointMosPlatform.BLL
         public string ApiKey { get; set; } = null!;
         public string FromEmail { get; set; } = null!;
         public string FromDisplayName { get; set; } = null!;
-        public string PasswordResetUrlTemplate { get; set; } = null!;
     }
     #endregion
 
@@ -138,30 +130,6 @@ namespace AvepointMosPlatform.BLL
         public int ConnectTimeoutMs { get; set; }
         public int SyncTimeoutMs { get; set; }
         public int ReconnectRetryMs { get; set; }
-    }
-    #endregion
-
-    #region GoogleConfig
-    public class GoogleConfig
-    {
-        public string ClientId { get; set; } = null!;
-    }
-    #endregion
-
-    #region Microsoft365Config
-    public class Microsoft365Config
-    {
-        public string ClientId { get; set; } = null!;
-        public string TenantId { get; set; } = null!;
-    }
-    #endregion
-
-    #region FacebookConfig
-    public class FacebookConfig
-    {
-        public string AppId { get; set; } = null!;
-        public string AppSecret { get; set; } = null!;
-        public string GraphVersion { get; set; } = null!;
     }
     #endregion
 

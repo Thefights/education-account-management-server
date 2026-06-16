@@ -1,3 +1,4 @@
+using Common;
 using Persistence.SqlServer.Transactions;
 
 namespace Repositories.Interfaces

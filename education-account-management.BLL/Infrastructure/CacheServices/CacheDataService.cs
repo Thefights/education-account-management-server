@@ -1,3 +1,4 @@
+using Infrastructure.Interface;
 using System.Text.Json;
 
 namespace Infrastructure.CacheServices

@@ -8,19 +8,15 @@ namespace DTOs.Audit
 
         public int? ActorUserId { get; set; }
 
-        public string? ActorFullName { get; set; }
-
-        public string? ActorUserIdText { get; set; }
-
         public string? Category { get; set; }
 
         public string? Action { get; set; }
 
-        public string? Object { get; set; }
-
         public string? IpAddress { get; set; }
 
-        public DateTime CreatedAt { get; set; }
+        public string? PayloadJson { get; set; }
+
+        public DateTime OccurredAt { get; set; }
     }
 
     public class ExportAuditLogRequestDTO

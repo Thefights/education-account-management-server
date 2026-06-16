@@ -1,4 +1,5 @@
 ﻿using Enums;
+using Infrastructure.Interface;
 using System.Security.Claims;
 using Utils;
 
@@ -14,7 +15,7 @@ namespace Infrastructure
 
         public int AuthId { get; }
 
-        public RoleEnum Role { get; }
+        public UserRole Role { get; }
 
         public CurrentUserService(IHttpContextAccessor httpContextAccessor)
         {
@@ -37,7 +38,7 @@ namespace Infrastructure
             AuthId = authId;
 
             var roleClaim = user.FindFirstValue(ClaimTypes.Role);
-            if (EnumUtil.TryParseDefined<RoleEnum>(roleClaim, out var role))
+            if (EnumUtil.TryParseDefined<UserRole>(roleClaim, out var role))
             {
                 Role = role;
             }

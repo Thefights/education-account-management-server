@@ -1,4 +1,4 @@
-﻿using Extensions.DependencyInjection;
+using Extensions.DependencyInjection;
 
 namespace Extensions
 {
@@ -13,11 +13,9 @@ namespace Extensions
             services.AddAuthServices(configuration);
             services.AddEmailServices(configuration);
             services.AddStorageServices(configuration);
-            services.AddProductServices();
             services.AddAuditServices();
             services.AddCsvServices();
             services.AddMappers();
-            services.AddValidators();
             services.AddBackgroundJobServices();
 
             return services;

@@ -7,38 +7,38 @@ namespace EntityAnnotations.OnDeleteAttributes
     /// <example>
     /// <code>
     /// // Restrict: Prevent deletion if related records exist (default)
-    /// public class Category : AuditEntity
+    /// public class ParentRecord : AuditEntity
     /// {
     ///     public string Name { get; set; } = null!;
     ///     
     ///     // No attribute = Restrict by default
-    ///     public ICollection<Product> Products { get; set; } = [];
+    ///     public ICollection<ChildRecord> Children { get; set; } = [];
     /// }
     /// 
     /// // Cascade: Auto soft-delete related records when parent is deleted
-    /// public class Category : AuditEntity
+    /// public class ParentRecord : AuditEntity
     /// {
     ///     public string Name { get; set; } = null!;
     ///     
     ///     [OnDelete(OnDeleteBehavior.Cascade)]
-    ///     public ICollection<Product> Products { get; set; } = [];
+    ///     public ICollection<ChildRecord> Children { get; set; } = [];
     /// }
     /// 
     /// // SetNull: Set FK to null on related records (FK must be nullable!)
-    /// public class Category : AuditEntity
+    /// public class ParentRecord : AuditEntity
     /// {
     ///     public string Name { get; set; } = null!;
     ///     
     ///     [OnDelete(OnDeleteBehavior.SetNull)]
-    ///     public ICollection<Product> Products { get; set; } = [];
+    ///     public ICollection<ChildRecord> Children { get; set; } = [];
     /// }
     /// 
-    /// // Product with nullable FK for SetNull to work
-    /// public class Product : AuditEntity
+    /// // Child record with nullable FK for SetNull to work
+    /// public class ChildRecord : AuditEntity
     /// {
     ///     public string Name { get; set; } = null!;
-    ///     public int? CategoryId { get; set; }  // Must be nullable!
-    ///     public Category? Category { get; set; }
+    ///     public int? ParentRecordId { get; set; }  // Must be nullable!
+    ///     public ParentRecord? ParentRecord { get; set; }
     /// }
     /// </code>
     /// </example>

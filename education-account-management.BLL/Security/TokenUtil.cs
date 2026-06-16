@@ -1,5 +1,7 @@
-﻿using AvepointMosPlatform.BLL;
+using education_account_management.BLL;
+using Enums;
 using Microsoft.IdentityModel.Tokens;
+using Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -22,21 +24,38 @@ namespace Security
             return Convert.ToHexString(bytes).ToLowerInvariant();
         }
 
-        public static string CreateAccessToken(AppConfiguration configuration, AuthAccount authAccount, DateTime expiresAt)
+        public static string CreateAccessToken(AppConfiguration configuration, User user, DateTime expiresAt)
         {
-            var user = authAccount.User;
-            var role = user.UserRoles.FirstOrDefault()?.Role?.Name
-                ?? throw new InvalidOperationException($"User {user.Id} has no role.");
+            return CreateAccessToken(
+                configuration,
+                user.AuthAccountId,
+                user.Id,
+                user.Role,
+                ResolveDisplayName(user),
+                expiresAt);
+        }
 
+        public static string CreateAccessToken(
+            AppConfiguration configuration,
+            int authAccountId,
+            int userId,
+            UserRole role,
+            string? name,
+            DateTime expiresAt)
+        {
             var claims = new List<Claim>
             {
-                new(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new("AuthId", authAccount.Id.ToString()),
-                new("UserId", user.Id.ToString()),
-                new(ClaimTypes.Name, authAccount.UserIdText),
-                new(ClaimTypes.Role, role),
+                new(ClaimTypes.NameIdentifier, userId.ToString()),
+                new("AuthId", authAccountId.ToString()),
+                new("UserId", userId.ToString()),
+                new(ClaimTypes.Role, role.ToString()),
                 new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString("N"))
             };
+
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                claims.Add(new Claim(ClaimTypes.Name, name));
+            }
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.JwtConfig.SecretKey));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -48,6 +67,12 @@ namespace Security
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        private static string? ResolveDisplayName(User user)
+        {
+            return user.AdminProfile?.FullName
+                ?? user.Citizen?.FullName;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using education_account_management.DAL.Models;
+﻿using Common;
 using Models;
 using Persistence.SqlServer.ModelConfigurations;
 
@@ -6,23 +6,39 @@ namespace Persistence.SqlServer
 {
     public class ApplicationDbContext(DbContextOptions options) : DbContext(options)
     {
-        public DbSet<Product> Product { get; set; }
-
-        public DbSet<User> User { get; set; }
+        public DbSet<Citizen> Citizen { get; set; }
 
         public DbSet<AuthAccount> AuthAccount { get; set; }
 
-        public DbSet<Role> Role { get; set; }
-
-        public DbSet<UserRole> UserRole { get; set; }
+        public DbSet<SsoIdentity> SsoIdentity { get; set; }
 
         public DbSet<RefreshToken> RefreshToken { get; set; }
 
         public DbSet<OtpVerification> OtpVerification { get; set; }
 
-        public DbSet<PasswordResetToken> PasswordResetToken { get; set; }
+        public DbSet<User> User { get; set; }
 
-        public DbSet<SocialLogin> SocialLogin { get; set; }
+        public DbSet<AdminProfile> AdminProfile { get; set; }
+
+        public DbSet<EducationAccount> EducationAccount { get; set; }
+
+        public DbSet<TopupRule> TopupRule { get; set; }
+
+        public DbSet<TopupRuleCondition> TopupRuleCondition { get; set; }
+
+        public DbSet<TopupBatch> TopupBatch { get; set; }
+
+        public DbSet<TopupBatchTarget> TopupBatchTarget { get; set; }
+
+        public DbSet<AdhocTopupBatch> AdhocTopupBatch { get; set; }
+
+        public DbSet<AdhocTopupBatchTarget> AdhocTopupBatchTarget { get; set; }
+
+        public DbSet<EducationCreditTransaction> EducationCreditTransaction { get; set; }
+
+        public DbSet<TopupBatchTargetTransaction> TopupBatchTargetTransaction { get; set; }
+
+        public DbSet<AdhocTopupBatchTargetTransaction> AdhocTopupBatchTargetTransaction { get; set; }
 
         public DbSet<AuditLog> AuditLog { get; set; }
 
@@ -44,11 +60,38 @@ namespace Persistence.SqlServer
         {
             modelBuilder.Entity<User>()
                 .HasOne(user => user.AuthAccount)
-                .WithOne(authAccount => authAccount.User)
+                .WithOne()
                 .HasForeignKey<User>(user => user.AuthAccountId);
 
-            modelBuilder.Entity<UserRole>()
-                .HasKey(userRole => new { userRole.UserId, userRole.RoleId });
+            modelBuilder.Entity<AdminProfile>()
+                .HasOne(adminProfile => adminProfile.User)
+                .WithOne(user => user.AdminProfile)
+                .HasForeignKey<AdminProfile>(adminProfile => adminProfile.UserId);
+
+            modelBuilder.Entity<EducationAccount>()
+                .HasOne(educationAccount => educationAccount.Citizen)
+                .WithOne(citizen => citizen.EducationAccount)
+                .HasForeignKey<EducationAccount>(educationAccount => educationAccount.CitizenId);
+
+            modelBuilder.Entity<TopupBatchTargetTransaction>()
+                .HasOne(link => link.TopupBatchTarget)
+                .WithOne(target => target.TopupBatchTargetTransaction)
+                .HasForeignKey<TopupBatchTargetTransaction>(link => link.TopupBatchTargetId);
+
+            modelBuilder.Entity<TopupBatchTargetTransaction>()
+                .HasOne(link => link.EducationCreditTransaction)
+                .WithOne(transaction => transaction.TopupBatchTargetTransaction)
+                .HasForeignKey<TopupBatchTargetTransaction>(link => link.EducationCreditTransactionId);
+
+            modelBuilder.Entity<AdhocTopupBatchTargetTransaction>()
+                .HasOne(link => link.AdhocTopupBatchTarget)
+                .WithOne(target => target.AdhocTopupBatchTargetTransaction)
+                .HasForeignKey<AdhocTopupBatchTargetTransaction>(link => link.AdhocTopupBatchTargetId);
+
+            modelBuilder.Entity<AdhocTopupBatchTargetTransaction>()
+                .HasOne(link => link.EducationCreditTransaction)
+                .WithOne(transaction => transaction.AdhocTopupBatchTargetTransaction)
+                .HasForeignKey<AdhocTopupBatchTargetTransaction>(link => link.EducationCreditTransactionId);
 
         }
 
@@ -70,17 +113,17 @@ namespace Persistence.SqlServer
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.CreationDate = now;
+                        entry.Entity.CreatedAt = now;
                         break;
 
                     case EntityState.Modified:
-                        entry.Entity.ModificationDate = now;
+                        entry.Entity.UpdatedAt = now;
                         break;
 
                     case EntityState.Deleted:
                         entry.State = EntityState.Modified;
                         entry.Entity.IsDeleted = true;
-                        entry.Entity.DeletionDate = now;
+                        entry.Entity.DeletedAt = now;
                         break;
                 }
             }

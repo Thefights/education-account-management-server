@@ -1,3 +1,6 @@
+using Common;
+using EntityAnnotations;
+
 namespace Persistence.SqlServer.ModelConfigurations
 {
     public static class UniqueIndexConfigurator

@@ -1,3 +1,5 @@
+using Utils;
+
 namespace EntityAnnotations
 {
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]

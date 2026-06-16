@@ -1,4 +1,4 @@
-using AvepointMosPlatform.BLL;
+using education_account_management.BLL;
 
 namespace Utils
 {

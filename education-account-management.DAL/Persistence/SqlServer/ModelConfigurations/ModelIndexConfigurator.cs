@@ -1,4 +1,3 @@
-using education_account_management.DAL.Models;
 using Models;
 
 namespace Persistence.SqlServer.ModelConfigurations
@@ -7,74 +6,129 @@ namespace Persistence.SqlServer.ModelConfigurations
     {
         public static void ConfigureIndexes(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Citizen>(entity =>
+            {
+                entity.HasIndex(citizen => citizen.DateOfBirth);
+                entity.HasIndex(citizen => citizen.CitizenshipStatus);
+                entity.HasIndex(citizen => citizen.Email);
+            });
+
             modelBuilder.Entity<AuthAccount>(entity =>
             {
-                entity.HasIndex(authAccount => authAccount.UserIdText).IsUnique();
-                entity.HasIndex(authAccount => authAccount.Email);
                 entity.HasIndex(authAccount => authAccount.Status);
             });
 
-            modelBuilder.Entity<User>(entity =>
+            modelBuilder.Entity<SsoIdentity>(entity =>
             {
-                entity.HasIndex(user => user.AuthAccountId).IsUnique();
+                entity.HasIndex(ssoIdentity => ssoIdentity.AuthAccountId);
+                entity.HasIndex(ssoIdentity => ssoIdentity.Provider);
+                entity.HasIndex(ssoIdentity => ssoIdentity.ProviderUserId);
+                entity.HasIndex(ssoIdentity => new { ssoIdentity.Provider, ssoIdentity.ProviderUserId }).IsUnique();
             });
 
             modelBuilder.Entity<RefreshToken>(entity =>
             {
                 entity.HasIndex(refreshToken => refreshToken.AuthAccountId);
-                entity.HasIndex(refreshToken => refreshToken.TokenHash).IsUnique();
                 entity.HasIndex(refreshToken => refreshToken.ExpiresAt);
                 entity.HasIndex(refreshToken => refreshToken.RevokedAt);
-                entity.HasIndex(refreshToken => refreshToken.ReplacedByRefreshTokenId);
-            });
-
-            modelBuilder.Entity<PasswordResetToken>(entity =>
-            {
-                entity.HasIndex(passwordResetToken => passwordResetToken.AuthAccountId);
-                entity.HasIndex(passwordResetToken => passwordResetToken.TokenHash).IsUnique();
-                entity.HasIndex(passwordResetToken => passwordResetToken.ExpiresAt);
-                entity.HasIndex(passwordResetToken => passwordResetToken.UsedAt);
             });
 
             modelBuilder.Entity<OtpVerification>(entity =>
             {
-                entity.HasIndex(otpVerification => otpVerification.SessionId).IsUnique();
                 entity.HasIndex(otpVerification => otpVerification.AuthAccountId);
-                entity.HasIndex(otpVerification => otpVerification.Target);
-                entity.HasIndex(otpVerification => otpVerification.Purpose);
-                entity.HasIndex(otpVerification => otpVerification.DeliveryMethod);
                 entity.HasIndex(otpVerification => otpVerification.ExpiresAt);
-                entity.HasIndex(otpVerification => otpVerification.UsedAt);
-                entity.HasIndex(otpVerification => otpVerification.InvalidatedAt);
             });
 
-            modelBuilder.Entity<SocialLogin>(entity =>
+            modelBuilder.Entity<User>(entity =>
             {
-                entity.HasIndex(socialLogin => new { socialLogin.Provider, socialLogin.ProviderUserId }).IsUnique();
-                entity.HasIndex(socialLogin => new { socialLogin.AuthAccountId, socialLogin.Provider }).IsUnique();
-                entity.HasIndex(socialLogin => socialLogin.ProviderEmail);
+                entity.HasIndex(user => user.AuthAccountId).IsUnique();
+                entity.HasIndex(user => user.CitizenId);
+                entity.HasIndex(user => user.Role);
             });
 
-            modelBuilder.Entity<Product>(entity =>
+            modelBuilder.Entity<AdminProfile>(entity =>
             {
-                entity.HasIndex(product => product.Status);
-                entity.HasIndex(product => product.Name);
+                entity.HasIndex(adminProfile => adminProfile.UserId).IsUnique();
             });
 
-            modelBuilder.Entity<UserRole>(entity =>
+            modelBuilder.Entity<EducationAccount>(entity =>
             {
-                entity.HasIndex(userRole => userRole.RoleId);
+                entity.HasIndex(educationAccount => educationAccount.CitizenId).IsUnique();
+                entity.HasIndex(educationAccount => educationAccount.Status);
+            });
+
+            modelBuilder.Entity<TopupRule>(entity =>
+            {
+                entity.HasIndex(topupRule => topupRule.RuleName);
+                entity.HasIndex(topupRule => topupRule.Status);
+            });
+
+            modelBuilder.Entity<TopupRuleCondition>(entity =>
+            {
+                entity.HasIndex(condition => condition.TopupRuleId);
+                entity.HasIndex(condition => condition.Field);
+                entity.HasIndex(condition => condition.Operator);
+            });
+
+            modelBuilder.Entity<TopupBatch>(entity =>
+            {
+                entity.HasIndex(batch => batch.TopupRuleId);
+                entity.HasIndex(batch => batch.Status);
+            });
+
+            modelBuilder.Entity<TopupBatchTarget>(entity =>
+            {
+                entity.HasIndex(target => target.TopupBatchId);
+                entity.HasIndex(target => target.EducationAccountId);
+                entity.HasIndex(target => target.Status);
+                entity.HasIndex(target => new { target.TopupBatchId, target.EducationAccountId }).IsUnique();
+            });
+
+            modelBuilder.Entity<AdhocTopupBatch>(entity =>
+            {
+                entity.HasIndex(batch => batch.Status);
+            });
+
+            modelBuilder.Entity<AdhocTopupBatchTarget>(entity =>
+            {
+                entity.HasIndex(target => target.AdhocTopupBatchId);
+                entity.HasIndex(target => target.EducationAccountId);
+                entity.HasIndex(target => target.Status);
+                entity.HasIndex(target => new { target.AdhocTopupBatchId, target.EducationAccountId }).IsUnique();
+            });
+
+            modelBuilder.Entity<EducationCreditTransaction>(entity =>
+            {
+                entity.HasIndex(transaction => transaction.EducationAccountId);
+                entity.HasIndex(transaction => transaction.Type);
+                entity.HasIndex(transaction => transaction.Direction);
+            });
+
+            modelBuilder.Entity<TopupBatchTargetTransaction>(entity =>
+            {
+                entity.HasIndex(link => link.TopupBatchTargetId).IsUnique();
+                entity.HasIndex(link => link.EducationCreditTransactionId).IsUnique();
+            });
+
+            modelBuilder.Entity<AdhocTopupBatchTargetTransaction>(entity =>
+            {
+                entity.HasIndex(link => link.AdhocTopupBatchTargetId).IsUnique();
+                entity.HasIndex(link => link.EducationCreditTransactionId).IsUnique();
             });
 
             modelBuilder.Entity<AuditLog>(entity =>
             {
-                entity.HasIndex(auditLog => auditLog.ActorUserId);
-                entity.HasIndex(auditLog => auditLog.ActorUserIdText);
-                entity.HasIndex(auditLog => auditLog.Category);
-                entity.HasIndex(auditLog => auditLog.Action);
-                entity.HasIndex(auditLog => auditLog.CreatedAt);
-                entity.HasIndex(auditLog => auditLog.Object);
-                entity.HasIndex(auditLog => new { auditLog.Category, auditLog.Action, auditLog.CreatedAt });
+                entity.HasIndex(log => log.ActorUserId);
+                entity.HasIndex(log => log.Category);
+                entity.HasIndex(log => log.Action);
+                entity.HasIndex(log => log.OccurredAt);
+            });
+
+            modelBuilder.Entity<OutboxMessage>(entity =>
+            {
+                entity.HasIndex(message => message.Type);
+                entity.HasIndex(message => message.Status);
+                entity.HasIndex(message => message.OccurredAt);
             });
         }
     }

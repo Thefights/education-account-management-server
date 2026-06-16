@@ -1,3 +1,5 @@
+using Enums;
+
 namespace Utils
 {
     public static class FileExtensionMap

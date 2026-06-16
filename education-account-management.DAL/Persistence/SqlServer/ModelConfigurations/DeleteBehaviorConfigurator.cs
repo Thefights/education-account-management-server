@@ -1,3 +1,5 @@
+using EntityAnnotations.OnDeleteAttributes;
+
 namespace Persistence.SqlServer.ModelConfigurations
 {
     public static class DeleteBehaviorConfigurator

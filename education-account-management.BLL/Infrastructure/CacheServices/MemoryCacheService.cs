@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Caching.Distributed;
+﻿using Infrastructure.Interface;
+using Microsoft.Extensions.Caching.Distributed;
 using System.Collections.Concurrent;
 using System.Text;
 

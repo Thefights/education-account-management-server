@@ -1,4 +1,8 @@
-﻿using Interfaces.Base;
+﻿using Common;
+using Filters.Base;
+using Interfaces.Base;
+using Mappers.Base;
+using Repositories.Interfaces;
 using Results;
 
 namespace Services.Base

@@ -1,4 +1,5 @@
-﻿using System.IdentityModel.Tokens.Jwt;
+﻿using Infrastructure.Interface;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace Infrastructure
 {

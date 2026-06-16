@@ -1,6 +1,6 @@
 using Amazon.S3;
 using Amazon.S3.Model;
-using AvepointMosPlatform.BLL;
+using education_account_management.BLL;
 using Infrastructure;
 using Interfaces.Storage;
 using Polly;

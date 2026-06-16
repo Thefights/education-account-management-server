@@ -1,4 +1,5 @@
-﻿using System.Linq.Dynamic.Core;
+﻿using Common;
+using System.Linq.Dynamic.Core;
 
 namespace Persistence.SqlServer
 {

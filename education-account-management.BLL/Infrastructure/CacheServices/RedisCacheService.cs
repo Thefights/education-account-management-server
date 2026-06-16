@@ -1,3 +1,4 @@
+using Infrastructure.Interface;
 using Microsoft.Extensions.Caching.Distributed;
 using StackExchange.Redis;
 using System.Text;

@@ -1,25 +1,23 @@
+using Common;
+using Enums;
+
 namespace Models
 {
     public class OutboxMessage : BaseEntity
     {
-        [EnumDefined]
-        public OutboxMessageType Type { get; set; }
+        [MessageRequired, MessageMaxLength(50)]
+        public string Type { get; set; } = string.Empty;
+
+        [MessageRequired]
+        [Column(TypeName = "json")]
+        public string PayloadJson { get; set; } = string.Empty;
 
         [EnumDefined]
         public OutboxMessageStatus Status { get; set; } = OutboxMessageStatus.Pending;
 
-        [MessageRequired]
-        public string PayloadJson { get; set; } = string.Empty;
+        [NumberPositive]
+        public int RetryCount { get; set; }
 
-        public int AttemptCount { get; set; }
-
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-
-        public DateTime? NextAttemptAt { get; set; }
-
-        public DateTime? ProcessedAt { get; set; }
-
-        [MessageMaxLength(1000)]
-        public string? LastError { get; set; }
+        public DateTime OccurredAt { get; set; } = DateTime.UtcNow;
     }
 }

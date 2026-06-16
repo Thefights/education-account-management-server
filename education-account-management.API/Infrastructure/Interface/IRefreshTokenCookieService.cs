@@ -1,12 +1,10 @@
-using DTOs.Auth;
-
 namespace Infrastructure.Interface
 {
     public interface IRefreshTokenCookieService
     {
-        string? RefreshToken { get; }
+        string? Get();
 
-        void Set(AuthTokenResponseDTO tokens);
+        void Set(string refreshToken, DateTimeOffset? expires = null);
 
         void Clear();
     }

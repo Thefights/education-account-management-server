@@ -1,23 +1,22 @@
-﻿using education_account_management.DAL.Models;
-using EntityAnnotations.RegExAttributes;
+using Common;
+using EntityAnnotations.OnDeleteAttributes;
+using Enums;
 
 namespace Models
 {
-    public class User : EntityWithImage
+    public class User : AuditEntity
     {
+        [EnumDefined]
+        public UserRole Role { get; set; } = UserRole.AccountHolder;
+
+        [NotDefaultValue]
         public int AuthAccountId { get; set; }
         public AuthAccount AuthAccount { get; set; } = null!;
 
-        [EnumDefined]
-        public UserGender Gender { get; set; }
-
-        [MessageRequired, MessageMaxLength(100)]
-        public string FullName { get; set; } = string.Empty;
-
-        [MessageMaxLength(16), PhoneNumberValidator, Unique]
-        public string? PhoneNumber { get; set; }
+        public int? CitizenId { get; set; }
+        public Citizen? Citizen { get; set; }
 
         [OnDelete(OnDeleteBehavior.Cascade)]
-        public ICollection<UserRole> UserRoles { get; set; } = [];
+        public AdminProfile? AdminProfile { get; set; }
     }
 }

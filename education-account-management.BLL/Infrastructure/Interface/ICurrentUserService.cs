@@ -1,3 +1,5 @@
+using Enums;
+
 namespace Infrastructure.Interface
 {
     public interface ICurrentUserService
@@ -6,6 +8,6 @@ namespace Infrastructure.Interface
 
         int AuthId { get; }
 
-        RoleEnum Role { get; }
+        UserRole Role { get; }
     }
 }

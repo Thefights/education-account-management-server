@@ -1,4 +1,5 @@
-﻿using Results;
+﻿using Filters.Base;
+using Results;
 
 namespace Interfaces.Base
 {

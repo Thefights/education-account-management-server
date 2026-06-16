@@ -1,7 +1,10 @@
-using DTOs.Email;
-using Emails;
-using Interfaces.Email;
+using education_account_management.BLL.Emails;
 using System.Text.Json;
+using Repositories.Interfaces;
+using Enums;
+using Models;
+using Interfaces.Email;
+using DTOs.Email;
 
 namespace Services.Email
 {
@@ -21,14 +24,12 @@ namespace Services.Email
 
         public async Task ProcessPendingAsync(CancellationToken cancellationToken = default)
         {
-            var now = DateTime.UtcNow;
             var messages = await _outboxMessageRepository
                 .Query(tracking: true)
-                .Where(message => message.Type == OutboxMessageType.SendEmail
+                .Where(message => message.Type == OutboxWriter.SendEmailMessageType
                     && (message.Status == OutboxMessageStatus.Pending || message.Status == OutboxMessageStatus.Failed)
-                    && (message.NextAttemptAt == null || message.NextAttemptAt <= now)
-                    && message.AttemptCount < MaxAttempts)
-                .OrderBy(message => message.CreatedAt)
+                    && message.RetryCount < MaxAttempts)
+                .OrderBy(message => message.OccurredAt)
                 .Take(BatchSize)
                 .ToListAsync(cancellationToken);
 
@@ -47,8 +48,7 @@ namespace Services.Email
             OutboxMessage message,
             CancellationToken cancellationToken)
         {
-            message.Status = OutboxMessageStatus.Processing;
-            message.AttemptCount++;
+            message.RetryCount++;
 
             try
             {
@@ -58,10 +58,7 @@ namespace Services.Email
 
                 await _emailService.SendAsync(payload.ToEmail, template, cancellationToken);
 
-                message.Status = OutboxMessageStatus.Processed;
-                message.ProcessedAt = DateTime.UtcNow;
-                message.NextAttemptAt = null;
-                message.LastError = null;
+                message.Status = OutboxMessageStatus.Completed;
             }
             catch (Exception ex) when (ex is not OperationCanceledException)
             {
@@ -70,11 +67,9 @@ namespace Services.Email
                     "Failed to process outbox email message {OutboxMessageId}.",
                     message.Id);
 
-                message.Status = message.AttemptCount >= MaxAttempts
+                message.Status = message.RetryCount >= MaxAttempts
                     ? OutboxMessageStatus.Failed
                     : OutboxMessageStatus.Pending;
-                message.NextAttemptAt = DateTime.UtcNow.AddMinutes(Math.Min(message.AttemptCount * 5, 60));
-                message.LastError = StringUtil.Truncate(ex.Message, 1000);
             }
         }
     }

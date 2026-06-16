@@ -1,6 +1,9 @@
 using DTOs.Audit;
+using Enums;
 using Interfaces.Audit;
 using Interfaces.Csv;
+using Models;
+using Repositories.Interfaces;
 using Services.Base;
 
 namespace Services.Audit
@@ -22,13 +25,11 @@ namespace Services.Audit
             {
                 ["id"] = new("Id", auditLog => auditLog.Id),
                 ["actorUserId"] = new("Actor User Id", auditLog => auditLog.ActorUserId),
-                ["actorFullName"] = new("Actor Full Name", auditLog => auditLog.ActorFullName),
-                ["actorUserIdText"] = new("Actor User ID", auditLog => auditLog.ActorUserIdText),
                 ["category"] = new("Category", auditLog => auditLog.Category),
                 ["action"] = new("Action", auditLog => auditLog.Action),
-                ["object"] = new("Object", auditLog => auditLog.Object),
                 ["ipAddress"] = new("IP Address", auditLog => auditLog.IpAddress),
-                ["createdAt"] = new("Created At", auditLog => auditLog.CreatedAt)
+                ["payloadJson"] = new("Payload JSON", auditLog => auditLog.PayloadJson),
+                ["occurredAt"] = new("Occurred At", auditLog => auditLog.OccurredAt)
             };
 
         public async Task<byte[]> ExportCsvAsync(
@@ -48,10 +49,10 @@ namespace Services.Audit
 
             var content = _csvExportService.Export(records, request.Fields, ExportColumns);
             await _auditLogWriter.LogAsync(
-                AuditLogCategory.AuditLog,
-                AuditLogAction.ViewAuditLogs,
-                "AuditLog:Export",
-                cancellationToken);
+                AuditLogCategory.Security,
+                "ViewAuditLogs",
+                "{\"resource\":\"AuditLog\",\"operation\":\"Export\"}",
+                cancellationToken: cancellationToken);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
 
             return content;

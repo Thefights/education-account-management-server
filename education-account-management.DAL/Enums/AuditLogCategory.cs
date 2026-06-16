@@ -2,9 +2,10 @@ namespace Enums
 {
     public enum AuditLogCategory
     {
-        Authentication = 1,
-        AccountManagement = 2,
-        Product = 5,
-        AuditLog = 7
+        AccountCreation = 1,
+        StatusChange = 2,
+        TopupConfig = 3,
+        Security = 4,
+        Transaction = 5
     }
 }

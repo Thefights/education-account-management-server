@@ -1,4 +1,9 @@
+using Enums;
+using Infrastructure.Interface;
 using Interfaces.Audit;
+using Models;
+using Repositories.Interfaces;
+using Utils;
 
 namespace Services.Audit
 {
@@ -15,90 +20,92 @@ namespace Services.Audit
 
         public async Task LogAsync(
             AuditLogCategory category,
-            AuditLogAction action,
-            string? objectText,
+            string action,
+            string? payloadJson = null,
+            string? targetNric = null,
             CancellationToken cancellationToken = default)
         {
             var authId = _currentUserService.AuthId;
             if (authId > 0)
             {
-                var actor = await _authAccountRepository
+                var actorExists = await _authAccountRepository
                     .Query()
-                    .Include(authAccount => authAccount.User)
-                    .FirstOrDefaultAsync(authAccount => authAccount.Id == authId, cancellationToken);
-                if (actor != null)
+                    .AnyAsync(authAccount => authAccount.Id == authId, cancellationToken);
+                if (actorExists)
                 {
-                    await LogForActorAsync(actor, category, action, objectText, cancellationToken: cancellationToken);
+                    await LogForActorAsync(category, action, payloadJson, cancellationToken: cancellationToken);
                     return;
                 }
             }
 
-            await LogAnonymousAsync(category, action, objectText, cancellationToken: cancellationToken);
+            await LogAnonymousAsync(category, action, payloadJson, targetNric, cancellationToken: cancellationToken);
         }
 
-        public async Task LogForActorAsync(
-            AuthAccount actor,
+        private async Task LogForActorAsync(
             AuditLogCategory category,
-            AuditLogAction action,
-            string? objectText,
+            string action,
+            string? payloadJson,
             string? ipAddress = null,
             CancellationToken cancellationToken = default)
         {
             await AddAsync(
-                actor.User?.Id,
-                actor.User?.FullName ?? actor.UserIdText,
-                actor.UserIdText,
+                ResolveCurrentUserId(),
                 category,
                 action,
-                objectText,
+                payloadJson,
                 ipAddress,
                 cancellationToken);
         }
 
         public async Task LogAnonymousAsync(
             AuditLogCategory category,
-            AuditLogAction action,
-            string? objectText,
-            string actorUserIdText = "Anonymous",
-            string actorFullName = "Anonymous",
+            string action,
+            string? payloadJson = null,
+            string? targetNric = null,
             string? ipAddress = null,
             CancellationToken cancellationToken = default)
         {
             await AddAsync(
                 null,
-                actorFullName,
-                actorUserIdText,
                 category,
                 action,
-                objectText,
+                payloadJson,
                 ipAddress,
                 cancellationToken);
         }
 
         private async Task AddAsync(
             int? actorUserId,
-            string actorFullName,
-            string actorUserIdText,
             AuditLogCategory category,
-            AuditLogAction action,
-            string? objectText,
+            string action,
+            string? payloadJson,
             string? ipAddress,
             CancellationToken cancellationToken)
         {
             var auditLog = new AuditLog
             {
                 ActorUserId = actorUserId > 0 ? actorUserId : null,
-                ActorFullName = actorFullName,
-                ActorUserIdText = actorUserIdText,
                 Category = category,
                 Action = action,
-                Object = objectText,
+                PayloadJson = payloadJson,
                 IpAddress = ResolveIpAddress(ipAddress),
-                CreatedAt = DateTime.UtcNow
+                OccurredAt = DateTime.UtcNow
             };
 
             auditLog.TryValidate();
             await _auditLogRepository.AddAsync(auditLog, cancellationToken);
+        }
+
+        private int? ResolveCurrentUserId()
+        {
+            try
+            {
+                return _currentUserService.UserId;
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return null;
+            }
         }
 
         private string ResolveIpAddress(string? ipAddress)

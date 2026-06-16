@@ -1,4 +1,4 @@
-using DTOs.Auth;
+using Infrastructure.Interface;
 
 namespace Infrastructure
 {
@@ -8,64 +8,63 @@ namespace Infrastructure
         : IRefreshTokenCookieService
     {
         private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
-        private readonly AppConfiguration _configuration = configuration;
+        private readonly RefreshTokenConfig _config = configuration.RefreshTokenConfig;
 
-        public string? RefreshToken => _httpContextAccessor.HttpContext?.Request.Cookies[this.CookieName];
-
-        public void Set(AuthTokenResponseDTO tokens)
+        public string? Get()
         {
-            this.HttpContext.Response.Cookies.Append(
-                this.CookieName,
-                tokens.RefreshToken,
-                this.BuildCookieOptions(tokens.RefreshTokenExpiresAt));
+            return _httpContextAccessor.HttpContext?.Request.Cookies[_config.CookieName];
+        }
+
+        public void Set(string refreshToken, DateTimeOffset? expires = null)
+        {
+            var response = _httpContextAccessor.HttpContext?.Response;
+            if (response == null)
+            {
+                return;
+            }
+
+            response.Cookies.Append(
+                _config.CookieName,
+                refreshToken,
+                BuildCookieOptions(expires ?? DateTimeOffset.UtcNow.AddDays(_config.ExpirationDays)));
         }
 
         public void Clear()
         {
-            this.HttpContext.Response.Cookies.Delete(
-                this.CookieName,
-                this.BuildCookieOptions(DateTimeOffset.UtcNow.AddDays(-1)));
+            var response = _httpContextAccessor.HttpContext?.Response;
+            if (response == null)
+            {
+                return;
+            }
+
+            response.Cookies.Delete(_config.CookieName, BuildCookieOptions(DateTimeOffset.UnixEpoch));
         }
 
         private CookieOptions BuildCookieOptions(DateTimeOffset expires)
         {
-            var refreshTokenConfig = _configuration.RefreshTokenConfig;
             var options = new CookieOptions
             {
                 HttpOnly = true,
-                Secure = refreshTokenConfig.Secure,
-                SameSite = this.GetSameSiteMode(refreshTokenConfig),
+                Secure = _config.Secure,
+                SameSite = ParseSameSiteMode(_config.SameSite),
                 Expires = expires,
-                Path = "/"
+                Path = "/",
+                IsEssential = true
             };
 
-            if (!string.IsNullOrWhiteSpace(refreshTokenConfig.Domain))
+            if (!string.IsNullOrWhiteSpace(_config.Domain))
             {
-                options.Domain = refreshTokenConfig.Domain;
+                options.Domain = _config.Domain;
             }
 
             return options;
         }
 
-        private SameSiteMode GetSameSiteMode(RefreshTokenConfig refreshTokenConfig)
+        private static SameSiteMode ParseSameSiteMode(string? sameSite)
         {
-            if (!Enum.TryParse(refreshTokenConfig.SameSite, ignoreCase: true, out SameSiteMode sameSite))
-            {
-                sameSite = SameSiteMode.None;
-            }
-
-            return sameSite == SameSiteMode.None && !refreshTokenConfig.Secure
-                ? SameSiteMode.Lax
-                : sameSite;
+            return Enum.TryParse<SameSiteMode>(sameSite, ignoreCase: true, out var mode)
+                ? mode
+                : SameSiteMode.Lax;
         }
-
-        private HttpContext HttpContext =>
-            _httpContextAccessor.HttpContext
-                ?? throw new InvalidOperationException("HTTP context is not available.");
-
-        private string CookieName =>
-            string.IsNullOrWhiteSpace(_configuration.RefreshTokenConfig.CookieName)
-                ? "refreshToken"
-                : _configuration.RefreshTokenConfig.CookieName;
     }
 }
