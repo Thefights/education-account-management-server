@@ -1,7 +1,3 @@
-using Common;
-using EntityAnnotations.OnDeleteAttributes;
-using Enums;
-
 namespace Models
 {
     public class TopupBatch : AuditEntity
@@ -24,7 +20,7 @@ namespace Models
         public int TopupRuleId { get; set; }
         public TopupRule TopupRule { get; set; } = null!;
 
-        [OnDelete(OnDeleteBehavior.Cascade)]
+        [OnDelete(OnDeleteBehavior.NoAction)]
         public ICollection<TopupBatchTarget> Targets { get; set; } = [];
     }
 }

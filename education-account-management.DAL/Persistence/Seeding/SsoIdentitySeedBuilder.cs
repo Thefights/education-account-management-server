@@ -20,7 +20,7 @@ public sealed class SsoIdentitySeedBuilder : ISeedBuilder
                 Provider = id <= 3 ? SsoProvider.AzureAD : SsoProvider.Singpass,
                 ProviderUserId = id switch
                 {
-                    1 => "ca993f32-b85d-4757-8482-99f49d58c32a",
+                    1 => "00000000-0000-0000-1ece-baa24fa8003c",
                     <= 3 => $"azure-object-{id:000}",
                     _ => $"singpass-subject-{id:000}"
                 },

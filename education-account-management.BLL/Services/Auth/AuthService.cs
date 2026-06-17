@@ -22,15 +22,12 @@ namespace Services.Auth
         private readonly IGenericRepository<RefreshToken> _refreshTokenRepository = unitOfWork.Repository<RefreshToken>();
 
         public async Task<AuthLoginResponseDTO> LoginWithMockSingpassAsync(
-            MockSingpassLoginRequestDTO request,
             CancellationToken cancellationToken = default)
         {
-            ArgumentNullException.ThrowIfNull(request);
-
             var user = await ResolveUserFromSsoAsync(
                 SsoProvider.Singpass,
                 cancellationToken,
-                request.SingpassSubjectId);
+                "singpass-subject-004");
 
             if (user.Role != UserRole.AccountHolder)
             {

@@ -2,12 +2,6 @@ using System.Text.Json.Serialization;
 
 namespace DTOs.Auth
 {
-    public class MockSingpassLoginRequestDTO
-    {
-        [MessageRequired, MessageMaxLength(256)]
-        public string SingpassSubjectId { get; set; } = string.Empty;
-    }
-
     public class AzureAdLoginRequestDTO
     {
         [MessageRequired, MessageMaxLength(5000)]
