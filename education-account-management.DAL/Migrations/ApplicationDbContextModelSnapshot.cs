@@ -3158,7 +3158,7 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasOne("Models.AdhocTopupBatch", "AdhocTopupBatch")
                         .WithMany("Targets")
                         .HasForeignKey("AdhocTopupBatchId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Models.EducationAccount", "EducationAccount")
@@ -3177,7 +3177,7 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasOne("Models.AdhocTopupBatchTarget", "AdhocTopupBatchTarget")
                         .WithOne("AdhocTopupBatchTargetTransaction")
                         .HasForeignKey("Models.AdhocTopupBatchTargetTransaction", "AdhocTopupBatchTargetId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Models.EducationCreditTransaction", "EducationCreditTransaction")
@@ -3272,7 +3272,7 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasOne("Models.TopupRule", "TopupRule")
                         .WithMany("TopupBatches")
                         .HasForeignKey("TopupRuleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("TopupRule");
@@ -3289,7 +3289,7 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasOne("Models.TopupBatch", "TopupBatch")
                         .WithMany("Targets")
                         .HasForeignKey("TopupBatchId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("EducationAccount");
@@ -3308,7 +3308,7 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasOne("Models.TopupBatchTarget", "TopupBatchTarget")
                         .WithOne("TopupBatchTargetTransaction")
                         .HasForeignKey("Models.TopupBatchTargetTransaction", "TopupBatchTargetId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("EducationCreditTransaction");
@@ -3321,7 +3321,7 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasOne("Models.TopupRule", "TopupRule")
                         .WithMany("Conditions")
                         .HasForeignKey("TopupRuleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("TopupRule");

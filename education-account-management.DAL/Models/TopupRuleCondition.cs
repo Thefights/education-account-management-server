@@ -1,6 +1,3 @@
-using Common;
-using Enums;
-
 namespace Models
 {
     public class TopupRuleCondition : AuditEntity

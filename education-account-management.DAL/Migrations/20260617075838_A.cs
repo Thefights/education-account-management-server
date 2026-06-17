@@ -296,8 +296,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         name: "FK_TopupBatch_TopupRule_TopupRuleId",
                         column: x => x.TopupRuleId,
                         principalTable: "TopupRule",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -325,8 +324,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         name: "FK_TopupRuleCondition_TopupRule_TopupRuleId",
                         column: x => x.TopupRuleId,
                         principalTable: "TopupRule",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -354,8 +352,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         name: "FK_AdhocTopupBatchTarget_AdhocTopupBatch_AdhocTopupBatchId",
                         column: x => x.AdhocTopupBatchId,
                         principalTable: "AdhocTopupBatch",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_AdhocTopupBatchTarget_EducationAccount_EducationAccountId",
                         column: x => x.EducationAccountId,
@@ -479,8 +476,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         name: "FK_TopupBatchTarget_TopupBatch_TopupBatchId",
                         column: x => x.TopupBatchId,
                         principalTable: "TopupBatch",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -505,8 +501,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         name: "FK_AdhocTopupBatchTargetTransaction_AdhocTopupBatchTarget_AdhocTopupBatchTargetId",
                         column: x => x.AdhocTopupBatchTargetId,
                         principalTable: "AdhocTopupBatchTarget",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_AdhocTopupBatchTargetTransaction_EducationCreditTransaction_EducationCreditTransactionId",
                         column: x => x.EducationCreditTransactionId,
@@ -543,8 +538,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         name: "FK_TopupBatchTargetTransaction_TopupBatchTarget_TopupBatchTargetId",
                         column: x => x.TopupBatchTargetId,
                         principalTable: "TopupBatchTarget",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.InsertData(
