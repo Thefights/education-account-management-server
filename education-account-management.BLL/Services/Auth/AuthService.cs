@@ -11,7 +11,8 @@ namespace Services.Auth
 {
     public class AuthService(
         IUnitOfWork unitOfWork,
-        AppConfiguration configuration)
+        AppConfiguration configuration,
+        ITokenBlacklistService tokenBlacklistService)
         : IAuthService
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
@@ -20,6 +21,7 @@ namespace Services.Auth
         private readonly IGenericRepository<User> _userRepository = unitOfWork.Repository<User>();
         private readonly IGenericRepository<EducationAccount> _educationAccountRepository = unitOfWork.Repository<EducationAccount>();
         private readonly IGenericRepository<RefreshToken> _refreshTokenRepository = unitOfWork.Repository<RefreshToken>();
+        private readonly ITokenBlacklistService _tokenBlacklistService = tokenBlacklistService;
 
         public async Task<AuthLoginResponseDTO> LoginWithMockSingpassAsync(
             CancellationToken cancellationToken = default)
@@ -50,6 +52,72 @@ namespace Services.Auth
                 throw new UnauthorizedAccessException("AccountHolder does not have a valid education account");
             }
 
+            return await IssueLoginResultAsync(user, cancellationToken);
+        }
+
+        public async Task LogoutAsync(
+            string refreshToken,
+            string accessToken,
+            CancellationToken cancellationToken = default)
+        {
+            if (!string.IsNullOrWhiteSpace(refreshToken))
+            {
+                var tokenHash = TokenUtil.HashToken(refreshToken);
+                var refreshTokenEntity = await _refreshTokenRepository.Query(tracking: true)
+                    .FirstOrDefaultAsync(
+                        token => token.TokenHash == tokenHash,
+                        cancellationToken);
+
+                if (refreshTokenEntity != null && refreshTokenEntity.RevokedAt == null)
+                {
+                    refreshTokenEntity.RevokedAt = DateTime.UtcNow;
+                    await _unitOfWork.SaveChangeAsync(cancellationToken);
+                }
+            }
+
+            await _tokenBlacklistService.BlacklistAsync(accessToken);
+        }
+
+        public async Task<AuthLoginResponseDTO> RefreshTokenAsync(
+            string refreshToken,
+            CancellationToken cancellationToken = default)
+        {
+            if (string.IsNullOrWhiteSpace(refreshToken))
+            {
+                throw new UnauthorizedAccessException("Invalid refresh token");
+            }
+
+            var now = DateTime.UtcNow;
+            var tokenHash = TokenUtil.HashToken(refreshToken);
+            var refreshTokenEntity = await _refreshTokenRepository.Query(tracking: true)
+                .Include(token => token.AuthAccount)
+                .FirstOrDefaultAsync(
+                    token => token.TokenHash == tokenHash,
+                    cancellationToken);
+
+            if (refreshTokenEntity == null
+                || refreshTokenEntity.RevokedAt != null
+                || refreshTokenEntity.ExpiresAt <= now)
+            {
+                throw new UnauthorizedAccessException("Invalid refresh token");
+            }
+
+            if (refreshTokenEntity.AuthAccount.Status != AuthAccountStatus.Active
+                || refreshTokenEntity.AuthAccount.LockedUntil > now)
+            {
+                throw new UnauthorizedAccessException("Invalid refresh token");
+            }
+
+            var user = await _userRepository.Query(tracking: true)
+                .Include(user => user.AuthAccount)
+                .Include(user => user.Citizen)
+                .Include(user => user.AdminProfile)
+                .FirstOrDefaultAsync(
+                    user => user.AuthAccountId == refreshTokenEntity.AuthAccountId,
+                    cancellationToken)
+                ?? throw new UnauthorizedAccessException("Invalid refresh token");
+
+            refreshTokenEntity.RevokedAt = now;
             return await IssueLoginResultAsync(user, cancellationToken);
         }
 
