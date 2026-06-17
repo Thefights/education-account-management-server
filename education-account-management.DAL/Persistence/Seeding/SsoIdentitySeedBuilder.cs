@@ -17,8 +17,13 @@ public sealed class SsoIdentitySeedBuilder : ISeedBuilder
             Enumerable.Range(1, 10).Select(id => new SsoIdentity
             {
                 Id = id,
-                Provider = id % 3 == 0 ? SsoProvider.AzureAD : SsoProvider.Singpass,
-                ProviderUserId = id % 3 == 0 ? $"azure-user-{id:000}" : $"singpass-user-{id:000}",
+                Provider = id <= 3 ? SsoProvider.AzureAD : SsoProvider.Singpass,
+                ProviderUserId = id switch
+                {
+                    1 => "ca993f32-b85d-4757-8482-99f49d58c32a",
+                    <= 3 => $"azure-object-{id:000}",
+                    _ => $"singpass-subject-{id:000}"
+                },
                 AuthAccountId = id,
                 CreatedAt = createdAt
             }).ToArray());

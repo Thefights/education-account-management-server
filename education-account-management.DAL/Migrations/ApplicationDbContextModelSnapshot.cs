@@ -2170,8 +2170,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             AuthAccountId = 1,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            Provider = 1,
-                            ProviderUserId = "singpass-user-001"
+                            Provider = 2,
+                            ProviderUserId = "ca993f32-b85d-4757-8482-99f49d58c32a"
                         },
                         new
                         {
@@ -2179,8 +2179,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             AuthAccountId = 2,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            Provider = 1,
-                            ProviderUserId = "singpass-user-002"
+                            Provider = 2,
+                            ProviderUserId = "azure-object-002"
                         },
                         new
                         {
@@ -2189,7 +2189,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Provider = 2,
-                            ProviderUserId = "azure-user-003"
+                            ProviderUserId = "azure-object-003"
                         },
                         new
                         {
@@ -2198,7 +2198,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Provider = 1,
-                            ProviderUserId = "singpass-user-004"
+                            ProviderUserId = "singpass-subject-004"
                         },
                         new
                         {
@@ -2207,7 +2207,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Provider = 1,
-                            ProviderUserId = "singpass-user-005"
+                            ProviderUserId = "singpass-subject-005"
                         },
                         new
                         {
@@ -2215,8 +2215,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             AuthAccountId = 6,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            Provider = 2,
-                            ProviderUserId = "azure-user-006"
+                            Provider = 1,
+                            ProviderUserId = "singpass-subject-006"
                         },
                         new
                         {
@@ -2225,7 +2225,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Provider = 1,
-                            ProviderUserId = "singpass-user-007"
+                            ProviderUserId = "singpass-subject-007"
                         },
                         new
                         {
@@ -2234,7 +2234,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Provider = 1,
-                            ProviderUserId = "singpass-user-008"
+                            ProviderUserId = "singpass-subject-008"
                         },
                         new
                         {
@@ -2242,8 +2242,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             AuthAccountId = 9,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            Provider = 2,
-                            ProviderUserId = "azure-user-009"
+                            Provider = 1,
+                            ProviderUserId = "singpass-subject-009"
                         },
                         new
                         {
@@ -2252,7 +2252,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Provider = 1,
-                            ProviderUserId = "singpass-user-010"
+                            ProviderUserId = "singpass-subject-010"
                         });
                 });
 

@@ -6,6 +6,7 @@ namespace education_account_management.BLL
         public UrlsConfig UrlsConfig { get; set; } = null!;
         public DatabaseConfig DatabaseConfig { get; set; } = null!;
         public JwtConfig JwtConfig { get; set; } = null!;
+        public Microsoft365Config Microsoft365Config { get; set; } = null!;
         public RefreshTokenConfig RefreshTokenConfig { get; set; } = null!;
         public BackgroundJobConfig BackgroundJobConfig { get; set; } = null!;
         public PerformanceMiddlewareConfig PerformanceMiddlewareConfig { get; set; } = null!;
@@ -46,6 +47,14 @@ namespace education_account_management.BLL
         public int ExpireTimeInMinutes { get; set; }
         public string Issuer { get; set; } = null!;
         public string Audience { get; set; } = null!;
+    }
+    #endregion
+
+    #region Microsoft365Config
+    public class Microsoft365Config
+    {
+        public string ClientId { get; set; } = null!;
+        public string TenantId { get; set; } = null!;
     }
     #endregion
 

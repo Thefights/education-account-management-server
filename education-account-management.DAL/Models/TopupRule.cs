@@ -1,7 +1,3 @@
-using Common;
-using EntityAnnotations.OnDeleteAttributes;
-using Enums;
-
 namespace Models
 {
     public class TopupRule : AuditEntity
