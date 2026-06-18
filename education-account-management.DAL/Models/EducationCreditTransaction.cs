@@ -27,10 +27,10 @@ namespace Models
         public int EducationAccountId { get; set; }
         public EducationAccount EducationAccount { get; set; } = null!;
 
-        [OnDelete(OnDeleteBehavior.Cascade)]
+        [OnDelete(OnDeleteBehavior.Restrict)]
         public TopupBatchTargetTransaction? TopupBatchTargetTransaction { get; set; }
 
-        [OnDelete(OnDeleteBehavior.Cascade)]
+        [OnDelete(OnDeleteBehavior.Restrict)]
         public AdhocTopupBatchTargetTransaction? AdhocTopupBatchTargetTransaction { get; set; }
 
         [OnDelete(OnDeleteBehavior.Restrict)]

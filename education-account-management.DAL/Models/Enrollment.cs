@@ -20,7 +20,7 @@ namespace Models
         [DateValidator(NotBefore = nameof(EnrolledAt))]
         public DateTime? WithdrawnAt { get; set; }
 
-        [OnDelete(OnDeleteBehavior.Cascade)]
+        [OnDelete(OnDeleteBehavior.Restrict)]
         public Charge? Charge { get; set; }
     }
 }

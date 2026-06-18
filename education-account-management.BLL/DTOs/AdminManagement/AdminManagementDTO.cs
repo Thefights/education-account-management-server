@@ -40,9 +40,9 @@ namespace DTOs.AdminManagement
 
         public int AuthAccountId { get; set; }
 
-        public UserRole Role { get; set; }
+        public string? Role { get; set; }
 
-        public AuthAccountStatus Status { get; set; }
+        public string? Status { get; set; }
 
         public string AzureObjectId { get; set; } = string.Empty;
 

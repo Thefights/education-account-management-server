@@ -27,7 +27,7 @@ namespace Models
         [Column(TypeName = "decimal(18,2)"), NumberPositive, NumberLessThanOrEqualTo(nameof(NetAmount))]
         public decimal RemainingAmount { get; set; }
 
-        [OnDelete(OnDeleteBehavior.Cascade)]
+        [OnDelete(OnDeleteBehavior.Restrict)]
         public ICollection<PaymentAllocation> PaymentAllocations { get; set; } = [];
     }
 }

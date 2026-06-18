@@ -10,6 +10,9 @@ namespace Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal EducationCreditBalance { get; set; }
 
+        [Timestamp]
+        public byte[] RowVersion { get; set; } = [];
+
         [EnumDefined]
         public EducationAccountStatus Status { get; set; } = EducationAccountStatus.Active;
 
@@ -33,16 +36,16 @@ namespace Models
         public int CitizenId { get; set; }
         public Citizen Citizen { get; set; } = null!;
 
-        [OnDelete(OnDeleteBehavior.Cascade)]
+        [OnDelete(OnDeleteBehavior.Restrict)]
         public ICollection<TopupBatchTarget> TopupBatchTargets { get; set; } = [];
 
-        [OnDelete(OnDeleteBehavior.Cascade)]
+        [OnDelete(OnDeleteBehavior.Restrict)]
         public ICollection<AdhocTopupBatchTarget> AdhocTopupBatchTargets { get; set; } = [];
 
-        [OnDelete(OnDeleteBehavior.Cascade)]
+        [OnDelete(OnDeleteBehavior.Restrict)]
         public ICollection<EducationCreditTransaction> EducationCreditTransactions { get; set; } = [];
 
-        [OnDelete(OnDeleteBehavior.Cascade)]
+        [OnDelete(OnDeleteBehavior.Restrict)]
         public ICollection<Enrollment> Enrollments { get; set; } = [];
 
     }

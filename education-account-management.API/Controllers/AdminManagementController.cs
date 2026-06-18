@@ -14,18 +14,15 @@ namespace Controllers
         private readonly IAdminManagementService _service = service;
 
         [HttpPost]
-        public async Task<IActionResult> Create(
-            [FromBody] CreateAdminManagementDTO createDTO,
-            CancellationToken cancellationToken)
+        public async Task<IActionResult> Create(CreateAdminManagementDTO createDTO, CancellationToken cancellationToken)
         {
             var result = await _service.CreateAsync(createDTO, cancellationToken);
             return Result.SuccessData(result, "Admin account created successfully");
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(
-            int id,
-            [FromBody] UpdateAdminManagementDTO updateDTO,
+        public async Task<IActionResult> Update(int id,
+            UpdateAdminManagementDTO updateDTO,
             CancellationToken cancellationToken)
         {
             var result = await _service.UpdateAsync(id, updateDTO, cancellationToken);

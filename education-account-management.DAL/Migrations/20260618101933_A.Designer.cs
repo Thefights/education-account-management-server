@@ -12,7 +12,7 @@ using Persistence.SqlServer;
 namespace educationaccountmanagement.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260618091443_A")]
+    [Migration("20260618101933_A")]
     partial class A
     {
         /// <inheritdoc />
@@ -72,7 +72,10 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasIndex("Status");
 
-                    b.ToTable("AdhocTopupBatch");
+                    b.ToTable("AdhocTopupBatch", t =>
+                        {
+                            t.HasCheckConstraint("CK_AdhocTopupBatch_TotalAmount_NonNegative", "[TotalAmount] >= 0 AND [TotalTargetCount] >= 0");
+                        });
 
                     b.HasData(
                         new
@@ -236,7 +239,10 @@ namespace educationaccountmanagement.DAL.Migrations
                         .IsUnique()
                         .HasFilter("\"IsDeleted\" = 0 AND \"AdhocTopupBatchId\" IS NOT NULL AND \"EducationAccountId\" IS NOT NULL");
 
-                    b.ToTable("AdhocTopupBatchTarget");
+                    b.ToTable("AdhocTopupBatchTarget", t =>
+                        {
+                            t.HasCheckConstraint("CK_AdhocTopupBatchTarget_Amount_NonNegative", "[Amount] >= 0");
+                        });
 
                     b.HasData(
                         new
@@ -1032,7 +1038,12 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasIndex("Status");
 
-                    b.ToTable("Charge");
+                    b.ToTable("Charge", t =>
+                        {
+                            t.HasCheckConstraint("CK_Charge_AmountEquations", "[SubsidyAmount] <= [GrossAmount] AND [NetAmount] = [GrossAmount] - [SubsidyAmount] AND [PaidAmount] <= [NetAmount] AND [RemainingAmount] = [NetAmount] - [PaidAmount]");
+
+                            t.HasCheckConstraint("CK_Charge_Amounts_NonNegative", "[GrossAmount] >= 0 AND [SubsidyAmount] >= 0 AND [NetAmount] >= 0 AND [PaidAmount] >= 0 AND [RemainingAmount] >= 0");
+                        });
 
                     b.HasData(
                         new
@@ -1240,11 +1251,11 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasIndex("Nric")
                         .IsUnique()
-                        .HasFilter("\"IsDeleted\" = 0 AND \"Nric\" IS NOT NULL");
+                        .HasFilter("\"Nric\" IS NOT NULL");
 
                     b.HasIndex("SingpassSubjectId")
                         .IsUnique()
-                        .HasFilter("\"IsDeleted\" = 0 AND \"SingpassSubjectId\" IS NOT NULL");
+                        .HasFilter("\"SingpassSubjectId\" IS NOT NULL");
 
                     b.ToTable("Citizen");
 
@@ -1597,7 +1608,10 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("CourseFee");
+                    b.ToTable("CourseFee", t =>
+                        {
+                            t.HasCheckConstraint("CK_CourseFee_Amounts_NonNegative", "[CourseFeeAmount] >= 0 AND [MiscFeeAmount] >= 0 AND [GstAmount] >= 0");
+                        });
 
                     b.HasData(
                         new
@@ -1748,6 +1762,12 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<int?>("OpenedByUserId")
                         .HasColumnType("int");
 
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -1779,7 +1799,10 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasIndex("Status");
 
-                    b.ToTable("EducationAccount");
+                    b.ToTable("EducationAccount", t =>
+                        {
+                            t.HasCheckConstraint("CK_EducationAccount_Balance_NonNegative", "[EducationCreditBalance] >= 0");
+                        });
 
                     b.HasData(
                         new
@@ -1791,6 +1814,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             EducationCreditBalance = 1100m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 2, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             Status = 1
                         },
                         new
@@ -1802,6 +1826,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             EducationCreditBalance = 1200m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             Status = 1
                         },
                         new
@@ -1813,6 +1838,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             EducationCreditBalance = 1300m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             Status = 1
                         },
                         new
@@ -1824,6 +1850,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             EducationCreditBalance = 1400m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             Status = 2
                         },
                         new
@@ -1835,6 +1862,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             EducationCreditBalance = 1500m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             Status = 1
                         },
                         new
@@ -1847,6 +1875,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             EducationCreditBalance = 1600m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             Status = 3
                         },
                         new
@@ -1858,6 +1887,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             EducationCreditBalance = 1700m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             Status = 1
                         },
                         new
@@ -1869,6 +1899,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             EducationCreditBalance = 1800m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             Status = 2
                         },
                         new
@@ -1880,6 +1911,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             EducationCreditBalance = 1900m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             Status = 1
                         },
                         new
@@ -1891,6 +1923,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             EducationCreditBalance = 2000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             Status = 1
                         });
                 });
@@ -1954,11 +1987,16 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasIndex("TransactionCode")
                         .IsUnique()
-                        .HasFilter("\"IsDeleted\" = 0 AND \"TransactionCode\" IS NOT NULL");
+                        .HasFilter("\"TransactionCode\" IS NOT NULL");
 
                     b.HasIndex("Type");
 
-                    b.ToTable("EducationCreditTransaction");
+                    b.ToTable("EducationCreditTransaction", t =>
+                        {
+                            t.HasCheckConstraint("CK_EducationCreditTransaction_Amounts_NonNegative", "[Amount] >= 0 AND [BalanceBefore] >= 0 AND [BalanceAfter] >= 0");
+
+                            t.HasCheckConstraint("CK_EducationCreditTransaction_BalanceEquation", "([Direction] = 1 AND [BalanceAfter] = [BalanceBefore] + [Amount]) OR ([Direction] = 2 AND [BalanceAfter] = [BalanceBefore] - [Amount])");
+                        });
 
                     b.HasData(
                         new
@@ -2721,7 +2759,10 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasIndex("Status");
 
-                    b.ToTable("Payment");
+                    b.ToTable("Payment", t =>
+                        {
+                            t.HasCheckConstraint("CK_Payment_TotalAmount_NonNegative", "[TotalAmount] >= 0");
+                        });
 
                     b.HasData(
                         new
@@ -2886,7 +2927,10 @@ namespace educationaccountmanagement.DAL.Migrations
                         .IsUnique()
                         .HasFilter("\"IsDeleted\" = 0 AND \"PaymentId\" IS NOT NULL AND \"ChargeId\" IS NOT NULL");
 
-                    b.ToTable("PaymentAllocation");
+                    b.ToTable("PaymentAllocation", t =>
+                        {
+                            t.HasCheckConstraint("CK_PaymentAllocation_Amount_NonNegative", "[Amount] >= 0");
+                        });
 
                     b.HasData(
                         new
@@ -3347,9 +3391,13 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasIndex("ProviderUserId");
 
+                    b.HasIndex("AuthAccountId", "Provider")
+                        .IsUnique()
+                        .HasFilter("\"AuthAccountId\" IS NOT NULL AND \"Provider\" IS NOT NULL");
+
                     b.HasIndex("Provider", "ProviderUserId")
                         .IsUnique()
-                        .HasFilter("\"IsDeleted\" = 0 AND \"Provider\" IS NOT NULL AND \"ProviderUserId\" IS NOT NULL");
+                        .HasFilter("\"Provider\" IS NOT NULL AND \"ProviderUserId\" IS NOT NULL");
 
                     b.ToTable("SsoIdentity");
 
@@ -3502,7 +3550,10 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasIndex("TopupRuleId");
 
-                    b.ToTable("TopupBatch");
+                    b.ToTable("TopupBatch", t =>
+                        {
+                            t.HasCheckConstraint("CK_TopupBatch_TotalAmount_NonNegative", "[TotalAmount] >= 0 AND [TotalTargetCount] >= 0");
+                        });
 
                     b.HasData(
                         new
@@ -3676,7 +3727,10 @@ namespace educationaccountmanagement.DAL.Migrations
                         .IsUnique()
                         .HasFilter("\"IsDeleted\" = 0 AND \"TopupBatchId\" IS NOT NULL AND \"EducationAccountId\" IS NOT NULL");
 
-                    b.ToTable("TopupBatchTarget");
+                    b.ToTable("TopupBatchTarget", t =>
+                        {
+                            t.HasCheckConstraint("CK_TopupBatchTarget_Amount_NonNegative", "[Amount] >= 0");
+                        });
 
                     b.HasData(
                         new
@@ -3953,7 +4007,10 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasIndex("Status");
 
-                    b.ToTable("TopupRule");
+                    b.ToTable("TopupRule", t =>
+                        {
+                            t.HasCheckConstraint("CK_TopupRule_Amount_NonNegative", "[TopupAmount] >= 0");
+                        });
 
                     b.HasData(
                         new
@@ -4354,7 +4411,7 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasOne("Models.EducationAccount", "EducationAccount")
                         .WithMany("AdhocTopupBatchTargets")
                         .HasForeignKey("EducationAccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("AdhocTopupBatch");
@@ -4373,7 +4430,7 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasOne("Models.EducationCreditTransaction", "EducationCreditTransaction")
                         .WithOne("AdhocTopupBatchTargetTransaction")
                         .HasForeignKey("Models.AdhocTopupBatchTargetTransaction", "EducationCreditTransactionId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("AdhocTopupBatchTarget");
@@ -4386,7 +4443,7 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasOne("Models.School", "School")
                         .WithMany("AdminProfiles")
                         .HasForeignKey("SchoolId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Models.User", "User")
                         .WithOne("AdminProfile")
@@ -4414,7 +4471,7 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasOne("Models.Enrollment", "Enrollment")
                         .WithOne("Charge")
                         .HasForeignKey("Models.Charge", "EnrollmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Enrollment");
@@ -4425,7 +4482,7 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasOne("Models.School", "School")
                         .WithMany("Courses")
                         .HasForeignKey("SchoolId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("School");
@@ -4436,7 +4493,7 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasOne("Models.Course", "Course")
                         .WithMany("CourseFees")
                         .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Course");
@@ -4447,7 +4504,7 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasOne("Models.Citizen", "Citizen")
                         .WithOne("EducationAccount")
                         .HasForeignKey("Models.EducationAccount", "CitizenId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Models.User", "ClosedByUser")
@@ -4472,7 +4529,7 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasOne("Models.EducationAccount", "EducationAccount")
                         .WithMany("EducationCreditTransactions")
                         .HasForeignKey("EducationAccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("EducationAccount");
@@ -4483,13 +4540,13 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasOne("Models.Course", "Course")
                         .WithMany("Enrollments")
                         .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Models.EducationAccount", "EducationAccount")
                         .WithMany("Enrollments")
                         .HasForeignKey("EducationAccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Course");
@@ -4512,13 +4569,13 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasOne("Models.Charge", "Charge")
                         .WithMany("PaymentAllocations")
                         .HasForeignKey("ChargeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Models.Payment", "Payment")
                         .WithMany("PaymentAllocations")
                         .HasForeignKey("PaymentId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Charge");
@@ -4564,7 +4621,7 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasOne("Models.EducationAccount", "EducationAccount")
                         .WithMany("TopupBatchTargets")
                         .HasForeignKey("EducationAccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Models.TopupBatch", "TopupBatch")
@@ -4583,7 +4640,7 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasOne("Models.EducationCreditTransaction", "EducationCreditTransaction")
                         .WithOne("TopupBatchTargetTransaction")
                         .HasForeignKey("Models.TopupBatchTargetTransaction", "EducationCreditTransactionId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Models.TopupBatchTarget", "TopupBatchTarget")

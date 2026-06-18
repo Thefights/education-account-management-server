@@ -15,10 +15,10 @@ namespace Models
         [MessageMaxLength(1000)]
         public string? Description { get; set; }
 
-        [OnDelete(OnDeleteBehavior.Cascade)]
+        [OnDelete(OnDeleteBehavior.Restrict)]
         public ICollection<CourseFee> CourseFees { get; set; } = [];
 
-        [OnDelete(OnDeleteBehavior.Cascade)]
+        [OnDelete(OnDeleteBehavior.Restrict)]
         public ICollection<Enrollment> Enrollments { get; set; } = [];
     }
 }

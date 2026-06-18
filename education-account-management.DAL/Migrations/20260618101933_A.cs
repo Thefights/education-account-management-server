@@ -34,6 +34,7 @@ namespace educationaccountmanagement.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AdhocTopupBatch", x => x.Id);
+                    table.CheckConstraint("CK_AdhocTopupBatch_TotalAmount_NonNegative", "[TotalAmount] >= 0 AND [TotalTargetCount] >= 0");
                 });
 
             migrationBuilder.CreateTable(
@@ -164,6 +165,7 @@ namespace educationaccountmanagement.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TopupRule", x => x.Id);
+                    table.CheckConstraint("CK_TopupRule_Amount_NonNegative", "[TopupAmount] >= 0");
                 });
 
             migrationBuilder.CreateTable(
@@ -279,7 +281,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         column: x => x.SchoolId,
                         principalTable: "School",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -304,6 +306,7 @@ namespace educationaccountmanagement.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TopupBatch", x => x.Id);
+                    table.CheckConstraint("CK_TopupBatch_TotalAmount_NonNegative", "[TotalAmount] >= 0 AND [TotalTargetCount] >= 0");
                     table.ForeignKey(
                         name: "FK_TopupBatch_TopupRule_TopupRuleId",
                         column: x => x.TopupRuleId,
@@ -366,7 +369,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         column: x => x.SchoolId,
                         principalTable: "School",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_AdminProfile_User_UserId",
                         column: x => x.UserId,
@@ -407,6 +410,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AccountNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     EducationCreditBalance = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     OpenedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ClosedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -424,12 +428,13 @@ namespace educationaccountmanagement.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_EducationAccount", x => x.Id);
+                    table.CheckConstraint("CK_EducationAccount_Balance_NonNegative", "[EducationCreditBalance] >= 0");
                     table.ForeignKey(
                         name: "FK_EducationAccount_Citizen_CitizenId",
                         column: x => x.CitizenId,
                         principalTable: "Citizen",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_EducationAccount_User_ClosedByUserId",
                         column: x => x.ClosedByUserId,
@@ -464,12 +469,13 @@ namespace educationaccountmanagement.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CourseFee", x => x.Id);
+                    table.CheckConstraint("CK_CourseFee_Amounts_NonNegative", "[CourseFeeAmount] >= 0 AND [MiscFeeAmount] >= 0 AND [GstAmount] >= 0");
                     table.ForeignKey(
                         name: "FK_CourseFee_Course_CourseId",
                         column: x => x.CourseId,
                         principalTable: "Course",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -493,6 +499,7 @@ namespace educationaccountmanagement.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AdhocTopupBatchTarget", x => x.Id);
+                    table.CheckConstraint("CK_AdhocTopupBatchTarget_Amount_NonNegative", "[Amount] >= 0");
                     table.ForeignKey(
                         name: "FK_AdhocTopupBatchTarget_AdhocTopupBatch_AdhocTopupBatchId",
                         column: x => x.AdhocTopupBatchId,
@@ -503,7 +510,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         column: x => x.EducationAccountId,
                         principalTable: "EducationAccount",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -530,12 +537,14 @@ namespace educationaccountmanagement.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_EducationCreditTransaction", x => x.Id);
+                    table.CheckConstraint("CK_EducationCreditTransaction_Amounts_NonNegative", "[Amount] >= 0 AND [BalanceBefore] >= 0 AND [BalanceAfter] >= 0");
+                    table.CheckConstraint("CK_EducationCreditTransaction_BalanceEquation", "([Direction] = 1 AND [BalanceAfter] = [BalanceBefore] + [Amount]) OR ([Direction] = 2 AND [BalanceAfter] = [BalanceBefore] - [Amount])");
                     table.ForeignKey(
                         name: "FK_EducationCreditTransaction_EducationAccount_EducationAccountId",
                         column: x => x.EducationAccountId,
                         principalTable: "EducationAccount",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -564,13 +573,13 @@ namespace educationaccountmanagement.DAL.Migrations
                         column: x => x.CourseId,
                         principalTable: "Course",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Enrollment_EducationAccount_EducationAccountId",
                         column: x => x.EducationAccountId,
                         principalTable: "EducationAccount",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -594,12 +603,13 @@ namespace educationaccountmanagement.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TopupBatchTarget", x => x.Id);
+                    table.CheckConstraint("CK_TopupBatchTarget_Amount_NonNegative", "[Amount] >= 0");
                     table.ForeignKey(
                         name: "FK_TopupBatchTarget_EducationAccount_EducationAccountId",
                         column: x => x.EducationAccountId,
                         principalTable: "EducationAccount",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_TopupBatchTarget_TopupBatch_TopupBatchId",
                         column: x => x.TopupBatchId,
@@ -635,7 +645,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         column: x => x.EducationCreditTransactionId,
                         principalTable: "EducationCreditTransaction",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -660,6 +670,7 @@ namespace educationaccountmanagement.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Payment", x => x.Id);
+                    table.CheckConstraint("CK_Payment_TotalAmount_NonNegative", "[TotalAmount] >= 0");
                     table.ForeignKey(
                         name: "FK_Payment_EducationCreditTransaction_EducationCreditTransactionId",
                         column: x => x.EducationCreditTransactionId,
@@ -691,12 +702,14 @@ namespace educationaccountmanagement.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Charge", x => x.Id);
+                    table.CheckConstraint("CK_Charge_AmountEquations", "[SubsidyAmount] <= [GrossAmount] AND [NetAmount] = [GrossAmount] - [SubsidyAmount] AND [PaidAmount] <= [NetAmount] AND [RemainingAmount] = [NetAmount] - [PaidAmount]");
+                    table.CheckConstraint("CK_Charge_Amounts_NonNegative", "[GrossAmount] >= 0 AND [SubsidyAmount] >= 0 AND [NetAmount] >= 0 AND [PaidAmount] >= 0 AND [RemainingAmount] >= 0");
                     table.ForeignKey(
                         name: "FK_Charge_Enrollment_EnrollmentId",
                         column: x => x.EnrollmentId,
                         principalTable: "Enrollment",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -722,7 +735,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         column: x => x.EducationCreditTransactionId,
                         principalTable: "EducationCreditTransaction",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_TopupBatchTargetTransaction_TopupBatchTarget_TopupBatchTargetId",
                         column: x => x.TopupBatchTargetId,
@@ -749,18 +762,19 @@ namespace educationaccountmanagement.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PaymentAllocation", x => x.Id);
+                    table.CheckConstraint("CK_PaymentAllocation_Amount_NonNegative", "[Amount] >= 0");
                     table.ForeignKey(
                         name: "FK_PaymentAllocation_Charge_ChargeId",
                         column: x => x.ChargeId,
                         principalTable: "Charge",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PaymentAllocation_Payment_PaymentId",
                         column: x => x.PaymentId,
                         principalTable: "Payment",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
@@ -1337,14 +1351,14 @@ namespace educationaccountmanagement.DAL.Migrations
                 table: "Citizen",
                 column: "Nric",
                 unique: true,
-                filter: "\"IsDeleted\" = 0 AND \"Nric\" IS NOT NULL");
+                filter: "\"Nric\" IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Citizen_SingpassSubjectId",
                 table: "Citizen",
                 column: "SingpassSubjectId",
                 unique: true,
-                filter: "\"IsDeleted\" = 0 AND \"SingpassSubjectId\" IS NOT NULL");
+                filter: "\"SingpassSubjectId\" IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Course_CourseName",
@@ -1425,7 +1439,7 @@ namespace educationaccountmanagement.DAL.Migrations
                 table: "EducationCreditTransaction",
                 column: "TransactionCode",
                 unique: true,
-                filter: "\"IsDeleted\" = 0 AND \"TransactionCode\" IS NOT NULL");
+                filter: "\"TransactionCode\" IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_EducationCreditTransaction_Type",
@@ -1548,6 +1562,13 @@ namespace educationaccountmanagement.DAL.Migrations
                 column: "AuthAccountId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_SsoIdentity_AuthAccountId_Provider",
+                table: "SsoIdentity",
+                columns: new[] { "AuthAccountId", "Provider" },
+                unique: true,
+                filter: "\"AuthAccountId\" IS NOT NULL AND \"Provider\" IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SsoIdentity_Provider",
                 table: "SsoIdentity",
                 column: "Provider");
@@ -1557,7 +1578,7 @@ namespace educationaccountmanagement.DAL.Migrations
                 table: "SsoIdentity",
                 columns: new[] { "Provider", "ProviderUserId" },
                 unique: true,
-                filter: "\"IsDeleted\" = 0 AND \"Provider\" IS NOT NULL AND \"ProviderUserId\" IS NOT NULL");
+                filter: "\"Provider\" IS NOT NULL AND \"ProviderUserId\" IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SsoIdentity_ProviderUserId",

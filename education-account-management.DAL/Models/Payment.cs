@@ -20,7 +20,7 @@ namespace Models
         [MessageMaxLength(256)]
         public string? ExternalReference { get; set; }
 
-        [OnDelete(OnDeleteBehavior.Cascade)]
+        [OnDelete(OnDeleteBehavior.Restrict)]
         public ICollection<PaymentAllocation> PaymentAllocations { get; set; } = [];
     }
 }

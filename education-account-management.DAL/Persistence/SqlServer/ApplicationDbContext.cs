@@ -96,6 +96,8 @@ namespace Persistence.SqlServer
                     "CK_AiAssistantSetting_Singleton",
                     "[Id] = 1"));
 
+            ConfigureFinancialCheckConstraints(modelBuilder);
+
             modelBuilder.Entity<EducationAccount>()
                 .HasOne(educationAccount => educationAccount.Citizen)
                 .WithOne(citizen => citizen.EducationAccount)
@@ -121,6 +123,79 @@ namespace Persistence.SqlServer
                 .WithOne(transaction => transaction.AdhocTopupBatchTargetTransaction)
                 .HasForeignKey<AdhocTopupBatchTargetTransaction>(link => link.EducationCreditTransactionId);
 
+        }
+
+        private static void ConfigureFinancialCheckConstraints(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<EducationAccount>().ToTable(table =>
+                table.HasCheckConstraint(
+                    "CK_EducationAccount_Balance_NonNegative",
+                    "[EducationCreditBalance] >= 0"));
+
+            modelBuilder.Entity<EducationCreditTransaction>().ToTable(table =>
+            {
+                table.HasCheckConstraint(
+                    "CK_EducationCreditTransaction_Amounts_NonNegative",
+                    "[Amount] >= 0 AND [BalanceBefore] >= 0 AND [BalanceAfter] >= 0");
+                table.HasCheckConstraint(
+                    "CK_EducationCreditTransaction_BalanceEquation",
+                    "([Direction] = 1 AND [BalanceAfter] = [BalanceBefore] + [Amount]) OR " +
+                    "([Direction] = 2 AND [BalanceAfter] = [BalanceBefore] - [Amount])");
+            });
+
+            modelBuilder.Entity<CourseFee>().ToTable(table =>
+                table.HasCheckConstraint(
+                    "CK_CourseFee_Amounts_NonNegative",
+                    "[CourseFeeAmount] >= 0 AND [MiscFeeAmount] >= 0 AND [GstAmount] >= 0"));
+
+            modelBuilder.Entity<Charge>().ToTable(table =>
+            {
+                table.HasCheckConstraint(
+                    "CK_Charge_Amounts_NonNegative",
+                    "[GrossAmount] >= 0 AND [SubsidyAmount] >= 0 AND [NetAmount] >= 0 " +
+                    "AND [PaidAmount] >= 0 AND [RemainingAmount] >= 0");
+                table.HasCheckConstraint(
+                    "CK_Charge_AmountEquations",
+                    "[SubsidyAmount] <= [GrossAmount] AND " +
+                    "[NetAmount] = [GrossAmount] - [SubsidyAmount] AND " +
+                    "[PaidAmount] <= [NetAmount] AND " +
+                    "[RemainingAmount] = [NetAmount] - [PaidAmount]");
+            });
+
+            modelBuilder.Entity<Payment>().ToTable(table =>
+                table.HasCheckConstraint(
+                    "CK_Payment_TotalAmount_NonNegative",
+                    "[TotalAmount] >= 0"));
+
+            modelBuilder.Entity<PaymentAllocation>().ToTable(table =>
+                table.HasCheckConstraint(
+                    "CK_PaymentAllocation_Amount_NonNegative",
+                    "[Amount] >= 0"));
+
+            modelBuilder.Entity<TopupRule>().ToTable(table =>
+                table.HasCheckConstraint(
+                    "CK_TopupRule_Amount_NonNegative",
+                    "[TopupAmount] >= 0"));
+
+            modelBuilder.Entity<TopupBatch>().ToTable(table =>
+                table.HasCheckConstraint(
+                    "CK_TopupBatch_TotalAmount_NonNegative",
+                    "[TotalAmount] >= 0 AND [TotalTargetCount] >= 0"));
+
+            modelBuilder.Entity<TopupBatchTarget>().ToTable(table =>
+                table.HasCheckConstraint(
+                    "CK_TopupBatchTarget_Amount_NonNegative",
+                    "[Amount] >= 0"));
+
+            modelBuilder.Entity<AdhocTopupBatch>().ToTable(table =>
+                table.HasCheckConstraint(
+                    "CK_AdhocTopupBatch_TotalAmount_NonNegative",
+                    "[TotalAmount] >= 0 AND [TotalTargetCount] >= 0"));
+
+            modelBuilder.Entity<AdhocTopupBatchTarget>().ToTable(table =>
+                table.HasCheckConstraint(
+                    "CK_AdhocTopupBatchTarget_Amount_NonNegative",
+                    "[Amount] >= 0"));
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

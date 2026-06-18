@@ -10,8 +10,8 @@ namespace Mappers
             {
                 UserId = model.Id,
                 AuthAccountId = model.AuthAccountId,
-                Role = model.Role,
-                Status = model.AuthAccount.Status,
+                Role = model.Role.ToString(),
+                Status = model.AuthAccount.Status.ToString(),
                 AzureObjectId = model.AuthAccount.SsoIdentities
                     .Where(identity => identity.Provider == SsoProvider.AzureAD)
                     .Select(identity => identity.ProviderUserId)
@@ -36,8 +36,8 @@ namespace Mappers
             {
                 UserId = model.Id,
                 AuthAccountId = model.AuthAccountId,
-                Role = model.Role,
-                Status = model.AuthAccount.Status,
+                Role = model.Role.ToString(),
+                Status = model.AuthAccount.Status.ToString(),
                 AzureObjectId = model.AuthAccount.SsoIdentities
                     .Where(identity => identity.Provider == SsoProvider.AzureAD)
                     .Select(identity => identity.ProviderUserId)

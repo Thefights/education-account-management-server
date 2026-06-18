@@ -24,6 +24,7 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(ssoIdentity => ssoIdentity.Provider);
                 entity.HasIndex(ssoIdentity => ssoIdentity.ProviderUserId);
                 entity.HasIndex(ssoIdentity => new { ssoIdentity.Provider, ssoIdentity.ProviderUserId }).IsUnique();
+                entity.HasIndex(ssoIdentity => new { ssoIdentity.AuthAccountId, ssoIdentity.Provider }).IsUnique();
             });
 
             modelBuilder.Entity<RefreshToken>(entity =>

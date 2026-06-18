@@ -17,10 +17,10 @@ namespace Models
         [MessageRequired, MessageMaxLength(320), EmailValidator, Unique]
         public string Email { get; set; } = string.Empty;
 
-        [OnDelete(OnDeleteBehavior.Cascade)]
+        [OnDelete(OnDeleteBehavior.Restrict)]
         public ICollection<AdminProfile> AdminProfiles { get; set; } = [];
 
-        [OnDelete(OnDeleteBehavior.Cascade)]
+        [OnDelete(OnDeleteBehavior.Restrict)]
         public ICollection<Course> Courses { get; set; } = [];
 
     }
