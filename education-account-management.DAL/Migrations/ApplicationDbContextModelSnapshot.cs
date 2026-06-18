@@ -2170,8 +2170,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             AuthAccountId = 1,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            Provider = 1,
-                            ProviderUserId = "singpass-user-001"
+                            Provider = 2,
+                            ProviderUserId = "00000000-0000-0000-1ece-baa24fa8003c"
                         },
                         new
                         {
@@ -2179,8 +2179,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             AuthAccountId = 2,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            Provider = 1,
-                            ProviderUserId = "singpass-user-002"
+                            Provider = 2,
+                            ProviderUserId = "azure-object-002"
                         },
                         new
                         {
@@ -2189,7 +2189,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Provider = 2,
-                            ProviderUserId = "azure-user-003"
+                            ProviderUserId = "azure-object-003"
                         },
                         new
                         {
@@ -2198,7 +2198,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Provider = 1,
-                            ProviderUserId = "singpass-user-004"
+                            ProviderUserId = "singpass-subject-004"
                         },
                         new
                         {
@@ -2207,7 +2207,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Provider = 1,
-                            ProviderUserId = "singpass-user-005"
+                            ProviderUserId = "singpass-subject-005"
                         },
                         new
                         {
@@ -2215,8 +2215,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             AuthAccountId = 6,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            Provider = 2,
-                            ProviderUserId = "azure-user-006"
+                            Provider = 1,
+                            ProviderUserId = "singpass-subject-006"
                         },
                         new
                         {
@@ -2225,7 +2225,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Provider = 1,
-                            ProviderUserId = "singpass-user-007"
+                            ProviderUserId = "singpass-subject-007"
                         },
                         new
                         {
@@ -2234,7 +2234,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Provider = 1,
-                            ProviderUserId = "singpass-user-008"
+                            ProviderUserId = "singpass-subject-008"
                         },
                         new
                         {
@@ -2242,8 +2242,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             AuthAccountId = 9,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            Provider = 2,
-                            ProviderUserId = "azure-user-009"
+                            Provider = 1,
+                            ProviderUserId = "singpass-subject-009"
                         },
                         new
                         {
@@ -2252,7 +2252,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Provider = 1,
-                            ProviderUserId = "singpass-user-010"
+                            ProviderUserId = "singpass-subject-010"
                         });
                 });
 
@@ -3158,7 +3158,7 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasOne("Models.AdhocTopupBatch", "AdhocTopupBatch")
                         .WithMany("Targets")
                         .HasForeignKey("AdhocTopupBatchId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Models.EducationAccount", "EducationAccount")
@@ -3177,7 +3177,7 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasOne("Models.AdhocTopupBatchTarget", "AdhocTopupBatchTarget")
                         .WithOne("AdhocTopupBatchTargetTransaction")
                         .HasForeignKey("Models.AdhocTopupBatchTargetTransaction", "AdhocTopupBatchTargetId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Models.EducationCreditTransaction", "EducationCreditTransaction")
@@ -3272,7 +3272,7 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasOne("Models.TopupRule", "TopupRule")
                         .WithMany("TopupBatches")
                         .HasForeignKey("TopupRuleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("TopupRule");
@@ -3289,7 +3289,7 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasOne("Models.TopupBatch", "TopupBatch")
                         .WithMany("Targets")
                         .HasForeignKey("TopupBatchId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("EducationAccount");
@@ -3308,7 +3308,7 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasOne("Models.TopupBatchTarget", "TopupBatchTarget")
                         .WithOne("TopupBatchTargetTransaction")
                         .HasForeignKey("Models.TopupBatchTargetTransaction", "TopupBatchTargetId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("EducationCreditTransaction");
@@ -3321,7 +3321,7 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasOne("Models.TopupRule", "TopupRule")
                         .WithMany("Conditions")
                         .HasForeignKey("TopupRuleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("TopupRule");

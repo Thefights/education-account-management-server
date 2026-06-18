@@ -1,6 +1,8 @@
 using education_account_management.BLL;
 using Infrastructure;
 using Infrastructure.Interface;
+using Interfaces.Auth;
+using Services.Auth;
 
 namespace Extensions.DependencyInjection
 {
@@ -13,6 +15,7 @@ namespace Extensions.DependencyInjection
             services.AddScoped<ICurrentUserService, CurrentUserService>();
             services.AddScoped<ICurrentTokenService, CurrentTokenService>();
             services.AddScoped<IRefreshTokenCookieService, RefreshTokenCookieService>();
+            services.AddScoped<IAuthService, AuthService>();
 
             return services;
         }

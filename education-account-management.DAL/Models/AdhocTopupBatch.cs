@@ -1,7 +1,3 @@
-using Common;
-using EntityAnnotations.OnDeleteAttributes;
-using Enums;
-
 namespace Models
 {
     public class AdhocTopupBatch : AuditEntity
@@ -20,7 +16,7 @@ namespace Models
 
         public DateTime? ExecutedAt { get; set; }
 
-        [OnDelete(OnDeleteBehavior.Cascade)]
+        [OnDelete(OnDeleteBehavior.NoAction)]
         public ICollection<AdhocTopupBatchTarget> Targets { get; set; } = [];
     }
 }

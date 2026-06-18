@@ -242,6 +242,8 @@ namespace Extensions
                 "/auth/register/email-otp/send",
                 "/auth/register/email-otp/verify",
                 "/auth/login",
+                "/auth/account-holder/mock-singpass-login",
+                "/auth/admin/azure-ad-login",
                 "/auth/social-login",
                 "/auth/refresh-token",
                 "/auth/mfa/verify",

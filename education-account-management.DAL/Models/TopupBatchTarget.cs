@@ -1,7 +1,3 @@
-using Common;
-using EntityAnnotations.OnDeleteAttributes;
-using Enums;
-
 namespace Models
 {
     public class TopupBatchTarget : AuditEntity
@@ -23,7 +19,7 @@ namespace Models
         public int EducationAccountId { get; set; }
         public EducationAccount EducationAccount { get; set; } = null!;
 
-        [OnDelete(OnDeleteBehavior.Cascade)]
+        [OnDelete(OnDeleteBehavior.NoAction)]
         public TopupBatchTargetTransaction? TopupBatchTargetTransaction { get; set; }
     }
 }
