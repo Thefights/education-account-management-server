@@ -45,7 +45,5 @@ namespace Models
         [OnDelete(OnDeleteBehavior.Cascade)]
         public ICollection<Enrollment> Enrollments { get; set; } = [];
 
-        [OnDelete(OnDeleteBehavior.Cascade)]
-        public ICollection<Charge> Charges { get; set; } = [];
     }
 }

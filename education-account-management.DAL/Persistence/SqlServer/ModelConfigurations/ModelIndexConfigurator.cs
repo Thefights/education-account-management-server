@@ -33,12 +33,6 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(refreshToken => refreshToken.RevokedAt);
             });
 
-            modelBuilder.Entity<OtpVerification>(entity =>
-            {
-                entity.HasIndex(otpVerification => otpVerification.AuthAccountId);
-                entity.HasIndex(otpVerification => otpVerification.ExpiresAt);
-            });
-
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasIndex(user => user.AuthAccountId).IsUnique();
@@ -49,12 +43,7 @@ namespace Persistence.SqlServer.ModelConfigurations
             modelBuilder.Entity<AdminProfile>(entity =>
             {
                 entity.HasIndex(adminProfile => adminProfile.UserId).IsUnique();
-            });
-
-            modelBuilder.Entity<SchoolAdminProfile>(entity =>
-            {
-                entity.HasIndex(profile => profile.UserId).IsUnique();
-                entity.HasIndex(profile => profile.SchoolId);
+                entity.HasIndex(adminProfile => adminProfile.SchoolId);
             });
 
             modelBuilder.Entity<EducationAccount>(entity =>
@@ -81,32 +70,24 @@ namespace Persistence.SqlServer.ModelConfigurations
             modelBuilder.Entity<CourseFee>(entity =>
             {
                 entity.HasIndex(courseFee => courseFee.CourseId);
-                entity.HasIndex(courseFee => courseFee.EffectiveFrom);
-                entity.HasIndex(courseFee => courseFee.EffectiveTo);
             });
 
             modelBuilder.Entity<Enrollment>(entity =>
             {
                 entity.HasIndex(enrollment => enrollment.CourseId);
                 entity.HasIndex(enrollment => enrollment.EducationAccountId);
-                entity.HasIndex(enrollment => enrollment.Status);
                 entity.HasIndex(enrollment => new { enrollment.CourseId, enrollment.EducationAccountId }).IsUnique();
             });
 
             modelBuilder.Entity<Charge>(entity =>
             {
                 entity.HasIndex(charge => charge.EnrollmentId).IsUnique();
-                entity.HasIndex(charge => charge.EducationAccountId);
-                entity.HasIndex(charge => charge.SchoolId);
-                entity.HasIndex(charge => charge.CourseFeeId);
                 entity.HasIndex(charge => charge.Status);
-                entity.HasIndex(charge => charge.OutstandingAt);
-                entity.HasIndex(charge => charge.PaidAt);
             });
 
             modelBuilder.Entity<Payment>(entity =>
             {
-                entity.HasIndex(payment => payment.EducationAccountId);
+                entity.HasIndex(payment => payment.EducationCreditTransactionId).IsUnique();
                 entity.HasIndex(payment => payment.PaymentMethod);
                 entity.HasIndex(payment => payment.Status);
                 entity.HasIndex(payment => payment.PaidAt);
@@ -165,7 +146,6 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(transaction => transaction.EducationAccountId);
                 entity.HasIndex(transaction => transaction.Type);
                 entity.HasIndex(transaction => transaction.Direction);
-                entity.HasIndex(transaction => transaction.OccurredAt);
             });
 
             modelBuilder.Entity<TopupBatchTargetTransaction>(entity =>
@@ -192,17 +172,9 @@ namespace Persistence.SqlServer.ModelConfigurations
             {
                 entity.HasIndex(message => message.Type);
                 entity.HasIndex(message => message.Status);
-                entity.HasIndex(message => message.NextRetryAt);
                 entity.HasIndex(message => message.OccurredAt);
             });
 
-            modelBuilder.Entity<ImmutableAuditLog>(entity =>
-            {
-                entity.HasIndex(log => log.UserId);
-                entity.HasIndex(log => log.Category);
-                entity.HasIndex(log => log.Action);
-                entity.HasIndex(log => log.OccurredAt);
-            });
         }
     }
 }

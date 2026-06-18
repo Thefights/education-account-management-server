@@ -22,7 +22,5 @@ namespace Models
         [OnDelete(OnDeleteBehavior.Cascade)]
         public ICollection<RefreshToken> RefreshTokens { get; set; } = [];
 
-        [OnDelete(OnDeleteBehavior.Cascade)]
-        public ICollection<OtpVerification> OtpVerifications { get; set; } = [];
     }
 }

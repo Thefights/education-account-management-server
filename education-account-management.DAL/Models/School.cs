@@ -18,12 +18,10 @@ namespace Models
         public string Email { get; set; } = string.Empty;
 
         [OnDelete(OnDeleteBehavior.Cascade)]
-        public ICollection<SchoolAdminProfile> SchoolAdminProfiles { get; set; } = [];
+        public ICollection<AdminProfile> AdminProfiles { get; set; } = [];
 
         [OnDelete(OnDeleteBehavior.Cascade)]
         public ICollection<Course> Courses { get; set; } = [];
 
-        [OnDelete(OnDeleteBehavior.Cascade)]
-        public ICollection<Charge> Charges { get; set; } = [];
     }
 }

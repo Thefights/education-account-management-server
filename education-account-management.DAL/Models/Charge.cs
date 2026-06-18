@@ -9,6 +9,8 @@ namespace Models
         [EnumDefined]
         public ChargeStatus Status { get; set; } = ChargeStatus.Unpaid;
 
+        // Monetary invariants: SubsidyAmount <= GrossAmount, NetAmount = GrossAmount - SubsidyAmount,
+        // PaidAmount <= NetAmount, and RemainingAmount = NetAmount - PaidAmount.
         [Column(TypeName = "decimal(18,2)"), NumberPositive]
         public decimal GrossAmount { get; set; }
 
@@ -18,6 +20,7 @@ namespace Models
         [Column(TypeName = "decimal(18,2)"), NumberPositive]
         public decimal NetAmount { get; set; }
 
+        // PaidAmount <= NetAmount and RemainingAmount = NetAmount - PaidAmount.
         [Column(TypeName = "decimal(18,2)"), NumberPositive, NumberLessThanOrEqualTo(nameof(NetAmount))]
         public decimal PaidAmount { get; set; }
 

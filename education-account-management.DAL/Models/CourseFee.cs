@@ -15,7 +15,5 @@ namespace Models
         public int CourseId { get; set; }
         public Course Course { get; set; } = null!;
 
-        [OnDelete(OnDeleteBehavior.Restrict)]
-        public ICollection<Charge> Charges { get; set; } = [];
     }
 }

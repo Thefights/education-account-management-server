@@ -32,5 +32,8 @@ namespace Models
 
         [OnDelete(OnDeleteBehavior.Cascade)]
         public AdhocTopupBatchTargetTransaction? AdhocTopupBatchTargetTransaction { get; set; }
+
+        [OnDelete(OnDeleteBehavior.Restrict)]
+        public Payment? Payment { get; set; }
     }
 }

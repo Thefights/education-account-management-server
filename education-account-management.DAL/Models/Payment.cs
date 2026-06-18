@@ -2,6 +2,10 @@ namespace Models
 {
     public class Payment : AuditEntity
     {
+        [Unique]
+        public int? EducationCreditTransactionId { get; set; }
+        public EducationCreditTransaction? EducationCreditTransaction { get; set; }
+
         [EnumDefined]
         public PaymentMethod PaymentMethod { get; set; } = PaymentMethod.EducationBalance;
 

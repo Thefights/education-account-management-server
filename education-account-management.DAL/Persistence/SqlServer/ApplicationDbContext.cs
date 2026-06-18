@@ -13,13 +13,9 @@ namespace Persistence.SqlServer
 
         public DbSet<RefreshToken> RefreshToken { get; set; }
 
-        public DbSet<OtpVerification> OtpVerification { get; set; }
-
         public DbSet<User> User { get; set; }
 
         public DbSet<AdminProfile> AdminProfile { get; set; }
-
-        public DbSet<SchoolAdminProfile> SchoolAdminProfile { get; set; }
 
         public DbSet<EducationAccount> EducationAccount { get; set; }
 
@@ -61,8 +57,6 @@ namespace Persistence.SqlServer
 
         public DbSet<AiAssistantSetting> AiAssistantSetting { get; set; }
 
-        public DbSet<ImmutableAuditLog> ImmutableAuditLog { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -86,6 +80,16 @@ namespace Persistence.SqlServer
                 .HasOne(adminProfile => adminProfile.User)
                 .WithOne(user => user.AdminProfile)
                 .HasForeignKey<AdminProfile>(adminProfile => adminProfile.UserId);
+
+            modelBuilder.Entity<Payment>()
+                .HasOne(payment => payment.EducationCreditTransaction)
+                .WithOne(transaction => transaction.Payment)
+                .HasForeignKey<Payment>(payment => payment.EducationCreditTransactionId);
+
+            modelBuilder.Entity<AiAssistantSetting>()
+                .ToTable(table => table.HasCheckConstraint(
+                    "CK_AiAssistantSetting_Singleton",
+                    "[Id] = 1"));
 
             modelBuilder.Entity<EducationAccount>()
                 .HasOne(educationAccount => educationAccount.Citizen)
