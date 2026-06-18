@@ -1,7 +1,4 @@
-using Common;
-using EntityAnnotations;
-using EntityAnnotations.OnDeleteAttributes;
-using Enums;
+using EntityAnnotations.DateAttributes;
 
 namespace Models
 {
@@ -18,9 +15,21 @@ namespace Models
 
         public DateTime OpenedAt { get; set; }
 
+        [DateValidator(NotBefore = nameof(OpenedAt))]
         public DateTime? ClosedAt { get; set; }
 
-        [NotDefaultValue]
+        [DateValidator(NotBefore = nameof(OpenedAt))]
+        public DateTime? ExtendedUntil { get; set; }
+
+        public int? OpenedByUserId { get; set; }
+        [ForeignKey(nameof(OpenedByUserId))]
+        public User? OpenedByUser { get; set; }
+
+        public int? ClosedByUserId { get; set; }
+        [ForeignKey(nameof(ClosedByUserId))]
+        public User? ClosedByUser { get; set; }
+
+        [NotDefaultValue, Unique]
         public int CitizenId { get; set; }
         public Citizen Citizen { get; set; } = null!;
 
@@ -32,5 +41,11 @@ namespace Models
 
         [OnDelete(OnDeleteBehavior.Cascade)]
         public ICollection<EducationCreditTransaction> EducationCreditTransactions { get; set; } = [];
+
+        [OnDelete(OnDeleteBehavior.Cascade)]
+        public ICollection<Enrollment> Enrollments { get; set; } = [];
+
+        [OnDelete(OnDeleteBehavior.Cascade)]
+        public ICollection<Charge> Charges { get; set; } = [];
     }
 }

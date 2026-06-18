@@ -1,9 +1,14 @@
 namespace Models
 {
-    public class AdminProfile : AuditEntity
+    public class SchoolAdminProfile : AuditEntity
     {
-        [MessageMaxLength(50), Unique]
-        public string StaffCode { get; set; } = string.Empty;
+        [NotDefaultValue, Unique]
+        public int UserId { get; set; }
+        public User User { get; set; } = null!;
+
+        [NotDefaultValue]
+        public int SchoolId { get; set; }
+        public School School { get; set; } = null!;
 
         [MessageRequired, MessageMaxLength(150)]
         public string FullName { get; set; } = string.Empty;
@@ -13,9 +18,5 @@ namespace Models
 
         [MessageMaxLength(20), PhoneNumberValidator]
         public string? PhoneNumber { get; set; }
-
-        [NotDefaultValue, Unique]
-        public int UserId { get; set; }
-        public User User { get; set; } = null!;
     }
 }

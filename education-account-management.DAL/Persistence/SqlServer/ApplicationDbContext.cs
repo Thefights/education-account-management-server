@@ -19,7 +19,23 @@ namespace Persistence.SqlServer
 
         public DbSet<AdminProfile> AdminProfile { get; set; }
 
+        public DbSet<SchoolAdminProfile> SchoolAdminProfile { get; set; }
+
         public DbSet<EducationAccount> EducationAccount { get; set; }
+
+        public DbSet<School> School { get; set; }
+
+        public DbSet<Course> Course { get; set; }
+
+        public DbSet<CourseFee> CourseFee { get; set; }
+
+        public DbSet<Enrollment> Enrollment { get; set; }
+
+        public DbSet<Charge> Charge { get; set; }
+
+        public DbSet<Payment> Payment { get; set; }
+
+        public DbSet<PaymentAllocation> PaymentAllocation { get; set; }
 
         public DbSet<TopupRule> TopupRule { get; set; }
 
@@ -42,6 +58,10 @@ namespace Persistence.SqlServer
         public DbSet<AuditLog> AuditLog { get; set; }
 
         public DbSet<OutboxMessage> OutboxMessage { get; set; }
+
+        public DbSet<AiAssistantSetting> AiAssistantSetting { get; set; }
+
+        public DbSet<ImmutableAuditLog> ImmutableAuditLog { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

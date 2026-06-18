@@ -1,7 +1,3 @@
-using Common;
-using EntityAnnotations.OnDeleteAttributes;
-using Enums;
-
 namespace Models
 {
     public class EducationCreditTransaction : AuditEntity
@@ -15,7 +11,7 @@ namespace Models
         [EnumDefined]
         public EducationCreditTransactionDirection Direction { get; set; } = EducationCreditTransactionDirection.Credit;
 
-        [Column(TypeName = "decimal(18,2)")]
+        [Column(TypeName = "decimal(18,2)"), NumberPositive]
         public decimal Amount { get; set; }
 
         [Column(TypeName = "decimal(18,2)")]

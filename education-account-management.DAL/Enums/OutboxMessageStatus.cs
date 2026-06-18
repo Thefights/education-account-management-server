@@ -3,7 +3,8 @@ namespace Enums
     public enum OutboxMessageStatus
     {
         Pending = 1,
-        Completed = 2,
-        Failed = 3
+        Processing = 2,
+        Completed = 3,
+        Failed = 4
     }
 }

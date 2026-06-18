@@ -7,6 +7,6 @@ namespace Authorization
         public const string Admin = nameof(UserRole.SystemAdmin);
 
         public const string AdminStaff =
-            $"{nameof(UserRole.SystemAdmin)},{nameof(UserRole.FinanceAdmin)},{nameof(UserRole.CourseAdmin)}";
+            $"{nameof(UserRole.SystemAdmin)},{nameof(UserRole.FinanceAdmin)},{nameof(UserRole.SchoolAdmin)}";
     }
 }
