@@ -1,17 +1,20 @@
 ﻿using Enums;
 using Infrastructure.Interface;
+using Repositories.Interfaces;
 using System.Security.Claims;
 using Utils;
 
 namespace Infrastructure
 {
-    public class CurrentUserService : ICurrentUserService
+    public class CurrentUserService : ICurrentUserService, IAuditUserContext
     {
         private readonly int _userId;
 
         public int UserId => _userId <= 0
             ? throw new UnauthorizedAccessException("User is not authenticated.")
             : _userId;
+
+        public int? CurrentUserId => _userId > 0 ? _userId : null;
 
         public int AuthId { get; }
 

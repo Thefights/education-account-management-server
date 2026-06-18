@@ -8,6 +8,7 @@ public static class MapperServiceExtensions
     {
         services.AddScoped<AuditLogMapper>();
         services.AddScoped<AiAssistantSettingMapper>();
+        services.AddScoped<AdminManagementMapper>();
 
         return services;
     }

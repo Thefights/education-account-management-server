@@ -1,10 +1,15 @@
 ﻿using Models;
 using Persistence.SqlServer.ModelConfigurations;
+using Repositories.Interfaces;
 
 namespace Persistence.SqlServer
 {
-    public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
+    public class ApplicationDbContext(
+        DbContextOptions<ApplicationDbContext> options,
+        IAuditUserContext auditUserContext) : DbContext(options)
     {
+        private readonly IAuditUserContext _auditUserContext = auditUserContext;
+
         public DbSet<Citizen> Citizen { get; set; }
 
         public DbSet<AuthAccount> AuthAccount { get; set; }
@@ -121,15 +126,17 @@ namespace Persistence.SqlServer
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             await ForeignKeyValidator.ValidateForeignKeysAsync(this, cancellationToken);
-            ApplyAuditFields();
+            var now = DateTime.UtcNow;
+            ApplyAuditFields(now);
             await SoftDeleteCascadeHandler.ApplySoftDeleteCascadeAsync(this, cancellationToken);
+            ApplyAuditFields(now);
 
             return await base.SaveChangesAsync(cancellationToken);
         }
 
-        private void ApplyAuditFields()
+        private void ApplyAuditFields(DateTime now)
         {
-            var now = DateTime.UtcNow;
+            var currentUserId = _auditUserContext.CurrentUserId;
 
             foreach (var entry in ChangeTracker.Entries<AuditEntity>())
             {
@@ -137,16 +144,20 @@ namespace Persistence.SqlServer
                 {
                     case EntityState.Added:
                         entry.Entity.CreatedAt = now;
+                        entry.Entity.CreatedBy = currentUserId;
                         break;
 
                     case EntityState.Modified:
                         entry.Entity.UpdatedAt = now;
+                        entry.Entity.UpdatedBy = currentUserId;
                         break;
 
                     case EntityState.Deleted:
                         entry.State = EntityState.Modified;
                         entry.Entity.IsDeleted = true;
                         entry.Entity.DeletedAt = now;
+                        entry.Entity.UpdatedAt = now;
+                        entry.Entity.UpdatedBy = currentUserId;
                         break;
                 }
             }

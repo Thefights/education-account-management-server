@@ -15,6 +15,7 @@ namespace Extensions
             services.AddStorageServices(configuration);
             services.AddAuditServices();
             services.AddAiAssistantServices();
+            services.AddAdminManagementServices();
             services.AddCsvServices();
             services.AddMappers();
             services.AddBackgroundJobServices();

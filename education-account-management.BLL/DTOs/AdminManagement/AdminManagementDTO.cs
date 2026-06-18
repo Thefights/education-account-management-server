@@ -1,0 +1,61 @@
+namespace DTOs.AdminManagement
+{
+    public class CreateAdminManagementDTO
+    {
+        public UserRole Role { get; set; }
+
+        public string AzureObjectId { get; set; } = string.Empty;
+
+        public string StaffCode { get; set; } = string.Empty;
+
+        public string FullName { get; set; } = string.Empty;
+
+        public string Email { get; set; } = string.Empty;
+
+        public string? PhoneNumber { get; set; }
+
+        public int? SchoolId { get; set; }
+    }
+
+    public class UpdateAdminManagementDTO
+    {
+        public UserRole Role { get; set; }
+
+        public string AzureObjectId { get; set; } = string.Empty;
+
+        public string StaffCode { get; set; } = string.Empty;
+
+        public string FullName { get; set; } = string.Empty;
+
+        public string Email { get; set; } = string.Empty;
+
+        public string? PhoneNumber { get; set; }
+
+        public int? SchoolId { get; set; }
+    }
+
+    public class GetAdminManagementDTO
+    {
+        public int UserId { get; set; }
+
+        public int AuthAccountId { get; set; }
+
+        public UserRole Role { get; set; }
+
+        public AuthAccountStatus Status { get; set; }
+
+        public string AzureObjectId { get; set; } = string.Empty;
+
+        public string StaffCode { get; set; } = string.Empty;
+
+        public string FullName { get; set; } = string.Empty;
+
+        public string Email { get; set; } = string.Empty;
+
+        public string? PhoneNumber { get; set; }
+
+        public int? SchoolId { get; set; }
+
+        public string? SchoolName { get; set; }
+    }
+}

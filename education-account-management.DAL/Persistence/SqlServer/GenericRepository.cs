@@ -130,6 +130,31 @@ namespace Persistence.SqlServer
 
         public async Task<(int Count, List<TResult> Items)> GetProjectedPaginatedAsync<TResult>(
             Func<IQueryable<T>, IQueryable<TResult>> projection,
+            Expression<Func<T, bool>>? filterExpr,
+            string? filterStr,
+            string? search,
+            string[]? searchFields,
+            string order,
+            int page,
+            int pageSize,
+            string[]? includes = null,
+            CancellationToken cancellationToken = default)
+        {
+            page = Math.Max(page, 1);
+            pageSize = Math.Clamp(pageSize, 1, 100);
+
+            var query = BuildQuery(filterExpr, includes)
+                .ApplyFiltering(filterStr)
+                .ApplySearch(search, searchFields)
+                .ApplyOrdering(order);
+            var total = await query.CountAsync(cancellationToken);
+            query = query.ApplyPaging(page, pageSize);
+
+            return (total, await projection(query).ToListAsync(cancellationToken));
+        }
+
+        public async Task<(int Count, List<TResult> Items)> GetProjectedPaginatedAsync<TResult>(
+            Func<IQueryable<T>, IQueryable<TResult>> projection,
             Expression<Func<T, bool>>? filter,
             string order,
             int page,
