@@ -37,6 +37,26 @@ namespace educationaccountmanagement.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AiAssistantSetting",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IsEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AiAssistantSetting", x => x.Id);
+                    table.CheckConstraint("CK_AiAssistantSetting_Singleton", "[Id] = 1");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AuthAccount",
                 columns: table => new
                 {
@@ -103,6 +123,29 @@ namespace educationaccountmanagement.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "School",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    SchoolName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(320)", maxLength: 320, nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_School", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "TopupRule",
                 columns: table => new
                 {
@@ -121,35 +164,6 @@ namespace educationaccountmanagement.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TopupRule", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "OtpVerification",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    SessionId = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    OtpHash = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    FailedAttemptCount = table.Column<int>(type: "int", nullable: false),
-                    ExpiresAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    AuthAccountId = table.Column<int>(type: "int", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<int>(type: "int", nullable: true),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
-                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_OtpVerification", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_OtpVerification_AuthAccount_AuthAccountId",
-                        column: x => x.AuthAccountId,
-                        principalTable: "AuthAccount",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -208,36 +222,6 @@ namespace educationaccountmanagement.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EducationAccount",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AccountNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    EducationCreditBalance = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false),
-                    OpenedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ClosedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CitizenId = table.Column<int>(type: "int", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<int>(type: "int", nullable: true),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
-                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EducationAccount", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_EducationAccount_Citizen_CitizenId",
-                        column: x => x.CitizenId,
-                        principalTable: "Citizen",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "User",
                 columns: table => new
                 {
@@ -268,6 +252,34 @@ namespace educationaccountmanagement.DAL.Migrations
                         principalTable: "Citizen",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.SetNull);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Course",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SchoolId = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    CourseName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Course", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Course_School_SchoolId",
+                        column: x => x.SchoolId,
+                        principalTable: "School",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -325,6 +337,139 @@ namespace educationaccountmanagement.DAL.Migrations
                         column: x => x.TopupRuleId,
                         principalTable: "TopupRule",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AdminProfile",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StaffCode = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    FullName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(320)", maxLength: 320, nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    SchoolId = table.Column<int>(type: "int", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AdminProfile", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AdminProfile_School_SchoolId",
+                        column: x => x.SchoolId,
+                        principalTable: "School",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AdminProfile_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AuditLog",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Category = table.Column<int>(type: "int", nullable: false),
+                    Action = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    IpAddress = table.Column<string>(type: "nvarchar(45)", maxLength: 45, nullable: false),
+                    PayloadJson = table.Column<string>(type: "json", nullable: true),
+                    OccurredAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ActorUserId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AuditLog", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AuditLog_User_ActorUserId",
+                        column: x => x.ActorUserId,
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EducationAccount",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AccountNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    EducationCreditBalance = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    OpenedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ClosedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ExtendedUntil = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    OpenedByUserId = table.Column<int>(type: "int", nullable: true),
+                    ClosedByUserId = table.Column<int>(type: "int", nullable: true),
+                    CitizenId = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EducationAccount", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EducationAccount_Citizen_CitizenId",
+                        column: x => x.CitizenId,
+                        principalTable: "Citizen",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EducationAccount_User_ClosedByUserId",
+                        column: x => x.ClosedByUserId,
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_EducationAccount_User_OpenedByUserId",
+                        column: x => x.OpenedByUserId,
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CourseFee",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CourseFeeAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    MiscFeeAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    GstAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CourseId = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CourseFee", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CourseFee_Course_CourseId",
+                        column: x => x.CourseId,
+                        principalTable: "Course",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -394,15 +539,16 @@ namespace educationaccountmanagement.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AdminProfile",
+                name: "Enrollment",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    StaffCode = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    FullName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(320)", maxLength: 320, nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
+                    CourseId = table.Column<int>(type: "int", nullable: false),
+                    EducationAccountId = table.Column<int>(type: "int", nullable: false),
+                    EnrolledAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CompletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    WithdrawnAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<int>(type: "int", nullable: true),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -412,37 +558,19 @@ namespace educationaccountmanagement.DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AdminProfile", x => x.Id);
+                    table.PrimaryKey("PK_Enrollment", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AdminProfile_User_UserId",
-                        column: x => x.UserId,
-                        principalTable: "User",
+                        name: "FK_Enrollment_Course_CourseId",
+                        column: x => x.CourseId,
+                        principalTable: "Course",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AuditLog",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Category = table.Column<int>(type: "int", nullable: false),
-                    Action = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    IpAddress = table.Column<string>(type: "nvarchar(45)", maxLength: 45, nullable: false),
-                    PayloadJson = table.Column<string>(type: "json", nullable: true),
-                    OccurredAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ActorUserId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AuditLog", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AuditLog_User_ActorUserId",
-                        column: x => x.ActorUserId,
-                        principalTable: "User",
+                        name: "FK_Enrollment_EducationAccount_EducationAccountId",
+                        column: x => x.EducationAccountId,
+                        principalTable: "EducationAccount",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -511,6 +639,67 @@ namespace educationaccountmanagement.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Payment",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EducationCreditTransactionId = table.Column<int>(type: "int", nullable: true),
+                    PaymentMethod = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PaidAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ExternalReference = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Payment", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Payment_EducationCreditTransaction_EducationCreditTransactionId",
+                        column: x => x.EducationCreditTransactionId,
+                        principalTable: "EducationCreditTransaction",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Charge",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EnrollmentId = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    GrossAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    SubsidyAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    NetAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PaidAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    RemainingAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Charge", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Charge_Enrollment_EnrollmentId",
+                        column: x => x.EnrollmentId,
+                        principalTable: "Enrollment",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "TopupBatchTargetTransaction",
                 columns: table => new
                 {
@@ -541,6 +730,39 @@ namespace educationaccountmanagement.DAL.Migrations
                         principalColumn: "Id");
                 });
 
+            migrationBuilder.CreateTable(
+                name: "PaymentAllocation",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PaymentId = table.Column<int>(type: "int", nullable: false),
+                    ChargeId = table.Column<int>(type: "int", nullable: false),
+                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PaymentAllocation", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PaymentAllocation_Charge_ChargeId",
+                        column: x => x.ChargeId,
+                        principalTable: "Charge",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PaymentAllocation_Payment_PaymentId",
+                        column: x => x.PaymentId,
+                        principalTable: "Payment",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "AdhocTopupBatch",
                 columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "ExecutedAt", "IsDeleted", "Reason", "Status", "TotalAmount", "TotalTargetCount", "UpdatedAt", "UpdatedBy" },
@@ -557,6 +779,11 @@ namespace educationaccountmanagement.DAL.Migrations
                     { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, false, "Adhoc adjustment reason 009", 1, 95m, 1, null, null },
                     { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 2, 20, 0, 0, 0, 0, DateTimeKind.Utc), false, "Adhoc adjustment reason 010", 2, 100m, 1, null, null }
                 });
+
+            migrationBuilder.InsertData(
+                table: "AiAssistantSetting",
+                columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "IsDeleted", "IsEnabled", "UpdatedAt", "UpdatedBy" },
+                values: new object[] { 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, true, null, null });
 
             migrationBuilder.InsertData(
                 table: "AuthAccount",
@@ -598,15 +825,32 @@ namespace educationaccountmanagement.DAL.Migrations
                 values: new object[,]
                 {
                     { 1, new DateTime(2026, 1, 1, 0, 1, 0, 0, DateTimeKind.Utc), "{\"messageId\":1}", 1, 1, "AuditProjection" },
-                    { 2, new DateTime(2026, 1, 1, 0, 2, 0, 0, DateTimeKind.Utc), "{\"messageId\":2}", 2, 2, "EmailNotification" },
+                    { 2, new DateTime(2026, 1, 1, 0, 2, 0, 0, DateTimeKind.Utc), "{\"messageId\":2}", 2, 3, "EmailNotification" },
                     { 3, new DateTime(2026, 1, 1, 0, 3, 0, 0, DateTimeKind.Utc), "{\"messageId\":3}", 0, 1, "AuditProjection" },
-                    { 4, new DateTime(2026, 1, 1, 0, 4, 0, 0, DateTimeKind.Utc), "{\"messageId\":4}", 1, 2, "EmailNotification" },
-                    { 5, new DateTime(2026, 1, 1, 0, 5, 0, 0, DateTimeKind.Utc), "{\"messageId\":5}", 2, 3, "AuditProjection" },
-                    { 6, new DateTime(2026, 1, 1, 0, 6, 0, 0, DateTimeKind.Utc), "{\"messageId\":6}", 0, 2, "EmailNotification" },
+                    { 4, new DateTime(2026, 1, 1, 0, 4, 0, 0, DateTimeKind.Utc), "{\"messageId\":4}", 1, 3, "EmailNotification" },
+                    { 5, new DateTime(2026, 1, 1, 0, 5, 0, 0, DateTimeKind.Utc), "{\"messageId\":5}", 2, 4, "AuditProjection" },
+                    { 6, new DateTime(2026, 1, 1, 0, 6, 0, 0, DateTimeKind.Utc), "{\"messageId\":6}", 0, 3, "EmailNotification" },
                     { 7, new DateTime(2026, 1, 1, 0, 7, 0, 0, DateTimeKind.Utc), "{\"messageId\":7}", 1, 1, "AuditProjection" },
-                    { 8, new DateTime(2026, 1, 1, 0, 8, 0, 0, DateTimeKind.Utc), "{\"messageId\":8}", 2, 2, "EmailNotification" },
+                    { 8, new DateTime(2026, 1, 1, 0, 8, 0, 0, DateTimeKind.Utc), "{\"messageId\":8}", 2, 3, "EmailNotification" },
                     { 9, new DateTime(2026, 1, 1, 0, 9, 0, 0, DateTimeKind.Utc), "{\"messageId\":9}", 0, 1, "AuditProjection" },
-                    { 10, new DateTime(2026, 1, 1, 0, 10, 0, 0, DateTimeKind.Utc), "{\"messageId\":10}", 1, 3, "EmailNotification" }
+                    { 10, new DateTime(2026, 1, 1, 0, 10, 0, 0, DateTimeKind.Utc), "{\"messageId\":10}", 1, 4, "EmailNotification" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "School",
+                columns: new[] { "Id", "Address", "CreatedAt", "CreatedBy", "DeletedAt", "Email", "IsDeleted", "PhoneNumber", "SchoolName", "Status", "UpdatedAt", "UpdatedBy" },
+                values: new object[,]
+                {
+                    { 1, "10 Northview Road, Singapore", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "contact@northview.edu.sg", false, "+6561000001", "Northview Secondary School", 1, null, null },
+                    { 2, "20 Eastbridge Avenue, Singapore", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "contact@eastbridge.edu.sg", false, "+6561000002", "Eastbridge Secondary School", 1, null, null },
+                    { 3, "30 Westhaven Street, Singapore", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "contact@westhaven.edu.sg", false, "+6561000003", "Westhaven Secondary School", 1, null, null },
+                    { 4, "40 Southpoint Drive, Singapore", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "contact@southpoint.edu.sg", false, "+6561000004", "Southpoint Secondary School", 1, null, null },
+                    { 5, "50 Central Heights, Singapore", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "contact@centralheights.edu.sg", false, "+6561000005", "Central Heights School", 1, null, null },
+                    { 6, "60 Riverside Walk, Singapore", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "contact@riverside.edu.sg", false, "+6561000006", "Riverside Learning Institute", 1, null, null },
+                    { 7, "70 Lakeside Crescent, Singapore", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "contact@lakeside.edu.sg", false, "+6561000007", "Lakeside Technical School", 1, null, null },
+                    { 8, "80 Greenfield Lane, Singapore", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "contact@greenfield.edu.sg", false, "+6561000008", "Greenfield Academy", 1, null, null },
+                    { 9, "90 Harbourfront Road, Singapore", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "contact@harbourfront.edu.sg", false, "+6561000009", "Harbourfront School", 1, null, null },
+                    { 10, "100 Hillcrest Avenue, Singapore", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "contact@hillcrest.edu.sg", false, "+6561000010", "Hillcrest Education Centre", 2, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -627,37 +871,37 @@ namespace educationaccountmanagement.DAL.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "EducationAccount",
-                columns: new[] { "Id", "AccountNumber", "CitizenId", "ClosedAt", "CreatedAt", "CreatedBy", "DeletedAt", "EducationCreditBalance", "IsDeleted", "OpenedAt", "Status", "UpdatedAt", "UpdatedBy" },
+                table: "Course",
+                columns: new[] { "Id", "CourseName", "CreatedAt", "CreatedBy", "DeletedAt", "Description", "IsDeleted", "SchoolId", "Status", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "EA000000000000000001", 1, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1100m, false, new DateTime(2026, 1, 2, 0, 0, 0, 0, DateTimeKind.Utc), 1, null, null },
-                    { 2, "EA000000000000000002", 2, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1200m, false, new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc), 1, null, null },
-                    { 3, "EA000000000000000003", 3, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1300m, false, new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Utc), 1, null, null },
-                    { 4, "EA000000000000000004", 4, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1400m, false, new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc), 2, null, null },
-                    { 5, "EA000000000000000005", 5, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1500m, false, new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc), 1, null, null },
-                    { 6, "EA000000000000000006", 6, new DateTime(2026, 4, 17, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1600m, false, new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc), 3, null, null },
-                    { 7, "EA000000000000000007", 7, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1700m, false, new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc), 1, null, null },
-                    { 8, "EA000000000000000008", 8, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1800m, false, new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc), 2, null, null },
-                    { 9, "EA000000000000000009", 9, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1900m, false, new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc), 1, null, null },
-                    { 10, "EA000000000000000010", 10, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2000m, false, new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc), 1, null, null }
+                    { 1, "Applied Mathematics", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Foundation course in applied mathematics.", false, 1, 1, null, null },
+                    { 2, "Computer Science Fundamentals", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Introduction to programming and computing.", false, 2, 1, null, null },
+                    { 3, "Business Communication", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Professional written and verbal communication.", false, 3, 1, null, null },
+                    { 4, "Environmental Science", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Environmental systems and sustainability.", false, 4, 1, null, null },
+                    { 5, "Digital Media Design", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Digital design principles and production.", false, 5, 1, null, null },
+                    { 6, "Hospitality Operations", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Core hospitality service operations.", false, 6, 1, null, null },
+                    { 7, "Electrical Engineering Basics", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Fundamentals of electrical systems.", false, 7, 1, null, null },
+                    { 8, "Creative Writing", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Writing techniques across common genres.", false, 8, 1, null, null },
+                    { 9, "Data Analytics", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Data preparation, analysis and reporting.", false, 9, 1, null, null },
+                    { 10, "Legacy Office Applications", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Archived office applications programme.", false, 10, 2, null, null }
                 });
 
             migrationBuilder.InsertData(
-                table: "OtpVerification",
-                columns: new[] { "Id", "AuthAccountId", "CreatedAt", "CreatedBy", "DeletedAt", "ExpiresAt", "FailedAttemptCount", "IsDeleted", "OtpHash", "SessionId", "UpdatedAt", "UpdatedBy" },
+                table: "EducationAccount",
+                columns: new[] { "Id", "AccountNumber", "CitizenId", "ClosedAt", "ClosedByUserId", "CreatedAt", "CreatedBy", "DeletedAt", "EducationCreditBalance", "ExtendedUntil", "IsDeleted", "OpenedAt", "OpenedByUserId", "Status", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 1, 1, 0, 11, 0, 0, DateTimeKind.Utc), 1, false, "otp-hash-001", "otp-session-001", null, null },
-                    { 2, 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 1, 1, 0, 12, 0, 0, DateTimeKind.Utc), 2, false, "otp-hash-002", "otp-session-002", null, null },
-                    { 3, 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 1, 1, 0, 13, 0, 0, DateTimeKind.Utc), 0, false, "otp-hash-003", "otp-session-003", null, null },
-                    { 4, 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 1, 1, 0, 14, 0, 0, DateTimeKind.Utc), 1, false, "otp-hash-004", "otp-session-004", null, null },
-                    { 5, 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 1, 1, 0, 15, 0, 0, DateTimeKind.Utc), 2, false, "otp-hash-005", "otp-session-005", null, null },
-                    { 6, 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 1, 1, 0, 16, 0, 0, DateTimeKind.Utc), 0, false, "otp-hash-006", "otp-session-006", null, null },
-                    { 7, 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 1, 1, 0, 17, 0, 0, DateTimeKind.Utc), 1, false, "otp-hash-007", "otp-session-007", null, null },
-                    { 8, 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 1, 1, 0, 18, 0, 0, DateTimeKind.Utc), 2, false, "otp-hash-008", "otp-session-008", null, null },
-                    { 9, 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 1, 1, 0, 19, 0, 0, DateTimeKind.Utc), 0, false, "otp-hash-009", "otp-session-009", null, null },
-                    { 10, 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 1, 1, 0, 20, 0, 0, DateTimeKind.Utc), 1, false, "otp-hash-010", "otp-session-010", null, null }
+                    { 1, "EA000000000000000001", 1, null, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1100m, null, false, new DateTime(2026, 1, 2, 0, 0, 0, 0, DateTimeKind.Utc), null, 1, null, null },
+                    { 2, "EA000000000000000002", 2, null, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1200m, null, false, new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc), null, 1, null, null },
+                    { 3, "EA000000000000000003", 3, null, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1300m, null, false, new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Utc), null, 1, null, null },
+                    { 4, "EA000000000000000004", 4, null, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1400m, null, false, new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc), null, 2, null, null },
+                    { 5, "EA000000000000000005", 5, null, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1500m, null, false, new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc), null, 1, null, null },
+                    { 6, "EA000000000000000006", 6, new DateTime(2026, 4, 17, 0, 0, 0, 0, DateTimeKind.Utc), null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1600m, null, false, new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc), null, 3, null, null },
+                    { 7, "EA000000000000000007", 7, null, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1700m, null, false, new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc), null, 1, null, null },
+                    { 8, "EA000000000000000008", 8, null, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1800m, null, false, new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc), null, 2, null, null },
+                    { 9, "EA000000000000000009", 9, null, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1900m, null, false, new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc), null, 1, null, null },
+                    { 10, "EA000000000000000010", 10, null, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2000m, null, false, new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc), null, 1, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -764,19 +1008,19 @@ namespace educationaccountmanagement.DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "AdminProfile",
-                columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "Email", "FullName", "IsDeleted", "StaffCode", "UpdatedAt", "UpdatedBy", "UserId" },
+                columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "Email", "FullName", "IsDeleted", "PhoneNumber", "SchoolId", "StaffCode", "UpdatedAt", "UpdatedBy", "UserId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin001@example.com", "Admin Profile 001", false, "STAFF-001", null, null, 1 },
-                    { 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin002@example.com", "Admin Profile 002", false, "STAFF-002", null, null, 2 },
-                    { 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin003@example.com", "Admin Profile 003", false, "STAFF-003", null, null, 3 },
-                    { 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin004@example.com", "Admin Profile 004", false, "STAFF-004", null, null, 4 },
-                    { 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin005@example.com", "Admin Profile 005", false, "STAFF-005", null, null, 5 },
-                    { 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin006@example.com", "Admin Profile 006", false, "STAFF-006", null, null, 6 },
-                    { 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin007@example.com", "Admin Profile 007", false, "STAFF-007", null, null, 7 },
-                    { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin008@example.com", "Admin Profile 008", false, "STAFF-008", null, null, 8 },
-                    { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin009@example.com", "Admin Profile 009", false, "STAFF-009", null, null, 9 },
-                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin010@example.com", "Admin Profile 010", false, "STAFF-010", null, null, 10 }
+                    { 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin001@example.com", "System Administrator", false, "+6591000001", null, "STAFF-001", null, null, 1 },
+                    { 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin002@example.com", "Finance Administrator", false, "+6591000002", null, "STAFF-002", null, null, 2 },
+                    { 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin003@example.com", "School Administrator", false, "+6591000003", 1, "STAFF-003", null, null, 3 },
+                    { 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin004@example.com", "Admin Profile 004", false, "+6591000004", null, "STAFF-004", null, null, 4 },
+                    { 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin005@example.com", "Admin Profile 005", false, "+6591000005", null, "STAFF-005", null, null, 5 },
+                    { 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin006@example.com", "Admin Profile 006", false, "+6591000006", null, "STAFF-006", null, null, 6 },
+                    { 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin007@example.com", "Admin Profile 007", false, "+6591000007", null, "STAFF-007", null, null, 7 },
+                    { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin008@example.com", "Admin Profile 008", false, "+6591000008", null, "STAFF-008", null, null, 8 },
+                    { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin009@example.com", "Admin Profile 009", false, "+6591000009", null, "STAFF-009", null, null, 9 },
+                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin010@example.com", "Admin Profile 010", false, "+6591000010", null, "STAFF-010", null, null, 10 }
                 });
 
             migrationBuilder.InsertData(
@@ -794,6 +1038,23 @@ namespace educationaccountmanagement.DAL.Migrations
                     { 8, "CreditTransactionCreated", 8, 5, "127.0.0.8", new DateTime(2026, 1, 1, 0, 8, 0, 0, DateTimeKind.Utc), "{\"seedId\":8}" },
                     { 9, "AdminLoginSucceeded", 9, 3, "127.0.0.9", new DateTime(2026, 1, 1, 0, 9, 0, 0, DateTimeKind.Utc), "{\"seedId\":9}" },
                     { 10, "CreditTransactionCreated", 10, 5, "127.0.0.10", new DateTime(2026, 1, 1, 0, 10, 0, 0, DateTimeKind.Utc), "{\"seedId\":10}" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "CourseFee",
+                columns: new[] { "Id", "CourseFeeAmount", "CourseId", "CreatedAt", "CreatedBy", "DeletedAt", "GstAmount", "IsDeleted", "MiscFeeAmount", "UpdatedAt", "UpdatedBy" },
+                values: new object[,]
+                {
+                    { 1, 100m, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 10m, false, 10m, null, null },
+                    { 2, 115m, 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 13m, false, 12m, null, null },
+                    { 3, 130m, 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 15m, false, 15m, null, null },
+                    { 4, 145m, 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 18m, false, 17m, null, null },
+                    { 5, 160m, 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 20m, false, 20m, null, null },
+                    { 6, 175m, 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 23m, false, 22m, null, null },
+                    { 7, 190m, 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 25m, false, 25m, null, null },
+                    { 8, 205m, 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 28m, false, 27m, null, null },
+                    { 9, 220m, 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 30m, false, 30m, null, null },
+                    { 10, 235m, 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 33m, false, 32m, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -820,7 +1081,34 @@ namespace educationaccountmanagement.DAL.Migrations
                     { 17, 85m, 2185m, 2050m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Seed adhoc transaction 017", 1, 7, false, new Guid("00000000-0000-0000-0000-000000000017"), 4, null, null },
                     { 18, 90m, 2240m, 2100m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Seed adhoc transaction 018", 1, 8, false, new Guid("00000000-0000-0000-0000-000000000018"), 4, null, null },
                     { 19, 95m, 2295m, 2150m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Seed adhoc transaction 019", 1, 9, false, new Guid("00000000-0000-0000-0000-000000000019"), 4, null, null },
-                    { 20, 100m, 2350m, 2200m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Seed adhoc transaction 020", 1, 10, false, new Guid("00000000-0000-0000-0000-000000000020"), 4, null, null }
+                    { 20, 100m, 2350m, 2200m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Seed adhoc transaction 020", 1, 10, false, new Guid("00000000-0000-0000-0000-000000000020"), 4, null, null },
+                    { 21, 120m, 980m, 1100m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Payment transaction 001", 2, 1, false, new Guid("00000000-0000-0000-0000-000000000021"), 2, null, null },
+                    { 22, 70m, 1130m, 1200m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Payment transaction 002", 2, 2, false, new Guid("00000000-0000-0000-0000-000000000022"), 2, null, null },
+                    { 23, 140m, 1160m, 1300m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Payment transaction 003", 2, 3, false, new Guid("00000000-0000-0000-0000-000000000023"), 2, null, null },
+                    { 24, 180m, 1220m, 1400m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Payment transaction 004", 2, 4, false, new Guid("00000000-0000-0000-0000-000000000024"), 2, null, null },
+                    { 25, 180m, 1320m, 1500m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Payment transaction 005", 2, 5, false, new Guid("00000000-0000-0000-0000-000000000025"), 2, null, null },
+                    { 26, 100m, 1500m, 1600m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Payment transaction 006", 2, 6, false, new Guid("00000000-0000-0000-0000-000000000026"), 2, null, null },
+                    { 27, 200m, 1500m, 1700m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Payment transaction 007", 2, 7, false, new Guid("00000000-0000-0000-0000-000000000027"), 2, null, null },
+                    { 28, 130m, 1670m, 1800m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Payment transaction 008", 2, 8, false, new Guid("00000000-0000-0000-0000-000000000028"), 2, null, null },
+                    { 29, 250m, 1650m, 1900m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Payment transaction 009", 2, 9, false, new Guid("00000000-0000-0000-0000-000000000029"), 2, null, null },
+                    { 30, 300m, 1700m, 2000m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Payment transaction 010", 2, 10, false, new Guid("00000000-0000-0000-0000-000000000030"), 2, null, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Enrollment",
+                columns: new[] { "Id", "CompletedAt", "CourseId", "CreatedAt", "CreatedBy", "DeletedAt", "EducationAccountId", "EnrolledAt", "IsDeleted", "UpdatedAt", "UpdatedBy", "WithdrawnAt" },
+                values: new object[,]
+                {
+                    { 1, null, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc), false, null, null, null },
+                    { 2, null, 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, new DateTime(2026, 1, 12, 0, 0, 0, 0, DateTimeKind.Utc), false, null, null, null },
+                    { 3, new DateTime(2026, 3, 14, 0, 0, 0, 0, DateTimeKind.Utc), 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 3, new DateTime(2026, 1, 13, 0, 0, 0, 0, DateTimeKind.Utc), false, null, null, null },
+                    { 4, null, 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 4, new DateTime(2026, 1, 14, 0, 0, 0, 0, DateTimeKind.Utc), false, null, null, null },
+                    { 5, null, 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 5, new DateTime(2026, 1, 15, 0, 0, 0, 0, DateTimeKind.Utc), false, null, null, new DateTime(2026, 1, 25, 0, 0, 0, 0, DateTimeKind.Utc) },
+                    { 6, null, 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 6, new DateTime(2026, 1, 16, 0, 0, 0, 0, DateTimeKind.Utc), false, null, null, null },
+                    { 7, new DateTime(2026, 3, 18, 0, 0, 0, 0, DateTimeKind.Utc), 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 7, new DateTime(2026, 1, 17, 0, 0, 0, 0, DateTimeKind.Utc), false, null, null, null },
+                    { 8, null, 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 8, new DateTime(2026, 1, 18, 0, 0, 0, 0, DateTimeKind.Utc), false, null, null, null },
+                    { 9, null, 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 9, new DateTime(2026, 1, 19, 0, 0, 0, 0, DateTimeKind.Utc), false, null, null, null },
+                    { 10, null, 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 10, new DateTime(2026, 1, 20, 0, 0, 0, 0, DateTimeKind.Utc), false, null, null, new DateTime(2026, 1, 30, 0, 0, 0, 0, DateTimeKind.Utc) }
                 });
 
             migrationBuilder.InsertData(
@@ -858,6 +1146,40 @@ namespace educationaccountmanagement.DAL.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Charge",
+                columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "EnrollmentId", "GrossAmount", "IsDeleted", "NetAmount", "PaidAmount", "RemainingAmount", "Status", "SubsidyAmount", "UpdatedAt", "UpdatedBy" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 120m, false, 120m, 120m, 0m, 3, 0m, null, null },
+                    { 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 140m, false, 140m, 70m, 70m, 2, 0m, null, null },
+                    { 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 3, 160m, false, 140m, 140m, 0m, 3, 20m, null, null },
+                    { 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 4, 180m, false, 180m, 180m, 0m, 3, 0m, null, null },
+                    { 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 5, 200m, false, 180m, 180m, 0m, 3, 20m, null, null },
+                    { 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 6, 220m, false, 220m, 100m, 120m, 4, 0m, null, null },
+                    { 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 7, 240m, false, 200m, 200m, 0m, 3, 40m, null, null },
+                    { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 8, 260m, false, 260m, 130m, 130m, 2, 0m, null, null },
+                    { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 9, 280m, false, 250m, 250m, 0m, 3, 30m, null, null },
+                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 10, 300m, false, 300m, 300m, 0m, 3, 0m, null, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Payment",
+                columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "EducationCreditTransactionId", "ExternalReference", "IsDeleted", "PaidAt", "PaymentMethod", "Status", "TotalAmount", "UpdatedAt", "UpdatedBy" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 21, null, false, new DateTime(2026, 1, 21, 0, 0, 0, 0, DateTimeKind.Utc), 1, 2, 120m, null, null },
+                    { 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 22, null, false, new DateTime(2026, 1, 22, 0, 0, 0, 0, DateTimeKind.Utc), 1, 2, 70m, null, null },
+                    { 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 23, null, false, new DateTime(2026, 1, 23, 0, 0, 0, 0, DateTimeKind.Utc), 1, 2, 140m, null, null },
+                    { 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 24, null, false, new DateTime(2026, 1, 24, 0, 0, 0, 0, DateTimeKind.Utc), 1, 2, 180m, null, null },
+                    { 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 25, null, false, new DateTime(2026, 1, 25, 0, 0, 0, 0, DateTimeKind.Utc), 1, 2, 180m, null, null },
+                    { 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 26, "PAY-ONLINE-0006", false, new DateTime(2026, 1, 26, 0, 0, 0, 0, DateTimeKind.Utc), 2, 2, 100m, null, null },
+                    { 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 27, "PAY-ONLINE-0007", false, new DateTime(2026, 1, 27, 0, 0, 0, 0, DateTimeKind.Utc), 2, 2, 200m, null, null },
+                    { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 28, "PAY-ONLINE-0008", false, new DateTime(2026, 1, 28, 0, 0, 0, 0, DateTimeKind.Utc), 2, 2, 130m, null, null },
+                    { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 29, "PAY-ONLINE-0009", false, new DateTime(2026, 1, 29, 0, 0, 0, 0, DateTimeKind.Utc), 2, 2, 250m, null, null },
+                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 30, "PAY-ONLINE-0010", false, new DateTime(2026, 1, 30, 0, 0, 0, 0, DateTimeKind.Utc), 2, 2, 300m, null, null }
+                });
+
+            migrationBuilder.InsertData(
                 table: "TopupBatchTargetTransaction",
                 columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "EducationCreditTransactionId", "IsDeleted", "TopupBatchTargetId", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
@@ -872,6 +1194,23 @@ namespace educationaccountmanagement.DAL.Migrations
                     { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 8, false, 8, null, null },
                     { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 9, false, 9, null, null },
                     { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 10, false, 10, null, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "PaymentAllocation",
+                columns: new[] { "Id", "Amount", "ChargeId", "CreatedAt", "CreatedBy", "DeletedAt", "IsDeleted", "PaymentId", "UpdatedAt", "UpdatedBy" },
+                values: new object[,]
+                {
+                    { 1, 120m, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, null, null },
+                    { 2, 70m, 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 2, null, null },
+                    { 3, 140m, 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 3, null, null },
+                    { 4, 180m, 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 4, null, null },
+                    { 5, 180m, 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 5, null, null },
+                    { 6, 100m, 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 6, null, null },
+                    { 7, 200m, 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 7, null, null },
+                    { 8, 130m, 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 8, null, null },
+                    { 9, 250m, 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 9, null, null },
+                    { 10, 300m, 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 10, null, null }
                 });
 
             migrationBuilder.CreateIndex(
@@ -923,6 +1262,11 @@ namespace educationaccountmanagement.DAL.Migrations
                 filter: "\"IsDeleted\" = 0 AND \"Email\" IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AdminProfile_SchoolId",
+                table: "AdminProfile",
+                column: "SchoolId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_AdminProfile_StaffCode",
                 table: "AdminProfile",
                 column: "StaffCode",
@@ -962,6 +1306,18 @@ namespace educationaccountmanagement.DAL.Migrations
                 column: "Status");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Charge_EnrollmentId",
+                table: "Charge",
+                column: "EnrollmentId",
+                unique: true,
+                filter: "\"IsDeleted\" = 0 AND \"EnrollmentId\" IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Charge_Status",
+                table: "Charge",
+                column: "Status");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Citizen_CitizenshipStatus",
                 table: "Citizen",
                 column: "CitizenshipStatus");
@@ -991,6 +1347,26 @@ namespace educationaccountmanagement.DAL.Migrations
                 filter: "\"IsDeleted\" = 0 AND \"SingpassSubjectId\" IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Course_CourseName",
+                table: "Course",
+                column: "CourseName");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Course_SchoolId",
+                table: "Course",
+                column: "SchoolId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Course_Status",
+                table: "Course",
+                column: "Status");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CourseFee_CourseId",
+                table: "CourseFee",
+                column: "CourseId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_EducationAccount_AccountNumber",
                 table: "EducationAccount",
                 column: "AccountNumber",
@@ -1003,6 +1379,31 @@ namespace educationaccountmanagement.DAL.Migrations
                 column: "CitizenId",
                 unique: true,
                 filter: "\"IsDeleted\" = 0 AND \"CitizenId\" IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EducationAccount_ClosedAt",
+                table: "EducationAccount",
+                column: "ClosedAt");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EducationAccount_ClosedByUserId",
+                table: "EducationAccount",
+                column: "ClosedByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EducationAccount_ExtendedUntil",
+                table: "EducationAccount",
+                column: "ExtendedUntil");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EducationAccount_OpenedAt",
+                table: "EducationAccount",
+                column: "OpenedAt");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EducationAccount_OpenedByUserId",
+                table: "EducationAccount",
+                column: "OpenedByUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_EducationAccount_Status",
@@ -1032,21 +1433,21 @@ namespace educationaccountmanagement.DAL.Migrations
                 column: "Type");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OtpVerification_AuthAccountId",
-                table: "OtpVerification",
-                column: "AuthAccountId");
+                name: "IX_Enrollment_CourseId",
+                table: "Enrollment",
+                column: "CourseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OtpVerification_ExpiresAt",
-                table: "OtpVerification",
-                column: "ExpiresAt");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OtpVerification_SessionId",
-                table: "OtpVerification",
-                column: "SessionId",
+                name: "IX_Enrollment_CourseId_EducationAccountId",
+                table: "Enrollment",
+                columns: new[] { "CourseId", "EducationAccountId" },
                 unique: true,
-                filter: "\"IsDeleted\" = 0 AND \"SessionId\" IS NOT NULL");
+                filter: "\"IsDeleted\" = 0 AND \"CourseId\" IS NOT NULL AND \"EducationAccountId\" IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Enrollment_EducationAccountId",
+                table: "Enrollment",
+                column: "EducationAccountId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OutboxMessage_OccurredAt",
@@ -1062,6 +1463,50 @@ namespace educationaccountmanagement.DAL.Migrations
                 name: "IX_OutboxMessage_Type",
                 table: "OutboxMessage",
                 column: "Type");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Payment_EducationCreditTransactionId",
+                table: "Payment",
+                column: "EducationCreditTransactionId",
+                unique: true,
+                filter: "\"IsDeleted\" = 0 AND \"EducationCreditTransactionId\" IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Payment_ExternalReference",
+                table: "Payment",
+                column: "ExternalReference");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Payment_PaidAt",
+                table: "Payment",
+                column: "PaidAt");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Payment_PaymentMethod",
+                table: "Payment",
+                column: "PaymentMethod");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Payment_Status",
+                table: "Payment",
+                column: "Status");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PaymentAllocation_ChargeId",
+                table: "PaymentAllocation",
+                column: "ChargeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PaymentAllocation_PaymentId",
+                table: "PaymentAllocation",
+                column: "PaymentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PaymentAllocation_PaymentId_ChargeId",
+                table: "PaymentAllocation",
+                columns: new[] { "PaymentId", "ChargeId" },
+                unique: true,
+                filter: "\"IsDeleted\" = 0 AND \"PaymentId\" IS NOT NULL AND \"ChargeId\" IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RefreshToken_AuthAccountId",
@@ -1084,6 +1529,18 @@ namespace educationaccountmanagement.DAL.Migrations
                 column: "TokenHash",
                 unique: true,
                 filter: "\"IsDeleted\" = 0 AND \"TokenHash\" IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_School_Email",
+                table: "School",
+                column: "Email",
+                unique: true,
+                filter: "\"IsDeleted\" = 0 AND \"Email\" IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_School_Status",
+                table: "School",
+                column: "Status");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SsoIdentity_AuthAccountId",
@@ -1213,13 +1670,19 @@ namespace educationaccountmanagement.DAL.Migrations
                 name: "AdminProfile");
 
             migrationBuilder.DropTable(
+                name: "AiAssistantSetting");
+
+            migrationBuilder.DropTable(
                 name: "AuditLog");
 
             migrationBuilder.DropTable(
-                name: "OtpVerification");
+                name: "CourseFee");
 
             migrationBuilder.DropTable(
                 name: "OutboxMessage");
+
+            migrationBuilder.DropTable(
+                name: "PaymentAllocation");
 
             migrationBuilder.DropTable(
                 name: "RefreshToken");
@@ -1237,10 +1700,10 @@ namespace educationaccountmanagement.DAL.Migrations
                 name: "AdhocTopupBatchTarget");
 
             migrationBuilder.DropTable(
-                name: "User");
+                name: "Charge");
 
             migrationBuilder.DropTable(
-                name: "EducationCreditTransaction");
+                name: "Payment");
 
             migrationBuilder.DropTable(
                 name: "TopupBatchTarget");
@@ -1249,19 +1712,34 @@ namespace educationaccountmanagement.DAL.Migrations
                 name: "AdhocTopupBatch");
 
             migrationBuilder.DropTable(
-                name: "AuthAccount");
+                name: "Enrollment");
 
             migrationBuilder.DropTable(
-                name: "EducationAccount");
+                name: "EducationCreditTransaction");
 
             migrationBuilder.DropTable(
                 name: "TopupBatch");
 
             migrationBuilder.DropTable(
-                name: "Citizen");
+                name: "Course");
+
+            migrationBuilder.DropTable(
+                name: "EducationAccount");
 
             migrationBuilder.DropTable(
                 name: "TopupRule");
+
+            migrationBuilder.DropTable(
+                name: "School");
+
+            migrationBuilder.DropTable(
+                name: "User");
+
+            migrationBuilder.DropTable(
+                name: "AuthAccount");
+
+            migrationBuilder.DropTable(
+                name: "Citizen");
         }
     }
 }

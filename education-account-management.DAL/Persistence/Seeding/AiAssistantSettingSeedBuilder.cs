@@ -14,8 +14,7 @@ public sealed class AiAssistantSettingSeedBuilder : ISeedBuilder
             {
                 Id = 1,
                 IsEnabled = true,
-                UpdatedAt = SeedDataConstants.CreatedAt,
-                UpdatedByUserId = 1
+                CreatedAt = SeedDataConstants.CreatedAt
             });
 
         return modelBuilder;
