@@ -45,8 +45,8 @@ namespace Mappers
                 StaffCode = model.AdminProfile != null ? model.AdminProfile.StaffCode : string.Empty,
                 FullName = model.AdminProfile != null ? model.AdminProfile.FullName : string.Empty,
                 Email = model.AdminProfile != null ? model.AdminProfile.Email : string.Empty,
-                PhoneNumber = model.AdminProfile?.PhoneNumber,
-                SchoolId = model.AdminProfile?.SchoolId,
+                PhoneNumber = model.AdminProfile != null ? model.AdminProfile.PhoneNumber : null,
+                SchoolId = model.AdminProfile != null ? model.AdminProfile.SchoolId : null,
                 SchoolName = model.AdminProfile != null && model.AdminProfile.School != null
                     ? model.AdminProfile.School.SchoolName
                     : null,

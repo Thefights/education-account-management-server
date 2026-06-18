@@ -32,10 +32,7 @@ namespace Services.AdminManagement
             var userId = await _unitOfWork.ExecuteInTransactionAsync(
                 async (_, token) =>
                 {
-                    var authAccount = new AuthAccount
-                    {
-                        Status = createDTO.Status
-                    };
+                    var authAccount = new AuthAccount();
                     authAccount.TryValidate();
                     await _authAccountRepository.AddAsync(authAccount, token);
                     await _unitOfWork.SaveChangeAsync(token);
@@ -117,7 +114,6 @@ namespace Services.AdminManagement
                         .SingleOrDefault(item => item.Provider == SsoProvider.AzureAD)
                         ?? throw new DataNotFoundException("Azure AD identity was not found for this admin.");
                     user.Role = updateDTO.Role;
-                    user.AuthAccount.Status = updateDTO.Status;
                     identity.ProviderUserId = updateDTO.AzureObjectId;
                     user.AdminProfile.StaffCode = updateDTO.StaffCode;
                     user.AdminProfile.FullName = updateDTO.FullName;
@@ -139,9 +135,7 @@ namespace Services.AdminManagement
                         token);
 
                     await _auditLogWriter.LogAsync(
-                        updateDTO.Status == AuthAccountStatus.Active
-                            ? AuditLogCategory.Security
-                            : AuditLogCategory.StatusChange,
+                        AuditLogCategory.Security,
                         "Admin account updated",
                         System.Text.Json.JsonSerializer.Serialize(new { user.Id, user.Role, user.AuthAccount.Status }),
                         cancellationToken: token);
