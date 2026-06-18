@@ -2171,7 +2171,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Provider = 2,
-                            ProviderUserId = "00000000-0000-0000-1ece-baa24fa8003c"
+                            ProviderUserId = "ae5873a0-acbe-4976-ba46-69aee20cfa48"
                         },
                         new
                         {

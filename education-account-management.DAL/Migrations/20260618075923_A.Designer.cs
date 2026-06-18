@@ -12,7 +12,7 @@ using Persistence.SqlServer;
 namespace educationaccountmanagement.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260617111427_A")]
+    [Migration("20260618075923_A")]
     partial class A
     {
         /// <inheritdoc />
@@ -2174,7 +2174,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Provider = 2,
-                            ProviderUserId = "00000000-0000-0000-1ece-baa24fa8003c"
+                            ProviderUserId = "ae5873a0-acbe-4976-ba46-69aee20cfa48"
                         },
                         new
                         {

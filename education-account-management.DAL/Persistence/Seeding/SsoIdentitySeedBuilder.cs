@@ -1,5 +1,3 @@
-using Enums;
-using Microsoft.EntityFrameworkCore;
 using Models;
 using Persistence.Seeding.Constants;
 
@@ -20,7 +18,7 @@ public sealed class SsoIdentitySeedBuilder : ISeedBuilder
                 Provider = id <= 3 ? SsoProvider.AzureAD : SsoProvider.Singpass,
                 ProviderUserId = id switch
                 {
-                    1 => "00000000-0000-0000-1ece-baa24fa8003c",
+                    1 => "ae5873a0-acbe-4976-ba46-69aee20cfa48",
                     <= 3 => $"azure-object-{id:000}",
                     _ => $"singpass-subject-{id:000}"
                 },
