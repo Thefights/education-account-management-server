@@ -9,6 +9,15 @@ namespace Models
         [EnumDefined]
         public ChargeStatus Status { get; set; } = ChargeStatus.Unpaid;
 
+        [Column(TypeName = "decimal(18,2)"), NumberPositive]
+        public decimal CourseFeeAmountSnapshot { get; set; }
+
+        [Column(TypeName = "decimal(18,2)"), NumberPositive]
+        public decimal MiscFeeAmountSnapshot { get; set; }
+
+        [Column(TypeName = "decimal(18,2)"), NumberPositive]
+        public decimal GstAmountSnapshot { get; set; }
+
         // Monetary invariants: SubsidyAmount <= GrossAmount, NetAmount = GrossAmount - SubsidyAmount,
         // PaidAmount <= NetAmount, and RemainingAmount = NetAmount - PaidAmount.
         [Column(TypeName = "decimal(18,2)"), NumberPositive]

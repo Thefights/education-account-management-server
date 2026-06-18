@@ -12,7 +12,7 @@ using Persistence.SqlServer;
 namespace educationaccountmanagement.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260618101933_A")]
+    [Migration("20260618122437_A")]
     partial class A
     {
         /// <inheritdoc />
@@ -991,6 +991,9 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<decimal>("CourseFeeAmountSnapshot")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -1006,8 +1009,14 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<decimal>("GrossAmount")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<decimal>("GstAmountSnapshot")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<decimal>("MiscFeeAmountSnapshot")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("NetAmount")
                         .HasColumnType("decimal(18,2)");
@@ -1049,10 +1058,13 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 1,
+                            CourseFeeAmountSnapshot = 100m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 1,
                             GrossAmount = 120m,
+                            GstAmountSnapshot = 10m,
                             IsDeleted = false,
+                            MiscFeeAmountSnapshot = 10m,
                             NetAmount = 120m,
                             PaidAmount = 120m,
                             RemainingAmount = 0m,
@@ -1062,10 +1074,13 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 2,
+                            CourseFeeAmountSnapshot = 115m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 2,
                             GrossAmount = 140m,
+                            GstAmountSnapshot = 13m,
                             IsDeleted = false,
+                            MiscFeeAmountSnapshot = 12m,
                             NetAmount = 140m,
                             PaidAmount = 70m,
                             RemainingAmount = 70m,
@@ -1075,10 +1090,13 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 3,
+                            CourseFeeAmountSnapshot = 130m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 3,
                             GrossAmount = 160m,
+                            GstAmountSnapshot = 15m,
                             IsDeleted = false,
+                            MiscFeeAmountSnapshot = 15m,
                             NetAmount = 140m,
                             PaidAmount = 140m,
                             RemainingAmount = 0m,
@@ -1088,10 +1106,13 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 4,
+                            CourseFeeAmountSnapshot = 145m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 4,
                             GrossAmount = 180m,
+                            GstAmountSnapshot = 18m,
                             IsDeleted = false,
+                            MiscFeeAmountSnapshot = 17m,
                             NetAmount = 180m,
                             PaidAmount = 180m,
                             RemainingAmount = 0m,
@@ -1101,10 +1122,13 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 5,
+                            CourseFeeAmountSnapshot = 160m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 5,
                             GrossAmount = 200m,
+                            GstAmountSnapshot = 20m,
                             IsDeleted = false,
+                            MiscFeeAmountSnapshot = 20m,
                             NetAmount = 180m,
                             PaidAmount = 180m,
                             RemainingAmount = 0m,
@@ -1114,10 +1138,13 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 6,
+                            CourseFeeAmountSnapshot = 175m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 6,
                             GrossAmount = 220m,
+                            GstAmountSnapshot = 23m,
                             IsDeleted = false,
+                            MiscFeeAmountSnapshot = 22m,
                             NetAmount = 220m,
                             PaidAmount = 100m,
                             RemainingAmount = 120m,
@@ -1127,10 +1154,13 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 7,
+                            CourseFeeAmountSnapshot = 190m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 7,
                             GrossAmount = 240m,
+                            GstAmountSnapshot = 25m,
                             IsDeleted = false,
+                            MiscFeeAmountSnapshot = 25m,
                             NetAmount = 200m,
                             PaidAmount = 200m,
                             RemainingAmount = 0m,
@@ -1140,10 +1170,13 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 8,
+                            CourseFeeAmountSnapshot = 205m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 8,
                             GrossAmount = 260m,
+                            GstAmountSnapshot = 28m,
                             IsDeleted = false,
+                            MiscFeeAmountSnapshot = 27m,
                             NetAmount = 260m,
                             PaidAmount = 130m,
                             RemainingAmount = 130m,
@@ -1153,10 +1186,13 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 9,
+                            CourseFeeAmountSnapshot = 220m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 9,
                             GrossAmount = 280m,
+                            GstAmountSnapshot = 30m,
                             IsDeleted = false,
+                            MiscFeeAmountSnapshot = 30m,
                             NetAmount = 250m,
                             PaidAmount = 250m,
                             RemainingAmount = 0m,
@@ -1166,10 +1202,13 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 10,
+                            CourseFeeAmountSnapshot = 235m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 10,
                             GrossAmount = 300m,
+                            GstAmountSnapshot = 33m,
                             IsDeleted = false,
+                            MiscFeeAmountSnapshot = 32m,
                             NetAmount = 300m,
                             PaidAmount = 300m,
                             RemainingAmount = 0m,
@@ -2429,11 +2468,43 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AccountNumberSnapshot")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("CitizenEmailSnapshot")
+                        .HasMaxLength(320)
+                        .HasColumnType("nvarchar(320)");
+
+                    b.Property<string>("CitizenFullNameSnapshot")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("CitizenNricSnapshot")
+                        .IsRequired()
+                        .HasMaxLength(9)
+                        .HasColumnType("nvarchar(9)");
+
+                    b.Property<string>("CitizenPhoneNumberSnapshot")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<DateTime?>("CompletedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("CourseDescriptionSnapshot")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
                     b.Property<int>("CourseId")
                         .HasColumnType("int");
+
+                    b.Property<string>("CourseNameSnapshot")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -2452,6 +2523,11 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<string>("SchoolNameSnapshot")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -2478,95 +2554,175 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 1,
+                            AccountNumberSnapshot = "EA000000000000000001",
+                            CitizenEmailSnapshot = "citizen001@example.com",
+                            CitizenFullNameSnapshot = "Citizen 001",
+                            CitizenNricSnapshot = "S0000001A",
+                            CitizenPhoneNumberSnapshot = "+6590000001",
+                            CourseDescriptionSnapshot = "Foundation course in applied mathematics.",
                             CourseId = 1,
+                            CourseNameSnapshot = "Applied Mathematics",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationAccountId = 1,
                             EnrolledAt = new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false
+                            IsDeleted = false,
+                            SchoolNameSnapshot = "Northview Secondary School"
                         },
                         new
                         {
                             Id = 2,
+                            AccountNumberSnapshot = "EA000000000000000002",
+                            CitizenEmailSnapshot = "citizen002@example.com",
+                            CitizenFullNameSnapshot = "Citizen 002",
+                            CitizenNricSnapshot = "S0000002A",
+                            CitizenPhoneNumberSnapshot = "+6590000002",
+                            CourseDescriptionSnapshot = "Introduction to programming and computing.",
                             CourseId = 2,
+                            CourseNameSnapshot = "Computer Science Fundamentals",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationAccountId = 2,
                             EnrolledAt = new DateTime(2026, 1, 12, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false
+                            IsDeleted = false,
+                            SchoolNameSnapshot = "Eastbridge Secondary School"
                         },
                         new
                         {
                             Id = 3,
+                            AccountNumberSnapshot = "EA000000000000000003",
+                            CitizenEmailSnapshot = "citizen003@example.com",
+                            CitizenFullNameSnapshot = "Citizen 003",
+                            CitizenNricSnapshot = "S0000003A",
+                            CitizenPhoneNumberSnapshot = "+6590000003",
                             CompletedAt = new DateTime(2026, 3, 14, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseDescriptionSnapshot = "Professional written and verbal communication.",
                             CourseId = 3,
+                            CourseNameSnapshot = "Business Communication",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationAccountId = 3,
                             EnrolledAt = new DateTime(2026, 1, 13, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false
+                            IsDeleted = false,
+                            SchoolNameSnapshot = "Westhaven Secondary School"
                         },
                         new
                         {
                             Id = 4,
+                            AccountNumberSnapshot = "EA000000000000000004",
+                            CitizenEmailSnapshot = "citizen004@example.com",
+                            CitizenFullNameSnapshot = "Citizen 004",
+                            CitizenNricSnapshot = "S0000004A",
+                            CitizenPhoneNumberSnapshot = "+6590000004",
+                            CourseDescriptionSnapshot = "Environmental systems and sustainability.",
                             CourseId = 4,
+                            CourseNameSnapshot = "Environmental Science",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationAccountId = 4,
                             EnrolledAt = new DateTime(2026, 1, 14, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false
+                            IsDeleted = false,
+                            SchoolNameSnapshot = "Southpoint Secondary School"
                         },
                         new
                         {
                             Id = 5,
+                            AccountNumberSnapshot = "EA000000000000000005",
+                            CitizenEmailSnapshot = "citizen005@example.com",
+                            CitizenFullNameSnapshot = "Citizen 005",
+                            CitizenNricSnapshot = "S0000005A",
+                            CitizenPhoneNumberSnapshot = "+6590000005",
+                            CourseDescriptionSnapshot = "Digital design principles and production.",
                             CourseId = 5,
+                            CourseNameSnapshot = "Digital Media Design",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationAccountId = 5,
                             EnrolledAt = new DateTime(2026, 1, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            SchoolNameSnapshot = "Central Heights School",
                             WithdrawnAt = new DateTime(2026, 1, 25, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 6,
+                            AccountNumberSnapshot = "EA000000000000000006",
+                            CitizenEmailSnapshot = "citizen006@example.com",
+                            CitizenFullNameSnapshot = "Citizen 006",
+                            CitizenNricSnapshot = "S0000006A",
+                            CitizenPhoneNumberSnapshot = "+6590000006",
+                            CourseDescriptionSnapshot = "Core hospitality service operations.",
                             CourseId = 6,
+                            CourseNameSnapshot = "Hospitality Operations",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationAccountId = 6,
                             EnrolledAt = new DateTime(2026, 1, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false
+                            IsDeleted = false,
+                            SchoolNameSnapshot = "Riverside Learning Institute"
                         },
                         new
                         {
                             Id = 7,
+                            AccountNumberSnapshot = "EA000000000000000007",
+                            CitizenEmailSnapshot = "citizen007@example.com",
+                            CitizenFullNameSnapshot = "Citizen 007",
+                            CitizenNricSnapshot = "S0000007A",
+                            CitizenPhoneNumberSnapshot = "+6590000007",
                             CompletedAt = new DateTime(2026, 3, 18, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseDescriptionSnapshot = "Fundamentals of electrical systems.",
                             CourseId = 7,
+                            CourseNameSnapshot = "Electrical Engineering Basics",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationAccountId = 7,
                             EnrolledAt = new DateTime(2026, 1, 17, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false
+                            IsDeleted = false,
+                            SchoolNameSnapshot = "Lakeside Technical School"
                         },
                         new
                         {
                             Id = 8,
+                            AccountNumberSnapshot = "EA000000000000000008",
+                            CitizenEmailSnapshot = "citizen008@example.com",
+                            CitizenFullNameSnapshot = "Citizen 008",
+                            CitizenNricSnapshot = "S0000008A",
+                            CitizenPhoneNumberSnapshot = "+6590000008",
+                            CourseDescriptionSnapshot = "Writing techniques across common genres.",
                             CourseId = 8,
+                            CourseNameSnapshot = "Creative Writing",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationAccountId = 8,
                             EnrolledAt = new DateTime(2026, 1, 18, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false
+                            IsDeleted = false,
+                            SchoolNameSnapshot = "Greenfield Academy"
                         },
                         new
                         {
                             Id = 9,
+                            AccountNumberSnapshot = "EA000000000000000009",
+                            CitizenEmailSnapshot = "citizen009@example.com",
+                            CitizenFullNameSnapshot = "Citizen 009",
+                            CitizenNricSnapshot = "S0000009A",
+                            CitizenPhoneNumberSnapshot = "+6590000009",
+                            CourseDescriptionSnapshot = "Data preparation, analysis and reporting.",
                             CourseId = 9,
+                            CourseNameSnapshot = "Data Analytics",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationAccountId = 9,
                             EnrolledAt = new DateTime(2026, 1, 19, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false
+                            IsDeleted = false,
+                            SchoolNameSnapshot = "Harbourfront School"
                         },
                         new
                         {
                             Id = 10,
+                            AccountNumberSnapshot = "EA000000000000000010",
+                            CitizenEmailSnapshot = "citizen010@example.com",
+                            CitizenFullNameSnapshot = "Citizen 010",
+                            CitizenNricSnapshot = "S0000010A",
+                            CitizenPhoneNumberSnapshot = "+6590000010",
+                            CourseDescriptionSnapshot = "Archived office applications programme.",
                             CourseId = 10,
+                            CourseNameSnapshot = "Legacy Office Applications",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationAccountId = 10,
                             EnrolledAt = new DateTime(2026, 1, 20, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            SchoolNameSnapshot = "Hillcrest Education Centre",
                             WithdrawnAt = new DateTime(2026, 1, 30, 0, 0, 0, 0, DateTimeKind.Utc)
                         });
                 });
@@ -2708,6 +2864,21 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AccountNumberSnapshot")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("CitizenFullNameSnapshot")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("CitizenNricSnapshot")
+                        .IsRequired()
+                        .HasMaxLength(9)
+                        .HasColumnType("nvarchar(9)");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -2768,6 +2939,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 1,
+                            AccountNumberSnapshot = "EA000000000000000001",
+                            CitizenFullNameSnapshot = "Citizen 001",
+                            CitizenNricSnapshot = "S0000001A",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditTransactionId = 21,
                             IsDeleted = false,
@@ -2779,6 +2953,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 2,
+                            AccountNumberSnapshot = "EA000000000000000002",
+                            CitizenFullNameSnapshot = "Citizen 002",
+                            CitizenNricSnapshot = "S0000002A",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditTransactionId = 22,
                             IsDeleted = false,
@@ -2790,6 +2967,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 3,
+                            AccountNumberSnapshot = "EA000000000000000003",
+                            CitizenFullNameSnapshot = "Citizen 003",
+                            CitizenNricSnapshot = "S0000003A",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditTransactionId = 23,
                             IsDeleted = false,
@@ -2801,6 +2981,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 4,
+                            AccountNumberSnapshot = "EA000000000000000004",
+                            CitizenFullNameSnapshot = "Citizen 004",
+                            CitizenNricSnapshot = "S0000004A",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditTransactionId = 24,
                             IsDeleted = false,
@@ -2812,6 +2995,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 5,
+                            AccountNumberSnapshot = "EA000000000000000005",
+                            CitizenFullNameSnapshot = "Citizen 005",
+                            CitizenNricSnapshot = "S0000005A",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditTransactionId = 25,
                             IsDeleted = false,
@@ -2823,6 +3009,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 6,
+                            AccountNumberSnapshot = "EA000000000000000006",
+                            CitizenFullNameSnapshot = "Citizen 006",
+                            CitizenNricSnapshot = "S0000006A",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditTransactionId = 26,
                             ExternalReference = "PAY-ONLINE-0006",
@@ -2835,6 +3024,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 7,
+                            AccountNumberSnapshot = "EA000000000000000007",
+                            CitizenFullNameSnapshot = "Citizen 007",
+                            CitizenNricSnapshot = "S0000007A",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditTransactionId = 27,
                             ExternalReference = "PAY-ONLINE-0007",
@@ -2847,6 +3039,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 8,
+                            AccountNumberSnapshot = "EA000000000000000008",
+                            CitizenFullNameSnapshot = "Citizen 008",
+                            CitizenNricSnapshot = "S0000008A",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditTransactionId = 28,
                             ExternalReference = "PAY-ONLINE-0008",
@@ -2859,6 +3054,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 9,
+                            AccountNumberSnapshot = "EA000000000000000009",
+                            CitizenFullNameSnapshot = "Citizen 009",
+                            CitizenNricSnapshot = "S0000009A",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditTransactionId = 29,
                             ExternalReference = "PAY-ONLINE-0009",
@@ -2871,6 +3069,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 10,
+                            AccountNumberSnapshot = "EA000000000000000010",
+                            CitizenFullNameSnapshot = "Citizen 010",
+                            CitizenNricSnapshot = "S0000010A",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditTransactionId = 30,
                             ExternalReference = "PAY-ONLINE-0010",
@@ -2893,8 +3094,22 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<decimal>("ChargeGrossAmountSnapshot")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<int>("ChargeId")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("ChargeNetAmountSnapshot")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ChargeRemainingAmountSnapshot")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("CourseNameSnapshot")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -2910,6 +3125,11 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.Property<int>("PaymentId")
                         .HasColumnType("int");
+
+                    b.Property<string>("SchoolNameSnapshot")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -2937,91 +3157,141 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1,
                             Amount = 120m,
+                            ChargeGrossAmountSnapshot = 120m,
                             ChargeId = 1,
+                            ChargeNetAmountSnapshot = 120m,
+                            ChargeRemainingAmountSnapshot = 0m,
+                            CourseNameSnapshot = "Applied Mathematics",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            PaymentId = 1
+                            PaymentId = 1,
+                            SchoolNameSnapshot = "Northview Secondary School"
                         },
                         new
                         {
                             Id = 2,
                             Amount = 70m,
+                            ChargeGrossAmountSnapshot = 140m,
                             ChargeId = 2,
+                            ChargeNetAmountSnapshot = 140m,
+                            ChargeRemainingAmountSnapshot = 70m,
+                            CourseNameSnapshot = "Computer Science Fundamentals",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            PaymentId = 2
+                            PaymentId = 2,
+                            SchoolNameSnapshot = "Eastbridge Secondary School"
                         },
                         new
                         {
                             Id = 3,
                             Amount = 140m,
+                            ChargeGrossAmountSnapshot = 160m,
                             ChargeId = 3,
+                            ChargeNetAmountSnapshot = 140m,
+                            ChargeRemainingAmountSnapshot = 0m,
+                            CourseNameSnapshot = "Business Communication",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            PaymentId = 3
+                            PaymentId = 3,
+                            SchoolNameSnapshot = "Westhaven Secondary School"
                         },
                         new
                         {
                             Id = 4,
                             Amount = 180m,
+                            ChargeGrossAmountSnapshot = 180m,
                             ChargeId = 4,
+                            ChargeNetAmountSnapshot = 180m,
+                            ChargeRemainingAmountSnapshot = 0m,
+                            CourseNameSnapshot = "Environmental Science",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            PaymentId = 4
+                            PaymentId = 4,
+                            SchoolNameSnapshot = "Southpoint Secondary School"
                         },
                         new
                         {
                             Id = 5,
                             Amount = 180m,
+                            ChargeGrossAmountSnapshot = 200m,
                             ChargeId = 5,
+                            ChargeNetAmountSnapshot = 180m,
+                            ChargeRemainingAmountSnapshot = 0m,
+                            CourseNameSnapshot = "Digital Media Design",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            PaymentId = 5
+                            PaymentId = 5,
+                            SchoolNameSnapshot = "Central Heights School"
                         },
                         new
                         {
                             Id = 6,
                             Amount = 100m,
+                            ChargeGrossAmountSnapshot = 220m,
                             ChargeId = 6,
+                            ChargeNetAmountSnapshot = 220m,
+                            ChargeRemainingAmountSnapshot = 120m,
+                            CourseNameSnapshot = "Hospitality Operations",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            PaymentId = 6
+                            PaymentId = 6,
+                            SchoolNameSnapshot = "Riverside Learning Institute"
                         },
                         new
                         {
                             Id = 7,
                             Amount = 200m,
+                            ChargeGrossAmountSnapshot = 240m,
                             ChargeId = 7,
+                            ChargeNetAmountSnapshot = 200m,
+                            ChargeRemainingAmountSnapshot = 0m,
+                            CourseNameSnapshot = "Electrical Engineering Basics",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            PaymentId = 7
+                            PaymentId = 7,
+                            SchoolNameSnapshot = "Lakeside Technical School"
                         },
                         new
                         {
                             Id = 8,
                             Amount = 130m,
+                            ChargeGrossAmountSnapshot = 260m,
                             ChargeId = 8,
+                            ChargeNetAmountSnapshot = 260m,
+                            ChargeRemainingAmountSnapshot = 130m,
+                            CourseNameSnapshot = "Creative Writing",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            PaymentId = 8
+                            PaymentId = 8,
+                            SchoolNameSnapshot = "Greenfield Academy"
                         },
                         new
                         {
                             Id = 9,
                             Amount = 250m,
+                            ChargeGrossAmountSnapshot = 280m,
                             ChargeId = 9,
+                            ChargeNetAmountSnapshot = 250m,
+                            ChargeRemainingAmountSnapshot = 0m,
+                            CourseNameSnapshot = "Data Analytics",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            PaymentId = 9
+                            PaymentId = 9,
+                            SchoolNameSnapshot = "Harbourfront School"
                         },
                         new
                         {
                             Id = 10,
                             Amount = 300m,
+                            ChargeGrossAmountSnapshot = 300m,
                             ChargeId = 10,
+                            ChargeNetAmountSnapshot = 300m,
+                            ChargeRemainingAmountSnapshot = 0m,
+                            CourseNameSnapshot = "Legacy Office Applications",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            PaymentId = 10
+                            PaymentId = 10,
+                            SchoolNameSnapshot = "Hillcrest Education Centre"
                         });
                 });
 
