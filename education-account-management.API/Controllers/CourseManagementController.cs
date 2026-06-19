@@ -6,7 +6,7 @@ using Interfaces.CourseManagement;
 
 namespace Controllers
 {
-    [Authorize(Roles = RolePolicy.Admin)]
+    [Authorize(Roles = RolePolicy.SchoolAdmin)]
     public class CourseManagementController(ICourseManagementService service)
         : CrudController<CreateCourseManagementDTO, GetCourseManagementDTO, UpdateCourseManagementDTO, CourseManagementFilterDTO>(service)
     {

@@ -2,8 +2,6 @@ namespace DTOs.CourseManagement
 {
     public class CreateCourseManagementDTO
     {
-        public int SchoolId { get; set; }
-
         public string CourseName { get; set; } = string.Empty;
 
         public string? Description { get; set; }
@@ -17,8 +15,6 @@ namespace DTOs.CourseManagement
 
     public class UpdateCourseManagementDTO
     {
-        public int SchoolId { get; set; }
-
         public string CourseName { get; set; } = string.Empty;
 
         public string? Description { get; set; }
