@@ -14,20 +14,26 @@ public sealed class EducationCreditTransactionSeedBuilder : ISeedBuilder
         var createdAt = SeedDataConstants.CreatedAt;
 
         modelBuilder.Entity<EducationCreditTransaction>().HasData(
-            Enumerable.Range(1, 20).Select(id => new EducationCreditTransaction
+            Enumerable.Range(1, 20).Select(id =>
             {
-                Id = id,
-                TransactionCode = SeedGuid(id),
-                Type = id <= 10
-                    ? id % 4 == 0 ? EducationCreditTransactionType.Adjustment : EducationCreditTransactionType.Topup
-                    : EducationCreditTransactionType.Adjustment,
-                Direction = EducationCreditTransactionDirection.Credit,
-                Amount = id <= 10 ? 100m + id * 10m : 50m + (id - 10) * 5m,
-                BalanceBefore = id <= 10 ? 1000m + id * 100m : 1200m + id * 50m,
-                BalanceAfter = id <= 10 ? 1100m + id * 110m : 1250m + id * 55m,
-                Description = id <= 10 ? $"Seed transaction {id:000}" : $"Seed adhoc transaction {id:000}",
-                EducationAccountId = id <= 10 ? id : id - 10,
-                CreatedAt = createdAt
+                var amount = id <= 10 ? 100m + id * 10m : 50m + (id - 10) * 5m;
+                var balanceBefore = id <= 10 ? 1000m + id * 100m : 1200m + id * 50m;
+
+                return new EducationCreditTransaction
+                {
+                    Id = id,
+                    TransactionCode = SeedGuid(id),
+                    Type = id <= 10
+                        ? id % 4 == 0 ? EducationCreditTransactionType.Adjustment : EducationCreditTransactionType.Topup
+                        : EducationCreditTransactionType.Adjustment,
+                    Direction = EducationCreditTransactionDirection.Credit,
+                    Amount = amount,
+                    BalanceBefore = balanceBefore,
+                    BalanceAfter = balanceBefore + amount,
+                    Description = id <= 10 ? $"Seed transaction {id:000}" : $"Seed adhoc transaction {id:000}",
+                    EducationAccountId = id <= 10 ? id : id - 10,
+                    CreatedAt = createdAt
+                };
             }).ToArray());
 
         modelBuilder.Entity<EducationCreditTransaction>().HasData(

@@ -9,6 +9,8 @@ public static class MapperServiceExtensions
         services.AddScoped<AuditLogMapper>();
         services.AddScoped<AiAssistantSettingMapper>();
         services.AddScoped<AdminManagementMapper>();
+        services.AddScoped<CourseManagementMapper>();
+        services.AddScoped<SchoolManagementMapper>();
 
         return services;
     }

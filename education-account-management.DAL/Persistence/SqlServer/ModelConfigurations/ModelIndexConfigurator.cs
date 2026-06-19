@@ -68,11 +68,6 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(course => course.CourseName);
             });
 
-            modelBuilder.Entity<CourseFee>(entity =>
-            {
-                entity.HasIndex(courseFee => courseFee.CourseId);
-            });
-
             modelBuilder.Entity<Enrollment>(entity =>
             {
                 entity.HasIndex(enrollment => enrollment.CourseId);

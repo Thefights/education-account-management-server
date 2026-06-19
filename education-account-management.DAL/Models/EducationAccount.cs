@@ -47,6 +47,5 @@ namespace Models
 
         [OnDelete(OnDeleteBehavior.Restrict)]
         public ICollection<Enrollment> Enrollments { get; set; } = [];
-
     }
 }

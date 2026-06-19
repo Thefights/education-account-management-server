@@ -12,7 +12,7 @@ using Persistence.SqlServer;
 namespace educationaccountmanagement.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260618122437_A")]
+    [Migration("20260618132205_A")]
     partial class A
     {
         /// <inheritdoc />
@@ -1459,6 +1459,9 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<decimal>("CourseFeeAmount")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("CourseName")
                         .IsRequired()
                         .HasMaxLength(150)
@@ -1477,8 +1480,14 @@ namespace educationaccountmanagement.DAL.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
+                    b.Property<decimal>("GstAmount")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<decimal>("MiscFeeAmount")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("SchoolId")
                         .HasColumnType("int");
@@ -1500,156 +1509,9 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasIndex("Status");
 
-                    b.ToTable("Course");
-
-                    b.HasData(
-                        new
+                    b.ToTable("Course", t =>
                         {
-                            Id = 1,
-                            CourseName = "Applied Mathematics",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Foundation course in applied mathematics.",
-                            IsDeleted = false,
-                            SchoolId = 1,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CourseName = "Computer Science Fundamentals",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Introduction to programming and computing.",
-                            IsDeleted = false,
-                            SchoolId = 2,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CourseName = "Business Communication",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Professional written and verbal communication.",
-                            IsDeleted = false,
-                            SchoolId = 3,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CourseName = "Environmental Science",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Environmental systems and sustainability.",
-                            IsDeleted = false,
-                            SchoolId = 4,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CourseName = "Digital Media Design",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Digital design principles and production.",
-                            IsDeleted = false,
-                            SchoolId = 5,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CourseName = "Hospitality Operations",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Core hospitality service operations.",
-                            IsDeleted = false,
-                            SchoolId = 6,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CourseName = "Electrical Engineering Basics",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Fundamentals of electrical systems.",
-                            IsDeleted = false,
-                            SchoolId = 7,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CourseName = "Creative Writing",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Writing techniques across common genres.",
-                            IsDeleted = false,
-                            SchoolId = 8,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CourseName = "Data Analytics",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Data preparation, analysis and reporting.",
-                            IsDeleted = false,
-                            SchoolId = 9,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 10,
-                            CourseName = "Legacy Office Applications",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Archived office applications programme.",
-                            IsDeleted = false,
-                            SchoolId = 10,
-                            Status = 2
-                        });
-                });
-
-            modelBuilder.Entity("Models.CourseFee", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<decimal>("CourseFeeAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("CourseId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal>("GstAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<decimal>("MiscFeeAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CourseId");
-
-                    b.ToTable("CourseFee", t =>
-                        {
-                            t.HasCheckConstraint("CK_CourseFee_Amounts_NonNegative", "[CourseFeeAmount] >= 0 AND [MiscFeeAmount] >= 0 AND [GstAmount] >= 0");
+                            t.HasCheckConstraint("CK_Course_Amounts_NonNegative", "[CourseFeeAmount] >= 0 AND [MiscFeeAmount] >= 0 AND [GstAmount] >= 0");
                         });
 
                     b.HasData(
@@ -1657,101 +1519,131 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1,
                             CourseFeeAmount = 100m,
-                            CourseId = 1,
+                            CourseName = "Applied Mathematics",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Foundation course in applied mathematics.",
                             GstAmount = 10m,
                             IsDeleted = false,
-                            MiscFeeAmount = 10m
+                            MiscFeeAmount = 10m,
+                            SchoolId = 1,
+                            Status = 1
                         },
                         new
                         {
                             Id = 2,
                             CourseFeeAmount = 115m,
-                            CourseId = 2,
+                            CourseName = "Computer Science Fundamentals",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Introduction to programming and computing.",
                             GstAmount = 13m,
                             IsDeleted = false,
-                            MiscFeeAmount = 12m
+                            MiscFeeAmount = 12m,
+                            SchoolId = 2,
+                            Status = 1
                         },
                         new
                         {
                             Id = 3,
                             CourseFeeAmount = 130m,
-                            CourseId = 3,
+                            CourseName = "Business Communication",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Professional written and verbal communication.",
                             GstAmount = 15m,
                             IsDeleted = false,
-                            MiscFeeAmount = 15m
+                            MiscFeeAmount = 15m,
+                            SchoolId = 3,
+                            Status = 1
                         },
                         new
                         {
                             Id = 4,
                             CourseFeeAmount = 145m,
-                            CourseId = 4,
+                            CourseName = "Environmental Science",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Environmental systems and sustainability.",
                             GstAmount = 18m,
                             IsDeleted = false,
-                            MiscFeeAmount = 17m
+                            MiscFeeAmount = 17m,
+                            SchoolId = 4,
+                            Status = 1
                         },
                         new
                         {
                             Id = 5,
                             CourseFeeAmount = 160m,
-                            CourseId = 5,
+                            CourseName = "Digital Media Design",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Digital design principles and production.",
                             GstAmount = 20m,
                             IsDeleted = false,
-                            MiscFeeAmount = 20m
+                            MiscFeeAmount = 20m,
+                            SchoolId = 5,
+                            Status = 1
                         },
                         new
                         {
                             Id = 6,
                             CourseFeeAmount = 175m,
-                            CourseId = 6,
+                            CourseName = "Hospitality Operations",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Core hospitality service operations.",
                             GstAmount = 23m,
                             IsDeleted = false,
-                            MiscFeeAmount = 22m
+                            MiscFeeAmount = 22m,
+                            SchoolId = 6,
+                            Status = 1
                         },
                         new
                         {
                             Id = 7,
                             CourseFeeAmount = 190m,
-                            CourseId = 7,
+                            CourseName = "Electrical Engineering Basics",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Fundamentals of electrical systems.",
                             GstAmount = 25m,
                             IsDeleted = false,
-                            MiscFeeAmount = 25m
+                            MiscFeeAmount = 25m,
+                            SchoolId = 7,
+                            Status = 1
                         },
                         new
                         {
                             Id = 8,
                             CourseFeeAmount = 205m,
-                            CourseId = 8,
+                            CourseName = "Creative Writing",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Writing techniques across common genres.",
                             GstAmount = 28m,
                             IsDeleted = false,
-                            MiscFeeAmount = 27m
+                            MiscFeeAmount = 27m,
+                            SchoolId = 8,
+                            Status = 1
                         },
                         new
                         {
                             Id = 9,
                             CourseFeeAmount = 220m,
-                            CourseId = 9,
+                            CourseName = "Data Analytics",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Data preparation, analysis and reporting.",
                             GstAmount = 30m,
                             IsDeleted = false,
-                            MiscFeeAmount = 30m
+                            MiscFeeAmount = 30m,
+                            SchoolId = 9,
+                            Status = 1
                         },
                         new
                         {
                             Id = 10,
                             CourseFeeAmount = 235m,
-                            CourseId = 10,
+                            CourseName = "Legacy Office Applications",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Archived office applications programme.",
                             GstAmount = 33m,
                             IsDeleted = false,
-                            MiscFeeAmount = 32m
+                            MiscFeeAmount = 32m,
+                            SchoolId = 10,
+                            Status = 2
                         });
                 });
 
@@ -2182,7 +2074,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 11,
                             Amount = 55m,
-                            BalanceAfter = 1855m,
+                                BalanceAfter = 1805m,
                             BalanceBefore = 1750m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Seed adhoc transaction 011",
@@ -2196,7 +2088,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 12,
                             Amount = 60m,
-                            BalanceAfter = 1910m,
+                                BalanceAfter = 1860m,
                             BalanceBefore = 1800m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Seed adhoc transaction 012",
@@ -2210,7 +2102,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 13,
                             Amount = 65m,
-                            BalanceAfter = 1965m,
+                                BalanceAfter = 1915m,
                             BalanceBefore = 1850m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Seed adhoc transaction 013",
@@ -2224,7 +2116,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 14,
                             Amount = 70m,
-                            BalanceAfter = 2020m,
+                                BalanceAfter = 1970m,
                             BalanceBefore = 1900m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Seed adhoc transaction 014",
@@ -2238,7 +2130,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 15,
                             Amount = 75m,
-                            BalanceAfter = 2075m,
+                                BalanceAfter = 2025m,
                             BalanceBefore = 1950m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Seed adhoc transaction 015",
@@ -2252,7 +2144,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 16,
                             Amount = 80m,
-                            BalanceAfter = 2130m,
+                                BalanceAfter = 2080m,
                             BalanceBefore = 2000m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Seed adhoc transaction 016",
@@ -2266,7 +2158,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 17,
                             Amount = 85m,
-                            BalanceAfter = 2185m,
+                                BalanceAfter = 2135m,
                             BalanceBefore = 2050m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Seed adhoc transaction 017",
@@ -2280,7 +2172,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 18,
                             Amount = 90m,
-                            BalanceAfter = 2240m,
+                                BalanceAfter = 2190m,
                             BalanceBefore = 2100m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Seed adhoc transaction 018",
@@ -2294,7 +2186,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 19,
                             Amount = 95m,
-                            BalanceAfter = 2295m,
+                                BalanceAfter = 2245m,
                             BalanceBefore = 2150m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Seed adhoc transaction 019",
@@ -2308,7 +2200,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 20,
                             Amount = 100m,
-                            BalanceAfter = 2350m,
+                                BalanceAfter = 2300m,
                             BalanceBefore = 2200m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Seed adhoc transaction 020",
@@ -4758,17 +4650,6 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Navigation("School");
                 });
 
-            modelBuilder.Entity("Models.CourseFee", b =>
-                {
-                    b.HasOne("Models.Course", "Course")
-                        .WithMany("CourseFees")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Course");
-                });
-
             modelBuilder.Entity("Models.EducationAccount", b =>
                 {
                     b.HasOne("Models.Citizen", "Citizen")
@@ -4984,8 +4865,6 @@ namespace educationaccountmanagement.DAL.Migrations
 
             modelBuilder.Entity("Models.Course", b =>
                 {
-                    b.Navigation("CourseFees");
-
                     b.Navigation("Enrollments");
                 });
 

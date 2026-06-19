@@ -16,6 +16,8 @@ namespace Extensions
             services.AddAuditServices();
             services.AddAiAssistantServices();
             services.AddAdminManagementServices();
+            services.AddCourseManagementServices();
+            services.AddSchoolManagementServices();
             services.AddCsvServices();
             services.AddMappers();
             services.AddBackgroundJobServices();

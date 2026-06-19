@@ -266,6 +266,9 @@ namespace educationaccountmanagement.DAL.Migrations
                     Status = table.Column<int>(type: "int", nullable: false),
                     CourseName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
+                    CourseFeeAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    MiscFeeAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    GstAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<int>(type: "int", nullable: true),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -276,6 +279,7 @@ namespace educationaccountmanagement.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Course", x => x.Id);
+                    table.CheckConstraint("CK_Course_Amounts_NonNegative", "[CourseFeeAmount] >= 0 AND [MiscFeeAmount] >= 0 AND [GstAmount] >= 0");
                     table.ForeignKey(
                         name: "FK_Course_School_SchoolId",
                         column: x => x.SchoolId,
@@ -445,35 +449,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         name: "FK_EducationAccount_User_OpenedByUserId",
                         column: x => x.OpenedByUserId,
                         principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CourseFee",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CourseFeeAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    MiscFeeAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    GstAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    CourseId = table.Column<int>(type: "int", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<int>(type: "int", nullable: true),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
-                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CourseFee", x => x.Id);
-                    table.CheckConstraint("CK_CourseFee_Amounts_NonNegative", "[CourseFeeAmount] >= 0 AND [MiscFeeAmount] >= 0 AND [GstAmount] >= 0");
-                    table.ForeignKey(
-                        name: "FK_CourseFee_Course_CourseId",
-                        column: x => x.CourseId,
-                        principalTable: "Course",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -905,19 +880,19 @@ namespace educationaccountmanagement.DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "Course",
-                columns: new[] { "Id", "CourseName", "CreatedAt", "CreatedBy", "DeletedAt", "Description", "IsDeleted", "SchoolId", "Status", "UpdatedAt", "UpdatedBy" },
+                columns: new[] { "Id", "CourseFeeAmount", "CourseName", "CreatedAt", "CreatedBy", "DeletedAt", "Description", "GstAmount", "IsDeleted", "MiscFeeAmount", "SchoolId", "Status", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "Applied Mathematics", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Foundation course in applied mathematics.", false, 1, 1, null, null },
-                    { 2, "Computer Science Fundamentals", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Introduction to programming and computing.", false, 2, 1, null, null },
-                    { 3, "Business Communication", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Professional written and verbal communication.", false, 3, 1, null, null },
-                    { 4, "Environmental Science", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Environmental systems and sustainability.", false, 4, 1, null, null },
-                    { 5, "Digital Media Design", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Digital design principles and production.", false, 5, 1, null, null },
-                    { 6, "Hospitality Operations", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Core hospitality service operations.", false, 6, 1, null, null },
-                    { 7, "Electrical Engineering Basics", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Fundamentals of electrical systems.", false, 7, 1, null, null },
-                    { 8, "Creative Writing", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Writing techniques across common genres.", false, 8, 1, null, null },
-                    { 9, "Data Analytics", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Data preparation, analysis and reporting.", false, 9, 1, null, null },
-                    { 10, "Legacy Office Applications", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Archived office applications programme.", false, 10, 2, null, null }
+                    { 1, 100m, "Applied Mathematics", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Foundation course in applied mathematics.", 10m, false, 10m, 1, 1, null, null },
+                    { 2, 115m, "Computer Science Fundamentals", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Introduction to programming and computing.", 13m, false, 12m, 2, 1, null, null },
+                    { 3, 130m, "Business Communication", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Professional written and verbal communication.", 15m, false, 15m, 3, 1, null, null },
+                    { 4, 145m, "Environmental Science", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Environmental systems and sustainability.", 18m, false, 17m, 4, 1, null, null },
+                    { 5, 160m, "Digital Media Design", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Digital design principles and production.", 20m, false, 20m, 5, 1, null, null },
+                    { 6, 175m, "Hospitality Operations", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Core hospitality service operations.", 23m, false, 22m, 6, 1, null, null },
+                    { 7, 190m, "Electrical Engineering Basics", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Fundamentals of electrical systems.", 25m, false, 25m, 7, 1, null, null },
+                    { 8, 205m, "Creative Writing", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Writing techniques across common genres.", 28m, false, 27m, 8, 1, null, null },
+                    { 9, 220m, "Data Analytics", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Data preparation, analysis and reporting.", 30m, false, 30m, 9, 1, null, null },
+                    { 10, 235m, "Legacy Office Applications", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Archived office applications programme.", 33m, false, 32m, 10, 2, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -1074,23 +1049,6 @@ namespace educationaccountmanagement.DAL.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "CourseFee",
-                columns: new[] { "Id", "CourseFeeAmount", "CourseId", "CreatedAt", "CreatedBy", "DeletedAt", "GstAmount", "IsDeleted", "MiscFeeAmount", "UpdatedAt", "UpdatedBy" },
-                values: new object[,]
-                {
-                    { 1, 100m, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 10m, false, 10m, null, null },
-                    { 2, 115m, 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 13m, false, 12m, null, null },
-                    { 3, 130m, 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 15m, false, 15m, null, null },
-                    { 4, 145m, 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 18m, false, 17m, null, null },
-                    { 5, 160m, 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 20m, false, 20m, null, null },
-                    { 6, 175m, 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 23m, false, 22m, null, null },
-                    { 7, 190m, 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 25m, false, 25m, null, null },
-                    { 8, 205m, 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 28m, false, 27m, null, null },
-                    { 9, 220m, 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 30m, false, 30m, null, null },
-                    { 10, 235m, 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 33m, false, 32m, null, null }
-                });
-
-            migrationBuilder.InsertData(
                 table: "EducationCreditTransaction",
                 columns: new[] { "Id", "Amount", "BalanceAfter", "BalanceBefore", "CreatedAt", "CreatedBy", "DeletedAt", "Description", "Direction", "EducationAccountId", "IsDeleted", "TransactionCode", "Type", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
@@ -1105,16 +1063,16 @@ namespace educationaccountmanagement.DAL.Migrations
                     { 8, 180m, 1980m, 1800m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Seed transaction 008", 1, 8, false, new Guid("00000000-0000-0000-0000-000000000008"), 4, null, null },
                     { 9, 190m, 2090m, 1900m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Seed transaction 009", 1, 9, false, new Guid("00000000-0000-0000-0000-000000000009"), 1, null, null },
                     { 10, 200m, 2200m, 2000m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Seed transaction 010", 1, 10, false, new Guid("00000000-0000-0000-0000-000000000010"), 1, null, null },
-                    { 11, 55m, 1855m, 1750m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Seed adhoc transaction 011", 1, 1, false, new Guid("00000000-0000-0000-0000-000000000011"), 4, null, null },
-                    { 12, 60m, 1910m, 1800m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Seed adhoc transaction 012", 1, 2, false, new Guid("00000000-0000-0000-0000-000000000012"), 4, null, null },
-                    { 13, 65m, 1965m, 1850m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Seed adhoc transaction 013", 1, 3, false, new Guid("00000000-0000-0000-0000-000000000013"), 4, null, null },
-                    { 14, 70m, 2020m, 1900m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Seed adhoc transaction 014", 1, 4, false, new Guid("00000000-0000-0000-0000-000000000014"), 4, null, null },
-                    { 15, 75m, 2075m, 1950m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Seed adhoc transaction 015", 1, 5, false, new Guid("00000000-0000-0000-0000-000000000015"), 4, null, null },
-                    { 16, 80m, 2130m, 2000m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Seed adhoc transaction 016", 1, 6, false, new Guid("00000000-0000-0000-0000-000000000016"), 4, null, null },
-                    { 17, 85m, 2185m, 2050m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Seed adhoc transaction 017", 1, 7, false, new Guid("00000000-0000-0000-0000-000000000017"), 4, null, null },
-                    { 18, 90m, 2240m, 2100m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Seed adhoc transaction 018", 1, 8, false, new Guid("00000000-0000-0000-0000-000000000018"), 4, null, null },
-                    { 19, 95m, 2295m, 2150m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Seed adhoc transaction 019", 1, 9, false, new Guid("00000000-0000-0000-0000-000000000019"), 4, null, null },
-                    { 20, 100m, 2350m, 2200m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Seed adhoc transaction 020", 1, 10, false, new Guid("00000000-0000-0000-0000-000000000020"), 4, null, null },
+                    { 11, 55m, 1805m, 1750m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Seed adhoc transaction 011", 1, 1, false, new Guid("00000000-0000-0000-0000-000000000011"), 4, null, null },
+                    { 12, 60m, 1860m, 1800m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Seed adhoc transaction 012", 1, 2, false, new Guid("00000000-0000-0000-0000-000000000012"), 4, null, null },
+                    { 13, 65m, 1915m, 1850m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Seed adhoc transaction 013", 1, 3, false, new Guid("00000000-0000-0000-0000-000000000013"), 4, null, null },
+                    { 14, 70m, 1970m, 1900m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Seed adhoc transaction 014", 1, 4, false, new Guid("00000000-0000-0000-0000-000000000014"), 4, null, null },
+                    { 15, 75m, 2025m, 1950m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Seed adhoc transaction 015", 1, 5, false, new Guid("00000000-0000-0000-0000-000000000015"), 4, null, null },
+                    { 16, 80m, 2080m, 2000m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Seed adhoc transaction 016", 1, 6, false, new Guid("00000000-0000-0000-0000-000000000016"), 4, null, null },
+                    { 17, 85m, 2135m, 2050m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Seed adhoc transaction 017", 1, 7, false, new Guid("00000000-0000-0000-0000-000000000017"), 4, null, null },
+                    { 18, 90m, 2190m, 2100m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Seed adhoc transaction 018", 1, 8, false, new Guid("00000000-0000-0000-0000-000000000018"), 4, null, null },
+                    { 19, 95m, 2245m, 2150m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Seed adhoc transaction 019", 1, 9, false, new Guid("00000000-0000-0000-0000-000000000019"), 4, null, null },
+                    { 20, 100m, 2300m, 2200m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Seed adhoc transaction 020", 1, 10, false, new Guid("00000000-0000-0000-0000-000000000020"), 4, null, null },
                     { 21, 120m, 980m, 1100m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Payment transaction 001", 2, 1, false, new Guid("00000000-0000-0000-0000-000000000021"), 2, null, null },
                     { 22, 70m, 1130m, 1200m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Payment transaction 002", 2, 2, false, new Guid("00000000-0000-0000-0000-000000000022"), 2, null, null },
                     { 23, 140m, 1160m, 1300m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Payment transaction 003", 2, 3, false, new Guid("00000000-0000-0000-0000-000000000023"), 2, null, null },
@@ -1393,11 +1351,6 @@ namespace educationaccountmanagement.DAL.Migrations
                 name: "IX_Course_Status",
                 table: "Course",
                 column: "Status");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CourseFee_CourseId",
-                table: "CourseFee",
-                column: "CourseId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_EducationAccount_AccountNumber",
@@ -1714,9 +1667,6 @@ namespace educationaccountmanagement.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "AuditLog");
-
-            migrationBuilder.DropTable(
-                name: "CourseFee");
 
             migrationBuilder.DropTable(
                 name: "OutboxMessage");

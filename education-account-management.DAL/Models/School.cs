@@ -22,6 +22,5 @@ namespace Models
 
         [OnDelete(OnDeleteBehavior.Restrict)]
         public ICollection<Course> Courses { get; set; } = [];
-
     }
 }

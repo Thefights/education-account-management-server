@@ -15,8 +15,14 @@ namespace Models
         [MessageMaxLength(1000)]
         public string? Description { get; set; }
 
-        [OnDelete(OnDeleteBehavior.Restrict)]
-        public ICollection<CourseFee> CourseFees { get; set; } = [];
+        [Column(TypeName = "decimal(18,2)"), NumberPositive]
+        public decimal CourseFeeAmount { get; set; }
+
+        [Column(TypeName = "decimal(18,2)"), NumberPositive]
+        public decimal MiscFeeAmount { get; set; }
+
+        [Column(TypeName = "decimal(18,2)"), NumberPositive]
+        public decimal GstAmount { get; set; }
 
         [OnDelete(OnDeleteBehavior.Restrict)]
         public ICollection<Enrollment> Enrollments { get; set; } = [];

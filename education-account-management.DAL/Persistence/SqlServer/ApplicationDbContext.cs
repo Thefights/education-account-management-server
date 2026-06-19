@@ -28,8 +28,6 @@ namespace Persistence.SqlServer
 
         public DbSet<Course> Course { get; set; }
 
-        public DbSet<CourseFee> CourseFee { get; set; }
-
         public DbSet<Enrollment> Enrollment { get; set; }
 
         public DbSet<Charge> Charge { get; set; }
@@ -143,9 +141,9 @@ namespace Persistence.SqlServer
                     "([Direction] = 2 AND [BalanceAfter] = [BalanceBefore] - [Amount])");
             });
 
-            modelBuilder.Entity<CourseFee>().ToTable(table =>
+            modelBuilder.Entity<Course>().ToTable(table =>
                 table.HasCheckConstraint(
-                    "CK_CourseFee_Amounts_NonNegative",
+                    "CK_Course_Amounts_NonNegative",
                     "[CourseFeeAmount] >= 0 AND [MiscFeeAmount] >= 0 AND [GstAmount] >= 0"));
 
             modelBuilder.Entity<Charge>().ToTable(table =>
