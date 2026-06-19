@@ -16,7 +16,7 @@ namespace Services.Audit
         private readonly ICurrentUserService _currentUserService = currentUserService;
         private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
         private readonly IGenericRepository<AuditLog> _auditLogRepository = unitOfWork.Repository<AuditLog>();
-        private readonly IGenericRepository<AuthAccount> _authAccountRepository = unitOfWork.Repository<AuthAccount>();
+        private readonly IGenericRepository<User> _userRepository = unitOfWork.Repository<User>();
 
         public async Task LogAsync(
             AuditLogCategory category,
@@ -25,15 +25,15 @@ namespace Services.Audit
             string? targetNric = null,
             CancellationToken cancellationToken = default)
         {
-            var authId = _currentUserService.AuthId;
-            if (authId > 0)
+            var userId = ResolveCurrentUserId();
+            if (userId.HasValue)
             {
-                var actorExists = await _authAccountRepository
+                var actorExists = await _userRepository
                     .Query()
-                    .AnyAsync(authAccount => authAccount.Id == authId, cancellationToken);
+                    .AnyAsync(user => user.Id == userId.Value, cancellationToken);
                 if (actorExists)
                 {
-                    await LogForActorAsync(category, action, payloadJson, cancellationToken: cancellationToken);
+                    await LogForActorAsync(category, action, payloadJson, targetNric, cancellationToken: cancellationToken);
                     return;
                 }
             }
@@ -45,6 +45,7 @@ namespace Services.Audit
             AuditLogCategory category,
             string action,
             string? payloadJson,
+            string? targetNric = null,
             string? ipAddress = null,
             CancellationToken cancellationToken = default)
         {
@@ -53,6 +54,7 @@ namespace Services.Audit
                 category,
                 action,
                 payloadJson,
+                targetNric,
                 ipAddress,
                 cancellationToken);
         }
@@ -70,6 +72,7 @@ namespace Services.Audit
                 category,
                 action,
                 payloadJson,
+                targetNric,
                 ipAddress,
                 cancellationToken);
         }
@@ -79,6 +82,7 @@ namespace Services.Audit
             AuditLogCategory category,
             string action,
             string? payloadJson,
+            string? targetNric,
             string? ipAddress,
             CancellationToken cancellationToken)
         {
@@ -87,7 +91,8 @@ namespace Services.Audit
                 ActorUserId = actorUserId > 0 ? actorUserId : null,
                 Category = category,
                 Action = action,
-                PayloadJson = payloadJson,
+                PayloadJson = MaskingHelper.NormalizeJsonPayload(payloadJson),
+                Nric = targetNric,
                 IpAddress = ResolveIpAddress(ipAddress),
                 OccurredAt = DateTime.UtcNow
             };

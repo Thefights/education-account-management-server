@@ -13,7 +13,7 @@ namespace Services.Audit
         AuditLogMapper auditLogMapper,
         ICsvExportService csvExportService,
         IAuditLogWriter auditLogWriter)
-        : BaseGetService<AuditLog, GetAuditLogDTO>(unitOfWork, auditLogMapper),
+        : BaseGetService<AuditLog, GetAuditLogDTO>(unitOfWork, auditLogMapper, includes: [nameof(AuditLog.ActorUser)]),
             IAuditLogService
     {
         private readonly AuditLogMapper _auditLogMapper = auditLogMapper;
@@ -29,7 +29,8 @@ namespace Services.Audit
                 ["action"] = new("Action", auditLog => auditLog.Action),
                 ["ipAddress"] = new("IP Address", auditLog => auditLog.IpAddress),
                 ["payloadJson"] = new("Payload JSON", auditLog => auditLog.PayloadJson),
-                ["occurredAt"] = new("Occurred At", auditLog => auditLog.OccurredAt)
+                ["occurredAt"] = new("Occurred At", auditLog => auditLog.OccurredAt),
+                ["nRic"] = new("NRIC", auditLog => auditLog.Nric)
             };
 
         public async Task<byte[]> ExportCsvAsync(
@@ -57,5 +58,6 @@ namespace Services.Audit
 
             return content;
         }
+
     }
 }

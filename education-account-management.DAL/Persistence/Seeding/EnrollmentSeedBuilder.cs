@@ -68,7 +68,7 @@ public sealed class EnrollmentSeedBuilder : ISeedBuilder
                 SchoolNameSnapshot = schoolNames[id - 1],
                 CourseNameSnapshot = courseNames[id - 1],
                 CourseDescriptionSnapshot = courseDescriptions[id - 1],
-                CitizenNricSnapshot = $"S{id:0000000}A",
+                CitizenNricSnapshot = SingaporeNricUtil.Generate(id),
                 CitizenFullNameSnapshot = $"Citizen {id:000}",
                 CitizenEmailSnapshot = $"citizen{id:000}@example.com",
                 CitizenPhoneNumberSnapshot = $"+659{id:0000000}",

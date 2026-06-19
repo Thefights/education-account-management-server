@@ -13,32 +13,27 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(citizen => citizen.Email);
             });
 
-            modelBuilder.Entity<AuthAccount>(entity =>
-            {
-                entity.HasIndex(authAccount => authAccount.Status);
-            });
-
             modelBuilder.Entity<SsoIdentity>(entity =>
             {
-                entity.HasIndex(ssoIdentity => ssoIdentity.AuthAccountId);
+                entity.HasIndex(ssoIdentity => ssoIdentity.UserId);
                 entity.HasIndex(ssoIdentity => ssoIdentity.Provider);
                 entity.HasIndex(ssoIdentity => ssoIdentity.ProviderUserId);
                 entity.HasIndex(ssoIdentity => new { ssoIdentity.Provider, ssoIdentity.ProviderUserId }).IsUnique();
-                entity.HasIndex(ssoIdentity => new { ssoIdentity.AuthAccountId, ssoIdentity.Provider }).IsUnique();
+                entity.HasIndex(ssoIdentity => new { ssoIdentity.UserId, ssoIdentity.Provider }).IsUnique();
             });
 
             modelBuilder.Entity<RefreshToken>(entity =>
             {
-                entity.HasIndex(refreshToken => refreshToken.AuthAccountId);
+                entity.HasIndex(refreshToken => refreshToken.UserId);
                 entity.HasIndex(refreshToken => refreshToken.ExpiresAt);
                 entity.HasIndex(refreshToken => refreshToken.RevokedAt);
             });
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasIndex(user => user.AuthAccountId).IsUnique();
-                entity.HasIndex(user => user.CitizenId);
+                entity.HasIndex(user => user.CitizenId).IsUnique();
                 entity.HasIndex(user => user.Role);
+                entity.HasIndex(user => user.Status);
             });
 
             modelBuilder.Entity<AdminProfile>(entity =>

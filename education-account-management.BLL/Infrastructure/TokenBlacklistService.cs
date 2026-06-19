@@ -5,9 +5,9 @@ namespace Infrastructure
 {
     public class TokenBlacklistService(ICacheService redis) : ITokenBlacklistService
     {
-        private static readonly TimeSpan AuthAccountBlacklistTtl = TimeSpan.FromDays(1);
+        private static readonly TimeSpan UserBlacklistTtl = TimeSpan.FromDays(1);
         private const string BlacklistKeyPrefix = "blacklist:";
-        private const string AuthAccountBlacklistKeyPrefix = "blacklist:auth-account:";
+        private const string UserBlacklistKeyPrefix = "blacklist:user:";
 
         public async Task BlacklistAsync(string accessToken, DateTime? expiresAt = null)
         {
@@ -34,19 +34,19 @@ namespace Infrastructure
             return tokenData != null && await this.ExistsBlacklistEntryAsync(tokenData.Jti);
         }
 
-        public async Task BlacklistAuthAccountAsync(int authAccountId)
+        public async Task BlacklistUserAsync(int userId)
         {
-            await this.SetEntryAsync(this.BuildAuthAccountBlacklistKey(authAccountId), "1", AuthAccountBlacklistTtl);
+            await this.SetEntryAsync(this.BuildUserBlacklistKey(userId), "1", UserBlacklistTtl);
         }
 
-        public async Task<bool> IsAuthAccountBlacklistedAsync(int authAccountId)
+        public async Task<bool> IsUserBlacklistedAsync(int userId)
         {
-            return await this.ExistsEntryAsync(this.BuildAuthAccountBlacklistKey(authAccountId));
+            return await this.ExistsEntryAsync(this.BuildUserBlacklistKey(userId));
         }
 
-        public async Task UnblacklistAuthAccountAsync(int authAccountId)
+        public async Task UnblacklistUserAsync(int userId)
         {
-            await redis.DeleteAsync(this.BuildAuthAccountBlacklistKey(authAccountId));
+            await redis.DeleteAsync(this.BuildUserBlacklistKey(userId));
         }
 
         private async Task SetBlacklistEntryAsync(string jti, TimeSpan ttl)
@@ -103,9 +103,9 @@ namespace Infrastructure
             return $"{BlacklistKeyPrefix}{jti}";
         }
 
-        private string BuildAuthAccountBlacklistKey(int authAccountId)
+        private string BuildUserBlacklistKey(int userId)
         {
-            return $"{AuthAccountBlacklistKeyPrefix}{authAccountId}";
+            return $"{UserBlacklistKeyPrefix}{userId}";
         }
 
         private sealed record TokenData(string Jti, DateTime? ExpireAtUtc);

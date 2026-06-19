@@ -12,8 +12,6 @@ namespace Persistence.SqlServer
 
         public DbSet<Citizen> Citizen { get; set; }
 
-        public DbSet<AuthAccount> AuthAccount { get; set; }
-
         public DbSet<SsoIdentity> SsoIdentity { get; set; }
 
         public DbSet<RefreshToken> RefreshToken { get; set; }
@@ -74,15 +72,15 @@ namespace Persistence.SqlServer
 
         private static void ConfigureSchema(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>()
-                .HasOne(user => user.AuthAccount)
-                .WithOne()
-                .HasForeignKey<User>(user => user.AuthAccountId);
-
             modelBuilder.Entity<AdminProfile>()
                 .HasOne(adminProfile => adminProfile.User)
                 .WithOne(user => user.AdminProfile)
                 .HasForeignKey<AdminProfile>(adminProfile => adminProfile.UserId);
+
+            modelBuilder.Entity<User>()
+                .HasOne(user => user.Citizen)
+                .WithOne(citizen => citizen.User)
+                .HasForeignKey<User>(user => user.CitizenId);
 
             modelBuilder.Entity<Payment>()
                 .HasOne(payment => payment.EducationCreditTransaction)

@@ -31,7 +31,7 @@ public sealed class SsoIdentitySeedBuilder : ISeedBuilder
 
              _ => $"singpass-subject-{id:000}"
          },
-         AuthAccountId = id,
+         UserId = id,
          CreatedAt = createdAt
      }).ToArray());
 

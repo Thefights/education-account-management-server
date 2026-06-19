@@ -10,7 +10,7 @@ namespace DTOs.Admin
         public List<int> AdminIds { get; set; } = [];
 
         [EnumDefined]
-        public AuthAccountStatus Status { get; set; }
+        public UserStatus Status { get; set; }
 
         [MessageRequired]
         [MessageMinLength(10)]

@@ -19,8 +19,6 @@ namespace DTOs.Auth
 
         public DateTime RefreshTokenExpiresAt { get; set; }
 
-        public int AuthAccountId { get; set; }
-
         public int UserId { get; set; }
 
         public string? Role { get; set; }

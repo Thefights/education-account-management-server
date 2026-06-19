@@ -28,7 +28,6 @@ namespace Security
         {
             return CreateAccessToken(
                 configuration,
-                user.AuthAccountId,
                 user.Id,
                 user.Role,
                 ResolveDisplayName(user),
@@ -37,7 +36,6 @@ namespace Security
 
         public static string CreateAccessToken(
             AppConfiguration configuration,
-            int authAccountId,
             int userId,
             UserRole role,
             string? name,
@@ -46,8 +44,6 @@ namespace Security
             var claims = new List<Claim>
             {
                 new(ClaimTypes.NameIdentifier, userId.ToString()),
-                new("AuthId", authAccountId.ToString()),
-                new("UserId", userId.ToString()),
                 new(ClaimTypes.Role, role.ToString()),
                 new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString("N"))
             };

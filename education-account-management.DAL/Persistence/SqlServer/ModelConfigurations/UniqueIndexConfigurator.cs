@@ -62,13 +62,12 @@ namespace Persistence.SqlServer.ModelConfigurations
             var propertySet = properties.ToHashSet(StringComparer.Ordinal);
 
             return entityType == typeof(Citizen) &&
-                   (propertySet.SetEquals([nameof(Citizen.Nric)]) ||
-                    propertySet.SetEquals([nameof(Citizen.SingpassSubjectId)])) ||
+                   propertySet.SetEquals([nameof(Citizen.Nric)]) ||
                    entityType == typeof(EducationCreditTransaction) &&
                    propertySet.SetEquals([nameof(EducationCreditTransaction.TransactionCode)]) ||
                    entityType == typeof(SsoIdentity) &&
                    (propertySet.SetEquals([nameof(SsoIdentity.Provider), nameof(SsoIdentity.ProviderUserId)]) ||
-                    propertySet.SetEquals([nameof(SsoIdentity.AuthAccountId), nameof(SsoIdentity.Provider)]));
+                     propertySet.SetEquals([nameof(SsoIdentity.UserId), nameof(SsoIdentity.Provider)]));
         }
     }
 }

@@ -2,11 +2,8 @@ namespace Models
 {
     public class Citizen : AuditEntity
     {
-        [MessageRequired, MessageMaxLength(9), Unique]
+        [MessageRequired, MessageMaxLength(9), SingaporeNric, Unique]
         public string Nric { get; set; } = string.Empty;
-
-        [MessageRequired, MessageMaxLength(256), Unique]
-        public string SingpassSubjectId { get; set; } = string.Empty;
 
         [MessageRequired, MessageMaxLength(150)]
         public string FullName { get; set; } = string.Empty;
@@ -32,7 +29,7 @@ namespace Models
         public string? SchoolingStatus { get; set; }
 
         [OnDelete(OnDeleteBehavior.SetNull)]
-        public ICollection<User> Users { get; set; } = [];
+        public User? User { get; set; }
 
         [OnDelete(OnDeleteBehavior.Restrict)]
         public EducationAccount? EducationAccount { get; set; }

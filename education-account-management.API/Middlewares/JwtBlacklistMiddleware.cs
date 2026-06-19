@@ -1,4 +1,5 @@
 using Infrastructure.Interface;
+using System.Security.Claims;
 
 namespace Middlewares;
 
@@ -27,9 +28,9 @@ public class JwtBlacklistMiddleware(RequestDelegate next)
             throw new UnauthorizedAccessException("Your session has ended. Please log in again.");
         }
 
-        var authAccountId = this.GetAuthAccountId(context);
-        if (authAccountId.HasValue
-            && await blacklistService.IsAuthAccountBlacklistedAsync(authAccountId.Value))
+        var userId = this.GetUserId(context);
+        if (userId.HasValue
+            && await blacklistService.IsUserBlacklistedAsync(userId.Value))
         {
             throw new UnauthorizedAccessException("Your account is no longer allowed to access the system");
         }
@@ -79,14 +80,14 @@ public class JwtBlacklistMiddleware(RequestDelegate next)
         return context.User.Identity?.IsAuthenticated == true;
     }
 
-    private int? GetAuthAccountId(HttpContext context)
+    private int? GetUserId(HttpContext context)
     {
         if (!this.HasAuthenticatedPrincipal(context))
         {
             return null;
         }
 
-        var authIdValue = context.User.FindFirst("AuthId")?.Value;
-        return int.TryParse(authIdValue, out var authAccountId) ? authAccountId : null;
+        var userIdValue = context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        return int.TryParse(userIdValue, out var userId) ? userId : null;
     }
 }

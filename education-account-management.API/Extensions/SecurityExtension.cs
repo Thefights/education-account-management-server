@@ -246,10 +246,10 @@ namespace Extensions
 
         private static string GetRateLimitPartitionKey(HttpContext context)
         {
-            var authId = context.User.FindFirstValue("AuthId");
-            if (!string.IsNullOrWhiteSpace(authId))
+            var userId = context.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!string.IsNullOrWhiteSpace(userId))
             {
-                return $"auth:{authId}";
+                return $"user:{userId}";
             }
 
             return $"ip:{context.Connection.RemoteIpAddress?.ToString() ?? "unknown"}";

@@ -1,4 +1,4 @@
-using Filters;
+using Filters.Audit;
 
 namespace DTOs.Audit
 {
@@ -17,6 +17,9 @@ namespace DTOs.Audit
         public string? PayloadJson { get; set; }
 
         public DateTime OccurredAt { get; set; }
+
+        public string? ActorUserRole { get; set; }
+        public string? Nric { get; set; }
     }
 
     public class ExportAuditLogRequestDTO

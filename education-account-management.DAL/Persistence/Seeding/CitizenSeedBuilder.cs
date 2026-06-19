@@ -11,12 +11,10 @@ public sealed class CitizenSeedBuilder : ISeedBuilder
     {
         var createdAt = SeedDataConstants.CreatedAt;
 
-        modelBuilder.Entity<Citizen>().HasData(
-            Enumerable.Range(1, 15).Select(id => new Citizen
+        var citizens = Enumerable.Range(1, 15).Select(id => new Citizen
             {
                 Id = id,
-                Nric = $"S{id:0000000}A",
-                SingpassSubjectId = $"singpass-subject-{id:000}",
+                Nric = SingaporeNricUtil.Generate(id),
                 FullName = $"Citizen {id:000}",
                 Email = $"citizen{id:000}@example.com",
                 PhoneNumber = $"+659{id:0000000}",
@@ -34,7 +32,39 @@ public sealed class CitizenSeedBuilder : ISeedBuilder
                                   id % 5 == 3 ? "Graduated" :
                                   id % 5 == 4 ? "Suspended" : "Withdrawn",
                 CreatedAt = createdAt
-            }).ToArray());
+            }).ToList();
+
+        citizens.Add(new Citizen
+        {
+            Id = 16,
+            Nric = SingaporeNricUtil.Generate(16),
+            FullName = "Unlinked Test Citizen",
+            Email = "unlinked.citizen@example.com",
+            PhoneNumber = "+6590000016",
+            ResidentialAddress = "16 Test Avenue, Singapore",
+            MailingAddress = "16 Test Avenue, Singapore",
+            DateOfBirth = new DateOnly(2000, 1, 16),
+            CitizenshipStatus = CitizenshipStatus.Active,
+            SchoolingStatus = "Not Enrolled",
+            CreatedAt = createdAt
+        });
+
+        citizens.AddRange(Enumerable.Range(17, 10).Select(id => new Citizen
+        {
+            Id = id,
+            Nric = SingaporeNricUtil.Generate(id),
+            FullName = $"Unlinked Test Citizen {id:000}",
+            Email = $"unlinked.citizen{id:000}@example.com",
+            PhoneNumber = $"+65900000{id:00}",
+            ResidentialAddress = $"{id} Test Avenue, Singapore",
+            MailingAddress = $"{id} Test Avenue, Singapore",
+            DateOfBirth = new DateOnly(2000 + ((id - 17) % 5), ((id - 17) % 12) + 1, 15),
+            CitizenshipStatus = CitizenshipStatus.Active,
+            SchoolingStatus = id % 2 == 0 ? "Enrolled" : "Not Enrolled",
+            CreatedAt = createdAt
+        }));
+
+        modelBuilder.Entity<Citizen>().HasData(citizens.ToArray());
 
         return modelBuilder;
     }

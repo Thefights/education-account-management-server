@@ -24,8 +24,11 @@ public sealed class UserSeedBuilder : ISeedBuilder
 
              _ => UserRole.AccountHolder
          },
-         AuthAccountId = id,
-         CitizenId = id,
+         Status = id % 5 == 0 ? UserStatus.Inactive : UserStatus.Active,
+         FailedLoginCount = id % 3,
+         LockedUntil = id == 5 ? createdAt.AddHours(1) : null,
+         LastLoginAt = id % 2 == 0 ? createdAt.AddDays(id) : null,
+         CitizenId = id >= 9 ? id : null,
          CreatedAt = createdAt
      }).ToArray());
 
