@@ -2,7 +2,7 @@ using Authorization;
 using Common.HttpResults;
 using Controllers.Base;
 using DTOs.EducationAccount;
-using Filters;
+using Filters.EducationAccount;
 using Interfaces.EducationAccount;
 using Models;
 

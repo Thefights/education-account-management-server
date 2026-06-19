@@ -1,7 +1,7 @@
 using Authorization;
 using Controllers.Base;
 using DTOs.School;
-using Filters;
+using Filters.School;
 using Interfaces.School;
 
 namespace Controllers.Management

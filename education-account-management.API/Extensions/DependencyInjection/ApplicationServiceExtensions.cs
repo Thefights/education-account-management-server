@@ -26,13 +26,11 @@ using Polly.CircuitBreaker;
 using Polly.Retry;
 using Repositories.Interfaces;
 using Resend;
-using Services;
 using Services.Admin;
 using Services.Audit;
 using Services.Auth;
 using Services.Base;
 using Services.BatchReport;
-using Services.AccountEducation;
 using Services.Email;
 using Services.Maintenance;
 using Services.Storage;
@@ -42,6 +40,10 @@ using Services.TransactionHistory;
 using StackExchange.Redis;
 using System.Threading.RateLimiting;
 using Validators;
+using Services.Course;
+using Services.AiAssistantSetting;
+using Services.School;
+using Services.EducationAccount;
 
 namespace Extensions.DependencyInjection;
 
