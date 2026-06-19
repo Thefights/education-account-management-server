@@ -196,7 +196,7 @@ namespace Services.Auth
 
             if (user.Role is not (UserRole.SystemAdmin
                 or UserRole.FinanceAdmin
-                or UserRole.CourseAdmin))
+                or UserRole.SchoolAdmin))
             {
                 throw new UnauthorizedAccessException("Invalid login credentials");
             }

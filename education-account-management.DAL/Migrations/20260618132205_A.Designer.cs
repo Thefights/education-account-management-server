@@ -12,7 +12,7 @@ using Persistence.SqlServer;
 namespace educationaccountmanagement.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260618075923_A")]
+    [Migration("20260618132205_A")]
     partial class A
     {
         /// <inheritdoc />
@@ -72,7 +72,10 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasIndex("Status");
 
-                    b.ToTable("AdhocTopupBatch");
+                    b.ToTable("AdhocTopupBatch", t =>
+                        {
+                            t.HasCheckConstraint("CK_AdhocTopupBatch_TotalAmount_NonNegative", "[TotalAmount] >= 0 AND [TotalTargetCount] >= 0");
+                        });
 
                     b.HasData(
                         new
@@ -236,7 +239,10 @@ namespace educationaccountmanagement.DAL.Migrations
                         .IsUnique()
                         .HasFilter("\"IsDeleted\" = 0 AND \"AdhocTopupBatchId\" IS NOT NULL AND \"EducationAccountId\" IS NOT NULL");
 
-                    b.ToTable("AdhocTopupBatchTarget");
+                    b.ToTable("AdhocTopupBatchTarget", t =>
+                        {
+                            t.HasCheckConstraint("CK_AdhocTopupBatchTarget_Amount_NonNegative", "[Amount] >= 0");
+                        });
 
                     b.HasData(
                         new
@@ -500,6 +506,13 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<string>("PhoneNumber")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<int?>("SchoolId")
+                        .HasColumnType("int");
+
                     b.Property<string>("StaffCode")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -520,6 +533,8 @@ namespace educationaccountmanagement.DAL.Migrations
                         .IsUnique()
                         .HasFilter("\"IsDeleted\" = 0 AND \"Email\" IS NOT NULL");
 
+                    b.HasIndex("SchoolId");
+
                     b.HasIndex("StaffCode")
                         .IsUnique()
                         .HasFilter("\"IsDeleted\" = 0 AND \"StaffCode\" IS NOT NULL");
@@ -536,8 +551,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             Id = 1,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Email = "admin001@example.com",
-                            FullName = "Admin Profile 001",
+                            FullName = "System Administrator",
                             IsDeleted = false,
+                            PhoneNumber = "+6591000001",
                             StaffCode = "STAFF-001",
                             UserId = 1
                         },
@@ -546,8 +562,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             Id = 2,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Email = "admin002@example.com",
-                            FullName = "Admin Profile 002",
+                            FullName = "Finance Administrator",
                             IsDeleted = false,
+                            PhoneNumber = "+6591000002",
                             StaffCode = "STAFF-002",
                             UserId = 2
                         },
@@ -556,8 +573,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             Id = 3,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Email = "admin003@example.com",
-                            FullName = "Admin Profile 003",
+                            FullName = "School Administrator",
                             IsDeleted = false,
+                            PhoneNumber = "+6591000003",
+                            SchoolId = 1,
                             StaffCode = "STAFF-003",
                             UserId = 3
                         },
@@ -568,6 +587,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "admin004@example.com",
                             FullName = "Admin Profile 004",
                             IsDeleted = false,
+                            PhoneNumber = "+6591000004",
                             StaffCode = "STAFF-004",
                             UserId = 4
                         },
@@ -578,6 +598,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "admin005@example.com",
                             FullName = "Admin Profile 005",
                             IsDeleted = false,
+                            PhoneNumber = "+6591000005",
                             StaffCode = "STAFF-005",
                             UserId = 5
                         },
@@ -588,6 +609,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "admin006@example.com",
                             FullName = "Admin Profile 006",
                             IsDeleted = false,
+                            PhoneNumber = "+6591000006",
                             StaffCode = "STAFF-006",
                             UserId = 6
                         },
@@ -598,6 +620,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "admin007@example.com",
                             FullName = "Admin Profile 007",
                             IsDeleted = false,
+                            PhoneNumber = "+6591000007",
                             StaffCode = "STAFF-007",
                             UserId = 7
                         },
@@ -608,6 +631,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "admin008@example.com",
                             FullName = "Admin Profile 008",
                             IsDeleted = false,
+                            PhoneNumber = "+6591000008",
                             StaffCode = "STAFF-008",
                             UserId = 8
                         },
@@ -618,6 +642,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "admin009@example.com",
                             FullName = "Admin Profile 009",
                             IsDeleted = false,
+                            PhoneNumber = "+6591000009",
                             StaffCode = "STAFF-009",
                             UserId = 9
                         },
@@ -628,8 +653,55 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "admin010@example.com",
                             FullName = "Admin Profile 010",
                             IsDeleted = false,
+                            PhoneNumber = "+6591000010",
                             StaffCode = "STAFF-010",
                             UserId = 10
+                        });
+                });
+
+            modelBuilder.Entity("Models.AiAssistantSetting", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AiAssistantSetting", t =>
+                        {
+                            t.HasCheckConstraint("CK_AiAssistantSetting_Singleton", "[Id] = 1");
+                        });
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            IsEnabled = true
                         });
                 });
 
@@ -911,6 +983,240 @@ namespace educationaccountmanagement.DAL.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Models.Charge", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("CourseFeeAmountSnapshot")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("EnrollmentId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("GrossAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("GstAmountSnapshot")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("MiscFeeAmountSnapshot")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("NetAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("PaidAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("RemainingAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("SubsidyAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EnrollmentId")
+                        .IsUnique()
+                        .HasFilter("\"IsDeleted\" = 0 AND \"EnrollmentId\" IS NOT NULL");
+
+                    b.HasIndex("Status");
+
+                    b.ToTable("Charge", t =>
+                        {
+                            t.HasCheckConstraint("CK_Charge_AmountEquations", "[SubsidyAmount] <= [GrossAmount] AND [NetAmount] = [GrossAmount] - [SubsidyAmount] AND [PaidAmount] <= [NetAmount] AND [RemainingAmount] = [NetAmount] - [PaidAmount]");
+
+                            t.HasCheckConstraint("CK_Charge_Amounts_NonNegative", "[GrossAmount] >= 0 AND [SubsidyAmount] >= 0 AND [NetAmount] >= 0 AND [PaidAmount] >= 0 AND [RemainingAmount] >= 0");
+                        });
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CourseFeeAmountSnapshot = 100m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentId = 1,
+                            GrossAmount = 120m,
+                            GstAmountSnapshot = 10m,
+                            IsDeleted = false,
+                            MiscFeeAmountSnapshot = 10m,
+                            NetAmount = 120m,
+                            PaidAmount = 120m,
+                            RemainingAmount = 0m,
+                            Status = 3,
+                            SubsidyAmount = 0m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CourseFeeAmountSnapshot = 115m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentId = 2,
+                            GrossAmount = 140m,
+                            GstAmountSnapshot = 13m,
+                            IsDeleted = false,
+                            MiscFeeAmountSnapshot = 12m,
+                            NetAmount = 140m,
+                            PaidAmount = 70m,
+                            RemainingAmount = 70m,
+                            Status = 2,
+                            SubsidyAmount = 0m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CourseFeeAmountSnapshot = 130m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentId = 3,
+                            GrossAmount = 160m,
+                            GstAmountSnapshot = 15m,
+                            IsDeleted = false,
+                            MiscFeeAmountSnapshot = 15m,
+                            NetAmount = 140m,
+                            PaidAmount = 140m,
+                            RemainingAmount = 0m,
+                            Status = 3,
+                            SubsidyAmount = 20m
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CourseFeeAmountSnapshot = 145m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentId = 4,
+                            GrossAmount = 180m,
+                            GstAmountSnapshot = 18m,
+                            IsDeleted = false,
+                            MiscFeeAmountSnapshot = 17m,
+                            NetAmount = 180m,
+                            PaidAmount = 180m,
+                            RemainingAmount = 0m,
+                            Status = 3,
+                            SubsidyAmount = 0m
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CourseFeeAmountSnapshot = 160m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentId = 5,
+                            GrossAmount = 200m,
+                            GstAmountSnapshot = 20m,
+                            IsDeleted = false,
+                            MiscFeeAmountSnapshot = 20m,
+                            NetAmount = 180m,
+                            PaidAmount = 180m,
+                            RemainingAmount = 0m,
+                            Status = 3,
+                            SubsidyAmount = 20m
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CourseFeeAmountSnapshot = 175m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentId = 6,
+                            GrossAmount = 220m,
+                            GstAmountSnapshot = 23m,
+                            IsDeleted = false,
+                            MiscFeeAmountSnapshot = 22m,
+                            NetAmount = 220m,
+                            PaidAmount = 100m,
+                            RemainingAmount = 120m,
+                            Status = 4,
+                            SubsidyAmount = 0m
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CourseFeeAmountSnapshot = 190m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentId = 7,
+                            GrossAmount = 240m,
+                            GstAmountSnapshot = 25m,
+                            IsDeleted = false,
+                            MiscFeeAmountSnapshot = 25m,
+                            NetAmount = 200m,
+                            PaidAmount = 200m,
+                            RemainingAmount = 0m,
+                            Status = 3,
+                            SubsidyAmount = 40m
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CourseFeeAmountSnapshot = 205m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentId = 8,
+                            GrossAmount = 260m,
+                            GstAmountSnapshot = 28m,
+                            IsDeleted = false,
+                            MiscFeeAmountSnapshot = 27m,
+                            NetAmount = 260m,
+                            PaidAmount = 130m,
+                            RemainingAmount = 130m,
+                            Status = 2,
+                            SubsidyAmount = 0m
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CourseFeeAmountSnapshot = 220m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentId = 9,
+                            GrossAmount = 280m,
+                            GstAmountSnapshot = 30m,
+                            IsDeleted = false,
+                            MiscFeeAmountSnapshot = 30m,
+                            NetAmount = 250m,
+                            PaidAmount = 250m,
+                            RemainingAmount = 0m,
+                            Status = 3,
+                            SubsidyAmount = 30m
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CourseFeeAmountSnapshot = 235m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentId = 10,
+                            GrossAmount = 300m,
+                            GstAmountSnapshot = 33m,
+                            IsDeleted = false,
+                            MiscFeeAmountSnapshot = 32m,
+                            NetAmount = 300m,
+                            PaidAmount = 300m,
+                            RemainingAmount = 0m,
+                            Status = 3,
+                            SubsidyAmount = 0m
+                        });
+                });
+
             modelBuilder.Entity("Models.Citizen", b =>
                 {
                     b.Property<int>("Id")
@@ -984,11 +1290,11 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasIndex("Nric")
                         .IsUnique()
-                        .HasFilter("\"IsDeleted\" = 0 AND \"Nric\" IS NOT NULL");
+                        .HasFilter("\"Nric\" IS NOT NULL");
 
                     b.HasIndex("SingpassSubjectId")
                         .IsUnique()
-                        .HasFilter("\"IsDeleted\" = 0 AND \"SingpassSubjectId\" IS NOT NULL");
+                        .HasFilter("\"SingpassSubjectId\" IS NOT NULL");
 
                     b.ToTable("Citizen");
 
@@ -1145,6 +1451,202 @@ namespace educationaccountmanagement.DAL.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Models.Course", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("CourseFeeAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("CourseName")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<decimal>("GstAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("MiscFeeAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("SchoolId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseName");
+
+                    b.HasIndex("SchoolId");
+
+                    b.HasIndex("Status");
+
+                    b.ToTable("Course", t =>
+                        {
+                            t.HasCheckConstraint("CK_Course_Amounts_NonNegative", "[CourseFeeAmount] >= 0 AND [MiscFeeAmount] >= 0 AND [GstAmount] >= 0");
+                        });
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CourseFeeAmount = 100m,
+                            CourseName = "Applied Mathematics",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Foundation course in applied mathematics.",
+                            GstAmount = 10m,
+                            IsDeleted = false,
+                            MiscFeeAmount = 10m,
+                            SchoolId = 1,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CourseFeeAmount = 115m,
+                            CourseName = "Computer Science Fundamentals",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Introduction to programming and computing.",
+                            GstAmount = 13m,
+                            IsDeleted = false,
+                            MiscFeeAmount = 12m,
+                            SchoolId = 2,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CourseFeeAmount = 130m,
+                            CourseName = "Business Communication",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Professional written and verbal communication.",
+                            GstAmount = 15m,
+                            IsDeleted = false,
+                            MiscFeeAmount = 15m,
+                            SchoolId = 3,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CourseFeeAmount = 145m,
+                            CourseName = "Environmental Science",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Environmental systems and sustainability.",
+                            GstAmount = 18m,
+                            IsDeleted = false,
+                            MiscFeeAmount = 17m,
+                            SchoolId = 4,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CourseFeeAmount = 160m,
+                            CourseName = "Digital Media Design",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Digital design principles and production.",
+                            GstAmount = 20m,
+                            IsDeleted = false,
+                            MiscFeeAmount = 20m,
+                            SchoolId = 5,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CourseFeeAmount = 175m,
+                            CourseName = "Hospitality Operations",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Core hospitality service operations.",
+                            GstAmount = 23m,
+                            IsDeleted = false,
+                            MiscFeeAmount = 22m,
+                            SchoolId = 6,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CourseFeeAmount = 190m,
+                            CourseName = "Electrical Engineering Basics",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Fundamentals of electrical systems.",
+                            GstAmount = 25m,
+                            IsDeleted = false,
+                            MiscFeeAmount = 25m,
+                            SchoolId = 7,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CourseFeeAmount = 205m,
+                            CourseName = "Creative Writing",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Writing techniques across common genres.",
+                            GstAmount = 28m,
+                            IsDeleted = false,
+                            MiscFeeAmount = 27m,
+                            SchoolId = 8,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CourseFeeAmount = 220m,
+                            CourseName = "Data Analytics",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Data preparation, analysis and reporting.",
+                            GstAmount = 30m,
+                            IsDeleted = false,
+                            MiscFeeAmount = 30m,
+                            SchoolId = 9,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CourseFeeAmount = 235m,
+                            CourseName = "Legacy Office Applications",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Archived office applications programme.",
+                            GstAmount = 33m,
+                            IsDeleted = false,
+                            MiscFeeAmount = 32m,
+                            SchoolId = 10,
+                            Status = 2
+                        });
+                });
+
             modelBuilder.Entity("Models.EducationAccount", b =>
                 {
                     b.Property<int>("Id")
@@ -1164,6 +1666,9 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<DateTime?>("ClosedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("ClosedByUserId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -1176,11 +1681,23 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<decimal>("EducationCreditBalance")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<DateTime?>("ExtendedUntil")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("OpenedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("OpenedByUserId")
+                        .HasColumnType("int");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -1201,9 +1718,22 @@ namespace educationaccountmanagement.DAL.Migrations
                         .IsUnique()
                         .HasFilter("\"IsDeleted\" = 0 AND \"CitizenId\" IS NOT NULL");
 
+                    b.HasIndex("ClosedAt");
+
+                    b.HasIndex("ClosedByUserId");
+
+                    b.HasIndex("ExtendedUntil");
+
+                    b.HasIndex("OpenedAt");
+
+                    b.HasIndex("OpenedByUserId");
+
                     b.HasIndex("Status");
 
-                    b.ToTable("EducationAccount");
+                    b.ToTable("EducationAccount", t =>
+                        {
+                            t.HasCheckConstraint("CK_EducationAccount_Balance_NonNegative", "[EducationCreditBalance] >= 0");
+                        });
 
                     b.HasData(
                         new
@@ -1215,6 +1745,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             EducationCreditBalance = 1100m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 2, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             Status = 1
                         },
                         new
@@ -1226,6 +1757,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             EducationCreditBalance = 1200m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             Status = 1
                         },
                         new
@@ -1237,6 +1769,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             EducationCreditBalance = 1300m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             Status = 1
                         },
                         new
@@ -1248,6 +1781,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             EducationCreditBalance = 1400m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             Status = 2
                         },
                         new
@@ -1259,6 +1793,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             EducationCreditBalance = 1500m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             Status = 1
                         },
                         new
@@ -1271,6 +1806,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             EducationCreditBalance = 1600m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             Status = 3
                         },
                         new
@@ -1282,6 +1818,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             EducationCreditBalance = 1700m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             Status = 1
                         },
                         new
@@ -1293,6 +1830,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             EducationCreditBalance = 1800m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             Status = 2
                         },
                         new
@@ -1304,6 +1842,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             EducationCreditBalance = 1900m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             Status = 1
                         },
                         new
@@ -1315,6 +1854,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             EducationCreditBalance = 2000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             Status = 1
                         });
                 });
@@ -1378,11 +1918,16 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasIndex("TransactionCode")
                         .IsUnique()
-                        .HasFilter("\"IsDeleted\" = 0 AND \"TransactionCode\" IS NOT NULL");
+                        .HasFilter("\"TransactionCode\" IS NOT NULL");
 
                     b.HasIndex("Type");
 
-                    b.ToTable("EducationCreditTransaction");
+                    b.ToTable("EducationCreditTransaction", t =>
+                        {
+                            t.HasCheckConstraint("CK_EducationCreditTransaction_Amounts_NonNegative", "[Amount] >= 0 AND [BalanceBefore] >= 0 AND [BalanceAfter] >= 0");
+
+                            t.HasCheckConstraint("CK_EducationCreditTransaction_BalanceEquation", "([Direction] = 1 AND [BalanceAfter] = [BalanceBefore] + [Amount]) OR ([Direction] = 2 AND [BalanceAfter] = [BalanceBefore] - [Amount])");
+                        });
 
                     b.HasData(
                         new
@@ -1529,7 +2074,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 11,
                             Amount = 55m,
-                            BalanceAfter = 1855m,
+                                BalanceAfter = 1805m,
                             BalanceBefore = 1750m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Seed adhoc transaction 011",
@@ -1543,7 +2088,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 12,
                             Amount = 60m,
-                            BalanceAfter = 1910m,
+                                BalanceAfter = 1860m,
                             BalanceBefore = 1800m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Seed adhoc transaction 012",
@@ -1557,7 +2102,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 13,
                             Amount = 65m,
-                            BalanceAfter = 1965m,
+                                BalanceAfter = 1915m,
                             BalanceBefore = 1850m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Seed adhoc transaction 013",
@@ -1571,7 +2116,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 14,
                             Amount = 70m,
-                            BalanceAfter = 2020m,
+                                BalanceAfter = 1970m,
                             BalanceBefore = 1900m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Seed adhoc transaction 014",
@@ -1585,7 +2130,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 15,
                             Amount = 75m,
-                            BalanceAfter = 2075m,
+                                BalanceAfter = 2025m,
                             BalanceBefore = 1950m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Seed adhoc transaction 015",
@@ -1599,7 +2144,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 16,
                             Amount = 80m,
-                            BalanceAfter = 2130m,
+                                BalanceAfter = 2080m,
                             BalanceBefore = 2000m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Seed adhoc transaction 016",
@@ -1613,7 +2158,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 17,
                             Amount = 85m,
-                            BalanceAfter = 2185m,
+                                BalanceAfter = 2135m,
                             BalanceBefore = 2050m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Seed adhoc transaction 017",
@@ -1627,7 +2172,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 18,
                             Amount = 90m,
-                            BalanceAfter = 2240m,
+                                BalanceAfter = 2190m,
                             BalanceBefore = 2100m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Seed adhoc transaction 018",
@@ -1641,7 +2186,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 19,
                             Amount = 95m,
-                            BalanceAfter = 2295m,
+                                BalanceAfter = 2245m,
                             BalanceBefore = 2150m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Seed adhoc transaction 019",
@@ -1655,7 +2200,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 20,
                             Amount = 100m,
-                            BalanceAfter = 2350m,
+                                BalanceAfter = 2300m,
                             BalanceBefore = 2200m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Seed adhoc transaction 020",
@@ -1664,10 +2209,150 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             TransactionCode = new Guid("00000000-0000-0000-0000-000000000020"),
                             Type = 4
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Amount = 120m,
+                            BalanceAfter = 980m,
+                            BalanceBefore = 1100m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Payment transaction 001",
+                            Direction = 2,
+                            EducationAccountId = 1,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000021"),
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Amount = 70m,
+                            BalanceAfter = 1130m,
+                            BalanceBefore = 1200m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Payment transaction 002",
+                            Direction = 2,
+                            EducationAccountId = 2,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000022"),
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Amount = 140m,
+                            BalanceAfter = 1160m,
+                            BalanceBefore = 1300m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Payment transaction 003",
+                            Direction = 2,
+                            EducationAccountId = 3,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000023"),
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Amount = 180m,
+                            BalanceAfter = 1220m,
+                            BalanceBefore = 1400m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Payment transaction 004",
+                            Direction = 2,
+                            EducationAccountId = 4,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000024"),
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Amount = 180m,
+                            BalanceAfter = 1320m,
+                            BalanceBefore = 1500m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Payment transaction 005",
+                            Direction = 2,
+                            EducationAccountId = 5,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000025"),
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Amount = 100m,
+                            BalanceAfter = 1500m,
+                            BalanceBefore = 1600m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Payment transaction 006",
+                            Direction = 2,
+                            EducationAccountId = 6,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000026"),
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Amount = 200m,
+                            BalanceAfter = 1500m,
+                            BalanceBefore = 1700m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Payment transaction 007",
+                            Direction = 2,
+                            EducationAccountId = 7,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000027"),
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Amount = 130m,
+                            BalanceAfter = 1670m,
+                            BalanceBefore = 1800m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Payment transaction 008",
+                            Direction = 2,
+                            EducationAccountId = 8,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000028"),
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Amount = 250m,
+                            BalanceAfter = 1650m,
+                            BalanceBefore = 1900m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Payment transaction 009",
+                            Direction = 2,
+                            EducationAccountId = 9,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000029"),
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = 30,
+                            Amount = 300m,
+                            BalanceAfter = 1700m,
+                            BalanceBefore = 2000m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Payment transaction 010",
+                            Direction = 2,
+                            EducationAccountId = 10,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000030"),
+                            Type = 2
                         });
                 });
 
-            modelBuilder.Entity("Models.OtpVerification", b =>
+            modelBuilder.Entity("Models.Enrollment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1675,8 +2360,43 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AuthAccountId")
+                    b.Property<string>("AccountNumberSnapshot")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("CitizenEmailSnapshot")
+                        .HasMaxLength(320)
+                        .HasColumnType("nvarchar(320)");
+
+                    b.Property<string>("CitizenFullNameSnapshot")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("CitizenNricSnapshot")
+                        .IsRequired()
+                        .HasMaxLength(9)
+                        .HasColumnType("nvarchar(9)");
+
+                    b.Property<string>("CitizenPhoneNumberSnapshot")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<DateTime?>("CompletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CourseDescriptionSnapshot")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int>("CourseId")
                         .HasColumnType("int");
+
+                    b.Property<string>("CourseNameSnapshot")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -1687,24 +2407,19 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("ExpiresAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("FailedAttemptCount")
+                    b.Property<int>("EducationAccountId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("EnrolledAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("OtpHash")
+                    b.Property<string>("SchoolNameSnapshot")
                         .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<string>("SessionId")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -1712,128 +2427,195 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<int?>("UpdatedBy")
                         .HasColumnType("int");
 
+                    b.Property<DateTime?>("WithdrawnAt")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("AuthAccountId");
+                    b.HasIndex("CourseId");
 
-                    b.HasIndex("ExpiresAt");
+                    b.HasIndex("EducationAccountId");
 
-                    b.HasIndex("SessionId")
+                    b.HasIndex("CourseId", "EducationAccountId")
                         .IsUnique()
-                        .HasFilter("\"IsDeleted\" = 0 AND \"SessionId\" IS NOT NULL");
+                        .HasFilter("\"IsDeleted\" = 0 AND \"CourseId\" IS NOT NULL AND \"EducationAccountId\" IS NOT NULL");
 
-                    b.ToTable("OtpVerification");
+                    b.ToTable("Enrollment");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            AuthAccountId = 1,
+                            AccountNumberSnapshot = "EA000000000000000001",
+                            CitizenEmailSnapshot = "citizen001@example.com",
+                            CitizenFullNameSnapshot = "Citizen 001",
+                            CitizenNricSnapshot = "S0000001A",
+                            CitizenPhoneNumberSnapshot = "+6590000001",
+                            CourseDescriptionSnapshot = "Foundation course in applied mathematics.",
+                            CourseId = 1,
+                            CourseNameSnapshot = "Applied Mathematics",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExpiresAt = new DateTime(2026, 1, 1, 0, 11, 0, 0, DateTimeKind.Utc),
-                            FailedAttemptCount = 1,
+                            EducationAccountId = 1,
+                            EnrolledAt = new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            OtpHash = "otp-hash-001",
-                            SessionId = "otp-session-001"
+                            SchoolNameSnapshot = "Northview Secondary School"
                         },
                         new
                         {
                             Id = 2,
-                            AuthAccountId = 2,
+                            AccountNumberSnapshot = "EA000000000000000002",
+                            CitizenEmailSnapshot = "citizen002@example.com",
+                            CitizenFullNameSnapshot = "Citizen 002",
+                            CitizenNricSnapshot = "S0000002A",
+                            CitizenPhoneNumberSnapshot = "+6590000002",
+                            CourseDescriptionSnapshot = "Introduction to programming and computing.",
+                            CourseId = 2,
+                            CourseNameSnapshot = "Computer Science Fundamentals",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExpiresAt = new DateTime(2026, 1, 1, 0, 12, 0, 0, DateTimeKind.Utc),
-                            FailedAttemptCount = 2,
+                            EducationAccountId = 2,
+                            EnrolledAt = new DateTime(2026, 1, 12, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            OtpHash = "otp-hash-002",
-                            SessionId = "otp-session-002"
+                            SchoolNameSnapshot = "Eastbridge Secondary School"
                         },
                         new
                         {
                             Id = 3,
-                            AuthAccountId = 3,
+                            AccountNumberSnapshot = "EA000000000000000003",
+                            CitizenEmailSnapshot = "citizen003@example.com",
+                            CitizenFullNameSnapshot = "Citizen 003",
+                            CitizenNricSnapshot = "S0000003A",
+                            CitizenPhoneNumberSnapshot = "+6590000003",
+                            CompletedAt = new DateTime(2026, 3, 14, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseDescriptionSnapshot = "Professional written and verbal communication.",
+                            CourseId = 3,
+                            CourseNameSnapshot = "Business Communication",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExpiresAt = new DateTime(2026, 1, 1, 0, 13, 0, 0, DateTimeKind.Utc),
-                            FailedAttemptCount = 0,
+                            EducationAccountId = 3,
+                            EnrolledAt = new DateTime(2026, 1, 13, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            OtpHash = "otp-hash-003",
-                            SessionId = "otp-session-003"
+                            SchoolNameSnapshot = "Westhaven Secondary School"
                         },
                         new
                         {
                             Id = 4,
-                            AuthAccountId = 4,
+                            AccountNumberSnapshot = "EA000000000000000004",
+                            CitizenEmailSnapshot = "citizen004@example.com",
+                            CitizenFullNameSnapshot = "Citizen 004",
+                            CitizenNricSnapshot = "S0000004A",
+                            CitizenPhoneNumberSnapshot = "+6590000004",
+                            CourseDescriptionSnapshot = "Environmental systems and sustainability.",
+                            CourseId = 4,
+                            CourseNameSnapshot = "Environmental Science",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExpiresAt = new DateTime(2026, 1, 1, 0, 14, 0, 0, DateTimeKind.Utc),
-                            FailedAttemptCount = 1,
+                            EducationAccountId = 4,
+                            EnrolledAt = new DateTime(2026, 1, 14, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            OtpHash = "otp-hash-004",
-                            SessionId = "otp-session-004"
+                            SchoolNameSnapshot = "Southpoint Secondary School"
                         },
                         new
                         {
                             Id = 5,
-                            AuthAccountId = 5,
+                            AccountNumberSnapshot = "EA000000000000000005",
+                            CitizenEmailSnapshot = "citizen005@example.com",
+                            CitizenFullNameSnapshot = "Citizen 005",
+                            CitizenNricSnapshot = "S0000005A",
+                            CitizenPhoneNumberSnapshot = "+6590000005",
+                            CourseDescriptionSnapshot = "Digital design principles and production.",
+                            CourseId = 5,
+                            CourseNameSnapshot = "Digital Media Design",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExpiresAt = new DateTime(2026, 1, 1, 0, 15, 0, 0, DateTimeKind.Utc),
-                            FailedAttemptCount = 2,
+                            EducationAccountId = 5,
+                            EnrolledAt = new DateTime(2026, 1, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            OtpHash = "otp-hash-005",
-                            SessionId = "otp-session-005"
+                            SchoolNameSnapshot = "Central Heights School",
+                            WithdrawnAt = new DateTime(2026, 1, 25, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 6,
-                            AuthAccountId = 6,
+                            AccountNumberSnapshot = "EA000000000000000006",
+                            CitizenEmailSnapshot = "citizen006@example.com",
+                            CitizenFullNameSnapshot = "Citizen 006",
+                            CitizenNricSnapshot = "S0000006A",
+                            CitizenPhoneNumberSnapshot = "+6590000006",
+                            CourseDescriptionSnapshot = "Core hospitality service operations.",
+                            CourseId = 6,
+                            CourseNameSnapshot = "Hospitality Operations",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExpiresAt = new DateTime(2026, 1, 1, 0, 16, 0, 0, DateTimeKind.Utc),
-                            FailedAttemptCount = 0,
+                            EducationAccountId = 6,
+                            EnrolledAt = new DateTime(2026, 1, 16, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            OtpHash = "otp-hash-006",
-                            SessionId = "otp-session-006"
+                            SchoolNameSnapshot = "Riverside Learning Institute"
                         },
                         new
                         {
                             Id = 7,
-                            AuthAccountId = 7,
+                            AccountNumberSnapshot = "EA000000000000000007",
+                            CitizenEmailSnapshot = "citizen007@example.com",
+                            CitizenFullNameSnapshot = "Citizen 007",
+                            CitizenNricSnapshot = "S0000007A",
+                            CitizenPhoneNumberSnapshot = "+6590000007",
+                            CompletedAt = new DateTime(2026, 3, 18, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseDescriptionSnapshot = "Fundamentals of electrical systems.",
+                            CourseId = 7,
+                            CourseNameSnapshot = "Electrical Engineering Basics",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExpiresAt = new DateTime(2026, 1, 1, 0, 17, 0, 0, DateTimeKind.Utc),
-                            FailedAttemptCount = 1,
+                            EducationAccountId = 7,
+                            EnrolledAt = new DateTime(2026, 1, 17, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            OtpHash = "otp-hash-007",
-                            SessionId = "otp-session-007"
+                            SchoolNameSnapshot = "Lakeside Technical School"
                         },
                         new
                         {
                             Id = 8,
-                            AuthAccountId = 8,
+                            AccountNumberSnapshot = "EA000000000000000008",
+                            CitizenEmailSnapshot = "citizen008@example.com",
+                            CitizenFullNameSnapshot = "Citizen 008",
+                            CitizenNricSnapshot = "S0000008A",
+                            CitizenPhoneNumberSnapshot = "+6590000008",
+                            CourseDescriptionSnapshot = "Writing techniques across common genres.",
+                            CourseId = 8,
+                            CourseNameSnapshot = "Creative Writing",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExpiresAt = new DateTime(2026, 1, 1, 0, 18, 0, 0, DateTimeKind.Utc),
-                            FailedAttemptCount = 2,
+                            EducationAccountId = 8,
+                            EnrolledAt = new DateTime(2026, 1, 18, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            OtpHash = "otp-hash-008",
-                            SessionId = "otp-session-008"
+                            SchoolNameSnapshot = "Greenfield Academy"
                         },
                         new
                         {
                             Id = 9,
-                            AuthAccountId = 9,
+                            AccountNumberSnapshot = "EA000000000000000009",
+                            CitizenEmailSnapshot = "citizen009@example.com",
+                            CitizenFullNameSnapshot = "Citizen 009",
+                            CitizenNricSnapshot = "S0000009A",
+                            CitizenPhoneNumberSnapshot = "+6590000009",
+                            CourseDescriptionSnapshot = "Data preparation, analysis and reporting.",
+                            CourseId = 9,
+                            CourseNameSnapshot = "Data Analytics",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExpiresAt = new DateTime(2026, 1, 1, 0, 19, 0, 0, DateTimeKind.Utc),
-                            FailedAttemptCount = 0,
+                            EducationAccountId = 9,
+                            EnrolledAt = new DateTime(2026, 1, 19, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            OtpHash = "otp-hash-009",
-                            SessionId = "otp-session-009"
+                            SchoolNameSnapshot = "Harbourfront School"
                         },
                         new
                         {
                             Id = 10,
-                            AuthAccountId = 10,
+                            AccountNumberSnapshot = "EA000000000000000010",
+                            CitizenEmailSnapshot = "citizen010@example.com",
+                            CitizenFullNameSnapshot = "Citizen 010",
+                            CitizenNricSnapshot = "S0000010A",
+                            CitizenPhoneNumberSnapshot = "+6590000010",
+                            CourseDescriptionSnapshot = "Archived office applications programme.",
+                            CourseId = 10,
+                            CourseNameSnapshot = "Legacy Office Applications",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExpiresAt = new DateTime(2026, 1, 1, 0, 20, 0, 0, DateTimeKind.Utc),
-                            FailedAttemptCount = 1,
+                            EducationAccountId = 10,
+                            EnrolledAt = new DateTime(2026, 1, 20, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            OtpHash = "otp-hash-010",
-                            SessionId = "otp-session-010"
+                            SchoolNameSnapshot = "Hillcrest Education Centre",
+                            WithdrawnAt = new DateTime(2026, 1, 30, 0, 0, 0, 0, DateTimeKind.Utc)
                         });
                 });
 
@@ -1889,7 +2671,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             OccurredAt = new DateTime(2026, 1, 1, 0, 2, 0, 0, DateTimeKind.Utc),
                             PayloadJson = "{\"messageId\":2}",
                             RetryCount = 2,
-                            Status = 2,
+                            Status = 3,
                             Type = "EmailNotification"
                         },
                         new
@@ -1907,7 +2689,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             OccurredAt = new DateTime(2026, 1, 1, 0, 4, 0, 0, DateTimeKind.Utc),
                             PayloadJson = "{\"messageId\":4}",
                             RetryCount = 1,
-                            Status = 2,
+                            Status = 3,
                             Type = "EmailNotification"
                         },
                         new
@@ -1916,7 +2698,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             OccurredAt = new DateTime(2026, 1, 1, 0, 5, 0, 0, DateTimeKind.Utc),
                             PayloadJson = "{\"messageId\":5}",
                             RetryCount = 2,
-                            Status = 3,
+                            Status = 4,
                             Type = "AuditProjection"
                         },
                         new
@@ -1925,7 +2707,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             OccurredAt = new DateTime(2026, 1, 1, 0, 6, 0, 0, DateTimeKind.Utc),
                             PayloadJson = "{\"messageId\":6}",
                             RetryCount = 0,
-                            Status = 2,
+                            Status = 3,
                             Type = "EmailNotification"
                         },
                         new
@@ -1943,7 +2725,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             OccurredAt = new DateTime(2026, 1, 1, 0, 8, 0, 0, DateTimeKind.Utc),
                             PayloadJson = "{\"messageId\":8}",
                             RetryCount = 2,
-                            Status = 2,
+                            Status = 3,
                             Type = "EmailNotification"
                         },
                         new
@@ -1961,8 +2743,447 @@ namespace educationaccountmanagement.DAL.Migrations
                             OccurredAt = new DateTime(2026, 1, 1, 0, 10, 0, 0, DateTimeKind.Utc),
                             PayloadJson = "{\"messageId\":10}",
                             RetryCount = 1,
-                            Status = 3,
+                            Status = 4,
                             Type = "EmailNotification"
+                        });
+                });
+
+            modelBuilder.Entity("Models.Payment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AccountNumberSnapshot")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("CitizenFullNameSnapshot")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("CitizenNricSnapshot")
+                        .IsRequired()
+                        .HasMaxLength(9)
+                        .HasColumnType("nvarchar(9)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("EducationCreditTransactionId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ExternalReference")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("PaidAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PaymentMethod")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EducationCreditTransactionId")
+                        .IsUnique()
+                        .HasFilter("\"IsDeleted\" = 0 AND \"EducationCreditTransactionId\" IS NOT NULL");
+
+                    b.HasIndex("ExternalReference");
+
+                    b.HasIndex("PaidAt");
+
+                    b.HasIndex("PaymentMethod");
+
+                    b.HasIndex("Status");
+
+                    b.ToTable("Payment", t =>
+                        {
+                            t.HasCheckConstraint("CK_Payment_TotalAmount_NonNegative", "[TotalAmount] >= 0");
+                        });
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AccountNumberSnapshot = "EA000000000000000001",
+                            CitizenFullNameSnapshot = "Citizen 001",
+                            CitizenNricSnapshot = "S0000001A",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EducationCreditTransactionId = 21,
+                            IsDeleted = false,
+                            PaidAt = new DateTime(2026, 1, 21, 0, 0, 0, 0, DateTimeKind.Utc),
+                            PaymentMethod = 1,
+                            Status = 2,
+                            TotalAmount = 120m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AccountNumberSnapshot = "EA000000000000000002",
+                            CitizenFullNameSnapshot = "Citizen 002",
+                            CitizenNricSnapshot = "S0000002A",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EducationCreditTransactionId = 22,
+                            IsDeleted = false,
+                            PaidAt = new DateTime(2026, 1, 22, 0, 0, 0, 0, DateTimeKind.Utc),
+                            PaymentMethod = 1,
+                            Status = 2,
+                            TotalAmount = 70m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AccountNumberSnapshot = "EA000000000000000003",
+                            CitizenFullNameSnapshot = "Citizen 003",
+                            CitizenNricSnapshot = "S0000003A",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EducationCreditTransactionId = 23,
+                            IsDeleted = false,
+                            PaidAt = new DateTime(2026, 1, 23, 0, 0, 0, 0, DateTimeKind.Utc),
+                            PaymentMethod = 1,
+                            Status = 2,
+                            TotalAmount = 140m
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AccountNumberSnapshot = "EA000000000000000004",
+                            CitizenFullNameSnapshot = "Citizen 004",
+                            CitizenNricSnapshot = "S0000004A",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EducationCreditTransactionId = 24,
+                            IsDeleted = false,
+                            PaidAt = new DateTime(2026, 1, 24, 0, 0, 0, 0, DateTimeKind.Utc),
+                            PaymentMethod = 1,
+                            Status = 2,
+                            TotalAmount = 180m
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AccountNumberSnapshot = "EA000000000000000005",
+                            CitizenFullNameSnapshot = "Citizen 005",
+                            CitizenNricSnapshot = "S0000005A",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EducationCreditTransactionId = 25,
+                            IsDeleted = false,
+                            PaidAt = new DateTime(2026, 1, 25, 0, 0, 0, 0, DateTimeKind.Utc),
+                            PaymentMethod = 1,
+                            Status = 2,
+                            TotalAmount = 180m
+                        },
+                        new
+                        {
+                            Id = 6,
+                            AccountNumberSnapshot = "EA000000000000000006",
+                            CitizenFullNameSnapshot = "Citizen 006",
+                            CitizenNricSnapshot = "S0000006A",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EducationCreditTransactionId = 26,
+                            ExternalReference = "PAY-ONLINE-0006",
+                            IsDeleted = false,
+                            PaidAt = new DateTime(2026, 1, 26, 0, 0, 0, 0, DateTimeKind.Utc),
+                            PaymentMethod = 2,
+                            Status = 2,
+                            TotalAmount = 100m
+                        },
+                        new
+                        {
+                            Id = 7,
+                            AccountNumberSnapshot = "EA000000000000000007",
+                            CitizenFullNameSnapshot = "Citizen 007",
+                            CitizenNricSnapshot = "S0000007A",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EducationCreditTransactionId = 27,
+                            ExternalReference = "PAY-ONLINE-0007",
+                            IsDeleted = false,
+                            PaidAt = new DateTime(2026, 1, 27, 0, 0, 0, 0, DateTimeKind.Utc),
+                            PaymentMethod = 2,
+                            Status = 2,
+                            TotalAmount = 200m
+                        },
+                        new
+                        {
+                            Id = 8,
+                            AccountNumberSnapshot = "EA000000000000000008",
+                            CitizenFullNameSnapshot = "Citizen 008",
+                            CitizenNricSnapshot = "S0000008A",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EducationCreditTransactionId = 28,
+                            ExternalReference = "PAY-ONLINE-0008",
+                            IsDeleted = false,
+                            PaidAt = new DateTime(2026, 1, 28, 0, 0, 0, 0, DateTimeKind.Utc),
+                            PaymentMethod = 2,
+                            Status = 2,
+                            TotalAmount = 130m
+                        },
+                        new
+                        {
+                            Id = 9,
+                            AccountNumberSnapshot = "EA000000000000000009",
+                            CitizenFullNameSnapshot = "Citizen 009",
+                            CitizenNricSnapshot = "S0000009A",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EducationCreditTransactionId = 29,
+                            ExternalReference = "PAY-ONLINE-0009",
+                            IsDeleted = false,
+                            PaidAt = new DateTime(2026, 1, 29, 0, 0, 0, 0, DateTimeKind.Utc),
+                            PaymentMethod = 2,
+                            Status = 2,
+                            TotalAmount = 250m
+                        },
+                        new
+                        {
+                            Id = 10,
+                            AccountNumberSnapshot = "EA000000000000000010",
+                            CitizenFullNameSnapshot = "Citizen 010",
+                            CitizenNricSnapshot = "S0000010A",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EducationCreditTransactionId = 30,
+                            ExternalReference = "PAY-ONLINE-0010",
+                            IsDeleted = false,
+                            PaidAt = new DateTime(2026, 1, 30, 0, 0, 0, 0, DateTimeKind.Utc),
+                            PaymentMethod = 2,
+                            Status = 2,
+                            TotalAmount = 300m
+                        });
+                });
+
+            modelBuilder.Entity("Models.PaymentAllocation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ChargeGrossAmountSnapshot")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ChargeId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("ChargeNetAmountSnapshot")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ChargeRemainingAmountSnapshot")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("CourseNameSnapshot")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("PaymentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SchoolNameSnapshot")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ChargeId");
+
+                    b.HasIndex("PaymentId");
+
+                    b.HasIndex("PaymentId", "ChargeId")
+                        .IsUnique()
+                        .HasFilter("\"IsDeleted\" = 0 AND \"PaymentId\" IS NOT NULL AND \"ChargeId\" IS NOT NULL");
+
+                    b.ToTable("PaymentAllocation", t =>
+                        {
+                            t.HasCheckConstraint("CK_PaymentAllocation_Amount_NonNegative", "[Amount] >= 0");
+                        });
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Amount = 120m,
+                            ChargeGrossAmountSnapshot = 120m,
+                            ChargeId = 1,
+                            ChargeNetAmountSnapshot = 120m,
+                            ChargeRemainingAmountSnapshot = 0m,
+                            CourseNameSnapshot = "Applied Mathematics",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            PaymentId = 1,
+                            SchoolNameSnapshot = "Northview Secondary School"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Amount = 70m,
+                            ChargeGrossAmountSnapshot = 140m,
+                            ChargeId = 2,
+                            ChargeNetAmountSnapshot = 140m,
+                            ChargeRemainingAmountSnapshot = 70m,
+                            CourseNameSnapshot = "Computer Science Fundamentals",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            PaymentId = 2,
+                            SchoolNameSnapshot = "Eastbridge Secondary School"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Amount = 140m,
+                            ChargeGrossAmountSnapshot = 160m,
+                            ChargeId = 3,
+                            ChargeNetAmountSnapshot = 140m,
+                            ChargeRemainingAmountSnapshot = 0m,
+                            CourseNameSnapshot = "Business Communication",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            PaymentId = 3,
+                            SchoolNameSnapshot = "Westhaven Secondary School"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Amount = 180m,
+                            ChargeGrossAmountSnapshot = 180m,
+                            ChargeId = 4,
+                            ChargeNetAmountSnapshot = 180m,
+                            ChargeRemainingAmountSnapshot = 0m,
+                            CourseNameSnapshot = "Environmental Science",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            PaymentId = 4,
+                            SchoolNameSnapshot = "Southpoint Secondary School"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Amount = 180m,
+                            ChargeGrossAmountSnapshot = 200m,
+                            ChargeId = 5,
+                            ChargeNetAmountSnapshot = 180m,
+                            ChargeRemainingAmountSnapshot = 0m,
+                            CourseNameSnapshot = "Digital Media Design",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            PaymentId = 5,
+                            SchoolNameSnapshot = "Central Heights School"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Amount = 100m,
+                            ChargeGrossAmountSnapshot = 220m,
+                            ChargeId = 6,
+                            ChargeNetAmountSnapshot = 220m,
+                            ChargeRemainingAmountSnapshot = 120m,
+                            CourseNameSnapshot = "Hospitality Operations",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            PaymentId = 6,
+                            SchoolNameSnapshot = "Riverside Learning Institute"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Amount = 200m,
+                            ChargeGrossAmountSnapshot = 240m,
+                            ChargeId = 7,
+                            ChargeNetAmountSnapshot = 200m,
+                            ChargeRemainingAmountSnapshot = 0m,
+                            CourseNameSnapshot = "Electrical Engineering Basics",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            PaymentId = 7,
+                            SchoolNameSnapshot = "Lakeside Technical School"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Amount = 130m,
+                            ChargeGrossAmountSnapshot = 260m,
+                            ChargeId = 8,
+                            ChargeNetAmountSnapshot = 260m,
+                            ChargeRemainingAmountSnapshot = 130m,
+                            CourseNameSnapshot = "Creative Writing",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            PaymentId = 8,
+                            SchoolNameSnapshot = "Greenfield Academy"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Amount = 250m,
+                            ChargeGrossAmountSnapshot = 280m,
+                            ChargeId = 9,
+                            ChargeNetAmountSnapshot = 250m,
+                            ChargeRemainingAmountSnapshot = 0m,
+                            CourseNameSnapshot = "Data Analytics",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            PaymentId = 9,
+                            SchoolNameSnapshot = "Harbourfront School"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Amount = 300m,
+                            ChargeGrossAmountSnapshot = 300m,
+                            ChargeId = 10,
+                            ChargeNetAmountSnapshot = 300m,
+                            ChargeRemainingAmountSnapshot = 0m,
+                            CourseNameSnapshot = "Legacy Office Applications",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            PaymentId = 10,
+                            SchoolNameSnapshot = "Hillcrest Education Centre"
                         });
                 });
 
@@ -2115,6 +3336,178 @@ namespace educationaccountmanagement.DAL.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Models.School", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(320)
+                        .HasColumnType("nvarchar(320)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("SchoolName")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasFilter("\"IsDeleted\" = 0 AND \"Email\" IS NOT NULL");
+
+                    b.HasIndex("Status");
+
+                    b.ToTable("School");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "10 Northview Road, Singapore",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Email = "contact@northview.edu.sg",
+                            IsDeleted = false,
+                            PhoneNumber = "+6561000001",
+                            SchoolName = "Northview Secondary School",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Address = "20 Eastbridge Avenue, Singapore",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Email = "contact@eastbridge.edu.sg",
+                            IsDeleted = false,
+                            PhoneNumber = "+6561000002",
+                            SchoolName = "Eastbridge Secondary School",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Address = "30 Westhaven Street, Singapore",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Email = "contact@westhaven.edu.sg",
+                            IsDeleted = false,
+                            PhoneNumber = "+6561000003",
+                            SchoolName = "Westhaven Secondary School",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Address = "40 Southpoint Drive, Singapore",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Email = "contact@southpoint.edu.sg",
+                            IsDeleted = false,
+                            PhoneNumber = "+6561000004",
+                            SchoolName = "Southpoint Secondary School",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Address = "50 Central Heights, Singapore",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Email = "contact@centralheights.edu.sg",
+                            IsDeleted = false,
+                            PhoneNumber = "+6561000005",
+                            SchoolName = "Central Heights School",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Address = "60 Riverside Walk, Singapore",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Email = "contact@riverside.edu.sg",
+                            IsDeleted = false,
+                            PhoneNumber = "+6561000006",
+                            SchoolName = "Riverside Learning Institute",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Address = "70 Lakeside Crescent, Singapore",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Email = "contact@lakeside.edu.sg",
+                            IsDeleted = false,
+                            PhoneNumber = "+6561000007",
+                            SchoolName = "Lakeside Technical School",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Address = "80 Greenfield Lane, Singapore",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Email = "contact@greenfield.edu.sg",
+                            IsDeleted = false,
+                            PhoneNumber = "+6561000008",
+                            SchoolName = "Greenfield Academy",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Address = "90 Harbourfront Road, Singapore",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Email = "contact@harbourfront.edu.sg",
+                            IsDeleted = false,
+                            PhoneNumber = "+6561000009",
+                            SchoolName = "Harbourfront School",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Address = "100 Hillcrest Avenue, Singapore",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Email = "contact@hillcrest.edu.sg",
+                            IsDeleted = false,
+                            PhoneNumber = "+6561000010",
+                            SchoolName = "Hillcrest Education Centre",
+                            Status = 2
+                        });
+                });
+
             modelBuilder.Entity("Models.SsoIdentity", b =>
                 {
                     b.Property<int>("Id")
@@ -2160,9 +3553,13 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasIndex("ProviderUserId");
 
+                    b.HasIndex("AuthAccountId", "Provider")
+                        .IsUnique()
+                        .HasFilter("\"AuthAccountId\" IS NOT NULL AND \"Provider\" IS NOT NULL");
+
                     b.HasIndex("Provider", "ProviderUserId")
                         .IsUnique()
-                        .HasFilter("\"IsDeleted\" = 0 AND \"Provider\" IS NOT NULL AND \"ProviderUserId\" IS NOT NULL");
+                        .HasFilter("\"Provider\" IS NOT NULL AND \"ProviderUserId\" IS NOT NULL");
 
                     b.ToTable("SsoIdentity");
 
@@ -2315,7 +3712,10 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasIndex("TopupRuleId");
 
-                    b.ToTable("TopupBatch");
+                    b.ToTable("TopupBatch", t =>
+                        {
+                            t.HasCheckConstraint("CK_TopupBatch_TotalAmount_NonNegative", "[TotalAmount] >= 0 AND [TotalTargetCount] >= 0");
+                        });
 
                     b.HasData(
                         new
@@ -2489,7 +3889,10 @@ namespace educationaccountmanagement.DAL.Migrations
                         .IsUnique()
                         .HasFilter("\"IsDeleted\" = 0 AND \"TopupBatchId\" IS NOT NULL AND \"EducationAccountId\" IS NOT NULL");
 
-                    b.ToTable("TopupBatchTarget");
+                    b.ToTable("TopupBatchTarget", t =>
+                        {
+                            t.HasCheckConstraint("CK_TopupBatchTarget_Amount_NonNegative", "[Amount] >= 0");
+                        });
 
                     b.HasData(
                         new
@@ -2766,7 +4169,10 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasIndex("Status");
 
-                    b.ToTable("TopupRule");
+                    b.ToTable("TopupRule", t =>
+                        {
+                            t.HasCheckConstraint("CK_TopupRule_Amount_NonNegative", "[TopupAmount] >= 0");
+                        });
 
                     b.HasData(
                         new
@@ -3167,7 +4573,7 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasOne("Models.EducationAccount", "EducationAccount")
                         .WithMany("AdhocTopupBatchTargets")
                         .HasForeignKey("EducationAccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("AdhocTopupBatch");
@@ -3186,7 +4592,7 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasOne("Models.EducationCreditTransaction", "EducationCreditTransaction")
                         .WithOne("AdhocTopupBatchTargetTransaction")
                         .HasForeignKey("Models.AdhocTopupBatchTargetTransaction", "EducationCreditTransactionId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("AdhocTopupBatchTarget");
@@ -3196,11 +4602,18 @@ namespace educationaccountmanagement.DAL.Migrations
 
             modelBuilder.Entity("Models.AdminProfile", b =>
                 {
+                    b.HasOne("Models.School", "School")
+                        .WithMany("AdminProfiles")
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("Models.User", "User")
                         .WithOne("AdminProfile")
                         .HasForeignKey("Models.AdminProfile", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("School");
 
                     b.Navigation("User");
                 });
@@ -3215,15 +4628,51 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Navigation("ActorUser");
                 });
 
+            modelBuilder.Entity("Models.Charge", b =>
+                {
+                    b.HasOne("Models.Enrollment", "Enrollment")
+                        .WithOne("Charge")
+                        .HasForeignKey("Models.Charge", "EnrollmentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Enrollment");
+                });
+
+            modelBuilder.Entity("Models.Course", b =>
+                {
+                    b.HasOne("Models.School", "School")
+                        .WithMany("Courses")
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("School");
+                });
+
             modelBuilder.Entity("Models.EducationAccount", b =>
                 {
                     b.HasOne("Models.Citizen", "Citizen")
                         .WithOne("EducationAccount")
                         .HasForeignKey("Models.EducationAccount", "CitizenId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("Models.User", "ClosedByUser")
+                        .WithMany()
+                        .HasForeignKey("ClosedByUserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Models.User", "OpenedByUser")
+                        .WithMany()
+                        .HasForeignKey("OpenedByUserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.Navigation("Citizen");
+
+                    b.Navigation("ClosedByUser");
+
+                    b.Navigation("OpenedByUser");
                 });
 
             modelBuilder.Entity("Models.EducationCreditTransaction", b =>
@@ -3231,21 +4680,58 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasOne("Models.EducationAccount", "EducationAccount")
                         .WithMany("EducationCreditTransactions")
                         .HasForeignKey("EducationAccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("EducationAccount");
                 });
 
-            modelBuilder.Entity("Models.OtpVerification", b =>
+            modelBuilder.Entity("Models.Enrollment", b =>
                 {
-                    b.HasOne("Models.AuthAccount", "AuthAccount")
-                        .WithMany("OtpVerifications")
-                        .HasForeignKey("AuthAccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                    b.HasOne("Models.Course", "Course")
+                        .WithMany("Enrollments")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("AuthAccount");
+                    b.HasOne("Models.EducationAccount", "EducationAccount")
+                        .WithMany("Enrollments")
+                        .HasForeignKey("EducationAccountId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("EducationAccount");
+                });
+
+            modelBuilder.Entity("Models.Payment", b =>
+                {
+                    b.HasOne("Models.EducationCreditTransaction", "EducationCreditTransaction")
+                        .WithOne("Payment")
+                        .HasForeignKey("Models.Payment", "EducationCreditTransactionId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("EducationCreditTransaction");
+                });
+
+            modelBuilder.Entity("Models.PaymentAllocation", b =>
+                {
+                    b.HasOne("Models.Charge", "Charge")
+                        .WithMany("PaymentAllocations")
+                        .HasForeignKey("ChargeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Models.Payment", "Payment")
+                        .WithMany("PaymentAllocations")
+                        .HasForeignKey("PaymentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Charge");
+
+                    b.Navigation("Payment");
                 });
 
             modelBuilder.Entity("Models.RefreshToken", b =>
@@ -3286,7 +4772,7 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasOne("Models.EducationAccount", "EducationAccount")
                         .WithMany("TopupBatchTargets")
                         .HasForeignKey("EducationAccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Models.TopupBatch", "TopupBatch")
@@ -3305,7 +4791,7 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasOne("Models.EducationCreditTransaction", "EducationCreditTransaction")
                         .WithOne("TopupBatchTargetTransaction")
                         .HasForeignKey("Models.TopupBatchTargetTransaction", "EducationCreditTransactionId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Models.TopupBatchTarget", "TopupBatchTarget")
@@ -3360,11 +4846,14 @@ namespace educationaccountmanagement.DAL.Migrations
 
             modelBuilder.Entity("Models.AuthAccount", b =>
                 {
-                    b.Navigation("OtpVerifications");
-
                     b.Navigation("RefreshTokens");
 
                     b.Navigation("SsoIdentities");
+                });
+
+            modelBuilder.Entity("Models.Charge", b =>
+                {
+                    b.Navigation("PaymentAllocations");
                 });
 
             modelBuilder.Entity("Models.Citizen", b =>
@@ -3374,11 +4863,18 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Navigation("Users");
                 });
 
+            modelBuilder.Entity("Models.Course", b =>
+                {
+                    b.Navigation("Enrollments");
+                });
+
             modelBuilder.Entity("Models.EducationAccount", b =>
                 {
                     b.Navigation("AdhocTopupBatchTargets");
 
                     b.Navigation("EducationCreditTransactions");
+
+                    b.Navigation("Enrollments");
 
                     b.Navigation("TopupBatchTargets");
                 });
@@ -3387,7 +4883,26 @@ namespace educationaccountmanagement.DAL.Migrations
                 {
                     b.Navigation("AdhocTopupBatchTargetTransaction");
 
+                    b.Navigation("Payment");
+
                     b.Navigation("TopupBatchTargetTransaction");
+                });
+
+            modelBuilder.Entity("Models.Enrollment", b =>
+                {
+                    b.Navigation("Charge");
+                });
+
+            modelBuilder.Entity("Models.Payment", b =>
+                {
+                    b.Navigation("PaymentAllocations");
+                });
+
+            modelBuilder.Entity("Models.School", b =>
+                {
+                    b.Navigation("AdminProfiles");
+
+                    b.Navigation("Courses");
                 });
 
             modelBuilder.Entity("Models.TopupBatch", b =>

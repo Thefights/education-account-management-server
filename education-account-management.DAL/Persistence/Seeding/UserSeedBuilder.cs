@@ -20,7 +20,7 @@ public sealed class UserSeedBuilder : ISeedBuilder
                 {
                     1 => UserRole.SystemAdmin,
                     2 => UserRole.FinanceAdmin,
-                    3 => UserRole.CourseAdmin,
+                    3 => UserRole.SchoolAdmin,
                     _ => UserRole.AccountHolder
                 },
                 AuthAccountId = id,

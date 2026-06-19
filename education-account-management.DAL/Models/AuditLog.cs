@@ -1,7 +1,3 @@
-using Common;
-using EntityAnnotations;
-using Enums;
-
 namespace Models
 {
     public class AuditLog : BaseEntity

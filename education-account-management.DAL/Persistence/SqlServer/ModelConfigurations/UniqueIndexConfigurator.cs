@@ -1,5 +1,6 @@
 using Common;
 using EntityAnnotations;
+using Models;
 
 namespace Persistence.SqlServer.ModelConfigurations
 {
@@ -22,7 +23,10 @@ namespace Persistence.SqlServer.ModelConfigurations
                         var properties = index.Properties.Select(p => p.Name).ToArray();
                         entityType.RemoveIndex(index.Properties);
                         var nullFilters = properties.Select(p => $"\"{p}\" IS NOT NULL");
-                        var filter = string.Join(" AND ", new[] { $"\"{nameof(AuditEntity.IsDeleted)}\" = 0" }.Concat(nullFilters));
+                        var filterParts = IsPermanentUniqueIndex(entityType.ClrType, properties)
+                            ? nullFilters
+                            : new[] { $"\"{nameof(AuditEntity.IsDeleted)}\" = 0" }.Concat(nullFilters);
+                        var filter = string.Join(" AND ", filterParts);
                         modelBuilder.Entity(entityType.ClrType)
                                     .HasIndex(properties)
                                     .IsUnique()
@@ -32,7 +36,9 @@ namespace Persistence.SqlServer.ModelConfigurations
                     // Create unique indexes for properties with [Unique] attribute
                     foreach (var property in uniqueProperties)
                     {
-                        var filter = $"\"{nameof(AuditEntity.IsDeleted)}\" = 0 AND \"{property.Name}\" IS NOT NULL";
+                        var filter = IsPermanentUniqueIndex(entityType.ClrType, [property.Name])
+                            ? $"\"{property.Name}\" IS NOT NULL"
+                            : $"\"{nameof(AuditEntity.IsDeleted)}\" = 0 AND \"{property.Name}\" IS NOT NULL";
                         modelBuilder.Entity(entityType.ClrType)
                                     .HasIndex(property.Name)
                                     .IsUnique()
@@ -51,6 +57,20 @@ namespace Persistence.SqlServer.ModelConfigurations
                     }
                 }
             }
+        }
+
+        private static bool IsPermanentUniqueIndex(Type entityType, IReadOnlyCollection<string> properties)
+        {
+            var propertySet = properties.ToHashSet(StringComparer.Ordinal);
+
+            return entityType == typeof(Citizen) &&
+                   (propertySet.SetEquals([nameof(Citizen.Nric)]) ||
+                    propertySet.SetEquals([nameof(Citizen.SingpassSubjectId)])) ||
+                   entityType == typeof(EducationCreditTransaction) &&
+                   propertySet.SetEquals([nameof(EducationCreditTransaction.TransactionCode)]) ||
+                   entityType == typeof(SsoIdentity) &&
+                   (propertySet.SetEquals([nameof(SsoIdentity.Provider), nameof(SsoIdentity.ProviderUserId)]) ||
+                    propertySet.SetEquals([nameof(SsoIdentity.AuthAccountId), nameof(SsoIdentity.Provider)]));
         }
     }
 }

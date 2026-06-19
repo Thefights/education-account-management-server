@@ -1,7 +1,3 @@
-using Common;
-using EntityAnnotations.OnDeleteAttributes;
-using Enums;
-
 namespace Models
 {
     public class AuthAccount : AuditEntity
@@ -21,8 +17,5 @@ namespace Models
 
         [OnDelete(OnDeleteBehavior.Cascade)]
         public ICollection<RefreshToken> RefreshTokens { get; set; } = [];
-
-        [OnDelete(OnDeleteBehavior.Cascade)]
-        public ICollection<OtpVerification> OtpVerifications { get; set; } = [];
     }
 }

@@ -5,7 +5,7 @@ namespace Models
         [EnumDefined]
         public UserRole Role { get; set; } = UserRole.AccountHolder;
 
-        [NotDefaultValue]
+        [NotDefaultValue, Unique]
         public int AuthAccountId { get; set; }
         public AuthAccount AuthAccount { get; set; } = null!;
 
@@ -14,5 +14,6 @@ namespace Models
 
         [OnDelete(OnDeleteBehavior.Cascade)]
         public AdminProfile? AdminProfile { get; set; }
+
     }
 }

@@ -35,7 +35,7 @@ namespace Models
         [OnDelete(OnDeleteBehavior.SetNull)]
         public ICollection<User> Users { get; set; } = [];
 
-        [OnDelete(OnDeleteBehavior.Cascade)]
+        [OnDelete(OnDeleteBehavior.Restrict)]
         public EducationAccount? EducationAccount { get; set; }
     }
 }
