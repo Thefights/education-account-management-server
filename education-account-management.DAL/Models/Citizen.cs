@@ -1,7 +1,3 @@
-using Common;
-using EntityAnnotations.OnDeleteAttributes;
-using Enums;
-
 namespace Models
 {
     public class Citizen : AuditEntity
@@ -31,6 +27,9 @@ namespace Models
 
         [EnumDefined]
         public CitizenshipStatus CitizenshipStatus { get; set; } = CitizenshipStatus.Active;
+
+        [MessageMaxLength(50)]
+        public string? SchoolingStatus { get; set; }
 
         [OnDelete(OnDeleteBehavior.SetNull)]
         public ICollection<User> Users { get; set; } = [];

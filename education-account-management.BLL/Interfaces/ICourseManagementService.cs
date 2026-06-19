@@ -1,7 +1,6 @@
-using DTOs.CourseManagement;
-using Interfaces.Base;
+﻿using Interfaces.Base;
 
-namespace Interfaces.CourseManagement
+namespace Interfaces
 {
     public interface ICourseManagementService :
         IBaseCrudService<CreateCourseManagementDTO, GetCourseManagementDTO, UpdateCourseManagementDTO>;

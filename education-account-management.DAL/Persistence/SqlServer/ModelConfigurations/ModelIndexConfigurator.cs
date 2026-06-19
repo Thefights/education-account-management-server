@@ -53,7 +53,6 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(educationAccount => educationAccount.Status);
                 entity.HasIndex(educationAccount => educationAccount.OpenedAt);
                 entity.HasIndex(educationAccount => educationAccount.ClosedAt);
-                entity.HasIndex(educationAccount => educationAccount.ExtendedUntil);
             });
 
             modelBuilder.Entity<School>(entity =>

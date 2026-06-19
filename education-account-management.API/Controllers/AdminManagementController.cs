@@ -1,13 +1,13 @@
-using Authorization;
+﻿using Authorization;
 using Common.HttpResults;
 using Controllers.Base;
-using DTOs.AdminManagement;
+using DTOs.Admin;
 using Filters;
-using Interfaces.AdminManagement;
+using Interfaces;
 
 namespace Controllers
 {
-    [Authorize(Roles = RolePolicy.Admin)]
+    [Authorize(Roles = RolePolicy.SystemAdmin)]
     public class AdminManagementController(IAdminManagementService service)
         : GetController<GetAdminManagementDTO, AdminManagementFilterDTO>(service)
     {

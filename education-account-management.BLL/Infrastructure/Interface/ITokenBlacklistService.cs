@@ -6,4 +6,5 @@ public interface ITokenBlacklistService
     Task<bool> IsBlacklistedAsync(string accessToken);
     Task BlacklistAuthAccountAsync(int authAccountId);
     Task<bool> IsAuthAccountBlacklistedAsync(int authAccountId);
+    Task UnblacklistAuthAccountAsync(int authAccountId);
 }

@@ -1,4 +1,4 @@
-namespace DTOs.AiAssistant
+﻿namespace DTOs
 {
     public class GetAiAssistantSettingDTO
     {

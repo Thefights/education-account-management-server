@@ -1,4 +1,4 @@
-namespace Filters
+﻿namespace Filters
 {
     public class SchoolManagementFilterDTO : FilterDTO
     {

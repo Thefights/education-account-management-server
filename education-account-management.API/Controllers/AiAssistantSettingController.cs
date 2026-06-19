@@ -1,12 +1,12 @@
-using Authorization;
+﻿using Authorization;
 using Common.HttpResults;
 using Controllers.Base;
-using DTOs.AiAssistant;
-using Interfaces.AiAssistant;
+using DTOs;
+using Interfaces;
 
 namespace Controllers
 {
-    [Authorize(Roles = RolePolicy.Admin)]
+    [Authorize(Roles = RolePolicy.SystemAdmin)]
     public class AiAssistantSettingController(IAiAssistantSettingService service) : BaseController
     {
         private readonly IAiAssistantSettingService _service = service;

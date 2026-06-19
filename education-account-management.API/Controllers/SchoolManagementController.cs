@@ -1,12 +1,12 @@
-using Authorization;
+﻿using Authorization;
 using Controllers.Base;
-using DTOs.SchoolManagement;
+using DTOs;
 using Filters;
-using Interfaces.SchoolManagement;
+using Interfaces;
 
 namespace Controllers
 {
-    [Authorize(Roles = RolePolicy.Admin)]
+    [Authorize(Roles = RolePolicy.SystemAdmin)]
     public class SchoolManagementController(ISchoolManagementService service)
         : CrudController<CreateSchoolManagementDTO, GetSchoolManagementDTO, UpdateSchoolManagementDTO, SchoolManagementFilterDTO>(service)
     {

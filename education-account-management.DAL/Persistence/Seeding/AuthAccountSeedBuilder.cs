@@ -1,5 +1,3 @@
-using Enums;
-using Microsoft.EntityFrameworkCore;
 using Models;
 using Persistence.Seeding.Constants;
 
@@ -14,7 +12,7 @@ public sealed class AuthAccountSeedBuilder : ISeedBuilder
         var createdAt = SeedDataConstants.CreatedAt;
 
         modelBuilder.Entity<AuthAccount>().HasData(
-            Enumerable.Range(1, 10).Select(id => new AuthAccount
+            Enumerable.Range(1, 15).Select(id => new AuthAccount
             {
                 Id = id,
                 Status = id % 5 == 0 ? AuthAccountStatus.Inactive : AuthAccountStatus.Active,

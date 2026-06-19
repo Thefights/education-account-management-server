@@ -1,16 +1,25 @@
 using Common.HttpResults;
+using Enums;
 using Exceptions;
+using Interfaces.Audit;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Repositories.Interfaces;
 using System.Diagnostics;
+using System.Text.Json;
 
 namespace Middlewares
 {
-    public class ExceptionHandlingMiddleware(ILogger<ExceptionHandlingMiddleware> logger) : IMiddleware
+    public class ExceptionHandlingMiddleware(
+        ILogger<ExceptionHandlingMiddleware> logger,
+        IAuditLogWriter auditLogWriter,
+        IUnitOfWork unitOfWork) : IMiddleware
     {
         private const string InternalServerErrorMessage = "Internal server error";
 
         private readonly ILogger<ExceptionHandlingMiddleware> _logger = logger;
+        private readonly IAuditLogWriter _auditLogWriter = auditLogWriter;
+        private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
@@ -92,9 +101,12 @@ namespace Middlewares
             };
         }
 
-        private static IActionResult? TryCreateSqlErrorResult(DbUpdateException exception, out bool logAsInternal)
+        private static IActionResult? TryCreateSqlErrorResult(
+            DbUpdateException exception,
+            out bool logAsInternal)
         {
             logAsInternal = true;
+
             if (exception.GetBaseException() is not SqlException sqlException)
             {
                 return null;
@@ -120,7 +132,9 @@ namespace Middlewares
                 8152 or 2628 => CreateErrorResult(
                     "One or more values exceed the allowed length.",
                     StatusCodes.Status400BadRequest),
-                _ => CreateErrorResult(InternalServerErrorMessage, StatusCodes.Status500InternalServerError)
+                _ => CreateErrorResult(
+                    InternalServerErrorMessage,
+                    StatusCodes.Status500InternalServerError)
             };
         }
 
@@ -139,6 +153,22 @@ namespace Middlewares
             {
                 var traceId = Activity.Current?.Id ?? context.TraceIdentifier;
                 _logger.LogError(exception, "Unhandled exception occurred. TraceId: {TraceId}", traceId);
+            }
+
+            if (exception is UnauthorizedAccessException unauthEx)
+            {
+                await _auditLogWriter.LogAnonymousAsync(
+                    AuditLogCategory.Security,
+                    "UnauthorizedAccessException",
+                    JsonSerializer.Serialize(new
+                    {
+                        Message = unauthEx.Message,
+                        Path = context.Request.Path.ToString()
+                    }),
+                    cancellationToken: CancellationToken.None
+                );
+
+                await _unitOfWork.SaveChangeAsync();
             }
 
             await Execute(context, result);

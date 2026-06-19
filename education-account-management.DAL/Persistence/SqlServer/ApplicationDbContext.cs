@@ -1,4 +1,4 @@
-﻿using Models;
+using Models;
 using Persistence.SqlServer.ModelConfigurations;
 using Repositories.Interfaces;
 

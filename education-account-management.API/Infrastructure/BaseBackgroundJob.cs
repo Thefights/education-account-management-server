@@ -5,8 +5,8 @@ namespace Infrastructure
         ILogger logger)
         : BackgroundService
     {
-        private readonly IServiceScopeFactory _serviceScopeFactory = serviceScopeFactory;
-        private readonly ILogger _logger = logger;
+        protected readonly IServiceScopeFactory _serviceScopeFactory = serviceScopeFactory;
+        protected readonly ILogger _logger = logger;
 
         protected abstract string JobName { get; }
 

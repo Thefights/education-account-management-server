@@ -1,11 +1,11 @@
-using DTOs.AdminManagement;
-using Interfaces.AdminManagement;
+﻿using DTOs.Admin;
+using Interfaces;
 using Interfaces.Audit;
 using Results;
 using System.Linq.Expressions;
 using Validators;
 
-namespace Services.AdminManagement
+namespace Services
 {
     public class AdminManagementService(
         IUnitOfWork unitOfWork,

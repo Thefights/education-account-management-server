@@ -1,6 +1,4 @@
-using DTOs.AiAssistant;
-
-namespace Interfaces.AiAssistant
+﻿namespace Interfaces
 {
     public interface IAiAssistantSettingService
     {

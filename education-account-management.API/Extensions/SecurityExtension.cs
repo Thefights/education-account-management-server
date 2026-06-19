@@ -4,6 +4,10 @@ using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.RateLimiting;
+using Microsoft.Extensions.DependencyInjection;
+using Enums;
+using Interfaces.Audit;
+using Repositories.Interfaces;
 
 namespace Extensions
 {
@@ -86,6 +90,29 @@ namespace Extensions
 
                             context.Response.StatusCode = StatusCodes.Status403Forbidden;
                             context.Response.ContentType = "application/json";
+
+                            try
+                            {
+                                var auditLogWriter = context.HttpContext.RequestServices.GetRequiredService<IAuditLogWriter>();
+                                var unitOfWork = context.HttpContext.RequestServices.GetRequiredService<IUnitOfWork>();
+
+                                await auditLogWriter.LogAsync(
+                                    AuditLogCategory.Security,
+                                    "ForbiddenAccessAttempt",
+                                    System.Text.Json.JsonSerializer.Serialize(new
+                                    {
+                                        Path = context.HttpContext.Request.Path.ToString(),
+                                        Method = context.HttpContext.Request.Method
+                                    }),
+                                    cancellationToken: context.HttpContext.RequestAborted
+                                );
+
+                                await unitOfWork.SaveChangeAsync(context.HttpContext.RequestAborted);
+                            }
+                            catch (Exception)
+                            {
+                                // Fail-safe to avoid breaking response if logging fails
+                            }
 
                             if (result is ObjectResult objectResult)
                             {
@@ -242,9 +269,9 @@ namespace Extensions
                 "/auth/register/email-otp/send",
                 "/auth/register/email-otp/verify",
                 "/auth/login",
+                "/auth/social-login",
                 "/auth/account-holder/mock-singpass-login",
                 "/auth/admin/azure-ad-login",
-                "/auth/social-login",
                 "/auth/refresh-token",
                 "/auth/mfa/verify",
                 "/auth/mfa/resend",

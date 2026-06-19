@@ -1,4 +1,4 @@
-namespace Repositories.Interfaces
+﻿namespace Repositories.Interfaces
 {
     public interface IAuditUserContext
     {

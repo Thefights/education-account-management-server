@@ -14,13 +14,16 @@ namespace Extensions
             services.AddEmailServices(configuration);
             services.AddStorageServices(configuration);
             services.AddAuditServices();
+            services.AddCsvServices();
+            services.AddMappers();
+            services.AddBackgroundJobServices();
+            services.AddEducationAccountServices();
+            services.AddTopupServices();
+            services.AddBatchReportServices();
             services.AddAiAssistantServices();
             services.AddAdminManagementServices();
             services.AddCourseManagementServices();
             services.AddSchoolManagementServices();
-            services.AddCsvServices();
-            services.AddMappers();
-            services.AddBackgroundJobServices();
 
             return services;
         }

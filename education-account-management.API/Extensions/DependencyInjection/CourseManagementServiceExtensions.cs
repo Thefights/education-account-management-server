@@ -1,5 +1,5 @@
-using Interfaces.CourseManagement;
-using Services.CourseManagement;
+﻿using Interfaces;
+using Services;
 
 namespace Extensions.DependencyInjection;
 

@@ -1,7 +1,7 @@
-using DTOs.AdminManagement;
+﻿using DTOs.Admin;
 using Interfaces.Base;
 
-namespace Interfaces.AdminManagement
+namespace Interfaces
 {
     public interface IAdminManagementService : IBaseGetService<GetAdminManagementDTO>
     {

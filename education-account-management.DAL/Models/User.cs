@@ -14,6 +14,5 @@ namespace Models
 
         [OnDelete(OnDeleteBehavior.Cascade)]
         public AdminProfile? AdminProfile { get; set; }
-
     }
 }

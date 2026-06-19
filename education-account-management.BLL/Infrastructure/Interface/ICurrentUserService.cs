@@ -9,5 +9,7 @@ namespace Infrastructure.Interface
         int AuthId { get; }
 
         UserRole Role { get; }
+
+        string UserName { get; }
     }
 }

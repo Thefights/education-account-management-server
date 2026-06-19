@@ -1,7 +1,6 @@
-using DTOs.SchoolManagement;
-using Interfaces.Base;
+﻿using Interfaces.Base;
 
-namespace Interfaces.SchoolManagement
+namespace Interfaces
 {
     public interface ISchoolManagementService :
         IBaseCrudService<CreateSchoolManagementDTO, GetSchoolManagementDTO, UpdateSchoolManagementDTO>;

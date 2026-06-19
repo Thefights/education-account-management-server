@@ -1,4 +1,4 @@
-namespace DTOs.AdminManagement
+﻿namespace DTOs.Admin
 {
     public class CreateAdminManagementDTO
     {

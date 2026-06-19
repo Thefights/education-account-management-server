@@ -1,5 +1,5 @@
-using Interfaces.SchoolManagement;
-using Services.SchoolManagement;
+﻿using Interfaces;
+using Services;
 
 namespace Extensions.DependencyInjection;
 

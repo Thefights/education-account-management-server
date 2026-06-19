@@ -11,10 +11,13 @@ namespace Models
         [EnumDefined]
         public TopupRuleStatus Status { get; set; } = TopupRuleStatus.Active;
 
-        [OnDelete(OnDeleteBehavior.NoAction)]
+        [OnDelete(OnDeleteBehavior.Cascade)]
         public ICollection<TopupRuleCondition> Conditions { get; set; } = [];
 
         [OnDelete(OnDeleteBehavior.NoAction)]
         public ICollection<TopupBatch> TopupBatches { get; set; } = [];
+
+        [OnDelete(OnDeleteBehavior.Cascade)]
+        public ICollection<TopupScheduleRule> ScheduleRules { get; set; } = [];
     }
 }

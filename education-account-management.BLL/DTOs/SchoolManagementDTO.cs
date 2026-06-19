@@ -1,4 +1,4 @@
-namespace DTOs.SchoolManagement
+﻿namespace DTOs
 {
     public class CreateSchoolManagementDTO
     {

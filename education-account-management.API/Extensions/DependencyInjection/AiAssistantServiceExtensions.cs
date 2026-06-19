@@ -1,5 +1,5 @@
-using Interfaces.AiAssistant;
-using Services.AiAssistant;
+﻿using Interfaces;
+using Services;
 
 namespace Extensions.DependencyInjection;
 

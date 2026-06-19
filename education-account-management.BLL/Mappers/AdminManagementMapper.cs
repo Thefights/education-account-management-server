@@ -1,4 +1,4 @@
-using DTOs.AdminManagement;
+﻿using DTOs.Admin;
 
 namespace Mappers
 {

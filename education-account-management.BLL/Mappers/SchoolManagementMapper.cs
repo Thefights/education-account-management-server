@@ -1,5 +1,4 @@
-using DTOs.SchoolManagement;
-using Riok.Mapperly.Abstractions;
+﻿using Riok.Mapperly.Abstractions;
 
 namespace Mappers
 {

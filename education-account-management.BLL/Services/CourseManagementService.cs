@@ -1,10 +1,9 @@
-using DTOs.CourseManagement;
-using Interfaces.CourseManagement;
+﻿using Interfaces;
 using Results;
 using Services.Base;
 using Validators;
 
-namespace Services.CourseManagement
+namespace Services
 {
     public class CourseManagementService(
         IUnitOfWork unitOfWork,

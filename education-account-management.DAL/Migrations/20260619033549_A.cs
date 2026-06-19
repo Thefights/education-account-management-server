@@ -94,6 +94,7 @@ namespace educationaccountmanagement.DAL.Migrations
                     MailingAddress = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
                     DateOfBirth = table.Column<DateOnly>(type: "date", nullable: false),
                     CitizenshipStatus = table.Column<int>(type: "int", nullable: false),
+                    SchoolingStatus = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<int>(type: "int", nullable: true),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -113,7 +114,7 @@ namespace educationaccountmanagement.DAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Type = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    PayloadJson = table.Column<string>(type: "json", nullable: false),
+                    PayloadJson = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     RetryCount = table.Column<int>(type: "int", nullable: false),
                     OccurredAt = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -169,6 +170,33 @@ namespace educationaccountmanagement.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TopupSchedule",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ScheduleName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    ScheduleType = table.Column<int>(type: "int", nullable: false),
+                    OneTimeExecutionDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ExecuteAtDay = table.Column<int>(type: "int", nullable: true),
+                    ExecuteAtMonth = table.Column<int>(type: "int", nullable: true),
+                    SpecificExecutionTime = table.Column<TimeSpan>(type: "time", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    LastExecutedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    NextExecutionAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TopupSchedule", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "RefreshToken",
                 columns: table => new
                 {
@@ -221,6 +249,37 @@ namespace educationaccountmanagement.DAL.Migrations
                         principalTable: "AuthAccount",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EducationAccount",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AccountNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    EducationCreditBalance = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    OpenedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ClosedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CitizenId = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EducationAccount", x => x.Id);
+                    table.CheckConstraint("CK_EducationAccount_Balance_NonNegative", "[EducationCreditBalance] >= 0");
+                    table.ForeignKey(
+                        name: "FK_EducationAccount_Citizen_CitizenId",
+                        column: x => x.CitizenId,
+                        principalTable: "Citizen",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -343,85 +402,18 @@ namespace educationaccountmanagement.DAL.Migrations
                         name: "FK_TopupRuleCondition_TopupRule_TopupRuleId",
                         column: x => x.TopupRuleId,
                         principalTable: "TopupRule",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AdminProfile",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    StaffCode = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    FullName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(320)", maxLength: 320, nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    SchoolId = table.Column<int>(type: "int", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<int>(type: "int", nullable: true),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
-                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AdminProfile", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AdminProfile_School_SchoolId",
-                        column: x => x.SchoolId,
-                        principalTable: "School",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_AdminProfile_User_UserId",
-                        column: x => x.UserId,
-                        principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "AuditLog",
+                name: "TopupScheduleRule",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Category = table.Column<int>(type: "int", nullable: false),
-                    Action = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    IpAddress = table.Column<string>(type: "nvarchar(45)", maxLength: 45, nullable: false),
-                    PayloadJson = table.Column<string>(type: "json", nullable: true),
-                    OccurredAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ActorUserId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AuditLog", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AuditLog_User_ActorUserId",
-                        column: x => x.ActorUserId,
-                        principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "EducationAccount",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AccountNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    EducationCreditBalance = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false),
-                    OpenedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ClosedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ExtendedUntil = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    OpenedByUserId = table.Column<int>(type: "int", nullable: true),
-                    ClosedByUserId = table.Column<int>(type: "int", nullable: true),
-                    CitizenId = table.Column<int>(type: "int", nullable: false),
+                    TopupScheduleId = table.Column<int>(type: "int", nullable: false),
+                    TopupRuleId = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<int>(type: "int", nullable: true),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -431,26 +423,19 @@ namespace educationaccountmanagement.DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EducationAccount", x => x.Id);
-                    table.CheckConstraint("CK_EducationAccount_Balance_NonNegative", "[EducationCreditBalance] >= 0");
+                    table.PrimaryKey("PK_TopupScheduleRule", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EducationAccount_Citizen_CitizenId",
-                        column: x => x.CitizenId,
-                        principalTable: "Citizen",
+                        name: "FK_TopupScheduleRule_TopupRule_TopupRuleId",
+                        column: x => x.TopupRuleId,
+                        principalTable: "TopupRule",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_EducationAccount_User_ClosedByUserId",
-                        column: x => x.ClosedByUserId,
-                        principalTable: "User",
+                        name: "FK_TopupScheduleRule_TopupSchedule_TopupScheduleId",
+                        column: x => x.TopupScheduleId,
+                        principalTable: "TopupSchedule",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_EducationAccount_User_OpenedByUserId",
-                        column: x => x.OpenedByUserId,
-                        principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -518,6 +503,68 @@ namespace educationaccountmanagement.DAL.Migrations
                         name: "FK_EducationCreditTransaction_EducationAccount_EducationAccountId",
                         column: x => x.EducationAccountId,
                         principalTable: "EducationAccount",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AdminProfile",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StaffCode = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    FullName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(320)", maxLength: 320, nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    Nric = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: false),
+                    SchoolId = table.Column<int>(type: "int", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AdminProfile", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AdminProfile_School_SchoolId",
+                        column: x => x.SchoolId,
+                        principalTable: "School",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_AdminProfile_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AuditLog",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Category = table.Column<int>(type: "int", nullable: false),
+                    Action = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Nric = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IpAddress = table.Column<string>(type: "nvarchar(45)", maxLength: 45, nullable: false),
+                    PayloadJson = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OccurredAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ActorUserId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AuditLog", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AuditLog_User_ActorUserId",
+                        column: x => x.ActorUserId,
+                        principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -807,24 +854,34 @@ namespace educationaccountmanagement.DAL.Migrations
                     { 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, null, null, 1, null, null },
                     { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc), null, 1, null, null },
                     { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 0, false, null, null, 1, null, null },
-                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc), null, 2, null, null }
+                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc), null, 2, null, null },
+                    { 11, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, null, null, 1, null, null },
+                    { 12, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 0, false, new DateTime(2026, 1, 13, 0, 0, 0, 0, DateTimeKind.Utc), null, 1, null, null },
+                    { 13, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, null, null, 1, null, null },
+                    { 14, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, new DateTime(2026, 1, 15, 0, 0, 0, 0, DateTimeKind.Utc), null, 1, null, null },
+                    { 15, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 0, false, null, null, 2, null, null }
                 });
 
             migrationBuilder.InsertData(
                 table: "Citizen",
-                columns: new[] { "Id", "CitizenshipStatus", "CreatedAt", "CreatedBy", "DateOfBirth", "DeletedAt", "Email", "FullName", "IsDeleted", "MailingAddress", "Nric", "PhoneNumber", "ResidentialAddress", "SingpassSubjectId", "UpdatedAt", "UpdatedBy" },
+                columns: new[] { "Id", "CitizenshipStatus", "CreatedAt", "CreatedBy", "DateOfBirth", "DeletedAt", "Email", "FullName", "IsDeleted", "MailingAddress", "Nric", "PhoneNumber", "ResidentialAddress", "SchoolingStatus", "SingpassSubjectId", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, new DateOnly(1991, 1, 2), null, "citizen001@example.com", "Citizen 001", false, "Mailing block 1, Singapore", "S0000001A", "+6590000001", "Residential block 1, Singapore", "singpass-subject-001", null, null },
-                    { 2, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, new DateOnly(1992, 2, 3), null, "citizen002@example.com", "Citizen 002", false, "Mailing block 2, Singapore", "S0000002A", "+6590000002", "Residential block 2, Singapore", "singpass-subject-002", null, null },
-                    { 3, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, new DateOnly(1993, 3, 4), null, "citizen003@example.com", "Citizen 003", false, "Mailing block 3, Singapore", "S0000003A", "+6590000003", "Residential block 3, Singapore", "singpass-subject-003", null, null },
-                    { 4, 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, new DateOnly(1994, 4, 5), null, "citizen004@example.com", "Citizen 004", false, "Mailing block 4, Singapore", "S0000004A", "+6590000004", "Residential block 4, Singapore", "singpass-subject-004", null, null },
-                    { 5, 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, new DateOnly(1995, 5, 6), null, "citizen005@example.com", "Citizen 005", false, "Mailing block 5, Singapore", "S0000005A", "+6590000005", "Residential block 5, Singapore", "singpass-subject-005", null, null },
-                    { 6, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, new DateOnly(1996, 6, 7), null, "citizen006@example.com", "Citizen 006", false, "Mailing block 6, Singapore", "S0000006A", "+6590000006", "Residential block 6, Singapore", "singpass-subject-006", null, null },
-                    { 7, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, new DateOnly(1997, 7, 8), null, "citizen007@example.com", "Citizen 007", false, "Mailing block 7, Singapore", "S0000007A", "+6590000007", "Residential block 7, Singapore", "singpass-subject-007", null, null },
-                    { 8, 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, new DateOnly(1998, 8, 9), null, "citizen008@example.com", "Citizen 008", false, "Mailing block 8, Singapore", "S0000008A", "+6590000008", "Residential block 8, Singapore", "singpass-subject-008", null, null },
-                    { 9, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, new DateOnly(1999, 9, 10), null, "citizen009@example.com", "Citizen 009", false, "Mailing block 9, Singapore", "S0000009A", "+6590000009", "Residential block 9, Singapore", "singpass-subject-009", null, null },
-                    { 10, 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, new DateOnly(2000, 10, 11), null, "citizen010@example.com", "Citizen 010", false, "Mailing block 10, Singapore", "S0000010A", "+6590000010", "Residential block 10, Singapore", "singpass-subject-010", null, null }
+                    { 1, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, new DateOnly(1991, 1, 2), null, "citizen001@example.com", "Citizen 001", false, "Mailing block 1, Singapore", "S0000001A", "+6590000001", "Residential block 1, Singapore", "Enrolled", "singpass-subject-001", null, null },
+                    { 2, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, new DateOnly(1992, 2, 3), null, "citizen002@example.com", "Citizen 002", false, "Mailing block 2, Singapore", "S0000002A", "+6590000002", "Residential block 2, Singapore", "Not Enrolled", "singpass-subject-002", null, null },
+                    { 3, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, new DateOnly(1993, 3, 4), null, "citizen003@example.com", "Citizen 003", false, "Mailing block 3, Singapore", "S0000003A", "+6590000003", "Residential block 3, Singapore", "Graduated", "singpass-subject-003", null, null },
+                    { 4, 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, new DateOnly(1994, 4, 5), null, "citizen004@example.com", "Citizen 004", false, "Mailing block 4, Singapore", "S0000004A", "+6590000004", "Residential block 4, Singapore", "Suspended", "singpass-subject-004", null, null },
+                    { 5, 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, new DateOnly(1995, 5, 6), null, "citizen005@example.com", "Citizen 005", false, "Mailing block 5, Singapore", "S0000005A", "+6590000005", "Residential block 5, Singapore", "Withdrawn", "singpass-subject-005", null, null },
+                    { 6, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, new DateOnly(1996, 6, 7), null, "citizen006@example.com", "Citizen 006", false, "Mailing block 6, Singapore", "S0000006A", "+6590000006", "Residential block 6, Singapore", "Enrolled", "singpass-subject-006", null, null },
+                    { 7, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, new DateOnly(1997, 7, 8), null, "citizen007@example.com", "Citizen 007", false, "Mailing block 7, Singapore", "S0000007A", "+6590000007", "Residential block 7, Singapore", "Not Enrolled", "singpass-subject-007", null, null },
+                    { 8, 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, new DateOnly(1998, 8, 9), null, "citizen008@example.com", "Citizen 008", false, "Mailing block 8, Singapore", "S0000008A", "+6590000008", "Residential block 8, Singapore", "Graduated", "singpass-subject-008", null, null },
+                    { 9, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, new DateOnly(1999, 9, 10), null, "citizen009@example.com", "Citizen 009", false, "Mailing block 9, Singapore", "S0000009A", "+6590000009", "Residential block 9, Singapore", "Suspended", "singpass-subject-009", null, null },
+                    { 10, 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, new DateOnly(2000, 10, 11), null, "citizen010@example.com", "Citizen 010", false, "Mailing block 10, Singapore", "S0000010A", "+6590000010", "Residential block 10, Singapore", "Withdrawn", "singpass-subject-010", null, null },
+                    { 11, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, new DateOnly(2001, 11, 12), null, "citizen011@example.com", "Citizen 011", false, "Mailing block 11, Singapore", "S0000011A", "+6590000011", "Residential block 11, Singapore", "Enrolled", "singpass-subject-011", null, null },
+                    { 12, 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, new DateOnly(2002, 12, 13), null, "citizen012@example.com", "Citizen 012", false, "Mailing block 12, Singapore", "S0000012A", "+6590000012", "Residential block 12, Singapore", "Not Enrolled", "singpass-subject-012", null, null },
+                    { 13, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, new DateOnly(2003, 1, 14), null, "citizen013@example.com", "Citizen 013", false, "Mailing block 13, Singapore", "S0000013A", "+6590000013", "Residential block 13, Singapore", "Graduated", "singpass-subject-013", null, null },
+                    { 14, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, new DateOnly(2004, 2, 15), null, "citizen014@example.com", "Citizen 014", false, "Mailing block 14, Singapore", "S0000014A", "+6590000014", "Residential block 14, Singapore", "Suspended", "singpass-subject-014", null, null },
+                    { 15, 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, new DateOnly(2005, 3, 16), null, "citizen015@example.com", "Citizen 015", false, "Mailing block 15, Singapore", "S0000015A", "+6590000015", "Residential block 15, Singapore", "Withdrawn", "singpass-subject-015", null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -866,16 +923,83 @@ namespace educationaccountmanagement.DAL.Migrations
                 columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "IsDeleted", "RuleName", "Status", "TopupAmount", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Top-up Rule 001", 1, 110m, null, null },
-                    { 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Top-up Rule 002", 1, 120m, null, null },
-                    { 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Top-up Rule 003", 1, 130m, null, null },
-                    { 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Top-up Rule 004", 1, 140m, null, null },
-                    { 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Top-up Rule 005", 2, 150m, null, null },
-                    { 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Top-up Rule 006", 1, 160m, null, null },
-                    { 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Top-up Rule 007", 1, 170m, null, null },
-                    { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Top-up Rule 008", 1, 180m, null, null },
-                    { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Top-up Rule 009", 1, 190m, null, null },
-                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Top-up Rule 010", 2, 200m, null, null }
+                    { 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 001", 2, 70m, null, null },
+                    { 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 002", 1, 770m, null, null },
+                    { 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 003", 1, 790m, null, null },
+                    { 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 004", 1, 170m, null, null },
+                    { 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 005", 1, 260m, null, null },
+                    { 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 006", 1, 230m, null, null },
+                    { 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 007", 2, 220m, null, null },
+                    { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 008", 1, 140m, null, null },
+                    { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 009", 1, 200m, null, null },
+                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 010", 1, 860m, null, null },
+                    { 11, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 011", 1, 110m, null, null },
+                    { 12, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 012", 1, 360m, null, null },
+                    { 13, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 013", 1, 580m, null, null },
+                    { 14, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 014", 1, 730m, null, null },
+                    { 15, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 015", 1, 400m, null, null },
+                    { 16, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 016", 1, 680m, null, null },
+                    { 17, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 017", 1, 520m, null, null },
+                    { 18, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 018", 1, 260m, null, null },
+                    { 19, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 019", 1, 10m, null, null },
+                    { 20, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 020", 1, 450m, null, null },
+                    { 21, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 021", 1, 710m, null, null },
+                    { 22, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 022", 1, 270m, null, null },
+                    { 23, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 023", 1, 630m, null, null },
+                    { 24, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 024", 1, 370m, null, null },
+                    { 25, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 025", 1, 180m, null, null },
+                    { 26, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 026", 1, 640m, null, null },
+                    { 27, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 027", 1, 440m, null, null },
+                    { 28, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 028", 1, 30m, null, null },
+                    { 29, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 029", 2, 710m, null, null },
+                    { 30, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 030", 1, 930m, null, null },
+                    { 31, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 031", 1, 100m, null, null },
+                    { 32, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 032", 2, 340m, null, null },
+                    { 33, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 033", 2, 820m, null, null },
+                    { 34, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 034", 1, 870m, null, null },
+                    { 35, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 035", 1, 770m, null, null },
+                    { 36, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 036", 1, 740m, null, null },
+                    { 37, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 037", 1, 440m, null, null },
+                    { 38, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 038", 1, 650m, null, null },
+                    { 39, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 039", 2, 260m, null, null },
+                    { 40, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 040", 1, 80m, null, null },
+                    { 41, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 041", 1, 250m, null, null },
+                    { 42, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 042", 1, 570m, null, null },
+                    { 43, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 043", 2, 600m, null, null },
+                    { 44, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 044", 2, 770m, null, null },
+                    { 45, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 045", 1, 460m, null, null },
+                    { 46, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 046", 1, 60m, null, null },
+                    { 47, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 047", 1, 550m, null, null },
+                    { 48, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 048", 1, 390m, null, null },
+                    { 49, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 049", 1, 120m, null, null },
+                    { 50, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Random Top-up Rule 050", 1, 460m, null, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "TopupSchedule",
+                columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "ExecuteAtDay", "ExecuteAtMonth", "IsActive", "IsDeleted", "LastExecutedAt", "NextExecutionAt", "OneTimeExecutionDate", "ScheduleName", "ScheduleType", "SpecificExecutionTime", "UpdatedAt", "UpdatedBy" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, null, false, false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Random Schedule 001", 0, new TimeSpan(0, 18, 30, 0, 0), null, null },
+                    { 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 8, null, true, false, null, new DateTime(2027, 7, 8, 3, 44, 0, 0, DateTimeKind.Utc), null, "Random Schedule 002", 2, new TimeSpan(0, 3, 44, 0, 0), null, null },
+                    { 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, null, true, false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Random Schedule 003", 0, new TimeSpan(0, 5, 1, 0, 0), null, null },
+                    { 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, null, true, false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Random Schedule 004", 0, new TimeSpan(0, 4, 53, 0, 0), null, null },
+                    { 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 11, null, true, false, null, new DateTime(2027, 9, 11, 2, 31, 0, 0, DateTimeKind.Utc), null, "Random Schedule 005", 2, new TimeSpan(0, 2, 31, 0, 0), null, null },
+                    { 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, null, true, false, null, new DateTime(2027, 5, 7, 17, 44, 0, 0, DateTimeKind.Utc), new DateTime(2027, 5, 7, 0, 0, 0, 0, DateTimeKind.Utc), "Random Schedule 006", 1, new TimeSpan(0, 17, 44, 0, 0), null, null },
+                    { 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 8, null, true, false, null, new DateTime(2027, 10, 8, 12, 29, 0, 0, DateTimeKind.Utc), null, "Random Schedule 007", 2, new TimeSpan(0, 12, 29, 0, 0), null, null },
+                    { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, null, true, false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Random Schedule 008", 0, new TimeSpan(0, 10, 29, 0, 0), null, null },
+                    { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 18, null, true, false, null, new DateTime(2027, 4, 18, 6, 16, 0, 0, DateTimeKind.Utc), null, "Random Schedule 009", 2, new TimeSpan(0, 6, 16, 0, 0), null, null },
+                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, null, true, false, null, new DateTime(2027, 8, 17, 4, 51, 0, 0, DateTimeKind.Utc), new DateTime(2027, 8, 17, 0, 0, 0, 0, DateTimeKind.Utc), "Random Schedule 010", 1, new TimeSpan(0, 4, 51, 0, 0), null, null },
+                    { 11, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, null, true, false, null, new DateTime(2027, 9, 2, 0, 32, 0, 0, DateTimeKind.Utc), new DateTime(2027, 9, 2, 0, 0, 0, 0, DateTimeKind.Utc), "Random Schedule 011", 1, new TimeSpan(0, 0, 32, 0, 0), null, null },
+                    { 12, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 10, null, false, false, null, new DateTime(2027, 1, 10, 2, 25, 0, 0, DateTimeKind.Utc), null, "Random Schedule 012", 2, new TimeSpan(0, 2, 25, 0, 0), null, null },
+                    { 13, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 22, null, false, false, null, new DateTime(2027, 5, 22, 20, 43, 0, 0, DateTimeKind.Utc), null, "Random Schedule 013", 2, new TimeSpan(0, 20, 43, 0, 0), null, null },
+                    { 14, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 19, null, true, false, null, new DateTime(2027, 8, 19, 10, 22, 0, 0, DateTimeKind.Utc), null, "Random Schedule 014", 2, new TimeSpan(0, 10, 22, 0, 0), null, null },
+                    { 15, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, null, false, false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Random Schedule 015", 0, new TimeSpan(0, 1, 17, 0, 0), null, null },
+                    { 16, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, null, true, false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Random Schedule 016", 0, new TimeSpan(0, 13, 32, 0, 0), null, null },
+                    { 17, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, null, false, false, null, new DateTime(2027, 6, 20, 18, 1, 0, 0, DateTimeKind.Utc), new DateTime(2027, 6, 20, 0, 0, 0, 0, DateTimeKind.Utc), "Random Schedule 017", 1, new TimeSpan(0, 18, 1, 0, 0), null, null },
+                    { 18, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, null, true, false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Random Schedule 018", 0, new TimeSpan(0, 13, 16, 0, 0), null, null },
+                    { 19, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, null, true, false, null, new DateTime(2027, 6, 17, 2, 15, 0, 0, DateTimeKind.Utc), new DateTime(2027, 6, 17, 0, 0, 0, 0, DateTimeKind.Utc), "Random Schedule 019", 1, new TimeSpan(0, 2, 15, 0, 0), null, null },
+                    { 20, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, null, true, false, null, new DateTime(2027, 2, 26, 2, 48, 0, 0, DateTimeKind.Utc), new DateTime(2027, 2, 26, 0, 0, 0, 0, DateTimeKind.Utc), "Random Schedule 020", 1, new TimeSpan(0, 2, 48, 0, 0), null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -897,19 +1021,19 @@ namespace educationaccountmanagement.DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "EducationAccount",
-                columns: new[] { "Id", "AccountNumber", "CitizenId", "ClosedAt", "ClosedByUserId", "CreatedAt", "CreatedBy", "DeletedAt", "EducationCreditBalance", "ExtendedUntil", "IsDeleted", "OpenedAt", "OpenedByUserId", "Status", "UpdatedAt", "UpdatedBy" },
+                columns: new[] { "Id", "AccountNumber", "CitizenId", "ClosedAt", "CreatedAt", "CreatedBy", "DeletedAt", "EducationCreditBalance", "IsDeleted", "OpenedAt", "Status", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "EA000000000000000001", 1, null, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1100m, null, false, new DateTime(2026, 1, 2, 0, 0, 0, 0, DateTimeKind.Utc), null, 1, null, null },
-                    { 2, "EA000000000000000002", 2, null, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1200m, null, false, new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc), null, 1, null, null },
-                    { 3, "EA000000000000000003", 3, null, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1300m, null, false, new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Utc), null, 1, null, null },
-                    { 4, "EA000000000000000004", 4, null, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1400m, null, false, new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc), null, 2, null, null },
-                    { 5, "EA000000000000000005", 5, null, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1500m, null, false, new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc), null, 1, null, null },
-                    { 6, "EA000000000000000006", 6, new DateTime(2026, 4, 17, 0, 0, 0, 0, DateTimeKind.Utc), null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1600m, null, false, new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc), null, 3, null, null },
-                    { 7, "EA000000000000000007", 7, null, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1700m, null, false, new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc), null, 1, null, null },
-                    { 8, "EA000000000000000008", 8, null, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1800m, null, false, new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc), null, 2, null, null },
-                    { 9, "EA000000000000000009", 9, null, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1900m, null, false, new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc), null, 1, null, null },
-                    { 10, "EA000000000000000010", 10, null, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2000m, null, false, new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc), null, 1, null, null }
+                    { 1, "EA000000000000000001", 1, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1100m, false, new DateTime(2026, 1, 2, 0, 0, 0, 0, DateTimeKind.Utc), 1, null, null },
+                    { 2, "EA000000000000000002", 2, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1200m, false, new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc), 1, null, null },
+                    { 3, "EA000000000000000003", 3, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1300m, false, new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Utc), 1, null, null },
+                    { 4, "EA000000000000000004", 4, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1400m, false, new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc), 2, null, null },
+                    { 5, "EA000000000000000005", 5, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1500m, false, new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc), 1, null, null },
+                    { 6, "EA000000000000000006", 6, new DateTime(2026, 4, 17, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1600m, false, new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc), 3, null, null },
+                    { 7, "EA000000000000000007", 7, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1700m, false, new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc), 1, null, null },
+                    { 8, "EA000000000000000008", 8, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1800m, false, new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc), 2, null, null },
+                    { 9, "EA000000000000000009", 9, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1900m, false, new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc), 1, null, null },
+                    { 10, "EA000000000000000010", 10, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2000m, false, new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc), 1, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -935,15 +1059,20 @@ namespace educationaccountmanagement.DAL.Migrations
                 values: new object[,]
                 {
                     { 1, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 2, "ae5873a0-acbe-4976-ba46-69aee20cfa48", null, null },
-                    { 2, 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 2, "azure-object-002", null, null },
-                    { 3, 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 2, "azure-object-003", null, null },
-                    { 4, 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "singpass-subject-004", null, null },
-                    { 5, 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "singpass-subject-005", null, null },
-                    { 6, 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "singpass-subject-006", null, null },
-                    { 7, 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "singpass-subject-007", null, null },
-                    { 8, 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "singpass-subject-008", null, null },
+                    { 2, 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 2, "f8cdef31-a31e-4b4a-93e4-5f571e91255a", null, null },
+                    { 3, 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 2, "b1e7cdf2-43ef-4a3e-9eb8-4e63b3ae42f4", null, null },
+                    { 4, 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 2, "f116e09e-1a6f-4847-aa57-442705d242d0", null, null },
+                    { 5, 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 2, "db3c66a7-b7f4-47df-bd7a-3f70fcaaa73d", null, null },
+                    { 6, 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 2, "0446ecca-6483-4129-bd4f-906f970f18d5", null, null },
+                    { 7, 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 2, "azure-object-007", null, null },
+                    { 8, 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 2, "azure-object-008", null, null },
                     { 9, 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "singpass-subject-009", null, null },
-                    { 10, 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "singpass-subject-010", null, null }
+                    { 10, 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "singpass-subject-010", null, null },
+                    { 11, 11, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "singpass-subject-011", null, null },
+                    { 12, 12, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "singpass-subject-012", null, null },
+                    { 13, 13, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "singpass-subject-013", null, null },
+                    { 14, 14, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "singpass-subject-014", null, null },
+                    { 15, 15, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "singpass-subject-015", null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -968,16 +1097,154 @@ namespace educationaccountmanagement.DAL.Migrations
                 columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "Field", "IsDeleted", "Operator", "TopupRuleId", "UpdatedAt", "UpdatedBy", "ValueNumber", "ValueText" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 1, 1, null, null, 19m, null },
-                    { 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 4, 2, null, null, 20m, null },
-                    { 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 3, false, 1, 3, null, null, null, "Enrolled" },
-                    { 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 4, 4, null, null, 22m, null },
-                    { 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 1, 5, null, null, 23m, null },
-                    { 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 3, false, 4, 6, null, null, null, "Enrolled" },
-                    { 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 1, 7, null, null, 25m, null },
-                    { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 4, 8, null, null, 26m, null },
-                    { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 3, false, 1, 9, null, null, null, "Enrolled" },
-                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 4, 10, null, null, 28m, null }
+                    { 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 4, 1, null, null, 12m, null },
+                    { 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 6, 1, null, null, 22m, null },
+                    { 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 4, 2, null, null, 700m, null },
+                    { 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 6, 2, null, null, 1500m, null },
+                    { 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 4, 3, null, null, 16m, null },
+                    { 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 6, 3, null, null, 19m, null },
+                    { 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 4, 4, null, null, 200m, null },
+                    { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 6, 4, null, null, 600m, null },
+                    { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 4, 5, null, null, 12m, null },
+                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 6, 5, null, null, 14m, null },
+                    { 11, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 4, 6, null, null, 100m, null },
+                    { 12, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 6, 6, null, null, 900m, null },
+                    { 13, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 4, 7, null, null, 300m, null },
+                    { 14, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 6, 7, null, null, 400m, null },
+                    { 15, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 4, 8, null, null, 300m, null },
+                    { 16, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 6, 8, null, null, 1000m, null },
+                    { 17, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 4, 9, null, null, 600m, null },
+                    { 18, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 6, 9, null, null, 1300m, null },
+                    { 19, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 4, 10, null, null, 300m, null },
+                    { 20, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 6, 10, null, null, 600m, null },
+                    { 21, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 4, 11, null, null, 200m, null },
+                    { 22, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 6, 11, null, null, 700m, null },
+                    { 23, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 4, 12, null, null, 13m, null },
+                    { 24, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 6, 12, null, null, 22m, null },
+                    { 25, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 4, 13, null, null, 14m, null },
+                    { 26, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 6, 13, null, null, 19m, null },
+                    { 27, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 4, 14, null, null, 16m, null },
+                    { 28, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 6, 14, null, null, 20m, null },
+                    { 29, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 4, 15, null, null, 13m, null },
+                    { 30, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 6, 15, null, null, 20m, null },
+                    { 31, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 4, 16, null, null, 14m, null },
+                    { 32, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 6, 16, null, null, 23m, null },
+                    { 33, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 4, 17, null, null, 17m, null },
+                    { 34, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 6, 17, null, null, 22m, null },
+                    { 35, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 4, 18, null, null, 400m, null },
+                    { 36, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 6, 18, null, null, 900m, null },
+                    { 37, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 4, 19, null, null, 15m, null },
+                    { 38, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 6, 19, null, null, 22m, null },
+                    { 39, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 4, 20, null, null, 17m, null },
+                    { 40, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 6, 20, null, null, 19m, null },
+                    { 41, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 4, 21, null, null, 14m, null },
+                    { 42, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 6, 21, null, null, 18m, null },
+                    { 43, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 4, 22, null, null, 16m, null },
+                    { 44, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 6, 22, null, null, 17m, null },
+                    { 45, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 4, 23, null, null, 700m, null },
+                    { 46, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 6, 23, null, null, 1400m, null },
+                    { 47, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 4, 24, null, null, 16m, null },
+                    { 48, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 6, 24, null, null, 22m, null },
+                    { 49, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 4, 25, null, null, 14m, null },
+                    { 50, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 6, 25, null, null, 21m, null },
+                    { 51, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 4, 26, null, null, 200m, null },
+                    { 52, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 6, 26, null, null, 300m, null },
+                    { 53, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 4, 27, null, null, 13m, null },
+                    { 54, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 6, 27, null, null, 16m, null },
+                    { 55, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 4, 28, null, null, 500m, null },
+                    { 56, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 6, 28, null, null, 1000m, null },
+                    { 57, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 4, 29, null, null, 0m, null },
+                    { 58, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 6, 29, null, null, 700m, null },
+                    { 59, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 4, 30, null, null, 14m, null },
+                    { 60, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 6, 30, null, null, 22m, null },
+                    { 61, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 4, 31, null, null, 17m, null },
+                    { 62, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 6, 31, null, null, 21m, null },
+                    { 63, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 4, 32, null, null, 14m, null },
+                    { 64, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 6, 32, null, null, 17m, null },
+                    { 65, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 4, 33, null, null, 13m, null },
+                    { 66, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 6, 33, null, null, 19m, null },
+                    { 67, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 4, 34, null, null, 400m, null },
+                    { 68, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 6, 34, null, null, 1000m, null },
+                    { 69, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 4, 35, null, null, 16m, null },
+                    { 70, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 6, 35, null, null, 17m, null },
+                    { 71, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 4, 36, null, null, 100m, null },
+                    { 72, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 6, 36, null, null, 200m, null },
+                    { 73, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 4, 37, null, null, 300m, null },
+                    { 74, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 6, 37, null, null, 600m, null },
+                    { 75, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 4, 38, null, null, 900m, null },
+                    { 76, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 6, 38, null, null, 1500m, null },
+                    { 77, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 4, 39, null, null, 200m, null },
+                    { 78, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 6, 39, null, null, 1000m, null },
+                    { 79, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 4, 40, null, null, 400m, null },
+                    { 80, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 6, 40, null, null, 1100m, null },
+                    { 81, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 4, 41, null, null, 17m, null },
+                    { 82, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 6, 41, null, null, 19m, null },
+                    { 83, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 4, 42, null, null, 13m, null },
+                    { 84, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 6, 42, null, null, 22m, null },
+                    { 85, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 4, 43, null, null, 13m, null },
+                    { 86, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 6, 43, null, null, 24m, null },
+                    { 87, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 4, 44, null, null, 15m, null },
+                    { 88, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 6, 44, null, null, 16m, null },
+                    { 89, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 4, 45, null, null, 400m, null },
+                    { 90, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 6, 45, null, null, 1200m, null },
+                    { 91, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 4, 46, null, null, 700m, null },
+                    { 92, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 6, 46, null, null, 1400m, null },
+                    { 93, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 4, 47, null, null, 16m, null },
+                    { 94, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 6, 47, null, null, 24m, null },
+                    { 95, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 4, 48, null, null, 100m, null },
+                    { 96, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 6, 48, null, null, 200m, null },
+                    { 97, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 4, 49, null, null, 14m, null },
+                    { 98, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, 6, 49, null, null, 24m, null },
+                    { 99, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 4, 50, null, null, 300m, null },
+                    { 100, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, 6, 50, null, null, 500m, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "TopupScheduleRule",
+                columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "IsDeleted", "TopupRuleId", "TopupScheduleId", "UpdatedAt", "UpdatedBy" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 4, 1, null, null },
+                    { 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 26, 2, null, null },
+                    { 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 40, 2, null, null },
+                    { 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 42, 2, null, null },
+                    { 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 9, 2, null, null },
+                    { 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 14, 3, null, null },
+                    { 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 26, 3, null, null },
+                    { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 12, 3, null, null },
+                    { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 11, 4, null, null },
+                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 2, 4, null, null },
+                    { 11, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 38, 5, null, null },
+                    { 12, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 45, 6, null, null },
+                    { 13, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 18, 7, null, null },
+                    { 14, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 6, 7, null, null },
+                    { 15, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 27, 7, null, null },
+                    { 16, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 36, 7, null, null },
+                    { 17, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 32, 8, null, null },
+                    { 18, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 37, 8, null, null },
+                    { 19, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 38, 8, null, null },
+                    { 20, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 13, 9, null, null },
+                    { 21, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 35, 9, null, null },
+                    { 22, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 26, 10, null, null },
+                    { 23, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 13, 11, null, null },
+                    { 24, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 39, 11, null, null },
+                    { 25, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 25, 12, null, null },
+                    { 26, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 25, 13, null, null },
+                    { 27, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 36, 13, null, null },
+                    { 28, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 14, 14, null, null },
+                    { 29, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 15, 14, null, null },
+                    { 30, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 15, 15, null, null },
+                    { 31, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 19, 15, null, null },
+                    { 32, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 43, 15, null, null },
+                    { 33, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 43, 16, null, null },
+                    { 34, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 31, 17, null, null },
+                    { 35, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 23, 17, null, null },
+                    { 36, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 25, 17, null, null },
+                    { 37, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 27, 18, null, null },
+                    { 38, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 4, 19, null, null },
+                    { 39, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 47, 19, null, null },
+                    { 40, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 9, 19, null, null },
+                    { 41, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 21, 20, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -986,15 +1253,20 @@ namespace educationaccountmanagement.DAL.Migrations
                 values: new object[,]
                 {
                     { 1, 1, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, null, null },
-                    { 2, 2, 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 2, null, null },
-                    { 3, 3, 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 3, null, null },
-                    { 4, 4, 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 4, null, null },
-                    { 5, 5, 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 4, null, null },
-                    { 6, 6, 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 4, null, null },
-                    { 7, 7, 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 4, null, null },
-                    { 8, 8, 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 4, null, null },
+                    { 2, 2, 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, null, null },
+                    { 3, 3, 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, null, null },
+                    { 4, 4, 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, null, null },
+                    { 5, 5, 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, null, null },
+                    { 6, 6, 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, null, null },
+                    { 7, 7, 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 2, null, null },
+                    { 8, 8, 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 3, null, null },
                     { 9, 9, 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 4, null, null },
-                    { 10, 10, 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 4, null, null }
+                    { 10, 10, 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 4, null, null },
+                    { 11, 11, 11, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 4, null, null },
+                    { 12, 12, 12, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 4, null, null },
+                    { 13, 13, 13, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 4, null, null },
+                    { 14, 14, 14, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 4, null, null },
+                    { 15, 15, 15, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 4, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -1016,36 +1288,36 @@ namespace educationaccountmanagement.DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "AdminProfile",
-                columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "Email", "FullName", "IsDeleted", "PhoneNumber", "SchoolId", "StaffCode", "UpdatedAt", "UpdatedBy", "UserId" },
+                columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "Email", "FullName", "IsDeleted", "Nric", "PhoneNumber", "SchoolId", "StaffCode", "UpdatedAt", "UpdatedBy", "UserId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin001@example.com", "System Administrator", false, "+6591000001", null, "STAFF-001", null, null, 1 },
-                    { 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin002@example.com", "Finance Administrator", false, "+6591000002", null, "STAFF-002", null, null, 2 },
-                    { 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin003@example.com", "School Administrator", false, "+6591000003", 1, "STAFF-003", null, null, 3 },
-                    { 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin004@example.com", "Admin Profile 004", false, "+6591000004", null, "STAFF-004", null, null, 4 },
-                    { 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin005@example.com", "Admin Profile 005", false, "+6591000005", null, "STAFF-005", null, null, 5 },
-                    { 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin006@example.com", "Admin Profile 006", false, "+6591000006", null, "STAFF-006", null, null, 6 },
-                    { 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin007@example.com", "Admin Profile 007", false, "+6591000007", null, "STAFF-007", null, null, 7 },
-                    { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin008@example.com", "Admin Profile 008", false, "+6591000008", null, "STAFF-008", null, null, 8 },
-                    { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin009@example.com", "Admin Profile 009", false, "+6591000009", null, "STAFF-009", null, null, 9 },
-                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin010@example.com", "Admin Profile 010", false, "+6591000010", null, "STAFF-010", null, null, 10 }
+                    { 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin001@example.com", "System Administrator", false, "", "+6591000001", null, "STAFF-001", null, null, 1 },
+                    { 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin002@example.com", "Finance Administrator", false, "", "+6591000002", null, "STAFF-002", null, null, 2 },
+                    { 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin003@example.com", "School Administrator", false, "", "+6591000003", 1, "STAFF-003", null, null, 3 },
+                    { 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin004@example.com", "Admin Profile 004", false, "", "+6591000004", null, "STAFF-004", null, null, 4 },
+                    { 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin005@example.com", "Admin Profile 005", false, "", "+6591000005", null, "STAFF-005", null, null, 5 },
+                    { 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin006@example.com", "Admin Profile 006", false, "", "+6591000006", null, "STAFF-006", null, null, 6 },
+                    { 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin007@example.com", "Admin Profile 007", false, "", "+6591000007", null, "STAFF-007", null, null, 7 },
+                    { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin008@example.com", "Admin Profile 008", false, "", "+6591000008", null, "STAFF-008", null, null, 8 },
+                    { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin009@example.com", "Admin Profile 009", false, "", "+6591000009", null, "STAFF-009", null, null, 9 },
+                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin010@example.com", "Admin Profile 010", false, "", "+6591000010", null, "STAFF-010", null, null, 10 }
                 });
 
             migrationBuilder.InsertData(
                 table: "AuditLog",
-                columns: new[] { "Id", "Action", "ActorUserId", "Category", "IpAddress", "OccurredAt", "PayloadJson" },
+                columns: new[] { "Id", "Action", "ActorUserId", "Category", "IpAddress", "Nric", "OccurredAt", "PayloadJson" },
                 values: new object[,]
                 {
-                    { 1, "AdminLoginSucceeded", 1, 4, "127.0.0.1", new DateTime(2026, 1, 1, 0, 1, 0, 0, DateTimeKind.Utc), "{\"seedId\":1}" },
-                    { 2, "CreditTransactionCreated", 2, 5, "127.0.0.2", new DateTime(2026, 1, 1, 0, 2, 0, 0, DateTimeKind.Utc), "{\"seedId\":2}" },
-                    { 3, "AdminLoginSucceeded", 3, 3, "127.0.0.3", new DateTime(2026, 1, 1, 0, 3, 0, 0, DateTimeKind.Utc), "{\"seedId\":3}" },
-                    { 4, "CreditTransactionCreated", 4, 5, "127.0.0.4", new DateTime(2026, 1, 1, 0, 4, 0, 0, DateTimeKind.Utc), "{\"seedId\":4}" },
-                    { 5, "AdminLoginSucceeded", 5, 4, "127.0.0.5", new DateTime(2026, 1, 1, 0, 5, 0, 0, DateTimeKind.Utc), "{\"seedId\":5}" },
-                    { 6, "CreditTransactionCreated", 6, 3, "127.0.0.6", new DateTime(2026, 1, 1, 0, 6, 0, 0, DateTimeKind.Utc), "{\"seedId\":6}" },
-                    { 7, "AdminLoginSucceeded", 7, 4, "127.0.0.7", new DateTime(2026, 1, 1, 0, 7, 0, 0, DateTimeKind.Utc), "{\"seedId\":7}" },
-                    { 8, "CreditTransactionCreated", 8, 5, "127.0.0.8", new DateTime(2026, 1, 1, 0, 8, 0, 0, DateTimeKind.Utc), "{\"seedId\":8}" },
-                    { 9, "AdminLoginSucceeded", 9, 3, "127.0.0.9", new DateTime(2026, 1, 1, 0, 9, 0, 0, DateTimeKind.Utc), "{\"seedId\":9}" },
-                    { 10, "CreditTransactionCreated", 10, 5, "127.0.0.10", new DateTime(2026, 1, 1, 0, 10, 0, 0, DateTimeKind.Utc), "{\"seedId\":10}" }
+                    { 1, "AdminLoginSucceeded", 1, 4, "127.0.0.1", null, new DateTime(2026, 1, 1, 0, 1, 0, 0, DateTimeKind.Utc), "{\"seedId\":1}" },
+                    { 2, "CreditTransactionCreated", 2, 5, "127.0.0.2", null, new DateTime(2026, 1, 1, 0, 2, 0, 0, DateTimeKind.Utc), "{\"seedId\":2}" },
+                    { 3, "AdminLoginSucceeded", 3, 3, "127.0.0.3", null, new DateTime(2026, 1, 1, 0, 3, 0, 0, DateTimeKind.Utc), "{\"seedId\":3}" },
+                    { 4, "CreditTransactionCreated", 4, 5, "127.0.0.4", null, new DateTime(2026, 1, 1, 0, 4, 0, 0, DateTimeKind.Utc), "{\"seedId\":4}" },
+                    { 5, "AdminLoginSucceeded", 5, 4, "127.0.0.5", null, new DateTime(2026, 1, 1, 0, 5, 0, 0, DateTimeKind.Utc), "{\"seedId\":5}" },
+                    { 6, "CreditTransactionCreated", 6, 3, "127.0.0.6", null, new DateTime(2026, 1, 1, 0, 6, 0, 0, DateTimeKind.Utc), "{\"seedId\":6}" },
+                    { 7, "AdminLoginSucceeded", 7, 4, "127.0.0.7", null, new DateTime(2026, 1, 1, 0, 7, 0, 0, DateTimeKind.Utc), "{\"seedId\":7}" },
+                    { 8, "CreditTransactionCreated", 8, 5, "127.0.0.8", null, new DateTime(2026, 1, 1, 0, 8, 0, 0, DateTimeKind.Utc), "{\"seedId\":8}" },
+                    { 9, "AdminLoginSucceeded", 9, 3, "127.0.0.9", null, new DateTime(2026, 1, 1, 0, 9, 0, 0, DateTimeKind.Utc), "{\"seedId\":9}" },
+                    { 10, "CreditTransactionCreated", 10, 5, "127.0.0.10", null, new DateTime(2026, 1, 1, 0, 10, 0, 0, DateTimeKind.Utc), "{\"seedId\":10}" }
                 });
 
             migrationBuilder.InsertData(
@@ -1372,24 +1644,9 @@ namespace educationaccountmanagement.DAL.Migrations
                 column: "ClosedAt");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EducationAccount_ClosedByUserId",
-                table: "EducationAccount",
-                column: "ClosedByUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EducationAccount_ExtendedUntil",
-                table: "EducationAccount",
-                column: "ExtendedUntil");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_EducationAccount_OpenedAt",
                 table: "EducationAccount",
                 column: "OpenedAt");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EducationAccount_OpenedByUserId",
-                table: "EducationAccount",
-                column: "OpenedByUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_EducationAccount_Status",
@@ -1636,6 +1893,16 @@ namespace educationaccountmanagement.DAL.Migrations
                 column: "TopupRuleId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_TopupScheduleRule_TopupRuleId",
+                table: "TopupScheduleRule",
+                column: "TopupRuleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TopupScheduleRule_TopupScheduleId",
+                table: "TopupScheduleRule",
+                column: "TopupScheduleId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_User_AuthAccountId",
                 table: "User",
                 column: "AuthAccountId",
@@ -1687,7 +1954,13 @@ namespace educationaccountmanagement.DAL.Migrations
                 name: "TopupRuleCondition");
 
             migrationBuilder.DropTable(
+                name: "TopupScheduleRule");
+
+            migrationBuilder.DropTable(
                 name: "AdhocTopupBatchTarget");
+
+            migrationBuilder.DropTable(
+                name: "User");
 
             migrationBuilder.DropTable(
                 name: "Charge");
@@ -1699,7 +1972,13 @@ namespace educationaccountmanagement.DAL.Migrations
                 name: "TopupBatchTarget");
 
             migrationBuilder.DropTable(
+                name: "TopupSchedule");
+
+            migrationBuilder.DropTable(
                 name: "AdhocTopupBatch");
+
+            migrationBuilder.DropTable(
+                name: "AuthAccount");
 
             migrationBuilder.DropTable(
                 name: "Enrollment");
@@ -1721,12 +2000,6 @@ namespace educationaccountmanagement.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "School");
-
-            migrationBuilder.DropTable(
-                name: "User");
-
-            migrationBuilder.DropTable(
-                name: "AuthAccount");
 
             migrationBuilder.DropTable(
                 name: "Citizen");

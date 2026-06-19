@@ -1,5 +1,4 @@
-﻿using Common;
-using Repositories.Interfaces;
+﻿using Repositories.Interfaces;
 using System.Linq.Expressions;
 
 namespace Persistence.SqlServer

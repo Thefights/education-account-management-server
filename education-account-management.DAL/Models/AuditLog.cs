@@ -8,10 +8,12 @@ namespace Models
         [MessageRequired, MessageMaxLength(100)]
         public string Action { get; set; } = string.Empty;
 
+        public string? Nric { get; set; }
+
         [MessageRequired, MessageMaxLength(45)]
         public string IpAddress { get; set; } = string.Empty;
 
-        [Column(TypeName = "json")]
+        [Column(TypeName = "nvarchar(max)")]
         public string? PayloadJson { get; set; }
 
         public DateTime OccurredAt { get; set; } = DateTime.UtcNow;

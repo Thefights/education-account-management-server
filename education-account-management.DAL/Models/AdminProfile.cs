@@ -16,6 +16,9 @@ namespace Models
 
         [NotDefaultValue, Unique]
         public int UserId { get; set; }
+
+        [Required, MessageMaxLength(9)]
+        public string Nric { get; set; } = string.Empty;
         public User User { get; set; } = null!;
 
         public int? SchoolId { get; set; }

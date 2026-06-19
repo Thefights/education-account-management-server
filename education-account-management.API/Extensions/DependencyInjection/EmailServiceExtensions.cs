@@ -1,4 +1,3 @@
-using education_account_management.BLL;
 using Emails;
 using Infrastructure;
 using Interfaces.Email;

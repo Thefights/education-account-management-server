@@ -9,6 +9,7 @@ namespace Infrastructure
     public class CurrentUserService : ICurrentUserService, IAuditUserContext
     {
         private readonly int _userId;
+        private readonly string _userName;
 
         public int UserId => _userId <= 0
             ? throw new UnauthorizedAccessException("User is not authenticated.")
@@ -19,6 +20,8 @@ namespace Infrastructure
         public int AuthId { get; }
 
         public UserRole Role { get; }
+
+        public string UserName => _userName;
 
         public CurrentUserService(IHttpContextAccessor httpContextAccessor)
         {
@@ -44,6 +47,12 @@ namespace Infrastructure
             if (EnumUtil.TryParseDefined<UserRole>(roleClaim, out var role))
             {
                 Role = role;
+            }
+
+            var userNameClaim = user.FindFirstValue(ClaimTypes.Name);
+            if (!string.IsNullOrEmpty(userNameClaim))
+            {
+                _userName = userNameClaim;
             }
         }
     }

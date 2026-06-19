@@ -1,4 +1,4 @@
-﻿using Infrastructure.Interface;
+using Infrastructure.Interface;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace Infrastructure
@@ -42,6 +42,11 @@ namespace Infrastructure
         public async Task<bool> IsAuthAccountBlacklistedAsync(int authAccountId)
         {
             return await this.ExistsEntryAsync(this.BuildAuthAccountBlacklistKey(authAccountId));
+        }
+
+        public async Task UnblacklistAuthAccountAsync(int authAccountId)
+        {
+            await redis.DeleteAsync(this.BuildAuthAccountBlacklistKey(authAccountId));
         }
 
         private async Task SetBlacklistEntryAsync(string jti, TimeSpan ttl)

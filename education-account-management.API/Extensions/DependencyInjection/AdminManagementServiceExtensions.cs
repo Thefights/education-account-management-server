@@ -1,5 +1,5 @@
-using Interfaces.AdminManagement;
-using Services.AdminManagement;
+﻿using Interfaces;
+using Services;
 
 namespace Extensions.DependencyInjection;
 

@@ -1,4 +1,4 @@
-using Models;
+﻿using Models;
 using Persistence.Seeding.Constants;
 
 namespace Persistence.Seeding;

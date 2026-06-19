@@ -1,7 +1,6 @@
-using DTOs.AiAssistant;
-using Interfaces.AiAssistant;
+﻿using Interfaces;
 
-namespace Services.AiAssistant
+namespace Services
 {
     public class AiAssistantSettingService(
         IUnitOfWork unitOfWork,

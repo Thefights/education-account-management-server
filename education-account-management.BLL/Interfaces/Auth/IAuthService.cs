@@ -1,11 +1,15 @@
+using DTOs.Admin;
 using DTOs.Auth;
 
 namespace Interfaces.Auth
 {
     public interface IAuthService
     {
-        Task<AuthLoginResponseDTO> LoginWithMockSingpassAsync(
+        Task UpdateStatusAsync(UpdateAdminStatusDTO dto,
             CancellationToken cancellationToken = default);
+
+        Task<AuthLoginResponseDTO> LoginWithMockSingpassAsync(
+           CancellationToken cancellationToken = default);
 
         Task<AuthLoginResponseDTO> LoginWithAzureAdAsync(
             AzureAdLoginRequestDTO request,

@@ -1,8 +1,7 @@
-using DTOs.SchoolManagement;
-using Interfaces.SchoolManagement;
+﻿using Interfaces;
 using Services.Base;
 
-namespace Services.SchoolManagement
+namespace Services
 {
     public class SchoolManagementService(
         IUnitOfWork unitOfWork,

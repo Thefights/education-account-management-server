@@ -12,7 +12,7 @@ using Persistence.SqlServer;
 namespace educationaccountmanagement.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260618132205_A")]
+    [Migration("20260619033549_A")]
     partial class A
     {
         /// <inheritdoc />
@@ -506,6 +506,11 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Nric")
+                        .IsRequired()
+                        .HasMaxLength(9)
+                        .HasColumnType("nvarchar(9)");
+
                     b.Property<string>("PhoneNumber")
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
@@ -553,6 +558,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "admin001@example.com",
                             FullName = "System Administrator",
                             IsDeleted = false,
+                            Nric = "",
                             PhoneNumber = "+6591000001",
                             StaffCode = "STAFF-001",
                             UserId = 1
@@ -564,6 +570,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "admin002@example.com",
                             FullName = "Finance Administrator",
                             IsDeleted = false,
+                            Nric = "",
                             PhoneNumber = "+6591000002",
                             StaffCode = "STAFF-002",
                             UserId = 2
@@ -575,6 +582,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "admin003@example.com",
                             FullName = "School Administrator",
                             IsDeleted = false,
+                            Nric = "",
                             PhoneNumber = "+6591000003",
                             SchoolId = 1,
                             StaffCode = "STAFF-003",
@@ -587,6 +595,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "admin004@example.com",
                             FullName = "Admin Profile 004",
                             IsDeleted = false,
+                            Nric = "",
                             PhoneNumber = "+6591000004",
                             StaffCode = "STAFF-004",
                             UserId = 4
@@ -598,6 +607,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "admin005@example.com",
                             FullName = "Admin Profile 005",
                             IsDeleted = false,
+                            Nric = "",
                             PhoneNumber = "+6591000005",
                             StaffCode = "STAFF-005",
                             UserId = 5
@@ -609,6 +619,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "admin006@example.com",
                             FullName = "Admin Profile 006",
                             IsDeleted = false,
+                            Nric = "",
                             PhoneNumber = "+6591000006",
                             StaffCode = "STAFF-006",
                             UserId = 6
@@ -620,6 +631,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "admin007@example.com",
                             FullName = "Admin Profile 007",
                             IsDeleted = false,
+                            Nric = "",
                             PhoneNumber = "+6591000007",
                             StaffCode = "STAFF-007",
                             UserId = 7
@@ -631,6 +643,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "admin008@example.com",
                             FullName = "Admin Profile 008",
                             IsDeleted = false,
+                            Nric = "",
                             PhoneNumber = "+6591000008",
                             StaffCode = "STAFF-008",
                             UserId = 8
@@ -642,6 +655,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "admin009@example.com",
                             FullName = "Admin Profile 009",
                             IsDeleted = false,
+                            Nric = "",
                             PhoneNumber = "+6591000009",
                             StaffCode = "STAFF-009",
                             UserId = 9
@@ -653,6 +667,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "admin010@example.com",
                             FullName = "Admin Profile 010",
                             IsDeleted = false,
+                            Nric = "",
                             PhoneNumber = "+6591000010",
                             StaffCode = "STAFF-010",
                             UserId = 10
@@ -729,11 +744,14 @@ namespace educationaccountmanagement.DAL.Migrations
                         .HasMaxLength(45)
                         .HasColumnType("nvarchar(45)");
 
+                    b.Property<string>("Nric")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("OccurredAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("PayloadJson")
-                        .HasColumnType("json");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -979,6 +997,48 @@ namespace educationaccountmanagement.DAL.Migrations
                             FailedLoginCount = 1,
                             IsDeleted = false,
                             LastLoginAt = new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Status = 2
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FailedLoginCount = 2,
+                            IsDeleted = false,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FailedLoginCount = 0,
+                            IsDeleted = false,
+                            LastLoginAt = new DateTime(2026, 1, 13, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FailedLoginCount = 1,
+                            IsDeleted = false,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FailedLoginCount = 2,
+                            IsDeleted = false,
+                            LastLoginAt = new DateTime(2026, 1, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FailedLoginCount = 0,
+                            IsDeleted = false,
                             Status = 2
                         });
                 });
@@ -1269,6 +1329,10 @@ namespace educationaccountmanagement.DAL.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
+                    b.Property<string>("SchoolingStatus")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<string>("SingpassSubjectId")
                         .IsRequired()
                         .HasMaxLength(256)
@@ -1312,6 +1376,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000001A",
                             PhoneNumber = "+6590000001",
                             ResidentialAddress = "Residential block 1, Singapore",
+                            SchoolingStatus = "Enrolled",
                             SingpassSubjectId = "singpass-subject-001"
                         },
                         new
@@ -1327,6 +1392,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000002A",
                             PhoneNumber = "+6590000002",
                             ResidentialAddress = "Residential block 2, Singapore",
+                            SchoolingStatus = "Not Enrolled",
                             SingpassSubjectId = "singpass-subject-002"
                         },
                         new
@@ -1342,6 +1408,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000003A",
                             PhoneNumber = "+6590000003",
                             ResidentialAddress = "Residential block 3, Singapore",
+                            SchoolingStatus = "Graduated",
                             SingpassSubjectId = "singpass-subject-003"
                         },
                         new
@@ -1357,6 +1424,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000004A",
                             PhoneNumber = "+6590000004",
                             ResidentialAddress = "Residential block 4, Singapore",
+                            SchoolingStatus = "Suspended",
                             SingpassSubjectId = "singpass-subject-004"
                         },
                         new
@@ -1372,6 +1440,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000005A",
                             PhoneNumber = "+6590000005",
                             ResidentialAddress = "Residential block 5, Singapore",
+                            SchoolingStatus = "Withdrawn",
                             SingpassSubjectId = "singpass-subject-005"
                         },
                         new
@@ -1387,6 +1456,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000006A",
                             PhoneNumber = "+6590000006",
                             ResidentialAddress = "Residential block 6, Singapore",
+                            SchoolingStatus = "Enrolled",
                             SingpassSubjectId = "singpass-subject-006"
                         },
                         new
@@ -1402,6 +1472,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000007A",
                             PhoneNumber = "+6590000007",
                             ResidentialAddress = "Residential block 7, Singapore",
+                            SchoolingStatus = "Not Enrolled",
                             SingpassSubjectId = "singpass-subject-007"
                         },
                         new
@@ -1417,6 +1488,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000008A",
                             PhoneNumber = "+6590000008",
                             ResidentialAddress = "Residential block 8, Singapore",
+                            SchoolingStatus = "Graduated",
                             SingpassSubjectId = "singpass-subject-008"
                         },
                         new
@@ -1432,6 +1504,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000009A",
                             PhoneNumber = "+6590000009",
                             ResidentialAddress = "Residential block 9, Singapore",
+                            SchoolingStatus = "Suspended",
                             SingpassSubjectId = "singpass-subject-009"
                         },
                         new
@@ -1447,7 +1520,88 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000010A",
                             PhoneNumber = "+6590000010",
                             ResidentialAddress = "Residential block 10, Singapore",
+                            SchoolingStatus = "Withdrawn",
                             SingpassSubjectId = "singpass-subject-010"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CitizenshipStatus = 1,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DateOfBirth = new DateOnly(2001, 11, 12),
+                            Email = "citizen011@example.com",
+                            FullName = "Citizen 011",
+                            IsDeleted = false,
+                            MailingAddress = "Mailing block 11, Singapore",
+                            Nric = "S0000011A",
+                            PhoneNumber = "+6590000011",
+                            ResidentialAddress = "Residential block 11, Singapore",
+                            SchoolingStatus = "Enrolled",
+                            SingpassSubjectId = "singpass-subject-011"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CitizenshipStatus = 2,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DateOfBirth = new DateOnly(2002, 12, 13),
+                            Email = "citizen012@example.com",
+                            FullName = "Citizen 012",
+                            IsDeleted = false,
+                            MailingAddress = "Mailing block 12, Singapore",
+                            Nric = "S0000012A",
+                            PhoneNumber = "+6590000012",
+                            ResidentialAddress = "Residential block 12, Singapore",
+                            SchoolingStatus = "Not Enrolled",
+                            SingpassSubjectId = "singpass-subject-012"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CitizenshipStatus = 1,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DateOfBirth = new DateOnly(2003, 1, 14),
+                            Email = "citizen013@example.com",
+                            FullName = "Citizen 013",
+                            IsDeleted = false,
+                            MailingAddress = "Mailing block 13, Singapore",
+                            Nric = "S0000013A",
+                            PhoneNumber = "+6590000013",
+                            ResidentialAddress = "Residential block 13, Singapore",
+                            SchoolingStatus = "Graduated",
+                            SingpassSubjectId = "singpass-subject-013"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CitizenshipStatus = 1,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DateOfBirth = new DateOnly(2004, 2, 15),
+                            Email = "citizen014@example.com",
+                            FullName = "Citizen 014",
+                            IsDeleted = false,
+                            MailingAddress = "Mailing block 14, Singapore",
+                            Nric = "S0000014A",
+                            PhoneNumber = "+6590000014",
+                            ResidentialAddress = "Residential block 14, Singapore",
+                            SchoolingStatus = "Suspended",
+                            SingpassSubjectId = "singpass-subject-014"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CitizenshipStatus = 3,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DateOfBirth = new DateOnly(2005, 3, 16),
+                            Email = "citizen015@example.com",
+                            FullName = "Citizen 015",
+                            IsDeleted = false,
+                            MailingAddress = "Mailing block 15, Singapore",
+                            Nric = "S0000015A",
+                            PhoneNumber = "+6590000015",
+                            ResidentialAddress = "Residential block 15, Singapore",
+                            SchoolingStatus = "Withdrawn",
+                            SingpassSubjectId = "singpass-subject-015"
                         });
                 });
 
@@ -1666,9 +1820,6 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<DateTime?>("ClosedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ClosedByUserId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -1681,23 +1832,11 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<decimal>("EducationCreditBalance")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime?>("ExtendedUntil")
-                        .HasColumnType("datetime2");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("OpenedAt")
                         .HasColumnType("datetime2");
-
-                    b.Property<int?>("OpenedByUserId")
-                        .HasColumnType("int");
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("rowversion");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -1720,13 +1859,7 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasIndex("ClosedAt");
 
-                    b.HasIndex("ClosedByUserId");
-
-                    b.HasIndex("ExtendedUntil");
-
                     b.HasIndex("OpenedAt");
-
-                    b.HasIndex("OpenedByUserId");
 
                     b.HasIndex("Status");
 
@@ -1745,7 +1878,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             EducationCreditBalance = 1100m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 2, 0, 0, 0, 0, DateTimeKind.Utc),
-                            RowVersion = new byte[0],
                             Status = 1
                         },
                         new
@@ -1757,7 +1889,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             EducationCreditBalance = 1200m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
-                            RowVersion = new byte[0],
                             Status = 1
                         },
                         new
@@ -1769,7 +1900,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             EducationCreditBalance = 1300m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Utc),
-                            RowVersion = new byte[0],
                             Status = 1
                         },
                         new
@@ -1781,7 +1911,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             EducationCreditBalance = 1400m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc),
-                            RowVersion = new byte[0],
                             Status = 2
                         },
                         new
@@ -1793,7 +1922,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             EducationCreditBalance = 1500m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc),
-                            RowVersion = new byte[0],
                             Status = 1
                         },
                         new
@@ -1806,7 +1934,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             EducationCreditBalance = 1600m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc),
-                            RowVersion = new byte[0],
                             Status = 3
                         },
                         new
@@ -1818,7 +1945,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             EducationCreditBalance = 1700m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc),
-                            RowVersion = new byte[0],
                             Status = 1
                         },
                         new
@@ -1830,7 +1956,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             EducationCreditBalance = 1800m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc),
-                            RowVersion = new byte[0],
                             Status = 2
                         },
                         new
@@ -1842,7 +1967,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             EducationCreditBalance = 1900m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
-                            RowVersion = new byte[0],
                             Status = 1
                         },
                         new
@@ -1854,7 +1978,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             EducationCreditBalance = 2000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc),
-                            RowVersion = new byte[0],
                             Status = 1
                         });
                 });
@@ -2074,7 +2197,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 11,
                             Amount = 55m,
-                                BalanceAfter = 1805m,
+                            BalanceAfter = 1805m,
                             BalanceBefore = 1750m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Seed adhoc transaction 011",
@@ -2088,7 +2211,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 12,
                             Amount = 60m,
-                                BalanceAfter = 1860m,
+                            BalanceAfter = 1860m,
                             BalanceBefore = 1800m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Seed adhoc transaction 012",
@@ -2102,7 +2225,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 13,
                             Amount = 65m,
-                                BalanceAfter = 1915m,
+                            BalanceAfter = 1915m,
                             BalanceBefore = 1850m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Seed adhoc transaction 013",
@@ -2116,7 +2239,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 14,
                             Amount = 70m,
-                                BalanceAfter = 1970m,
+                            BalanceAfter = 1970m,
                             BalanceBefore = 1900m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Seed adhoc transaction 014",
@@ -2130,7 +2253,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 15,
                             Amount = 75m,
-                                BalanceAfter = 2025m,
+                            BalanceAfter = 2025m,
                             BalanceBefore = 1950m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Seed adhoc transaction 015",
@@ -2144,7 +2267,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 16,
                             Amount = 80m,
-                                BalanceAfter = 2080m,
+                            BalanceAfter = 2080m,
                             BalanceBefore = 2000m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Seed adhoc transaction 016",
@@ -2158,7 +2281,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 17,
                             Amount = 85m,
-                                BalanceAfter = 2135m,
+                            BalanceAfter = 2135m,
                             BalanceBefore = 2050m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Seed adhoc transaction 017",
@@ -2172,7 +2295,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 18,
                             Amount = 90m,
-                                BalanceAfter = 2190m,
+                            BalanceAfter = 2190m,
                             BalanceBefore = 2100m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Seed adhoc transaction 018",
@@ -2186,7 +2309,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 19,
                             Amount = 95m,
-                                BalanceAfter = 2245m,
+                            BalanceAfter = 2245m,
                             BalanceBefore = 2150m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Seed adhoc transaction 019",
@@ -2200,7 +2323,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 20,
                             Amount = 100m,
-                                BalanceAfter = 2300m,
+                            BalanceAfter = 2300m,
                             BalanceBefore = 2200m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Seed adhoc transaction 020",
@@ -2632,7 +2755,7 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.Property<string>("PayloadJson")
                         .IsRequired()
-                        .HasColumnType("json");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RetryCount")
                         .HasColumnType("int");
@@ -3580,7 +3703,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Provider = 2,
-                            ProviderUserId = "azure-object-002"
+                            ProviderUserId = "f8cdef31-a31e-4b4a-93e4-5f571e91255a"
                         },
                         new
                         {
@@ -3589,7 +3712,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Provider = 2,
-                            ProviderUserId = "azure-object-003"
+                            ProviderUserId = "b1e7cdf2-43ef-4a3e-9eb8-4e63b3ae42f4"
                         },
                         new
                         {
@@ -3597,8 +3720,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             AuthAccountId = 4,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            Provider = 1,
-                            ProviderUserId = "singpass-subject-004"
+                            Provider = 2,
+                            ProviderUserId = "f116e09e-1a6f-4847-aa57-442705d242d0"
                         },
                         new
                         {
@@ -3606,8 +3729,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             AuthAccountId = 5,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            Provider = 1,
-                            ProviderUserId = "singpass-subject-005"
+                            Provider = 2,
+                            ProviderUserId = "db3c66a7-b7f4-47df-bd7a-3f70fcaaa73d"
                         },
                         new
                         {
@@ -3615,8 +3738,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             AuthAccountId = 6,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            Provider = 1,
-                            ProviderUserId = "singpass-subject-006"
+                            Provider = 2,
+                            ProviderUserId = "0446ecca-6483-4129-bd4f-906f970f18d5"
                         },
                         new
                         {
@@ -3624,8 +3747,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             AuthAccountId = 7,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            Provider = 1,
-                            ProviderUserId = "singpass-subject-007"
+                            Provider = 2,
+                            ProviderUserId = "azure-object-007"
                         },
                         new
                         {
@@ -3633,8 +3756,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             AuthAccountId = 8,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            Provider = 1,
-                            ProviderUserId = "singpass-subject-008"
+                            Provider = 2,
+                            ProviderUserId = "azure-object-008"
                         },
                         new
                         {
@@ -3653,6 +3776,51 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Provider = 1,
                             ProviderUserId = "singpass-subject-010"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            AuthAccountId = 11,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Provider = 1,
+                            ProviderUserId = "singpass-subject-011"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            AuthAccountId = 12,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Provider = 1,
+                            ProviderUserId = "singpass-subject-012"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            AuthAccountId = 13,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Provider = 1,
+                            ProviderUserId = "singpass-subject-013"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            AuthAccountId = 14,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Provider = 1,
+                            ProviderUserId = "singpass-subject-014"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            AuthAccountId = 15,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Provider = 1,
+                            ProviderUserId = "singpass-subject-015"
                         });
                 });
 
@@ -4180,90 +4348,450 @@ namespace educationaccountmanagement.DAL.Migrations
                             Id = 1,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            RuleName = "Top-up Rule 001",
-                            Status = 1,
-                            TopupAmount = 110m
+                            RuleName = "Random Top-up Rule 001",
+                            Status = 2,
+                            TopupAmount = 70m
                         },
                         new
                         {
                             Id = 2,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            RuleName = "Top-up Rule 002",
+                            RuleName = "Random Top-up Rule 002",
                             Status = 1,
-                            TopupAmount = 120m
+                            TopupAmount = 770m
                         },
                         new
                         {
                             Id = 3,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            RuleName = "Top-up Rule 003",
+                            RuleName = "Random Top-up Rule 003",
                             Status = 1,
-                            TopupAmount = 130m
+                            TopupAmount = 790m
                         },
                         new
                         {
                             Id = 4,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            RuleName = "Top-up Rule 004",
+                            RuleName = "Random Top-up Rule 004",
                             Status = 1,
-                            TopupAmount = 140m
+                            TopupAmount = 170m
                         },
                         new
                         {
                             Id = 5,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            RuleName = "Top-up Rule 005",
-                            Status = 2,
-                            TopupAmount = 150m
+                            RuleName = "Random Top-up Rule 005",
+                            Status = 1,
+                            TopupAmount = 260m
                         },
                         new
                         {
                             Id = 6,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            RuleName = "Top-up Rule 006",
+                            RuleName = "Random Top-up Rule 006",
                             Status = 1,
-                            TopupAmount = 160m
+                            TopupAmount = 230m
                         },
                         new
                         {
                             Id = 7,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            RuleName = "Top-up Rule 007",
-                            Status = 1,
-                            TopupAmount = 170m
+                            RuleName = "Random Top-up Rule 007",
+                            Status = 2,
+                            TopupAmount = 220m
                         },
                         new
                         {
                             Id = 8,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            RuleName = "Top-up Rule 008",
+                            RuleName = "Random Top-up Rule 008",
                             Status = 1,
-                            TopupAmount = 180m
+                            TopupAmount = 140m
                         },
                         new
                         {
                             Id = 9,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            RuleName = "Top-up Rule 009",
+                            RuleName = "Random Top-up Rule 009",
                             Status = 1,
-                            TopupAmount = 190m
+                            TopupAmount = 200m
                         },
                         new
                         {
                             Id = 10,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            RuleName = "Top-up Rule 010",
+                            RuleName = "Random Top-up Rule 010",
+                            Status = 1,
+                            TopupAmount = 860m
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 011",
+                            Status = 1,
+                            TopupAmount = 110m
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 012",
+                            Status = 1,
+                            TopupAmount = 360m
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 013",
+                            Status = 1,
+                            TopupAmount = 580m
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 014",
+                            Status = 1,
+                            TopupAmount = 730m
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 015",
+                            Status = 1,
+                            TopupAmount = 400m
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 016",
+                            Status = 1,
+                            TopupAmount = 680m
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 017",
+                            Status = 1,
+                            TopupAmount = 520m
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 018",
+                            Status = 1,
+                            TopupAmount = 260m
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 019",
+                            Status = 1,
+                            TopupAmount = 10m
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 020",
+                            Status = 1,
+                            TopupAmount = 450m
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 021",
+                            Status = 1,
+                            TopupAmount = 710m
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 022",
+                            Status = 1,
+                            TopupAmount = 270m
+                        },
+                        new
+                        {
+                            Id = 23,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 023",
+                            Status = 1,
+                            TopupAmount = 630m
+                        },
+                        new
+                        {
+                            Id = 24,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 024",
+                            Status = 1,
+                            TopupAmount = 370m
+                        },
+                        new
+                        {
+                            Id = 25,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 025",
+                            Status = 1,
+                            TopupAmount = 180m
+                        },
+                        new
+                        {
+                            Id = 26,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 026",
+                            Status = 1,
+                            TopupAmount = 640m
+                        },
+                        new
+                        {
+                            Id = 27,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 027",
+                            Status = 1,
+                            TopupAmount = 440m
+                        },
+                        new
+                        {
+                            Id = 28,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 028",
+                            Status = 1,
+                            TopupAmount = 30m
+                        },
+                        new
+                        {
+                            Id = 29,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 029",
                             Status = 2,
-                            TopupAmount = 200m
+                            TopupAmount = 710m
+                        },
+                        new
+                        {
+                            Id = 30,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 030",
+                            Status = 1,
+                            TopupAmount = 930m
+                        },
+                        new
+                        {
+                            Id = 31,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 031",
+                            Status = 1,
+                            TopupAmount = 100m
+                        },
+                        new
+                        {
+                            Id = 32,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 032",
+                            Status = 2,
+                            TopupAmount = 340m
+                        },
+                        new
+                        {
+                            Id = 33,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 033",
+                            Status = 2,
+                            TopupAmount = 820m
+                        },
+                        new
+                        {
+                            Id = 34,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 034",
+                            Status = 1,
+                            TopupAmount = 870m
+                        },
+                        new
+                        {
+                            Id = 35,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 035",
+                            Status = 1,
+                            TopupAmount = 770m
+                        },
+                        new
+                        {
+                            Id = 36,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 036",
+                            Status = 1,
+                            TopupAmount = 740m
+                        },
+                        new
+                        {
+                            Id = 37,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 037",
+                            Status = 1,
+                            TopupAmount = 440m
+                        },
+                        new
+                        {
+                            Id = 38,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 038",
+                            Status = 1,
+                            TopupAmount = 650m
+                        },
+                        new
+                        {
+                            Id = 39,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 039",
+                            Status = 2,
+                            TopupAmount = 260m
+                        },
+                        new
+                        {
+                            Id = 40,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 040",
+                            Status = 1,
+                            TopupAmount = 80m
+                        },
+                        new
+                        {
+                            Id = 41,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 041",
+                            Status = 1,
+                            TopupAmount = 250m
+                        },
+                        new
+                        {
+                            Id = 42,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 042",
+                            Status = 1,
+                            TopupAmount = 570m
+                        },
+                        new
+                        {
+                            Id = 43,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 043",
+                            Status = 2,
+                            TopupAmount = 600m
+                        },
+                        new
+                        {
+                            Id = 44,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 044",
+                            Status = 2,
+                            TopupAmount = 770m
+                        },
+                        new
+                        {
+                            Id = 45,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 045",
+                            Status = 1,
+                            TopupAmount = 460m
+                        },
+                        new
+                        {
+                            Id = 46,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 046",
+                            Status = 1,
+                            TopupAmount = 60m
+                        },
+                        new
+                        {
+                            Id = 47,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 047",
+                            Status = 1,
+                            TopupAmount = 550m
+                        },
+                        new
+                        {
+                            Id = 48,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 048",
+                            Status = 1,
+                            TopupAmount = 390m
+                        },
+                        new
+                        {
+                            Id = 49,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 049",
+                            Status = 1,
+                            TopupAmount = 120m
+                        },
+                        new
+                        {
+                            Id = 50,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            RuleName = "Random Top-up Rule 050",
+                            Status = 1,
+                            TopupAmount = 460m
                         });
                 });
 
@@ -4326,29 +4854,29 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Field = 1,
                             IsDeleted = false,
-                            Operator = 1,
+                            Operator = 4,
                             TopupRuleId = 1,
-                            ValueNumber = 19m
+                            ValueNumber = 12m
                         },
                         new
                         {
                             Id = 2,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Field = 2,
+                            Field = 1,
                             IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 2,
-                            ValueNumber = 20m
+                            Operator = 6,
+                            TopupRuleId = 1,
+                            ValueNumber = 22m
                         },
                         new
                         {
                             Id = 3,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Field = 3,
+                            Field = 2,
                             IsDeleted = false,
-                            Operator = 1,
-                            TopupRuleId = 3,
-                            ValueText = "Enrolled"
+                            Operator = 4,
+                            TopupRuleId = 2,
+                            ValueNumber = 700m
                         },
                         new
                         {
@@ -4356,9 +4884,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Field = 2,
                             IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 4,
-                            ValueNumber = 22m
+                            Operator = 6,
+                            TopupRuleId = 2,
+                            ValueNumber = 1500m
                         },
                         new
                         {
@@ -4366,29 +4894,29 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Field = 1,
                             IsDeleted = false,
-                            Operator = 1,
-                            TopupRuleId = 5,
-                            ValueNumber = 23m
+                            Operator = 4,
+                            TopupRuleId = 3,
+                            ValueNumber = 16m
                         },
                         new
                         {
                             Id = 6,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Field = 3,
+                            Field = 1,
                             IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 6,
-                            ValueText = "Enrolled"
+                            Operator = 6,
+                            TopupRuleId = 3,
+                            ValueNumber = 19m
                         },
                         new
                         {
                             Id = 7,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Field = 1,
+                            Field = 2,
                             IsDeleted = false,
-                            Operator = 1,
-                            TopupRuleId = 7,
-                            ValueNumber = 25m
+                            Operator = 4,
+                            TopupRuleId = 4,
+                            ValueNumber = 200m
                         },
                         new
                         {
@@ -4396,29 +4924,1595 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Field = 2,
                             IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 8,
-                            ValueNumber = 26m
+                            Operator = 6,
+                            TopupRuleId = 4,
+                            ValueNumber = 600m
                         },
                         new
                         {
                             Id = 9,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Field = 3,
+                            Field = 1,
                             IsDeleted = false,
-                            Operator = 1,
-                            TopupRuleId = 9,
-                            ValueText = "Enrolled"
+                            Operator = 4,
+                            TopupRuleId = 5,
+                            ValueNumber = 12m
                         },
                         new
                         {
                             Id = 10,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 5,
+                            ValueNumber = 14m
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 6,
+                            ValueNumber = 100m
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 6,
+                            ValueNumber = 900m
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 7,
+                            ValueNumber = 300m
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 7,
+                            ValueNumber = 400m
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 8,
+                            ValueNumber = 300m
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 8,
+                            ValueNumber = 1000m
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 9,
+                            ValueNumber = 600m
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 9,
+                            ValueNumber = 1300m
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Field = 2,
                             IsDeleted = false,
                             Operator = 4,
                             TopupRuleId = 10,
-                            ValueNumber = 28m
+                            ValueNumber = 300m
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 10,
+                            ValueNumber = 600m
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 11,
+                            ValueNumber = 200m
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 11,
+                            ValueNumber = 700m
+                        },
+                        new
+                        {
+                            Id = 23,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 12,
+                            ValueNumber = 13m
+                        },
+                        new
+                        {
+                            Id = 24,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 12,
+                            ValueNumber = 22m
+                        },
+                        new
+                        {
+                            Id = 25,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 13,
+                            ValueNumber = 14m
+                        },
+                        new
+                        {
+                            Id = 26,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 13,
+                            ValueNumber = 19m
+                        },
+                        new
+                        {
+                            Id = 27,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 14,
+                            ValueNumber = 16m
+                        },
+                        new
+                        {
+                            Id = 28,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 14,
+                            ValueNumber = 20m
+                        },
+                        new
+                        {
+                            Id = 29,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 15,
+                            ValueNumber = 13m
+                        },
+                        new
+                        {
+                            Id = 30,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 15,
+                            ValueNumber = 20m
+                        },
+                        new
+                        {
+                            Id = 31,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 16,
+                            ValueNumber = 14m
+                        },
+                        new
+                        {
+                            Id = 32,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 16,
+                            ValueNumber = 23m
+                        },
+                        new
+                        {
+                            Id = 33,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 17,
+                            ValueNumber = 17m
+                        },
+                        new
+                        {
+                            Id = 34,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 17,
+                            ValueNumber = 22m
+                        },
+                        new
+                        {
+                            Id = 35,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 18,
+                            ValueNumber = 400m
+                        },
+                        new
+                        {
+                            Id = 36,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 18,
+                            ValueNumber = 900m
+                        },
+                        new
+                        {
+                            Id = 37,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 19,
+                            ValueNumber = 15m
+                        },
+                        new
+                        {
+                            Id = 38,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 19,
+                            ValueNumber = 22m
+                        },
+                        new
+                        {
+                            Id = 39,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 20,
+                            ValueNumber = 17m
+                        },
+                        new
+                        {
+                            Id = 40,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 20,
+                            ValueNumber = 19m
+                        },
+                        new
+                        {
+                            Id = 41,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 21,
+                            ValueNumber = 14m
+                        },
+                        new
+                        {
+                            Id = 42,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 21,
+                            ValueNumber = 18m
+                        },
+                        new
+                        {
+                            Id = 43,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 22,
+                            ValueNumber = 16m
+                        },
+                        new
+                        {
+                            Id = 44,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 22,
+                            ValueNumber = 17m
+                        },
+                        new
+                        {
+                            Id = 45,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 23,
+                            ValueNumber = 700m
+                        },
+                        new
+                        {
+                            Id = 46,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 23,
+                            ValueNumber = 1400m
+                        },
+                        new
+                        {
+                            Id = 47,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 24,
+                            ValueNumber = 16m
+                        },
+                        new
+                        {
+                            Id = 48,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 24,
+                            ValueNumber = 22m
+                        },
+                        new
+                        {
+                            Id = 49,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 25,
+                            ValueNumber = 14m
+                        },
+                        new
+                        {
+                            Id = 50,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 25,
+                            ValueNumber = 21m
+                        },
+                        new
+                        {
+                            Id = 51,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 26,
+                            ValueNumber = 200m
+                        },
+                        new
+                        {
+                            Id = 52,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 26,
+                            ValueNumber = 300m
+                        },
+                        new
+                        {
+                            Id = 53,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 27,
+                            ValueNumber = 13m
+                        },
+                        new
+                        {
+                            Id = 54,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 27,
+                            ValueNumber = 16m
+                        },
+                        new
+                        {
+                            Id = 55,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 28,
+                            ValueNumber = 500m
+                        },
+                        new
+                        {
+                            Id = 56,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 28,
+                            ValueNumber = 1000m
+                        },
+                        new
+                        {
+                            Id = 57,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 29,
+                            ValueNumber = 0m
+                        },
+                        new
+                        {
+                            Id = 58,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 29,
+                            ValueNumber = 700m
+                        },
+                        new
+                        {
+                            Id = 59,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 30,
+                            ValueNumber = 14m
+                        },
+                        new
+                        {
+                            Id = 60,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 30,
+                            ValueNumber = 22m
+                        },
+                        new
+                        {
+                            Id = 61,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 31,
+                            ValueNumber = 17m
+                        },
+                        new
+                        {
+                            Id = 62,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 31,
+                            ValueNumber = 21m
+                        },
+                        new
+                        {
+                            Id = 63,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 32,
+                            ValueNumber = 14m
+                        },
+                        new
+                        {
+                            Id = 64,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 32,
+                            ValueNumber = 17m
+                        },
+                        new
+                        {
+                            Id = 65,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 33,
+                            ValueNumber = 13m
+                        },
+                        new
+                        {
+                            Id = 66,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 33,
+                            ValueNumber = 19m
+                        },
+                        new
+                        {
+                            Id = 67,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 34,
+                            ValueNumber = 400m
+                        },
+                        new
+                        {
+                            Id = 68,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 34,
+                            ValueNumber = 1000m
+                        },
+                        new
+                        {
+                            Id = 69,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 35,
+                            ValueNumber = 16m
+                        },
+                        new
+                        {
+                            Id = 70,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 35,
+                            ValueNumber = 17m
+                        },
+                        new
+                        {
+                            Id = 71,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 36,
+                            ValueNumber = 100m
+                        },
+                        new
+                        {
+                            Id = 72,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 36,
+                            ValueNumber = 200m
+                        },
+                        new
+                        {
+                            Id = 73,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 37,
+                            ValueNumber = 300m
+                        },
+                        new
+                        {
+                            Id = 74,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 37,
+                            ValueNumber = 600m
+                        },
+                        new
+                        {
+                            Id = 75,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 38,
+                            ValueNumber = 900m
+                        },
+                        new
+                        {
+                            Id = 76,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 38,
+                            ValueNumber = 1500m
+                        },
+                        new
+                        {
+                            Id = 77,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 39,
+                            ValueNumber = 200m
+                        },
+                        new
+                        {
+                            Id = 78,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 39,
+                            ValueNumber = 1000m
+                        },
+                        new
+                        {
+                            Id = 79,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 40,
+                            ValueNumber = 400m
+                        },
+                        new
+                        {
+                            Id = 80,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 40,
+                            ValueNumber = 1100m
+                        },
+                        new
+                        {
+                            Id = 81,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 41,
+                            ValueNumber = 17m
+                        },
+                        new
+                        {
+                            Id = 82,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 41,
+                            ValueNumber = 19m
+                        },
+                        new
+                        {
+                            Id = 83,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 42,
+                            ValueNumber = 13m
+                        },
+                        new
+                        {
+                            Id = 84,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 42,
+                            ValueNumber = 22m
+                        },
+                        new
+                        {
+                            Id = 85,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 43,
+                            ValueNumber = 13m
+                        },
+                        new
+                        {
+                            Id = 86,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 43,
+                            ValueNumber = 24m
+                        },
+                        new
+                        {
+                            Id = 87,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 44,
+                            ValueNumber = 15m
+                        },
+                        new
+                        {
+                            Id = 88,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 44,
+                            ValueNumber = 16m
+                        },
+                        new
+                        {
+                            Id = 89,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 45,
+                            ValueNumber = 400m
+                        },
+                        new
+                        {
+                            Id = 90,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 45,
+                            ValueNumber = 1200m
+                        },
+                        new
+                        {
+                            Id = 91,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 46,
+                            ValueNumber = 700m
+                        },
+                        new
+                        {
+                            Id = 92,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 46,
+                            ValueNumber = 1400m
+                        },
+                        new
+                        {
+                            Id = 93,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 47,
+                            ValueNumber = 16m
+                        },
+                        new
+                        {
+                            Id = 94,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 47,
+                            ValueNumber = 24m
+                        },
+                        new
+                        {
+                            Id = 95,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 48,
+                            ValueNumber = 100m
+                        },
+                        new
+                        {
+                            Id = 96,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 48,
+                            ValueNumber = 200m
+                        },
+                        new
+                        {
+                            Id = 97,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 49,
+                            ValueNumber = 14m
+                        },
+                        new
+                        {
+                            Id = 98,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 1,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 49,
+                            ValueNumber = 24m
+                        },
+                        new
+                        {
+                            Id = 99,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 4,
+                            TopupRuleId = 50,
+                            ValueNumber = 300m
+                        },
+                        new
+                        {
+                            Id = 100,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Field = 2,
+                            IsDeleted = false,
+                            Operator = 6,
+                            TopupRuleId = 50,
+                            ValueNumber = 500m
+                        });
+                });
+
+            modelBuilder.Entity("Models.TopupSchedule", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ExecuteAtDay")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ExecuteAtMonth")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastExecutedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("NextExecutionAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("OneTimeExecutionDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ScheduleName")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<int>("ScheduleType")
+                        .HasColumnType("int");
+
+                    b.Property<TimeSpan>("SpecificExecutionTime")
+                        .HasColumnType("time");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TopupSchedule");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = false,
+                            IsDeleted = false,
+                            NextExecutionAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ScheduleName = "Random Schedule 001",
+                            ScheduleType = 0,
+                            SpecificExecutionTime = new TimeSpan(0, 18, 30, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ExecuteAtDay = 8,
+                            IsActive = true,
+                            IsDeleted = false,
+                            NextExecutionAt = new DateTime(2027, 7, 8, 3, 44, 0, 0, DateTimeKind.Utc),
+                            ScheduleName = "Random Schedule 002",
+                            ScheduleType = 2,
+                            SpecificExecutionTime = new TimeSpan(0, 3, 44, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            IsDeleted = false,
+                            NextExecutionAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ScheduleName = "Random Schedule 003",
+                            ScheduleType = 0,
+                            SpecificExecutionTime = new TimeSpan(0, 5, 1, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            IsDeleted = false,
+                            NextExecutionAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ScheduleName = "Random Schedule 004",
+                            ScheduleType = 0,
+                            SpecificExecutionTime = new TimeSpan(0, 4, 53, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ExecuteAtDay = 11,
+                            IsActive = true,
+                            IsDeleted = false,
+                            NextExecutionAt = new DateTime(2027, 9, 11, 2, 31, 0, 0, DateTimeKind.Utc),
+                            ScheduleName = "Random Schedule 005",
+                            ScheduleType = 2,
+                            SpecificExecutionTime = new TimeSpan(0, 2, 31, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            IsDeleted = false,
+                            NextExecutionAt = new DateTime(2027, 5, 7, 17, 44, 0, 0, DateTimeKind.Utc),
+                            OneTimeExecutionDate = new DateTime(2027, 5, 7, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ScheduleName = "Random Schedule 006",
+                            ScheduleType = 1,
+                            SpecificExecutionTime = new TimeSpan(0, 17, 44, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ExecuteAtDay = 8,
+                            IsActive = true,
+                            IsDeleted = false,
+                            NextExecutionAt = new DateTime(2027, 10, 8, 12, 29, 0, 0, DateTimeKind.Utc),
+                            ScheduleName = "Random Schedule 007",
+                            ScheduleType = 2,
+                            SpecificExecutionTime = new TimeSpan(0, 12, 29, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            IsDeleted = false,
+                            NextExecutionAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ScheduleName = "Random Schedule 008",
+                            ScheduleType = 0,
+                            SpecificExecutionTime = new TimeSpan(0, 10, 29, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ExecuteAtDay = 18,
+                            IsActive = true,
+                            IsDeleted = false,
+                            NextExecutionAt = new DateTime(2027, 4, 18, 6, 16, 0, 0, DateTimeKind.Utc),
+                            ScheduleName = "Random Schedule 009",
+                            ScheduleType = 2,
+                            SpecificExecutionTime = new TimeSpan(0, 6, 16, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            IsDeleted = false,
+                            NextExecutionAt = new DateTime(2027, 8, 17, 4, 51, 0, 0, DateTimeKind.Utc),
+                            OneTimeExecutionDate = new DateTime(2027, 8, 17, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ScheduleName = "Random Schedule 010",
+                            ScheduleType = 1,
+                            SpecificExecutionTime = new TimeSpan(0, 4, 51, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            IsDeleted = false,
+                            NextExecutionAt = new DateTime(2027, 9, 2, 0, 32, 0, 0, DateTimeKind.Utc),
+                            OneTimeExecutionDate = new DateTime(2027, 9, 2, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ScheduleName = "Random Schedule 011",
+                            ScheduleType = 1,
+                            SpecificExecutionTime = new TimeSpan(0, 0, 32, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ExecuteAtDay = 10,
+                            IsActive = false,
+                            IsDeleted = false,
+                            NextExecutionAt = new DateTime(2027, 1, 10, 2, 25, 0, 0, DateTimeKind.Utc),
+                            ScheduleName = "Random Schedule 012",
+                            ScheduleType = 2,
+                            SpecificExecutionTime = new TimeSpan(0, 2, 25, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ExecuteAtDay = 22,
+                            IsActive = false,
+                            IsDeleted = false,
+                            NextExecutionAt = new DateTime(2027, 5, 22, 20, 43, 0, 0, DateTimeKind.Utc),
+                            ScheduleName = "Random Schedule 013",
+                            ScheduleType = 2,
+                            SpecificExecutionTime = new TimeSpan(0, 20, 43, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ExecuteAtDay = 19,
+                            IsActive = true,
+                            IsDeleted = false,
+                            NextExecutionAt = new DateTime(2027, 8, 19, 10, 22, 0, 0, DateTimeKind.Utc),
+                            ScheduleName = "Random Schedule 014",
+                            ScheduleType = 2,
+                            SpecificExecutionTime = new TimeSpan(0, 10, 22, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = false,
+                            IsDeleted = false,
+                            NextExecutionAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ScheduleName = "Random Schedule 015",
+                            ScheduleType = 0,
+                            SpecificExecutionTime = new TimeSpan(0, 1, 17, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            IsDeleted = false,
+                            NextExecutionAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ScheduleName = "Random Schedule 016",
+                            ScheduleType = 0,
+                            SpecificExecutionTime = new TimeSpan(0, 13, 32, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = false,
+                            IsDeleted = false,
+                            NextExecutionAt = new DateTime(2027, 6, 20, 18, 1, 0, 0, DateTimeKind.Utc),
+                            OneTimeExecutionDate = new DateTime(2027, 6, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ScheduleName = "Random Schedule 017",
+                            ScheduleType = 1,
+                            SpecificExecutionTime = new TimeSpan(0, 18, 1, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            IsDeleted = false,
+                            NextExecutionAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ScheduleName = "Random Schedule 018",
+                            ScheduleType = 0,
+                            SpecificExecutionTime = new TimeSpan(0, 13, 16, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            IsDeleted = false,
+                            NextExecutionAt = new DateTime(2027, 6, 17, 2, 15, 0, 0, DateTimeKind.Utc),
+                            OneTimeExecutionDate = new DateTime(2027, 6, 17, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ScheduleName = "Random Schedule 019",
+                            ScheduleType = 1,
+                            SpecificExecutionTime = new TimeSpan(0, 2, 15, 0, 0)
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            IsDeleted = false,
+                            NextExecutionAt = new DateTime(2027, 2, 26, 2, 48, 0, 0, DateTimeKind.Utc),
+                            OneTimeExecutionDate = new DateTime(2027, 2, 26, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ScheduleName = "Random Schedule 020",
+                            ScheduleType = 1,
+                            SpecificExecutionTime = new TimeSpan(0, 2, 48, 0, 0)
+                        });
+                });
+
+            modelBuilder.Entity("Models.TopupScheduleRule", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("TopupRuleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TopupScheduleId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TopupRuleId");
+
+                    b.HasIndex("TopupScheduleId");
+
+                    b.ToTable("TopupScheduleRule");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 4,
+                            TopupScheduleId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 26,
+                            TopupScheduleId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 40,
+                            TopupScheduleId = 2
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 42,
+                            TopupScheduleId = 2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 9,
+                            TopupScheduleId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 14,
+                            TopupScheduleId = 3
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 26,
+                            TopupScheduleId = 3
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 12,
+                            TopupScheduleId = 3
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 11,
+                            TopupScheduleId = 4
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 2,
+                            TopupScheduleId = 4
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 38,
+                            TopupScheduleId = 5
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 45,
+                            TopupScheduleId = 6
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 18,
+                            TopupScheduleId = 7
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 6,
+                            TopupScheduleId = 7
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 27,
+                            TopupScheduleId = 7
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 36,
+                            TopupScheduleId = 7
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 32,
+                            TopupScheduleId = 8
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 37,
+                            TopupScheduleId = 8
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 38,
+                            TopupScheduleId = 8
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 13,
+                            TopupScheduleId = 9
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 35,
+                            TopupScheduleId = 9
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 26,
+                            TopupScheduleId = 10
+                        },
+                        new
+                        {
+                            Id = 23,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 13,
+                            TopupScheduleId = 11
+                        },
+                        new
+                        {
+                            Id = 24,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 39,
+                            TopupScheduleId = 11
+                        },
+                        new
+                        {
+                            Id = 25,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 25,
+                            TopupScheduleId = 12
+                        },
+                        new
+                        {
+                            Id = 26,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 25,
+                            TopupScheduleId = 13
+                        },
+                        new
+                        {
+                            Id = 27,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 36,
+                            TopupScheduleId = 13
+                        },
+                        new
+                        {
+                            Id = 28,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 14,
+                            TopupScheduleId = 14
+                        },
+                        new
+                        {
+                            Id = 29,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 15,
+                            TopupScheduleId = 14
+                        },
+                        new
+                        {
+                            Id = 30,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 15,
+                            TopupScheduleId = 15
+                        },
+                        new
+                        {
+                            Id = 31,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 19,
+                            TopupScheduleId = 15
+                        },
+                        new
+                        {
+                            Id = 32,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 43,
+                            TopupScheduleId = 15
+                        },
+                        new
+                        {
+                            Id = 33,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 43,
+                            TopupScheduleId = 16
+                        },
+                        new
+                        {
+                            Id = 34,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 31,
+                            TopupScheduleId = 17
+                        },
+                        new
+                        {
+                            Id = 35,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 23,
+                            TopupScheduleId = 17
+                        },
+                        new
+                        {
+                            Id = 36,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 25,
+                            TopupScheduleId = 17
+                        },
+                        new
+                        {
+                            Id = 37,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 27,
+                            TopupScheduleId = 18
+                        },
+                        new
+                        {
+                            Id = 38,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 4,
+                            TopupScheduleId = 19
+                        },
+                        new
+                        {
+                            Id = 39,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 47,
+                            TopupScheduleId = 19
+                        },
+                        new
+                        {
+                            Id = 40,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 9,
+                            TopupScheduleId = 19
+                        },
+                        new
+                        {
+                            Id = 41,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            TopupRuleId = 21,
+                            TopupScheduleId = 20
                         });
                 });
 
@@ -4486,7 +6580,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenId = 2,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            Role = 2
+                            Role = 1
                         },
                         new
                         {
@@ -4495,7 +6589,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenId = 3,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            Role = 3
+                            Role = 1
                         },
                         new
                         {
@@ -4504,7 +6598,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenId = 4,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            Role = 4
+                            Role = 1
                         },
                         new
                         {
@@ -4513,7 +6607,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenId = 5,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            Role = 4
+                            Role = 1
                         },
                         new
                         {
@@ -4522,7 +6616,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenId = 6,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            Role = 4
+                            Role = 1
                         },
                         new
                         {
@@ -4531,7 +6625,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenId = 7,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            Role = 4
+                            Role = 2
                         },
                         new
                         {
@@ -4540,7 +6634,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenId = 8,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            Role = 4
+                            Role = 3
                         },
                         new
                         {
@@ -4556,6 +6650,51 @@ namespace educationaccountmanagement.DAL.Migrations
                             Id = 10,
                             AuthAccountId = 10,
                             CitizenId = 10,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Role = 4
+                        },
+                        new
+                        {
+                            Id = 11,
+                            AuthAccountId = 11,
+                            CitizenId = 11,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Role = 4
+                        },
+                        new
+                        {
+                            Id = 12,
+                            AuthAccountId = 12,
+                            CitizenId = 12,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Role = 4
+                        },
+                        new
+                        {
+                            Id = 13,
+                            AuthAccountId = 13,
+                            CitizenId = 13,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Role = 4
+                        },
+                        new
+                        {
+                            Id = 14,
+                            AuthAccountId = 14,
+                            CitizenId = 14,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Role = 4
+                        },
+                        new
+                        {
+                            Id = 15,
+                            AuthAccountId = 15,
+                            CitizenId = 15,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Role = 4
@@ -4658,21 +6797,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Models.User", "ClosedByUser")
-                        .WithMany()
-                        .HasForeignKey("ClosedByUserId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("Models.User", "OpenedByUser")
-                        .WithMany()
-                        .HasForeignKey("OpenedByUserId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     b.Navigation("Citizen");
-
-                    b.Navigation("ClosedByUser");
-
-                    b.Navigation("OpenedByUser");
                 });
 
             modelBuilder.Entity("Models.EducationCreditTransaction", b =>
@@ -4695,7 +6820,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         .IsRequired();
 
                     b.HasOne("Models.EducationAccount", "EducationAccount")
-                        .WithMany("Enrollments")
+                        .WithMany()
                         .HasForeignKey("EducationAccountId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -4810,10 +6935,29 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasOne("Models.TopupRule", "TopupRule")
                         .WithMany("Conditions")
                         .HasForeignKey("TopupRuleId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("TopupRule");
+                });
+
+            modelBuilder.Entity("Models.TopupScheduleRule", b =>
+                {
+                    b.HasOne("Models.TopupRule", "TopupRule")
+                        .WithMany("ScheduleRules")
+                        .HasForeignKey("TopupRuleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Models.TopupSchedule", "TopupSchedule")
+                        .WithMany("ScheduleRules")
+                        .HasForeignKey("TopupScheduleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TopupRule");
+
+                    b.Navigation("TopupSchedule");
                 });
 
             modelBuilder.Entity("Models.User", b =>
@@ -4874,8 +7018,6 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.Navigation("EducationCreditTransactions");
 
-                    b.Navigation("Enrollments");
-
                     b.Navigation("TopupBatchTargets");
                 });
 
@@ -4919,7 +7061,14 @@ namespace educationaccountmanagement.DAL.Migrations
                 {
                     b.Navigation("Conditions");
 
+                    b.Navigation("ScheduleRules");
+
                     b.Navigation("TopupBatches");
+                });
+
+            modelBuilder.Entity("Models.TopupSchedule", b =>
+                {
+                    b.Navigation("ScheduleRules");
                 });
 
             modelBuilder.Entity("Models.User", b =>

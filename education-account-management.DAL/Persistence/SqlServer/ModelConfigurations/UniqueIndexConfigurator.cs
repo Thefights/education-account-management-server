@@ -1,5 +1,3 @@
-using Common;
-using EntityAnnotations;
 using Models;
 
 namespace Persistence.SqlServer.ModelConfigurations

@@ -1,4 +1,4 @@
-namespace DTOs.CourseManagement
+﻿namespace DTOs
 {
     public class CreateCourseManagementDTO
     {

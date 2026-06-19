@@ -11,16 +11,22 @@ public sealed class TopupRuleSeedBuilder : ISeedBuilder
     public ModelBuilder Seed(ModelBuilder modelBuilder)
     {
         var createdAt = SeedDataConstants.CreatedAt;
+        var random = new Random(12345);
+        var rules = new List<TopupRule>();
 
-        modelBuilder.Entity<TopupRule>().HasData(
-            Enumerable.Range(1, 10).Select(id => new TopupRule
+        for (int i = 1; i <= 50; i++)
+        {
+            rules.Add(new TopupRule
             {
-                Id = id,
-                RuleName = $"Top-up Rule {id:000}",
-                TopupAmount = 100m + id * 10m,
-                Status = id % 5 == 0 ? TopupRuleStatus.Inactive : TopupRuleStatus.Active,
+                Id = i,
+                RuleName = $"Random Top-up Rule {i:000}",
+                TopupAmount = random.Next(1, 100) * 10m, // 10 to 990
+                Status = random.NextDouble() > 0.1 ? TopupRuleStatus.Active : TopupRuleStatus.Inactive, // 90% active
                 CreatedAt = createdAt
-            }).ToArray());
+            });
+        }
+
+        modelBuilder.Entity<TopupRule>().HasData(rules);
 
         return modelBuilder;
     }
