@@ -28,8 +28,6 @@ namespace Infrastructure
             await auditLogWriter.LogAsync(
                 Enums.AuditLogCategory.Transaction,
                 "Due Top-Up Sweep Completed",
-                System.Text.Json.JsonSerializer.Serialize(results),
-                targetNric: null,
                 cancellationToken: cancellationToken);
 
             await unitOfWork.SaveChangeAsync(cancellationToken);

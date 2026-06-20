@@ -1,314 +1,320 @@
 using DTOs.TopUp;
 using Interfaces.Audit;
 using Interfaces.TopUp;
-using System.Text.Json;
 
-namespace Services.TopUp
+namespace Services.TopUp;
+
+public class TopupService(
+    IUnitOfWork unitOfWork,
+    IAuditLogWriter auditLogWriter)
+    : ITopupService
 {
-    public class TopupService(
-        IUnitOfWork unitOfWork,
-        ICurrentUserService currentUserService,
-        IAuditLogWriter auditLogWriter)
-        : ITopupService
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
+    private readonly IAuditLogWriter _auditLogWriter = auditLogWriter;
+    private readonly IGenericRepository<EducationAccount> _accountRepository = unitOfWork.Repository<EducationAccount>();
+    private readonly IGenericRepository<EducationCreditTransaction> _transactionRepository = unitOfWork.Repository<EducationCreditTransaction>();
+    private readonly IGenericRepository<TopupExecution> _executionRepository = unitOfWork.Repository<TopupExecution>();
+    private readonly IGenericRepository<TopupExecutionTarget> _targetRepository = unitOfWork.Repository<TopupExecutionTarget>();
+
+    public async Task<ExecuteTopupResultDTO> ExecuteManualTopupAsync(
+        ManualTopupRequestDTO request,
+        CancellationToken cancellationToken)
     {
-        private readonly IUnitOfWork _unitOfWork = unitOfWork;
-        private readonly ICurrentUserService _currentUserService = currentUserService;
-        private readonly IAuditLogWriter _auditLogWriter = auditLogWriter;
+        ArgumentNullException.ThrowIfNull(request);
+        ValidateRequest(request);
 
-        private readonly IGenericRepository<EducationAccount> _educationAccountRepository = unitOfWork.Repository<EducationAccount>();
-        private readonly IGenericRepository<EducationCreditTransaction> _creditTransactionRepository = unitOfWork.Repository<EducationCreditTransaction>();
-        private readonly IGenericRepository<TopupExecution> _executionRepository = unitOfWork.Repository<TopupExecution>();
-        private readonly IGenericRepository<TopupExecutionTarget> _executionTargetRepository = unitOfWork.Repository<TopupExecutionTarget>();
+        var existingExecution = await _executionRepository.Query()
+            .Include(execution => execution.Targets)
+                .ThenInclude(target => target.EducationAccount)
+                .ThenInclude(account => account!.Citizen)
+            .Include(execution => execution.Targets)
+                .ThenInclude(target => target.EducationCreditTransaction)
+            .FirstOrDefaultAsync(
+                execution => execution.IdempotencyKey == request.IdempotencyKey,
+                cancellationToken);
+        if (existingExecution != null)
+            return BuildResult(existingExecution);
 
-        #region Execute Manual Top-Up
+        var inputs = request.AccountIds is { Count: > 0 }
+            ? await ResolveSelectedInputsAsync(request.AccountIds, cancellationToken)
+            : await ResolveCsvInputsAsync(request.File!, cancellationToken);
 
-        public async Task<ExecuteTopupResultDTO> ExecuteManualTopupAsync(
-            ManualTopupRequestDTO request,
-            CancellationToken cancellationToken)
+        var execution = new TopupExecution
         {
-            ArgumentNullException.ThrowIfNull(request);
+            ExecutionCode = $"EXEC-MANUAL-{Guid.NewGuid():N}"[..22].ToUpperInvariant(),
+            SourceType = TopupExecutionSourceType.Manual,
+            IdempotencyKey = request.IdempotencyKey,
+            ManualAmount = request.TopUpAmount,
+            ManualReason = request.DisbursementReason,
+            Status = TopupExecutionStatus.Pending,
+            TotalTargetCount = inputs.Count
+        };
+        execution.TryValidate();
+        await _executionRepository.AddAsync(execution, cancellationToken);
+        await _unitOfWork.SaveChangeAsync(cancellationToken);
 
-            // Idempotency check
-            var existingExecution = await _executionRepository.Query()
-                .Include(e => e.Targets).ThenInclude(t => t.EducationAccount).ThenInclude(a => a!.Citizen)
-                .FirstOrDefaultAsync(e => e.IdempotencyKey == request.IdempotencyKey, cancellationToken);
+        execution.Status = TopupExecutionStatus.Executing;
+        _executionRepository.Update(execution);
+        await _unitOfWork.SaveChangeAsync(cancellationToken);
 
-            if (existingExecution != null)
-                return BuildResultFromExisting(existingExecution);
-
-            // Resolve target accounts
-            List<EducationAccount> accounts;
-            if (request.AccountIds is { Count: > 0 })
-                accounts = await ResolveAccountsByIds(request.AccountIds, cancellationToken);
-            else
-                accounts = await ResolveAccountsFromCsv(request.File!, cancellationToken);
-
-            return await ExecuteTopupForAccountsAsync(accounts, request, cancellationToken);
-        }
-
-        private async Task<List<EducationAccount>> ResolveAccountsByIds(
-            List<int> accountIds,
-            CancellationToken cancellationToken)
+        var result = new ExecuteTopupResultDTO
         {
-            return await _educationAccountRepository.Query()
-                .Include(a => a.Citizen)
-                .Where(a => accountIds.Contains(a.Id))
-                .ToListAsync(cancellationToken);
-        }
+            BatchId = execution.Id,
+            TotalProcessed = inputs.Count
+        };
 
-        private async Task<List<EducationAccount>> ResolveAccountsFromCsv(
-            IFormFile file,
-            CancellationToken cancellationToken)
+        foreach (var input in inputs)
         {
-            var fileErrors = CsvImportHelper.ValidateFile(file);
-            if (fileErrors.Any())
-                throw new UserFacingException(string.Join(" ", fileErrors.Select(e => e.Message)), 400);
-
-            var readResult = CsvImportHelper.ReadRows<ManualTopupImportRowDTO>(file);
-
-            var accountNumbers = readResult.Items
-                .Select(i => i.Row.AccountNumber?.Trim())
-                .Where(n => !string.IsNullOrEmpty(n))
-                .Distinct(StringComparer.OrdinalIgnoreCase)
-                .ToList();
-
-            return await _educationAccountRepository.Query()
-                .Include(a => a.Citizen)
-                .Where(a => accountNumbers.Contains(a.AccountNumber))
-                .ToListAsync(cancellationToken);
-        }
-
-        private async Task<ExecuteTopupResultDTO> ExecuteTopupForAccountsAsync(
-            List<EducationAccount> accounts,
-            ManualTopupRequestDTO request,
-            CancellationToken cancellationToken)
-        {
-            var execution = new TopupExecution
+            if (input.Error != null || input.Account == null)
             {
-                ExecutionCode = $"EXEC-MANUAL-{Guid.NewGuid().ToString("N")[..10].ToUpper()}",
-                SourceType = TopupExecutionSourceType.Manual,
-                IdempotencyKey = request.IdempotencyKey,
-                ManualAmount = request.TopUpAmount,
-                ManualReason = request.DisbursementReason,
-                Status = TopupExecutionStatus.Executing,
-                TotalTargetCount = accounts.Count
-            };
-            execution.TryValidate();
-            await _executionRepository.AddAsync(execution, cancellationToken);
-            await _unitOfWork.SaveChangeAsync(cancellationToken);
-
-            var result = new ExecuteTopupResultDTO
-            {
-                BatchId = execution.Id,
-                TotalProcessed = accounts.Count
-            };
-
-            var processedIds = new HashSet<int>();
-
-            foreach (var account in accounts)
-            {
-                if (!processedIds.Add(account.Id))
-                {
-                    await RecordFailedTarget(execution, account, request.TopUpAmount, "Duplicate account.", cancellationToken);
-                    result.FailList.Add(BuildFailItem(account, request.TopUpAmount, "Duplicate account."));
-                    continue;
-                }
-
-                if (account.Status != EducationAccountStatus.Active)
-                {
-                    var reason = $"Account is not Active (current status: {account.Status}).";
-                    await RecordFailedTarget(execution, account, request.TopUpAmount, reason, cancellationToken);
-                    result.FailList.Add(BuildFailItem(account, request.TopUpAmount, reason));
-                    await LogAuditAsync(execution.Id, "Manual Top-Up", $"Failed (Status: {account.Status})",
-                        request.DisbursementReason, account.Id, request.TopUpAmount, account.Citizen.Nric, cancellationToken);
-                    continue;
-                }
-
-                try
-                {
-                    var successItem = await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
-                    {
-                        var balanceBefore = account.EducationCreditBalance;
-                        var balanceAfter = balanceBefore + request.TopUpAmount;
-
-                        account.EducationCreditBalance = balanceAfter;
-                        _educationAccountRepository.Update(account);
-
-                        var txCode = Guid.NewGuid();
-                        var creditTx = new EducationCreditTransaction
-                        {
-                            TransactionCode = txCode,
-                            Type = EducationCreditTransactionType.Topup,
-                            Direction = EducationCreditTransactionDirection.Credit,
-                            Amount = request.TopUpAmount,
-                            BalanceBefore = balanceBefore,
-                            BalanceAfter = balanceAfter,
-                            Description = request.DisbursementReason,
-                            EducationAccountId = account.Id
-                        };
-                        creditTx.TryValidate();
-                        await _creditTransactionRepository.AddAsync(creditTx, token);
-                        await _unitOfWork.SaveChangeAsync(token);
-
-                        var target = new TopupExecutionTarget
-                        {
-                            TopupExecutionId = execution.Id,
-                            EducationAccountId = account.Id,
-                            AccountNumber = account.AccountNumber,
-                            Amount = request.TopUpAmount,
-                            Status = TopupTargetStatus.Success,
-                            EducationCreditTransactionId = creditTx.Id
-                        };
-                        target.TryValidate();
-                        await _executionTargetRepository.AddAsync(target, token);
-                        await _unitOfWork.SaveChangeAsync(token);
-
-                        return new TopupSuccessItemDTO
-                        {
-                            AccountId = account.Id,
-                            AccountNumber = account.AccountNumber,
-                            AccountName = account.Citizen.FullName,
-                            TopUpTransactionId = txCode,
-                            TopUpAmount = request.TopUpAmount
-                        };
-                    }, cancellationToken);
-
-                    if (successItem != null)
-                    {
-                        execution.SuccessCount++;
-                        execution.TotalExecutedAmount += request.TopUpAmount;
-                        result.SuccessList.Add(successItem);
-                        result.TotalSuccess++;
-
-                        await LogAuditAsync(execution.Id, "Manual Top-Up", "Success",
-                            request.DisbursementReason, account.Id, request.TopUpAmount, account.Citizen.Nric, cancellationToken);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    execution.FailedCount++;
-                    result.TotalFailed++;
-                    var reason = ex.GetBaseException().Message;
-                    result.FailList.Add(BuildFailItem(account, request.TopUpAmount, $"Execution failed: {reason}"));
-
-                    await RecordFailedTarget(execution, account, request.TopUpAmount, reason[..Math.Min(500, reason.Length)], cancellationToken);
-                    await LogAuditAsync(execution.Id, "Manual Top-Up", $"Failed ({reason})",
-                        request.DisbursementReason, account.Id, request.TopUpAmount, account.Citizen.Nric, cancellationToken);
-                }
+                await AddFailureAsync(execution, input, request.TopUpAmount,
+                    input.Error ?? "Account not found.", result, cancellationToken);
+                continue;
             }
 
-            execution.Status = TopupExecutionStatus.Completed;
-            _executionRepository.Update(execution);
-            await _unitOfWork.SaveChangeAsync(cancellationToken);
-
-            result.TotalSuccess = execution.SuccessCount;
-            result.TotalFailed = execution.FailedCount;
-            result.TotalAmountCredited = execution.TotalExecutedAmount;
-
-            return result;
-        }
-
-        #endregion
-
-        #region Helpers
-
-        private static ExecuteTopupResultDTO BuildResultFromExisting(TopupExecution existing)
-        {
-            var result = new ExecuteTopupResultDTO
+            var account = input.Account;
+            if (account.Status != EducationAccountStatus.Active)
             {
-                BatchId = existing.Id,
-                TotalProcessed = existing.TotalTargetCount,
-                TotalSuccess = existing.SuccessCount,
-                TotalFailed = existing.FailedCount,
-                TotalAmountCredited = existing.TotalExecutedAmount
-            };
-
-            foreach (var t in existing.Targets)
-            {
-                if (t.Status == TopupTargetStatus.Success)
-                {
-                    result.SuccessList.Add(new TopupSuccessItemDTO
-                    {
-                        AccountId = t.EducationAccountId ?? 0,
-                        AccountNumber = t.AccountNumber,
-                        AccountName = t.EducationAccount?.Citizen?.FullName ?? "Unknown",
-                        TopUpAmount = t.Amount
-                    });
-                }
-                else
-                {
-                    result.FailList.Add(new TopupFailItemDTO
-                    {
-                        AccountId = t.EducationAccountId ?? 0,
-                        AccountNumber = t.AccountNumber,
-                        AccountName = t.EducationAccount?.Citizen?.FullName ?? "Unknown",
-                        TopUpAmount = t.Amount,
-                        Reason = t.FailureReason ?? "Unknown error"
-                    });
-                }
+                await AddFailureAsync(execution, input, request.TopUpAmount,
+                    $"Account is not Active (current status: {account.Status}).", result, cancellationToken);
+                continue;
             }
 
-            return result;
+            try
+            {
+                var success = await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
+                {
+                    var balanceBefore = account.EducationCreditBalance;
+                    var balanceAfter = balanceBefore + request.TopUpAmount;
+                    account.EducationCreditBalance = balanceAfter;
+                    _accountRepository.Update(account);
+
+                    var transaction = new EducationCreditTransaction
+                    {
+                        Type = EducationCreditTransactionType.Topup,
+                        Direction = EducationCreditTransactionDirection.Credit,
+                        Amount = request.TopUpAmount,
+                        BalanceBefore = balanceBefore,
+                        BalanceAfter = balanceAfter,
+                        Description = request.DisbursementReason,
+                        EducationAccountId = account.Id
+                    };
+                    transaction.TryValidate();
+                    await _transactionRepository.AddAsync(transaction, token);
+
+                    var target = new TopupExecutionTarget
+                    {
+                        TopupExecutionId = execution.Id,
+                        EducationAccountId = account.Id,
+                        AccountNumber = account.AccountNumber,
+                        Amount = request.TopUpAmount,
+                        Status = TopupTargetStatus.Success,
+                        EducationCreditTransaction = transaction
+                    };
+                    target.TryValidate();
+                    await _targetRepository.AddAsync(target, token);
+
+                    return new TopupSuccessItemDTO
+                    {
+                        AccountId = account.Id,
+                        AccountNumber = account.AccountNumber,
+                        AccountName = account.Citizen.FullName,
+                        TopUpAmount = request.TopUpAmount,
+                        TopUpTransactionId = transaction.TransactionCode
+                    };
+                }, cancellationToken);
+
+                execution.SuccessCount++;
+                execution.TotalExecutedAmount += request.TopUpAmount;
+                result.SuccessList.Add(success);
+                await LogAuditAsync("Success", account, cancellationToken);
+            }
+            catch (Exception exception) when (exception is not OperationCanceledException)
+            {
+                await AddFailureAsync(execution, input, request.TopUpAmount,
+                    $"Execution failed: {exception.GetBaseException().Message}", result, cancellationToken);
+            }
         }
 
-        private async Task RecordFailedTarget(
-            TopupExecution execution,
-            EducationAccount account,
-            decimal amount,
-            string reason,
-            CancellationToken cancellationToken)
+        execution.Status = TopupExecutionStatus.Completed;
+        _executionRepository.Update(execution);
+        await _unitOfWork.SaveChangeAsync(cancellationToken);
+
+        result.TotalSuccess = execution.SuccessCount;
+        result.TotalFailed = execution.FailedCount;
+        result.TotalAmountCredited = execution.TotalExecutedAmount;
+        return result;
+    }
+
+    private async Task<List<ManualInput>> ResolveSelectedInputsAsync(
+        List<int> accountIds,
+        CancellationToken cancellationToken)
+    {
+        var accounts = await _accountRepository.Query(tracking: true)
+            .Include(account => account.Citizen)
+            .Where(account => accountIds.Contains(account.Id))
+            .ToListAsync(cancellationToken);
+        var byId = accounts.ToDictionary(account => account.Id);
+        var seen = new HashSet<int>();
+
+        return accountIds.Select(id =>
         {
-            execution.FailedCount++;
+            byId.TryGetValue(id, out var account);
+            var error = !seen.Add(id)
+                ? "Duplicate account in the selected list."
+                : account == null ? "Account not found." : null;
+            return new ManualInput(account, account?.AccountNumber ?? $"ID:{id}", error, account != null && error == null);
+        }).ToList();
+    }
+
+    private async Task<List<ManualInput>> ResolveCsvInputsAsync(
+        IFormFile file,
+        CancellationToken cancellationToken)
+    {
+        var fileErrors = CsvImportHelper.ValidateFile(file);
+        if (fileErrors.Count != 0)
+            throw new UserFacingException(string.Join(" ", fileErrors.Select(error => error.Message)), 400);
+
+        var rows = CsvImportHelper.ReadRows<ManualTopupImportRowDTO>(file);
+        var accountNumbers = rows.Items
+            .Select(item => item.Row.AccountNumber?.Trim())
+            .Where(accountNumber => !string.IsNullOrWhiteSpace(accountNumber))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToList();
+        var accounts = await _accountRepository.Query(tracking: true)
+            .Include(account => account.Citizen)
+            .Where(account => accountNumbers.Contains(account.AccountNumber))
+            .ToListAsync(cancellationToken);
+        var byNumber = accounts.ToDictionary(account => account.AccountNumber, StringComparer.OrdinalIgnoreCase);
+        var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var inputs = new List<ManualInput>();
+
+        foreach (var item in rows.Items)
+        {
+            var accountNumber = item.Row.AccountNumber?.Trim() ?? string.Empty;
+            byNumber.TryGetValue(accountNumber, out var account);
+            var error = string.IsNullOrWhiteSpace(accountNumber)
+                ? "Account Number is required."
+                : !seen.Add(accountNumber)
+                    ? "Duplicate account in the CSV file."
+                    : account == null ? "Account not found." : null;
+            inputs.Add(new ManualInput(account, accountNumber, error,
+                !string.IsNullOrWhiteSpace(accountNumber) && error != "Duplicate account in the CSV file."));
+        }
+
+        inputs.AddRange(rows.Errors.Select(error =>
+            new ManualInput(null, string.Empty, $"CSV row {error.RowNumber}: {error.Message}", false)));
+        return inputs;
+    }
+
+    private async Task AddFailureAsync(
+        TopupExecution execution,
+        ManualInput input,
+        decimal amount,
+        string reason,
+        ExecuteTopupResultDTO result,
+        CancellationToken cancellationToken)
+    {
+        execution.FailedCount++;
+        var truncatedReason = reason[..Math.Min(500, reason.Length)];
+        if (input.PersistFailure && !string.IsNullOrWhiteSpace(input.AccountNumber))
+        {
             var target = new TopupExecutionTarget
             {
                 TopupExecutionId = execution.Id,
-                EducationAccountId = account.Id,
-                AccountNumber = account.AccountNumber,
+                EducationAccountId = input.Account?.Id,
+                AccountNumber = input.AccountNumber,
                 Amount = amount,
                 Status = TopupTargetStatus.Failed,
-                FailureReason = reason[..Math.Min(500, reason.Length)]
+                FailureReason = truncatedReason
             };
             target.TryValidate();
-            await _executionTargetRepository.AddAsync(target, cancellationToken);
+            await _targetRepository.AddAsync(target, cancellationToken);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
         }
 
-        private static TopupFailItemDTO BuildFailItem(EducationAccount account, decimal amount, string reason)
+        result.FailList.Add(new TopupFailItemDTO
         {
-            return new TopupFailItemDTO
-            {
-                AccountId = account.Id,
-                AccountNumber = account.AccountNumber,
-                AccountName = account.Citizen.FullName,
-                TopUpAmount = amount,
-                Reason = reason
-            };
-        }
-
-        private async Task LogAuditAsync(
-            int executionId, string logAction, string logStatus,
-            string? reason, int accountId, decimal amount,
-            string? nric, CancellationToken cancellationToken)
-        {
-            var payload = new
-            {
-                TopupExecutionId = executionId,
-                TopupAction = logAction,
-                TopupStatus = logStatus,
-                Name = reason ?? "N/A",
-                AccountID = accountId,
-                TopUpAmount = amount,
-                AdminUser = _currentUserService.UserName ?? "System",
-                DateTime = DateTime.UtcNow
-            };
-
-            await _auditLogWriter.LogAsync(
-                AuditLogCategory.Transaction,
-                action: $"{logAction} – {logStatus}",
-                payloadJson: JsonSerializer.Serialize(payload),
-                targetNric: nric,
-                cancellationToken: cancellationToken);
-        }
-        #endregion
+            AccountId = input.Account?.Id ?? 0,
+            AccountNumber = input.AccountNumber,
+            AccountName = input.Account?.Citizen.FullName ?? "Unknown",
+            TopUpAmount = amount,
+            Reason = reason
+        });
     }
+
+    private static void ValidateRequest(ManualTopupRequestDTO request)
+    {
+        var errors = new Dictionary<string, string>();
+        if (request.TopUpAmount <= 0) errors[nameof(request.TopUpAmount)] = "Top-up amount must be positive.";
+        if (string.IsNullOrWhiteSpace(request.DisbursementReason))
+            errors[nameof(request.DisbursementReason)] = "Disbursement reason is required.";
+        if (string.IsNullOrWhiteSpace(request.IdempotencyKey))
+            errors[nameof(request.IdempotencyKey)] = "Idempotency key is required.";
+
+        var hasIds = request.AccountIds is { Count: > 0 };
+        var hasFile = request.File is { Length: > 0 };
+        if (hasIds == hasFile)
+            errors[nameof(request.AccountIds)] = "Provide either AccountIds or a CSV file, but not both.";
+        if (hasIds && request.AccountIds!.Any(id => id <= 0))
+            errors[nameof(request.AccountIds)] = "All account IDs must be positive.";
+        if (errors.Count != 0) throw new ValidationFailureException(errors);
+    }
+
+    private static ExecuteTopupResultDTO BuildResult(TopupExecution execution)
+    {
+        var result = new ExecuteTopupResultDTO
+        {
+            BatchId = execution.Id,
+            TotalProcessed = execution.TotalTargetCount,
+            TotalSuccess = execution.SuccessCount,
+            TotalFailed = execution.FailedCount,
+            TotalAmountCredited = execution.TotalExecutedAmount
+        };
+        foreach (var target in execution.Targets)
+        {
+            if (target.Status == TopupTargetStatus.Success)
+            {
+                result.SuccessList.Add(new TopupSuccessItemDTO
+                {
+                    AccountId = target.EducationAccountId ?? 0,
+                    AccountNumber = target.AccountNumber,
+                    AccountName = target.EducationAccount?.Citizen.FullName ?? "Unknown",
+                    TopUpAmount = target.Amount,
+                    TopUpTransactionId = target.EducationCreditTransaction?.TransactionCode ?? Guid.Empty
+                });
+            }
+            else
+            {
+                result.FailList.Add(new TopupFailItemDTO
+                {
+                    AccountId = target.EducationAccountId ?? 0,
+                    AccountNumber = target.AccountNumber,
+                    AccountName = target.EducationAccount?.Citizen.FullName ?? "Unknown",
+                    TopUpAmount = target.Amount,
+                    Reason = target.FailureReason ?? "Unknown error"
+                });
+            }
+        }
+
+        return result;
+    }
+
+    private async Task LogAuditAsync(
+        string status,
+        EducationAccount account,
+        CancellationToken cancellationToken)
+    {
+        await _auditLogWriter.LogAsync(
+            AuditLogCategory.Transaction,
+            $"Manual Top-Up - {status}",
+            account.Citizen.Nric,
+            cancellationToken);
+    }
+
+    private sealed record ManualInput(
+        EducationAccount? Account,
+        string AccountNumber,
+        string? Error,
+        bool PersistFailure);
 }

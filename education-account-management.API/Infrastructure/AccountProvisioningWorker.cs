@@ -1,5 +1,7 @@
 using Interfaces.EducationAccounts;
-using System.Text.Json;
+using Interfaces.Audit;
+using Enums;
+using Repositories.Interfaces;
 
 namespace Infrastructure
 {
@@ -10,43 +12,14 @@ namespace Infrastructure
     {
         protected override string JobName => nameof(AccountProvisioningWorker);
 
-        protected override TimeSpan Interval => TimeSpan.Zero;
+        protected override TimeSpan Interval => TimeSpan.FromDays(1);
 
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        protected override bool RunImmediately => false;
+
+        protected override TimeSpan GetDelayBeforeNextExecution()
         {
-            while (!stoppingToken.IsCancellationRequested)
-            {
-                var nowUtc = DateTime.UtcNow;
-                var nowSgt = nowUtc.AddHours(8);
-                var nextRunSgt = nowSgt.Date.AddDays(1);
-                var delay = nextRunSgt - nowSgt;
-
-                _logger.LogInformation("AccountProvisioningWorker scheduled to run next at {NextRunSgt} SGT (Delay: {Delay})", nextRunSgt, delay);
-
-                try
-                {
-                    await Task.Delay(delay, stoppingToken);
-                }
-                catch (OperationCanceledException) when (stoppingToken.IsCancellationRequested)
-                {
-                    return;
-                }
-
-                try
-                {
-                    using var scope = _serviceScopeFactory.CreateScope();
-                    _logger.LogInformation("Background job {JobName} started.", JobName);
-                    await ExecuteJobAsync(scope.ServiceProvider, stoppingToken);
-                }
-                catch (OperationCanceledException) when (stoppingToken.IsCancellationRequested)
-                {
-                    return;
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError(ex, "Background job {JobName} failed.", JobName);
-                }
-            }
+            var nowSgt = DateTime.UtcNow.AddHours(8);
+            return nowSgt.Date.AddDays(1) - nowSgt;
         }
 
         protected override async Task ExecuteJobAsync(
@@ -54,18 +27,14 @@ namespace Infrastructure
             CancellationToken cancellationToken)
         {
             var educationAccountService = serviceProvider.GetRequiredService<IEducationAccountService>();
-            var auditLogWriter = serviceProvider.GetRequiredService<Interfaces.Audit.IAuditLogWriter>();
-            var unitOfWork = serviceProvider.GetRequiredService<Repositories.Interfaces.IUnitOfWork>();
+            var auditLogWriter = serviceProvider.GetRequiredService<IAuditLogWriter>();
+            var unitOfWork = serviceProvider.GetRequiredService<IUnitOfWork>();
 
-            var result = await educationAccountService.AutoCreateAccountsAsync(cancellationToken);
-
+            var report = await educationAccountService.SweepAccountsAsync(cancellationToken);
             await auditLogWriter.LogAsync(
-                Enums.AuditLogCategory.AccountCreation,
+                AuditLogCategory.AccountCreation,
                 "Auto Provisioning Sweep Completed",
-                JsonSerializer.Serialize(result),
-                targetNric: null,
                 cancellationToken: cancellationToken);
-
             await unitOfWork.SaveChangeAsync(cancellationToken);
         }
     }

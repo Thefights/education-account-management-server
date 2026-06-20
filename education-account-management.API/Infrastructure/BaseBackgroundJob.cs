@@ -12,12 +12,19 @@ namespace Infrastructure
 
         protected abstract TimeSpan Interval { get; }
 
+        protected virtual bool RunImmediately => true;
+
+        protected virtual TimeSpan GetDelayBeforeNextExecution() => Interval;
+
         protected abstract Task ExecuteJobAsync(
             IServiceProvider serviceProvider,
             CancellationToken cancellationToken);
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            if (!RunImmediately && !await DelayAsync(stoppingToken))
+                return;
+
             while (!stoppingToken.IsCancellationRequested)
             {
                 try
@@ -35,14 +42,20 @@ namespace Infrastructure
                     _logger.LogError(ex, "Background job {JobName} failed.", JobName);
                 }
 
-                try
-                {
-                    await Task.Delay(Interval, stoppingToken);
-                }
-                catch (OperationCanceledException) when (stoppingToken.IsCancellationRequested)
-                {
-                    return;
-                }
+                if (!await DelayAsync(stoppingToken)) return;
+            }
+        }
+
+        private async Task<bool> DelayAsync(CancellationToken stoppingToken)
+        {
+            try
+            {
+                await Task.Delay(GetDelayBeforeNextExecution(), stoppingToken);
+                return true;
+            }
+            catch (OperationCanceledException) when (stoppingToken.IsCancellationRequested)
+            {
+                return false;
             }
         }
     }

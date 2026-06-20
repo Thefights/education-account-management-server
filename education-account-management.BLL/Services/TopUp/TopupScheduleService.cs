@@ -2,7 +2,6 @@ using DTOs.TopUp;
 using Interfaces.Audit;
 using Interfaces.TopUp;
 using Services.Base;
-using System.Text.Json;
 using Validators;
 
 namespace Services.TopUp
@@ -55,9 +54,7 @@ namespace Services.TopUp
             await _auditLogWriter.LogAsync(
                 AuditLogCategory.TopupConfig,
                 "CreateSchedule",
-                JsonSerializer.Serialize(createdSchedule),
-                null,
-                cancellationToken);
+                cancellationToken: cancellationToken);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
 
             return createdSchedule;
@@ -69,7 +66,6 @@ namespace Services.TopUp
             ValidateSchedule(updateDTO.Frequency, updateDTO.OneTimeExecutionAt, updateDTO.ExecuteAtDay,
                 updateDTO.ExecuteAtMonth, updateDTO.ExecutionTime, updateDTO.Status, updateDTO.TopupRuleId);
 
-            var oldPayload = await GetByIdAsync(id, cancellationToken);
             var schedule = await _repository.Query()
                 .FirstOrDefaultAsync(s => s.Id == id, cancellationToken)
                 ?? throw new DataNotFoundException(typeof(TopupSchedule), id);
@@ -116,9 +112,7 @@ namespace Services.TopUp
             await _auditLogWriter.LogAsync(
                 AuditLogCategory.TopupConfig,
                 "UpdateSchedule",
-                JsonSerializer.Serialize(new { Old = oldPayload, New = updatedSchedule }),
-                null,
-                cancellationToken);
+                cancellationToken: cancellationToken);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
 
             return updatedSchedule;
@@ -134,9 +128,7 @@ namespace Services.TopUp
             await _auditLogWriter.LogAsync(
                 AuditLogCategory.TopupConfig,
                 "DeleteSchedule",
-                JsonSerializer.Serialize(schedule),
-                null,
-                cancellationToken);
+                cancellationToken: cancellationToken);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
         }
 

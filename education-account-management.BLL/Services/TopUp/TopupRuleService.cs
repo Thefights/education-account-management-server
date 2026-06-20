@@ -2,7 +2,6 @@ using DTOs.TopUp;
 using Interfaces.Audit;
 using Interfaces.TopUp;
 using Services.Base;
-using System.Text.Json;
 using Validators;
 
 namespace Services.TopUp
@@ -25,9 +24,8 @@ namespace Services.TopUp
             var ruleId = await _unitOfWork.ExecuteInTransactionAsync(async (transaction, token) =>
             {
                 var rule = _mapper.MapFromCreateDTO(createDTO);
-                rule.RuleName = rule.RuleName.Trim();
-
                 rule.TryValidate();
+
                 foreach (var condition in rule.Conditions)
                     condition.TryValidate();
                 await UniqueConstraintValidator.ValidateAsync(_repository, rule, cancellationToken: token);
@@ -40,16 +38,9 @@ namespace Services.TopUp
 
             var createdRule = await GetByIdAsync(ruleId, cancellationToken);
 
-            // Audit Log
-            var payload = new
-            {
-                Rule = createdRule
-            };
-
             await _auditLogWriter.LogAsync(
                 AuditLogCategory.TopupConfig,
                 "CreateRule",
-                payloadJson: JsonSerializer.Serialize(payload),
                 cancellationToken: cancellationToken
             );
 
@@ -108,42 +99,10 @@ namespace Services.TopUp
                 }
             }
 
-            // Check name conflict
-            if (!string.Equals(rule.RuleName, updateDTO.RuleName.Trim(), StringComparison.OrdinalIgnoreCase))
-            {
-                var nameConflict = await _repository.Query()
-                    .AnyAsync(r => r.Id != id && r.RuleName == updateDTO.RuleName.Trim(), cancellationToken);
-
-                if (nameConflict)
-                {
-                    throw new ValidationFailureException("RuleName", "A Top-up rule with this name already exists.");
-                }
-            }
-
-            // Capture old values for audit log
-            var oldPayload = new
-            {
-                RuleName = rule.RuleName,
-                Type = rule.Type.ToString(),
-                MatchMode = rule.MatchMode.ToString(),
-                TopupAmount = rule.TopupAmount,
-                Status = rule.Status.ToString(),
-                Conditions = rule.Conditions.Select(c => new
-                {
-                    c.Id,
-                    c.Field,
-                    c.Operator,
-                    c.ValueText,
-                    c.ValueNumber,
-                    c.ConditionAmount,
-                    c.DisplayOrder
-                }).ToList()
-            };
-
             await _unitOfWork.ExecuteInTransactionAsync(async (transaction, token) =>
             {
                 // Update rule metadata
-                rule.RuleName = updateDTO.RuleName.Trim();
+                rule.RuleName = updateDTO.RuleName;
                 rule.Type = updateDTO.Type;
                 rule.MatchMode = updateDTO.MatchMode;
                 rule.TopupAmount = updateDTO.TopupAmount;
@@ -193,8 +152,7 @@ namespace Services.TopUp
                 }
 
                 rule.TryValidate();
-                foreach (var condition in rule.Conditions)
-                    condition.TryValidate();
+                foreach (var condition in rule.Conditions) condition.TryValidate();
                 await UniqueConstraintValidator.ValidateAsync(_repository, rule, rule.Id, token);
 
                 _repository.Update(rule);
@@ -202,16 +160,9 @@ namespace Services.TopUp
 
             var updatedRule = await GetByIdAsync(id, cancellationToken);
 
-            var auditPayload = new
-            {
-                Old = oldPayload,
-                New = updatedRule
-            };
-
             await _auditLogWriter.LogAsync(
                 AuditLogCategory.TopupConfig,
                 "UpdateRule",
-                payloadJson: JsonSerializer.Serialize(auditPayload),
                 cancellationToken: cancellationToken
             );
 
@@ -248,27 +199,27 @@ namespace Services.TopUp
 
                     _repository.Update(rule);
 
-                    // Audit Log
-                    var auditPayload = new
-                    {
-                        RuleId = rule.Id,
-                        RuleName = rule.RuleName,
-                        OldStatus = oldStatus.ToString(),
-                        NewStatus = rule.Status.ToString()
-                    };
-
                     string action = rule.Status is TopupRuleStatus.Active ? "ActivateRule" : "InactivateRule";
 
                     await _auditLogWriter.LogAsync(
                         AuditLogCategory.TopupConfig,
                         action,
-                        payloadJson: JsonSerializer.Serialize(auditPayload),
                         cancellationToken: token
                     );
                 }
 
-                await _unitOfWork.SaveChangeAsync(token);
             }, cancellationToken);
+        }
+
+        public override async Task DeleteAsync(int id, CancellationToken cancellationToken = default)
+        {
+            var rule = await GetByIdAsync(id, cancellationToken);
+            await base.DeleteAsync(id, cancellationToken);
+            await _auditLogWriter.LogAsync(
+                AuditLogCategory.TopupConfig,
+                "DeleteRule",
+                cancellationToken: cancellationToken);
+            await _unitOfWork.SaveChangeAsync(cancellationToken);
         }
 
         // DTO annotations handle: Required/MaxLength on RuleName, EnumDefined on Type/MatchMode/Status,
@@ -278,6 +229,7 @@ namespace Services.TopUp
         private static void ValidateRule(TopupMatchMode matchMode, decimal? topupAmount, IReadOnlyList<CreateTopupRuleConditionDTO> conditions)
         {
             var errors = new Dictionary<string, string>();
+            if (conditions.Count == 0) errors[nameof(conditions)] = "At least one condition is required.";
             ValidateAmountMatchMode(matchMode, topupAmount, errors);
             ValidateConditions(conditions.Select(c => (c.Field, c.Operator, c.ValueText, c.ValueNumber, c.ConditionAmount, c.DisplayOrder)).ToList(), matchMode, errors);
             if (errors.Count != 0) throw new ValidationFailureException(errors);
@@ -286,6 +238,7 @@ namespace Services.TopUp
         private static void ValidateRule(TopupMatchMode matchMode, decimal? topupAmount, IReadOnlyList<UpdateTopupRuleConditionDTO> conditions)
         {
             var errors = new Dictionary<string, string>();
+            if (conditions.Count == 0) errors[nameof(conditions)] = "At least one condition is required.";
             ValidateAmountMatchMode(matchMode, topupAmount, errors);
             ValidateConditions(conditions.Select(c => (c.Field, c.Operator, c.ValueText, c.ValueNumber, c.ConditionAmount, c.DisplayOrder)).ToList(), matchMode, errors);
             if (errors.Count != 0) throw new ValidationFailureException(errors);
@@ -311,6 +264,9 @@ namespace Services.TopUp
             {
                 var (field, op, valueText, valueNumber, conditionAmount, displayOrder) = conditions[i];
                 var prefix = $"Conditions[{i}]";
+
+                if (displayOrder < 0)
+                    errors[$"{prefix}.{nameof(TopupRuleCondition.DisplayOrder)}"] = "Display order cannot be negative.";
 
                 // Cross-field: ConditionAmount vs MatchMode
                 if (matchMode == TopupMatchMode.And && conditionAmount != null)
