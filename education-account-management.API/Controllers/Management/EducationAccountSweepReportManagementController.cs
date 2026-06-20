@@ -1,6 +1,7 @@
 using Authorization;
 using Common.HttpResults;
 using Controllers.Base;
+using Filters.EducationAccounts;
 using Interfaces.EducationAccounts;
 
 namespace Controllers.Management
@@ -16,6 +17,16 @@ namespace Controllers.Management
             CancellationToken cancellationToken)
         {
             var result = await _batchReportService.GetReportAsync(date, cancellationToken);
+            return Result.SuccessData(result);
+        }
+
+        [HttpGet("{batchDate}/targets")]
+        public async Task<IActionResult> GetReportTargets(
+            [FromRoute] DateOnly batchDate,
+            [FromQuery] EducationAccountSweepTargetFilterDTO filter,
+            CancellationToken cancellationToken)
+        {
+            var result = await _batchReportService.GetReportTargetsAsync(batchDate, filter, cancellationToken);
             return Result.SuccessData(result);
         }
 

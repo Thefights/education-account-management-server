@@ -62,6 +62,7 @@ public static class ApplicationServiceExtensions
         services.AddScoped(typeof(CsvImportService<,>));
 
         services.AddScoped<IEducationAccountService, EducationAccountService>();
+        services.AddScoped<IEducationAccountSweepService, EducationAccountSweepService>();
         services.AddScoped<IEducationAccountImportService, EducationAccountImportService>();
         services.AddScoped<ITransactionHistoryService, TransactionHistoryService>();
 

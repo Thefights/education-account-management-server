@@ -26,11 +26,11 @@ namespace Infrastructure
             IServiceProvider serviceProvider,
             CancellationToken cancellationToken)
         {
-            var educationAccountService = serviceProvider.GetRequiredService<IEducationAccountService>();
+            var sweepService = serviceProvider.GetRequiredService<IEducationAccountSweepService>();
             var auditLogWriter = serviceProvider.GetRequiredService<IAuditLogWriter>();
             var unitOfWork = serviceProvider.GetRequiredService<IUnitOfWork>();
 
-            var report = await educationAccountService.SweepAccountsAsync(cancellationToken);
+            var report = await sweepService.SweepAccountsAsync(cancellationToken);
             await auditLogWriter.LogAsync(
                 AuditLogCategory.AccountCreation,
                 "Auto Sweep Completed",

@@ -85,8 +85,7 @@ namespace Services.Audit
                 Category = category,
                 Action = action,
                 Nric = targetNric,
-                IpAddress = ResolveIpAddress(ipAddress),
-                OccurredAt = DateTime.UtcNow
+                IpAddress = ResolveIpAddress(ipAddress)
             };
 
             auditLog.TryValidate();

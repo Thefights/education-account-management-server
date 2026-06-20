@@ -15,7 +15,7 @@ namespace Models
         [EnumDefined]
         public EducationAccountStatus Status { get; set; } = EducationAccountStatus.Active;
 
-        public DateTime OpenedAt { get; set; }
+        public DateTime OpenedAt { get; set; } = DateTime.UtcNow;
 
         [DateValidator(NotBefore = nameof(OpenedAt))]
         public DateTime? ClosedAt { get; set; }
