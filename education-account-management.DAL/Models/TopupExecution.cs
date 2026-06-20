@@ -42,6 +42,21 @@ namespace Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal TotalExecutedAmount { get; set; }
 
+        [MessageMaxLength(150)]
+        public string? RuleNameSnapshot { get; set; }
+
+        [EnumDefined]
+        public TopupRuleType? RuleTypeSnapshot { get; set; }
+
+        [EnumDefined]
+        public TopupMatchMode? MatchModeSnapshot { get; set; }
+
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal? TopupAmountSnapshot { get; set; }
+
+        [Column(TypeName = "nvarchar(4000)"), MessageMaxLength(4000)]
+        public string? RuleConditionsSnapshot { get; set; }
+
         [OnDelete(OnDeleteBehavior.Cascade)]
         public ICollection<TopupExecutionTarget> Targets { get; set; } = [];
     }

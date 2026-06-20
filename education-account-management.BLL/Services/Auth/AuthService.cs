@@ -8,7 +8,6 @@ using Microsoft.IdentityModel.Tokens;
 using Security;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Text.Json;
 
 namespace Services.Auth
 {
@@ -28,6 +27,7 @@ namespace Services.Auth
         private readonly IGenericRepository<AdminProfile> _adminRepository = unitOfWork.Repository<AdminProfile>();
         private readonly IGenericRepository<RefreshToken> _refreshTokenRepository = unitOfWork.Repository<RefreshToken>();
         private readonly IGenericRepository<User> _userRepository = unitOfWork.Repository<User>();
+        private readonly IGenericRepository<UserStatusHistory> _userStatusHistoryRepository = unitOfWork.Repository<UserStatusHistory>();
         private readonly IGenericRepository<SsoIdentity> _ssoIdentityRepository = unitOfWork.Repository<SsoIdentity>();
         private readonly IGenericRepository<Models.EducationAccount> _educationAccountRepository = unitOfWork.Repository<Models.EducationAccount>();
         public async Task<AuthLoginResponseDTO> LoginWithMockSingpassAsync(
@@ -342,6 +342,7 @@ namespace Services.Auth
                 foreach (var adminProfile in adminProfiles)
                 {
                     var user = adminProfile.User;
+                    var previousStatus = user.Status;
                     user.Status = dto.Status;
 
                     if (dto.Status == UserStatus.Inactive)
@@ -363,20 +364,26 @@ namespace Services.Auth
                         transaction.OnRollback(() => _tokenBlacklistService.BlacklistUserAsync(user.Id));
                     }
 
-                    // Serialize audit details
-                    var auditPayload = JsonSerializer.Serialize(new
+                    if (previousStatus != user.Status)
                     {
-                        adminId = adminProfile.Id,
-                        staffCode = adminProfile.StaffCode,
-                        newStatus = dto.Status.ToString(),
-                        reason = dto.Reason
-                    });
+                        var history = new UserStatusHistory
+                        {
+                            UserId = user.Id,
+                            PreviousStatus = previousStatus,
+                            NewStatus = user.Status,
+                            Reason = dto.Reason.Trim(),
+                            ChangedAt = revokeTime,
+                            ChangedByUserId = currentUserId
+                        };
+                        history.TryValidate();
+                        await _userStatusHistoryRepository.AddAsync(history, token);
+                    }
 
                     // Log the activity
                     await _auditLogWriter.LogAsync(
                         AuditLogCategory.StatusChange,
                         auditAction,
-                        auditPayload,
+                        adminProfile.Nric,
                         cancellationToken: token);
                 }
             }, cancellationToken);

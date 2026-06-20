@@ -16,7 +16,6 @@ namespace Mappers
 
         public partial List<GetTopupRuleDTO> MapToGetDTOList(List<TopupRule> models);
 
-        [MapProperty(nameof(TopupRule.Conditions), nameof(GetTopupRuleDTO.Conditions))]
         public partial IQueryable<GetTopupRuleDTO> ProjectToGetDTO(IQueryable<TopupRule> query);
 
         public TopupRule MapFromCreateDTO(CreateTopupRuleDTO createDTO) => MapToRule(createDTO);

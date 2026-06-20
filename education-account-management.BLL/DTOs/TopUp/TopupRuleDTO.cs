@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace DTOs.TopUp
 {
     // ── Condition response ──────────────────────────────────────────────────
@@ -25,10 +23,8 @@ namespace DTOs.TopUp
 
     public class CreateTopupRuleConditionDTO
     {
-        [EnumDefined]
         public TopupRuleConditionField Field { get; set; }
 
-        [EnumDefined]
         public TopupRuleConditionOperator Operator { get; set; }
 
         public string? ValueText { get; set; }
@@ -37,7 +33,6 @@ namespace DTOs.TopUp
 
         public decimal? ConditionAmount { get; set; }
 
-        [MessageRange(0, int.MaxValue)]
         public int DisplayOrder { get; set; }
     }
 
@@ -45,10 +40,8 @@ namespace DTOs.TopUp
     {
         public int? Id { get; set; }
 
-        [EnumDefined]
         public TopupRuleConditionField Field { get; set; }
 
-        [EnumDefined]
         public TopupRuleConditionOperator Operator { get; set; }
 
         public string? ValueText { get; set; }
@@ -57,7 +50,6 @@ namespace DTOs.TopUp
 
         public decimal? ConditionAmount { get; set; }
 
-        [MessageRange(0, int.MaxValue)]
         public int DisplayOrder { get; set; }
     }
 
@@ -88,40 +80,29 @@ namespace DTOs.TopUp
 
     public class CreateTopupRuleDTO
     {
-        [MessageRequired]
-        [MessageMaxLength(150)]
         public string RuleName { get; set; } = string.Empty;
 
-        [EnumDefined]
         public TopupRuleType Type { get; set; } = TopupRuleType.System;
 
-        [EnumDefined]
         public TopupMatchMode MatchMode { get; set; } = TopupMatchMode.And;
 
         public decimal? TopupAmount { get; set; }
 
-        [MessageMinLength(1)]
         public List<CreateTopupRuleConditionDTO> Conditions { get; set; } = [];
     }
 
     public class UpdateTopupRuleDTO
     {
-        [MessageRequired]
-        [MessageMaxLength(150)]
         public string RuleName { get; set; } = string.Empty;
 
-        [EnumDefined]
         public TopupRuleType Type { get; set; }
 
-        [EnumDefined]
         public TopupMatchMode MatchMode { get; set; }
 
         public decimal? TopupAmount { get; set; }
 
-        [EnumDefined]
         public TopupRuleStatus Status { get; set; }
 
-        [MessageMinLength(1)]
         public List<UpdateTopupRuleConditionDTO> Conditions { get; set; } = [];
     }
 

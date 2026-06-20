@@ -3,7 +3,6 @@ using Infrastructure.Interface;
 using Interfaces.Audit;
 using Models;
 using Repositories.Interfaces;
-using Utils;
 
 namespace Services.Audit
 {
@@ -21,7 +20,6 @@ namespace Services.Audit
         public async Task LogAsync(
             AuditLogCategory category,
             string action,
-            string? payloadJson = null,
             string? targetNric = null,
             CancellationToken cancellationToken = default)
         {
@@ -33,18 +31,17 @@ namespace Services.Audit
                     .AnyAsync(user => user.Id == userId.Value, cancellationToken);
                 if (actorExists)
                 {
-                    await LogForActorAsync(category, action, payloadJson, targetNric, cancellationToken: cancellationToken);
+                    await LogForActorAsync(category, action, targetNric, cancellationToken: cancellationToken);
                     return;
                 }
             }
 
-            await LogAnonymousAsync(category, action, payloadJson, targetNric, cancellationToken: cancellationToken);
+            await LogAnonymousAsync(category, action, targetNric, cancellationToken: cancellationToken);
         }
 
         private async Task LogForActorAsync(
             AuditLogCategory category,
             string action,
-            string? payloadJson,
             string? targetNric = null,
             string? ipAddress = null,
             CancellationToken cancellationToken = default)
@@ -53,7 +50,6 @@ namespace Services.Audit
                 ResolveCurrentUserId(),
                 category,
                 action,
-                payloadJson,
                 targetNric,
                 ipAddress,
                 cancellationToken);
@@ -62,7 +58,6 @@ namespace Services.Audit
         public async Task LogAnonymousAsync(
             AuditLogCategory category,
             string action,
-            string? payloadJson = null,
             string? targetNric = null,
             string? ipAddress = null,
             CancellationToken cancellationToken = default)
@@ -71,7 +66,6 @@ namespace Services.Audit
                 null,
                 category,
                 action,
-                payloadJson,
                 targetNric,
                 ipAddress,
                 cancellationToken);
@@ -81,7 +75,6 @@ namespace Services.Audit
             int? actorUserId,
             AuditLogCategory category,
             string action,
-            string? payloadJson,
             string? targetNric,
             string? ipAddress,
             CancellationToken cancellationToken)
@@ -91,7 +84,6 @@ namespace Services.Audit
                 ActorUserId = actorUserId > 0 ? actorUserId : null,
                 Category = category,
                 Action = action,
-                PayloadJson = MaskingHelper.NormalizeJsonPayload(payloadJson),
                 Nric = targetNric,
                 IpAddress = ResolveIpAddress(ipAddress),
                 OccurredAt = DateTime.UtcNow

@@ -30,5 +30,23 @@ public static class ModelRelationshipConfigurator
             .HasOne(target => target.EducationCreditTransaction)
             .WithOne(transaction => transaction.TopupExecutionTarget)
             .HasForeignKey<TopupExecutionTarget>(target => target.EducationCreditTransactionId);
+
+        modelBuilder.Entity<EducationAccountStatusHistory>()
+            .HasOne(history => history.ChangedByUser)
+            .WithMany()
+            .HasForeignKey(history => history.ChangedByUserId)
+            .OnDelete(DeleteBehavior.NoAction);
+
+        modelBuilder.Entity<UserStatusHistory>()
+            .HasOne(history => history.User)
+            .WithMany(user => user.StatusHistories)
+            .HasForeignKey(history => history.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<UserStatusHistory>()
+            .HasOne(history => history.ChangedByUser)
+            .WithMany()
+            .HasForeignKey(history => history.ChangedByUserId)
+            .OnDelete(DeleteBehavior.NoAction);
     }
 }

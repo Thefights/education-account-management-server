@@ -24,7 +24,8 @@ namespace Models
         [MessageMaxLength(500)]
         public string? FailureReason { get; set; }
 
-        public string? MatchedConditionIds { get; set; }
+        [Column(TypeName = "nvarchar(4000)"), MessageMaxLength(4000)]
+        public string? MatchedConditionsSnapshot { get; set; }
 
         [Unique]
         public int? EducationCreditTransactionId { get; set; }

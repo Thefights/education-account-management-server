@@ -55,7 +55,7 @@ namespace DTOs.TopUp
 
     // ── Execute request ─────────────────────────────────────────────────────
 
-    public class ManualTopupRequestDTO : IValidatableObject
+    public class ManualTopupRequestDTO
     {
         [MessageRequired]
         [NumberHigherThan(0)]
@@ -81,25 +81,5 @@ namespace DTOs.TopUp
         /// </summary>
         public IFormFile? File { get; set; }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            var hasIds = AccountIds is { Count: > 0 };
-            var hasFile = File != null;
-
-            if (!hasIds && !hasFile)
-                yield return new ValidationResult(
-                    "Either AccountIds or a CSV file must be provided.",
-                    [nameof(AccountIds), nameof(File)]);
-
-            if (hasIds && hasFile)
-                yield return new ValidationResult(
-                    "Provide either AccountIds or a CSV file, not both.",
-                    [nameof(AccountIds), nameof(File)]);
-
-            if (hasIds && AccountIds!.Any(id => id <= 0))
-                yield return new ValidationResult(
-                    "All account IDs must be positive integers.",
-                    [nameof(AccountIds)]);
-        }
     }
 }

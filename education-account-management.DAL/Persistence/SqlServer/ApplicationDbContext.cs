@@ -40,6 +40,10 @@ namespace Persistence.SqlServer
 
         public DbSet<TopupSchedule> TopupSchedule { get; set; }
 
+        public DbSet<ProvisioningBatchReport> ProvisioningBatchReports { get; set; }
+
+        public DbSet<ProvisioningBatchFailure> ProvisioningBatchFailures { get; set; }
+
         public DbSet<TopupExecution> TopupExecution { get; set; }
 
         public DbSet<TopupExecutionTarget> TopupExecutionTarget { get; set; }
@@ -47,6 +51,10 @@ namespace Persistence.SqlServer
         public DbSet<TopupSystemApplication> TopupSystemApplication { get; set; }
 
         public DbSet<EducationCreditTransaction> EducationCreditTransaction { get; set; }
+
+        public DbSet<EducationAccountStatusHistory> EducationAccountStatusHistory { get; set; }
+
+        public DbSet<UserStatusHistory> UserStatusHistory { get; set; }
 
         public DbSet<AuditLog> AuditLog { get; set; }
 

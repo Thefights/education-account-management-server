@@ -14,8 +14,5 @@ namespace Mappers
         public partial List<GetAuditLogDTO> MapToGetDTOList(List<AuditLog> models);
 
         public partial IQueryable<GetAuditLogDTO> ProjectToGetDTO(IQueryable<AuditLog> query);
-
-        private string? MapPayloadJson(string? payloadJson)
-            => MaskingHelper.MaskPayload(payloadJson);
     }
 }

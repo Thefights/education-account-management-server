@@ -31,7 +31,6 @@ namespace DTOs.TopUp
     {
         public int TopupRuleId { get; set; }
 
-        [EnumDefined]
         public TopupScheduleType Frequency { get; set; }
 
         public DateTime? OneTimeExecutionAt { get; set; }
@@ -47,7 +46,6 @@ namespace DTOs.TopUp
     {
         public int TopupRuleId { get; set; }
 
-        [EnumDefined]
         public TopupScheduleType Frequency { get; set; }
 
         public DateTime? OneTimeExecutionAt { get; set; }
@@ -58,7 +56,6 @@ namespace DTOs.TopUp
 
         public TimeSpan ExecutionTime { get; set; }
 
-        [EnumDefined]
         public TopupScheduleStatus Status { get; set; }
     }
 }

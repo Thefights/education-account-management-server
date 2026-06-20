@@ -15,7 +15,6 @@ namespace Mappers
         public partial GetTopupScheduleDTO MapToGetDTO(TopupSchedule model);
 
         public partial List<GetTopupScheduleDTO> MapToGetDTOList(List<TopupSchedule> models);
-        [MapProperty(nameof(TopupSchedule.TopupRule), nameof(GetTopupScheduleDTO.TopupRule))]
         public partial IQueryable<GetTopupScheduleDTO> ProjectToGetDTO(IQueryable<TopupSchedule> query);
 
         public TopupSchedule MapFromCreateDTO(CreateTopupScheduleDTO createDTO) => MapToSchedule(createDTO);

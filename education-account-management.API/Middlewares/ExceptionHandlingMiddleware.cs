@@ -6,7 +6,6 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Repositories.Interfaces;
 using System.Diagnostics;
-using System.Text.Json;
 
 namespace Middlewares
 {
@@ -160,11 +159,6 @@ namespace Middlewares
                 await _auditLogWriter.LogAnonymousAsync(
                     AuditLogCategory.Security,
                     "UnauthorizedAccessException",
-                    JsonSerializer.Serialize(new
-                    {
-                        Message = unauthEx.Message,
-                        Path = context.Request.Path.ToString()
-                    }),
                     cancellationToken: CancellationToken.None
                 );
 

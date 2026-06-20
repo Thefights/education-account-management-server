@@ -27,5 +27,8 @@ namespace Models
 
         [OnDelete(OnDeleteBehavior.Cascade)]
         public ICollection<RefreshToken> RefreshTokens { get; set; } = [];
+
+        [OnDelete(OnDeleteBehavior.Cascade)]
+        public ICollection<UserStatusHistory> StatusHistories { get; set; } = [];
     }
 }

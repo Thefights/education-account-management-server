@@ -69,7 +69,7 @@ namespace Services.Admin
                     await _auditLogWriter.LogAsync(
                         AuditLogCategory.AccountCreation,
                         "Admin account created",
-                        System.Text.Json.JsonSerializer.Serialize(new { user.Id, user.Role, profile.StaffCode }),
+                        profile.Nric,
                         cancellationToken: token);
 
                     return user.Id;
@@ -132,7 +132,7 @@ namespace Services.Admin
                     await _auditLogWriter.LogAsync(
                         AuditLogCategory.Security,
                         "Admin account updated",
-                        System.Text.Json.JsonSerializer.Serialize(new { user.Id, user.Role, user.Status }),
+                        user.AdminProfile.Nric,
                         cancellationToken: token);
                 },
                 cancellationToken);

@@ -28,10 +28,6 @@ namespace Filters.Audit
         public string? Action { get; set; }
 
         [FilterField(FilterOperationEnum.Contains)]
-        [SearchField(nameof(AuditLog.PayloadJson))]
-        public string? PayloadJson { get; set; }
-
-        [FilterField(FilterOperationEnum.Contains)]
         [SearchField(nameof(AuditLog.IpAddress))]
         public string? IpAddress { get; set; }
 

@@ -28,7 +28,6 @@ namespace Services.Audit
                 ["category"] = new("Category", auditLog => auditLog.Category),
                 ["action"] = new("Action", auditLog => auditLog.Action),
                 ["ipAddress"] = new("IP Address", auditLog => auditLog.IpAddress),
-                ["payloadJson"] = new("Payload JSON", auditLog => auditLog.PayloadJson),
                 ["occurredAt"] = new("Occurred At", auditLog => auditLog.OccurredAt),
                 ["nRic"] = new("NRIC", auditLog => auditLog.Nric)
             };
@@ -52,7 +51,6 @@ namespace Services.Audit
             await _auditLogWriter.LogAsync(
                 AuditLogCategory.Security,
                 "ViewAuditLogs",
-                "{\"resource\":\"AuditLog\",\"operation\":\"Export\"}",
                 cancellationToken: cancellationToken);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
 

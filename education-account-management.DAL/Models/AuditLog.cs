@@ -13,9 +13,6 @@ namespace Models
         [MessageRequired, MessageMaxLength(45)]
         public string IpAddress { get; set; } = string.Empty;
 
-        [Column(TypeName = "nvarchar(max)")]
-        public string? PayloadJson { get; set; }
-
         public DateTime OccurredAt { get; set; } = DateTime.UtcNow;
 
         public int? ActorUserId { get; set; }

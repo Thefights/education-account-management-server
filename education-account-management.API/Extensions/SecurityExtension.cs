@@ -99,11 +99,6 @@ namespace Extensions
                                 await auditLogWriter.LogAsync(
                                     AuditLogCategory.Security,
                                     "ForbiddenAccessAttempt",
-                                    System.Text.Json.JsonSerializer.Serialize(new
-                                    {
-                                        Path = context.HttpContext.Request.Path.ToString(),
-                                        Method = context.HttpContext.Request.Method
-                                    }),
                                     cancellationToken: context.HttpContext.RequestAborted
                                 );
 

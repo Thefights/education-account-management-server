@@ -144,6 +144,20 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(transaction => transaction.Direction);
             });
 
+            modelBuilder.Entity<EducationAccountStatusHistory>(entity =>
+            {
+                entity.HasIndex(history => history.EducationAccountId);
+                entity.HasIndex(history => history.ChangedByUserId);
+                entity.HasIndex(history => history.ChangedAt);
+            });
+
+            modelBuilder.Entity<UserStatusHistory>(entity =>
+            {
+                entity.HasIndex(history => history.UserId);
+                entity.HasIndex(history => history.ChangedByUserId);
+                entity.HasIndex(history => history.ChangedAt);
+            });
+
             modelBuilder.Entity<AuditLog>(entity =>
             {
                 entity.HasIndex(log => log.ActorUserId);

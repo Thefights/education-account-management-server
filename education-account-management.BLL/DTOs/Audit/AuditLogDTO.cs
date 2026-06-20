@@ -14,8 +14,6 @@ namespace DTOs.Audit
 
         public string? IpAddress { get; set; }
 
-        public string? PayloadJson { get; set; }
-
         public DateTime OccurredAt { get; set; }
 
         public string? ActorUserRole { get; set; }
