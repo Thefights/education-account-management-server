@@ -1,6 +1,6 @@
 namespace Models
 {
-    public class ProvisioningBatchReport : BaseEntity
+    public class EducationAccountSweepReport : BaseEntity
     {
         [Unique]
         public DateOnly BatchDate { get; set; }
@@ -16,6 +16,6 @@ namespace Models
         public int AccountsExtendedCount { get; set; }
 
         [OnDelete(OnDeleteBehavior.Cascade)]
-        public ICollection<ProvisioningBatchFailure> Failures { get; set; } = [];
+        public ICollection<EducationAccountSweepTarget> Targets { get; set; } = [];
     }
 }

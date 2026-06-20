@@ -40,9 +40,9 @@ namespace Persistence.SqlServer
 
         public DbSet<TopupSchedule> TopupSchedule { get; set; }
 
-        public DbSet<ProvisioningBatchReport> ProvisioningBatchReports { get; set; }
+        public DbSet<EducationAccountSweepReport> EducationAccountSweepReports { get; set; }
 
-        public DbSet<ProvisioningBatchFailure> ProvisioningBatchFailures { get; set; }
+        public DbSet<EducationAccountSweepTarget> EducationAccountSweepTargets { get; set; }
 
         public DbSet<TopupExecution> TopupExecution { get; set; }
 

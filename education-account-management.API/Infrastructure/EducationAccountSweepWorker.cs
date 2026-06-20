@@ -5,12 +5,12 @@ using Repositories.Interfaces;
 
 namespace Infrastructure
 {
-    public class AccountProvisioningWorker(
+    public class EducationAccountSweepWorker(
         IServiceScopeFactory serviceScopeFactory,
-        ILogger<AccountProvisioningWorker> logger)
+        ILogger<EducationAccountSweepWorker> logger)
         : BaseBackgroundJob(serviceScopeFactory, logger)
     {
-        protected override string JobName => nameof(AccountProvisioningWorker);
+        protected override string JobName => nameof(EducationAccountSweepWorker);
 
         protected override TimeSpan Interval => TimeSpan.FromDays(1);
 
@@ -33,7 +33,7 @@ namespace Infrastructure
             var report = await educationAccountService.SweepAccountsAsync(cancellationToken);
             await auditLogWriter.LogAsync(
                 AuditLogCategory.AccountCreation,
-                "Auto Provisioning Sweep Completed",
+                "Auto Sweep Completed",
                 cancellationToken: cancellationToken);
             await unitOfWork.SaveChangeAsync(cancellationToken);
         }

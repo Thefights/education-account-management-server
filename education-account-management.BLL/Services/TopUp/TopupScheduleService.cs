@@ -91,14 +91,7 @@ namespace Services.TopUp
 
             await _unitOfWork.ExecuteInTransactionAsync(async (transaction, token) =>
             {
-                schedule.TopupRuleId = updateDTO.TopupRuleId;
-                schedule.Frequency = updateDTO.Frequency;
-                schedule.OneTimeExecutionAt = updateDTO.OneTimeExecutionAt;
-                schedule.ExecuteAtDay = updateDTO.ExecuteAtDay;
-                schedule.ExecuteAtMonth = updateDTO.ExecuteAtMonth;
-                schedule.ExecutionTime = TimeOnly.FromTimeSpan(updateDTO.ExecutionTime);
-                schedule.Status = updateDTO.Status;
-
+                _mapper.MapFromUpdateDTO(updateDTO, schedule);
                 schedule.NextExecutionAt = ComputeFirstExecutionAt(schedule);
 
                 schedule.TryValidate();
@@ -181,7 +174,7 @@ namespace Services.TopUp
             DateTime? oneTimeExecutionAt,
             int? executeAtDay,
             int? executeAtMonth,
-            TimeSpan executionTime,
+            TimeOnly executionTime,
             TopupScheduleStatus status,
             int ruleId)
         {
@@ -189,8 +182,6 @@ namespace Services.TopUp
             if (ruleId <= 0) errors[nameof(ruleId)] = "Top-up rule ID must be positive.";
             if (!Enum.IsDefined(frequency)) errors[nameof(frequency)] = "Schedule frequency is invalid.";
             if (!Enum.IsDefined(status)) errors[nameof(status)] = "Schedule status is invalid.";
-            if (executionTime < TimeSpan.Zero || executionTime >= TimeSpan.FromDays(1))
-                errors[nameof(executionTime)] = "Execution time must be within a single day.";
 
             if (frequency == TopupScheduleType.OneTime)
             {

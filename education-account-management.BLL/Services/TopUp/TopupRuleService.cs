@@ -52,28 +52,13 @@ namespace Services.TopUp
         public override async Task<GetTopupRuleDTO> UpdateAsync(int id, UpdateTopupRuleDTO updateDTO, CancellationToken cancellationToken = default)
         {
             ArgumentNullException.ThrowIfNull(updateDTO);
-            ValidateRule(updateDTO.MatchMode, updateDTO.TopupAmount, updateDTO.Conditions);
 
             var rule = await _repository.Query()
                 .Include(r => r.Conditions)
                 .FirstOrDefaultAsync(r => r.Id == id, cancellationToken)
                 ?? throw new DataNotFoundException(typeof(TopupRule), id);
 
-            if (rule.Type != updateDTO.Type)
-            {
-                var hasSuccessfulExecution = await _unitOfWork.Repository<TopupExecutionTarget>()
-                    .Query()
-                    .AnyAsync(t => t.TopupExecution.TopupRuleId == id && t.Status == TopupTargetStatus.Success, cancellationToken);
-                var hasSchedule = await _unitOfWork.Repository<TopupSchedule>()
-                    .Query()
-                    .AnyAsync(s => s.TopupRuleId == id, cancellationToken);
-
-                if (hasSuccessfulExecution || hasSchedule)
-                {
-                    throw new ValidationFailureException(nameof(updateDTO.Type),
-                        "Cannot change rule type after a successful execution or after a schedule has been configured.");
-                }
-            }
+            ValidateRule(rule.MatchMode, updateDTO.TopupAmount, updateDTO.Conditions);
 
             var existingConditionIds = rule.Conditions.Select(condition => condition.Id).ToHashSet();
             var invalidConditionId = updateDTO.Conditions
@@ -86,25 +71,10 @@ namespace Services.TopUp
                     $"Condition {invalidConditionId} does not belong to this rule.");
             }
 
-            // Lock MatchMode check if it has executed successfully
-            if (rule.MatchMode != updateDTO.MatchMode)
-            {
-                var hasExecutedSuccessfully = await _unitOfWork.Repository<TopupExecutionTarget>()
-                    .Query()
-                    .AnyAsync(t => t.TopupExecution.TopupRuleId == id && t.Status == TopupTargetStatus.Success, cancellationToken);
-
-                if (hasExecutedSuccessfully)
-                {
-                    throw new ValidationFailureException("MatchMode", "Cannot change Match Mode because the rule has already executed successfully.");
-                }
-            }
-
             await _unitOfWork.ExecuteInTransactionAsync(async (transaction, token) =>
             {
                 // Update rule metadata
                 rule.RuleName = updateDTO.RuleName;
-                rule.Type = updateDTO.Type;
-                rule.MatchMode = updateDTO.MatchMode;
                 rule.TopupAmount = updateDTO.TopupAmount;
                 rule.Status = updateDTO.Status;
 

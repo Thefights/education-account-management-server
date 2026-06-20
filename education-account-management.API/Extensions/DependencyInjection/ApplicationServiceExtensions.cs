@@ -9,7 +9,6 @@ using Interfaces.AiAssistantSettings;
 using Interfaces.Audit;
 using Interfaces.Auth;
 using Interfaces.Base;
-using Interfaces.BatchReport;
 using Interfaces.Courses;
 using Interfaces.Csv;
 using Interfaces.EducationAccounts;
@@ -31,7 +30,6 @@ using Services.AiAssistantSettings;
 using Services.Audit;
 using Services.Auth;
 using Services.Base;
-using Services.BatchReport;
 using Services.Courses;
 using Services.EducationAccounts;
 using Services.Email;
@@ -72,7 +70,7 @@ public static class ApplicationServiceExtensions
         services.AddScoped<ITopupService, TopupService>();
         services.AddScoped<ITopupBackgroundService, TopupBackgroundService>();
 
-        services.AddScoped<IBatchReportService, BatchReportService>();
+        services.AddScoped<IEducationAccountSweepReportService, EducationAccountSweepReportService>();
         services.AddScoped<IAiAssistantSettingService, AiAssistantSettingService>();
         services.AddScoped<IAdminService, AdminService>();
         services.AddScoped<ICourseService, CourseService>();
@@ -80,7 +78,7 @@ public static class ApplicationServiceExtensions
 
         services.AddScoped<IDataCleanupService, DataCleanupService>();
         services.AddHostedService<DataCleanupWorker>();
-        services.AddHostedService<AccountProvisioningWorker>();
+        services.AddHostedService<EducationAccountSweepWorker>();
         services.AddHostedService<TopupDailyWorker>();
 
         services.AddScoped<AuditLogMapper>();

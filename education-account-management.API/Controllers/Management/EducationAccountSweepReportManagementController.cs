@@ -1,14 +1,14 @@
-﻿using Authorization;
+using Authorization;
 using Common.HttpResults;
 using Controllers.Base;
-using Interfaces.BatchReport;
+using Interfaces.EducationAccounts;
 
 namespace Controllers.Management
 {
     [Authorize(Roles = RolePolicy.SystemAdmin)]
-    public class BatchReportManagementController(IBatchReportService batchReportService) : BaseController
+    public class EducationAccountSweepReportManagementController(IEducationAccountSweepReportService batchReportService) : BaseController
     {
-        private readonly IBatchReportService _batchReportService = batchReportService;
+        private readonly IEducationAccountSweepReportService _batchReportService = batchReportService;
 
         [HttpGet]
         public async Task<IActionResult> GetReport(

@@ -18,7 +18,7 @@ namespace DTOs.TopUp
 
         public int? ExecuteAtMonth { get; set; }
 
-        public TimeSpan ExecutionTime { get; set; }
+        public TimeOnly ExecutionTime { get; set; }
 
         public DateTime? NextExecutionAt { get; set; }
 
@@ -39,7 +39,7 @@ namespace DTOs.TopUp
 
         public int? ExecuteAtMonth { get; set; }
 
-        public TimeSpan ExecutionTime { get; set; }
+        public TimeOnly ExecutionTime { get; set; }
     }
 
     public class UpdateTopupScheduleDTO
@@ -54,7 +54,7 @@ namespace DTOs.TopUp
 
         public int? ExecuteAtMonth { get; set; }
 
-        public TimeSpan ExecutionTime { get; set; }
+        public TimeOnly ExecutionTime { get; set; }
 
         public TopupScheduleStatus Status { get; set; }
     }

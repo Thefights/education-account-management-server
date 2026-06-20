@@ -2,7 +2,6 @@ using DTOs.TopUp;
 using Mappers.Base;
 using Models;
 using Riok.Mapperly.Abstractions;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -21,10 +20,7 @@ namespace Mappers
         public void MapFromUpdateDTO(UpdateTopupScheduleDTO updateDTO, TopupSchedule model) => MapToSchedule(updateDTO, model);
 
         public partial TopupSchedule MapToSchedule(CreateTopupScheduleDTO dto);
-        
-        public partial void MapToSchedule(UpdateTopupScheduleDTO dto, TopupSchedule model);
 
-        private TimeOnly MapToTimeOnly(TimeSpan value) => TimeOnly.FromTimeSpan(value);
-        private TimeSpan MapToTimeSpan(TimeOnly value) => value.ToTimeSpan();
+        public partial void MapToSchedule(UpdateTopupScheduleDTO dto, TopupSchedule model);
     }
 }
