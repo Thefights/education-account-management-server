@@ -61,11 +61,11 @@ public class EducationAccountSweepService(
             })
             .ToListAsync(cancellationToken);
 
-        foreach (var citizen in citizensToCreate)
+        await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
         {
-            try
+            foreach (var citizen in citizensToCreate)
             {
-                await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
+                try
                 {
                     var account = new EducationAccount
                     {
@@ -75,39 +75,36 @@ public class EducationAccountSweepService(
                     account.TryValidate();
                     await UniqueConstraintValidator.ValidateAsync(_repository, account, cancellationToken: token);
                     await _repository.AddAsync(account, token);
-                }, cancellationToken);
 
-                result.AccountsCreatedCount++;
-                result.Targets.Add(new EducationAccountSweepTargetDTO
+                    result.AccountsCreatedCount++;
+                    result.Targets.Add(new EducationAccountSweepTargetDTO
+                    {
+                        Nric = citizen.Nric,
+                        Action = SweepAction.Create,
+                        Status = SweepTargetStatus.Success
+                    });
+                }
+                catch (Exception exception) when (exception is not OperationCanceledException)
                 {
-                    Nric = citizen.Nric,
-                    Action = SweepAction.Create,
-                    Status = SweepTargetStatus.Success
-                });
+                    result.Targets.Add(new EducationAccountSweepTargetDTO
+                    {
+                        Nric = citizen.Nric,
+                        Action = SweepAction.Create,
+                        Status = SweepTargetStatus.Failed,
+                        Reason = exception.GetBaseException().Message
+                    });
+                }
             }
-            catch (Exception exception) when (exception is not OperationCanceledException)
-            {
-                result.Targets.Add(new EducationAccountSweepTargetDTO
-                {
-                    Nric = citizen.Nric,
-                    Action = SweepAction.Create,
-                    Status = SweepTargetStatus.Failed,
-                    Reason = exception.GetBaseException().Message
-                });
-            }
-        }
 
-        foreach (var candidate in accountsToClose)
-        {
-            try
+            foreach (var candidate in accountsToClose)
             {
-                var finalStatus = await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
+                try
                 {
                     var account = await _repository.Query(tracking: true)
                         .FirstOrDefaultAsync(item => item.Id == candidate.Id, token)
                         ?? throw new DataNotFoundException(typeof(EducationAccount), candidate.Id);
 
-                    var status = await CloseOrExtendAccountAsync(
+                    var finalStatus = await CloseOrExtendAccountAsync(
                         account,
                         "Education account balance expired at age 31.",
                         token);
@@ -124,46 +121,42 @@ public class EducationAccountSweepService(
                                 : "Education account closed at age 31.",
                             token);
                     }
-                    return status;
-                }, cancellationToken);
 
-                if (finalStatus == EducationAccountStatus.Extended
-                    && candidate.Status != EducationAccountStatus.Extended)
+                    if (finalStatus == EducationAccountStatus.Extended
+                        && candidate.Status != EducationAccountStatus.Extended)
+                    {
+                        result.AccountsExtendedCount++;
+                        result.Targets.Add(new EducationAccountSweepTargetDTO
+                        {
+                            Nric = candidate.Nric,
+                            Action = SweepAction.Extend,
+                            Status = SweepTargetStatus.Success
+                        });
+                    }
+                    else if (finalStatus == EducationAccountStatus.Closed)
+                    {
+                        result.AccountsClosedCount++;
+                        result.Targets.Add(new EducationAccountSweepTargetDTO
+                        {
+                            Nric = candidate.Nric,
+                            Action = SweepAction.Close,
+                            Status = SweepTargetStatus.Success
+                        });
+                    }
+                }
+                catch (Exception exception) when (exception is not OperationCanceledException)
                 {
-                    result.AccountsExtendedCount++;
                     result.Targets.Add(new EducationAccountSweepTargetDTO
                     {
                         Nric = candidate.Nric,
-                        Action = SweepAction.Extend,
-                        Status = SweepTargetStatus.Success
-                    });
-                }
-                else if (finalStatus == EducationAccountStatus.Closed)
-                {
-                    result.AccountsClosedCount++;
-                    result.Targets.Add(new EducationAccountSweepTargetDTO
-                    {
-                        Nric = candidate.Nric,
-                        Action = SweepAction.Close,
-                        Status = SweepTargetStatus.Success
+                        Action = candidate.Status == EducationAccountStatus.Active ? SweepAction.Close : SweepAction.Extend,
+                        Status = SweepTargetStatus.Failed,
+                        Reason = exception.GetBaseException().Message
                     });
                 }
             }
-            catch (Exception exception) when (exception is not OperationCanceledException)
-            {
-                result.Targets.Add(new EducationAccountSweepTargetDTO
-                {
-                    Nric = candidate.Nric,
-                    Action = candidate.Status == EducationAccountStatus.Active ? SweepAction.Close : SweepAction.Extend,
-                    Status = SweepTargetStatus.Failed,
-                    Reason = exception.GetBaseException().Message
-                });
-            }
-        }
 
-        result.CompletedAt = DateTime.UtcNow;
-        await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
-        {
+            result.CompletedAt = DateTime.UtcNow;
             var report = new EducationAccountSweepReport
             {
                 BatchDate = result.BatchDate,

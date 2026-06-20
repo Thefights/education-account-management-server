@@ -47,6 +47,7 @@ namespace DTOs.EducationAccounts
 
     public class UpdateEducationAccountDTO
     {
+        [EnumDefined]
         public EducationAccountStatus Status { get; set; }
     }
 

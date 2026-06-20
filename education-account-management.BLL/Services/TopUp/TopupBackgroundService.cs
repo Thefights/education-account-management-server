@@ -126,40 +126,40 @@ public class TopupBackgroundService(
             : [];
 
         const int pageSize = 2000;
-        for (var page = 0; ; page++)
+        await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
         {
-            var accounts = await _accountRepository.Query(tracking: true)
-                .Include(account => account.Citizen)
-                .Where(account => account.Status == EducationAccountStatus.Active)
-                .OrderBy(account => account.Id)
-                .Skip(page * pageSize)
-                .Take(pageSize)
-                .ToListAsync(cancellationToken);
-            if (accounts.Count == 0) break;
-
-            foreach (var account in accounts)
+            for (var page = 0; ; page++)
             {
-                if (sourceType == TopupExecutionSourceType.System && appliedAccountIds.Contains(account.Id))
-                    continue;
+                var accounts = await _accountRepository.Query(tracking: true)
+                    .Include(account => account.Citizen)
+                    .Where(account => account.Status == EducationAccountStatus.Active)
+                    .OrderBy(account => account.Id)
+                    .Skip(page * pageSize)
+                    .Take(pageSize)
+                    .ToListAsync(token);
+                if (accounts.Count == 0) break;
 
-                var matchedConditions = rule.Conditions
-                    .OrderBy(condition => condition.DisplayOrder)
-                    .Where(condition => IsConditionSatisfied(account, condition, nowSgt))
-                    .ToList();
-                var isSatisfied = rule.MatchMode == TopupMatchMode.And
-                    ? matchedConditions.Count == rule.Conditions.Count
-                    : matchedConditions.Count > 0;
-                if (!isSatisfied) continue;
-
-                var amount = rule.MatchMode == TopupMatchMode.And
-                    ? rule.TopupAmount ?? 0
-                    : matchedConditions.Sum(condition => condition.ConditionAmount ?? 0);
-                if (amount <= 0) continue;
-
-                execution.TotalTargetCount++;
-                try
+                foreach (var account in accounts)
                 {
-                    var success = await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
+                    if (sourceType == TopupExecutionSourceType.System && appliedAccountIds.Contains(account.Id))
+                        continue;
+
+                    var matchedConditions = rule.Conditions
+                        .OrderBy(condition => condition.DisplayOrder)
+                        .Where(condition => IsConditionSatisfied(account, condition, nowSgt))
+                        .ToList();
+                    var isSatisfied = rule.MatchMode == TopupMatchMode.And
+                        ? matchedConditions.Count == rule.Conditions.Count
+                        : matchedConditions.Count > 0;
+                    if (!isSatisfied) continue;
+
+                    var amount = rule.MatchMode == TopupMatchMode.And
+                        ? rule.TopupAmount ?? 0
+                        : matchedConditions.Sum(condition => condition.ConditionAmount ?? 0);
+                    if (amount <= 0) continue;
+
+                    execution.TotalTargetCount++;
+                    try
                     {
                         var balanceBefore = account.EducationCreditBalance;
                         var balanceAfter = balanceBefore + amount;
@@ -204,7 +204,7 @@ public class TopupBackgroundService(
                             await _applicationRepository.AddAsync(application, token);
                         }
 
-                        return new TopupSuccessItemDTO
+                        var success = new TopupSuccessItemDTO
                         {
                             AccountId = account.Id,
                             AccountNumber = account.AccountNumber,
@@ -212,45 +212,43 @@ public class TopupBackgroundService(
                             TopUpAmount = amount,
                             TopUpTransactionId = transaction.TransactionCode
                         };
-                    }, cancellationToken);
 
-                    execution.SuccessCount++;
-                    execution.TotalExecutedAmount += amount;
-                    appliedAccountIds.Add(account.Id);
-                    result.SuccessList.Add(success);
-                }
-                catch (Exception exception) when (exception is not OperationCanceledException)
-                {
-                    execution.FailedCount++;
-                    var reason = exception.GetBaseException().Message;
-                    result.FailList.Add(new TopupFailItemDTO
+                        execution.SuccessCount++;
+                        execution.TotalExecutedAmount += amount;
+                        appliedAccountIds.Add(account.Id);
+                        result.SuccessList.Add(success);
+                    }
+                    catch (Exception exception) when (exception is not OperationCanceledException)
                     {
-                        AccountId = account.Id,
-                        AccountNumber = account.AccountNumber,
-                        AccountName = account.Citizen.FullName,
-                        TopUpAmount = amount,
-                        Reason = $"Execution failed: {reason}"
-                    });
-                    var target = new TopupExecutionTarget
-                    {
-                        TopupExecutionId = execution.Id,
-                        EducationAccountId = account.Id,
-                        AccountNumber = account.AccountNumber,
-                        Amount = amount,
-                        Status = TopupTargetStatus.Failed,
-                        FailureReason = reason[..Math.Min(500, reason.Length)],
-                        MatchedConditionsSnapshot = BuildConditionsSnapshot(matchedConditions)
-                    };
-                    target.TryValidate();
-                    await _targetRepository.AddAsync(target, cancellationToken);
-                    await _unitOfWork.SaveChangeAsync(cancellationToken);
+                        execution.FailedCount++;
+                        var reason = exception.GetBaseException().Message;
+                        result.FailList.Add(new TopupFailItemDTO
+                        {
+                            AccountId = account.Id,
+                            AccountNumber = account.AccountNumber,
+                            AccountName = account.Citizen.FullName,
+                            TopUpAmount = amount,
+                            Reason = $"Execution failed: {reason}"
+                        });
+                        var target = new TopupExecutionTarget
+                        {
+                            TopupExecutionId = execution.Id,
+                            EducationAccountId = account.Id,
+                            AccountNumber = account.AccountNumber,
+                            Amount = amount,
+                            Status = TopupTargetStatus.Failed,
+                            FailureReason = reason[..Math.Min(500, reason.Length)],
+                            MatchedConditionsSnapshot = BuildConditionsSnapshot(matchedConditions)
+                        };
+                        target.TryValidate();
+                        await _targetRepository.AddAsync(target, token);
+                    }
                 }
             }
-        }
 
-        execution.Status = TopupExecutionStatus.Completed;
-        _executionRepository.Update(execution);
-        await _unitOfWork.SaveChangeAsync(cancellationToken);
+            execution.Status = TopupExecutionStatus.Completed;
+            _executionRepository.Update(execution);
+        }, cancellationToken);
 
         result.TotalProcessed = execution.TotalTargetCount;
         result.TotalSuccess = execution.SuccessCount;

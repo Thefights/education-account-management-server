@@ -26,14 +26,8 @@ namespace Services.Audit
             var userId = ResolveCurrentUserId();
             if (userId.HasValue)
             {
-                var actorExists = await _userRepository
-                    .Query()
-                    .AnyAsync(user => user.Id == userId.Value, cancellationToken);
-                if (actorExists)
-                {
-                    await LogForActorAsync(category, action, targetNric, cancellationToken: cancellationToken);
-                    return;
-                }
+                await LogForActorAsync(category, action, targetNric, cancellationToken: cancellationToken);
+                return;
             }
 
             await LogAnonymousAsync(category, action, targetNric, cancellationToken: cancellationToken);

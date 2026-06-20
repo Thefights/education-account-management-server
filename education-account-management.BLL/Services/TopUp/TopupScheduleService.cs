@@ -27,7 +27,7 @@ namespace Services.TopUp
                 .FirstOrDefaultAsync(r => r.Id == createDTO.TopupRuleId, cancellationToken);
             if (rule == null)
             {
-                throw new ValidationFailureException("TopupRuleId", "Referenced Topup Rule does not exist.");
+                throw new ValidationFailureException(nameof(createDTO.TopupRuleId), "Referenced Topup Rule does not exist.");
             }
             if (rule.Type != TopupRuleType.Schedule)
             {
@@ -82,7 +82,7 @@ namespace Services.TopUp
                 .FirstOrDefaultAsync(r => r.Id == updateDTO.TopupRuleId, cancellationToken);
             if (rule == null)
             {
-                throw new ValidationFailureException("TopupRuleId", "Referenced Topup Rule does not exist.");
+                throw new ValidationFailureException(nameof(updateDTO.TopupRuleId), "Referenced Topup Rule does not exist.");
             }
             if (rule.Type != TopupRuleType.Schedule)
             {
@@ -137,7 +137,8 @@ namespace Services.TopUp
 
             if (schedule.Frequency == TopupScheduleType.OneTime)
             {
-                var occurrence = DateTime.SpecifyKind(now, DateTimeKind.Unspecified);
+                if (schedule.OneTimeExecutionAt == null) return null;
+                var occurrence = DateTime.SpecifyKind(schedule.OneTimeExecutionAt.Value, DateTimeKind.Unspecified);
                 schedule.OneTimeExecutionAt = occurrence;
                 return occurrence;
             }
@@ -185,6 +186,7 @@ namespace Services.TopUp
 
             if (frequency == TopupScheduleType.OneTime)
             {
+                if (!oneTimeExecutionAt.HasValue) errors[nameof(oneTimeExecutionAt)] = "One-time execution date and time is required.";
                 if (executeAtDay.HasValue) errors[nameof(executeAtDay)] = "Execution day must be null for OneTime.";
                 if (executeAtMonth.HasValue) errors[nameof(executeAtMonth)] = "Execution month must be null for OneTime.";
                 if (status == TopupScheduleStatus.Completed)

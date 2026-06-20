@@ -63,26 +63,26 @@ public class TopupService(
             TotalProcessed = inputs.Count
         };
 
-        foreach (var input in inputs)
+        await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
         {
-            if (input.Error != null || input.Account == null)
+            foreach (var input in inputs)
             {
-                await AddFailureAsync(execution, input, request.TopUpAmount,
-                    input.Error ?? "Account not found.", result, cancellationToken);
-                continue;
-            }
+                if (input.Error != null || input.Account == null)
+                {
+                    await AddFailureAsync(execution, input, request.TopUpAmount,
+                        input.Error ?? "Account not found.", result, token);
+                    continue;
+                }
 
-            var account = input.Account;
-            if (account.Status != EducationAccountStatus.Active)
-            {
-                await AddFailureAsync(execution, input, request.TopUpAmount,
-                    $"Account is not Active (current status: {account.Status}).", result, cancellationToken);
-                continue;
-            }
+                var account = input.Account;
+                if (account.Status != EducationAccountStatus.Active)
+                {
+                    await AddFailureAsync(execution, input, request.TopUpAmount,
+                        $"Account is not Active (current status: {account.Status}).", result, token);
+                    continue;
+                }
 
-            try
-            {
-                var success = await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
+                try
                 {
                     var balanceBefore = account.EducationCreditBalance;
                     var balanceAfter = balanceBefore + request.TopUpAmount;
@@ -114,7 +114,7 @@ public class TopupService(
                     target.TryValidate();
                     await _targetRepository.AddAsync(target, token);
 
-                    return new TopupSuccessItemDTO
+                    var success = new TopupSuccessItemDTO
                     {
                         AccountId = account.Id,
                         AccountNumber = account.AccountNumber,
@@ -122,23 +122,22 @@ public class TopupService(
                         TopUpAmount = request.TopUpAmount,
                         TopUpTransactionId = transaction.TransactionCode
                     };
-                }, cancellationToken);
 
-                execution.SuccessCount++;
-                execution.TotalExecutedAmount += request.TopUpAmount;
-                result.SuccessList.Add(success);
-                await LogAuditAsync("Success", account, cancellationToken);
+                    execution.SuccessCount++;
+                    execution.TotalExecutedAmount += request.TopUpAmount;
+                    result.SuccessList.Add(success);
+                    await LogAuditAsync("Success", account, token);
+                }
+                catch (Exception exception) when (exception is not OperationCanceledException)
+                {
+                    await AddFailureAsync(execution, input, request.TopUpAmount,
+                        $"Execution failed: {exception.GetBaseException().Message}", result, token);
+                }
             }
-            catch (Exception exception) when (exception is not OperationCanceledException)
-            {
-                await AddFailureAsync(execution, input, request.TopUpAmount,
-                    $"Execution failed: {exception.GetBaseException().Message}", result, cancellationToken);
-            }
-        }
 
-        execution.Status = TopupExecutionStatus.Completed;
-        _executionRepository.Update(execution);
-        await _unitOfWork.SaveChangeAsync(cancellationToken);
+            execution.Status = TopupExecutionStatus.Completed;
+            _executionRepository.Update(execution);
+        }, cancellationToken);
 
         result.TotalSuccess = execution.SuccessCount;
         result.TotalFailed = execution.FailedCount;
@@ -230,7 +229,6 @@ public class TopupService(
             };
             target.TryValidate();
             await _targetRepository.AddAsync(target, cancellationToken);
-            await _unitOfWork.SaveChangeAsync(cancellationToken);
         }
 
         result.FailList.Add(new TopupFailItemDTO
