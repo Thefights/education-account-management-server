@@ -6,28 +6,18 @@ using Utils;
 
 namespace Services.Base
 {
-    public class CsvImportService<TEntity, TRow>
+    public class CsvImportService<TEntity, TRow>(
+        IUnitOfWork unitOfWork,
+        ICsvImportProfile<TEntity, TRow> profile)
         where TEntity : BaseEntity
         where TRow : class
     {
-        private readonly ICsvImportProfile<TEntity, TRow>? _profile;
+        private readonly ICsvImportProfile<TEntity, TRow>? _profile = profile;
 
-        protected readonly IUnitOfWork UnitOfWork;
-        protected readonly IGenericRepository<TEntity> Repository;
+        protected readonly IUnitOfWork UnitOfWork = unitOfWork;
+        protected readonly IGenericRepository<TEntity> Repository = unitOfWork.Repository<TEntity>();
 
-        public CsvImportService(
-            IUnitOfWork unitOfWork,
-            ICsvImportProfile<TEntity, TRow> profile)
-            : this(unitOfWork)
-        {
-            _profile = profile;
-        }
-
-        protected CsvImportService(IUnitOfWork unitOfWork)
-        {
-            UnitOfWork = unitOfWork;
-            Repository = unitOfWork.Repository<TEntity>();
-        }
+        protected CsvImportService(IUnitOfWork unitOfWork) : this(unitOfWork, null!) { }
 
         public virtual async Task<BatchImportResultDTO> ImportAsync(
             IFormFile file,

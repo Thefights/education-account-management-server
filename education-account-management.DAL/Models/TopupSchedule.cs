@@ -1,10 +1,8 @@
-using System;
-
 namespace Models
 {
     public class TopupSchedule : AuditEntity
     {
-        [NotDefaultValue]
+        [NotDefaultValue, Unique]
         public int TopupRuleId { get; set; }
         public TopupRule TopupRule { get; set; } = null!;
 

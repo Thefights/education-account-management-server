@@ -1,7 +1,7 @@
 using Authorization;
 using Common.HttpResults;
 using Controllers.Base;
-using DTOs.TopUp.Rule;
+using DTOs.TopUp;
 using Interfaces.TopUp;
 using Models;
 

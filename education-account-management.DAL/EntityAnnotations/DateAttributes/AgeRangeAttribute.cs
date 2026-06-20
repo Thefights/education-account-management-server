@@ -27,23 +27,15 @@ namespace EntityAnnotations.DateAttributes
     /// </code>
     /// </example>
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
-    public class AgeRangeAttribute : ValidationAttribute
+    public class AgeRangeAttribute(
+        int min = 0,
+        int max = 122) : ValidationAttribute
     {
         public const int DefaultMinAge = 0;
         public const int DefaultMaxAge = 122;
 
-        public int Min { get; set; } = DefaultMinAge;
-        public int Max { get; set; } = DefaultMaxAge;
-
-        public AgeRangeAttribute()
-        {
-        }
-
-        public AgeRangeAttribute(int min, int max)
-        {
-            Min = min;
-            Max = max;
-        }
+        public int Min { get; set; } = min;
+        public int Max { get; set; } = max;
 
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {

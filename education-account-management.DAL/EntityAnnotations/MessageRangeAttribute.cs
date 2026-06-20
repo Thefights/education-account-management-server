@@ -3,18 +3,8 @@ using Utils;
 namespace EntityAnnotations
 {
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
-    public class MessageRangeAttribute : RangeAttribute
+    public class MessageRangeAttribute(double minimum, double maximum) : RangeAttribute(minimum, maximum)
     {
-        private readonly double _minimum;
-        private readonly double _maximum;
-
-        public MessageRangeAttribute(double minimum, double maximum) : base(minimum, maximum)
-        {
-            _minimum = minimum;
-            _maximum = maximum;
-            ErrorMessage = "{0} must be between {1} and {2}";
-        }
-
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
             var number = TryConvertToDouble(value);
@@ -23,7 +13,9 @@ namespace EntityAnnotations
                 return ValidationResult.Success;
             }
 
-            if (number < _minimum || number > _maximum)
+            var configuredMinimum = Convert.ToDouble(Minimum);
+            var configuredMaximum = Convert.ToDouble(Maximum);
+            if (number < configuredMinimum || number > configuredMaximum)
             {
                 return new ValidationResult(
                     FormatErrorMessage(validationContext.DisplayName),
@@ -36,7 +28,7 @@ namespace EntityAnnotations
 
         public override string FormatErrorMessage(string name)
         {
-            return string.Format(ErrorMessageString, name.SplitWords(), _minimum, _maximum);
+            return string.Format("{0} must be between {1} and {2}", name.SplitWords(), Minimum, Maximum);
         }
 
         private static double? TryConvertToDouble(object? value)

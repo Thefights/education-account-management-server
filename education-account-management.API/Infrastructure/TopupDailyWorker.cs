@@ -16,11 +16,11 @@ namespace Infrastructure
             IServiceProvider serviceProvider,
             CancellationToken cancellationToken)
         {
-            var topupService = serviceProvider.GetRequiredService<ITopupService>();
+            var backgroundService = serviceProvider.GetRequiredService<ITopupBackgroundService>();
             var auditLogWriter = serviceProvider.GetRequiredService<IAuditLogWriter>();
             var unitOfWork = serviceProvider.GetRequiredService<IUnitOfWork>();
 
-            var results = await topupService.ExecuteDueTopupsAsync(cancellationToken);
+            var results = await backgroundService.ExecuteDueTopupsAsync(cancellationToken);
 
             if (results.Count == 0)
                 return;

@@ -70,6 +70,7 @@ public static class ApplicationServiceExtensions
         services.AddScoped<ITopupRuleService, TopupRuleService>();
         services.AddScoped<ITopupScheduleService, TopupScheduleService>();
         services.AddScoped<ITopupService, TopupService>();
+        services.AddScoped<ITopupBackgroundService, TopupBackgroundService>();
 
         services.AddScoped<IBatchReportService, BatchReportService>();
         services.AddScoped<IAiAssistantSettingService, AiAssistantSettingService>();
@@ -86,7 +87,6 @@ public static class ApplicationServiceExtensions
         services.AddScoped<EducationAccountMapper>();
         services.AddScoped<TransactionHistoryMapper>();
         services.AddScoped<TopupRuleMapper>();
-        services.AddScoped<TopupRuleConditionMapper>();
         services.AddScoped<TopupScheduleMapper>();
         services.AddScoped<AiAssistantSettingMapper>();
         services.AddScoped<AdminMapper>();

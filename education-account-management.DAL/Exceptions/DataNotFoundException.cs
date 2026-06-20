@@ -1,16 +1,14 @@
 namespace Exceptions
 {
-    public class DataNotFoundException : UserFacingException
+    public class DataNotFoundException(string? message) : UserFacingException(message, 404)
     {
         public DataNotFoundException(Type entityType, int id)
-            : base($"{entityType.Name} ({id}) was not found!", 404) { }
+            : this($"{entityType.Name} ({id}) was not found!") { }
 
         public DataNotFoundException(Type entityType, string id)
-            : base($"{entityType.Name} ({id}) was not found!", 404) { }
+            : this($"{entityType.Name} ({id}) was not found!") { }
 
         public DataNotFoundException(string entityName, int id)
-            : base($"{entityName} ({id}) was not found!", 404) { }
-
-        public DataNotFoundException(string? message) : base(message, 404) { }
+            : this($"{entityName} ({id}) was not found!") { }
     }
 }
