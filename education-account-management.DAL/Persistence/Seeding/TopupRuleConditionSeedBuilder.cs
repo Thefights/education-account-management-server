@@ -18,6 +18,7 @@ public sealed class TopupRuleConditionSeedBuilder : ISeedBuilder
         int conditionId = 1;
         for (int ruleId = 1; ruleId <= 50; ruleId++)
         {
+            var isOrRule = ruleId % 4 == 0;
             var field = random.NextDouble() > 0.5 ? TopupRuleConditionField.Balance : TopupRuleConditionField.Age;
 
             decimal minVal;
@@ -41,6 +42,8 @@ public sealed class TopupRuleConditionSeedBuilder : ISeedBuilder
                 Field = field,
                 Operator = TopupRuleConditionOperator.GreaterThanOrEqual,
                 ValueNumber = minVal,
+                ConditionAmount = isOrRule ? 100m : null,
+                DisplayOrder = 1,
                 TopupRuleId = ruleId,
                 CreatedAt = createdAt
             });
@@ -52,6 +55,8 @@ public sealed class TopupRuleConditionSeedBuilder : ISeedBuilder
                 Field = field,
                 Operator = TopupRuleConditionOperator.LessThanOrEqual,
                 ValueNumber = maxVal,
+                ConditionAmount = isOrRule ? 150m : null,
+                DisplayOrder = 2,
                 TopupRuleId = ruleId,
                 CreatedAt = createdAt
             });

@@ -1,4 +1,6 @@
 using EntityAnnotations.DateAttributes;
+using System;
+using System.Collections.Generic;
 
 namespace Models
 {
@@ -22,11 +24,14 @@ namespace Models
         public int CitizenId { get; set; }
         public Citizen Citizen { get; set; } = null!;
 
-        [OnDelete(OnDeleteBehavior.Restrict)]
-        public ICollection<TopupBatchTarget> TopupBatchTargets { get; set; } = [];
+        [Timestamp]
+        public byte[] RowVersion { get; set; } = [];
 
         [OnDelete(OnDeleteBehavior.Restrict)]
-        public ICollection<AdhocTopupBatchTarget> AdhocTopupBatchTargets { get; set; } = [];
+        public ICollection<TopupExecutionTarget> TopupExecutionTargets { get; set; } = [];
+
+        [OnDelete(OnDeleteBehavior.Restrict)]
+        public ICollection<TopupSystemApplication> TopupSystemApplications { get; set; } = [];
 
         [OnDelete(OnDeleteBehavior.Restrict)]
         public ICollection<EducationCreditTransaction> EducationCreditTransactions { get; set; } = [];

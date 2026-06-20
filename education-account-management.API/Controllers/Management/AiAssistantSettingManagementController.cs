@@ -1,8 +1,8 @@
-﻿using Authorization;
+using Authorization;
 using Common.HttpResults;
 using Controllers.Base;
-using DTOs.AiAssistantSetting;
-using Interfaces.AiAssistantSetting;
+using DTOs.AiAssistantSettings;
+using Interfaces.AiAssistantSettings;
 
 namespace Controllers.Management
 {

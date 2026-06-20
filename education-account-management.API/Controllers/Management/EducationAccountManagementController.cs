@@ -1,9 +1,9 @@
 using Authorization;
 using Common.HttpResults;
 using Controllers.Base;
-using DTOs.EducationAccount;
-using Filters.EducationAccount;
-using Interfaces.EducationAccount;
+using DTOs.EducationAccounts;
+using Filters.EducationAccounts;
+using Interfaces.EducationAccounts;
 using Models;
 
 namespace Controllers.Management

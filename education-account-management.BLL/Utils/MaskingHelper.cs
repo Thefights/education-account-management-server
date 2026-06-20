@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 
@@ -11,21 +8,29 @@ namespace Utils
         public static string? MaskPayload(string? rawJson)
         {
             if (string.IsNullOrWhiteSpace(rawJson)) return rawJson;
+            var normalizedJson = NormalizeJsonPayload(rawJson);
+            var node = JsonNode.Parse(normalizedJson!);
+            if (node is JsonObject obj)
+            {
+                MaskObject(obj);
+                return node.ToJsonString();
+            }
+            return normalizedJson;
+        }
+
+        public static string? NormalizeJsonPayload(string? rawJson)
+        {
+            if (string.IsNullOrWhiteSpace(rawJson)) return rawJson;
+
             try
             {
-                var node = JsonNode.Parse(rawJson);
-                if (node is JsonObject obj)
-                {
-                    MaskObject(obj);
-                    return node.ToJsonString();
-                }
+                using var document = JsonDocument.Parse(rawJson);
+                return rawJson;
             }
             catch (JsonException)
             {
-
-                throw;
+                return JsonSerializer.Serialize(new { Message = rawJson });
             }
-            return rawJson;
         }
 
         private static void MaskObject(JsonObject obj)
@@ -74,16 +79,5 @@ namespace Utils
             return $"{firstChar}****{lastFour}";
         }
 
-        public static string MaskNricCustom(string nric)
-        {
-            if (string.IsNullOrWhiteSpace(nric)) return string.Empty;
-            var trimmed = nric.Trim();
-            if (trimmed.Length < 9) return trimmed;
-
-            var firstChar = trimmed[0];
-            var lastThree = trimmed[^3..];
-
-            return $"{firstChar}*****{lastThree}";
-        }
     }
 }

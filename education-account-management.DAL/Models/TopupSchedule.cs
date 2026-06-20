@@ -1,21 +1,17 @@
-using Common;
-using EntityAnnotations;
-using EntityAnnotations.OnDeleteAttributes;
-using Enums;
 using System;
-using System.Collections.Generic;
 
 namespace Models
 {
     public class TopupSchedule : AuditEntity
     {
-        [MessageRequired, MessageMaxLength(150)]
-        public string ScheduleName { get; set; } = string.Empty;
+        [NotDefaultValue]
+        public int TopupRuleId { get; set; }
+        public TopupRule TopupRule { get; set; } = null!;
 
         [EnumDefined]
-        public TopupScheduleType ScheduleType { get; set; } = TopupScheduleType.OneTime;
+        public TopupScheduleType Frequency { get; set; } = TopupScheduleType.OneTime;
 
-        public DateTime? OneTimeExecutionDate { get; set; }
+        public DateTime? OneTimeExecutionAt { get; set; }
 
         [MessageRange(1, 31)]
         public int? ExecuteAtDay { get; set; }
@@ -23,15 +19,14 @@ namespace Models
         [MessageRange(1, 12)]
         public int? ExecuteAtMonth { get; set; }
 
-        public TimeSpan SpecificExecutionTime { get; set; } = TimeSpan.Zero;
+        public TimeOnly ExecutionTime { get; set; } = TimeOnly.MinValue;
 
-        public bool IsActive { get; set; } = true;
+        public DateTime? NextExecutionAt { get; set; }
 
-        public DateTime? LastExecutedAt { get; set; }
+        [EnumDefined]
+        public TopupScheduleStatus Status { get; set; } = TopupScheduleStatus.Active;
 
-        public DateTime NextExecutionAt { get; set; }
-
-        [OnDelete(OnDeleteBehavior.Cascade)]
-        public ICollection<TopupScheduleRule> ScheduleRules { get; set; } = [];
+        [OnDelete(OnDeleteBehavior.NoAction)]
+        public ICollection<TopupExecution> Executions { get; set; } = [];
     }
 }

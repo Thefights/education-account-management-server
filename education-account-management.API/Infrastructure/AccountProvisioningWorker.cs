@@ -1,4 +1,4 @@
-using Interfaces.EducationAccount;
+using Interfaces.EducationAccounts;
 using System.Text.Json;
 
 namespace Infrastructure

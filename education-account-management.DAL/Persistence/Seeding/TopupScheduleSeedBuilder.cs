@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Models;
 using Persistence.Seeding.Constants;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Persistence.Seeding
@@ -19,33 +20,37 @@ namespace Persistence.Seeding
 
             for (int i = 1; i <= 20; i++)
             {
-                var type = (TopupScheduleType)random.Next(0, 3);
+                var type = (TopupScheduleType)random.Next(1, 4); // 1 = OneTime, 2 = Monthly, 3 = Yearly
+                var executionTime = new TimeOnly(random.Next(0, 24), random.Next(0, 60), 0);
                 var schedule = new TopupSchedule
                 {
                     Id = i,
-                    ScheduleName = $"Random Schedule {i:000}",
-                    ScheduleType = type,
-                    IsActive = random.NextDouble() > 0.2, // 80% active
-                    SpecificExecutionTime = new TimeSpan(random.Next(0, 24), random.Next(0, 60), 0),
+                    TopupRuleId = i,
+                    Frequency = type,
+                    Status = random.NextDouble() > 0.2 ? TopupScheduleStatus.Active : TopupScheduleStatus.Inactive, // 80% active
+                    ExecutionTime = executionTime,
                     CreatedAt = createdAt
                 };
 
                 if (type == TopupScheduleType.OneTime)
                 {
-                    schedule.OneTimeExecutionDate = new DateTime(2027, random.Next(1, 13), random.Next(1, 28), 0, 0, 0, DateTimeKind.Utc);
-                    schedule.NextExecutionAt = schedule.OneTimeExecutionDate.Value.Add(schedule.SpecificExecutionTime);
+                    schedule.OneTimeExecutionAt = DateTime.SpecifyKind(createdAt, DateTimeKind.Unspecified);
+                    schedule.NextExecutionAt = schedule.OneTimeExecutionAt;
                 }
                 else if (type == TopupScheduleType.Monthly)
                 {
                     schedule.ExecuteAtDay = random.Next(1, 29);
-                    schedule.NextExecutionAt = new DateTime(2027, random.Next(1, 13), schedule.ExecuteAtDay.Value, schedule.SpecificExecutionTime.Hours, schedule.SpecificExecutionTime.Minutes, 0, DateTimeKind.Utc);
+                    schedule.NextExecutionAt = new DateTime(2027, random.Next(1, 13), schedule.ExecuteAtDay.Value, executionTime.Hour, executionTime.Minute, 0, DateTimeKind.Unspecified);
                 }
                 else if (type == TopupScheduleType.Yearly)
                 {
                     schedule.ExecuteAtDay = random.Next(1, 29);
                     schedule.ExecuteAtMonth = random.Next(1, 13);
-                    schedule.NextExecutionAt = new DateTime(2027, schedule.ExecuteAtMonth.Value, schedule.ExecuteAtDay.Value, schedule.SpecificExecutionTime.Hours, schedule.SpecificExecutionTime.Minutes, 0, DateTimeKind.Utc);
+                    schedule.NextExecutionAt = new DateTime(2027, schedule.ExecuteAtMonth.Value, schedule.ExecuteAtDay.Value, executionTime.Hour, executionTime.Minute, 0, DateTimeKind.Unspecified);
                 }
+
+                if (schedule.Status == TopupScheduleStatus.Inactive)
+                    schedule.NextExecutionAt = null;
 
                 schedules.Add(schedule);
             }

@@ -28,10 +28,10 @@
 - Do not duplicate entity invariant annotations on DTOs just to validate the same mapped fields earlier.
 - DTO/request annotations are allowed only for API-boundary, command, or transport-only checks that are not naturally validated by a mapped entity. Examples: upload file type/required file, list IDs requiring at least one item, command enum values, or request DTOs that do not map cleanly to a persisted entity.
 - When a DTO maps to an entity, validate the mapped entity with `TryValidate()` after mapping and before persistence or side effects that depend on valid data.
-- Prefer dedicated validator classes using an `IValidator<T>` style for business/workflow rules.
-- Validators should contain cross-field, workflow, or repository-backed validation that entity annotations cannot express, and throw clear exceptions for invalid data.
-- Business rules must live in dedicated validators by default, especially rules that require repository checks such as existence, uniqueness, state transitions, role/product/account constraints, or multi-entity workflow validation.
-- Keep business-rule checks in services only when the rule is tightly coupled to orchestration side effects, transaction sequencing, authorization/current-user context, or a framework integration boundary where moving it to a validator would make the flow less clear.
+- Do not introduce `IValidator<T>` abstractions or dedicated business validator classes.
+- Keep cross-field, workflow, repository-backed, state-transition, authorization, and other business rules in the owning service.
+- DTO annotations are only for API-boundary or transport rules that cannot be enforced by the mapped entity, such as OTP/session commands, uploads, and request-only list constraints.
+- Do not duplicate persisted entity invariants on DTOs.
 - Keep services focused on orchestration and business flow, not long inline validation blocks.
 - Use `NotDefaultValueAttribute` for required value-type IDs/FKs that must not be `0`.
 - Use `EnumDefinedAttribute` for enum properties that must reject undefined numeric enum values.
@@ -45,6 +45,8 @@
 ## Project Organization
 
 - Put frequently reused imports in the project `GlobalUsings.cs` file.
+- Use plural feature folders and namespaces when a singular feature name would collide with an entity type, for example `Services.Courses`, `DTOs.EducationAccounts`, and `Filters.Schools`.
+- Do not introduce same-name entity aliases such as `using CourseEntity = Models.Course`; keep the plural namespace and use the entity's natural type name.
 - Keep base service/controller types under `Base` folders.
 - Keep management-specific services/controllers and their interfaces under `Management` folders.
 - Keep regular services/controllers directly under their normal parent folder instead of nesting them under `Base` or `Management`.

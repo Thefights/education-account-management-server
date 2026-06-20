@@ -104,31 +104,37 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(condition => condition.Operator);
             });
 
-            modelBuilder.Entity<TopupBatch>(entity =>
+            modelBuilder.Entity<TopupSchedule>(entity =>
             {
-                entity.HasIndex(batch => batch.TopupRuleId);
-                entity.HasIndex(batch => batch.Status);
+                entity.HasIndex(s => s.TopupRuleId).IsUnique();
+                entity.HasIndex(s => s.Status);
+                entity.HasIndex(s => s.NextExecutionAt);
             });
 
-            modelBuilder.Entity<TopupBatchTarget>(entity =>
+            modelBuilder.Entity<TopupExecution>(entity =>
             {
-                entity.HasIndex(target => target.TopupBatchId);
-                entity.HasIndex(target => target.EducationAccountId);
-                entity.HasIndex(target => target.Status);
-                entity.HasIndex(target => new { target.TopupBatchId, target.EducationAccountId }).IsUnique();
+                entity.HasIndex(e => e.SourceType);
+                entity.HasIndex(e => e.TopupRuleId);
+                entity.HasIndex(e => e.Status);
+                entity.HasIndex(e => e.ExecutionCode).IsUnique();
+                entity.HasIndex(e => e.IdempotencyKey).IsUnique();
             });
 
-            modelBuilder.Entity<AdhocTopupBatch>(entity =>
+            modelBuilder.Entity<TopupExecutionTarget>(entity =>
             {
-                entity.HasIndex(batch => batch.Status);
+                entity.HasIndex(t => t.TopupExecutionId);
+                entity.HasIndex(t => t.EducationAccountId);
+                entity.HasIndex(t => t.Status);
+                entity.HasIndex(t => new { t.TopupExecutionId, t.AccountNumber }).IsUnique();
+                entity.HasIndex(t => t.EducationCreditTransactionId).IsUnique();
             });
 
-            modelBuilder.Entity<AdhocTopupBatchTarget>(entity =>
+            modelBuilder.Entity<TopupSystemApplication>(entity =>
             {
-                entity.HasIndex(target => target.AdhocTopupBatchId);
-                entity.HasIndex(target => target.EducationAccountId);
-                entity.HasIndex(target => target.Status);
-                entity.HasIndex(target => new { target.AdhocTopupBatchId, target.EducationAccountId }).IsUnique();
+                entity.HasIndex(a => a.TopupRuleId);
+                entity.HasIndex(a => a.EducationAccountId);
+                entity.HasIndex(a => new { a.TopupRuleId, a.EducationAccountId }).IsUnique();
+                entity.HasIndex(a => a.TopupExecutionTargetId).IsUnique();
             });
 
             modelBuilder.Entity<EducationCreditTransaction>(entity =>
@@ -136,18 +142,6 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(transaction => transaction.EducationAccountId);
                 entity.HasIndex(transaction => transaction.Type);
                 entity.HasIndex(transaction => transaction.Direction);
-            });
-
-            modelBuilder.Entity<TopupBatchTargetTransaction>(entity =>
-            {
-                entity.HasIndex(link => link.TopupBatchTargetId).IsUnique();
-                entity.HasIndex(link => link.EducationCreditTransactionId).IsUnique();
-            });
-
-            modelBuilder.Entity<AdhocTopupBatchTargetTransaction>(entity =>
-            {
-                entity.HasIndex(link => link.AdhocTopupBatchTargetId).IsUnique();
-                entity.HasIndex(link => link.EducationCreditTransactionId).IsUnique();
             });
 
             modelBuilder.Entity<AuditLog>(entity =>

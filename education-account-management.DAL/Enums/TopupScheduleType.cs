@@ -4,7 +4,6 @@ namespace Enums
     {
         OneTime = 1,
         Monthly = 2,
-        Yearly = 3,
-        Weekly = 4
+        Yearly = 3
     }
 }

@@ -1,7 +1,7 @@
 using Authorization;
 using Common.HttpResults;
 using Controllers.Base;
-using Interfaces.EducationAccount;
+using Interfaces.EducationAccounts;
 
 namespace Controllers.AccountHolder
 {
