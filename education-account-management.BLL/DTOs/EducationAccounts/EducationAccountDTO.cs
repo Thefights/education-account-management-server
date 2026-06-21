@@ -78,4 +78,10 @@ namespace DTOs.EducationAccounts
 
         public string? Reason { get; set; }
     }
+
+    public class BatchUpdateEducationAccountStatusDTO
+    {
+        public List<int> Ids { get; set; } = [];
+        public EducationAccountStatus Status { get; set; }
+    }
 }

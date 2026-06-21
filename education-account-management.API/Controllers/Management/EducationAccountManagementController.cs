@@ -15,9 +15,17 @@ namespace Controllers.Management
         : CrudController<CreateEducationAccountDTO, GetEducationAccountDTO,
             UpdateEducationAccountDTO, EducationAccountFilterDTO>(educationAccountService)
     {
+        private readonly IEducationAccountService _educationAccountService = educationAccountService;
         private readonly IEducationAccountImportService _importService = importService;
 
         protected override string EntityName => nameof(EducationAccount);
+
+        [HttpPut("status")]
+        public async Task<IActionResult> UpdateStatus(BatchUpdateEducationAccountStatusDTO dto, CancellationToken cancellationToken)
+        {
+            await _educationAccountService.UpdateEducationAccountsStatusAsync(dto, cancellationToken);
+            return Result.SuccessAction("Education accounts status updated successfully.");
+        }
 
         [HttpPost("import")]
         public async Task<IActionResult> Import(

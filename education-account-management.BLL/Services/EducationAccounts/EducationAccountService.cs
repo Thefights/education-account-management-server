@@ -129,6 +129,35 @@ public class EducationAccountService(
             ?? throw new DataNotFoundException("Education account for the current account holder was not found.");
     }
 
+    public async Task UpdateEducationAccountsStatusAsync(
+        BatchUpdateEducationAccountStatusDTO dto,
+        CancellationToken cancellationToken = default)
+    {
+        ArgumentNullException.ThrowIfNull(dto);
+
+        if (dto.Ids.Count == 0) return;
+
+        await _unitOfWork.ExecuteInTransactionAsync(async (transaction, token) =>
+        {
+            var accounts = await _repository.Query()
+                .Include(a => a.Citizen)
+                .Where(a => dto.Ids.Contains(a.Id))
+                .ToListAsync(token);
+
+            foreach (var account in accounts)
+            {
+                account.Status = dto.Status;
+                _repository.Update(account);
+
+                await _auditLogWriter.LogAsync(
+                    AuditLogCategory.AccountCreation,
+                    $"UpdateEducationAccountStatusTo{dto.Status}",
+                    account.Citizen.Nric,
+                    token);
+            }
+        }, cancellationToken);
+    }
+
     private async Task<Citizen> GetEligibleCitizenAsync(string nric, CancellationToken cancellationToken)
     {
         var citizen = await _citizenRepository.Query()

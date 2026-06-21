@@ -12,5 +12,9 @@ namespace Interfaces.EducationAccounts
     {
         Task<GetEducationAccountDTO> GetAccountHolderProfileAsync(
             CancellationToken cancellationToken = default);
+
+        Task UpdateEducationAccountsStatusAsync(
+            BatchUpdateEducationAccountStatusDTO dto,
+            CancellationToken cancellationToken = default);
     }
 }
