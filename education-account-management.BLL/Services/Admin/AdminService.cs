@@ -1,4 +1,5 @@
 using DTOs.Admin;
+using DTOs.Csv;
 using Interfaces.Admin;
 using Interfaces.Audit;
 using Mappers.Admin;
@@ -267,7 +268,7 @@ namespace Services.Admin
             return role is UserRole.SystemAdmin or UserRole.FinanceAdmin or UserRole.SchoolAdmin;
         }
 
-        public async Task UpdateAdminsStatusAsync(BatchUpdateAdminStatusDTO dto, CancellationToken cancellationToken)
+        public async Task UpdateAdminsStatusAsync(BatchUpdateAdminStatusDTO dto, CancellationToken cancellationToken = default)
         {
             var users = await _userRepository.GetByIdsAsync(dto.Ids, cancellationToken: cancellationToken);
 
@@ -279,6 +280,49 @@ namespace Services.Admin
                 }
                 _userRepository.UpdateRange(users);
             }, cancellationToken);
+        }
+
+        public async Task<BatchImportResultDTO> ImportAsync(Microsoft.AspNetCore.Http.IFormFile file, CancellationToken cancellationToken = default)
+        {
+            var fileErrors = CsvImportHelper.ValidateFile(file);
+            if (fileErrors.Count != 0)
+                return CsvImportHelper.BuildFailureResult(0, fileErrors);
+
+            var rows = CsvImportHelper.ReadRows<CreateAdminDTO>(file);
+            if (rows.Errors.Count != 0)
+                return CsvImportHelper.BuildFailureResult(rows.Total, rows.Errors);
+
+            if (rows.Items.Count == 0)
+                return CsvImportHelper.BuildFailureResult(0, [DTOs.Csv.BatchImportErrorDTO.Create(0, "File", "CSV file must contain at least one data row.")]);
+
+            var errors = new List<DTOs.Csv.BatchImportErrorDTO>();
+            var successCount = 0;
+
+            foreach (var item in rows.Items)
+            {
+                try
+                {
+                    await CreateAsync(item.Row, cancellationToken);
+                    successCount++;
+                }
+                catch (Exception ex)
+                {
+                    errors.Add(BatchImportErrorDTO.Create(item.RowNumber, "Row", ex.Message));
+                }
+            }
+
+            if (errors.Count != 0)
+            {
+                return CsvImportHelper.BuildFailureResult(rows.Total, errors);
+            }
+
+            return new BatchImportResultDTO
+            {
+                Total = rows.Total,
+                Succeeded = successCount,
+                Failed = 0,
+                Errors = []
+            };
         }
     }
 }

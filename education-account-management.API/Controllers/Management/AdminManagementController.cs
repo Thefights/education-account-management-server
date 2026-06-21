@@ -35,5 +35,14 @@ namespace Controllers.Management
             await _service.UpdateAdminsStatusAsync(dto, cancellationToken);
             return Result.SuccessAction("Admin status updated successfully.");
         }
+
+        [HttpPost("import")]
+        public async Task<IActionResult> Import(
+            [FromForm] IFormFile file,
+            CancellationToken cancellationToken)
+        {
+            var result = await _service.ImportAsync(file, cancellationToken);
+            return Result.SuccessData(result, "Admin CSV import processed.");
+        }
     }
 }

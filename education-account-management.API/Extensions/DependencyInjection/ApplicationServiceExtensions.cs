@@ -1,5 +1,7 @@
 using Amazon.Runtime;
 using Amazon.S3;
+using DTOs.Courses;
+using DTOs.Schools;
 using Emails;
 using Infrastructure;
 using Infrastructure.CacheServices;
@@ -20,6 +22,7 @@ using Interfaces.TopUp;
 using Interfaces.TransactionHistory;
 using Mappers;
 using Mappers.Admin;
+using Models;
 using Polly;
 using Polly.CircuitBreaker;
 using Polly.Retry;
@@ -60,6 +63,8 @@ public static class ApplicationServiceExtensions
 
         services.AddScoped<ICsvExportService, CsvExportService>();
         services.AddScoped(typeof(CsvImportService<,>));
+        services.AddScoped<ICsvImportProfile<School, CreateSchoolDTO>, SchoolImportProfile>();
+        services.AddScoped<ICsvImportProfile<Course, CreateCourseDTO>, CourseImportProfile>();
 
         services.AddScoped<IEducationAccountService, EducationAccountService>();
         services.AddScoped<IEducationAccountSweepService, EducationAccountSweepService>();

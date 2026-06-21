@@ -17,5 +17,9 @@ namespace Interfaces.Admin
         Task UpdateAdminsStatusAsync(
             BatchUpdateAdminStatusDTO dto,
             CancellationToken cancellationToken = default);
+
+        Task<DTOs.Csv.BatchImportResultDTO> ImportAsync(
+            Microsoft.AspNetCore.Http.IFormFile file,
+            CancellationToken cancellationToken = default);
     }
 }
