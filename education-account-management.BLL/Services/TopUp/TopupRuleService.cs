@@ -58,7 +58,7 @@ namespace Services.TopUp
                 .FirstOrDefaultAsync(r => r.Id == id, cancellationToken)
                 ?? throw new DataNotFoundException(typeof(TopupRule), id);
 
-            ValidateRule(rule.MatchMode, updateDTO.TopupAmount, updateDTO.Conditions);
+            ValidateRule(updateDTO.MatchMode, updateDTO.TopupAmount, updateDTO.Conditions);
 
             var existingConditionIds = rule.Conditions.Select(condition => condition.Id).ToHashSet();
             var invalidConditionId = updateDTO.Conditions
@@ -75,6 +75,7 @@ namespace Services.TopUp
             {
                 // Update rule metadata
                 rule.RuleName = updateDTO.RuleName;
+                rule.MatchMode = updateDTO.MatchMode;
                 rule.TopupAmount = updateDTO.TopupAmount;
                 rule.Status = updateDTO.Status;
 

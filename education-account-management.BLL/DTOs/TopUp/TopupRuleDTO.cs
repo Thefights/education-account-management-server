@@ -95,6 +95,8 @@ namespace DTOs.TopUp
     {
         public string RuleName { get; set; } = string.Empty;
 
+        public TopupMatchMode MatchMode { get; set; }
+
         public decimal? TopupAmount { get; set; }
 
         public TopupRuleStatus Status { get; set; }

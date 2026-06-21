@@ -69,6 +69,7 @@ public static class ApplicationServiceExtensions
         services.AddScoped<ITopupRuleService, TopupRuleService>();
         services.AddScoped<ITopupScheduleService, TopupScheduleService>();
         services.AddScoped<ITopupService, TopupService>();
+        services.AddScoped<ITopupManagementQueryService, TopupManagementQueryService>();
         services.AddScoped<ITopupBackgroundService, TopupBackgroundService>();
 
         services.AddScoped<IEducationAccountSweepReportService, EducationAccountSweepReportService>();

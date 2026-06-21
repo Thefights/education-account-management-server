@@ -33,6 +33,10 @@ namespace Services.TopUp
             {
                 throw new ValidationFailureException(nameof(createDTO.TopupRuleId), "Only Schedule rules can have a schedule.");
             }
+            if (rule.Status != TopupRuleStatus.Active)
+            {
+                throw new ValidationFailureException(nameof(createDTO.TopupRuleId), "Only active Schedule rules can have a schedule.");
+            }
 
             var scheduleId = await _unitOfWork.ExecuteInTransactionAsync(async (transaction, token) =>
             {
@@ -87,6 +91,10 @@ namespace Services.TopUp
             if (rule.Type != TopupRuleType.Schedule)
             {
                 throw new ValidationFailureException(nameof(updateDTO.TopupRuleId), "Only Schedule rules can have a schedule.");
+            }
+            if (rule.Status != TopupRuleStatus.Active)
+            {
+                throw new ValidationFailureException(nameof(updateDTO.TopupRuleId), "Only active Schedule rules can have a schedule.");
             }
 
             await _unitOfWork.ExecuteInTransactionAsync(async (transaction, token) =>

@@ -6,8 +6,6 @@ namespace DTOs.Admin
 
         public string AzureObjectId { get; set; } = string.Empty;
 
-        public string StaffCode { get; set; } = string.Empty;
-
         public string FullName { get; set; } = string.Empty;
 
         public string Nric { get; set; } = string.Empty;
@@ -24,8 +22,6 @@ namespace DTOs.Admin
         public UserRole Role { get; set; }
 
         public string AzureObjectId { get; set; } = string.Empty;
-
-        public string StaffCode { get; set; } = string.Empty;
 
         public string FullName { get; set; } = string.Empty;
 

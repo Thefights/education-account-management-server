@@ -12,8 +12,8 @@ using Persistence.SqlServer;
 namespace educationaccountmanagement.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260619064955_AddUnlinkedCitizenTestData")]
-    partial class AddUnlinkedCitizenTestData
+    [Migration("20260621051358_A")]
+    partial class A
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,457 +24,6 @@ namespace educationaccountmanagement.DAL.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("Models.AdhocTopupBatch", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("ExecutedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Reason")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("TotalAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("TotalTargetCount")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Status");
-
-                    b.ToTable("AdhocTopupBatch", t =>
-                        {
-                            t.HasCheckConstraint("CK_AdhocTopupBatch_TotalAmount_NonNegative", "[TotalAmount] >= 0 AND [TotalTargetCount] >= 0");
-                        });
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            Reason = "Adhoc adjustment reason 001",
-                            Status = 1,
-                            TotalAmount = 55m,
-                            TotalTargetCount = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExecutedAt = new DateTime(2026, 2, 12, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            Reason = "Adhoc adjustment reason 002",
-                            Status = 2,
-                            TotalAmount = 60m,
-                            TotalTargetCount = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            Reason = "Adhoc adjustment reason 003",
-                            Status = 1,
-                            TotalAmount = 65m,
-                            TotalTargetCount = 1
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExecutedAt = new DateTime(2026, 2, 14, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            Reason = "Adhoc adjustment reason 004",
-                            Status = 2,
-                            TotalAmount = 70m,
-                            TotalTargetCount = 1
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            Reason = "Adhoc adjustment reason 005",
-                            Status = 1,
-                            TotalAmount = 75m,
-                            TotalTargetCount = 1
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExecutedAt = new DateTime(2026, 2, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            Reason = "Adhoc adjustment reason 006",
-                            Status = 2,
-                            TotalAmount = 80m,
-                            TotalTargetCount = 1
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            Reason = "Adhoc adjustment reason 007",
-                            Status = 1,
-                            TotalAmount = 85m,
-                            TotalTargetCount = 1
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExecutedAt = new DateTime(2026, 2, 18, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            Reason = "Adhoc adjustment reason 008",
-                            Status = 2,
-                            TotalAmount = 90m,
-                            TotalTargetCount = 1
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            Reason = "Adhoc adjustment reason 009",
-                            Status = 1,
-                            TotalAmount = 95m,
-                            TotalTargetCount = 1
-                        },
-                        new
-                        {
-                            Id = 10,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExecutedAt = new DateTime(2026, 2, 20, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            Reason = "Adhoc adjustment reason 010",
-                            Status = 2,
-                            TotalAmount = 100m,
-                            TotalTargetCount = 1
-                        });
-                });
-
-            modelBuilder.Entity("Models.AdhocTopupBatchTarget", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AdhocTopupBatchId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("EducationAccountId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FailureReason")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AdhocTopupBatchId");
-
-                    b.HasIndex("EducationAccountId");
-
-                    b.HasIndex("Status");
-
-                    b.HasIndex("AdhocTopupBatchId", "EducationAccountId")
-                        .IsUnique()
-                        .HasFilter("\"IsDeleted\" = 0 AND \"AdhocTopupBatchId\" IS NOT NULL AND \"EducationAccountId\" IS NOT NULL");
-
-                    b.ToTable("AdhocTopupBatchTarget", t =>
-                        {
-                            t.HasCheckConstraint("CK_AdhocTopupBatchTarget_Amount_NonNegative", "[Amount] >= 0");
-                        });
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AdhocTopupBatchId = 1,
-                            Amount = 55m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationAccountId = 1,
-                            IsDeleted = false,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AdhocTopupBatchId = 2,
-                            Amount = 60m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationAccountId = 2,
-                            IsDeleted = false,
-                            Status = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            AdhocTopupBatchId = 3,
-                            Amount = 65m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationAccountId = 3,
-                            IsDeleted = false,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 4,
-                            AdhocTopupBatchId = 4,
-                            Amount = 70m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationAccountId = 4,
-                            IsDeleted = false,
-                            Status = 2
-                        },
-                        new
-                        {
-                            Id = 5,
-                            AdhocTopupBatchId = 5,
-                            Amount = 75m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationAccountId = 5,
-                            FailureReason = "Manual review rejected",
-                            IsDeleted = false,
-                            Status = 3
-                        },
-                        new
-                        {
-                            Id = 6,
-                            AdhocTopupBatchId = 6,
-                            Amount = 80m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationAccountId = 6,
-                            IsDeleted = false,
-                            Status = 2
-                        },
-                        new
-                        {
-                            Id = 7,
-                            AdhocTopupBatchId = 7,
-                            Amount = 85m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationAccountId = 7,
-                            IsDeleted = false,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 8,
-                            AdhocTopupBatchId = 8,
-                            Amount = 90m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationAccountId = 8,
-                            IsDeleted = false,
-                            Status = 2
-                        },
-                        new
-                        {
-                            Id = 9,
-                            AdhocTopupBatchId = 9,
-                            Amount = 95m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationAccountId = 9,
-                            IsDeleted = false,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 10,
-                            AdhocTopupBatchId = 10,
-                            Amount = 100m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationAccountId = 10,
-                            FailureReason = "Manual review rejected",
-                            IsDeleted = false,
-                            Status = 3
-                        });
-                });
-
-            modelBuilder.Entity("Models.AdhocTopupBatchTargetTransaction", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AdhocTopupBatchTargetId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("EducationCreditTransactionId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AdhocTopupBatchTargetId")
-                        .IsUnique()
-                        .HasFilter("\"IsDeleted\" = 0 AND \"AdhocTopupBatchTargetId\" IS NOT NULL");
-
-                    b.HasIndex("EducationCreditTransactionId")
-                        .IsUnique()
-                        .HasFilter("\"IsDeleted\" = 0 AND \"EducationCreditTransactionId\" IS NOT NULL");
-
-                    b.ToTable("AdhocTopupBatchTargetTransaction");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AdhocTopupBatchTargetId = 1,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 11,
-                            IsDeleted = false
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AdhocTopupBatchTargetId = 2,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 12,
-                            IsDeleted = false
-                        },
-                        new
-                        {
-                            Id = 3,
-                            AdhocTopupBatchTargetId = 3,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 13,
-                            IsDeleted = false
-                        },
-                        new
-                        {
-                            Id = 4,
-                            AdhocTopupBatchTargetId = 4,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 14,
-                            IsDeleted = false
-                        },
-                        new
-                        {
-                            Id = 5,
-                            AdhocTopupBatchTargetId = 5,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 15,
-                            IsDeleted = false
-                        },
-                        new
-                        {
-                            Id = 6,
-                            AdhocTopupBatchTargetId = 6,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 16,
-                            IsDeleted = false
-                        },
-                        new
-                        {
-                            Id = 7,
-                            AdhocTopupBatchTargetId = 7,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 17,
-                            IsDeleted = false
-                        },
-                        new
-                        {
-                            Id = 8,
-                            AdhocTopupBatchTargetId = 8,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 18,
-                            IsDeleted = false
-                        },
-                        new
-                        {
-                            Id = 9,
-                            AdhocTopupBatchTargetId = 9,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 19,
-                            IsDeleted = false
-                        },
-                        new
-                        {
-                            Id = 10,
-                            AdhocTopupBatchTargetId = 10,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 20,
-                            IsDeleted = false
-                        });
-                });
 
             modelBuilder.Entity("Models.AdminProfile", b =>
                 {
@@ -560,7 +109,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000001I",
                             PhoneNumber = "+6591000001",
-                            StaffCode = "STAFF-001",
+                            StaffCode = "STAFF-K7M2Q",
                             UserId = 1
                         },
                         new
@@ -572,7 +121,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000002G",
                             PhoneNumber = "+6591000002",
-                            StaffCode = "STAFF-002",
+                            StaffCode = "STAFF-R4T9X",
                             UserId = 2
                         },
                         new
@@ -584,7 +133,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000003E",
                             PhoneNumber = "+6591000003",
-                            StaffCode = "STAFF-003",
+                            StaffCode = "STAFF-C8N5W",
                             UserId = 3
                         },
                         new
@@ -596,7 +145,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000004C",
                             PhoneNumber = "+6591000004",
-                            StaffCode = "STAFF-004",
+                            StaffCode = "STAFF-P3H7V",
                             UserId = 4
                         },
                         new
@@ -608,7 +157,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000005A",
                             PhoneNumber = "+6591000005",
-                            StaffCode = "STAFF-005",
+                            StaffCode = "STAFF-Y6D2K",
                             UserId = 5
                         },
                         new
@@ -620,7 +169,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000006Z",
                             PhoneNumber = "+6591000006",
-                            StaffCode = "STAFF-006",
+                            StaffCode = "STAFF-M9Q4A",
                             UserId = 6
                         },
                         new
@@ -632,7 +181,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000007H",
                             PhoneNumber = "+6591000007",
-                            StaffCode = "STAFF-007",
+                            StaffCode = "STAFF-T5X8C",
                             UserId = 7
                         },
                         new
@@ -645,7 +194,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000008F",
                             PhoneNumber = "+6591000008",
                             SchoolId = 1,
-                            StaffCode = "STAFF-008",
+                            StaffCode = "STAFF-H2W6R",
                             UserId = 8
                         });
                 });
@@ -726,9 +275,6 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<DateTime>("OccurredAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PayloadJson")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("Action");
@@ -749,8 +295,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             ActorUserId = 1,
                             Category = 4,
                             IpAddress = "127.0.0.1",
-                            OccurredAt = new DateTime(2026, 1, 1, 0, 1, 0, 0, DateTimeKind.Utc),
-                            PayloadJson = "{\"seedId\":1}"
+                            OccurredAt = new DateTime(2026, 1, 1, 0, 1, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -759,8 +304,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             ActorUserId = 2,
                             Category = 5,
                             IpAddress = "127.0.0.2",
-                            OccurredAt = new DateTime(2026, 1, 1, 0, 2, 0, 0, DateTimeKind.Utc),
-                            PayloadJson = "{\"seedId\":2}"
+                            OccurredAt = new DateTime(2026, 1, 1, 0, 2, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -769,8 +313,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             ActorUserId = 3,
                             Category = 3,
                             IpAddress = "127.0.0.3",
-                            OccurredAt = new DateTime(2026, 1, 1, 0, 3, 0, 0, DateTimeKind.Utc),
-                            PayloadJson = "{\"seedId\":3}"
+                            OccurredAt = new DateTime(2026, 1, 1, 0, 3, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -779,8 +322,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             ActorUserId = 4,
                             Category = 5,
                             IpAddress = "127.0.0.4",
-                            OccurredAt = new DateTime(2026, 1, 1, 0, 4, 0, 0, DateTimeKind.Utc),
-                            PayloadJson = "{\"seedId\":4}"
+                            OccurredAt = new DateTime(2026, 1, 1, 0, 4, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -789,8 +331,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             ActorUserId = 5,
                             Category = 4,
                             IpAddress = "127.0.0.5",
-                            OccurredAt = new DateTime(2026, 1, 1, 0, 5, 0, 0, DateTimeKind.Utc),
-                            PayloadJson = "{\"seedId\":5}"
+                            OccurredAt = new DateTime(2026, 1, 1, 0, 5, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -799,8 +340,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             ActorUserId = 6,
                             Category = 3,
                             IpAddress = "127.0.0.6",
-                            OccurredAt = new DateTime(2026, 1, 1, 0, 6, 0, 0, DateTimeKind.Utc),
-                            PayloadJson = "{\"seedId\":6}"
+                            OccurredAt = new DateTime(2026, 1, 1, 0, 6, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -809,8 +349,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             ActorUserId = 7,
                             Category = 4,
                             IpAddress = "127.0.0.7",
-                            OccurredAt = new DateTime(2026, 1, 1, 0, 7, 0, 0, DateTimeKind.Utc),
-                            PayloadJson = "{\"seedId\":7}"
+                            OccurredAt = new DateTime(2026, 1, 1, 0, 7, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -819,8 +358,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             ActorUserId = 8,
                             Category = 5,
                             IpAddress = "127.0.0.8",
-                            OccurredAt = new DateTime(2026, 1, 1, 0, 8, 0, 0, DateTimeKind.Utc),
-                            PayloadJson = "{\"seedId\":8}"
+                            OccurredAt = new DateTime(2026, 1, 1, 0, 8, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -829,8 +367,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             ActorUserId = 9,
                             Category = 3,
                             IpAddress = "127.0.0.9",
-                            OccurredAt = new DateTime(2026, 1, 1, 0, 9, 0, 0, DateTimeKind.Utc),
-                            PayloadJson = "{\"seedId\":9}"
+                            OccurredAt = new DateTime(2026, 1, 1, 0, 9, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -839,8 +376,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             ActorUserId = 10,
                             Category = 5,
                             IpAddress = "127.0.0.10",
-                            OccurredAt = new DateTime(2026, 1, 1, 0, 10, 0, 0, DateTimeKind.Utc),
-                            PayloadJson = "{\"seedId\":10}"
+                            OccurredAt = new DateTime(2026, 1, 1, 0, 10, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -849,183 +385,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             ActorUserId = 1,
                             Category = 1,
                             IpAddress = "127.0.0.1",
-                            OccurredAt = new DateTime(2026, 1, 1, 1, 0, 0, 0, DateTimeKind.Utc),
-                            PayloadJson = "{\"BatchDate\":\"2026-01-01\",\"StartedAt\":\"2026-01-01T00:00:03\\u002B08:00\",\"CompletedAt\":\"2026-01-01T00:04:15\\u002B08:00\",\"ExecutionTime\":\"00:04:12\",\"CreationMetrics\":{\"SuccessCount\":7,\"DuplicateSkippedCount\":2,\"FailedCount\":1},\"FailedCases\":[{\"Nric\":\"S0000015I\",\"FullName\":\"Citizen 015\",\"Reason\":\"Manual review is required for the seeded batch record.\"}],\"FailedCsvBase64\":\"\",\"NotificationSummary\":{\"EmailSentCount\":7},\"ClosureBatchSummary\":{\"ClosedAccountsCount\":2,\"TotalAmountTransferredToCpf\":450.00,\"NotificationsSent\":{\"t90\":3,\"t30\":2,\"t7\":1}}}"
-                        });
-                });
-
-            modelBuilder.Entity("Models.AuthAccount", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("FailedLoginCount")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("LastLoginAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("LockedUntil")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Status");
-
-                    b.ToTable("AuthAccount");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 1,
-                            IsDeleted = false,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 2,
-                            IsDeleted = false,
-                            LastLoginAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 0,
-                            IsDeleted = false,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 1,
-                            IsDeleted = false,
-                            LastLoginAt = new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 2,
-                            IsDeleted = false,
-                            LockedUntil = new DateTime(2026, 1, 1, 1, 0, 0, 0, DateTimeKind.Utc),
-                            Status = 2
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 0,
-                            IsDeleted = false,
-                            LastLoginAt = new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 1,
-                            IsDeleted = false,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 2,
-                            IsDeleted = false,
-                            LastLoginAt = new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 0,
-                            IsDeleted = false,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 10,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 1,
-                            IsDeleted = false,
-                            LastLoginAt = new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Status = 2
-                        },
-                        new
-                        {
-                            Id = 11,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 2,
-                            IsDeleted = false,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 12,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 0,
-                            IsDeleted = false,
-                            LastLoginAt = new DateTime(2026, 1, 13, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 13,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 1,
-                            IsDeleted = false,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 14,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 2,
-                            IsDeleted = false,
-                            LastLoginAt = new DateTime(2026, 1, 15, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 15,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 0,
-                            IsDeleted = false,
-                            Status = 2
+                            OccurredAt = new DateTime(2026, 1, 1, 1, 0, 0, 0, DateTimeKind.Utc)
                         });
                 });
 
@@ -1319,11 +679,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("SingpassSubjectId")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
@@ -1342,10 +697,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         .IsUnique()
                         .HasFilter("\"Nric\" IS NOT NULL");
 
-                    b.HasIndex("SingpassSubjectId")
-                        .IsUnique()
-                        .HasFilter("\"SingpassSubjectId\" IS NOT NULL");
-
                     b.ToTable("Citizen");
 
                     b.HasData(
@@ -1362,8 +713,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000001I",
                             PhoneNumber = "+6590000001",
                             ResidentialAddress = "Residential block 1, Singapore",
-                            SchoolingStatus = "Enrolled",
-                            SingpassSubjectId = "singpass-subject-001"
+                            SchoolingStatus = "Enrolled"
                         },
                         new
                         {
@@ -1378,8 +728,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000002G",
                             PhoneNumber = "+6590000002",
                             ResidentialAddress = "Residential block 2, Singapore",
-                            SchoolingStatus = "Not Enrolled",
-                            SingpassSubjectId = "singpass-subject-002"
+                            SchoolingStatus = "Not Enrolled"
                         },
                         new
                         {
@@ -1394,8 +743,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000003E",
                             PhoneNumber = "+6590000003",
                             ResidentialAddress = "Residential block 3, Singapore",
-                            SchoolingStatus = "Graduated",
-                            SingpassSubjectId = "singpass-subject-003"
+                            SchoolingStatus = "Graduated"
                         },
                         new
                         {
@@ -1410,8 +758,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000004C",
                             PhoneNumber = "+6590000004",
                             ResidentialAddress = "Residential block 4, Singapore",
-                            SchoolingStatus = "Suspended",
-                            SingpassSubjectId = "singpass-subject-004"
+                            SchoolingStatus = "Suspended"
                         },
                         new
                         {
@@ -1426,8 +773,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000005A",
                             PhoneNumber = "+6590000005",
                             ResidentialAddress = "Residential block 5, Singapore",
-                            SchoolingStatus = "Withdrawn",
-                            SingpassSubjectId = "singpass-subject-005"
+                            SchoolingStatus = "Withdrawn"
                         },
                         new
                         {
@@ -1442,8 +788,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000006Z",
                             PhoneNumber = "+6590000006",
                             ResidentialAddress = "Residential block 6, Singapore",
-                            SchoolingStatus = "Enrolled",
-                            SingpassSubjectId = "singpass-subject-006"
+                            SchoolingStatus = "Enrolled"
                         },
                         new
                         {
@@ -1458,8 +803,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000007H",
                             PhoneNumber = "+6590000007",
                             ResidentialAddress = "Residential block 7, Singapore",
-                            SchoolingStatus = "Not Enrolled",
-                            SingpassSubjectId = "singpass-subject-007"
+                            SchoolingStatus = "Not Enrolled"
                         },
                         new
                         {
@@ -1474,8 +818,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000008F",
                             PhoneNumber = "+6590000008",
                             ResidentialAddress = "Residential block 8, Singapore",
-                            SchoolingStatus = "Graduated",
-                            SingpassSubjectId = "singpass-subject-008"
+                            SchoolingStatus = "Graduated"
                         },
                         new
                         {
@@ -1490,8 +833,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000009D",
                             PhoneNumber = "+6590000009",
                             ResidentialAddress = "Residential block 9, Singapore",
-                            SchoolingStatus = "Suspended",
-                            SingpassSubjectId = "singpass-subject-009"
+                            SchoolingStatus = "Suspended"
                         },
                         new
                         {
@@ -1506,8 +848,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000010H",
                             PhoneNumber = "+6590000010",
                             ResidentialAddress = "Residential block 10, Singapore",
-                            SchoolingStatus = "Withdrawn",
-                            SingpassSubjectId = "singpass-subject-010"
+                            SchoolingStatus = "Withdrawn"
                         },
                         new
                         {
@@ -1522,8 +863,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000011F",
                             PhoneNumber = "+6590000011",
                             ResidentialAddress = "Residential block 11, Singapore",
-                            SchoolingStatus = "Enrolled",
-                            SingpassSubjectId = "singpass-subject-011"
+                            SchoolingStatus = "Enrolled"
                         },
                         new
                         {
@@ -1538,8 +878,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000012D",
                             PhoneNumber = "+6590000012",
                             ResidentialAddress = "Residential block 12, Singapore",
-                            SchoolingStatus = "Not Enrolled",
-                            SingpassSubjectId = "singpass-subject-012"
+                            SchoolingStatus = "Not Enrolled"
                         },
                         new
                         {
@@ -1554,8 +893,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000013B",
                             PhoneNumber = "+6590000013",
                             ResidentialAddress = "Residential block 13, Singapore",
-                            SchoolingStatus = "Graduated",
-                            SingpassSubjectId = "singpass-subject-013"
+                            SchoolingStatus = "Graduated"
                         },
                         new
                         {
@@ -1570,8 +908,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000014J",
                             PhoneNumber = "+6590000014",
                             ResidentialAddress = "Residential block 14, Singapore",
-                            SchoolingStatus = "Suspended",
-                            SingpassSubjectId = "singpass-subject-014"
+                            SchoolingStatus = "Suspended"
                         },
                         new
                         {
@@ -1586,8 +923,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000015I",
                             PhoneNumber = "+6590000015",
                             ResidentialAddress = "Residential block 15, Singapore",
-                            SchoolingStatus = "Withdrawn",
-                            SingpassSubjectId = "singpass-subject-015"
+                            SchoolingStatus = "Withdrawn"
                         },
                         new
                         {
@@ -1602,8 +938,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000016G",
                             PhoneNumber = "+6590000016",
                             ResidentialAddress = "16 Test Avenue, Singapore",
-                            SchoolingStatus = "Not Enrolled",
-                            SingpassSubjectId = "singpass-subject-016-unlinked"
+                            SchoolingStatus = "Not Enrolled"
                         },
                         new
                         {
@@ -1618,8 +953,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000017E",
                             PhoneNumber = "+6590000017",
                             ResidentialAddress = "17 Test Avenue, Singapore",
-                            SchoolingStatus = "Not Enrolled",
-                            SingpassSubjectId = "singpass-subject-017-unlinked"
+                            SchoolingStatus = "Not Enrolled"
                         },
                         new
                         {
@@ -1634,8 +968,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000018C",
                             PhoneNumber = "+6590000018",
                             ResidentialAddress = "18 Test Avenue, Singapore",
-                            SchoolingStatus = "Enrolled",
-                            SingpassSubjectId = "singpass-subject-018-unlinked"
+                            SchoolingStatus = "Enrolled"
                         },
                         new
                         {
@@ -1650,8 +983,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000019A",
                             PhoneNumber = "+6590000019",
                             ResidentialAddress = "19 Test Avenue, Singapore",
-                            SchoolingStatus = "Not Enrolled",
-                            SingpassSubjectId = "singpass-subject-019-unlinked"
+                            SchoolingStatus = "Not Enrolled"
                         },
                         new
                         {
@@ -1666,8 +998,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000020E",
                             PhoneNumber = "+6590000020",
                             ResidentialAddress = "20 Test Avenue, Singapore",
-                            SchoolingStatus = "Enrolled",
-                            SingpassSubjectId = "singpass-subject-020-unlinked"
+                            SchoolingStatus = "Enrolled"
                         },
                         new
                         {
@@ -1682,8 +1013,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000021C",
                             PhoneNumber = "+6590000021",
                             ResidentialAddress = "21 Test Avenue, Singapore",
-                            SchoolingStatus = "Not Enrolled",
-                            SingpassSubjectId = "singpass-subject-021-unlinked"
+                            SchoolingStatus = "Not Enrolled"
                         },
                         new
                         {
@@ -1698,8 +1028,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000022A",
                             PhoneNumber = "+6590000022",
                             ResidentialAddress = "22 Test Avenue, Singapore",
-                            SchoolingStatus = "Enrolled",
-                            SingpassSubjectId = "singpass-subject-022-unlinked"
+                            SchoolingStatus = "Enrolled"
                         },
                         new
                         {
@@ -1714,8 +1043,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000023Z",
                             PhoneNumber = "+6590000023",
                             ResidentialAddress = "23 Test Avenue, Singapore",
-                            SchoolingStatus = "Not Enrolled",
-                            SingpassSubjectId = "singpass-subject-023-unlinked"
+                            SchoolingStatus = "Not Enrolled"
                         },
                         new
                         {
@@ -1730,8 +1058,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000024H",
                             PhoneNumber = "+6590000024",
                             ResidentialAddress = "24 Test Avenue, Singapore",
-                            SchoolingStatus = "Enrolled",
-                            SingpassSubjectId = "singpass-subject-024-unlinked"
+                            SchoolingStatus = "Enrolled"
                         },
                         new
                         {
@@ -1746,8 +1073,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000025F",
                             PhoneNumber = "+6590000025",
                             ResidentialAddress = "25 Test Avenue, Singapore",
-                            SchoolingStatus = "Not Enrolled",
-                            SingpassSubjectId = "singpass-subject-025-unlinked"
+                            SchoolingStatus = "Not Enrolled"
                         },
                         new
                         {
@@ -1762,8 +1088,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000026D",
                             PhoneNumber = "+6590000026",
                             ResidentialAddress = "26 Test Avenue, Singapore",
-                            SchoolingStatus = "Enrolled",
-                            SingpassSubjectId = "singpass-subject-026-unlinked"
+                            SchoolingStatus = "Enrolled"
                         });
                 });
 
@@ -2000,6 +1325,12 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<DateTime>("OpenedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -2034,113 +1365,339 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            AccountNumber = "EA000000000000000001",
+                            AccountNumber = "EDU-2026-00000000001",
                             CitizenId = 1,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1100m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 2, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            AccountNumber = "EA000000000000000002",
+                            AccountNumber = "EDU-2026-00000000002",
                             CitizenId = 2,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1200m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             Status = 1
                         },
                         new
                         {
                             Id = 3,
-                            AccountNumber = "EA000000000000000003",
+                            AccountNumber = "EDU-2026-00000000003",
                             CitizenId = 3,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1300m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             Status = 1
                         },
                         new
                         {
                             Id = 4,
-                            AccountNumber = "EA000000000000000004",
+                            AccountNumber = "EDU-2026-00000000004",
                             CitizenId = 4,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1400m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             Status = 2
                         },
                         new
                         {
                             Id = 5,
-                            AccountNumber = "EA000000000000000005",
+                            AccountNumber = "EDU-2026-00000000005",
                             CitizenId = 5,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1500m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             Status = 1
                         },
                         new
                         {
                             Id = 6,
-                            AccountNumber = "EA000000000000000006",
+                            AccountNumber = "EDU-2026-00000000006",
                             CitizenId = 6,
                             ClosedAt = new DateTime(2026, 4, 17, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1600m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             Status = 3
                         },
                         new
                         {
                             Id = 7,
-                            AccountNumber = "EA000000000000000007",
+                            AccountNumber = "EDU-2026-00000000007",
                             CitizenId = 7,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1700m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             Status = 1
                         },
                         new
                         {
                             Id = 8,
-                            AccountNumber = "EA000000000000000008",
+                            AccountNumber = "EDU-2026-00000000008",
                             CitizenId = 8,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1800m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             Status = 2
                         },
                         new
                         {
                             Id = 9,
-                            AccountNumber = "EA000000000000000009",
+                            AccountNumber = "EDU-2026-00000000009",
                             CitizenId = 9,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1900m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             Status = 1
                         },
                         new
                         {
                             Id = 10,
-                            AccountNumber = "EA000000000000000010",
+                            AccountNumber = "EDU-2026-00000000010",
                             CitizenId = 10,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 2000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             Status = 1
+                        });
+                });
+
+            modelBuilder.Entity("Models.EducationAccountStatusHistory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("ChangedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ChangedByUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EducationAccountId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NewStatus")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PreviousStatus")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Reason")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ChangedAt");
+
+                    b.HasIndex("ChangedByUserId");
+
+                    b.HasIndex("EducationAccountId");
+
+                    b.ToTable("EducationAccountStatusHistory");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ChangedAt = new DateTime(2026, 5, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ChangedByUserId = 1,
+                            EducationAccountId = 4,
+                            NewStatus = 2,
+                            PreviousStatus = 1,
+                            Reason = "Education account extended by the scheduled sweep."
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ChangedAt = new DateTime(2026, 5, 2, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ChangedByUserId = 1,
+                            EducationAccountId = 6,
+                            NewStatus = 3,
+                            PreviousStatus = 1,
+                            Reason = "Education account closed by the scheduled sweep."
+                        });
+                });
+
+            modelBuilder.Entity("Models.EducationAccountSweepReport", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AccountsClosedCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AccountsCreatedCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AccountsExtendedCount")
+                        .HasColumnType("int");
+
+                    b.Property<DateOnly>("BatchDate")
+                        .HasColumnType("date");
+
+                    b.Property<DateTime>("CompletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("StartedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BatchDate")
+                        .IsUnique()
+                        .HasFilter("\"BatchDate\" IS NOT NULL");
+
+                    b.ToTable("EducationAccountSweepReports");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AccountsClosedCount = 1,
+                            AccountsCreatedCount = 1,
+                            AccountsExtendedCount = 1,
+                            BatchDate = new DateOnly(2026, 6, 19),
+                            CompletedAt = new DateTime(2026, 1, 1, 1, 4, 0, 0, DateTimeKind.Utc),
+                            StartedAt = new DateTime(2026, 1, 1, 1, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AccountsClosedCount = 0,
+                            AccountsCreatedCount = 1,
+                            AccountsExtendedCount = 1,
+                            BatchDate = new DateOnly(2026, 6, 20),
+                            CompletedAt = new DateTime(2026, 1, 2, 1, 3, 0, 0, DateTimeKind.Utc),
+                            StartedAt = new DateTime(2026, 1, 2, 1, 0, 0, 0, DateTimeKind.Utc)
+                        });
+                });
+
+            modelBuilder.Entity("Models.EducationAccountSweepTarget", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Action")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nric")
+                        .IsRequired()
+                        .HasMaxLength(9)
+                        .HasColumnType("nvarchar(9)");
+
+                    b.Property<string>("Reason")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SweepReportId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SweepReportId");
+
+                    b.ToTable("EducationAccountSweepTargets");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Action = 0,
+                            Nric = "S0000001I",
+                            Reason = "Eligible citizen account created.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Action = 1,
+                            Nric = "S0000002G",
+                            Reason = "Account reached the closing date.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Action = 2,
+                            Nric = "S0000003E",
+                            Reason = "Active enrollment requires an extension.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Action = 0,
+                            Nric = "S0000004C",
+                            Reason = "Manual identity verification is required.",
+                            Status = 2,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Action = 0,
+                            Nric = "S0000005A",
+                            Reason = "Eligible citizen account created.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Action = 2,
+                            Nric = "S0000006Z",
+                            Reason = "Active enrollment requires an extension.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Action = 1,
+                            Nric = "S0000007H",
+                            Reason = "Outstanding reconciliation requires manual handling.",
+                            Status = 2,
+                            SweepReportId = 2
                         });
                 });
 
@@ -2731,7 +2288,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            AccountNumberSnapshot = "EA000000000000000001",
+                            AccountNumberSnapshot = "EDU-2026-00000000001",
                             CitizenEmailSnapshot = "citizen001@example.com",
                             CitizenFullNameSnapshot = "Citizen 001",
                             CitizenNricSnapshot = "S0000001I",
@@ -2748,7 +2305,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            AccountNumberSnapshot = "EA000000000000000002",
+                            AccountNumberSnapshot = "EDU-2026-00000000002",
                             CitizenEmailSnapshot = "citizen002@example.com",
                             CitizenFullNameSnapshot = "Citizen 002",
                             CitizenNricSnapshot = "S0000002G",
@@ -2765,7 +2322,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            AccountNumberSnapshot = "EA000000000000000003",
+                            AccountNumberSnapshot = "EDU-2026-00000000003",
                             CitizenEmailSnapshot = "citizen003@example.com",
                             CitizenFullNameSnapshot = "Citizen 003",
                             CitizenNricSnapshot = "S0000003E",
@@ -2783,7 +2340,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 4,
-                            AccountNumberSnapshot = "EA000000000000000004",
+                            AccountNumberSnapshot = "EDU-2026-00000000004",
                             CitizenEmailSnapshot = "citizen004@example.com",
                             CitizenFullNameSnapshot = "Citizen 004",
                             CitizenNricSnapshot = "S0000004C",
@@ -2800,7 +2357,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 5,
-                            AccountNumberSnapshot = "EA000000000000000005",
+                            AccountNumberSnapshot = "EDU-2026-00000000005",
                             CitizenEmailSnapshot = "citizen005@example.com",
                             CitizenFullNameSnapshot = "Citizen 005",
                             CitizenNricSnapshot = "S0000005A",
@@ -2818,7 +2375,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 6,
-                            AccountNumberSnapshot = "EA000000000000000006",
+                            AccountNumberSnapshot = "EDU-2026-00000000006",
                             CitizenEmailSnapshot = "citizen006@example.com",
                             CitizenFullNameSnapshot = "Citizen 006",
                             CitizenNricSnapshot = "S0000006Z",
@@ -2835,7 +2392,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 7,
-                            AccountNumberSnapshot = "EA000000000000000007",
+                            AccountNumberSnapshot = "EDU-2026-00000000007",
                             CitizenEmailSnapshot = "citizen007@example.com",
                             CitizenFullNameSnapshot = "Citizen 007",
                             CitizenNricSnapshot = "S0000007H",
@@ -2853,7 +2410,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 8,
-                            AccountNumberSnapshot = "EA000000000000000008",
+                            AccountNumberSnapshot = "EDU-2026-00000000008",
                             CitizenEmailSnapshot = "citizen008@example.com",
                             CitizenFullNameSnapshot = "Citizen 008",
                             CitizenNricSnapshot = "S0000008F",
@@ -2870,7 +2427,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 9,
-                            AccountNumberSnapshot = "EA000000000000000009",
+                            AccountNumberSnapshot = "EDU-2026-00000000009",
                             CitizenEmailSnapshot = "citizen009@example.com",
                             CitizenFullNameSnapshot = "Citizen 009",
                             CitizenNricSnapshot = "S0000009D",
@@ -2887,7 +2444,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 10,
-                            AccountNumberSnapshot = "EA000000000000000010",
+                            AccountNumberSnapshot = "EDU-2026-00000000010",
                             CitizenEmailSnapshot = "citizen010@example.com",
                             CitizenFullNameSnapshot = "Citizen 010",
                             CitizenNricSnapshot = "S0000010H",
@@ -3116,7 +2673,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            AccountNumberSnapshot = "EA000000000000000001",
+                            AccountNumberSnapshot = "EDU-2026-00000000001",
                             CitizenFullNameSnapshot = "Citizen 001",
                             CitizenNricSnapshot = "S0000001I",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -3130,7 +2687,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            AccountNumberSnapshot = "EA000000000000000002",
+                            AccountNumberSnapshot = "EDU-2026-00000000002",
                             CitizenFullNameSnapshot = "Citizen 002",
                             CitizenNricSnapshot = "S0000002G",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -3144,7 +2701,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            AccountNumberSnapshot = "EA000000000000000003",
+                            AccountNumberSnapshot = "EDU-2026-00000000003",
                             CitizenFullNameSnapshot = "Citizen 003",
                             CitizenNricSnapshot = "S0000003E",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -3158,7 +2715,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 4,
-                            AccountNumberSnapshot = "EA000000000000000004",
+                            AccountNumberSnapshot = "EDU-2026-00000000004",
                             CitizenFullNameSnapshot = "Citizen 004",
                             CitizenNricSnapshot = "S0000004C",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -3172,7 +2729,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 5,
-                            AccountNumberSnapshot = "EA000000000000000005",
+                            AccountNumberSnapshot = "EDU-2026-00000000005",
                             CitizenFullNameSnapshot = "Citizen 005",
                             CitizenNricSnapshot = "S0000005A",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -3186,7 +2743,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 6,
-                            AccountNumberSnapshot = "EA000000000000000006",
+                            AccountNumberSnapshot = "EDU-2026-00000000006",
                             CitizenFullNameSnapshot = "Citizen 006",
                             CitizenNricSnapshot = "S0000006Z",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -3201,7 +2758,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 7,
-                            AccountNumberSnapshot = "EA000000000000000007",
+                            AccountNumberSnapshot = "EDU-2026-00000000007",
                             CitizenFullNameSnapshot = "Citizen 007",
                             CitizenNricSnapshot = "S0000007H",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -3216,7 +2773,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 8,
-                            AccountNumberSnapshot = "EA000000000000000008",
+                            AccountNumberSnapshot = "EDU-2026-00000000008",
                             CitizenFullNameSnapshot = "Citizen 008",
                             CitizenNricSnapshot = "S0000008F",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -3231,7 +2788,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 9,
-                            AccountNumberSnapshot = "EA000000000000000009",
+                            AccountNumberSnapshot = "EDU-2026-00000000009",
                             CitizenFullNameSnapshot = "Citizen 009",
                             CitizenNricSnapshot = "S0000009D",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -3246,7 +2803,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 10,
-                            AccountNumberSnapshot = "EA000000000000000010",
+                            AccountNumberSnapshot = "EDU-2026-00000000010",
                             CitizenFullNameSnapshot = "Citizen 010",
                             CitizenNricSnapshot = "S0000010H",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -3480,9 +3037,6 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AuthAccountId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -3512,9 +3066,10 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<int?>("UpdatedBy")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("AuthAccountId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ExpiresAt");
 
@@ -3524,100 +3079,102 @@ namespace educationaccountmanagement.DAL.Migrations
                         .IsUnique()
                         .HasFilter("\"IsDeleted\" = 0 AND \"TokenHash\" IS NOT NULL");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("RefreshToken");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            AuthAccountId = 1,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ExpiresAt = new DateTime(2026, 2, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            TokenHash = "refresh-token-hash-001"
+                            TokenHash = "refresh-token-hash-001",
+                            UserId = 1
                         },
                         new
                         {
                             Id = 2,
-                            AuthAccountId = 2,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ExpiresAt = new DateTime(2026, 2, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            TokenHash = "refresh-token-hash-002"
+                            TokenHash = "refresh-token-hash-002",
+                            UserId = 2
                         },
                         new
                         {
                             Id = 3,
-                            AuthAccountId = 3,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ExpiresAt = new DateTime(2026, 2, 3, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            TokenHash = "refresh-token-hash-003"
+                            TokenHash = "refresh-token-hash-003",
+                            UserId = 3
                         },
                         new
                         {
                             Id = 4,
-                            AuthAccountId = 4,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ExpiresAt = new DateTime(2026, 2, 4, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             RevokedAt = new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc),
-                            TokenHash = "refresh-token-hash-004"
+                            TokenHash = "refresh-token-hash-004",
+                            UserId = 4
                         },
                         new
                         {
                             Id = 5,
-                            AuthAccountId = 5,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ExpiresAt = new DateTime(2026, 2, 5, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            TokenHash = "refresh-token-hash-005"
+                            TokenHash = "refresh-token-hash-005",
+                            UserId = 5
                         },
                         new
                         {
                             Id = 6,
-                            AuthAccountId = 6,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ExpiresAt = new DateTime(2026, 2, 6, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            TokenHash = "refresh-token-hash-006"
+                            TokenHash = "refresh-token-hash-006",
+                            UserId = 6
                         },
                         new
                         {
                             Id = 7,
-                            AuthAccountId = 7,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ExpiresAt = new DateTime(2026, 2, 7, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            TokenHash = "refresh-token-hash-007"
+                            TokenHash = "refresh-token-hash-007",
+                            UserId = 7
                         },
                         new
                         {
                             Id = 8,
-                            AuthAccountId = 8,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ExpiresAt = new DateTime(2026, 2, 8, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             RevokedAt = new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc),
-                            TokenHash = "refresh-token-hash-008"
+                            TokenHash = "refresh-token-hash-008",
+                            UserId = 8
                         },
                         new
                         {
                             Id = 9,
-                            AuthAccountId = 9,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ExpiresAt = new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            TokenHash = "refresh-token-hash-009"
+                            TokenHash = "refresh-token-hash-009",
+                            UserId = 9
                         },
                         new
                         {
                             Id = 10,
-                            AuthAccountId = 10,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ExpiresAt = new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            TokenHash = "refresh-token-hash-010"
+                            TokenHash = "refresh-token-hash-010",
+                            UserId = 10
                         });
                 });
 
@@ -3801,9 +3358,6 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AuthAccountId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -3830,21 +3384,24 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<int?>("UpdatedBy")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("AuthAccountId");
+                    b.HasKey("Id");
 
                     b.HasIndex("Provider");
 
                     b.HasIndex("ProviderUserId");
 
-                    b.HasIndex("AuthAccountId", "Provider")
-                        .IsUnique()
-                        .HasFilter("\"AuthAccountId\" IS NOT NULL AND \"Provider\" IS NOT NULL");
+                    b.HasIndex("UserId");
 
                     b.HasIndex("Provider", "ProviderUserId")
                         .IsUnique()
                         .HasFilter("\"Provider\" IS NOT NULL AND \"ProviderUserId\" IS NOT NULL");
+
+                    b.HasIndex("UserId", "Provider")
+                        .IsUnique()
+                        .HasFilter("\"UserId\" IS NOT NULL AND \"Provider\" IS NOT NULL");
 
                     b.ToTable("SsoIdentity");
 
@@ -3852,152 +3409,147 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            AuthAccountId = 1,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Provider = 2,
-                            ProviderUserId = "ae5873a0-acbe-4976-ba46-69aee20cfa48"
+                            ProviderUserId = "5fc549a1-ee08-4273-9497-27607842e1f9",
+                            UserId = 1
                         },
                         new
                         {
                             Id = 2,
-                            AuthAccountId = 2,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Provider = 2,
-                            ProviderUserId = "f8cdef31-a31e-4b4a-93e4-5f571e91255a"
+                            ProviderUserId = "f8cdef31-a31e-4b4a-93e4-5f571e91255a",
+                            UserId = 2
                         },
                         new
                         {
                             Id = 3,
-                            AuthAccountId = 3,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Provider = 2,
-                            ProviderUserId = "b1e7cdf2-43ef-4a3e-9eb8-4e63b3ae42f4"
+                            ProviderUserId = "b1e7cdf2-43ef-4a3e-9eb8-4e63b3ae42f4",
+                            UserId = 3
                         },
                         new
                         {
                             Id = 4,
-                            AuthAccountId = 4,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Provider = 2,
-                            ProviderUserId = "f116e09e-1a6f-4847-aa57-442705d242d0"
+                            ProviderUserId = "f116e09e-1a6f-4847-aa57-442705d242d0",
+                            UserId = 4
                         },
                         new
                         {
                             Id = 5,
-                            AuthAccountId = 5,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Provider = 2,
-                            ProviderUserId = "db3c66a7-b7f4-47df-bd7a-3f70fcaaa73d"
+                            ProviderUserId = "db3c66a7-b7f4-47df-bd7a-3f70fcaaa73d",
+                            UserId = 5
                         },
                         new
                         {
                             Id = 6,
-                            AuthAccountId = 6,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Provider = 2,
-                            ProviderUserId = "0446ecca-6483-4129-bd4f-906f970f18d5"
+                            ProviderUserId = "0446ecca-6483-4129-bd4f-906f970f18d5",
+                            UserId = 6
                         },
                         new
                         {
                             Id = 7,
-                            AuthAccountId = 7,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Provider = 2,
-                            ProviderUserId = "azure-object-007"
+                            ProviderUserId = "1fedf576-1c66-4742-881b-f7a456b2b027",
+                            UserId = 7
                         },
                         new
                         {
                             Id = 8,
-                            AuthAccountId = 8,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Provider = 2,
-                            ProviderUserId = "azure-object-008"
+                            ProviderUserId = "78ce9568-1d38-44aa-a9c5-ea50293934de",
+                            UserId = 8
                         },
                         new
                         {
                             Id = 9,
-                            AuthAccountId = 9,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Provider = 1,
-                            ProviderUserId = "singpass-subject-009"
+                            ProviderUserId = "singpass-subject-009",
+                            UserId = 9
                         },
                         new
                         {
                             Id = 10,
-                            AuthAccountId = 10,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Provider = 1,
-                            ProviderUserId = "singpass-subject-010"
+                            ProviderUserId = "singpass-subject-010",
+                            UserId = 10
                         },
                         new
                         {
                             Id = 11,
-                            AuthAccountId = 11,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Provider = 1,
-                            ProviderUserId = "singpass-subject-011"
+                            ProviderUserId = "singpass-subject-011",
+                            UserId = 11
                         },
                         new
                         {
                             Id = 12,
-                            AuthAccountId = 12,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Provider = 1,
-                            ProviderUserId = "singpass-subject-012"
+                            ProviderUserId = "singpass-subject-012",
+                            UserId = 12
                         },
                         new
                         {
                             Id = 13,
-                            AuthAccountId = 13,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Provider = 1,
-                            ProviderUserId = "singpass-subject-013"
+                            ProviderUserId = "singpass-subject-013",
+                            UserId = 13
                         },
                         new
                         {
                             Id = 14,
-                            AuthAccountId = 14,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Provider = 1,
-                            ProviderUserId = "singpass-subject-014"
+                            ProviderUserId = "singpass-subject-014",
+                            UserId = 14
                         },
                         new
                         {
                             Id = 15,
-                            AuthAccountId = 15,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             Provider = 1,
-                            ProviderUserId = "singpass-subject-015"
+                            ProviderUserId = "singpass-subject-015",
+                            UserId = 15
                         });
                 });
 
-            modelBuilder.Entity("Models.TopupBatch", b =>
+            modelBuilder.Entity("Models.TopupExecution", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("BatchCode")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -4008,19 +3560,62 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("ExecutedAt")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("ExecutionCode")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("FailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("IdempotencyKey")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<decimal?>("ManualAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ManualReason")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<int?>("MatchModeSnapshot")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RuleConditionsSnapshot")
+                        .HasMaxLength(4000)
+                        .HasColumnType("nvarchar(4000)");
+
+                    b.Property<string>("RuleNameSnapshot")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<int?>("RuleTypeSnapshot")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SourceType")
+                        .HasColumnType("int");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int>("TopupRuleId")
+                    b.Property<int>("SuccessCount")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("TotalAmount")
+                    b.Property<decimal?>("TopupAmountSnapshot")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("TopupRuleId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TopupScheduleId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalExecutedAmount")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("TotalTargetCount")
@@ -4034,144 +3629,80 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BatchCode")
+                    b.HasIndex("ExecutionCode")
                         .IsUnique()
-                        .HasFilter("\"IsDeleted\" = 0 AND \"BatchCode\" IS NOT NULL");
+                        .HasFilter("\"IsDeleted\" = 0 AND \"ExecutionCode\" IS NOT NULL");
+
+                    b.HasIndex("IdempotencyKey")
+                        .IsUnique()
+                        .HasFilter("\"IsDeleted\" = 0 AND \"IdempotencyKey\" IS NOT NULL");
+
+                    b.HasIndex("SourceType");
 
                     b.HasIndex("Status");
 
                     b.HasIndex("TopupRuleId");
 
-                    b.ToTable("TopupBatch", t =>
+                    b.HasIndex("TopupScheduleId");
+
+                    b.ToTable("TopupExecution", t =>
                         {
-                            t.HasCheckConstraint("CK_TopupBatch_TotalAmount_NonNegative", "[TotalAmount] >= 0 AND [TotalTargetCount] >= 0");
+                            t.HasCheckConstraint("CK_TopupExecution_Counts_And_Amount_NonNegative", "[TotalExecutedAmount] >= 0 AND [TotalTargetCount] >= 0 AND [SuccessCount] >= 0 AND [FailedCount] >= 0 AND [SuccessCount] + [FailedCount] <= [TotalTargetCount]");
+
+                            t.HasCheckConstraint("CK_TopupExecution_Source_Fields", "([SourceType] = 1 AND [TopupRuleId] IS NOT NULL AND [TopupScheduleId] IS NULL AND [ManualAmount] IS NULL AND [ManualReason] IS NULL) OR ([SourceType] = 2 AND [TopupRuleId] IS NOT NULL AND [TopupScheduleId] IS NOT NULL AND [ManualAmount] IS NULL AND [ManualReason] IS NULL) OR ([SourceType] = 3 AND [TopupRuleId] IS NULL AND [TopupScheduleId] IS NULL AND [ManualAmount] > 0 AND [ManualReason] IS NOT NULL)");
                         });
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            BatchCode = "REG-BATCH-001",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedBy = 7,
+                            ExecutionCode = "TOPUP-SEED-MANUAL-001",
+                            FailedCount = 1,
+                            IdempotencyKey = "seed-manual-topup-001",
                             IsDeleted = false,
-                            Status = 1,
-                            TopupRuleId = 1,
-                            TotalAmount = 110m,
-                            TotalTargetCount = 1
+                            ManualAmount = 100m,
+                            ManualReason = "Seeded manual top-up execution.",
+                            SourceType = 3,
+                            Status = 3,
+                            SuccessCount = 1,
+                            TotalExecutedAmount = 100m,
+                            TotalTargetCount = 2
                         },
                         new
                         {
                             Id = 2,
-                            BatchCode = "REG-BATCH-002",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExecutedAt = new DateTime(2026, 1, 23, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2026, 1, 12, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ExecutionCode = "TOPUP-SEED-SYSTEM-001",
+                            FailedCount = 0,
+                            IdempotencyKey = "seed-system-topup-001",
                             IsDeleted = false,
-                            Status = 2,
-                            TopupRuleId = 2,
-                            TotalAmount = 120m,
-                            TotalTargetCount = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            BatchCode = "REG-BATCH-003",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            Status = 1,
-                            TopupRuleId = 3,
-                            TotalAmount = 130m,
-                            TotalTargetCount = 1
-                        },
-                        new
-                        {
-                            Id = 4,
-                            BatchCode = "REG-BATCH-004",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExecutedAt = new DateTime(2026, 1, 25, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            Status = 2,
-                            TopupRuleId = 4,
-                            TotalAmount = 140m,
-                            TotalTargetCount = 1
-                        },
-                        new
-                        {
-                            Id = 5,
-                            BatchCode = "REG-BATCH-005",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            Status = 1,
-                            TopupRuleId = 5,
-                            TotalAmount = 150m,
-                            TotalTargetCount = 1
-                        },
-                        new
-                        {
-                            Id = 6,
-                            BatchCode = "REG-BATCH-006",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExecutedAt = new DateTime(2026, 1, 27, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            Status = 2,
-                            TopupRuleId = 6,
-                            TotalAmount = 160m,
-                            TotalTargetCount = 1
-                        },
-                        new
-                        {
-                            Id = 7,
-                            BatchCode = "REG-BATCH-007",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            Status = 1,
-                            TopupRuleId = 7,
-                            TotalAmount = 170m,
-                            TotalTargetCount = 1
-                        },
-                        new
-                        {
-                            Id = 8,
-                            BatchCode = "REG-BATCH-008",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExecutedAt = new DateTime(2026, 1, 29, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            Status = 2,
-                            TopupRuleId = 8,
-                            TotalAmount = 180m,
-                            TotalTargetCount = 1
-                        },
-                        new
-                        {
-                            Id = 9,
-                            BatchCode = "REG-BATCH-009",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            Status = 1,
-                            TopupRuleId = 9,
-                            TotalAmount = 190m,
-                            TotalTargetCount = 1
-                        },
-                        new
-                        {
-                            Id = 10,
-                            BatchCode = "REG-BATCH-010",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExecutedAt = new DateTime(2026, 1, 31, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            Status = 2,
-                            TopupRuleId = 10,
-                            TotalAmount = 200m,
+                            MatchModeSnapshot = 1,
+                            RuleNameSnapshot = "Random Top-up Rule 021",
+                            RuleTypeSnapshot = 1,
+                            SourceType = 1,
+                            Status = 3,
+                            SuccessCount = 1,
+                            TopupAmountSnapshot = 200m,
+                            TopupRuleId = 21,
+                            TotalExecutedAmount = 200m,
                             TotalTargetCount = 1
                         });
                 });
 
-            modelBuilder.Entity("Models.TopupBatchTarget", b =>
+            modelBuilder.Entity("Models.TopupExecutionTarget", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AccountNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
@@ -4185,7 +3716,10 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("EducationAccountId")
+                    b.Property<int?>("EducationAccountId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("EducationCreditTransactionId")
                         .HasColumnType("int");
 
                     b.Property<string>("FailureReason")
@@ -4195,10 +3729,14 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<string>("MatchedConditionsSnapshot")
+                        .HasMaxLength(4000)
+                        .HasColumnType("nvarchar(4000)");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int>("TopupBatchId")
+                    b.Property<int>("TopupExecutionId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -4211,248 +3749,63 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasIndex("EducationAccountId");
 
-                    b.HasIndex("Status");
-
-                    b.HasIndex("TopupBatchId");
-
-                    b.HasIndex("TopupBatchId", "EducationAccountId")
-                        .IsUnique()
-                        .HasFilter("\"IsDeleted\" = 0 AND \"TopupBatchId\" IS NOT NULL AND \"EducationAccountId\" IS NOT NULL");
-
-                    b.ToTable("TopupBatchTarget", t =>
-                        {
-                            t.HasCheckConstraint("CK_TopupBatchTarget_Amount_NonNegative", "[Amount] >= 0");
-                        });
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Amount = 110m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationAccountId = 1,
-                            IsDeleted = false,
-                            Status = 1,
-                            TopupBatchId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Amount = 120m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationAccountId = 2,
-                            IsDeleted = false,
-                            Status = 2,
-                            TopupBatchId = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Amount = 130m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationAccountId = 3,
-                            IsDeleted = false,
-                            Status = 1,
-                            TopupBatchId = 3
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Amount = 140m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationAccountId = 4,
-                            IsDeleted = false,
-                            Status = 2,
-                            TopupBatchId = 4
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Amount = 150m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationAccountId = 5,
-                            FailureReason = "Eligibility check failed",
-                            IsDeleted = false,
-                            Status = 3,
-                            TopupBatchId = 5
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Amount = 160m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationAccountId = 6,
-                            IsDeleted = false,
-                            Status = 2,
-                            TopupBatchId = 6
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Amount = 170m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationAccountId = 7,
-                            IsDeleted = false,
-                            Status = 1,
-                            TopupBatchId = 7
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Amount = 180m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationAccountId = 8,
-                            IsDeleted = false,
-                            Status = 2,
-                            TopupBatchId = 8
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Amount = 190m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationAccountId = 9,
-                            IsDeleted = false,
-                            Status = 1,
-                            TopupBatchId = 9
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Amount = 200m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationAccountId = 10,
-                            FailureReason = "Eligibility check failed",
-                            IsDeleted = false,
-                            Status = 3,
-                            TopupBatchId = 10
-                        });
-                });
-
-            modelBuilder.Entity("Models.TopupBatchTargetTransaction", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("EducationCreditTransactionId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("TopupBatchTargetId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
                     b.HasIndex("EducationCreditTransactionId")
                         .IsUnique()
                         .HasFilter("\"IsDeleted\" = 0 AND \"EducationCreditTransactionId\" IS NOT NULL");
 
-                    b.HasIndex("TopupBatchTargetId")
-                        .IsUnique()
-                        .HasFilter("\"IsDeleted\" = 0 AND \"TopupBatchTargetId\" IS NOT NULL");
+                    b.HasIndex("Status");
 
-                    b.ToTable("TopupBatchTargetTransaction");
+                    b.HasIndex("TopupExecutionId");
+
+                    b.HasIndex("TopupExecutionId", "AccountNumber")
+                        .IsUnique()
+                        .HasFilter("\"IsDeleted\" = 0 AND \"TopupExecutionId\" IS NOT NULL AND \"AccountNumber\" IS NOT NULL");
+
+                    b.ToTable("TopupExecutionTarget", t =>
+                        {
+                            t.HasCheckConstraint("CK_TopupExecutionTarget_Amount_Positive", "[Amount] > 0");
+
+                            t.HasCheckConstraint("CK_TopupExecutionTarget_Result", "([Status] = 3 AND [EducationAccountId] IS NOT NULL AND [EducationCreditTransactionId] IS NOT NULL AND [FailureReason] IS NULL) OR ([Status] = 4 AND [EducationCreditTransactionId] IS NULL AND [FailureReason] IS NOT NULL) OR ([Status] IN (1, 2) AND [EducationCreditTransactionId] IS NULL)");
+                        });
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            AccountNumber = "EDU-2026-00000000001",
+                            Amount = 100m,
+                            CreatedAt = new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedBy = 7,
+                            EducationAccountId = 1,
                             EducationCreditTransactionId = 1,
                             IsDeleted = false,
-                            TopupBatchTargetId = 1
+                            Status = 3,
+                            TopupExecutionId = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 2,
+                            AccountNumber = "EDU-2026-00000000002",
+                            Amount = 100m,
+                            CreatedAt = new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedBy = 7,
+                            EducationAccountId = 2,
+                            FailureReason = "Seeded failure for manual review.",
                             IsDeleted = false,
-                            TopupBatchTargetId = 2
+                            Status = 4,
+                            TopupExecutionId = 1
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            AccountNumber = "EDU-2026-00000000003",
+                            Amount = 200m,
+                            CreatedAt = new DateTime(2026, 1, 12, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EducationAccountId = 3,
                             EducationCreditTransactionId = 3,
                             IsDeleted = false,
-                            TopupBatchTargetId = 3
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 4,
-                            IsDeleted = false,
-                            TopupBatchTargetId = 4
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 5,
-                            IsDeleted = false,
-                            TopupBatchTargetId = 5
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 6,
-                            IsDeleted = false,
-                            TopupBatchTargetId = 6
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 7,
-                            IsDeleted = false,
-                            TopupBatchTargetId = 7
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 8,
-                            IsDeleted = false,
-                            TopupBatchTargetId = 8
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 9,
-                            IsDeleted = false,
-                            TopupBatchTargetId = 9
-                        },
-                        new
-                        {
-                            Id = 10,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 10,
-                            IsDeleted = false,
-                            TopupBatchTargetId = 10
+                            Status = 3,
+                            TopupExecutionId = 2
                         });
                 });
 
@@ -4476,6 +3829,9 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<int>("MatchMode")
+                        .HasColumnType("int");
+
                     b.Property<string>("RuleName")
                         .IsRequired()
                         .HasMaxLength(150)
@@ -4484,8 +3840,11 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("TopupAmount")
+                    b.Property<decimal?>("TopupAmount")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -4495,13 +3854,15 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RuleName");
+                    b.HasIndex("RuleName")
+                        .IsUnique()
+                        .HasFilter("\"IsDeleted\" = 0 AND \"RuleName\" IS NOT NULL");
 
                     b.HasIndex("Status");
 
                     b.ToTable("TopupRule", t =>
                         {
-                            t.HasCheckConstraint("CK_TopupRule_Amount_NonNegative", "[TopupAmount] >= 0");
+                            t.HasCheckConstraint("CK_TopupRule_Amount_By_MatchMode", "([MatchMode] = 1 AND [TopupAmount] > 0) OR ([MatchMode] = 2 AND [TopupAmount] IS NULL)");
                         });
 
                     b.HasData(
@@ -4510,450 +3871,538 @@ namespace educationaccountmanagement.DAL.Migrations
                             Id = 1,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 001",
                             Status = 2,
-                            TopupAmount = 70m
+                            TopupAmount = 70m,
+                            Type = 2
                         },
                         new
                         {
                             Id = 2,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 002",
                             Status = 1,
-                            TopupAmount = 770m
+                            TopupAmount = 770m,
+                            Type = 2
                         },
                         new
                         {
                             Id = 3,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 003",
                             Status = 1,
-                            TopupAmount = 790m
+                            TopupAmount = 790m,
+                            Type = 2
                         },
                         new
                         {
                             Id = 4,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 2,
                             RuleName = "Random Top-up Rule 004",
                             Status = 1,
-                            TopupAmount = 170m
+                            Type = 2
                         },
                         new
                         {
                             Id = 5,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 005",
                             Status = 1,
-                            TopupAmount = 260m
+                            TopupAmount = 730m,
+                            Type = 2
                         },
                         new
                         {
                             Id = 6,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 006",
                             Status = 1,
-                            TopupAmount = 230m
+                            TopupAmount = 510m,
+                            Type = 2
                         },
                         new
                         {
                             Id = 7,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 007",
-                            Status = 2,
-                            TopupAmount = 220m
+                            Status = 1,
+                            TopupAmount = 390m,
+                            Type = 2
                         },
                         new
                         {
                             Id = 8,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 2,
                             RuleName = "Random Top-up Rule 008",
-                            Status = 1,
-                            TopupAmount = 140m
+                            Status = 2,
+                            Type = 2
                         },
                         new
                         {
                             Id = 9,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 009",
                             Status = 1,
-                            TopupAmount = 200m
+                            TopupAmount = 140m,
+                            Type = 2
                         },
                         new
                         {
                             Id = 10,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 010",
                             Status = 1,
-                            TopupAmount = 860m
+                            TopupAmount = 200m,
+                            Type = 2
                         },
                         new
                         {
                             Id = 11,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 011",
                             Status = 1,
-                            TopupAmount = 110m
+                            TopupAmount = 860m,
+                            Type = 2
                         },
                         new
                         {
                             Id = 12,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 2,
                             RuleName = "Random Top-up Rule 012",
                             Status = 1,
-                            TopupAmount = 360m
+                            Type = 2
                         },
                         new
                         {
                             Id = 13,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 013",
                             Status = 1,
-                            TopupAmount = 580m
+                            TopupAmount = 530m,
+                            Type = 2
                         },
                         new
                         {
                             Id = 14,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 014",
                             Status = 1,
-                            TopupAmount = 730m
+                            TopupAmount = 710m,
+                            Type = 2
                         },
                         new
                         {
                             Id = 15,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 015",
                             Status = 1,
-                            TopupAmount = 400m
+                            TopupAmount = 620m,
+                            Type = 2
                         },
                         new
                         {
                             Id = 16,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 2,
                             RuleName = "Random Top-up Rule 016",
                             Status = 1,
-                            TopupAmount = 680m
+                            Type = 2
                         },
                         new
                         {
                             Id = 17,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 017",
                             Status = 1,
-                            TopupAmount = 520m
+                            TopupAmount = 400m,
+                            Type = 2
                         },
                         new
                         {
                             Id = 18,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 018",
                             Status = 1,
-                            TopupAmount = 260m
+                            TopupAmount = 680m,
+                            Type = 2
                         },
                         new
                         {
                             Id = 19,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 019",
                             Status = 1,
-                            TopupAmount = 10m
+                            TopupAmount = 520m,
+                            Type = 2
                         },
                         new
                         {
                             Id = 20,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 2,
                             RuleName = "Random Top-up Rule 020",
                             Status = 1,
-                            TopupAmount = 450m
+                            Type = 2
                         },
                         new
                         {
                             Id = 21,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 021",
-                            Status = 1,
-                            TopupAmount = 710m
+                            Status = 2,
+                            TopupAmount = 770m,
+                            Type = 1
                         },
                         new
                         {
                             Id = 22,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 022",
                             Status = 1,
-                            TopupAmount = 270m
+                            TopupAmount = 480m,
+                            Type = 1
                         },
                         new
                         {
                             Id = 23,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 023",
                             Status = 1,
-                            TopupAmount = 630m
+                            TopupAmount = 490m,
+                            Type = 1
                         },
                         new
                         {
                             Id = 24,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 2,
                             RuleName = "Random Top-up Rule 024",
                             Status = 1,
-                            TopupAmount = 370m
+                            Type = 1
                         },
                         new
                         {
                             Id = 25,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 025",
                             Status = 1,
-                            TopupAmount = 180m
+                            TopupAmount = 270m,
+                            Type = 1
                         },
                         new
                         {
                             Id = 26,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 026",
                             Status = 1,
-                            TopupAmount = 640m
+                            TopupAmount = 630m,
+                            Type = 1
                         },
                         new
                         {
                             Id = 27,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 027",
                             Status = 1,
-                            TopupAmount = 440m
+                            TopupAmount = 370m,
+                            Type = 1
                         },
                         new
                         {
                             Id = 28,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 2,
                             RuleName = "Random Top-up Rule 028",
                             Status = 1,
-                            TopupAmount = 30m
+                            Type = 1
                         },
                         new
                         {
                             Id = 29,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 029",
-                            Status = 2,
-                            TopupAmount = 710m
+                            Status = 1,
+                            TopupAmount = 850m,
+                            Type = 1
                         },
                         new
                         {
                             Id = 30,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 030",
                             Status = 1,
-                            TopupAmount = 930m
+                            TopupAmount = 610m,
+                            Type = 1
                         },
                         new
                         {
                             Id = 31,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 031",
-                            Status = 1,
-                            TopupAmount = 100m
+                            Status = 2,
+                            TopupAmount = 500m,
+                            Type = 1
                         },
                         new
                         {
                             Id = 32,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 2,
                             RuleName = "Random Top-up Rule 032",
-                            Status = 2,
-                            TopupAmount = 340m
+                            Status = 1,
+                            Type = 1
                         },
                         new
                         {
                             Id = 33,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 033",
                             Status = 2,
-                            TopupAmount = 820m
+                            TopupAmount = 710m,
+                            Type = 1
                         },
                         new
                         {
                             Id = 34,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 034",
                             Status = 1,
-                            TopupAmount = 870m
+                            TopupAmount = 930m,
+                            Type = 1
                         },
                         new
                         {
                             Id = 35,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 035",
                             Status = 1,
-                            TopupAmount = 770m
+                            TopupAmount = 100m,
+                            Type = 1
                         },
                         new
                         {
                             Id = 36,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 2,
                             RuleName = "Random Top-up Rule 036",
                             Status = 1,
-                            TopupAmount = 740m
+                            Type = 1
                         },
                         new
                         {
                             Id = 37,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 037",
                             Status = 1,
-                            TopupAmount = 440m
+                            TopupAmount = 20m,
+                            Type = 1
                         },
                         new
                         {
                             Id = 38,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 038",
                             Status = 1,
-                            TopupAmount = 650m
+                            TopupAmount = 20m,
+                            Type = 1
                         },
                         new
                         {
                             Id = 39,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 039",
-                            Status = 2,
-                            TopupAmount = 260m
+                            Status = 1,
+                            TopupAmount = 730m,
+                            Type = 1
                         },
                         new
                         {
                             Id = 40,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 2,
                             RuleName = "Random Top-up Rule 040",
                             Status = 1,
-                            TopupAmount = 80m
+                            Type = 1
                         },
                         new
                         {
                             Id = 41,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 041",
                             Status = 1,
-                            TopupAmount = 250m
+                            TopupAmount = 740m,
+                            Type = 1
                         },
                         new
                         {
                             Id = 42,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 042",
                             Status = 1,
-                            TopupAmount = 570m
+                            TopupAmount = 440m,
+                            Type = 1
                         },
                         new
                         {
                             Id = 43,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 043",
-                            Status = 2,
-                            TopupAmount = 600m
+                            Status = 1,
+                            TopupAmount = 650m,
+                            Type = 1
                         },
                         new
                         {
                             Id = 44,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 2,
                             RuleName = "Random Top-up Rule 044",
-                            Status = 2,
-                            TopupAmount = 770m
+                            Status = 1,
+                            Type = 1
                         },
                         new
                         {
                             Id = 45,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 045",
-                            Status = 1,
-                            TopupAmount = 460m
+                            Status = 2,
+                            TopupAmount = 80m,
+                            Type = 1
                         },
                         new
                         {
                             Id = 46,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 046",
                             Status = 1,
-                            TopupAmount = 60m
+                            TopupAmount = 290m,
+                            Type = 1
                         },
                         new
                         {
                             Id = 47,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 047",
                             Status = 1,
-                            TopupAmount = 550m
+                            TopupAmount = 880m,
+                            Type = 1
                         },
                         new
                         {
                             Id = 48,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 2,
                             RuleName = "Random Top-up Rule 048",
                             Status = 1,
-                            TopupAmount = 390m
+                            Type = 1
                         },
                         new
                         {
                             Id = 49,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 049",
-                            Status = 1,
-                            TopupAmount = 120m
+                            Status = 2,
+                            TopupAmount = 600m,
+                            Type = 1
                         },
                         new
                         {
                             Id = 50,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
+                            MatchMode = 1,
                             RuleName = "Random Top-up Rule 050",
-                            Status = 1,
-                            TopupAmount = 460m
+                            Status = 2,
+                            TopupAmount = 770m,
+                            Type = 1
                         });
                 });
 
@@ -4965,6 +4414,9 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<decimal?>("ConditionAmount")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -4973,6 +4425,9 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("DisplayOrder")
+                        .HasColumnType("int");
 
                     b.Property<int>("Field")
                         .HasColumnType("int");
@@ -5007,13 +4462,19 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasIndex("TopupRuleId");
 
-                    b.ToTable("TopupRuleCondition");
+                    b.ToTable("TopupRuleCondition", t =>
+                        {
+                            t.HasCheckConstraint("CK_TopupRuleCondition_DisplayOrder_NonNegative", "[DisplayOrder] >= 0");
+
+                            t.HasCheckConstraint("CK_TopupRuleCondition_Value_By_Field", "([Field] IN (1, 2) AND [ValueNumber] IS NOT NULL AND [ValueText] IS NULL) OR ([Field] = 3 AND [ValueText] IS NOT NULL AND [ValueNumber] IS NULL)");
+                        });
 
                     b.HasData(
                         new
                         {
                             Id = 1,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 4,
@@ -5024,6 +4485,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 2,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 6,
@@ -5034,6 +4496,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 3,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 4,
@@ -5044,6 +4507,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 4,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 6,
@@ -5054,6 +4518,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 5,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 4,
@@ -5064,6 +4529,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 6,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 6,
@@ -5073,7 +4539,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 7,
+                            ConditionAmount = 100m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 4,
@@ -5083,7 +4551,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 8,
+                            ConditionAmount = 150m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 6,
@@ -5094,6 +4564,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 9,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 4,
@@ -5104,6 +4575,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 10,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 6,
@@ -5114,6 +4586,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 11,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 4,
@@ -5124,6 +4597,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 12,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 6,
@@ -5134,6 +4608,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 13,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 4,
@@ -5144,6 +4619,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 14,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 6,
@@ -5153,7 +4629,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 15,
+                            ConditionAmount = 100m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 4,
@@ -5163,7 +4641,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 16,
+                            ConditionAmount = 150m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 6,
@@ -5174,6 +4654,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 17,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 4,
@@ -5184,6 +4665,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 18,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 6,
@@ -5194,6 +4676,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 19,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 4,
@@ -5204,6 +4687,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 20,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 6,
@@ -5214,6 +4698,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 21,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 4,
@@ -5224,6 +4709,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 22,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 6,
@@ -5233,7 +4719,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 23,
+                            ConditionAmount = 100m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 4,
@@ -5243,7 +4731,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 24,
+                            ConditionAmount = 150m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 6,
@@ -5254,6 +4744,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 25,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 4,
@@ -5264,6 +4755,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 26,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 6,
@@ -5274,6 +4766,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 27,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 4,
@@ -5284,6 +4777,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 28,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 6,
@@ -5294,6 +4788,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 29,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 4,
@@ -5304,6 +4799,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 30,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 6,
@@ -5313,7 +4809,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 31,
+                            ConditionAmount = 100m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 4,
@@ -5323,7 +4821,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 32,
+                            ConditionAmount = 150m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 6,
@@ -5334,6 +4834,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 33,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 4,
@@ -5344,6 +4845,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 34,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 6,
@@ -5354,6 +4856,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 35,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 4,
@@ -5364,6 +4867,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 36,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 6,
@@ -5374,6 +4878,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 37,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 4,
@@ -5384,6 +4889,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 38,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 6,
@@ -5393,7 +4899,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 39,
+                            ConditionAmount = 100m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 4,
@@ -5403,7 +4911,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 40,
+                            ConditionAmount = 150m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 6,
@@ -5414,6 +4924,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 41,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 4,
@@ -5424,6 +4935,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 42,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 6,
@@ -5434,6 +4946,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 43,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 4,
@@ -5444,6 +4957,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 44,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 6,
@@ -5454,6 +4968,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 45,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 4,
@@ -5464,6 +4979,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 46,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 6,
@@ -5473,7 +4989,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 47,
+                            ConditionAmount = 100m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 4,
@@ -5483,7 +5001,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 48,
+                            ConditionAmount = 150m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 6,
@@ -5494,6 +5014,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 49,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 4,
@@ -5504,6 +5025,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 50,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 6,
@@ -5514,6 +5036,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 51,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 4,
@@ -5524,6 +5047,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 52,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 6,
@@ -5534,6 +5058,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 53,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 4,
@@ -5544,6 +5069,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 54,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 6,
@@ -5553,7 +5079,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 55,
+                            ConditionAmount = 100m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 4,
@@ -5563,7 +5091,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 56,
+                            ConditionAmount = 150m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 6,
@@ -5574,6 +5104,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 57,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 4,
@@ -5584,6 +5115,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 58,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 6,
@@ -5594,6 +5126,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 59,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 4,
@@ -5604,6 +5137,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 60,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 6,
@@ -5614,6 +5148,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 61,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 4,
@@ -5624,6 +5159,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 62,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 6,
@@ -5633,7 +5169,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 63,
+                            ConditionAmount = 100m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 4,
@@ -5643,7 +5181,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 64,
+                            ConditionAmount = 150m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 6,
@@ -5654,6 +5194,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 65,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 4,
@@ -5664,6 +5205,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 66,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 6,
@@ -5674,6 +5216,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 67,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 4,
@@ -5684,6 +5227,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 68,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 6,
@@ -5694,6 +5238,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 69,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 4,
@@ -5704,6 +5249,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 70,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 6,
@@ -5713,7 +5259,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 71,
+                            ConditionAmount = 100m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 4,
@@ -5723,7 +5271,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 72,
+                            ConditionAmount = 150m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 6,
@@ -5734,6 +5284,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 73,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 4,
@@ -5744,6 +5295,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 74,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 6,
@@ -5754,6 +5306,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 75,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 4,
@@ -5764,6 +5317,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 76,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 6,
@@ -5774,6 +5328,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 77,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 4,
@@ -5784,6 +5339,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 78,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 6,
@@ -5793,7 +5349,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 79,
+                            ConditionAmount = 100m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 4,
@@ -5803,7 +5361,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 80,
+                            ConditionAmount = 150m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 6,
@@ -5814,6 +5374,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 81,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 4,
@@ -5824,6 +5385,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 82,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 6,
@@ -5834,6 +5396,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 83,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 4,
@@ -5844,6 +5407,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 84,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 6,
@@ -5854,6 +5418,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 85,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 4,
@@ -5864,6 +5429,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 86,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 6,
@@ -5873,7 +5439,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 87,
+                            ConditionAmount = 100m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 4,
@@ -5883,7 +5451,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 88,
+                            ConditionAmount = 150m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 6,
@@ -5894,6 +5464,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 89,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 4,
@@ -5904,6 +5475,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 90,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 6,
@@ -5914,6 +5486,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 91,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 4,
@@ -5924,6 +5497,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 92,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 6,
@@ -5934,6 +5508,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 93,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 4,
@@ -5944,6 +5519,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 94,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 6,
@@ -5953,7 +5529,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 95,
+                            ConditionAmount = 100m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 4,
@@ -5963,7 +5541,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 96,
+                            ConditionAmount = 150m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 6,
@@ -5974,6 +5554,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 97,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 4,
@@ -5984,6 +5565,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 98,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 1,
                             IsDeleted = false,
                             Operator = 6,
@@ -5994,6 +5576,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 99,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 4,
@@ -6004,6 +5587,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 100,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
                             Field = 2,
                             IsDeleted = false,
                             Operator = 6,
@@ -6035,31 +5619,26 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<int?>("ExecuteAtMonth")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                    b.Property<TimeOnly>("ExecutionTime")
+                        .HasColumnType("time");
+
+                    b.Property<int>("Frequency")
+                        .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime?>("LastExecutedAt")
+                    b.Property<DateTime?>("NextExecutionAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("NextExecutionAt")
+                    b.Property<DateTime?>("OneTimeExecutionAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("OneTimeExecutionDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ScheduleName")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<int>("ScheduleType")
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<TimeSpan>("SpecificExecutionTime")
-                        .HasColumnType("time");
+                    b.Property<int>("TopupRuleId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -6068,6 +5647,14 @@ namespace educationaccountmanagement.DAL.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("NextExecutionAt");
+
+                    b.HasIndex("Status");
+
+                    b.HasIndex("TopupRuleId")
+                        .IsUnique()
+                        .HasFilter("\"IsDeleted\" = 0 AND \"TopupRuleId\" IS NOT NULL");
 
                     b.ToTable("TopupSchedule");
 
@@ -6076,238 +5663,250 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsActive = false,
+                            ExecutionTime = new TimeOnly(1, 46, 0),
+                            Frequency = 1,
                             IsDeleted = false,
-                            NextExecutionAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ScheduleName = "Random Schedule 001",
-                            ScheduleType = 0,
-                            SpecificExecutionTime = new TimeSpan(0, 18, 30, 0, 0)
+                            NextExecutionAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            OneTimeExecutionAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupRuleId = 1
                         },
                         new
                         {
                             Id = 2,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ExecuteAtDay = 8,
-                            IsActive = true,
+                            ExecuteAtMonth = 7,
+                            ExecutionTime = new TimeOnly(19, 9, 0),
+                            Frequency = 3,
                             IsDeleted = false,
-                            NextExecutionAt = new DateTime(2027, 7, 8, 3, 44, 0, 0, DateTimeKind.Utc),
-                            ScheduleName = "Random Schedule 002",
-                            ScheduleType = 2,
-                            SpecificExecutionTime = new TimeSpan(0, 3, 44, 0, 0)
+                            NextExecutionAt = new DateTime(2027, 7, 8, 19, 9, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupRuleId = 2
                         },
                         new
                         {
                             Id = 3,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsActive = true,
+                            ExecutionTime = new TimeOnly(9, 12, 0),
+                            Frequency = 1,
                             IsDeleted = false,
-                            NextExecutionAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ScheduleName = "Random Schedule 003",
-                            ScheduleType = 0,
-                            SpecificExecutionTime = new TimeSpan(0, 5, 1, 0, 0)
+                            OneTimeExecutionAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = 2,
+                            TopupRuleId = 3
                         },
                         new
                         {
                             Id = 4,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsActive = true,
+                            ExecutionTime = new TimeOnly(17, 11, 0),
+                            Frequency = 1,
                             IsDeleted = false,
-                            NextExecutionAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ScheduleName = "Random Schedule 004",
-                            ScheduleType = 0,
-                            SpecificExecutionTime = new TimeSpan(0, 4, 53, 0, 0)
+                            NextExecutionAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            OneTimeExecutionAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupRuleId = 4
                         },
                         new
                         {
                             Id = 5,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ExecuteAtDay = 11,
-                            IsActive = true,
+                            ExecuteAtMonth = 9,
+                            ExecutionTime = new TimeOnly(8, 6, 0),
+                            Frequency = 3,
                             IsDeleted = false,
-                            NextExecutionAt = new DateTime(2027, 9, 11, 2, 31, 0, 0, DateTimeKind.Utc),
-                            ScheduleName = "Random Schedule 005",
-                            ScheduleType = 2,
-                            SpecificExecutionTime = new TimeSpan(0, 2, 31, 0, 0)
+                            NextExecutionAt = new DateTime(2027, 9, 11, 8, 6, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupRuleId = 5
                         },
                         new
                         {
                             Id = 6,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsActive = true,
+                            ExecuteAtDay = 12,
+                            ExecutionTime = new TimeOnly(14, 43, 0),
+                            Frequency = 2,
                             IsDeleted = false,
-                            NextExecutionAt = new DateTime(2027, 5, 7, 17, 44, 0, 0, DateTimeKind.Utc),
-                            OneTimeExecutionDate = new DateTime(2027, 5, 7, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ScheduleName = "Random Schedule 006",
-                            ScheduleType = 1,
-                            SpecificExecutionTime = new TimeSpan(0, 17, 44, 0, 0)
+                            NextExecutionAt = new DateTime(2027, 3, 12, 14, 43, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupRuleId = 6
                         },
                         new
                         {
                             Id = 7,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ExecuteAtDay = 8,
-                            IsActive = true,
+                            ExecuteAtMonth = 10,
+                            ExecutionTime = new TimeOnly(5, 31, 0),
+                            Frequency = 3,
                             IsDeleted = false,
-                            NextExecutionAt = new DateTime(2027, 10, 8, 12, 29, 0, 0, DateTimeKind.Utc),
-                            ScheduleName = "Random Schedule 007",
-                            ScheduleType = 2,
-                            SpecificExecutionTime = new TimeSpan(0, 12, 29, 0, 0)
+                            NextExecutionAt = new DateTime(2027, 10, 8, 5, 31, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupRuleId = 7
                         },
                         new
                         {
                             Id = 8,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsActive = true,
+                            ExecutionTime = new TimeOnly(11, 26, 0),
+                            Frequency = 1,
                             IsDeleted = false,
-                            NextExecutionAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ScheduleName = "Random Schedule 008",
-                            ScheduleType = 0,
-                            SpecificExecutionTime = new TimeSpan(0, 10, 29, 0, 0)
+                            NextExecutionAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            OneTimeExecutionAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupRuleId = 8
                         },
                         new
                         {
                             Id = 9,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ExecuteAtDay = 18,
-                            IsActive = true,
+                            ExecuteAtMonth = 4,
+                            ExecutionTime = new TimeOnly(10, 16, 0),
+                            Frequency = 3,
                             IsDeleted = false,
-                            NextExecutionAt = new DateTime(2027, 4, 18, 6, 16, 0, 0, DateTimeKind.Utc),
-                            ScheduleName = "Random Schedule 009",
-                            ScheduleType = 2,
-                            SpecificExecutionTime = new TimeSpan(0, 6, 16, 0, 0)
+                            NextExecutionAt = new DateTime(2027, 4, 18, 10, 16, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupRuleId = 9
                         },
                         new
                         {
                             Id = 10,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsActive = true,
+                            ExecuteAtDay = 19,
+                            ExecutionTime = new TimeOnly(20, 10, 0),
+                            Frequency = 2,
                             IsDeleted = false,
-                            NextExecutionAt = new DateTime(2027, 8, 17, 4, 51, 0, 0, DateTimeKind.Utc),
-                            OneTimeExecutionDate = new DateTime(2027, 8, 17, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ScheduleName = "Random Schedule 010",
-                            ScheduleType = 1,
-                            SpecificExecutionTime = new TimeSpan(0, 4, 51, 0, 0)
+                            NextExecutionAt = new DateTime(2027, 8, 19, 20, 10, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupRuleId = 10
                         },
                         new
                         {
                             Id = 11,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsActive = true,
+                            ExecuteAtDay = 20,
+                            ExecutionTime = new TimeOnly(11, 1, 0),
+                            Frequency = 2,
                             IsDeleted = false,
-                            NextExecutionAt = new DateTime(2027, 9, 2, 0, 32, 0, 0, DateTimeKind.Utc),
-                            OneTimeExecutionDate = new DateTime(2027, 9, 2, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ScheduleName = "Random Schedule 011",
-                            ScheduleType = 1,
-                            SpecificExecutionTime = new TimeSpan(0, 0, 32, 0, 0)
+                            NextExecutionAt = new DateTime(2027, 1, 20, 11, 1, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupRuleId = 11
                         },
                         new
                         {
                             Id = 12,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ExecuteAtDay = 10,
-                            IsActive = false,
+                            ExecuteAtMonth = 1,
+                            ExecutionTime = new TimeOnly(4, 5, 0),
+                            Frequency = 3,
                             IsDeleted = false,
-                            NextExecutionAt = new DateTime(2027, 1, 10, 2, 25, 0, 0, DateTimeKind.Utc),
-                            ScheduleName = "Random Schedule 012",
-                            ScheduleType = 2,
-                            SpecificExecutionTime = new TimeSpan(0, 2, 25, 0, 0)
+                            NextExecutionAt = new DateTime(2027, 1, 10, 4, 5, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupRuleId = 12
                         },
                         new
                         {
                             Id = 13,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ExecuteAtDay = 22,
-                            IsActive = false,
+                            ExecuteAtMonth = 5,
+                            ExecutionTime = new TimeOnly(0, 52, 0),
+                            Frequency = 3,
                             IsDeleted = false,
-                            NextExecutionAt = new DateTime(2027, 5, 22, 20, 43, 0, 0, DateTimeKind.Utc),
-                            ScheduleName = "Random Schedule 013",
-                            ScheduleType = 2,
-                            SpecificExecutionTime = new TimeSpan(0, 20, 43, 0, 0)
+                            NextExecutionAt = new DateTime(2027, 5, 22, 0, 52, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupRuleId = 13
                         },
                         new
                         {
                             Id = 14,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ExecuteAtDay = 19,
-                            IsActive = true,
+                            ExecuteAtMonth = 8,
+                            ExecutionTime = new TimeOnly(17, 26, 0),
+                            Frequency = 3,
                             IsDeleted = false,
-                            NextExecutionAt = new DateTime(2027, 8, 19, 10, 22, 0, 0, DateTimeKind.Utc),
-                            ScheduleName = "Random Schedule 014",
-                            ScheduleType = 2,
-                            SpecificExecutionTime = new TimeSpan(0, 10, 22, 0, 0)
+                            NextExecutionAt = new DateTime(2027, 8, 19, 17, 26, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupRuleId = 14
                         },
                         new
                         {
                             Id = 15,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsActive = false,
+                            ExecutionTime = new TimeOnly(1, 4, 0),
+                            Frequency = 1,
                             IsDeleted = false,
-                            NextExecutionAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ScheduleName = "Random Schedule 015",
-                            ScheduleType = 0,
-                            SpecificExecutionTime = new TimeSpan(0, 1, 17, 0, 0)
+                            NextExecutionAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            OneTimeExecutionAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupRuleId = 15
                         },
                         new
                         {
                             Id = 16,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsActive = true,
+                            ExecutionTime = new TimeOnly(21, 34, 0),
+                            Frequency = 1,
                             IsDeleted = false,
-                            NextExecutionAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ScheduleName = "Random Schedule 016",
-                            ScheduleType = 0,
-                            SpecificExecutionTime = new TimeSpan(0, 13, 32, 0, 0)
+                            NextExecutionAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            OneTimeExecutionAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupRuleId = 16
                         },
                         new
                         {
                             Id = 17,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsActive = false,
+                            ExecuteAtDay = 13,
+                            ExecutionTime = new TimeOnly(1, 46, 0),
+                            Frequency = 2,
                             IsDeleted = false,
-                            NextExecutionAt = new DateTime(2027, 6, 20, 18, 1, 0, 0, DateTimeKind.Utc),
-                            OneTimeExecutionDate = new DateTime(2027, 6, 20, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ScheduleName = "Random Schedule 017",
-                            ScheduleType = 1,
-                            SpecificExecutionTime = new TimeSpan(0, 18, 1, 0, 0)
+                            Status = 2,
+                            TopupRuleId = 17
                         },
                         new
                         {
                             Id = 18,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsActive = true,
+                            ExecutionTime = new TimeOnly(22, 33, 0),
+                            Frequency = 1,
                             IsDeleted = false,
-                            NextExecutionAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ScheduleName = "Random Schedule 018",
-                            ScheduleType = 0,
-                            SpecificExecutionTime = new TimeSpan(0, 13, 16, 0, 0)
+                            NextExecutionAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            OneTimeExecutionAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupRuleId = 18
                         },
                         new
                         {
                             Id = 19,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsActive = true,
+                            ExecuteAtDay = 13,
+                            ExecutionTime = new TimeOnly(7, 6, 0),
+                            Frequency = 2,
                             IsDeleted = false,
-                            NextExecutionAt = new DateTime(2027, 6, 17, 2, 15, 0, 0, DateTimeKind.Utc),
-                            OneTimeExecutionDate = new DateTime(2027, 6, 17, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ScheduleName = "Random Schedule 019",
-                            ScheduleType = 1,
-                            SpecificExecutionTime = new TimeSpan(0, 2, 15, 0, 0)
+                            NextExecutionAt = new DateTime(2027, 8, 13, 7, 6, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupRuleId = 19
                         },
                         new
                         {
                             Id = 20,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsActive = true,
+                            ExecuteAtDay = 4,
+                            ExecutionTime = new TimeOnly(15, 5, 0),
+                            Frequency = 2,
                             IsDeleted = false,
-                            NextExecutionAt = new DateTime(2027, 2, 26, 2, 48, 0, 0, DateTimeKind.Utc),
-                            OneTimeExecutionDate = new DateTime(2027, 2, 26, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ScheduleName = "Random Schedule 020",
-                            ScheduleType = 1,
-                            SpecificExecutionTime = new TimeSpan(0, 2, 48, 0, 0)
+                            NextExecutionAt = new DateTime(2027, 12, 4, 15, 5, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupRuleId = 20
                         });
                 });
 
-            modelBuilder.Entity("Models.TopupScheduleRule", b =>
+            modelBuilder.Entity("Models.TopupSystemApplication", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -6315,366 +5914,36 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("CreatedBy")
+                    b.Property<int>("EducationAccountId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                    b.Property<int>("TopupExecutionTargetId")
+                        .HasColumnType("int");
 
                     b.Property<int>("TopupRuleId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TopupScheduleId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("EducationAccountId");
+
+                    b.HasIndex("TopupExecutionTargetId")
+                        .IsUnique();
 
                     b.HasIndex("TopupRuleId");
 
-                    b.HasIndex("TopupScheduleId");
+                    b.HasIndex("TopupRuleId", "EducationAccountId")
+                        .IsUnique();
 
-                    b.ToTable("TopupScheduleRule");
+                    b.ToTable("TopupSystemApplication");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 4,
-                            TopupScheduleId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 26,
-                            TopupScheduleId = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 40,
-                            TopupScheduleId = 2
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 42,
-                            TopupScheduleId = 2
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 9,
-                            TopupScheduleId = 2
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 14,
-                            TopupScheduleId = 3
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 26,
-                            TopupScheduleId = 3
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 12,
-                            TopupScheduleId = 3
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 11,
-                            TopupScheduleId = 4
-                        },
-                        new
-                        {
-                            Id = 10,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 2,
-                            TopupScheduleId = 4
-                        },
-                        new
-                        {
-                            Id = 11,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 38,
-                            TopupScheduleId = 5
-                        },
-                        new
-                        {
-                            Id = 12,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 45,
-                            TopupScheduleId = 6
-                        },
-                        new
-                        {
-                            Id = 13,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 18,
-                            TopupScheduleId = 7
-                        },
-                        new
-                        {
-                            Id = 14,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 6,
-                            TopupScheduleId = 7
-                        },
-                        new
-                        {
-                            Id = 15,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 27,
-                            TopupScheduleId = 7
-                        },
-                        new
-                        {
-                            Id = 16,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 36,
-                            TopupScheduleId = 7
-                        },
-                        new
-                        {
-                            Id = 17,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 32,
-                            TopupScheduleId = 8
-                        },
-                        new
-                        {
-                            Id = 18,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 37,
-                            TopupScheduleId = 8
-                        },
-                        new
-                        {
-                            Id = 19,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 38,
-                            TopupScheduleId = 8
-                        },
-                        new
-                        {
-                            Id = 20,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 13,
-                            TopupScheduleId = 9
-                        },
-                        new
-                        {
-                            Id = 21,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 35,
-                            TopupScheduleId = 9
-                        },
-                        new
-                        {
-                            Id = 22,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 26,
-                            TopupScheduleId = 10
-                        },
-                        new
-                        {
-                            Id = 23,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 13,
-                            TopupScheduleId = 11
-                        },
-                        new
-                        {
-                            Id = 24,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 39,
-                            TopupScheduleId = 11
-                        },
-                        new
-                        {
-                            Id = 25,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 25,
-                            TopupScheduleId = 12
-                        },
-                        new
-                        {
-                            Id = 26,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 25,
-                            TopupScheduleId = 13
-                        },
-                        new
-                        {
-                            Id = 27,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 36,
-                            TopupScheduleId = 13
-                        },
-                        new
-                        {
-                            Id = 28,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 14,
-                            TopupScheduleId = 14
-                        },
-                        new
-                        {
-                            Id = 29,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 15,
-                            TopupScheduleId = 14
-                        },
-                        new
-                        {
-                            Id = 30,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 15,
-                            TopupScheduleId = 15
-                        },
-                        new
-                        {
-                            Id = 31,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 19,
-                            TopupScheduleId = 15
-                        },
-                        new
-                        {
-                            Id = 32,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 43,
-                            TopupScheduleId = 15
-                        },
-                        new
-                        {
-                            Id = 33,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 43,
-                            TopupScheduleId = 16
-                        },
-                        new
-                        {
-                            Id = 34,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 31,
-                            TopupScheduleId = 17
-                        },
-                        new
-                        {
-                            Id = 35,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 23,
-                            TopupScheduleId = 17
-                        },
-                        new
-                        {
-                            Id = 36,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 25,
-                            TopupScheduleId = 17
-                        },
-                        new
-                        {
-                            Id = 37,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 27,
-                            TopupScheduleId = 18
-                        },
-                        new
-                        {
-                            Id = 38,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 4,
-                            TopupScheduleId = 19
-                        },
-                        new
-                        {
-                            Id = 39,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 47,
-                            TopupScheduleId = 19
-                        },
-                        new
-                        {
-                            Id = 40,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 9,
-                            TopupScheduleId = 19
-                        },
-                        new
-                        {
-                            Id = 41,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            TopupRuleId = 21,
-                            TopupScheduleId = 20
+                            EducationAccountId = 3,
+                            TopupExecutionTargetId = 3,
+                            TopupRuleId = 21
                         });
                 });
 
@@ -6685,9 +5954,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AuthAccountId")
-                        .HasColumnType("int");
 
                     b.Property<int?>("CitizenId")
                         .HasColumnType("int");
@@ -6701,10 +5967,22 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("FailedLoginCount")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime?>("LastLoginAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("LockedUntil")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("Role")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -6715,13 +5993,13 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AuthAccountId")
+                    b.HasIndex("CitizenId")
                         .IsUnique()
-                        .HasFilter("\"IsDeleted\" = 0 AND \"AuthAccountId\" IS NOT NULL");
-
-                    b.HasIndex("CitizenId");
+                        .HasFilter("\"IsDeleted\" = 0 AND \"CitizenId\" IS NOT NULL");
 
                     b.HasIndex("Role");
+
+                    b.HasIndex("Status");
 
                     b.ToTable("User");
 
@@ -6729,176 +6007,204 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            AuthAccountId = 1,
-                            CitizenId = 1,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FailedLoginCount = 1,
                             IsDeleted = false,
-                            Role = 1
+                            Role = 1,
+                            Status = 1
                         },
                         new
                         {
                             Id = 2,
-                            AuthAccountId = 2,
-                            CitizenId = 2,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FailedLoginCount = 2,
                             IsDeleted = false,
-                            Role = 1
+                            LastLoginAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 1,
+                            Status = 1
                         },
                         new
                         {
                             Id = 3,
-                            AuthAccountId = 3,
-                            CitizenId = 3,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 1
+                            Role = 1,
+                            Status = 1
                         },
                         new
                         {
                             Id = 4,
-                            AuthAccountId = 4,
-                            CitizenId = 4,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FailedLoginCount = 1,
                             IsDeleted = false,
-                            Role = 1
+                            LastLoginAt = new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 1,
+                            Status = 1
                         },
                         new
                         {
                             Id = 5,
-                            AuthAccountId = 5,
-                            CitizenId = 5,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FailedLoginCount = 2,
                             IsDeleted = false,
-                            Role = 1
+                            LockedUntil = new DateTime(2026, 1, 1, 1, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 1,
+                            Status = 2
                         },
                         new
                         {
                             Id = 6,
-                            AuthAccountId = 6,
-                            CitizenId = 6,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 1
+                            LastLoginAt = new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 1,
+                            Status = 1
                         },
                         new
                         {
                             Id = 7,
-                            AuthAccountId = 7,
-                            CitizenId = 7,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FailedLoginCount = 1,
                             IsDeleted = false,
-                            Role = 2
+                            Role = 2,
+                            Status = 1
                         },
                         new
                         {
                             Id = 8,
-                            AuthAccountId = 8,
-                            CitizenId = 8,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FailedLoginCount = 2,
                             IsDeleted = false,
-                            Role = 3
+                            LastLoginAt = new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 3,
+                            Status = 1
                         },
                         new
                         {
                             Id = 9,
-                            AuthAccountId = 9,
                             CitizenId = 9,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 4
+                            Role = 4,
+                            Status = 1
                         },
                         new
                         {
                             Id = 10,
-                            AuthAccountId = 10,
                             CitizenId = 10,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FailedLoginCount = 1,
                             IsDeleted = false,
-                            Role = 4
+                            LastLoginAt = new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
+                            Status = 2
                         },
                         new
                         {
                             Id = 11,
-                            AuthAccountId = 11,
                             CitizenId = 11,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FailedLoginCount = 2,
                             IsDeleted = false,
-                            Role = 4
+                            Role = 4,
+                            Status = 1
                         },
                         new
                         {
                             Id = 12,
-                            AuthAccountId = 12,
                             CitizenId = 12,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 4
+                            LastLoginAt = new DateTime(2026, 1, 13, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
+                            Status = 1
                         },
                         new
                         {
                             Id = 13,
-                            AuthAccountId = 13,
                             CitizenId = 13,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FailedLoginCount = 1,
                             IsDeleted = false,
-                            Role = 4
+                            Role = 4,
+                            Status = 1
                         },
                         new
                         {
                             Id = 14,
-                            AuthAccountId = 14,
                             CitizenId = 14,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FailedLoginCount = 2,
                             IsDeleted = false,
-                            Role = 4
+                            LastLoginAt = new DateTime(2026, 1, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
+                            Status = 1
                         },
                         new
                         {
                             Id = 15,
-                            AuthAccountId = 15,
                             CitizenId = 15,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 4
+                            Role = 4,
+                            Status = 2
                         });
                 });
 
-            modelBuilder.Entity("Models.AdhocTopupBatchTarget", b =>
+            modelBuilder.Entity("Models.UserStatusHistory", b =>
                 {
-                    b.HasOne("Models.AdhocTopupBatch", "AdhocTopupBatch")
-                        .WithMany("Targets")
-                        .HasForeignKey("AdhocTopupBatchId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.HasOne("Models.EducationAccount", "EducationAccount")
-                        .WithMany("AdhocTopupBatchTargets")
-                        .HasForeignKey("EducationAccountId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Navigation("AdhocTopupBatch");
+                    b.Property<DateTime>("ChangedAt")
+                        .HasColumnType("datetime2");
 
-                    b.Navigation("EducationAccount");
-                });
+                    b.Property<int?>("ChangedByUserId")
+                        .HasColumnType("int");
 
-            modelBuilder.Entity("Models.AdhocTopupBatchTargetTransaction", b =>
-                {
-                    b.HasOne("Models.AdhocTopupBatchTarget", "AdhocTopupBatchTarget")
-                        .WithOne("AdhocTopupBatchTargetTransaction")
-                        .HasForeignKey("Models.AdhocTopupBatchTargetTransaction", "AdhocTopupBatchTargetId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                    b.Property<int>("NewStatus")
+                        .HasColumnType("int");
 
-                    b.HasOne("Models.EducationCreditTransaction", "EducationCreditTransaction")
-                        .WithOne("AdhocTopupBatchTargetTransaction")
-                        .HasForeignKey("Models.AdhocTopupBatchTargetTransaction", "EducationCreditTransactionId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                    b.Property<int>("PreviousStatus")
+                        .HasColumnType("int");
 
-                    b.Navigation("AdhocTopupBatchTarget");
+                    b.Property<string>("Reason")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
-                    b.Navigation("EducationCreditTransaction");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ChangedAt");
+
+                    b.HasIndex("ChangedByUserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserStatusHistory");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ChangedAt = new DateTime(2026, 1, 31, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ChangedByUserId = 1,
+                            NewStatus = 2,
+                            PreviousStatus = 1,
+                            Reason = "Seeded administrative suspension.",
+                            UserId = 5
+                        });
                 });
 
             modelBuilder.Entity("Models.AdminProfile", b =>
@@ -6962,6 +6268,35 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Navigation("Citizen");
                 });
 
+            modelBuilder.Entity("Models.EducationAccountStatusHistory", b =>
+                {
+                    b.HasOne("Models.User", "ChangedByUser")
+                        .WithMany()
+                        .HasForeignKey("ChangedByUserId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.HasOne("Models.EducationAccount", "EducationAccount")
+                        .WithMany("StatusHistories")
+                        .HasForeignKey("EducationAccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ChangedByUser");
+
+                    b.Navigation("EducationAccount");
+                });
+
+            modelBuilder.Entity("Models.EducationAccountSweepTarget", b =>
+                {
+                    b.HasOne("Models.EducationAccountSweepReport", "SweepReport")
+                        .WithMany("Targets")
+                        .HasForeignKey("SweepReportId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SweepReport");
+                });
+
             modelBuilder.Entity("Models.EducationCreditTransaction", b =>
                 {
                     b.HasOne("Models.EducationAccount", "EducationAccount")
@@ -7023,73 +6358,66 @@ namespace educationaccountmanagement.DAL.Migrations
 
             modelBuilder.Entity("Models.RefreshToken", b =>
                 {
-                    b.HasOne("Models.AuthAccount", "AuthAccount")
+                    b.HasOne("Models.User", "User")
                         .WithMany("RefreshTokens")
-                        .HasForeignKey("AuthAccountId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("AuthAccount");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Models.SsoIdentity", b =>
                 {
-                    b.HasOne("Models.AuthAccount", "AuthAccount")
+                    b.HasOne("Models.User", "User")
                         .WithMany("SsoIdentities")
-                        .HasForeignKey("AuthAccountId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("AuthAccount");
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Models.TopupBatch", b =>
+            modelBuilder.Entity("Models.TopupExecution", b =>
                 {
                     b.HasOne("Models.TopupRule", "TopupRule")
-                        .WithMany("TopupBatches")
+                        .WithMany("Executions")
                         .HasForeignKey("TopupRuleId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.HasOne("Models.TopupSchedule", "TopupSchedule")
+                        .WithMany("Executions")
+                        .HasForeignKey("TopupScheduleId")
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("TopupRule");
+
+                    b.Navigation("TopupSchedule");
                 });
 
-            modelBuilder.Entity("Models.TopupBatchTarget", b =>
+            modelBuilder.Entity("Models.TopupExecutionTarget", b =>
                 {
                     b.HasOne("Models.EducationAccount", "EducationAccount")
-                        .WithMany("TopupBatchTargets")
+                        .WithMany("TopupExecutionTargets")
                         .HasForeignKey("EducationAccountId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Models.TopupBatch", "TopupBatch")
+                    b.HasOne("Models.EducationCreditTransaction", "EducationCreditTransaction")
+                        .WithOne("TopupExecutionTarget")
+                        .HasForeignKey("Models.TopupExecutionTarget", "EducationCreditTransactionId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.HasOne("Models.TopupExecution", "TopupExecution")
                         .WithMany("Targets")
-                        .HasForeignKey("TopupBatchId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .HasForeignKey("TopupExecutionId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("EducationAccount");
 
-                    b.Navigation("TopupBatch");
-                });
-
-            modelBuilder.Entity("Models.TopupBatchTargetTransaction", b =>
-                {
-                    b.HasOne("Models.EducationCreditTransaction", "EducationCreditTransaction")
-                        .WithOne("TopupBatchTargetTransaction")
-                        .HasForeignKey("Models.TopupBatchTargetTransaction", "EducationCreditTransactionId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Models.TopupBatchTarget", "TopupBatchTarget")
-                        .WithOne("TopupBatchTargetTransaction")
-                        .HasForeignKey("Models.TopupBatchTargetTransaction", "TopupBatchTargetId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.Navigation("EducationCreditTransaction");
 
-                    b.Navigation("TopupBatchTarget");
+                    b.Navigation("TopupExecution");
                 });
 
             modelBuilder.Entity("Models.TopupRuleCondition", b =>
@@ -7103,58 +6431,70 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Navigation("TopupRule");
                 });
 
-            modelBuilder.Entity("Models.TopupScheduleRule", b =>
+            modelBuilder.Entity("Models.TopupSchedule", b =>
                 {
                     b.HasOne("Models.TopupRule", "TopupRule")
-                        .WithMany("ScheduleRules")
-                        .HasForeignKey("TopupRuleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Models.TopupSchedule", "TopupSchedule")
-                        .WithMany("ScheduleRules")
-                        .HasForeignKey("TopupScheduleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .WithOne("Schedule")
+                        .HasForeignKey("Models.TopupSchedule", "TopupRuleId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("TopupRule");
+                });
 
-                    b.Navigation("TopupSchedule");
+            modelBuilder.Entity("Models.TopupSystemApplication", b =>
+                {
+                    b.HasOne("Models.EducationAccount", "EducationAccount")
+                        .WithMany("TopupSystemApplications")
+                        .HasForeignKey("EducationAccountId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Models.TopupExecutionTarget", "TopupExecutionTarget")
+                        .WithMany()
+                        .HasForeignKey("TopupExecutionTargetId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Models.TopupRule", "TopupRule")
+                        .WithMany("SystemApplications")
+                        .HasForeignKey("TopupRuleId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("EducationAccount");
+
+                    b.Navigation("TopupExecutionTarget");
+
+                    b.Navigation("TopupRule");
                 });
 
             modelBuilder.Entity("Models.User", b =>
                 {
-                    b.HasOne("Models.AuthAccount", "AuthAccount")
-                        .WithOne()
-                        .HasForeignKey("Models.User", "AuthAccountId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("Models.Citizen", "Citizen")
-                        .WithMany("Users")
-                        .HasForeignKey("CitizenId")
+                        .WithOne("User")
+                        .HasForeignKey("Models.User", "CitizenId")
                         .OnDelete(DeleteBehavior.SetNull);
-
-                    b.Navigation("AuthAccount");
 
                     b.Navigation("Citizen");
                 });
 
-            modelBuilder.Entity("Models.AdhocTopupBatch", b =>
+            modelBuilder.Entity("Models.UserStatusHistory", b =>
                 {
-                    b.Navigation("Targets");
-                });
+                    b.HasOne("Models.User", "ChangedByUser")
+                        .WithMany()
+                        .HasForeignKey("ChangedByUserId")
+                        .OnDelete(DeleteBehavior.NoAction);
 
-            modelBuilder.Entity("Models.AdhocTopupBatchTarget", b =>
-                {
-                    b.Navigation("AdhocTopupBatchTargetTransaction");
-                });
+                    b.HasOne("Models.User", "User")
+                        .WithMany("StatusHistories")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-            modelBuilder.Entity("Models.AuthAccount", b =>
-                {
-                    b.Navigation("RefreshTokens");
+                    b.Navigation("ChangedByUser");
 
-                    b.Navigation("SsoIdentities");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Models.Charge", b =>
@@ -7166,7 +6506,7 @@ namespace educationaccountmanagement.DAL.Migrations
                 {
                     b.Navigation("EducationAccount");
 
-                    b.Navigation("Users");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Models.Course", b =>
@@ -7176,20 +6516,25 @@ namespace educationaccountmanagement.DAL.Migrations
 
             modelBuilder.Entity("Models.EducationAccount", b =>
                 {
-                    b.Navigation("AdhocTopupBatchTargets");
-
                     b.Navigation("EducationCreditTransactions");
 
-                    b.Navigation("TopupBatchTargets");
+                    b.Navigation("StatusHistories");
+
+                    b.Navigation("TopupExecutionTargets");
+
+                    b.Navigation("TopupSystemApplications");
+                });
+
+            modelBuilder.Entity("Models.EducationAccountSweepReport", b =>
+                {
+                    b.Navigation("Targets");
                 });
 
             modelBuilder.Entity("Models.EducationCreditTransaction", b =>
                 {
-                    b.Navigation("AdhocTopupBatchTargetTransaction");
-
                     b.Navigation("Payment");
 
-                    b.Navigation("TopupBatchTargetTransaction");
+                    b.Navigation("TopupExecutionTarget");
                 });
 
             modelBuilder.Entity("Models.Enrollment", b =>
@@ -7209,33 +6554,36 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Navigation("Courses");
                 });
 
-            modelBuilder.Entity("Models.TopupBatch", b =>
+            modelBuilder.Entity("Models.TopupExecution", b =>
                 {
                     b.Navigation("Targets");
-                });
-
-            modelBuilder.Entity("Models.TopupBatchTarget", b =>
-                {
-                    b.Navigation("TopupBatchTargetTransaction");
                 });
 
             modelBuilder.Entity("Models.TopupRule", b =>
                 {
                     b.Navigation("Conditions");
 
-                    b.Navigation("ScheduleRules");
+                    b.Navigation("Executions");
 
-                    b.Navigation("TopupBatches");
+                    b.Navigation("Schedule");
+
+                    b.Navigation("SystemApplications");
                 });
 
             modelBuilder.Entity("Models.TopupSchedule", b =>
                 {
-                    b.Navigation("ScheduleRules");
+                    b.Navigation("Executions");
                 });
 
             modelBuilder.Entity("Models.User", b =>
                 {
                     b.Navigation("AdminProfile");
+
+                    b.Navigation("RefreshTokens");
+
+                    b.Navigation("SsoIdentities");
+
+                    b.Navigation("StatusHistories");
                 });
 #pragma warning restore 612, 618
         }

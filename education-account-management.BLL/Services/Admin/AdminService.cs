@@ -4,6 +4,7 @@ using Interfaces.Audit;
 using Mappers.Admin;
 using Results;
 using System.Linq.Expressions;
+using System.Security.Cryptography;
 using Validators;
 
 
@@ -15,6 +16,11 @@ namespace Services.Admin
         IAuditLogWriter auditLogWriter)
         : IAdminService
     {
+        private const string StaffCodePrefix = "STAFF-";
+        private const string StaffCodeCharacters = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+        private const int StaffCodeRandomLength = 5;
+        private const int StaffCodeGenerationAttempts = 10;
+
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly AdminMapper _mapper = mapper;
         private readonly IAuditLogWriter _auditLogWriter = auditLogWriter;
@@ -29,6 +35,7 @@ namespace Services.Admin
         {
             ArgumentNullException.ThrowIfNull(createDTO);
             await ValidateRequestAsync(createDTO.Role, createDTO.SchoolId, createDTO.AzureObjectId, cancellationToken);
+            var staffCode = await GenerateUniqueStaffCodeAsync(cancellationToken);
 
             var userId = await _unitOfWork.ExecuteInTransactionAsync(
                 async (_, token) =>
@@ -55,7 +62,7 @@ namespace Services.Admin
                     var profile = new AdminProfile
                     {
                         UserId = user.Id,
-                        StaffCode = createDTO.StaffCode,
+                        StaffCode = staffCode,
                         FullName = createDTO.FullName,
                         Nric = createDTO.Nric,
                         Email = createDTO.Email,
@@ -110,7 +117,6 @@ namespace Services.Admin
                         ?? throw new DataNotFoundException("Azure AD identity was not found for this admin.");
                     user.Role = updateDTO.Role;
                     identity.ProviderUserId = updateDTO.AzureObjectId;
-                    user.AdminProfile.StaffCode = updateDTO.StaffCode;
                     user.AdminProfile.FullName = updateDTO.FullName;
                     user.AdminProfile.Nric = updateDTO.Nric;
                     user.AdminProfile.Email = updateDTO.Email;
@@ -235,6 +241,26 @@ namespace Services.Admin
                 (user.Role == UserRole.SystemAdmin ||
                  user.Role == UserRole.FinanceAdmin ||
                  user.Role == UserRole.SchoolAdmin);
+
+        private async Task<string> GenerateUniqueStaffCodeAsync(CancellationToken cancellationToken)
+        {
+            for (var attempt = 0; attempt < StaffCodeGenerationAttempts; attempt++)
+            {
+                var suffix = RandomNumberGenerator.GetString(
+                    StaffCodeCharacters,
+                    StaffCodeRandomLength);
+                var candidate = $"{StaffCodePrefix}{suffix}";
+
+                if (!await _adminProfileRepository.AnyAsync(
+                        profile => profile.StaffCode == candidate,
+                        cancellationToken))
+                {
+                    return candidate;
+                }
+            }
+
+            throw new DataConflictException("Unable to generate a unique staff code. Please retry.");
+        }
 
         private static bool IsAdminRole(UserRole role)
         {

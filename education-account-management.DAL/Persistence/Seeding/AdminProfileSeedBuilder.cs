@@ -10,12 +10,23 @@ public sealed class AdminProfileSeedBuilder : ISeedBuilder
     public ModelBuilder Seed(ModelBuilder modelBuilder)
     {
         var createdAt = SeedDataConstants.CreatedAt;
+        string[] staffCodes =
+        [
+            "STAFF-K7M2Q",
+            "STAFF-R4T9X",
+            "STAFF-C8N5W",
+            "STAFF-P3H7V",
+            "STAFF-Y6D2K",
+            "STAFF-M9Q4A",
+            "STAFF-T5X8C",
+            "STAFF-H2W6R"
+        ];
 
         modelBuilder.Entity<AdminProfile>().HasData(
             Enumerable.Range(1, 8).Select(id => new AdminProfile
             {
                 Id = id,
-                StaffCode = $"STAFF-{id:000}",
+                StaffCode = staffCodes[id - 1],
                 FullName = id switch
                 {
                     <= 6 => $"System Administrator {id:000}",

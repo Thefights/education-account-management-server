@@ -20,7 +20,7 @@ namespace Controllers.Management
 
         [HttpPut]
         public async Task<IActionResult> Update(
-            [FromBody] UpdateAiAssistantSettingDTO updateDTO,
+            UpdateAiAssistantSettingDTO updateDTO,
             CancellationToken cancellationToken)
         {
             var result = await _service.UpdateAsync(updateDTO, cancellationToken);

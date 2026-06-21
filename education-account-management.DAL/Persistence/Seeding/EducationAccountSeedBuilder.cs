@@ -17,7 +17,7 @@ public sealed class EducationAccountSeedBuilder : ISeedBuilder
             Enumerable.Range(1, 10).Select(id => new EducationAccount
             {
                 Id = id,
-                AccountNumber = $"EA{id:000000000000000000}",
+                AccountNumber = $"EDU-{createdAt.Year}-{id:00000000000}",
                 EducationCreditBalance = 1000m + id * 100m,
                 Status = id % 6 == 0
                     ? EducationAccountStatus.Closed

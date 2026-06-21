@@ -3,13 +3,14 @@ using Common.HttpResults;
 using Controllers.Base;
 using DTOs.TopUp;
 using Interfaces.TopUp;
+using Filters.TopUp;
 using Models;
 
 namespace Controllers.Management
 {
     [Authorize(Roles = RolePolicy.FinanceAdmin)]
     public class TopupRuleManagementController(ITopupRuleService topupRuleService)
-        : CrudController<CreateTopupRuleDTO, GetTopupRuleDTO, UpdateTopupRuleDTO>(topupRuleService)
+        : CrudController<CreateTopupRuleDTO, GetTopupRuleDTO, UpdateTopupRuleDTO, TopupRuleFilterDTO>(topupRuleService)
     {
         private readonly ITopupRuleService _topupRuleService = topupRuleService;
 

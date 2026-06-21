@@ -1,4 +1,4 @@
-﻿using Models;
+using Models;
 using Persistence.Seeding.Constants;
 
 namespace Persistence.Seeding;
@@ -72,7 +72,7 @@ public sealed class EnrollmentSeedBuilder : ISeedBuilder
                 CitizenFullNameSnapshot = $"Citizen {id:000}",
                 CitizenEmailSnapshot = $"citizen{id:000}@example.com",
                 CitizenPhoneNumberSnapshot = $"+659{id:0000000}",
-                AccountNumberSnapshot = $"EA{id:000000000000000000}",
+                AccountNumberSnapshot = $"EDU-{createdAt.Year}-{id:00000000000}",
                 EnrolledAt = enrolledAt,
                 CompletedAt = completedAt,
                 WithdrawnAt = withdrawnAt,

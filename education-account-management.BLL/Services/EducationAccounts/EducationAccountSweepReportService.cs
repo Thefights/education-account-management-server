@@ -1,13 +1,7 @@
-using Exceptions;
 using DTOs.EducationAccounts;
-using Enums;
 using Filters.EducationAccounts;
-using Interfaces.Base;
 using Interfaces.EducationAccounts;
-using Microsoft.EntityFrameworkCore;
-using Models;
 using Results;
-using Utils;
 
 namespace Services.EducationAccounts
 {
@@ -20,20 +14,22 @@ namespace Services.EducationAccounts
             CancellationToken cancellationToken = default)
         {
             var reportDate = date ?? GetTodaySgtDate();
-            var query = _unitOfWork.Repository<EducationAccountSweepReport>().Query();
-
-            if (date.HasValue)
-            {
-                query = query.Where(x => x.BatchDate == date.Value);
-            }
-
-            var report = await query
-                .OrderByDescending(x => x.Id)
+            var report = await _unitOfWork.Repository<EducationAccountSweepReport>()
+                .Query()
+                .Where(report => report.BatchDate == reportDate)
                 .FirstOrDefaultAsync(cancellationToken);
 
             if (report == null)
             {
-                throw new DataNotFoundException("No report data available for this date. The batch job runs at 00:00 SGT — please check back later.");
+                return new EducationAccountSweepReportDTO
+                {
+                    BatchDate = reportDate.ToString("yyyy-MM-dd"),
+                    TotalDuration = "00:00:00",
+                    AccountsCreatedSuccessfully = 0,
+                    AccountsFailedManualHandling = 0,
+                    AccountsClosed = 0,
+                    AccountsExtended = 0
+                };
             }
 
             var failedCount = await _unitOfWork.Repository<EducationAccountSweepTarget>()
@@ -58,6 +54,8 @@ namespace Services.EducationAccounts
             EducationAccountSweepTargetFilterDTO filter,
             CancellationToken cancellationToken = default)
         {
+            var pageSize = Math.Clamp(filter.PageSize, 1, 100);
+            var page = Math.Max(filter.Page, 1);
             var reportId = await _unitOfWork.Repository<EducationAccountSweepReport>()
                 .Query()
                 .Where(r => r.BatchDate == batchDate)
@@ -66,7 +64,10 @@ namespace Services.EducationAccounts
 
             if (reportId == 0)
             {
-                throw new DataNotFoundException("Report not found for the given date.");
+                return new PaginationResult<EducationAccountSweepTargetRecordDTO>(
+                    0,
+                    pageSize,
+                    []);
             }
 
             var query = _unitOfWork.Repository<EducationAccountSweepTarget>()
@@ -78,16 +79,20 @@ namespace Services.EducationAccounts
                 query = query.Where(t => t.Status == filter.Status.Value);
             }
 
+            if (filter.Action.HasValue)
+            {
+                query = query.Where(t => t.Action == filter.Action.Value);
+            }
+
             if (!string.IsNullOrWhiteSpace(filter.Nric))
             {
                 query = query.Where(t => t.Nric.Contains(filter.Nric));
             }
 
             var total = await query.CountAsync(cancellationToken);
-            var pageSize = filter.PageSize > 0 ? filter.PageSize : 10;
-            var page = filter.Page > 0 ? filter.Page : 1;
 
             var items = await query
+                .OrderBy(target => target.Id)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .Select(x => new EducationAccountSweepTargetRecordDTO
@@ -106,15 +111,13 @@ namespace Services.EducationAccounts
             DateOnly batchRunDate,
             CancellationToken cancellationToken = default)
         {
-            var report = await GetReportAsync(batchRunDate, cancellationToken);
-
             var failedRecord = await _unitOfWork.Repository<EducationAccountSweepTarget>()
                 .Query()
                 .FirstOrDefaultAsync(x => x.SweepReport.BatchDate == batchRunDate && x.Nric == nric && x.Status == SweepTargetStatus.Failed, cancellationToken);
 
             if (failedRecord == null)
             {
-                throw new DataNotFoundException("Failed batch record not found.");
+                return new EducationAccountSweepManualHandlingDTO();
             }
 
             return new EducationAccountSweepManualHandlingDTO
