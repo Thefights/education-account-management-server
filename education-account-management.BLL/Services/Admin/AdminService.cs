@@ -266,5 +266,19 @@ namespace Services.Admin
         {
             return role is UserRole.SystemAdmin or UserRole.FinanceAdmin or UserRole.SchoolAdmin;
         }
+
+        public async Task UpdateAdminsStatusAsync(BatchUpdateAdminStatusDTO dto, CancellationToken cancellationToken)
+        {
+            var users = await _userRepository.GetByIdsAsync(dto.Ids, cancellationToken: cancellationToken);
+
+            await _unitOfWork.ExecuteInTransactionAsync(async (transaction, token) =>
+            {
+                foreach (var user in users)
+                {
+                    user.Status = (Enums.UserStatus)dto.Status;
+                }
+                _userRepository.UpdateRange(users);
+            }, cancellationToken);
+        }
     }
 }

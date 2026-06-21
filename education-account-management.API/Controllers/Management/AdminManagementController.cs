@@ -28,5 +28,12 @@ namespace Controllers.Management
             var result = await _service.UpdateAsync(id, updateDTO, cancellationToken);
             return Result.SuccessData(result, "Admin account updated successfully");
         }
+
+        [HttpPut("status")]
+        public async Task<IActionResult> UpdateStatus(BatchUpdateAdminStatusDTO dto, CancellationToken cancellationToken)
+        {
+            await _service.UpdateAdminsStatusAsync(dto, cancellationToken);
+            return Result.SuccessAction("Admin status updated successfully.");
+        }
     }
 }

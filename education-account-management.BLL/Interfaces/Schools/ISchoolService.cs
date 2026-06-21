@@ -4,5 +4,8 @@ using Interfaces.Base;
 namespace Interfaces.Schools
 {
     public interface ISchoolService :
-        IBaseCrudService<CreateSchoolDTO, GetSchoolDTO, UpdateSchoolDTO>;
+        IBaseCrudService<CreateSchoolDTO, GetSchoolDTO, UpdateSchoolDTO>
+    {
+        Task UpdateSchoolsStatusAsync(BatchUpdateSchoolStatusDTO dto, CancellationToken cancellationToken);
+    }
 }

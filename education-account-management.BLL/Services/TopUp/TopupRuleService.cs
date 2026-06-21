@@ -146,9 +146,7 @@ namespace Services.TopUp
             ArgumentNullException.ThrowIfNull(dto);
             if (dto.Ids.Count == 0) return;
 
-            var rules = await _repository.Query()
-                .Where(r => dto.Ids.Contains(r.Id))
-                .ToListAsync(cancellationToken);
+            var rules = await _repository.GetByIdsAsync(dto.Ids, cancellationToken: cancellationToken);
 
             if (rules.Count != dto.Ids.Distinct().Count())
             {
@@ -159,24 +157,18 @@ namespace Services.TopUp
             {
                 foreach (var rule in rules)
                 {
-                    if (rule.Status == dto.Status)
-                    {
-                        continue;
-                    }
-
-                    var oldStatus = rule.Status;
                     rule.Status = dto.Status;
-
-                    _repository.Update(rule);
-
-                    string action = rule.Status is TopupRuleStatus.Active ? "ActivateRule" : "InactivateRule";
-
-                    await _auditLogWriter.LogAsync(
-                        AuditLogCategory.TopupConfig,
-                        action,
-                        cancellationToken: token
-                    );
                 }
+
+                _repository.UpdateRange(rules);
+
+                string action = dto.Status is TopupRuleStatus.Active ? "ActivateRule" : "InactivateRule";
+
+                await _auditLogWriter.LogAsync(
+                    AuditLogCategory.TopupConfig,
+                    action,
+                    cancellationToken: token
+                );
 
             }, cancellationToken);
         }

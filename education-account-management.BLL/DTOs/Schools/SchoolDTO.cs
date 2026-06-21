@@ -36,4 +36,10 @@ namespace DTOs.Schools
 
         public string Email { get; set; } = string.Empty;
     }
+
+    public class BatchUpdateSchoolStatusDTO
+    {
+        public List<int> Ids { get; set; } = [];
+        public int Status { get; set; }
+    }
 }

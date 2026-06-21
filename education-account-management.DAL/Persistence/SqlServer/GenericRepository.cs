@@ -1,4 +1,4 @@
-﻿using Repositories.Interfaces;
+using Repositories.Interfaces;
 using System.Linq.Expressions;
 
 namespace Persistence.SqlServer
@@ -59,6 +59,34 @@ namespace Persistence.SqlServer
                 .ApplyOrdering(order);
 
             return await projection(query).ToListAsync(cancellationToken);
+        }
+
+        public async Task<List<T>> GetByIdsAsync(
+            List<int> ids,
+            string[]? includes = null,
+            CancellationToken cancellationToken = default)
+        {
+            if (ids.Count == 0 || !typeof(BaseEntity).IsAssignableFrom(typeof(T)))
+            {
+                return [];
+            }
+
+            IQueryable<T> query = BuildQuery(includes: includes);
+
+            if (ids.Count == 1)
+            {
+                int id = ids[0];
+
+                var entity = await query.FirstOrDefaultAsync(
+                    e => (e as BaseEntity)!.Id == id,
+                    cancellationToken);
+
+                return entity != null ? [entity] : [];
+            }
+
+            return await query
+                .Where(e => ids.Contains((e as BaseEntity)!.Id))
+                .ToListAsync(cancellationToken);
         }
 
         public async Task<List<T>> GetTrackedByIdsAsync(

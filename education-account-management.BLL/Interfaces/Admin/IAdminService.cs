@@ -13,5 +13,9 @@ namespace Interfaces.Admin
             int userId,
             UpdateAdminDTO updateDTO,
             CancellationToken cancellationToken = default);
+
+        Task UpdateAdminsStatusAsync(
+            BatchUpdateAdminStatusDTO dto,
+            CancellationToken cancellationToken = default);
     }
 }

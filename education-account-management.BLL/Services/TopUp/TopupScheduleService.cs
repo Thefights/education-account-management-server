@@ -145,9 +145,7 @@ namespace Services.TopUp
                     "Completed status is managed by schedule execution.");
             }
 
-            var schedules = await _repository.Query()
-                .Where(schedule => dto.Ids.Contains(schedule.Id))
-                .ToListAsync(cancellationToken);
+            var schedules = await _repository.GetByIdsAsync(dto.Ids, cancellationToken: cancellationToken);
             if (schedules.Count != dto.Ids.Distinct().Count())
             {
                 throw new ValidationFailureException(nameof(dto.Ids),
@@ -165,19 +163,18 @@ namespace Services.TopUp
             {
                 foreach (var schedule in schedules)
                 {
-                    if (schedule.Status == dto.Status) continue;
                     schedule.Status = dto.Status;
                     schedule.NextExecutionAt = ComputeFirstExecutionAt(schedule);
                     schedule.TryValidate();
-                    _repository.Update(schedule);
-
-                    await _auditLogWriter.LogAsync(
-                        AuditLogCategory.TopupConfig,
-                        dto.Status == TopupScheduleStatus.Active
-                            ? "ActivateSchedule"
-                            : "InactivateSchedule",
-                        cancellationToken: token);
                 }
+                _repository.UpdateRange(schedules);
+
+                await _auditLogWriter.LogAsync(
+                    AuditLogCategory.TopupConfig,
+                    dto.Status == TopupScheduleStatus.Active
+                        ? "ActivateSchedule"
+                        : "InactivateSchedule",
+                    cancellationToken: token);
             }, cancellationToken);
         }
 

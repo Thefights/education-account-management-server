@@ -23,8 +23,8 @@ namespace Filters.Admin
         [FilterField(FilterOperationEnum.In, nameof(User.Status))]
         public List<UserStatus>? Statuses { get; set; }
 
-        [FilterField(FilterOperationEnum.Equal, $"{nameof(User.AdminProfile)}.{nameof(AdminProfile.SchoolId)}")]
-        public int? SchoolId { get; set; }
+        [FilterField(FilterOperationEnum.In, $"{nameof(User.AdminProfile)}.{nameof(AdminProfile.SchoolId)}")]
+        public List<int>? SchoolIds { get; set; }
 
         [FilterField(FilterOperationEnum.Contains, $"{nameof(User.AdminProfile)}.{nameof(AdminProfile.StaffCode)}")]
         [SearchField($"{nameof(User.AdminProfile)}.{nameof(AdminProfile.StaffCode)}")]

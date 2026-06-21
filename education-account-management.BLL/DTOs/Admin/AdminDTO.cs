@@ -44,6 +44,9 @@ namespace DTOs.Admin
 
         public string AzureObjectId { get; set; } = string.Empty;
 
+
+
+
         public string StaffCode { get; set; } = string.Empty;
 
         public string FullName { get; set; } = string.Empty;
@@ -57,5 +60,11 @@ namespace DTOs.Admin
         public int? SchoolId { get; set; }
 
         public string? SchoolName { get; set; }
+    }
+
+    public class BatchUpdateAdminStatusDTO
+    {
+        public List<int> Ids { get; set; } = [];
+        public int Status { get; set; }
     }
 }
