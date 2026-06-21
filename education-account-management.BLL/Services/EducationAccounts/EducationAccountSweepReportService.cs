@@ -74,14 +74,14 @@ namespace Services.EducationAccounts
                 .Query()
                 .Where(t => t.SweepReportId == reportId);
 
-            if (filter.Status.HasValue)
+            if (filter.Statuses?.Count > 0)
             {
-                query = query.Where(t => t.Status == filter.Status.Value);
+                query = query.Where(t => filter.Statuses.Contains(t.Status));
             }
 
-            if (filter.Action.HasValue)
+            if (filter.Actions?.Count > 0)
             {
-                query = query.Where(t => t.Action == filter.Action.Value);
+                query = query.Where(t => filter.Actions.Contains(t.Action));
             }
 
             if (!string.IsNullOrWhiteSpace(filter.Nric))
