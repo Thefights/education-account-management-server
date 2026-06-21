@@ -152,9 +152,15 @@ public sealed class TopupManagementQueryService(IUnitOfWork unitOfWork) : ITopup
                 execution.Targets.Any(target => target.AccountNumber.Contains(accountNumber)));
         }
         if (filter.CreatedFrom.HasValue)
-            query = query.Where(execution => execution.CreatedAt >= filter.CreatedFrom.Value);
+        {
+            var createdFrom = filter.CreatedFrom.Value.Date;
+            query = query.Where(execution => execution.CreatedAt >= createdFrom);
+        }
         if (filter.CreatedTo.HasValue)
-            query = query.Where(execution => execution.CreatedAt <= filter.CreatedTo.Value);
+        {
+            var createdTo = filter.CreatedTo.Value.Date.AddDays(1).AddTicks(-1);
+            query = query.Where(execution => execution.CreatedAt <= createdTo);
+        }
         return query;
     }
 
