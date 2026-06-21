@@ -15,11 +15,11 @@
 
         public override string Sort { get; set; } = "createdAt desc";
 
-        [FilterField(FilterOperationEnum.Equal, nameof(EducationCreditTransaction.Type))]
-        public EducationCreditTransactionType? Type { get; set; }
+        [FilterField(FilterOperationEnum.In, nameof(EducationCreditTransaction.Type))]
+        public List<EducationCreditTransactionType>? Types { get; set; }
 
-        [FilterField(FilterOperationEnum.Equal, nameof(EducationCreditTransaction.Direction))]
-        public EducationCreditTransactionDirection? Direction { get; set; }
+        [FilterField(FilterOperationEnum.In, nameof(EducationCreditTransaction.Direction))]
+        public List<EducationCreditTransactionDirection>? Directions { get; set; }
 
         [FilterField(FilterOperationEnum.GreaterThanOrEqual, nameof(EducationCreditTransaction.CreatedAt))]
         public DateTime? CreatedFrom { get; set; }

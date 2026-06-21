@@ -61,4 +61,13 @@ namespace DTOs.TopUp
         [EnumDefined]
         public TopupScheduleStatus Status { get; set; }
     }
+
+    public class BatchUpdateTopupScheduleStatusDTO
+    {
+        [MessageMinLength(1)]
+        public List<int> Ids { get; set; } = [];
+
+        [EnumDefined]
+        public TopupScheduleStatus Status { get; set; }
+    }
 }

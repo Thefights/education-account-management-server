@@ -13,11 +13,11 @@ namespace Filters.TopUp
 
         public override IReadOnlyDictionary<string, string> SortFields => CustomSortFields;
 
-        [FilterField(FilterOperationEnum.Equal, "Frequency")]
-        public TopupScheduleType? Frequency { get; set; }
+        [FilterField(FilterOperationEnum.In, "Frequency")]
+        public List<TopupScheduleType>? Frequencies { get; set; }
 
-        [FilterField(FilterOperationEnum.Equal, "Status")]
-        public TopupScheduleStatus? Status { get; set; }
+        [FilterField(FilterOperationEnum.In, "Status")]
+        public List<TopupScheduleStatus>? Statuses { get; set; }
 
         [FilterField(FilterOperationEnum.GreaterThanOrEqual, "CreatedAt")]
         public DateTime? CreatedFrom { get; set; }

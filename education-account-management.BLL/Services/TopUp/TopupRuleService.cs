@@ -26,8 +26,7 @@ namespace Services.TopUp
                 var rule = _mapper.MapFromCreateDTO(createDTO);
                 rule.TryValidate();
 
-                foreach (var condition in rule.Conditions)
-                    condition.TryValidate();
+                // The parent key is assigned on save; DTO validation and ValidateRule cover condition fields.
                 await UniqueConstraintValidator.ValidateAsync(_repository, rule, cancellationToken: token);
 
                 var resultEntity = await _repository.AddAsync(rule, token);

@@ -19,7 +19,8 @@ namespace Filters.EducationAccounts
 
         public override IReadOnlyDictionary<string, string> SortFields => AllowedSortFields;
 
-        public string? Status { get; set; }
+        [FilterField(FilterOperationEnum.In, nameof(EducationAccount.Status))]
+        public List<EducationAccountStatus>? Statuses { get; set; }
 
         [FilterField(FilterOperationEnum.Contains, "Citizen.Nric")]
         [SearchField("Citizen.Nric")]
@@ -29,31 +30,5 @@ namespace Filters.EducationAccounts
         [SearchField("Citizen.FullName")]
         public string? Name { get; set; }
 
-        protected override string? BuildFilter()
-        {
-            var baseFilter = base.BuildFilter();
-            var filters = string.IsNullOrWhiteSpace(baseFilter)
-                ? []
-                : baseFilter.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).ToList();
-
-            if (!string.IsNullOrWhiteSpace(Status))
-            {
-                if (string.Equals(Status, "Active", StringComparison.OrdinalIgnoreCase))
-                {
-                    filters.Add($"Status = {(int)EducationAccountStatus.Active}");
-                }
-                else if (string.Equals(Status, "Extended", StringComparison.OrdinalIgnoreCase))
-                {
-                    filters.Add($"Status = {(int)EducationAccountStatus.Extended}");
-                }
-                else if (string.Equals(Status, "Inactive", StringComparison.OrdinalIgnoreCase) ||
-                         string.Equals(Status, "Closed", StringComparison.OrdinalIgnoreCase))
-                {
-                    filters.Add($"Status = {(int)EducationAccountStatus.Closed}");
-                }
-            }
-
-            return filters.Count != 0 ? string.Join(",", filters) : null;
-        }
     }
 }

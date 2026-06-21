@@ -133,6 +133,54 @@ namespace Services.TopUp
             await _unitOfWork.SaveChangeAsync(cancellationToken);
         }
 
+        public async Task UpdateSchedulesStatusAsync(
+            BatchUpdateTopupScheduleStatusDTO dto,
+            CancellationToken cancellationToken = default)
+        {
+            ArgumentNullException.ThrowIfNull(dto);
+            if (dto.Ids.Count == 0) return;
+            if (dto.Status == TopupScheduleStatus.Completed)
+            {
+                throw new ValidationFailureException(nameof(dto.Status),
+                    "Completed status is managed by schedule execution.");
+            }
+
+            var schedules = await _repository.Query()
+                .Where(schedule => dto.Ids.Contains(schedule.Id))
+                .ToListAsync(cancellationToken);
+            if (schedules.Count != dto.Ids.Distinct().Count())
+            {
+                throw new ValidationFailureException(nameof(dto.Ids),
+                    "One or more Top-up schedules do not exist.");
+            }
+            if (dto.Status == TopupScheduleStatus.Active && schedules.Any(schedule =>
+                    schedule.Frequency == TopupScheduleType.OneTime &&
+                    schedule.Status == TopupScheduleStatus.Completed))
+            {
+                throw new ValidationFailureException(nameof(dto.Ids),
+                    "A completed OneTime schedule cannot be activated again.");
+            }
+
+            await _unitOfWork.ExecuteInTransactionAsync(async (transaction, token) =>
+            {
+                foreach (var schedule in schedules)
+                {
+                    if (schedule.Status == dto.Status) continue;
+                    schedule.Status = dto.Status;
+                    schedule.NextExecutionAt = ComputeFirstExecutionAt(schedule);
+                    schedule.TryValidate();
+                    _repository.Update(schedule);
+
+                    await _auditLogWriter.LogAsync(
+                        AuditLogCategory.TopupConfig,
+                        dto.Status == TopupScheduleStatus.Active
+                            ? "ActivateSchedule"
+                            : "InactivateSchedule",
+                        cancellationToken: token);
+                }
+            }, cancellationToken);
+        }
+
         private DateTime? ComputeFirstExecutionAt(TopupSchedule schedule)
         {
             if (schedule.Status != TopupScheduleStatus.Active)
