@@ -1,4 +1,3 @@
-using Enums;
 using Models;
 using Persistence.Seeding.Constants;
 
@@ -13,20 +12,25 @@ public sealed class UserSeedBuilder : ISeedBuilder
         var createdAt = SeedDataConstants.CreatedAt;
 
         modelBuilder.Entity<User>().HasData(
-            Enumerable.Range(1, 10).Select(id => new User
-            {
-                Id = id,
-                Role = id switch
-                {
-                    1 => UserRole.SystemAdmin,
-                    2 => UserRole.FinanceAdmin,
-                    3 => UserRole.SchoolAdmin,
-                    _ => UserRole.AccountHolder
-                },
-                AuthAccountId = id,
-                CitizenId = id,
-                CreatedAt = createdAt
-            }).ToArray());
+     Enumerable.Range(1, 15).Select(id => new User
+     {
+         Id = id,
+         Role = id switch
+         {
+             <= 6 => UserRole.SystemAdmin,
+
+             7 => UserRole.FinanceAdmin,
+             8 => UserRole.SchoolAdmin,
+
+             _ => UserRole.AccountHolder
+         },
+         Status = id % 5 == 0 ? UserStatus.Inactive : UserStatus.Active,
+         FailedLoginCount = id % 3,
+         LockedUntil = id == 5 ? createdAt.AddHours(1) : null,
+         LastLoginAt = id % 2 == 0 ? createdAt.AddDays(id) : null,
+         CitizenId = id >= 9 ? id : null,
+         CreatedAt = createdAt
+     }).ToArray());
 
         return modelBuilder;
     }

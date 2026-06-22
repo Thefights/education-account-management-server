@@ -1,4 +1,6 @@
 using EntityAnnotations.DateAttributes;
+using System;
+using System.Collections.Generic;
 
 namespace Models
 {
@@ -10,42 +12,31 @@ namespace Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal EducationCreditBalance { get; set; }
 
-        [Timestamp]
-        public byte[] RowVersion { get; set; } = [];
-
         [EnumDefined]
         public EducationAccountStatus Status { get; set; } = EducationAccountStatus.Active;
 
-        public DateTime OpenedAt { get; set; }
+        public DateTime OpenedAt { get; set; } = DateTime.UtcNow;
 
         [DateValidator(NotBefore = nameof(OpenedAt))]
         public DateTime? ClosedAt { get; set; }
 
-        [DateValidator(NotBefore = nameof(OpenedAt))]
-        public DateTime? ExtendedUntil { get; set; }
-
-        public int? OpenedByUserId { get; set; }
-        [ForeignKey(nameof(OpenedByUserId))]
-        public User? OpenedByUser { get; set; }
-
-        public int? ClosedByUserId { get; set; }
-        [ForeignKey(nameof(ClosedByUserId))]
-        public User? ClosedByUser { get; set; }
-
-        [NotDefaultValue, Unique]
+        [NotDefaultValue]
         public int CitizenId { get; set; }
         public Citizen Citizen { get; set; } = null!;
 
-        [OnDelete(OnDeleteBehavior.Restrict)]
-        public ICollection<TopupBatchTarget> TopupBatchTargets { get; set; } = [];
+        [Timestamp]
+        public byte[] RowVersion { get; set; } = [];
 
         [OnDelete(OnDeleteBehavior.Restrict)]
-        public ICollection<AdhocTopupBatchTarget> AdhocTopupBatchTargets { get; set; } = [];
+        public ICollection<TopupExecutionTarget> TopupExecutionTargets { get; set; } = [];
+
+        [OnDelete(OnDeleteBehavior.Restrict)]
+        public ICollection<TopupSystemApplication> TopupSystemApplications { get; set; } = [];
 
         [OnDelete(OnDeleteBehavior.Restrict)]
         public ICollection<EducationCreditTransaction> EducationCreditTransactions { get; set; } = [];
 
-        [OnDelete(OnDeleteBehavior.Restrict)]
-        public ICollection<Enrollment> Enrollments { get; set; } = [];
+        [OnDelete(OnDeleteBehavior.Cascade)]
+        public ICollection<EducationAccountStatusHistory> StatusHistories { get; set; } = [];
     }
 }

@@ -3,19 +3,11 @@ using Utils;
 namespace EntityAnnotations
 {
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
-    public class MessageMaxLengthAttribute : MaxLengthAttribute
+    public class MessageMaxLengthAttribute(int maxLength) : MaxLengthAttribute(maxLength)
     {
-        private readonly int _maxLength;
-
-        public MessageMaxLengthAttribute(int maxLength) : base(maxLength)
-        {
-            _maxLength = maxLength;
-            ErrorMessage = "{0} can't exceed {1} characters";
-        }
-
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
-            if (value is string str && str.Length > _maxLength)
+            if (value is string str && str.Length > Length)
             {
                 return new ValidationResult(
                     FormatErrorMessage(validationContext.DisplayName),
@@ -28,7 +20,7 @@ namespace EntityAnnotations
 
         public override string FormatErrorMessage(string name)
         {
-            return string.Format(ErrorMessageString, name.SplitWords(), _maxLength);
+            return string.Format("{0} can't exceed {1} characters", name.SplitWords(), Length);
         }
     }
 }

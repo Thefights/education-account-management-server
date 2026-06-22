@@ -12,22 +12,57 @@ public sealed class TopupRuleConditionSeedBuilder : ISeedBuilder
     public ModelBuilder Seed(ModelBuilder modelBuilder)
     {
         var createdAt = SeedDataConstants.CreatedAt;
+        var random = new Random(12345);
+        var conditions = new List<TopupRuleCondition>();
+        
+        int conditionId = 1;
+        for (int ruleId = 1; ruleId <= 50; ruleId++)
+        {
+            var isOrRule = ruleId % 4 == 0;
+            var field = random.NextDouble() > 0.5 ? TopupRuleConditionField.Balance : TopupRuleConditionField.Age;
 
-        modelBuilder.Entity<TopupRuleCondition>().HasData(
-            Enumerable.Range(1, 10).Select(id => new TopupRuleCondition
+            decimal minVal;
+            decimal maxVal;
+
+            if (field == TopupRuleConditionField.Age)
             {
-                Id = id,
-                Field = id % 3 == 0
-                    ? TopupRuleConditionField.SchoolingStatus
-                    : id % 2 == 0 ? TopupRuleConditionField.Balance : TopupRuleConditionField.Age,
-                Operator = id % 2 == 0
-                    ? TopupRuleConditionOperator.GreaterThanOrEqual
-                    : TopupRuleConditionOperator.Equals,
-                ValueText = id % 3 == 0 ? "Enrolled" : null,
-                ValueNumber = id % 3 == 0 ? null : 18m + id,
-                TopupRuleId = id,
+                minVal = random.Next(12, 18);
+                maxVal = random.Next((int)minVal + 1, 25);
+            }
+            else
+            {
+                minVal = random.Next(0, 10) * 100m; // 0 to 900
+                maxVal = minVal + random.Next(1, 10) * 100m; // min + 100 to 900
+            }
+
+            // Min Condition (>=)
+            conditions.Add(new TopupRuleCondition
+            {
+                Id = conditionId++,
+                Field = field,
+                Operator = TopupRuleConditionOperator.GreaterThanOrEqual,
+                ValueNumber = minVal,
+                ConditionAmount = isOrRule ? 100m : null,
+                DisplayOrder = 1,
+                TopupRuleId = ruleId,
                 CreatedAt = createdAt
-            }).ToArray());
+            });
+
+            // Max Condition (<=)
+            conditions.Add(new TopupRuleCondition
+            {
+                Id = conditionId++,
+                Field = field,
+                Operator = TopupRuleConditionOperator.LessThanOrEqual,
+                ValueNumber = maxVal,
+                ConditionAmount = isOrRule ? 150m : null,
+                DisplayOrder = 2,
+                TopupRuleId = ruleId,
+                CreatedAt = createdAt
+            });
+        }
+
+        modelBuilder.Entity<TopupRuleCondition>().HasData(conditions);
 
         return modelBuilder;
     }

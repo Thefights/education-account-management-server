@@ -1,5 +1,0 @@
-<Solution>
-  <Project Path="../education-account-management.BLL/education-account-management.BLL.csproj" />
-  <Project Path="../education-account-management.DAL/education-account-management.DAL.csproj" />
-  <Project Path="education-account-management.API.csproj" />
-</Solution>

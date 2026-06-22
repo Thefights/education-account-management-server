@@ -2,13 +2,8 @@
 
 namespace EntityAnnotations.RegExAttributes
 {
-    public partial class PasswordValidatorAttribute : ValidationAttribute
+    public partial class PasswordValidatorAttribute() : ValidationAttribute
     {
-        public PasswordValidatorAttribute()
-        {
-            ErrorMessage = "Password must be at least 8 characters, include upper/lowercase, number and special character.";
-        }
-
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
             if (value == null)
@@ -38,5 +33,8 @@ namespace EntityAnnotations.RegExAttributes
 
         [GeneratedRegex(@"^\$2[aby]\$\d{2}\$[./A-Za-z0-9]{53}$")]
         private static partial Regex BcryptHashRegex();
+
+        public override string FormatErrorMessage(string name) =>
+            "Password must be at least 8 characters, include upper/lowercase, number and special character.";
     }
 }

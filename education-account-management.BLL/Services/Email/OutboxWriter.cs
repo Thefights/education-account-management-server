@@ -31,10 +31,7 @@ namespace Services.Email
             var outboxMessage = new OutboxMessage
             {
                 Type = SendEmailMessageType,
-                Status = OutboxMessageStatus.Pending,
-                PayloadJson = JsonSerializer.Serialize(payload),
-                RetryCount = 0,
-                OccurredAt = DateTime.UtcNow
+                PayloadJson = JsonSerializer.Serialize(payload)
             };
             outboxMessage.TryValidate();
 

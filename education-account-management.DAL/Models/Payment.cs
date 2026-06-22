@@ -1,4 +1,4 @@
-namespace Models
+﻿namespace Models
 {
     public class Payment : AuditEntity
     {
@@ -15,7 +15,7 @@ namespace Models
         [MessageRequired, MessageMaxLength(20)]
         public string AccountNumberSnapshot { get; set; } = string.Empty;
 
-        [MessageRequired, MessageMaxLength(9)]
+        [MessageRequired, MessageMaxLength(9), SingaporeNric]
         public string CitizenNricSnapshot { get; set; } = string.Empty;
 
         [MessageRequired, MessageMaxLength(150)]

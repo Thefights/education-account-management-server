@@ -1,0 +1,36 @@
+using Interfaces.Audit;
+using Interfaces.TopUp;
+using Repositories.Interfaces;
+
+namespace Infrastructure
+{
+    public class TopupDailyWorker(IServiceScopeFactory serviceScopeFactory,
+        ILogger<TopupDailyWorker> logger)
+        : BaseBackgroundJob(serviceScopeFactory, logger)
+    {
+        protected override string JobName => nameof(TopupDailyWorker);
+
+        protected override TimeSpan Interval => TimeSpan.FromMinutes(1);
+
+        protected override async Task ExecuteJobAsync(
+            IServiceProvider serviceProvider,
+            CancellationToken cancellationToken)
+        {
+            var backgroundService = serviceProvider.GetRequiredService<ITopupBackgroundService>();
+            var auditLogWriter = serviceProvider.GetRequiredService<IAuditLogWriter>();
+            var unitOfWork = serviceProvider.GetRequiredService<IUnitOfWork>();
+
+            var results = await backgroundService.ExecuteDueTopupsAsync(cancellationToken);
+
+            if (results.Count == 0)
+                return;
+
+            await auditLogWriter.LogAsync(
+                Enums.AuditLogCategory.Transaction,
+                "Due Top-Up Sweep Completed",
+                cancellationToken: cancellationToken);
+
+            await unitOfWork.SaveChangeAsync(cancellationToken);
+        }
+    }
+}

@@ -1,4 +1,4 @@
-using EntityAnnotations.DateAttributes;
+﻿using EntityAnnotations.DateAttributes;
 
 namespace Models
 {
@@ -21,7 +21,7 @@ namespace Models
         [MessageMaxLength(1000)]
         public string? CourseDescriptionSnapshot { get; set; }
 
-        [MessageRequired, MessageMaxLength(9)]
+        [MessageRequired, MessageMaxLength(9), SingaporeNric]
         public string CitizenNricSnapshot { get; set; } = string.Empty;
 
         [MessageRequired, MessageMaxLength(150)]

@@ -13,32 +13,27 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(citizen => citizen.Email);
             });
 
-            modelBuilder.Entity<AuthAccount>(entity =>
-            {
-                entity.HasIndex(authAccount => authAccount.Status);
-            });
-
             modelBuilder.Entity<SsoIdentity>(entity =>
             {
-                entity.HasIndex(ssoIdentity => ssoIdentity.AuthAccountId);
+                entity.HasIndex(ssoIdentity => ssoIdentity.UserId);
                 entity.HasIndex(ssoIdentity => ssoIdentity.Provider);
                 entity.HasIndex(ssoIdentity => ssoIdentity.ProviderUserId);
                 entity.HasIndex(ssoIdentity => new { ssoIdentity.Provider, ssoIdentity.ProviderUserId }).IsUnique();
-                entity.HasIndex(ssoIdentity => new { ssoIdentity.AuthAccountId, ssoIdentity.Provider }).IsUnique();
+                entity.HasIndex(ssoIdentity => new { ssoIdentity.UserId, ssoIdentity.Provider }).IsUnique();
             });
 
             modelBuilder.Entity<RefreshToken>(entity =>
             {
-                entity.HasIndex(refreshToken => refreshToken.AuthAccountId);
+                entity.HasIndex(refreshToken => refreshToken.UserId);
                 entity.HasIndex(refreshToken => refreshToken.ExpiresAt);
                 entity.HasIndex(refreshToken => refreshToken.RevokedAt);
             });
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasIndex(user => user.AuthAccountId).IsUnique();
-                entity.HasIndex(user => user.CitizenId);
+                entity.HasIndex(user => user.CitizenId).IsUnique();
                 entity.HasIndex(user => user.Role);
+                entity.HasIndex(user => user.Status);
             });
 
             modelBuilder.Entity<AdminProfile>(entity =>
@@ -53,7 +48,6 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(educationAccount => educationAccount.Status);
                 entity.HasIndex(educationAccount => educationAccount.OpenedAt);
                 entity.HasIndex(educationAccount => educationAccount.ClosedAt);
-                entity.HasIndex(educationAccount => educationAccount.ExtendedUntil);
             });
 
             modelBuilder.Entity<School>(entity =>
@@ -110,31 +104,37 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(condition => condition.Operator);
             });
 
-            modelBuilder.Entity<TopupBatch>(entity =>
+            modelBuilder.Entity<TopupSchedule>(entity =>
             {
-                entity.HasIndex(batch => batch.TopupRuleId);
-                entity.HasIndex(batch => batch.Status);
+                entity.HasIndex(s => s.TopupRuleId).IsUnique();
+                entity.HasIndex(s => s.Status);
+                entity.HasIndex(s => s.NextExecutionAt);
             });
 
-            modelBuilder.Entity<TopupBatchTarget>(entity =>
+            modelBuilder.Entity<TopupExecution>(entity =>
             {
-                entity.HasIndex(target => target.TopupBatchId);
-                entity.HasIndex(target => target.EducationAccountId);
-                entity.HasIndex(target => target.Status);
-                entity.HasIndex(target => new { target.TopupBatchId, target.EducationAccountId }).IsUnique();
+                entity.HasIndex(e => e.SourceType);
+                entity.HasIndex(e => e.TopupRuleId);
+                entity.HasIndex(e => e.Status);
+                entity.HasIndex(e => e.ExecutionCode).IsUnique();
+                entity.HasIndex(e => e.IdempotencyKey).IsUnique();
             });
 
-            modelBuilder.Entity<AdhocTopupBatch>(entity =>
+            modelBuilder.Entity<TopupExecutionTarget>(entity =>
             {
-                entity.HasIndex(batch => batch.Status);
+                entity.HasIndex(t => t.TopupExecutionId);
+                entity.HasIndex(t => t.EducationAccountId);
+                entity.HasIndex(t => t.Status);
+                entity.HasIndex(t => new { t.TopupExecutionId, t.AccountNumber }).IsUnique();
+                entity.HasIndex(t => t.EducationCreditTransactionId).IsUnique();
             });
 
-            modelBuilder.Entity<AdhocTopupBatchTarget>(entity =>
+            modelBuilder.Entity<TopupSystemApplication>(entity =>
             {
-                entity.HasIndex(target => target.AdhocTopupBatchId);
-                entity.HasIndex(target => target.EducationAccountId);
-                entity.HasIndex(target => target.Status);
-                entity.HasIndex(target => new { target.AdhocTopupBatchId, target.EducationAccountId }).IsUnique();
+                entity.HasIndex(a => a.TopupRuleId);
+                entity.HasIndex(a => a.EducationAccountId);
+                entity.HasIndex(a => new { a.TopupRuleId, a.EducationAccountId }).IsUnique();
+                entity.HasIndex(a => a.TopupExecutionTargetId).IsUnique();
             });
 
             modelBuilder.Entity<EducationCreditTransaction>(entity =>
@@ -144,16 +144,18 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(transaction => transaction.Direction);
             });
 
-            modelBuilder.Entity<TopupBatchTargetTransaction>(entity =>
+            modelBuilder.Entity<EducationAccountStatusHistory>(entity =>
             {
-                entity.HasIndex(link => link.TopupBatchTargetId).IsUnique();
-                entity.HasIndex(link => link.EducationCreditTransactionId).IsUnique();
+                entity.HasIndex(history => history.EducationAccountId);
+                entity.HasIndex(history => history.ChangedByUserId);
+                entity.HasIndex(history => history.ChangedAt);
             });
 
-            modelBuilder.Entity<AdhocTopupBatchTargetTransaction>(entity =>
+            modelBuilder.Entity<UserStatusHistory>(entity =>
             {
-                entity.HasIndex(link => link.AdhocTopupBatchTargetId).IsUnique();
-                entity.HasIndex(link => link.EducationCreditTransactionId).IsUnique();
+                entity.HasIndex(history => history.UserId);
+                entity.HasIndex(history => history.ChangedByUserId);
+                entity.HasIndex(history => history.ChangedAt);
             });
 
             modelBuilder.Entity<AuditLog>(entity =>

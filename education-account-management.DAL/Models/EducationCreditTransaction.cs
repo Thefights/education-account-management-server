@@ -1,3 +1,5 @@
+using System;
+
 namespace Models
 {
     public class EducationCreditTransaction : AuditEntity
@@ -28,10 +30,7 @@ namespace Models
         public EducationAccount EducationAccount { get; set; } = null!;
 
         [OnDelete(OnDeleteBehavior.Restrict)]
-        public TopupBatchTargetTransaction? TopupBatchTargetTransaction { get; set; }
-
-        [OnDelete(OnDeleteBehavior.Restrict)]
-        public AdhocTopupBatchTargetTransaction? AdhocTopupBatchTargetTransaction { get; set; }
+        public TopupExecutionTarget? TopupExecutionTarget { get; set; }
 
         [OnDelete(OnDeleteBehavior.Restrict)]
         public Payment? Payment { get; set; }

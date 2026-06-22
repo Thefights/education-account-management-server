@@ -83,6 +83,7 @@ namespace Persistence.SqlServer
                 finally
                 {
                     await transactionContext.ExecuteRollbackAsync();
+                    _dbContext.ChangeTracker.Clear();
                 }
 
                 throw;

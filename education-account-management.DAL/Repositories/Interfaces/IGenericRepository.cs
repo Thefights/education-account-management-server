@@ -1,4 +1,3 @@
-﻿using Common;
 using System.Linq.Expressions;
 
 namespace Repositories.Interfaces
@@ -14,6 +13,7 @@ namespace Repositories.Interfaces
         Task<(int Count, List<TResult> Items)> GetProjectedPaginatedAsync<TResult>(Func<IQueryable<T>, IQueryable<TResult>> projection, Expression<Func<T, bool>>? filter, string order, int page, int pageSize, string[]? includes = null, CancellationToken cancellationToken = default);
         Task<(int Count, List<TResult> Items)> GetProjectedPaginatedAsync<TResult>(Func<IQueryable<T>, IQueryable<TResult>> projection, Expression<Func<T, bool>>? filterExpr, string? filterStr, string order, int page, int pageSize, string[]? includes = null, CancellationToken cancellationToken = default);
         Task<(int Count, List<TResult> Items)> GetProjectedPaginatedAsync<TResult>(Func<IQueryable<T>, IQueryable<TResult>> projection, Expression<Func<T, bool>>? filterExpr, string? filterStr, string? search, string[]? searchFields, string order, int page, int pageSize, string[]? includes = null, CancellationToken cancellationToken = default);
+        Task<List<T>> GetByIdsAsync(List<int> ids, string[]? includes = null, CancellationToken cancellationToken = default);
         Task<List<T>> GetTrackedByIdsAsync(List<int> ids, string[]? includes = null, CancellationToken cancellationToken = default);
 
         Task<T?> GetTrackedByIdAsync(int id, string[]? includes = null, CancellationToken cancellationToken = default);

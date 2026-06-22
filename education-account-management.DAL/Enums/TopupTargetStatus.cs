@@ -3,7 +3,8 @@ namespace Enums
     public enum TopupTargetStatus
     {
         Pending = 1,
-        Success = 2,
-        Failed = 3
+        Processing = 2,
+        Success = 3,
+        Failed = 4
     }
 }

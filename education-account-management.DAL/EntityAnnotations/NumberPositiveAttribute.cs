@@ -3,13 +3,8 @@ using Utils;
 namespace EntityAnnotations
 {
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
-    public class NumberPositiveAttribute : ValidationAttribute
+    public class NumberPositiveAttribute() : ValidationAttribute
     {
-        public NumberPositiveAttribute()
-        {
-            ErrorMessage = "{0} can't be negative";
-        }
-
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
             var number = TryConvertToDouble(value);
@@ -31,7 +26,7 @@ namespace EntityAnnotations
 
         public override string FormatErrorMessage(string name)
         {
-            return string.Format(ErrorMessageString, name.SplitWords());
+            return string.Format("{0} can't be negative", name.SplitWords());
         }
 
         private static double? TryConvertToDouble(object? value)

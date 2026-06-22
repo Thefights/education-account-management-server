@@ -1,11 +1,9 @@
 namespace Exceptions
 {
-    public class ValidationFailureException : UserFacingException
+    public class ValidationFailureException() : UserFacingException("Validation failed", 400)
     {
         public IDictionary<string, string> FieldErrors { get; } = new Dictionary<string, string>();
         public IList<string> GlobalErrors { get; } = [];
-
-        public ValidationFailureException() : base("Validation failed", 400) { }
 
         public ValidationFailureException(string field, string errorMessage) : this()
         {

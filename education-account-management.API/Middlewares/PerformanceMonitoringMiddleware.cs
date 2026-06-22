@@ -42,14 +42,14 @@ namespace Middlewares
 
             var user = context.User;
             _logger.LogWarning(
-                "Slow API request completed. Method: {Method}, Path: {Path}, StatusCode: {StatusCode}, ElapsedMs: {ElapsedMs}, CorrelationId: {CorrelationId}, TraceId: {TraceId}, AuthId: {AuthId}, UserName: {UserName}, Role: {Role}.",
+                "Slow API request completed. Method: {Method}, Path: {Path}, StatusCode: {StatusCode}, ElapsedMs: {ElapsedMs}, CorrelationId: {CorrelationId}, TraceId: {TraceId}, UserId: {UserId}, UserName: {UserName}, Role: {Role}.",
                 context.Request.Method,
                 context.Request.Path.Value,
                 statusCode,
                 elapsedMs,
                 GetCorrelationId(context),
                 Activity.Current?.Id ?? context.TraceIdentifier,
-                user.FindFirstValue("AuthId"),
+                user.FindFirstValue(ClaimTypes.NameIdentifier),
                 user.FindFirstValue(ClaimTypes.Name),
                 user.FindFirstValue(ClaimTypes.Role));
         }

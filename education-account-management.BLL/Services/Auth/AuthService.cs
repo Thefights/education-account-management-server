@@ -1,4 +1,6 @@
+using DTOs.Admin;
 using DTOs.Auth;
+using Interfaces.Audit;
 using Interfaces.Auth;
 using Microsoft.IdentityModel.Protocols;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
@@ -11,25 +13,30 @@ namespace Services.Auth
 {
     public class AuthService(
         IUnitOfWork unitOfWork,
+        ICurrentUserService currentUserService,
+        ITokenBlacklistService tokenBlacklistService,
         AppConfiguration configuration,
-        ITokenBlacklistService tokenBlacklistService)
+        IAuditLogWriter auditLogWriter)
         : IAuthService
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly AppConfiguration _configuration = configuration;
-        private readonly IGenericRepository<SsoIdentity> _ssoIdentityRepository = unitOfWork.Repository<SsoIdentity>();
-        private readonly IGenericRepository<User> _userRepository = unitOfWork.Repository<User>();
-        private readonly IGenericRepository<EducationAccount> _educationAccountRepository = unitOfWork.Repository<EducationAccount>();
-        private readonly IGenericRepository<RefreshToken> _refreshTokenRepository = unitOfWork.Repository<RefreshToken>();
+        private readonly ICurrentUserService _currentUserService = currentUserService;
         private readonly ITokenBlacklistService _tokenBlacklistService = tokenBlacklistService;
-
+        private readonly IAuditLogWriter _auditLogWriter = auditLogWriter;
+        private readonly IGenericRepository<AdminProfile> _adminRepository = unitOfWork.Repository<AdminProfile>();
+        private readonly IGenericRepository<RefreshToken> _refreshTokenRepository = unitOfWork.Repository<RefreshToken>();
+        private readonly IGenericRepository<User> _userRepository = unitOfWork.Repository<User>();
+        private readonly IGenericRepository<UserStatusHistory> _userStatusHistoryRepository = unitOfWork.Repository<UserStatusHistory>();
+        private readonly IGenericRepository<SsoIdentity> _ssoIdentityRepository = unitOfWork.Repository<SsoIdentity>();
+        private readonly IGenericRepository<Models.EducationAccount> _educationAccountRepository = unitOfWork.Repository<Models.EducationAccount>();
         public async Task<AuthLoginResponseDTO> LoginWithMockSingpassAsync(
             CancellationToken cancellationToken = default)
         {
             var user = await ResolveUserFromSsoAsync(
                 SsoProvider.Singpass,
                 cancellationToken,
-                "singpass-subject-004");
+                "singpass-subject-009");
 
             if (user.Role != UserRole.AccountHolder)
             {
@@ -90,7 +97,7 @@ namespace Services.Auth
             var now = DateTime.UtcNow;
             var tokenHash = TokenUtil.HashToken(refreshToken);
             var refreshTokenEntity = await _refreshTokenRepository.Query(tracking: true)
-                .Include(token => token.AuthAccount)
+                .Include(token => token.User)
                 .FirstOrDefaultAsync(
                     token => token.TokenHash == tokenHash,
                     cancellationToken);
@@ -102,18 +109,17 @@ namespace Services.Auth
                 throw new UnauthorizedAccessException("Invalid refresh token");
             }
 
-            if (refreshTokenEntity.AuthAccount.Status != AuthAccountStatus.Active
-                || refreshTokenEntity.AuthAccount.LockedUntil > now)
+            if (refreshTokenEntity.User.Status != UserStatus.Active
+                || refreshTokenEntity.User.LockedUntil > now)
             {
                 throw new UnauthorizedAccessException("Invalid refresh token");
             }
 
             var user = await _userRepository.Query(tracking: true)
-                .Include(user => user.AuthAccount)
                 .Include(user => user.Citizen)
                 .Include(user => user.AdminProfile)
                 .FirstOrDefaultAsync(
-                    user => user.AuthAccountId == refreshTokenEntity.AuthAccountId,
+                    user => user.Id == refreshTokenEntity.UserId,
                     cancellationToken)
                 ?? throw new UnauthorizedAccessException("Invalid refresh token");
 
@@ -220,7 +226,10 @@ namespace Services.Auth
             }
 
             var ssoIdentity = await _ssoIdentityRepository.Query(tracking: true)
-                .Include(identity => identity.AuthAccount)
+                .Include(identity => identity.User)
+                    .ThenInclude(user => user.Citizen)
+                .Include(identity => identity.User)
+                    .ThenInclude(user => user.AdminProfile)
                 .FirstOrDefaultAsync(
                     identity =>
                         identity.Provider == provider
@@ -232,26 +241,18 @@ namespace Services.Auth
                 throw new UnauthorizedAccessException("Invalid login credentials");
             }
 
-            if (ssoIdentity.AuthAccount.Status != AuthAccountStatus.Active)
+            if (ssoIdentity.User.Status != UserStatus.Active)
             {
                 throw new UnauthorizedAccessException("Invalid login credentials");
             }
 
-            if (ssoIdentity.AuthAccount.LockedUntil.HasValue
-                && ssoIdentity.AuthAccount.LockedUntil.Value > DateTime.UtcNow)
+            if (ssoIdentity.User.LockedUntil.HasValue
+                && ssoIdentity.User.LockedUntil.Value > DateTime.UtcNow)
             {
                 throw new UnauthorizedAccessException("Account is temporarily locked");
             }
 
-            var user = await _userRepository.Query(tracking: true)
-                .Include(user => user.AuthAccount)
-                .Include(user => user.Citizen)
-                .Include(user => user.AdminProfile)
-                .FirstOrDefaultAsync(
-                    user => user.AuthAccountId == ssoIdentity.AuthAccountId,
-                    cancellationToken);
-
-            return user ?? throw new UnauthorizedAccessException("Invalid login credentials");
+            return ssoIdentity.User;
         }
 
         private async Task<AuthLoginResponseDTO> IssueLoginResultAsync(
@@ -263,13 +264,13 @@ namespace Services.Auth
             var refreshToken = TokenUtil.GenerateRefreshToken();
             var refreshTokenExpiresAt = now.AddDays(_configuration.RefreshTokenConfig.ExpirationDays);
 
-            user.AuthAccount.LastLoginAt = now;
-            user.AuthAccount.FailedLoginCount = 0;
+            user.LastLoginAt = now;
+            user.FailedLoginCount = 0;
 
             await _refreshTokenRepository.AddAsync(
                 new RefreshToken
                 {
-                    AuthAccountId = user.AuthAccountId,
+                    UserId = user.Id,
                     TokenHash = TokenUtil.HashToken(refreshToken),
                     ExpiresAt = refreshTokenExpiresAt
                 },
@@ -283,10 +284,109 @@ namespace Services.Auth
                 AccessTokenExpiresAt = accessTokenExpiresAt,
                 RefreshToken = refreshToken,
                 RefreshTokenExpiresAt = refreshTokenExpiresAt,
-                AuthAccountId = user.AuthAccountId,
                 UserId = user.Id,
                 Role = user.Role.ToString(),
             };
+        }
+
+        public async Task UpdateStatusAsync(
+            UpdateAdminStatusDTO dto,
+            CancellationToken cancellationToken = default)
+        {
+            ArgumentNullException.ThrowIfNull(dto);
+
+            // Execute the operations inside a database transaction to ensure consistency
+            await _unitOfWork.ExecuteInTransactionAsync(async (transaction, token) =>
+            {
+                // Fetch the admin profiles with their users.
+                var adminProfiles = await _adminRepository
+                    .Query(tracking: true)
+                    .Include(a => a.User)
+                    .Where(a => dto.AdminIds.Contains(a.Id))
+                    .ToListAsync(token);
+
+                // Throw an exception if some of the requested admin profiles are not found
+                if (adminProfiles.Count != dto.AdminIds.Count)
+                {
+                    var foundIds = adminProfiles.Select(a => a.Id).ToHashSet();
+                    var firstMissingId = dto.AdminIds.First(id => !foundIds.Contains(id));
+                    throw new DataNotFoundException(typeof(AdminProfile), firstMissingId);
+                }
+
+                // Prevent the currently logged-in user from changing their own status
+                var currentUserId = _currentUserService.UserId;
+                var selfEntry = adminProfiles.FirstOrDefault(a => a.UserId == currentUserId);
+                if (selfEntry != null)
+                {
+                    throw new ValidationFailureException("You cannot update your own status.");
+                }
+
+                var revokeTime = DateTime.UtcNow;
+                var auditAction = dto.Status == UserStatus.Inactive
+                    ? "DeactivateAdmin"
+                    : "ReactivateAdmin";
+
+                var userIds = adminProfiles.Select(a => a.UserId).ToList();
+
+                // If deactivating, retrieve all currently active refresh tokens to revoke them
+                var activeRefreshTokens = dto.Status == UserStatus.Inactive
+                    ? await _refreshTokenRepository
+                        .Query(tracking: true)
+                        .Where(t => userIds.Contains(t.UserId)
+                                    && t.RevokedAt == null
+                                    && t.ExpiresAt > revokeTime)
+                        .ToListAsync(token)
+                    : [];
+
+                // Update the status, handle sessions in Redis, and create audit logs for each admin
+                foreach (var adminProfile in adminProfiles)
+                {
+                    var user = adminProfile.User;
+                    var previousStatus = user.Status;
+                    user.Status = dto.Status;
+
+                    if (dto.Status == UserStatus.Inactive)
+                    {
+                        // Revoke active refresh tokens
+                        foreach (var refreshToken in activeRefreshTokens.Where(t => t.UserId == user.Id))
+                        {
+                            refreshToken.RevokedAt = revokeTime;
+                        }
+
+                        // Blacklist the account in Redis and register a rollback hook to revert if the SQL commit fails
+                        await _tokenBlacklistService.BlacklistUserAsync(user.Id);
+                        transaction.OnRollback(() => _tokenBlacklistService.UnblacklistUserAsync(user.Id));
+                    }
+                    else if (dto.Status == UserStatus.Active)
+                    {
+                        // Remove the blacklist in Redis and register a rollback hook to revert if the SQL commit fails
+                        await _tokenBlacklistService.UnblacklistUserAsync(user.Id);
+                        transaction.OnRollback(() => _tokenBlacklistService.BlacklistUserAsync(user.Id));
+                    }
+
+                    if (previousStatus != user.Status)
+                    {
+                        var history = new UserStatusHistory
+                        {
+                            UserId = user.Id,
+                            PreviousStatus = previousStatus,
+                            NewStatus = user.Status,
+                            Reason = dto.Reason.Trim(),
+                            ChangedAt = revokeTime,
+                            ChangedByUserId = currentUserId
+                        };
+                        history.TryValidate();
+                        await _userStatusHistoryRepository.AddAsync(history, token);
+                    }
+
+                    // Log the activity
+                    await _auditLogWriter.LogAsync(
+                        AuditLogCategory.StatusChange,
+                        auditAction,
+                        adminProfile.Nric,
+                        cancellationToken: token);
+                }
+            }, cancellationToken);
         }
     }
 }

@@ -19,7 +19,7 @@ public sealed class RefreshTokenSeedBuilder : ISeedBuilder
                 TokenHash = $"refresh-token-hash-{id:000}",
                 ExpiresAt = createdAt.AddDays(30 + id),
                 RevokedAt = id % 4 == 0 ? createdAt.AddDays(id) : null,
-                AuthAccountId = id,
+                UserId = id,
                 CreatedAt = createdAt
             }).ToArray());
 

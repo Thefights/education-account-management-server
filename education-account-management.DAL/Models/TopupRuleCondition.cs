@@ -1,6 +1,3 @@
-using Common;
-using Enums;
-
 namespace Models
 {
     public class TopupRuleCondition : AuditEntity
@@ -16,6 +13,11 @@ namespace Models
 
         [Column(TypeName = "decimal(18,2)")]
         public decimal? ValueNumber { get; set; }
+
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal? ConditionAmount { get; set; }
+
+        public int DisplayOrder { get; set; }
 
         [NotDefaultValue]
         public int TopupRuleId { get; set; }

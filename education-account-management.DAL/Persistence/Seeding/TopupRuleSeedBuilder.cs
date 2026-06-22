@@ -1,6 +1,9 @@
 using Enums;
 using Models;
 using Persistence.Seeding.Constants;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 
 namespace Persistence.Seeding;
 
@@ -11,16 +14,25 @@ public sealed class TopupRuleSeedBuilder : ISeedBuilder
     public ModelBuilder Seed(ModelBuilder modelBuilder)
     {
         var createdAt = SeedDataConstants.CreatedAt;
+        var random = new Random(12345);
+        var rules = new List<TopupRule>();
 
-        modelBuilder.Entity<TopupRule>().HasData(
-            Enumerable.Range(1, 10).Select(id => new TopupRule
+        for (int i = 1; i <= 50; i++)
+        {
+            var matchMode = i % 4 == 0 ? TopupMatchMode.Or : TopupMatchMode.And;
+            rules.Add(new TopupRule
             {
-                Id = id,
-                RuleName = $"Top-up Rule {id:000}",
-                TopupAmount = 100m + id * 10m,
-                Status = id % 5 == 0 ? TopupRuleStatus.Inactive : TopupRuleStatus.Active,
+                Id = i,
+                RuleName = $"Random Top-up Rule {i:000}",
+                Type = i <= 20 ? TopupRuleType.Schedule : TopupRuleType.System,
+                MatchMode = matchMode,
+                TopupAmount = matchMode == TopupMatchMode.And ? random.Next(1, 100) * 10m : null,
+                Status = random.NextDouble() > 0.1 ? TopupRuleStatus.Active : TopupRuleStatus.Inactive, // 90% active
                 CreatedAt = createdAt
-            }).ToArray());
+            });
+        }
+
+        modelBuilder.Entity<TopupRule>().HasData(rules);
 
         return modelBuilder;
     }

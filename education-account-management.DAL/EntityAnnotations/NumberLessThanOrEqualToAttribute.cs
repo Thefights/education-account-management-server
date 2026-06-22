@@ -3,22 +3,14 @@ using Utils;
 namespace EntityAnnotations
 {
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
-    public class NumberLessThanOrEqualToAttribute : ValidationAttribute
+    public class NumberLessThanOrEqualToAttribute(
+        double maxValue,
+        string? comparisonProperty,
+        bool useComparisonProperty) : ValidationAttribute
     {
-        private readonly double? _maxValue;
-        private readonly string? _comparisonProperty;
+        public NumberLessThanOrEqualToAttribute(double maxValue) : this(maxValue, null, false) { }
 
-        public NumberLessThanOrEqualToAttribute(double maxValue)
-        {
-            _maxValue = maxValue;
-            ErrorMessage = "{0} must be less than or equal to {1}";
-        }
-
-        public NumberLessThanOrEqualToAttribute(string comparisonProperty)
-        {
-            _comparisonProperty = comparisonProperty;
-            ErrorMessage = "{0} must be less than or equal to {1}";
-        }
+        public NumberLessThanOrEqualToAttribute(string comparisonProperty) : this(0, comparisonProperty, true) { }
 
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
@@ -38,13 +30,13 @@ namespace EntityAnnotations
 
             double comparisonValue;
 
-            if (_comparisonProperty != null)
+            if (useComparisonProperty && comparisonProperty != null)
             {
-                PropertyInfo? prop = validationContext.ObjectType.GetProperty(_comparisonProperty);
+                PropertyInfo? prop = validationContext.ObjectType.GetProperty(comparisonProperty);
                 if (prop == null)
                 {
                     return new ValidationResult(
-                        $"Property '{_comparisonProperty}' not found",
+                        $"Property '{comparisonProperty}' not found",
                         new[] { validationContext.MemberName ?? string.Empty }
                     );
                 }
@@ -54,16 +46,16 @@ namespace EntityAnnotations
                 if (converted == null)
                 {
                     return new ValidationResult(
-                        $"Property '{_comparisonProperty}' must be numeric",
+                        $"Property '{comparisonProperty}' must be numeric",
                         new[] { validationContext.MemberName ?? string.Empty }
                     );
                 }
 
                 comparisonValue = converted.Value;
             }
-            else if (_maxValue.HasValue)
+            else if (!useComparisonProperty)
             {
-                comparisonValue = _maxValue.Value;
+                comparisonValue = maxValue;
             }
             else
             {
@@ -103,7 +95,7 @@ namespace EntityAnnotations
 
         private string FormatErrorMessage(string name, double comparisonValue)
         {
-            return string.Format(ErrorMessageString, name.SplitWords(), comparisonValue);
+            return string.Format("{0} must be less than or equal to {1}", name.SplitWords(), comparisonValue);
         }
     }
 }

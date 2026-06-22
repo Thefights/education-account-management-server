@@ -44,7 +44,7 @@ namespace EntityAnnotations.DateAttributes
     /// </code>
     /// </example>
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
-    public class TimeValidatorAttribute : ValidationAttribute
+    public class TimeValidatorAttribute() : ValidationAttribute
     {
         public bool AllowPast { get; set; } = true;
 
@@ -73,10 +73,6 @@ namespace EntityAnnotations.DateAttributes
         /// Name of the property that this time must not be before (i.e., this time &gt;= target time).
         /// </summary>
         public string? NotBefore { get; set; } = null;
-
-        public TimeValidatorAttribute()
-        {
-        }
 
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {

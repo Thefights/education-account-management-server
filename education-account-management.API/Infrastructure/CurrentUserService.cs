@@ -6,9 +6,11 @@ using Utils;
 
 namespace Infrastructure
 {
-    public class CurrentUserService : ICurrentUserService, IAuditUserContext
+    public class CurrentUserService(IHttpContextAccessor httpContextAccessor)
+        : ICurrentUserService, IAuditUserContext
     {
-        private readonly int _userId;
+        private readonly int _userId = ResolveUserId(httpContextAccessor.HttpContext?.User);
+        private readonly string _userName = ResolveUserName(httpContextAccessor.HttpContext?.User);
 
         public int UserId => _userId <= 0
             ? throw new UnauthorizedAccessException("User is not authenticated.")
@@ -16,35 +18,33 @@ namespace Infrastructure
 
         public int? CurrentUserId => _userId > 0 ? _userId : null;
 
-        public int AuthId { get; }
+        public UserRole Role { get; } = ResolveRole(httpContextAccessor.HttpContext?.User);
 
-        public UserRole Role { get; }
+        public string UserName => _userName;
 
-        public CurrentUserService(IHttpContextAccessor httpContextAccessor)
+        private static int ResolveUserId(ClaimsPrincipal? user)
         {
-            var httpContext = httpContextAccessor.HttpContext;
-            var user = httpContext?.User;
             if (user?.Identity?.IsAuthenticated != true)
             {
-                return;
+                return 0;
             }
 
             var userIdValue = user.FindFirstValue(ClaimTypes.NameIdentifier);
-            var authIdValue = user.FindFirstValue("AuthId");
+            return int.TryParse(userIdValue, out var userId) ? userId : 0;
+        }
 
-            if (!int.TryParse(userIdValue, out var userId) || !int.TryParse(authIdValue, out var authId))
-            {
-                return;
-            }
-
-            _userId = userId;
-            AuthId = authId;
-
+        private static UserRole ResolveRole(ClaimsPrincipal? user)
+        {
+            if (user?.Identity?.IsAuthenticated != true) return default;
             var roleClaim = user.FindFirstValue(ClaimTypes.Role);
-            if (EnumUtil.TryParseDefined<UserRole>(roleClaim, out var role))
-            {
-                Role = role;
-            }
+            return EnumUtil.TryParseDefined<UserRole>(roleClaim, out var role) ? role : default;
+        }
+
+        private static string ResolveUserName(ClaimsPrincipal? user)
+        {
+            if (user?.Identity?.IsAuthenticated != true) return string.Empty;
+            var userNameClaim = user.FindFirstValue(ClaimTypes.Name);
+            return string.IsNullOrEmpty(userNameClaim) ? string.Empty : userNameClaim;
         }
     }
 }
