@@ -1,6 +1,7 @@
 using DTOs.Courses;
 using DTOs.Csv;
 using Interfaces.Csv;
+using Services.Courses.Utils;
 
 namespace Services.Courses
 {
@@ -9,14 +10,15 @@ namespace Services.Courses
         IUnitOfWork unitOfWork) : ICsvImportProfile<Course, CreateCourseDTO>
     {
         private readonly CourseMapper _mapper = mapper;
-        private readonly IGenericRepository<Course> _courseRepository = unitOfWork.Repository<Course>();
         private readonly IGenericRepository<School> _schoolRepository = unitOfWork.Repository<School>();
 
         public string EntityName => nameof(Course);
 
         public Course MapToEntity(CreateCourseDTO row)
         {
-            return _mapper.MapFromCreateDTO(row);
+            var course = _mapper.MapFromCreateDTO(row);
+            course.CourseCode = CourseCodeGenerator.Generate();
+            return course;
         }
 
         public async Task<List<BatchImportErrorDTO>> ValidateRowAsync(CreateCourseDTO row, int rowNumber, CancellationToken cancellationToken = default)

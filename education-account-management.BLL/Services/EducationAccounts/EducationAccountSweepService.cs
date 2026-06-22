@@ -1,9 +1,7 @@
 using DTOs.EducationAccounts;
 using Interfaces.EducationAccounts;
 using Mappers.EducationAccounts;
-using Repositories.Interfaces;
 using Services.EducationAccounts.Utils;
-using System.Security.Cryptography;
 using Validators;
 
 namespace Services.EducationAccounts;
@@ -104,8 +102,10 @@ public class EducationAccountSweepService(
                         .FirstOrDefaultAsync(item => item.Id == candidate.Id, token)
                         ?? throw new DataNotFoundException(typeof(EducationAccount), candidate.Id);
 
-                    var finalStatus = await CloseOrExtendAccountAsync(
+                    var finalStatus = await EducationAccountClosureHelper.CloseOrExtendAsync(
                         account,
+                        _chargeRepository,
+                        _transactionRepository,
                         "Education account balance expired at age 31.",
                         token);
 
@@ -178,50 +178,6 @@ public class EducationAccountSweepService(
         }, cancellationToken);
 
         return result;
-    }
-
-    private async Task<EducationAccountStatus> CloseOrExtendAccountAsync(
-        EducationAccount account,
-        string description,
-        CancellationToken cancellationToken)
-    {
-        var hasOutstandingCharge = await _chargeRepository.AnyAsync(
-            charge => charge.Enrollment.EducationAccountId == account.Id
-                && charge.RemainingAmount > 0
-                && charge.Status != ChargeStatus.Paid
-                && charge.Status != ChargeStatus.Cancelled,
-            cancellationToken);
-
-        if (hasOutstandingCharge)
-        {
-            account.Status = EducationAccountStatus.Extended;
-            account.ClosedAt = null;
-            account.TryValidate();
-            return account.Status;
-        }
-
-        var balanceBefore = account.EducationCreditBalance;
-        if (balanceBefore > 0)
-        {
-            var transaction = new EducationCreditTransaction
-            {
-                Type = EducationCreditTransactionType.Adjustment,
-                Direction = EducationCreditTransactionDirection.Debit,
-                Amount = balanceBefore,
-                BalanceBefore = balanceBefore,
-                BalanceAfter = 0,
-                Description = description,
-                EducationAccountId = account.Id
-            };
-            transaction.TryValidate();
-            await _transactionRepository.AddAsync(transaction, cancellationToken);
-        }
-
-        account.EducationCreditBalance = 0;
-        account.Status = EducationAccountStatus.Closed;
-        account.ClosedAt ??= DateTime.UtcNow;
-        account.TryValidate();
-        return account.Status;
     }
 
     private async Task AddStatusHistoryAsync(

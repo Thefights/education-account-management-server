@@ -21,6 +21,11 @@ public static class ModelRelationshipConfigurator
             .WithOne(citizen => citizen.EducationAccount)
             .HasForeignKey<EducationAccount>(account => account.CitizenId);
 
+        modelBuilder.Entity<SchoolStudent>()
+            .HasOne(student => student.EducationAccount)
+            .WithOne(account => account.SchoolStudent)
+            .HasForeignKey<SchoolStudent>(student => student.EducationAccountId);
+
         modelBuilder.Entity<Payment>()
             .HasOne(payment => payment.EducationCreditTransaction)
             .WithOne(transaction => transaction.Payment)
@@ -30,6 +35,16 @@ public static class ModelRelationshipConfigurator
             .HasOne(target => target.EducationCreditTransaction)
             .WithOne(transaction => transaction.TopupExecutionTarget)
             .HasForeignKey<TopupExecutionTarget>(target => target.EducationCreditTransactionId);
+
+        modelBuilder.Entity<OutstandingDeductionTarget>()
+            .HasOne(target => target.EducationCreditTransaction)
+            .WithOne(transaction => transaction.OutstandingDeductionTarget)
+            .HasForeignKey<OutstandingDeductionTarget>(target => target.EducationCreditTransactionId);
+
+        modelBuilder.Entity<OutstandingDeductionTarget>()
+            .HasOne(target => target.Payment)
+            .WithOne(payment => payment.OutstandingDeductionTarget)
+            .HasForeignKey<OutstandingDeductionTarget>(target => target.PaymentId);
 
         modelBuilder.Entity<EducationAccountStatusHistory>()
             .HasOne(history => history.ChangedByUser)

@@ -24,6 +24,8 @@ namespace Persistence.SqlServer
 
         public DbSet<School> School { get; set; }
 
+        public DbSet<SchoolStudent> SchoolStudent { get; set; }
+
         public DbSet<Course> Course { get; set; }
 
         public DbSet<Enrollment> Enrollment { get; set; }
@@ -33,6 +35,10 @@ namespace Persistence.SqlServer
         public DbSet<Payment> Payment { get; set; }
 
         public DbSet<PaymentAllocation> PaymentAllocation { get; set; }
+
+        public DbSet<OutstandingDeductionRun> OutstandingDeductionRun { get; set; }
+
+        public DbSet<OutstandingDeductionTarget> OutstandingDeductionTarget { get; set; }
 
         public DbSet<TopupRule> TopupRule { get; set; }
 

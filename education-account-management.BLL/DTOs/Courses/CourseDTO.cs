@@ -13,6 +13,14 @@ namespace DTOs.Courses
         public decimal MiscFeeAmount { get; set; }
 
         public decimal GstAmount { get; set; }
+
+        public DateTime EnrollmentDueDate { get; set; }
+
+        public DateTime PaymentDueDate { get; set; }
+
+        public DateTime StartDate { get; set; }
+
+        public DateTime EndDate { get; set; }
     }
 
     public class UpdateCourseDTO
@@ -28,6 +36,14 @@ namespace DTOs.Courses
         public decimal MiscFeeAmount { get; set; }
 
         public decimal GstAmount { get; set; }
+
+        public DateTime EnrollmentDueDate { get; set; }
+
+        public DateTime PaymentDueDate { get; set; }
+
+        public DateTime StartDate { get; set; }
+
+        public DateTime EndDate { get; set; }
     }
 
     public class GetCourseDTO
@@ -40,6 +56,8 @@ namespace DTOs.Courses
 
         public string? Status { get; set; }
 
+        public string CourseCode { get; set; } = string.Empty;
+
         public string CourseName { get; set; } = string.Empty;
 
         public string? Description { get; set; }
@@ -49,5 +67,13 @@ namespace DTOs.Courses
         public decimal MiscFeeAmount { get; set; }
 
         public decimal GstAmount { get; set; }
+
+        public DateTime EnrollmentDueDate { get; set; }
+
+        public DateTime PaymentDueDate { get; set; }
+
+        public DateTime StartDate { get; set; }
+
+        public DateTime EndDate { get; set; }
     }
 }

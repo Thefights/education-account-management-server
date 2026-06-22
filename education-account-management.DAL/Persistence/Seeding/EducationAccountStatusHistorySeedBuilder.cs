@@ -16,10 +16,10 @@ public sealed class EducationAccountStatusHistorySeedBuilder : ISeedBuilder
             new EducationAccountStatusHistory
             {
                 Id = 1,
-                EducationAccountId = 4,
+                EducationAccountId = 1,
                 PreviousStatus = EducationAccountStatus.Active,
-                NewStatus = EducationAccountStatus.Extended,
-                Reason = "Education account extended by the scheduled sweep.",
+                NewStatus = EducationAccountStatus.Closed,
+                Reason = "Education account closed by the scheduled sweep.",
                 ChangedAt = changedAt,
                 ChangedByUserId = 1
             },
@@ -28,8 +28,8 @@ public sealed class EducationAccountStatusHistorySeedBuilder : ISeedBuilder
                 Id = 2,
                 EducationAccountId = 6,
                 PreviousStatus = EducationAccountStatus.Active,
-                NewStatus = EducationAccountStatus.Closed,
-                Reason = "Education account closed by the scheduled sweep.",
+                NewStatus = EducationAccountStatus.Extended,
+                Reason = "Education account extended because outstanding charges remain.",
                 ChangedAt = changedAt.AddDays(1),
                 ChangedByUserId = 1
             });

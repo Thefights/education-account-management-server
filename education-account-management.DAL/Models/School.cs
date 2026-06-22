@@ -14,7 +14,7 @@
         [MessageRequired, MessageMaxLength(20), PhoneNumberValidator]
         public string PhoneNumber { get; set; } = string.Empty;
 
-        [MessageRequired, MessageMaxLength(320), EmailValidator, Unique]
+        [MessageRequired, MessageMaxLength(320), EmailValidator]
         public string Email { get; set; } = string.Empty;
 
         [OnDelete(OnDeleteBehavior.Restrict)]
@@ -22,5 +22,8 @@
 
         [OnDelete(OnDeleteBehavior.Restrict)]
         public ICollection<Course> Courses { get; set; } = [];
+
+        [OnDelete(OnDeleteBehavior.Restrict)]
+        public ICollection<SchoolStudent> SchoolStudents { get; set; } = [];
     }
 }

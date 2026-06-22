@@ -3,7 +3,6 @@ using Interfaces.Audit;
 using Interfaces.EducationAccounts;
 using Services.Base;
 using Services.EducationAccounts.Utils;
-using System.Security.Cryptography;
 using Validators;
 
 namespace Services.EducationAccounts;
@@ -78,17 +77,14 @@ public class EducationAccountService(
             var oldStatus = account.Status;
             _mapper.MapFromUpdateDTO(updateDTO, account);
 
-            if (oldStatus == EducationAccountStatus.Closed
-                && account.Status != EducationAccountStatus.Closed)
-            {
-                throw new ValidationFailureException(
-                    nameof(UpdateEducationAccountDTO.Status),
-                    "A closed education account cannot be reopened.");
-            }
-
             if (account.Status == EducationAccountStatus.Closed)
             {
-                await CloseOrExtendAccountAsync(account, "Education account closed by administrator.", token);
+                await EducationAccountClosureHelper.CloseOrExtendAsync(
+                    account,
+                    _chargeRepository,
+                    _transactionRepository,
+                    "Education account closed by administrator.",
+                    token);
             }
             else
             {
@@ -146,12 +142,38 @@ public class EducationAccountService(
 
             foreach (var account in accounts)
             {
+                var oldStatus = account.Status;
                 account.Status = dto.Status;
+                if (dto.Status == EducationAccountStatus.Closed)
+                {
+                    await EducationAccountClosureHelper.CloseOrExtendAsync(
+                        account,
+                        _chargeRepository,
+                        _transactionRepository,
+                        "Education account closed by administrator.",
+                        token);
+                }
+                else
+                {
+                    account.ClosedAt = null;
+                }
+
+                account.TryValidate();
                 _repository.Update(account);
+
+                if (oldStatus != account.Status)
+                {
+                    await AddStatusHistoryAsync(
+                        account.Id,
+                        oldStatus,
+                        account.Status,
+                        "Education account status updated by administrator.",
+                        token);
+                }
 
                 await _auditLogWriter.LogAsync(
                     AuditLogCategory.AccountCreation,
-                    $"UpdateEducationAccountStatusTo{dto.Status}",
+                    $"UpdateEducationAccountStatusTo{account.Status}",
                     account.Citizen.Nric,
                     token);
             }
@@ -174,49 +196,6 @@ public class EducationAccountService(
         }
 
         return citizen;
-    }
-
-    private async Task<EducationAccountStatus> CloseOrExtendAccountAsync(
-        EducationAccount account,
-        string description,
-        CancellationToken cancellationToken)
-    {
-        var hasOutstandingCharge = await _chargeRepository.AnyAsync(
-            charge => charge.Enrollment.EducationAccountId == account.Id
-                && charge.RemainingAmount > 0
-                && charge.Status != ChargeStatus.Paid
-                && charge.Status != ChargeStatus.Cancelled,
-            cancellationToken);
-        if (hasOutstandingCharge)
-        {
-            account.Status = EducationAccountStatus.Extended;
-            account.ClosedAt = null;
-            account.TryValidate();
-            return account.Status;
-        }
-
-        var balanceBefore = account.EducationCreditBalance;
-        if (balanceBefore > 0)
-        {
-            var transaction = new EducationCreditTransaction
-            {
-                Type = EducationCreditTransactionType.Adjustment,
-                Direction = EducationCreditTransactionDirection.Debit,
-                Amount = balanceBefore,
-                BalanceBefore = balanceBefore,
-                BalanceAfter = 0,
-                Description = description,
-                EducationAccountId = account.Id
-            };
-            transaction.TryValidate();
-            await _transactionRepository.AddAsync(transaction, cancellationToken);
-        }
-
-        account.EducationCreditBalance = 0;
-        account.Status = EducationAccountStatus.Closed;
-        account.ClosedAt ??= DateTime.UtcNow;
-        account.TryValidate();
-        return account.Status;
     }
 
     private async Task AddStatusHistoryAsync(

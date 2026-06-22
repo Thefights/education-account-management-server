@@ -10,11 +10,16 @@ namespace Filters.Courses
             {
                 ["id"] = nameof(Course.Id),
                 ["courseName"] = nameof(Course.CourseName),
+                ["courseCode"] = nameof(Course.CourseCode),
                 ["status"] = nameof(Course.Status),
                 ["schoolName"] = $"{nameof(Course.School)}.{nameof(School.SchoolName)}",
                 ["courseFeeAmount"] = nameof(Course.CourseFeeAmount),
                 ["miscFeeAmount"] = nameof(Course.MiscFeeAmount),
                 ["gstAmount"] = nameof(Course.GstAmount),
+                ["enrollmentDueDate"] = nameof(Course.EnrollmentDueDate),
+                ["paymentDueDate"] = nameof(Course.PaymentDueDate),
+                ["startDate"] = nameof(Course.StartDate),
+                ["endDate"] = nameof(Course.EndDate),
             };
 
         public override IReadOnlyDictionary<string, string> SortFields => AllowedSortFields;
@@ -28,6 +33,10 @@ namespace Filters.Courses
         [FilterField(FilterOperationEnum.Contains, nameof(Course.CourseName))]
         [SearchField(nameof(Course.CourseName))]
         public string? CourseName { get; set; }
+
+        [FilterField(FilterOperationEnum.Contains, nameof(Course.CourseCode))]
+        [SearchField(nameof(Course.CourseCode))]
+        public string? CourseCode { get; set; }
 
         [FilterField(FilterOperationEnum.Contains, $"{nameof(Course.School)}.{nameof(School.SchoolName)}")]
         [SearchField($"{nameof(Course.School)}.{nameof(School.SchoolName)}")]
