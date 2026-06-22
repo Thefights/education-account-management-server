@@ -12,46 +12,17 @@ public sealed class EducationCreditTransactionSeedBuilder : ISeedBuilder
         var createdAt = SeedDataConstants.CreatedAt;
 
         modelBuilder.Entity<EducationCreditTransaction>().HasData(
-            Enumerable.Range(1, 20).Select(id =>
-            {
-                var amount = id <= 10 ? 100m + id * 10m : 50m + (id - 10) * 5m;
-                var balanceBefore = id <= 10 ? 1000m + id * 100m : 1200m + id * 50m;
-
-                return new EducationCreditTransaction
-                {
-                    Id = id,
-                    TransactionCode = SeedGuid(id),
-                    Type = id <= 10
-                        ? id % 4 == 0 ? EducationCreditTransactionType.Adjustment : EducationCreditTransactionType.Topup
-                        : EducationCreditTransactionType.Adjustment,
-                    Direction = EducationCreditTransactionDirection.Credit,
-                    Amount = amount,
-                    BalanceBefore = balanceBefore,
-                    BalanceAfter = balanceBefore + amount,
-                    Description = id <= 10 ? $"Seed transaction {id:000}" : $"Seed adhoc transaction {id:000}",
-                    EducationAccountId = id <= 10 ? id : id - 10,
-                    CreatedAt = createdAt
-                };
-            }).ToArray());
-
-        modelBuilder.Entity<EducationCreditTransaction>().HasData(
-            new EducationCreditTransaction { Id = 21, TransactionCode = Guid.Parse("00000000-0000-0000-0000-000000000021"), Type = EducationCreditTransactionType.CourseFee, Direction = EducationCreditTransactionDirection.Debit, Amount = 120m, BalanceBefore = 1100m, BalanceAfter = 980m, Description = "Payment transaction 001", EducationAccountId = 1, CreatedAt = createdAt },
-            new EducationCreditTransaction { Id = 22, TransactionCode = Guid.Parse("00000000-0000-0000-0000-000000000022"), Type = EducationCreditTransactionType.CourseFee, Direction = EducationCreditTransactionDirection.Debit, Amount = 70m, BalanceBefore = 1200m, BalanceAfter = 1130m, Description = "Payment transaction 002", EducationAccountId = 2, CreatedAt = createdAt },
-            new EducationCreditTransaction { Id = 23, TransactionCode = Guid.Parse("00000000-0000-0000-0000-000000000023"), Type = EducationCreditTransactionType.CourseFee, Direction = EducationCreditTransactionDirection.Debit, Amount = 140m, BalanceBefore = 1300m, BalanceAfter = 1160m, Description = "Payment transaction 003", EducationAccountId = 3, CreatedAt = createdAt },
-            new EducationCreditTransaction { Id = 24, TransactionCode = Guid.Parse("00000000-0000-0000-0000-000000000024"), Type = EducationCreditTransactionType.CourseFee, Direction = EducationCreditTransactionDirection.Debit, Amount = 180m, BalanceBefore = 1400m, BalanceAfter = 1220m, Description = "Payment transaction 004", EducationAccountId = 4, CreatedAt = createdAt },
-            new EducationCreditTransaction { Id = 25, TransactionCode = Guid.Parse("00000000-0000-0000-0000-000000000025"), Type = EducationCreditTransactionType.CourseFee, Direction = EducationCreditTransactionDirection.Debit, Amount = 180m, BalanceBefore = 1500m, BalanceAfter = 1320m, Description = "Payment transaction 005", EducationAccountId = 5, CreatedAt = createdAt },
-            new EducationCreditTransaction { Id = 26, TransactionCode = Guid.Parse("00000000-0000-0000-0000-000000000026"), Type = EducationCreditTransactionType.CourseFee, Direction = EducationCreditTransactionDirection.Debit, Amount = 100m, BalanceBefore = 1600m, BalanceAfter = 1500m, Description = "Payment transaction 006", EducationAccountId = 6, CreatedAt = createdAt },
-            new EducationCreditTransaction { Id = 27, TransactionCode = Guid.Parse("00000000-0000-0000-0000-000000000027"), Type = EducationCreditTransactionType.CourseFee, Direction = EducationCreditTransactionDirection.Debit, Amount = 200m, BalanceBefore = 1700m, BalanceAfter = 1500m, Description = "Payment transaction 007", EducationAccountId = 7, CreatedAt = createdAt },
-            new EducationCreditTransaction { Id = 28, TransactionCode = Guid.Parse("00000000-0000-0000-0000-000000000028"), Type = EducationCreditTransactionType.CourseFee, Direction = EducationCreditTransactionDirection.Debit, Amount = 130m, BalanceBefore = 1800m, BalanceAfter = 1670m, Description = "Payment transaction 008", EducationAccountId = 8, CreatedAt = createdAt },
-            new EducationCreditTransaction { Id = 29, TransactionCode = Guid.Parse("00000000-0000-0000-0000-000000000029"), Type = EducationCreditTransactionType.CourseFee, Direction = EducationCreditTransactionDirection.Debit, Amount = 250m, BalanceBefore = 1900m, BalanceAfter = 1650m, Description = "Payment transaction 009", EducationAccountId = 9, CreatedAt = createdAt },
-            new EducationCreditTransaction { Id = 30, TransactionCode = Guid.Parse("00000000-0000-0000-0000-000000000030"), Type = EducationCreditTransactionType.CourseFee, Direction = EducationCreditTransactionDirection.Debit, Amount = 300m, BalanceBefore = 2000m, BalanceAfter = 1700m, Description = "Payment transaction 010", EducationAccountId = 10, CreatedAt = createdAt });
+            new EducationCreditTransaction { Id = 1, TransactionCode = Guid.Parse("00000000-0000-0000-0000-000000000001"), Type = EducationCreditTransactionType.Topup, Direction = EducationCreditTransactionDirection.Credit, Amount = 100m, BalanceBefore = 0m, BalanceAfter = 100m, Description = "Scheduled top-up transaction 001.", EducationAccountId = 1, CreatedAt = createdAt },
+            new EducationCreditTransaction { Id = 2, TransactionCode = Guid.Parse("00000000-0000-0000-0000-000000000002"), Type = EducationCreditTransactionType.Topup, Direction = EducationCreditTransactionDirection.Credit, Amount = 100m, BalanceBefore = 1100m, BalanceAfter = 1200m, Description = "Scheduled top-up transaction 002.", EducationAccountId = 2, CreatedAt = createdAt },
+            new EducationCreditTransaction { Id = 3, TransactionCode = Guid.Parse("00000000-0000-0000-0000-000000000003"), Type = EducationCreditTransactionType.Topup, Direction = EducationCreditTransactionDirection.Credit, Amount = 200m, BalanceBefore = 1100m, BalanceAfter = 1300m, Description = "Scheduled top-up transaction 003.", EducationAccountId = 3, CreatedAt = createdAt },
+            new EducationCreditTransaction { Id = 4, TransactionCode = Guid.Parse("00000000-0000-0000-0000-000000000004"), Type = EducationCreditTransactionType.ExpiredBalance, Direction = EducationCreditTransactionDirection.Debit, Amount = 30m, BalanceBefore = 30m, BalanceAfter = 0m, Description = "Education account balance expired at age 31.", EducationAccountId = 1, CreatedAt = new DateTime(2026, 4, 12, 0, 0, 0, DateTimeKind.Utc) },
+            new EducationCreditTransaction { Id = 5, TransactionCode = Guid.Parse("00000000-0000-0000-0000-000000000005"), Type = EducationCreditTransactionType.CourseFeePayment, Direction = EducationCreditTransactionDirection.Debit, Amount = 70m, BalanceBefore = 1200m, BalanceAfter = 1130m, Description = "Course fee payment for Computer Science Fundamentals.", EducationAccountId = 2, CreatedAt = new DateTime(2026, 1, 21, 0, 0, 0, DateTimeKind.Utc) },
+            new EducationCreditTransaction { Id = 6, TransactionCode = Guid.Parse("00000000-0000-0000-0000-000000000006"), Type = EducationCreditTransactionType.CourseFeePayment, Direction = EducationCreditTransactionDirection.Debit, Amount = 140m, BalanceBefore = 1300m, BalanceAfter = 1160m, Description = "Course fee payment for Business Communication.", EducationAccountId = 3, CreatedAt = new DateTime(2026, 1, 22, 0, 0, 0, DateTimeKind.Utc) },
+            new EducationCreditTransaction { Id = 7, TransactionCode = Guid.Parse("00000000-0000-0000-0000-000000000007"), Type = EducationCreditTransactionType.OutstandingAutoDeduction, Direction = EducationCreditTransactionDirection.Debit, Amount = 50m, BalanceBefore = 500m, BalanceAfter = 450m, Description = "March outstanding charge auto deduction.", EducationAccountId = 6, CreatedAt = new DateTime(2026, 3, 5, 0, 0, 0, DateTimeKind.Utc) },
+            new EducationCreditTransaction { Id = 8, TransactionCode = Guid.Parse("00000000-0000-0000-0000-000000000008"), Type = EducationCreditTransactionType.OutstandingAutoDeduction, Direction = EducationCreditTransactionDirection.Debit, Amount = 70m, BalanceBefore = 70m, BalanceAfter = 0m, Description = "April outstanding charge auto deduction.", EducationAccountId = 8, CreatedAt = new DateTime(2026, 4, 5, 0, 0, 0, DateTimeKind.Utc) },
+            new EducationCreditTransaction { Id = 9, TransactionCode = Guid.Parse("00000000-0000-0000-0000-000000000009"), Type = EducationCreditTransactionType.CourseFeePayment, Direction = EducationCreditTransactionDirection.Debit, Amount = 180m, BalanceBefore = 1400m, BalanceAfter = 1220m, Description = "Course fee payment for Environmental Science.", EducationAccountId = 4, CreatedAt = new DateTime(2026, 1, 23, 0, 0, 0, DateTimeKind.Utc) },
+            new EducationCreditTransaction { Id = 10, TransactionCode = Guid.Parse("00000000-0000-0000-0000-000000000010"), Type = EducationCreditTransactionType.CourseFeePayment, Direction = EducationCreditTransactionDirection.Debit, Amount = 180m, BalanceBefore = 1500m, BalanceAfter = 1320m, Description = "Course fee payment for Digital Media Design.", EducationAccountId = 5, CreatedAt = new DateTime(2026, 1, 24, 0, 0, 0, DateTimeKind.Utc) });
 
         return modelBuilder;
     }
-
-    private static Guid SeedGuid(int id)
-    {
-        return Guid.Parse($"00000000-0000-0000-0000-{id:000000000000}");
-    }
-
 }

@@ -25,7 +25,7 @@
         [Column(TypeName = "decimal(18,2)"), NumberPositive]
         public decimal ChargeRemainingAmountSnapshot { get; set; }
 
-        [Column(TypeName = "decimal(18,2)"), NumberPositive]
+        [Column(TypeName = "decimal(18,2)"), NumberHigherThan(0)]
         public decimal Amount { get; set; }
     }
 }

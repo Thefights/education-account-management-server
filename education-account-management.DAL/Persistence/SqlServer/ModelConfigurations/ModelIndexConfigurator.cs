@@ -53,6 +53,15 @@ namespace Persistence.SqlServer.ModelConfigurations
             modelBuilder.Entity<School>(entity =>
             {
                 entity.HasIndex(school => school.Status);
+                entity.HasIndex(school => school.SchoolName);
+                entity.HasIndex(school => school.Email);
+            });
+
+            modelBuilder.Entity<SchoolStudent>(entity =>
+            {
+                entity.HasIndex(student => student.SchoolId);
+                entity.HasIndex(student => student.EducationAccountId).IsUnique();
+                entity.HasIndex(student => student.Status);
             });
 
             modelBuilder.Entity<Course>(entity =>
@@ -60,19 +69,29 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(course => course.SchoolId);
                 entity.HasIndex(course => course.Status);
                 entity.HasIndex(course => course.CourseName);
+                entity.HasIndex(course => course.EnrollmentDueDate);
+                entity.HasIndex(course => course.PaymentDueDate);
+                entity.HasIndex(course => course.StartDate);
+                entity.HasIndex(course => course.EndDate);
+                entity.HasIndex(course => new { course.SchoolId, course.CourseCode }).IsUnique();
             });
 
             modelBuilder.Entity<Enrollment>(entity =>
             {
                 entity.HasIndex(enrollment => enrollment.CourseId);
-                entity.HasIndex(enrollment => enrollment.EducationAccountId);
-                entity.HasIndex(enrollment => new { enrollment.CourseId, enrollment.EducationAccountId }).IsUnique();
+                entity.HasIndex(enrollment => enrollment.SchoolStudentId);
+                entity.HasIndex(enrollment => enrollment.CitizenNricSnapshot);
+                entity.HasIndex(enrollment => enrollment.AccountNumberSnapshot);
+                entity.HasIndex(enrollment => new { enrollment.CourseId, enrollment.SchoolStudentId }).IsUnique();
             });
 
             modelBuilder.Entity<Charge>(entity =>
             {
                 entity.HasIndex(charge => charge.EnrollmentId).IsUnique();
                 entity.HasIndex(charge => charge.Status);
+                entity.HasIndex(charge => charge.PaymentDueDate);
+                entity.HasIndex(charge => charge.BecameOutstandingAt);
+                entity.HasIndex(charge => new { charge.Status, charge.PaymentDueDate });
             });
 
             modelBuilder.Entity<Payment>(entity =>
@@ -81,7 +100,9 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(payment => payment.PaymentMethod);
                 entity.HasIndex(payment => payment.Status);
                 entity.HasIndex(payment => payment.PaidAt);
-                entity.HasIndex(payment => payment.ExternalReference);
+                entity.HasIndex(payment => payment.AccountNumberSnapshot);
+                entity.HasIndex(payment => payment.CitizenNricSnapshot);
+                entity.HasIndex(payment => payment.ExternalReference).IsUnique();
             });
 
             modelBuilder.Entity<PaymentAllocation>(entity =>
@@ -142,6 +163,26 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(transaction => transaction.EducationAccountId);
                 entity.HasIndex(transaction => transaction.Type);
                 entity.HasIndex(transaction => transaction.Direction);
+                entity.HasIndex(transaction => transaction.CreatedAt);
+            });
+
+            modelBuilder.Entity<OutstandingDeductionRun>(entity =>
+            {
+                entity.HasIndex(run => run.RunMonth).IsUnique();
+                entity.HasIndex(run => run.RunDate);
+                entity.HasIndex(run => run.Status);
+                entity.HasIndex(run => run.StartedAt);
+            });
+
+            modelBuilder.Entity<OutstandingDeductionTarget>(entity =>
+            {
+                entity.HasIndex(target => target.OutstandingDeductionRunId);
+                entity.HasIndex(target => target.ChargeId);
+                entity.HasIndex(target => target.EducationAccountId);
+                entity.HasIndex(target => target.Status);
+                entity.HasIndex(target => target.EducationCreditTransactionId).IsUnique();
+                entity.HasIndex(target => target.PaymentId).IsUnique();
+                entity.HasIndex(target => new { target.OutstandingDeductionRunId, target.ChargeId }).IsUnique();
             });
 
             modelBuilder.Entity<EducationAccountStatusHistory>(entity =>

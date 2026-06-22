@@ -18,7 +18,7 @@ public static class CheckConstraintConfigurator
         {
             table.HasCheckConstraint(
                 "CK_EducationCreditTransaction_Amounts_NonNegative",
-                "[Amount] >= 0 AND [BalanceBefore] >= 0 AND [BalanceAfter] >= 0");
+                "[Amount] > 0 AND [BalanceBefore] >= 0 AND [BalanceAfter] >= 0");
             table.HasCheckConstraint(
                 "CK_EducationCreditTransaction_BalanceEquation",
                 "([Direction] = 1 AND [BalanceAfter] = [BalanceBefore] + [Amount]) OR " +
@@ -26,15 +26,23 @@ public static class CheckConstraintConfigurator
         });
 
         modelBuilder.Entity<Course>().ToTable(table =>
+        {
             table.HasCheckConstraint(
                 "CK_Course_Amounts_NonNegative",
-                "[CourseFeeAmount] >= 0 AND [MiscFeeAmount] >= 0 AND [GstAmount] >= 0"));
+                "[CourseFeeAmount] >= 0 AND [MiscFeeAmount] >= 0 AND [GstAmount] >= 0");
+            table.HasCheckConstraint(
+                "CK_Course_Date_Order",
+                "[EnrollmentDueDate] <= [PaymentDueDate] AND " +
+                "[EnrollmentDueDate] <= [StartDate] AND [StartDate] <= [EndDate]");
+        });
 
         modelBuilder.Entity<Charge>().ToTable(table =>
         {
             table.HasCheckConstraint(
                 "CK_Charge_Amounts_NonNegative",
-                "[GrossAmount] >= 0 AND [SubsidyAmount] >= 0 AND [NetAmount] >= 0 " +
+                "[CourseFeeAmountSnapshot] >= 0 AND [MiscFeeAmountSnapshot] >= 0 " +
+                "AND [GstAmountSnapshot] >= 0 AND [GrossAmount] >= 0 " +
+                "AND [SubsidyAmount] >= 0 AND [NetAmount] >= 0 " +
                 "AND [PaidAmount] >= 0 AND [RemainingAmount] >= 0");
             table.HasCheckConstraint(
                 "CK_Charge_AmountEquations",
@@ -45,10 +53,26 @@ public static class CheckConstraintConfigurator
         });
 
         modelBuilder.Entity<Payment>().ToTable(table =>
-            table.HasCheckConstraint("CK_Payment_TotalAmount_NonNegative", "[TotalAmount] >= 0"));
+            table.HasCheckConstraint("CK_Payment_TotalAmount_Positive", "[TotalAmount] > 0"));
 
         modelBuilder.Entity<PaymentAllocation>().ToTable(table =>
-            table.HasCheckConstraint("CK_PaymentAllocation_Amount_NonNegative", "[Amount] >= 0"));
+            table.HasCheckConstraint(
+                "CK_PaymentAllocation_Amounts",
+                "[Amount] > 0 AND [ChargeGrossAmountSnapshot] >= 0 " +
+                "AND [ChargeNetAmountSnapshot] >= 0 AND [ChargeRemainingAmountSnapshot] >= 0"));
+
+        modelBuilder.Entity<OutstandingDeductionRun>().ToTable(table =>
+            table.HasCheckConstraint(
+                "CK_OutstandingDeductionRun_Totals_NonNegative",
+                "[TotalScannedCharges] >= 0 AND [TotalDeductedAmount] >= 0 " +
+                "AND [SuccessCount] >= 0 AND [FailedCount] >= 0 " +
+                "AND [SuccessCount] + [FailedCount] <= [TotalScannedCharges]"));
+
+        modelBuilder.Entity<OutstandingDeductionTarget>().ToTable(table =>
+            table.HasCheckConstraint(
+                "CK_OutstandingDeductionTarget_Amounts_NonNegative",
+                "[BalanceBefore] >= 0 AND [RemainingBefore] >= 0 AND [DeductedAmount] >= 0 " +
+                "AND [BalanceAfter] >= 0 AND [RemainingAfter] >= 0"));
 
         modelBuilder.Entity<TopupRule>().ToTable(table =>
             table.HasCheckConstraint(

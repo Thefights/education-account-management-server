@@ -10,87 +10,18 @@ public sealed class EnrollmentSeedBuilder : ISeedBuilder
     public ModelBuilder Seed(ModelBuilder modelBuilder)
     {
         var createdAt = SeedDataConstants.CreatedAt;
-        var courseNames = new[]
-        {
-            "Applied Mathematics",
-            "Computer Science Fundamentals",
-            "Business Communication",
-            "Environmental Science",
-            "Digital Media Design",
-            "Hospitality Operations",
-            "Electrical Engineering Basics",
-            "Creative Writing",
-            "Data Analytics",
-            "Legacy Office Applications"
-        };
-        var courseDescriptions = new[]
-        {
-            "Foundation course in applied mathematics.",
-            "Introduction to programming and computing.",
-            "Professional written and verbal communication.",
-            "Environmental systems and sustainability.",
-            "Digital design principles and production.",
-            "Core hospitality service operations.",
-            "Fundamentals of electrical systems.",
-            "Writing techniques across common genres.",
-            "Data preparation, analysis and reporting.",
-            "Archived office applications programme."
-        };
-        var schoolNames = new[]
-        {
-            "Northview Secondary School",
-            "Eastbridge Secondary School",
-            "Westhaven Secondary School",
-            "Southpoint Secondary School",
-            "Central Heights School",
-            "Riverside Learning Institute",
-            "Lakeside Technical School",
-            "Greenfield Academy",
-            "Harbourfront School",
-            "Hillcrest Education Centre"
-        };
-
-        static Enrollment CreateEnrollment(
-            int id,
-            DateTime enrolledAt,
-            DateTime createdAt,
-            string[] courseNames,
-            string[] courseDescriptions,
-            string[] schoolNames,
-            DateTime? completedAt = null,
-            DateTime? withdrawnAt = null)
-        {
-            return new Enrollment
-            {
-                Id = id,
-                CourseId = id,
-                EducationAccountId = id,
-                SchoolNameSnapshot = schoolNames[id - 1],
-                CourseNameSnapshot = courseNames[id - 1],
-                CourseDescriptionSnapshot = courseDescriptions[id - 1],
-                CitizenNricSnapshot = SingaporeNricUtil.Generate(id),
-                CitizenFullNameSnapshot = $"Citizen {id:000}",
-                CitizenEmailSnapshot = $"citizen{id:000}@example.com",
-                CitizenPhoneNumberSnapshot = $"+659{id:0000000}",
-                AccountNumberSnapshot = $"EDU-{createdAt.Year}-{id:00000000000}",
-                EnrolledAt = enrolledAt,
-                CompletedAt = completedAt,
-                WithdrawnAt = withdrawnAt,
-                CreatedAt = createdAt
-            };
-        }
 
         modelBuilder.Entity<Enrollment>().HasData(
-            CreateEnrollment(1, createdAt.AddDays(10), createdAt, courseNames, courseDescriptions, schoolNames),
-            CreateEnrollment(2, createdAt.AddDays(11), createdAt, courseNames, courseDescriptions, schoolNames),
-            CreateEnrollment(3, createdAt.AddDays(12), createdAt, courseNames, courseDescriptions, schoolNames, completedAt: createdAt.AddDays(72)),
-            CreateEnrollment(4, createdAt.AddDays(13), createdAt, courseNames, courseDescriptions, schoolNames),
-            CreateEnrollment(5, createdAt.AddDays(14), createdAt, courseNames, courseDescriptions, schoolNames, withdrawnAt: createdAt.AddDays(24)),
-            CreateEnrollment(6, createdAt.AddDays(15), createdAt, courseNames, courseDescriptions, schoolNames),
-            CreateEnrollment(7, createdAt.AddDays(16), createdAt, courseNames, courseDescriptions, schoolNames, completedAt: createdAt.AddDays(76)),
-            CreateEnrollment(8, createdAt.AddDays(17), createdAt, courseNames, courseDescriptions, schoolNames),
-            CreateEnrollment(9, createdAt.AddDays(18), createdAt, courseNames, courseDescriptions, schoolNames),
-            CreateEnrollment(10, createdAt.AddDays(19), createdAt, courseNames, courseDescriptions, schoolNames, withdrawnAt: createdAt.AddDays(29)));
+            new Enrollment { Id = 1, CourseId = 1, SchoolStudentId = 1, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Applied Mathematics", CourseDescriptionSnapshot = "Foundation course in applied mathematics.", CitizenNricSnapshot = SingaporeNricUtil.Generate(1), CitizenFullNameSnapshot = "Citizen 001", CitizenEmailSnapshot = "citizen001@example.com", CitizenPhoneNumberSnapshot = "+6590000001", AccountNumberSnapshot = "EDU-2026-00000000001", CreatedAt = createdAt },
+            new Enrollment { Id = 2, CourseId = 2, SchoolStudentId = 2, SchoolNameSnapshot = "Eastbridge Secondary School", CourseNameSnapshot = "Computer Science Fundamentals", CourseDescriptionSnapshot = "Introduction to programming and computing.", CitizenNricSnapshot = SingaporeNricUtil.Generate(2), CitizenFullNameSnapshot = "Citizen 002", CitizenEmailSnapshot = "citizen002@example.com", CitizenPhoneNumberSnapshot = "+6590000002", AccountNumberSnapshot = "EDU-2026-00000000002", CreatedAt = createdAt },
+            new Enrollment { Id = 3, CourseId = 3, SchoolStudentId = 3, SchoolNameSnapshot = "Westhaven Secondary School", CourseNameSnapshot = "Business Communication", CourseDescriptionSnapshot = "Professional written and verbal communication.", CitizenNricSnapshot = SingaporeNricUtil.Generate(3), CitizenFullNameSnapshot = "Citizen 003", CitizenEmailSnapshot = "citizen003@example.com", CitizenPhoneNumberSnapshot = "+6590000003", AccountNumberSnapshot = "EDU-2026-00000000003", CreatedAt = createdAt },
+            new Enrollment { Id = 4, CourseId = 4, SchoolStudentId = 4, SchoolNameSnapshot = "Southpoint Secondary School", CourseNameSnapshot = "Environmental Science", CourseDescriptionSnapshot = "Environmental systems and sustainability.", CitizenNricSnapshot = SingaporeNricUtil.Generate(4), CitizenFullNameSnapshot = "Citizen 004", CitizenEmailSnapshot = "citizen004@example.com", CitizenPhoneNumberSnapshot = "+6590000004", AccountNumberSnapshot = "EDU-2026-00000000004", CreatedAt = createdAt },
+            new Enrollment { Id = 5, CourseId = 5, SchoolStudentId = 5, SchoolNameSnapshot = "Central Heights School", CourseNameSnapshot = "Digital Media Design", CourseDescriptionSnapshot = "Digital design principles and production.", CitizenNricSnapshot = SingaporeNricUtil.Generate(5), CitizenFullNameSnapshot = "Citizen 005", CitizenEmailSnapshot = "citizen005@example.com", CitizenPhoneNumberSnapshot = "+6590000005", AccountNumberSnapshot = "EDU-2026-00000000005", CreatedAt = createdAt },
+            new Enrollment { Id = 6, CourseId = 6, SchoolStudentId = 6, SchoolNameSnapshot = "Riverside Learning Institute", CourseNameSnapshot = "Hospitality Operations", CourseDescriptionSnapshot = "Core hospitality service operations.", CitizenNricSnapshot = SingaporeNricUtil.Generate(6), CitizenFullNameSnapshot = "Citizen 006", CitizenEmailSnapshot = "citizen006@example.com", CitizenPhoneNumberSnapshot = "+6590000006", AccountNumberSnapshot = "EDU-2026-00000000006", CreatedAt = createdAt },
+            new Enrollment { Id = 7, CourseId = 7, SchoolStudentId = 7, SchoolNameSnapshot = "Lakeside Technical School", CourseNameSnapshot = "Electrical Engineering Basics", CourseDescriptionSnapshot = "Fundamentals of electrical systems.", CitizenNricSnapshot = SingaporeNricUtil.Generate(7), CitizenFullNameSnapshot = "Citizen 007", CitizenEmailSnapshot = "citizen007@example.com", CitizenPhoneNumberSnapshot = "+6590000007", AccountNumberSnapshot = "EDU-2026-00000000007", CreatedAt = createdAt },
+            new Enrollment { Id = 8, CourseId = 8, SchoolStudentId = 8, SchoolNameSnapshot = "Greenfield Academy", CourseNameSnapshot = "Creative Writing", CourseDescriptionSnapshot = "Writing techniques across common genres.", CitizenNricSnapshot = SingaporeNricUtil.Generate(8), CitizenFullNameSnapshot = "Citizen 008", CitizenEmailSnapshot = "citizen008@example.com", CitizenPhoneNumberSnapshot = "+6590000008", AccountNumberSnapshot = "EDU-2026-00000000008", CreatedAt = createdAt },
+            new Enrollment { Id = 9, CourseId = 9, SchoolStudentId = 9, SchoolNameSnapshot = "Harbourfront School", CourseNameSnapshot = "Data Analytics", CourseDescriptionSnapshot = "Data preparation, analysis and reporting.", CitizenNricSnapshot = SingaporeNricUtil.Generate(9), CitizenFullNameSnapshot = "Citizen 009", CitizenEmailSnapshot = "citizen009@example.com", CitizenPhoneNumberSnapshot = "+6590000009", AccountNumberSnapshot = "EDU-2026-00000000009", CreatedAt = createdAt },
+            new Enrollment { Id = 10, CourseId = 10, SchoolStudentId = 10, SchoolNameSnapshot = "Hillcrest Education Centre", CourseNameSnapshot = "Legacy Office Applications", CourseDescriptionSnapshot = "Archived office applications programme.", CitizenNricSnapshot = SingaporeNricUtil.Generate(10), CitizenFullNameSnapshot = "Citizen 010", CitizenEmailSnapshot = "citizen010@example.com", CitizenPhoneNumberSnapshot = "+6590000010", AccountNumberSnapshot = "EDU-2026-00000000010", CreatedAt = createdAt });
 
         return modelBuilder;
     }

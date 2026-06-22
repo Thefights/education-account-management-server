@@ -1,5 +1,3 @@
-using System;
-
 namespace Models
 {
     public class EducationCreditTransaction : AuditEntity
@@ -13,7 +11,7 @@ namespace Models
         [EnumDefined]
         public EducationCreditTransactionDirection Direction { get; set; } = EducationCreditTransactionDirection.Credit;
 
-        [Column(TypeName = "decimal(18,2)"), NumberPositive]
+        [Column(TypeName = "decimal(18,2)"), NumberHigherThan(0)]
         public decimal Amount { get; set; }
 
         [Column(TypeName = "decimal(18,2)")]
@@ -22,7 +20,7 @@ namespace Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal BalanceAfter { get; set; }
 
-        [MessageMaxLength(500)]
+        [MessageMaxLength(300)]
         public string? Description { get; set; }
 
         [NotDefaultValue]
@@ -34,5 +32,7 @@ namespace Models
 
         [OnDelete(OnDeleteBehavior.Restrict)]
         public Payment? Payment { get; set; }
+
+        public OutstandingDeductionTarget? OutstandingDeductionTarget { get; set; }
     }
 }

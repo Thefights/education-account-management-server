@@ -2,7 +2,10 @@
 {
     public enum CourseStatus
     {
-        Active = 1,
-        Inactive = 2
+        Draft = 1,
+        Enrolling = 2,
+        Upcoming = 3,
+        InProgress = 4,
+        Closed = 5
     }
 }

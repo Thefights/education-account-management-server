@@ -1,6 +1,4 @@
 using EntityAnnotations.DateAttributes;
-using System;
-using System.Collections.Generic;
 
 namespace Models
 {
@@ -27,6 +25,8 @@ namespace Models
         [Timestamp]
         public byte[] RowVersion { get; set; } = [];
 
+        public SchoolStudent? SchoolStudent { get; set; }
+
         [OnDelete(OnDeleteBehavior.Restrict)]
         public ICollection<TopupExecutionTarget> TopupExecutionTargets { get; set; } = [];
 
@@ -35,6 +35,9 @@ namespace Models
 
         [OnDelete(OnDeleteBehavior.Restrict)]
         public ICollection<EducationCreditTransaction> EducationCreditTransactions { get; set; } = [];
+
+        [OnDelete(OnDeleteBehavior.Restrict)]
+        public ICollection<OutstandingDeductionTarget> OutstandingDeductionTargets { get; set; } = [];
 
         [OnDelete(OnDeleteBehavior.Cascade)]
         public ICollection<EducationAccountStatusHistory> StatusHistories { get; set; } = [];

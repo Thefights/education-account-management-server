@@ -2,6 +2,7 @@ using DTOs.Courses;
 using Interfaces.Courses;
 using Results;
 using Services.Base;
+using Services.Courses.Utils;
 using Validators;
 
 
@@ -37,6 +38,7 @@ namespace Services.Courses
                 {
                     var course = _mapper.MapFromCreateDTO(createDTO);
                     course.SchoolId = schoolId;
+                    course.CourseCode = await GenerateUniqueCourseCodeAsync(schoolId, token);
                     course.TryValidate();
                     await UniqueConstraintValidator.ValidateAsync(
                         _repository,
@@ -74,6 +76,7 @@ namespace Services.Courses
                     _mapper.MapFromUpdateDTO(updateDTO, course);
                     course.SchoolId = targetSchoolId;
                     course.TryValidate();
+                    await ValidateCourseCodeAsync(course, course.Id, token);
                     await UniqueConstraintValidator.ValidateAsync(
                         _repository,
                         course,
@@ -196,6 +199,43 @@ namespace Services.Courses
                     _includes,
                     cancellationToken)
                 ?? throw new DataNotFoundException(typeof(Course), id);
+        }
+
+        private async Task ValidateCourseCodeAsync(
+            Course course,
+            int? excludedId = null,
+            CancellationToken cancellationToken = default)
+        {
+            var exists = await _repository.AnyAsync(
+                item => item.SchoolId == course.SchoolId
+                    && item.CourseCode == course.CourseCode
+                    && (!excludedId.HasValue || item.Id != excludedId.Value),
+                cancellationToken);
+
+            if (exists)
+            {
+                throw new DataConflictException(
+                    $"{nameof(Course.CourseCode)} already exists in the selected school.");
+            }
+        }
+
+        private async Task<string> GenerateUniqueCourseCodeAsync(
+            int schoolId,
+            CancellationToken cancellationToken)
+        {
+            const int maxAttempts = 10;
+            for (var attempt = 0; attempt < maxAttempts; attempt++)
+            {
+                var courseCode = CourseCodeGenerator.Generate();
+                if (!await _repository.AnyAsync(
+                        course => course.SchoolId == schoolId && course.CourseCode == courseCode,
+                        cancellationToken))
+                {
+                    return courseCode;
+                }
+            }
+
+            throw new DataConflictException("Unable to generate a unique course code.");
         }
 
         private async Task<int?> GetScopedSchoolIdAsync(CancellationToken cancellationToken)

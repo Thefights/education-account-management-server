@@ -1,5 +1,3 @@
-﻿using EntityAnnotations.DateAttributes;
-
 namespace Models
 {
     public class Enrollment : AuditEntity
@@ -9,8 +7,8 @@ namespace Models
         public Course Course { get; set; } = null!;
 
         [NotDefaultValue]
-        public int EducationAccountId { get; set; }
-        public EducationAccount EducationAccount { get; set; } = null!;
+        public int SchoolStudentId { get; set; }
+        public SchoolStudent SchoolStudent { get; set; } = null!;
 
         [MessageRequired, MessageMaxLength(150)]
         public string SchoolNameSnapshot { get; set; } = string.Empty;
@@ -21,7 +19,7 @@ namespace Models
         [MessageMaxLength(1000)]
         public string? CourseDescriptionSnapshot { get; set; }
 
-        [MessageRequired, MessageMaxLength(9), SingaporeNric]
+        [MessageRequired, MessageMaxLength(20), SingaporeNric]
         public string CitizenNricSnapshot { get; set; } = string.Empty;
 
         [MessageRequired, MessageMaxLength(150)]
@@ -33,16 +31,8 @@ namespace Models
         [MessageMaxLength(20), PhoneNumberValidator]
         public string? CitizenPhoneNumberSnapshot { get; set; }
 
-        [MessageRequired, MessageMaxLength(20)]
+        [MessageRequired, MessageMaxLength(30)]
         public string AccountNumberSnapshot { get; set; } = string.Empty;
-
-        public DateTime EnrolledAt { get; set; }
-
-        [DateValidator(NotBefore = nameof(EnrolledAt))]
-        public DateTime? CompletedAt { get; set; }
-
-        [DateValidator(NotBefore = nameof(EnrolledAt))]
-        public DateTime? WithdrawnAt { get; set; }
 
         [OnDelete(OnDeleteBehavior.Restrict)]
         public Charge? Charge { get; set; }

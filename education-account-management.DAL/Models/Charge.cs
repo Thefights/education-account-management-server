@@ -1,4 +1,4 @@
-﻿namespace Models
+namespace Models
 {
     public class Charge : AuditEntity
     {
@@ -18,8 +18,6 @@
         [Column(TypeName = "decimal(18,2)"), NumberPositive]
         public decimal GstAmountSnapshot { get; set; }
 
-        // Monetary invariants: SubsidyAmount <= GrossAmount, NetAmount = GrossAmount - SubsidyAmount,
-        // PaidAmount <= NetAmount, and RemainingAmount = NetAmount - PaidAmount.
         [Column(TypeName = "decimal(18,2)"), NumberPositive]
         public decimal GrossAmount { get; set; }
 
@@ -29,14 +27,23 @@
         [Column(TypeName = "decimal(18,2)"), NumberPositive]
         public decimal NetAmount { get; set; }
 
-        // PaidAmount <= NetAmount and RemainingAmount = NetAmount - PaidAmount.
         [Column(TypeName = "decimal(18,2)"), NumberPositive, NumberLessThanOrEqualTo(nameof(NetAmount))]
         public decimal PaidAmount { get; set; }
 
         [Column(TypeName = "decimal(18,2)"), NumberPositive, NumberLessThanOrEqualTo(nameof(NetAmount))]
         public decimal RemainingAmount { get; set; }
 
+        [NotDefaultValue]
+        public DateTime PaymentDueDate { get; set; }
+
+        public DateTime? BecameOutstandingAt { get; set; }
+
+        public DateTime? LastAutoDeductedAt { get; set; }
+
         [OnDelete(OnDeleteBehavior.Restrict)]
         public ICollection<PaymentAllocation> PaymentAllocations { get; set; } = [];
+
+        [OnDelete(OnDeleteBehavior.Restrict)]
+        public ICollection<OutstandingDeductionTarget> OutstandingDeductionTargets { get; set; } = [];
     }
 }
