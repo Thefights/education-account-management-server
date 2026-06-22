@@ -2,8 +2,6 @@ namespace DTOs.Courses
 {
     public class CreateCourseDTO
     {
-        public int SchoolId { get; set; }
-
         public string CourseName { get; set; } = string.Empty;
 
         public string? Description { get; set; }
@@ -16,7 +14,7 @@ namespace DTOs.Courses
 
         public DateTime EnrollmentDueDate { get; set; }
 
-        public DateTime PaymentDueDate { get; set; }
+        public DateTime FasApplicationDueDate { get; set; }
 
         public DateTime StartDate { get; set; }
 
@@ -25,8 +23,6 @@ namespace DTOs.Courses
 
     public class UpdateCourseDTO
     {
-        public int SchoolId { get; set; }
-
         public string CourseName { get; set; } = string.Empty;
 
         public string? Description { get; set; }
@@ -39,11 +35,13 @@ namespace DTOs.Courses
 
         public DateTime EnrollmentDueDate { get; set; }
 
-        public DateTime PaymentDueDate { get; set; }
+        public DateTime FasApplicationDueDate { get; set; }
 
         public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }
+
+        public byte[] RowVersion { get; set; } = [];
     }
 
     public class GetCourseDTO
@@ -68,12 +66,33 @@ namespace DTOs.Courses
 
         public decimal GstAmount { get; set; }
 
+        public decimal TotalFeeAmount => CourseFeeAmount + MiscFeeAmount + GstAmount;
+
         public DateTime EnrollmentDueDate { get; set; }
 
-        public DateTime PaymentDueDate { get; set; }
+        public DateTime FasApplicationDueDate { get; set; }
 
         public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }
+
+        public byte[] RowVersion { get; set; } = [];
+    }
+
+    public class PublishCourseDTO
+    {
+        public byte[] RowVersion { get; set; } = [];
+    }
+
+    public class DeleteSelectedCoursesDTO
+    {
+        public List<DeleteCourseItemDTO> Items { get; set; } = [];
+    }
+
+    public class DeleteCourseItemDTO
+    {
+        public int Id { get; set; }
+
+        public byte[] RowVersion { get; set; } = [];
     }
 }

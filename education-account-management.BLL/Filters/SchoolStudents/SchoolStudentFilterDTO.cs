@@ -3,13 +3,27 @@ namespace Filters.SchoolStudents
     public class SchoolStudentFilterDTO : FilterDTO
     {
         private static readonly IReadOnlyDictionary<string, string> AllowedSortFields =
-            new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
-            {
-                ["id"] = nameof(SchoolStudent.Id),
-                ["nric"] = "EducationAccount.Citizen.Nric",
-                ["fullName"] = "EducationAccount.Citizen.FullName",
-                ["status"] = nameof(SchoolStudent.Status),
-            };
+    new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+    {
+        ["id"] = nameof(SchoolStudent.Id),
+
+        ["accountNumber"] =
+            $"{nameof(SchoolStudent.EducationAccount)}.{nameof(EducationAccount.AccountNumber)}",
+
+        ["email"] =
+            $"{nameof(SchoolStudent.EducationAccount)}.{nameof(EducationAccount.Citizen)}.{nameof(Citizen.Email)}",
+
+        ["phoneNumber"] =
+            $"{nameof(SchoolStudent.EducationAccount)}.{nameof(EducationAccount.Citizen)}.{nameof(Citizen.PhoneNumber)}",
+
+        ["nric"] =
+            $"{nameof(SchoolStudent.EducationAccount)}.{nameof(EducationAccount.Citizen)}.{nameof(Citizen.Nric)}",
+
+        ["fullName"] =
+            $"{nameof(SchoolStudent.EducationAccount)}.{nameof(EducationAccount.Citizen)}.{nameof(Citizen.FullName)}",
+
+        ["status"] = nameof(SchoolStudent.Status),
+    };
 
         public override IReadOnlyDictionary<string, string> SortFields => AllowedSortFields;
 

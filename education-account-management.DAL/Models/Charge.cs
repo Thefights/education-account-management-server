@@ -33,9 +33,6 @@ namespace Models
         [Column(TypeName = "decimal(18,2)"), NumberPositive, NumberLessThanOrEqualTo(nameof(NetAmount))]
         public decimal RemainingAmount { get; set; }
 
-        [NotDefaultValue]
-        public DateTime PaymentDueDate { get; set; }
-
         public DateTime? BecameOutstandingAt { get; set; }
 
         public DateTime? LastAutoDeductedAt { get; set; }

@@ -70,7 +70,7 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(course => course.Status);
                 entity.HasIndex(course => course.CourseName);
                 entity.HasIndex(course => course.EnrollmentDueDate);
-                entity.HasIndex(course => course.PaymentDueDate);
+                entity.HasIndex(course => course.FasApplicationDueDate);
                 entity.HasIndex(course => course.StartDate);
                 entity.HasIndex(course => course.EndDate);
                 entity.HasIndex(course => new { course.SchoolId, course.CourseCode }).IsUnique();
@@ -89,9 +89,7 @@ namespace Persistence.SqlServer.ModelConfigurations
             {
                 entity.HasIndex(charge => charge.EnrollmentId).IsUnique();
                 entity.HasIndex(charge => charge.Status);
-                entity.HasIndex(charge => charge.PaymentDueDate);
                 entity.HasIndex(charge => charge.BecameOutstandingAt);
-                entity.HasIndex(charge => new { charge.Status, charge.PaymentDueDate });
             });
 
             modelBuilder.Entity<Payment>(entity =>

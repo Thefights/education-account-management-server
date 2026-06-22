@@ -2,7 +2,7 @@ namespace DTOs.SchoolStudents
 {
     public class CreateSchoolStudentDTO
     {
-        [MessageRequired]
+        [MessageRequired, SingaporeNric]
         public string Nric { get; set; } = string.Empty;
     }
 

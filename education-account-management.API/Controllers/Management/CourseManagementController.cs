@@ -2,27 +2,105 @@ using Authorization;
 using Common.HttpResults;
 using Controllers.Base;
 using DTOs.Courses;
+using Exceptions;
 using Filters.Courses;
 using Interfaces.Courses;
 using Models;
-using Services.Base;
+using Services.Courses;
 
-namespace Controllers.Management
+namespace Controllers.Management;
+
+[Authorize(Roles = RolePolicy.SchoolAdmin)]
+public class CourseManagementController(
+    ICourseService service,
+    CourseImportService importService)
+    : GetController<GetCourseDTO, CourseFilterDTO>(service)
 {
-    [Authorize(Roles = RolePolicy.SchoolAdmin)]
-    public class CourseManagementController(ICourseService service, CsvImportService<Course, CreateCourseDTO> importService)
-        : CrudController<CreateCourseDTO, GetCourseDTO, UpdateCourseDTO, CourseFilterDTO>(service)
-    {
-        private readonly CsvImportService<Course, CreateCourseDTO> _importService = importService;
-        protected override string? EntityName => "Course";
+    private readonly ICourseService _service = service;
+    private readonly CourseImportService _importService = importService;
 
-        [HttpPost("import")]
-        public async Task<IActionResult> Import(
-            [FromForm] IFormFile file,
-            CancellationToken cancellationToken)
+    [HttpPost]
+    public async Task<IActionResult> Create(
+        CreateCourseDTO createDTO,
+        CancellationToken cancellationToken)
+    {
+        var result = await _service.CreateAsync(createDTO, cancellationToken);
+        return Result.SuccessData(result, "Course created successfully");
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update(
+        int id,
+        UpdateCourseDTO updateDTO,
+        CancellationToken cancellationToken)
+    {
+        var result = await _service.UpdateAsync(id, updateDTO, cancellationToken);
+        return Result.SuccessData(result, "Course updated successfully");
+    }
+
+    [HttpPost("{id}/publish")]
+    public async Task<IActionResult> Publish(
+        int id,
+        PublishCourseDTO publishDTO,
+        CancellationToken cancellationToken)
+    {
+        var result = await _service.PublishAsync(id, publishDTO, cancellationToken);
+        return Result.SuccessData(result, "Course published successfully");
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(
+        int id,
+        CancellationToken cancellationToken)
+    {
+        var rowVersion = ParseIfMatchHeader(Request.Headers.IfMatch.ToString());
+        await _service.DeleteAsync(id, rowVersion, cancellationToken);
+        return Result.SuccessAction("Course deleted successfully");
+    }
+
+    [HttpDelete("selected")]
+    public async Task<IActionResult> DeleteSelected(
+        DeleteSelectedCoursesDTO deleteDTO,
+        CancellationToken cancellationToken)
+    {
+        await _service.DeleteSelectedAsync(deleteDTO, cancellationToken);
+        return Result.SuccessAction($"{deleteDTO.Items.Count} selected Courses deleted successfully");
+    }
+
+    [HttpPost("import")]
+    public async Task<IActionResult> Import(
+        [FromForm] IFormFile file,
+        CancellationToken cancellationToken)
+    {
+        var result = await _importService.ImportAsync(file, cancellationToken);
+        return Result.SuccessData(result, "Course CSV import processed.");
+    }
+
+    private static byte[] ParseIfMatchHeader(string ifMatch)
+    {
+        if (string.IsNullOrWhiteSpace(ifMatch))
         {
-            var result = await _importService.ImportAsync(file, cancellationToken);
-            return Result.SuccessData(result, "Course CSV import processed.");
+            throw new ValidationFailureException(
+                nameof(Course.RowVersion),
+                "If-Match header is required.");
+        }
+
+        var value = ifMatch.Trim();
+        if (value.StartsWith("W/", StringComparison.OrdinalIgnoreCase))
+        {
+            value = value[2..].Trim();
+        }
+
+        value = value.Trim('"');
+        try
+        {
+            return Convert.FromBase64String(value);
+        }
+        catch (FormatException)
+        {
+            throw new ValidationFailureException(
+                nameof(Course.RowVersion),
+                "If-Match header must contain a valid Base64 row version.");
         }
     }
 }

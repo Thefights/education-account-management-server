@@ -32,8 +32,8 @@ public static class CheckConstraintConfigurator
                 "[CourseFeeAmount] >= 0 AND [MiscFeeAmount] >= 0 AND [GstAmount] >= 0");
             table.HasCheckConstraint(
                 "CK_Course_Date_Order",
-                "[EnrollmentDueDate] <= [PaymentDueDate] AND " +
-                "[EnrollmentDueDate] <= [StartDate] AND [StartDate] <= [EndDate]");
+                "[EnrollmentDueDate] <= [FasApplicationDueDate] AND " +
+                "[FasApplicationDueDate] <= [StartDate] AND [StartDate] <= [EndDate]");
         });
 
         modelBuilder.Entity<Charge>().ToTable(table =>
