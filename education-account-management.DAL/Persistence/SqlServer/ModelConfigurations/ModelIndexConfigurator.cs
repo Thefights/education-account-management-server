@@ -70,7 +70,7 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(course => course.Status);
                 entity.HasIndex(course => course.CourseName);
                 entity.HasIndex(course => course.EnrollmentDueDate);
-                entity.HasIndex(course => course.PaymentDueDate);
+                entity.HasIndex(course => course.FasApplicationDueDate);
                 entity.HasIndex(course => course.StartDate);
                 entity.HasIndex(course => course.EndDate);
                 entity.HasIndex(course => new { course.SchoolId, course.CourseCode }).IsUnique();
@@ -89,9 +89,7 @@ namespace Persistence.SqlServer.ModelConfigurations
             {
                 entity.HasIndex(charge => charge.EnrollmentId).IsUnique();
                 entity.HasIndex(charge => charge.Status);
-                entity.HasIndex(charge => charge.PaymentDueDate);
                 entity.HasIndex(charge => charge.BecameOutstandingAt);
-                entity.HasIndex(charge => new { charge.Status, charge.PaymentDueDate });
             });
 
             modelBuilder.Entity<Payment>(entity =>
@@ -112,30 +110,52 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(allocation => new { allocation.PaymentId, allocation.ChargeId }).IsUnique();
             });
 
-            modelBuilder.Entity<TopupRule>(entity =>
+            modelBuilder.Entity<SystemTopup>(entity =>
             {
-                entity.HasIndex(topupRule => topupRule.RuleName);
-                entity.HasIndex(topupRule => topupRule.Status);
+                entity.HasIndex(topup => topup.Status);
             });
 
-            modelBuilder.Entity<TopupRuleCondition>(entity =>
+            modelBuilder.Entity<SystemTopupConditionGroup>(entity =>
             {
-                entity.HasIndex(condition => condition.TopupRuleId);
+                entity.HasIndex(group => group.SystemTopupId);
+                entity.HasIndex(group => group.ParentGroupId);
+                entity.HasIndex(group => group.SystemTopupId)
+                    .IsUnique()
+                    .HasFilter($"[{nameof(SystemTopupConditionGroup.ParentGroupId)}] IS NULL");
+            });
+
+            modelBuilder.Entity<SystemTopupCondition>(entity =>
+            {
+                entity.HasIndex(condition => condition.GroupId);
                 entity.HasIndex(condition => condition.Field);
-                entity.HasIndex(condition => condition.Operator);
             });
 
-            modelBuilder.Entity<TopupSchedule>(entity =>
+            modelBuilder.Entity<ScheduleTopUp>(entity =>
             {
-                entity.HasIndex(s => s.TopupRuleId).IsUnique();
-                entity.HasIndex(s => s.Status);
-                entity.HasIndex(s => s.NextExecutionAt);
+                entity.HasIndex(schedule => schedule.Status);
+                entity.HasIndex(schedule => schedule.NextExecutionAt);
+            });
+
+            modelBuilder.Entity<ScheduleTopUpConditionGroup>(entity =>
+            {
+                entity.HasIndex(group => group.ScheduleTopUpId);
+                entity.HasIndex(group => group.ParentGroupId);
+                entity.HasIndex(group => group.ScheduleTopUpId)
+                    .IsUnique()
+                    .HasFilter($"[{nameof(ScheduleTopUpConditionGroup.ParentGroupId)}] IS NULL");
+            });
+
+            modelBuilder.Entity<ScheduleTopUpCondition>(entity =>
+            {
+                entity.HasIndex(condition => condition.GroupId);
+                entity.HasIndex(condition => condition.Field);
             });
 
             modelBuilder.Entity<TopupExecution>(entity =>
             {
                 entity.HasIndex(e => e.SourceType);
-                entity.HasIndex(e => e.TopupRuleId);
+                entity.HasIndex(e => e.SystemTopupId);
+                entity.HasIndex(e => e.ScheduleTopUpId);
                 entity.HasIndex(e => e.Status);
                 entity.HasIndex(e => e.ExecutionCode).IsUnique();
                 entity.HasIndex(e => e.IdempotencyKey).IsUnique();
@@ -152,9 +172,9 @@ namespace Persistence.SqlServer.ModelConfigurations
 
             modelBuilder.Entity<TopupSystemApplication>(entity =>
             {
-                entity.HasIndex(a => a.TopupRuleId);
+                entity.HasIndex(a => a.SystemTopupId);
                 entity.HasIndex(a => a.EducationAccountId);
-                entity.HasIndex(a => new { a.TopupRuleId, a.EducationAccountId }).IsUnique();
+                entity.HasIndex(a => new { a.SystemTopupId, a.EducationAccountId }).IsUnique();
                 entity.HasIndex(a => a.TopupExecutionTargetId).IsUnique();
             });
 

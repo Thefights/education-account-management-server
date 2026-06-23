@@ -12,13 +12,13 @@ namespace Models
         [EnumDefined]
         public TopupExecutionSourceType SourceType { get; set; } = TopupExecutionSourceType.Manual;
 
-        public int? TopupRuleId { get; set; }
+        public int? SystemTopupId { get; set; }
         [OnDelete(OnDeleteBehavior.NoAction)]
-        public TopupRule? TopupRule { get; set; }
+        public SystemTopup? SystemTopup { get; set; }
 
-        public int? TopupScheduleId { get; set; }
+        public int? ScheduleTopUpId { get; set; }
         [OnDelete(OnDeleteBehavior.NoAction)]
-        public TopupSchedule? TopupSchedule { get; set; }
+        public ScheduleTopUp? ScheduleTopUp { get; set; }
 
         [MessageRequired, MessageMaxLength(100)]
         [Unique]
@@ -43,19 +43,13 @@ namespace Models
         public decimal TotalExecutedAmount { get; set; }
 
         [MessageMaxLength(150)]
-        public string? RuleNameSnapshot { get; set; }
-
-        [EnumDefined]
-        public TopupRuleType? RuleTypeSnapshot { get; set; }
-
-        [EnumDefined]
-        public TopupMatchMode? MatchModeSnapshot { get; set; }
+        public string? TopupNameSnapshot { get; set; }
 
         [Column(TypeName = "decimal(18,2)")]
         public decimal? TopupAmountSnapshot { get; set; }
 
         [Column(TypeName = "nvarchar(4000)"), MessageMaxLength(4000)]
-        public string? RuleConditionsSnapshot { get; set; }
+        public string? ConditionsSnapshot { get; set; }
 
         [OnDelete(OnDeleteBehavior.Cascade)]
         public ICollection<TopupExecutionTarget> Targets { get; set; } = [];

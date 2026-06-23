@@ -3,6 +3,6 @@
     public enum BatchType
     {
         ManualTopup = 1,
-        ScheduledTopup = 2,
+        ScheduleTopUp = 2,
     }
 }

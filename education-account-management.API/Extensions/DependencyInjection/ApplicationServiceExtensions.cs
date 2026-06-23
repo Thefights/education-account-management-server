@@ -15,13 +15,16 @@ using Interfaces.Courses;
 using Interfaces.Csv;
 using Interfaces.EducationAccounts;
 using Interfaces.Email;
+using Interfaces.Enrollments;
 using Interfaces.Maintenance;
 using Interfaces.Schools;
+using Interfaces.SchoolStudents;
 using Interfaces.Storage;
 using Interfaces.TopUp;
 using Interfaces.TransactionHistory;
 using Mappers;
 using Mappers.Admin;
+using Mappers.Enrollments;
 using Models;
 using Polly;
 using Polly.CircuitBreaker;
@@ -34,13 +37,17 @@ using Services.Audit;
 using Services.Auth;
 using Services.Base;
 using Services.Courses;
+using Services.Courses.Utils;
 using Services.EducationAccounts;
 using Services.Email;
+using Services.Enrollments;
 using Services.Maintenance;
 using Services.Schools;
+using Services.SchoolStudents;
 using Services.Storage;
 using Services.TopUp;
 using Services.TransactionHistory;
+using Services.Utils;
 using StackExchange.Redis;
 using System.Threading.RateLimiting;
 
@@ -57,6 +64,7 @@ public static class ApplicationServiceExtensions
         AddAuthServices(services);
         AddEmailServices(services, configuration);
         AddStorageServices(services, configuration);
+        services.AddSingleton(TimeProvider.System);
 
         services.AddScoped<IAuditLogService, AuditLogService>();
         services.AddScoped<IAuditLogWriter, AuditLogWriter>();
@@ -67,12 +75,13 @@ public static class ApplicationServiceExtensions
         services.AddScoped<ICsvImportProfile<Course, CreateCourseDTO>, CourseImportProfile>();
 
         services.AddScoped<IEducationAccountService, EducationAccountService>();
+        services.AddScoped<IEnrollmentService, EnrollmentService>();
         services.AddScoped<IEducationAccountSweepService, EducationAccountSweepService>();
         services.AddScoped<IEducationAccountImportService, EducationAccountImportService>();
         services.AddScoped<ITransactionHistoryService, TransactionHistoryService>();
 
-        services.AddScoped<ITopupRuleService, TopupRuleService>();
-        services.AddScoped<ITopupScheduleService, TopupScheduleService>();
+        services.AddScoped<ISystemTopupService, SystemTopupService>();
+        services.AddScoped<IScheduleTopUpService, ScheduleTopUpService>();
         services.AddScoped<ITopupService, TopupService>();
         services.AddScoped<ITopupManagementQueryService, TopupManagementQueryService>();
         services.AddScoped<ITopupBackgroundService, TopupBackgroundService>();
@@ -81,22 +90,30 @@ public static class ApplicationServiceExtensions
         services.AddScoped<IAiAssistantSettingService, AiAssistantSettingService>();
         services.AddScoped<IAdminService, AdminService>();
         services.AddScoped<ICourseService, CourseService>();
+        services.AddScoped<ICourseLifecycleService, CourseLifecycleService>();
+        services.AddScoped<CourseImportService>();
+        services.AddScoped<SchoolScopeResolver>();
         services.AddScoped<ISchoolService, SchoolService>();
+        services.AddScoped<ISchoolStudentService, SchoolStudentService>();
+        services.AddScoped<ISchoolStudentImportService, SchoolStudentImportService>();
 
         services.AddScoped<IDataCleanupService, DataCleanupService>();
         services.AddHostedService<DataCleanupWorker>();
         services.AddHostedService<EducationAccountSweepWorker>();
         services.AddHostedService<TopupDailyWorker>();
+        services.AddHostedService<CourseLifecycleWorker>();
 
         services.AddScoped<AuditLogMapper>();
         services.AddScoped<EducationAccountMapper>();
+        services.AddScoped<EnrollmentMapper>();
         services.AddScoped<TransactionHistoryMapper>();
-        services.AddScoped<TopupRuleMapper>();
-        services.AddScoped<TopupScheduleMapper>();
+        services.AddScoped<SystemTopupMapper>();
+        services.AddScoped<ScheduleTopUpMapper>();
         services.AddScoped<AiAssistantSettingMapper>();
         services.AddScoped<AdminMapper>();
         services.AddScoped<CourseMapper>();
         services.AddScoped<SchoolMapper>();
+        services.AddScoped<SchoolStudentMapper>();
 
         return services;
     }

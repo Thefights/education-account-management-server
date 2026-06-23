@@ -11,10 +11,10 @@ namespace Models
         [EnumDefined]
         public CourseStatus Status { get; set; } = CourseStatus.Draft;
 
-        [MessageRequired, MessageMaxLength(16), RegularExpression(@"^CRS-\d{4}-[A-Z0-9]{7}$")]
+        [MessageRequired, MessageMaxLength(16), RegularExpression(@"^CRS-\d{4}-[A-Z0-9]{7}$"), Unique]
         public string CourseCode { get; set; } = string.Empty;
 
-        [MessageRequired, MessageMaxLength(150)]
+        [MessageRequired, MessageMaxLength(150), Unique]
         public string CourseName { get; set; } = string.Empty;
 
         [MessageMaxLength(1000)]
@@ -29,19 +29,22 @@ namespace Models
         [Column(TypeName = "decimal(18,2)"), NumberPositive]
         public decimal GstAmount { get; set; }
 
-        [NotDefaultValue, DateValidator(NotAfter = nameof(PaymentDueDate))]
+        [NotDefaultValue, DateValidator(NotAfter = nameof(FasApplicationDueDate))]
         public DateTime EnrollmentDueDate { get; set; }
 
-        [NotDefaultValue]
-        public DateTime PaymentDueDate { get; set; }
+        [NotDefaultValue, DateValidator(NotBefore = nameof(EnrollmentDueDate), NotAfter = nameof(StartDate))]
+        public DateTime FasApplicationDueDate { get; set; }
 
-        [NotDefaultValue, DateValidator(NotBefore = nameof(EnrollmentDueDate), NotAfter = nameof(EndDate))]
+        [NotDefaultValue, DateValidator(NotBefore = nameof(FasApplicationDueDate), NotAfter = nameof(EndDate))]
         public DateTime StartDate { get; set; }
 
         [NotDefaultValue, DateValidator(NotBefore = nameof(StartDate))]
         public DateTime EndDate { get; set; }
 
-        [OnDelete(OnDeleteBehavior.Restrict)]
+        [Timestamp]
+        public byte[] RowVersion { get; set; } = [];
+
+        [OnDelete(OnDeleteBehavior.Cascade)]
         public ICollection<Enrollment> Enrollments { get; set; } = [];
     }
 }

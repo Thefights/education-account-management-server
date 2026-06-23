@@ -15,19 +15,17 @@ public sealed class TopupExecutionDTO
     public string ExecutionCode { get; set; } = string.Empty;
     public string SourceType { get; set; } = string.Empty;
     public string Status { get; set; } = string.Empty;
-    public int? TopupRuleId { get; set; }
-    public int? TopupScheduleId { get; set; }
+    public int? SystemTopupId { get; set; }
+    public int? ScheduleTopUpId { get; set; }
     public decimal? ManualAmount { get; set; }
     public string? ManualReason { get; set; }
     public int TotalTargetCount { get; set; }
     public int SuccessCount { get; set; }
     public int FailedCount { get; set; }
     public decimal TotalExecutedAmount { get; set; }
-    public string? RuleNameSnapshot { get; set; }
-    public string? RuleTypeSnapshot { get; set; }
-    public string? MatchModeSnapshot { get; set; }
+    public string? TopupNameSnapshot { get; set; }
     public decimal? TopupAmountSnapshot { get; set; }
-    public string? RuleConditionsSnapshot { get; set; }
+    public string? ConditionsSnapshot { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }
 }

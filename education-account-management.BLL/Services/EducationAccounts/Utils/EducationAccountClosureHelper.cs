@@ -12,8 +12,7 @@ public static class EducationAccountClosureHelper
         var hasOutstandingCharge = await chargeRepository.AnyAsync(
             charge => charge.Enrollment.SchoolStudent.EducationAccountId == account.Id
                 && charge.RemainingAmount > 0
-                && charge.Status != ChargeStatus.Paid
-                && charge.Status != ChargeStatus.Cancelled,
+                && charge.Status != ChargeStatus.Paid,
             cancellationToken);
 
         if (hasOutstandingCharge)

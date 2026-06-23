@@ -34,17 +34,16 @@ public sealed class TopupExecutionSeedBuilder : ISeedBuilder
                 Id = 2,
                 ExecutionCode = "TOPUP-SEED-SYSTEM-001",
                 SourceType = TopupExecutionSourceType.System,
-                TopupRuleId = 21,
+                SystemTopupId = 21,
                 IdempotencyKey = "seed-system-topup-001",
                 Status = TopupExecutionStatus.Completed,
                 TotalTargetCount = 1,
                 SuccessCount = 1,
                 FailedCount = 0,
                 TotalExecutedAmount = 200m,
-                RuleNameSnapshot = "Random Top-up Rule 021",
-                RuleTypeSnapshot = TopupRuleType.System,
-                MatchModeSnapshot = TopupMatchMode.And,
+                TopupNameSnapshot = "System Top-up 021",
                 TopupAmountSnapshot = 200m,
+                ConditionsSnapshot = "{\"logicalOperator\":\"And\",\"conditions\":[]}",
                 CreatedAt = createdAt.AddDays(1)
             });
 
