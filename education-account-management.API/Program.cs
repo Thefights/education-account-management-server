@@ -8,8 +8,6 @@ builder.Host.UseDefaultServiceProvider(options =>
     options.ValidateOnBuild = true;
 });
 
-builder.Logging.ClearProviders();
-
 var configuration = builder.Configuration.Get<AppConfiguration>()!;
 builder.Services.AddSingleton(configuration);
 

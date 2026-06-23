@@ -15,6 +15,7 @@ using Interfaces.Courses;
 using Interfaces.Csv;
 using Interfaces.EducationAccounts;
 using Interfaces.Email;
+using Interfaces.Enrollments;
 using Interfaces.Maintenance;
 using Interfaces.Schools;
 using Interfaces.SchoolStudents;
@@ -23,6 +24,7 @@ using Interfaces.TopUp;
 using Interfaces.TransactionHistory;
 using Mappers;
 using Mappers.Admin;
+using Mappers.Enrollments;
 using Models;
 using Polly;
 using Polly.CircuitBreaker;
@@ -38,6 +40,7 @@ using Services.Courses;
 using Services.Courses.Utils;
 using Services.EducationAccounts;
 using Services.Email;
+using Services.Enrollments;
 using Services.Maintenance;
 using Services.Schools;
 using Services.SchoolStudents;
@@ -72,6 +75,7 @@ public static class ApplicationServiceExtensions
         services.AddScoped<ICsvImportProfile<Course, CreateCourseDTO>, CourseImportProfile>();
 
         services.AddScoped<IEducationAccountService, EducationAccountService>();
+        services.AddScoped<IEnrollmentService, EnrollmentService>();
         services.AddScoped<IEducationAccountSweepService, EducationAccountSweepService>();
         services.AddScoped<IEducationAccountImportService, EducationAccountImportService>();
         services.AddScoped<ITransactionHistoryService, TransactionHistoryService>();
@@ -101,6 +105,7 @@ public static class ApplicationServiceExtensions
 
         services.AddScoped<AuditLogMapper>();
         services.AddScoped<EducationAccountMapper>();
+        services.AddScoped<EnrollmentMapper>();
         services.AddScoped<TransactionHistoryMapper>();
         services.AddScoped<TopupRuleMapper>();
         services.AddScoped<TopupScheduleMapper>();
@@ -108,6 +113,7 @@ public static class ApplicationServiceExtensions
         services.AddScoped<AdminMapper>();
         services.AddScoped<CourseMapper>();
         services.AddScoped<SchoolMapper>();
+        services.AddScoped<SchoolStudentMapper>();
 
         return services;
     }

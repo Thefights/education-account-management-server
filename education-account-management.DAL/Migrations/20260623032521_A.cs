@@ -271,9 +271,10 @@ namespace educationaccountmanagement.DAL.Migrations
                     MiscFeeAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     GstAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     EnrollmentDueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PaymentDueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FasApplicationDueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<int>(type: "int", nullable: true),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -285,7 +286,7 @@ namespace educationaccountmanagement.DAL.Migrations
                 {
                     table.PrimaryKey("PK_Course", x => x.Id);
                     table.CheckConstraint("CK_Course_Amounts_NonNegative", "[CourseFeeAmount] >= 0 AND [MiscFeeAmount] >= 0 AND [GstAmount] >= 0");
-                    table.CheckConstraint("CK_Course_Date_Order", "[EnrollmentDueDate] <= [PaymentDueDate] AND [EnrollmentDueDate] <= [StartDate] AND [StartDate] <= [EndDate]");
+                    table.CheckConstraint("CK_Course_Date_Order", "[EnrollmentDueDate] <= [FasApplicationDueDate] AND [FasApplicationDueDate] <= [StartDate] AND [StartDate] <= [EndDate]");
                     table.ForeignKey(
                         name: "FK_Course_School_SchoolId",
                         column: x => x.SchoolId,
@@ -712,7 +713,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         column: x => x.CourseId,
                         principalTable: "Course",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Enrollment_SchoolStudent_SchoolStudentId",
                         column: x => x.SchoolStudentId,
@@ -773,6 +774,12 @@ namespace educationaccountmanagement.DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EnrollmentId = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
+                    SchoolNameSnapshot = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    CourseCodeSnapshot = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
+                    CourseNameSnapshot = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    CourseDescriptionSnapshot = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
+                    CourseStartDateSnapshot = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CourseEndDateSnapshot = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CourseFeeAmountSnapshot = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     MiscFeeAmountSnapshot = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     GstAmountSnapshot = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -781,9 +788,9 @@ namespace educationaccountmanagement.DAL.Migrations
                     NetAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     PaidAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     RemainingAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    PaymentDueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     BecameOutstandingAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastAutoDeductedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<int>(type: "int", nullable: true),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -1153,19 +1160,19 @@ namespace educationaccountmanagement.DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "Course",
-                columns: new[] { "Id", "CourseCode", "CourseFeeAmount", "CourseName", "CreatedAt", "CreatedBy", "DeletedAt", "Description", "EndDate", "EnrollmentDueDate", "GstAmount", "IsDeleted", "MiscFeeAmount", "PaymentDueDate", "SchoolId", "StartDate", "Status", "UpdatedAt", "UpdatedBy" },
+                columns: new[] { "Id", "CourseCode", "CourseFeeAmount", "CourseName", "CreatedAt", "CreatedBy", "DeletedAt", "Description", "EndDate", "EnrollmentDueDate", "FasApplicationDueDate", "GstAmount", "IsDeleted", "MiscFeeAmount", "SchoolId", "StartDate", "Status", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "CRS-2026-A1B2C3D", 100m, "Applied Mathematics", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Foundation course in applied mathematics.", new DateTime(2026, 9, 30, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 15, 0, 0, 0, 0, DateTimeKind.Utc), 10m, false, 10m, new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc), 1, new DateTime(2026, 8, 1, 0, 0, 0, 0, DateTimeKind.Utc), 3, null, null },
-                    { 2, "CRS-2026-B2C3D4E", 115m, "Computer Science Fundamentals", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Introduction to programming and computing.", new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 16, 0, 0, 0, 0, DateTimeKind.Utc), 13m, false, 12m, new DateTime(2026, 7, 2, 0, 0, 0, 0, DateTimeKind.Utc), 2, new DateTime(2026, 8, 2, 0, 0, 0, 0, DateTimeKind.Utc), 3, null, null },
-                    { 3, "CRS-2026-C3D4E5F", 130m, "Business Communication", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Professional written and verbal communication.", new DateTime(2026, 10, 2, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 17, 0, 0, 0, 0, DateTimeKind.Utc), 15m, false, 15m, new DateTime(2026, 7, 3, 0, 0, 0, 0, DateTimeKind.Utc), 3, new DateTime(2026, 8, 3, 0, 0, 0, 0, DateTimeKind.Utc), 3, null, null },
-                    { 4, "CRS-2026-D4E5F6G", 145m, "Environmental Science", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Environmental systems and sustainability.", new DateTime(2026, 8, 3, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Utc), 18m, false, 17m, new DateTime(2026, 2, 4, 0, 0, 0, 0, DateTimeKind.Utc), 4, new DateTime(2026, 5, 4, 0, 0, 0, 0, DateTimeKind.Utc), 4, null, null },
-                    { 5, "CRS-2026-E5F6G7H", 160m, "Digital Media Design", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Digital design principles and production.", new DateTime(2026, 8, 4, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc), 20m, false, 20m, new DateTime(2026, 2, 5, 0, 0, 0, 0, DateTimeKind.Utc), 5, new DateTime(2026, 5, 5, 0, 0, 0, 0, DateTimeKind.Utc), 4, null, null },
-                    { 6, "CRS-2026-F6G7H8J", 175m, "Hospitality Operations", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Core hospitality service operations.", new DateTime(2026, 8, 5, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc), 23m, false, 22m, new DateTime(2026, 2, 6, 0, 0, 0, 0, DateTimeKind.Utc), 6, new DateTime(2026, 5, 6, 0, 0, 0, 0, DateTimeKind.Utc), 4, null, null },
-                    { 7, "CRS-2026-G7H8J9K", 190m, "Electrical Engineering Basics", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Fundamentals of electrical systems.", new DateTime(2026, 5, 6, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc), 25m, false, 25m, new DateTime(2026, 2, 7, 0, 0, 0, 0, DateTimeKind.Utc), 7, new DateTime(2026, 3, 7, 0, 0, 0, 0, DateTimeKind.Utc), 5, null, null },
-                    { 8, "CRS-2026-H8J9K0L", 205m, "Creative Writing", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Writing techniques across common genres.", new DateTime(2026, 5, 7, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc), 28m, false, 27m, new DateTime(2026, 2, 8, 0, 0, 0, 0, DateTimeKind.Utc), 8, new DateTime(2026, 3, 8, 0, 0, 0, 0, DateTimeKind.Utc), 5, null, null },
-                    { 9, "CRS-2026-J9K0L1M", 220m, "Data Analytics", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Data preparation, analysis and reporting.", new DateTime(2026, 5, 8, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc), 30m, false, 30m, new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc), 9, new DateTime(2026, 3, 9, 0, 0, 0, 0, DateTimeKind.Utc), 5, null, null },
-                    { 10, "CRS-2026-K0L1M2N", 235m, "Legacy Office Applications", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Archived office applications programme.", new DateTime(2026, 5, 9, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc), 33m, false, 32m, new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc), 10, new DateTime(2026, 3, 10, 0, 0, 0, 0, DateTimeKind.Utc), 5, null, null }
+                    { 1, "CRS-2026-A1B2C3D", 100m, "Applied Mathematics", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Foundation course in applied mathematics.", new DateTime(2026, 9, 30, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 15, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc), 9.90m, false, 10m, 1, new DateTime(2026, 8, 1, 0, 0, 0, 0, DateTimeKind.Utc), 3, null, null },
+                    { 2, "CRS-2026-B2C3D4E", 115m, "Computer Science Fundamentals", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Introduction to programming and computing.", new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 16, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 7, 2, 0, 0, 0, 0, DateTimeKind.Utc), 11.43m, false, 12m, 2, new DateTime(2026, 8, 2, 0, 0, 0, 0, DateTimeKind.Utc), 3, null, null },
+                    { 3, "CRS-2026-C3D4E5F", 130m, "Business Communication", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Professional written and verbal communication.", new DateTime(2026, 10, 2, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 17, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 7, 3, 0, 0, 0, 0, DateTimeKind.Utc), 13.05m, false, 15m, 3, new DateTime(2026, 8, 3, 0, 0, 0, 0, DateTimeKind.Utc), 3, null, null },
+                    { 4, "CRS-2026-D4E5F6G", 145m, "Environmental Science", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Environmental systems and sustainability.", new DateTime(2026, 8, 3, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 4, 0, 0, 0, 0, DateTimeKind.Utc), 14.58m, false, 17m, 4, new DateTime(2026, 5, 4, 0, 0, 0, 0, DateTimeKind.Utc), 4, null, null },
+                    { 5, "CRS-2026-E5F6G7H", 160m, "Digital Media Design", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Digital design principles and production.", new DateTime(2026, 8, 4, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 5, 0, 0, 0, 0, DateTimeKind.Utc), 16.20m, false, 20m, 5, new DateTime(2026, 5, 5, 0, 0, 0, 0, DateTimeKind.Utc), 4, null, null },
+                    { 6, "CRS-2026-F6G7H8J", 175m, "Hospitality Operations", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Core hospitality service operations.", new DateTime(2026, 8, 5, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 6, 0, 0, 0, 0, DateTimeKind.Utc), 17.73m, false, 22m, 6, new DateTime(2026, 5, 6, 0, 0, 0, 0, DateTimeKind.Utc), 4, null, null },
+                    { 7, "CRS-2026-G7H8J9K", 190m, "Electrical Engineering Basics", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Fundamentals of electrical systems.", new DateTime(2026, 5, 6, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 7, 0, 0, 0, 0, DateTimeKind.Utc), 19.35m, false, 25m, 7, new DateTime(2026, 3, 7, 0, 0, 0, 0, DateTimeKind.Utc), 5, null, null },
+                    { 8, "CRS-2026-H8J9K0L", 205m, "Creative Writing", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Writing techniques across common genres.", new DateTime(2026, 5, 7, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 8, 0, 0, 0, 0, DateTimeKind.Utc), 20.88m, false, 27m, 8, new DateTime(2026, 3, 8, 0, 0, 0, 0, DateTimeKind.Utc), 5, null, null },
+                    { 9, "CRS-2026-J9K0L1M", 220m, "Data Analytics", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Data preparation, analysis and reporting.", new DateTime(2026, 5, 8, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc), 22.50m, false, 30m, 9, new DateTime(2026, 3, 9, 0, 0, 0, 0, DateTimeKind.Utc), 5, null, null },
+                    { 10, "CRS-2026-K0L1M2N", 235m, "Legacy Office Applications", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Archived office applications programme.", new DateTime(2026, 5, 9, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc), 24.03m, false, 32m, 10, new DateTime(2026, 3, 10, 0, 0, 0, 0, DateTimeKind.Utc), 5, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -1508,19 +1515,19 @@ namespace educationaccountmanagement.DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "Charge",
-                columns: new[] { "Id", "BecameOutstandingAt", "CourseFeeAmountSnapshot", "CreatedAt", "CreatedBy", "DeletedAt", "EnrollmentId", "GrossAmount", "GstAmountSnapshot", "IsDeleted", "LastAutoDeductedAt", "MiscFeeAmountSnapshot", "NetAmount", "PaidAmount", "PaymentDueDate", "RemainingAmount", "Status", "SubsidyAmount", "UpdatedAt", "UpdatedBy" },
+                columns: new[] { "Id", "BecameOutstandingAt", "CourseCodeSnapshot", "CourseDescriptionSnapshot", "CourseEndDateSnapshot", "CourseFeeAmountSnapshot", "CourseNameSnapshot", "CourseStartDateSnapshot", "CreatedAt", "CreatedBy", "DeletedAt", "EnrollmentId", "GrossAmount", "GstAmountSnapshot", "IsDeleted", "LastAutoDeductedAt", "MiscFeeAmountSnapshot", "NetAmount", "PaidAmount", "RemainingAmount", "SchoolNameSnapshot", "Status", "SubsidyAmount", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, null, 100m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 120m, 10m, false, null, 10m, 120m, 120m, new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc), 0m, 3, 0m, null, null },
-                    { 2, null, 115m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 140m, 13m, false, null, 12m, 140m, 70m, new DateTime(2026, 7, 2, 0, 0, 0, 0, DateTimeKind.Utc), 70m, 2, 0m, null, null },
-                    { 3, null, 130m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 3, 160m, 15m, false, null, 15m, 140m, 140m, new DateTime(2026, 7, 3, 0, 0, 0, 0, DateTimeKind.Utc), 0m, 3, 20m, null, null },
-                    { 4, null, 145m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 4, 180m, 18m, false, null, 17m, 180m, 180m, new DateTime(2026, 2, 4, 0, 0, 0, 0, DateTimeKind.Utc), 0m, 3, 0m, null, null },
-                    { 5, null, 160m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 5, 200m, 20m, false, null, 20m, 180m, 180m, new DateTime(2026, 2, 5, 0, 0, 0, 0, DateTimeKind.Utc), 0m, 3, 20m, null, null },
-                    { 6, new DateTime(2026, 2, 7, 0, 0, 0, 0, DateTimeKind.Utc), 175m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 6, 220m, 23m, false, new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc), 22m, 220m, 150m, new DateTime(2026, 2, 6, 0, 0, 0, 0, DateTimeKind.Utc), 70m, 4, 0m, null, null },
-                    { 7, null, 190m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 7, 240m, 25m, false, null, 25m, 200m, 200m, new DateTime(2026, 2, 7, 0, 0, 0, 0, DateTimeKind.Utc), 0m, 3, 40m, null, null },
-                    { 8, new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc), 205m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 8, 260m, 28m, false, new DateTime(2026, 4, 5, 0, 0, 0, 0, DateTimeKind.Utc), 27m, 260m, 200m, new DateTime(2026, 2, 8, 0, 0, 0, 0, DateTimeKind.Utc), 60m, 4, 0m, null, null },
-                    { 9, new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc), 220m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 9, 280m, 30m, false, null, 30m, 250m, 0m, new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc), 250m, 4, 30m, null, null },
-                    { 10, new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Utc), 235m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 10, 300m, 33m, false, null, 32m, 300m, 0m, new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc), 300m, 4, 0m, null, null }
+                    { 1, null, "CRS-2026-A1B2C3D", "Foundation course in applied mathematics.", new DateTime(2026, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc), 100m, "Applied Mathematics", new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 120m, 10m, false, null, 10m, 120m, 120m, 0m, "Northview Secondary School", 3, 0m, null, null },
+                    { 2, null, "CRS-2026-B2C3D4E", "Introduction to programming and computing.", new DateTime(2026, 12, 2, 0, 0, 0, 0, DateTimeKind.Utc), 115m, "Computer Science Fundamentals", new DateTime(2026, 10, 2, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 140m, 13m, false, null, 12m, 140m, 70m, 70m, "Eastbridge Secondary School", 2, 0m, null, null },
+                    { 3, null, "CRS-2026-C3D4E5F", "Professional written and verbal communication.", new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Utc), 130m, "Business Communication", new DateTime(2026, 8, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 3, 160m, 15m, false, null, 15m, 160m, 140m, 20m, "Westhaven Secondary School", 2, 0m, null, null },
+                    { 4, null, "CRS-2026-D4E5F6G", "Environmental systems and sustainability.", new DateTime(2026, 10, 2, 0, 0, 0, 0, DateTimeKind.Utc), 145m, "Environmental Science", new DateTime(2026, 8, 2, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 4, 180m, 18m, false, null, 17m, 180m, 180m, 0m, "Southpoint Secondary School", 3, 0m, null, null },
+                    { 5, null, "CRS-2026-E5F6G7H", "Digital design principles and production.", new DateTime(2026, 9, 15, 0, 0, 0, 0, DateTimeKind.Utc), 160m, "Digital Media Design", new DateTime(2026, 7, 15, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 5, 200m, 20m, false, null, 20m, 200m, 180m, 20m, "Central Heights School", 2, 0m, null, null },
+                    { 6, new DateTime(2026, 2, 7, 0, 0, 0, 0, DateTimeKind.Utc), "CRS-2026-F6G7H8J", "Core hospitality service operations.", new DateTime(2026, 9, 16, 0, 0, 0, 0, DateTimeKind.Utc), 175m, "Hospitality Operations", new DateTime(2026, 7, 16, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 6, 220m, 23m, false, new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc), 22m, 220m, 150m, 70m, "Riverside Learning Institute", 4, 0m, null, null },
+                    { 7, null, "CRS-2026-G7H8J9K", "Fundamentals of electrical systems.", new DateTime(2026, 8, 1, 0, 0, 0, 0, DateTimeKind.Utc), 190m, "Electrical Engineering Basics", new DateTime(2026, 5, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 7, 240m, 25m, false, null, 25m, 240m, 200m, 40m, "Lakeside Technical School", 2, 0m, null, null },
+                    { 8, new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc), "CRS-2026-H8J9K0L", "Writing techniques across common genres.", new DateTime(2026, 8, 2, 0, 0, 0, 0, DateTimeKind.Utc), 205m, "Creative Writing", new DateTime(2026, 5, 2, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 8, 260m, 28m, false, new DateTime(2026, 4, 5, 0, 0, 0, 0, DateTimeKind.Utc), 27m, 260m, 200m, 60m, "Greenfield Academy", 4, 0m, null, null },
+                    { 9, new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc), "CRS-2026-J9K0L1M", "Data preparation, analysis and reporting.", new DateTime(2026, 5, 8, 0, 0, 0, 0, DateTimeKind.Utc), 220m, "Data Analytics", new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 9, 280m, 30m, false, null, 30m, 280m, 0m, 280m, "Harbourfront School", 4, 0m, null, null },
+                    { 10, new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Utc), "CRS-2026-K0L1M2N", "Archived office applications programme.", new DateTime(2026, 5, 9, 0, 0, 0, 0, DateTimeKind.Utc), 235m, "Legacy Office Applications", new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 10, 300m, 33m, false, null, 32m, 300m, 0m, 300m, "Hillcrest Education Centre", 4, 0m, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -1551,12 +1558,12 @@ namespace educationaccountmanagement.DAL.Migrations
                 values: new object[,]
                 {
                     { 1, 70m, 140m, 2, 140m, 140m, "Computer Science Fundamentals", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Eastbridge Secondary School", null, null },
-                    { 2, 140m, 160m, 3, 140m, 140m, "Business Communication", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 2, "Westhaven Secondary School", null, null },
+                    { 2, 140m, 160m, 3, 160m, 160m, "Business Communication", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 2, "Westhaven Secondary School", null, null },
                     { 3, 180m, 180m, 4, 180m, 180m, "Environmental Science", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 3, "Southpoint Secondary School", null, null },
-                    { 4, 180m, 200m, 5, 180m, 180m, "Digital Media Design", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 4, "Central Heights School", null, null },
+                    { 4, 180m, 200m, 5, 200m, 200m, "Digital Media Design", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 4, "Central Heights School", null, null },
                     { 5, 120m, 120m, 1, 120m, 120m, "Applied Mathematics", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 5, "Northview Secondary School", null, null },
                     { 6, 100m, 220m, 6, 220m, 220m, "Hospitality Operations", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 6, "Riverside Learning Institute", null, null },
-                    { 7, 200m, 240m, 7, 200m, 200m, "Electrical Engineering Basics", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 7, "Lakeside Technical School", null, null },
+                    { 7, 200m, 240m, 7, 240m, 240m, "Electrical Engineering Basics", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 7, "Lakeside Technical School", null, null },
                     { 8, 130m, 260m, 8, 260m, 260m, "Creative Writing", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 8, "Greenfield Academy", null, null },
                     { 9, 50m, 220m, 6, 220m, 120m, "Hospitality Operations", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 9, "Riverside Learning Institute", null, null },
                     { 10, 70m, 260m, 8, 260m, 130m, "Creative Writing", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 10, "Greenfield Academy", null, null }
@@ -1621,19 +1628,9 @@ namespace educationaccountmanagement.DAL.Migrations
                 filter: "\"IsDeleted\" = 0 AND \"EnrollmentId\" IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Charge_PaymentDueDate",
-                table: "Charge",
-                column: "PaymentDueDate");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Charge_Status",
                 table: "Charge",
                 column: "Status");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Charge_Status_PaymentDueDate",
-                table: "Charge",
-                columns: new[] { "Status", "PaymentDueDate" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Citizen_CitizenshipStatus",
@@ -1658,9 +1655,18 @@ namespace educationaccountmanagement.DAL.Migrations
                 filter: "\"Nric\" IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Course_CourseCode",
+                table: "Course",
+                column: "CourseCode",
+                unique: true,
+                filter: "\"IsDeleted\" = 0 AND \"CourseCode\" IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Course_CourseName",
                 table: "Course",
-                column: "CourseName");
+                column: "CourseName",
+                unique: true,
+                filter: "\"IsDeleted\" = 0 AND \"CourseName\" IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Course_EndDate",
@@ -1673,9 +1679,9 @@ namespace educationaccountmanagement.DAL.Migrations
                 column: "EnrollmentDueDate");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Course_PaymentDueDate",
+                name: "IX_Course_FasApplicationDueDate",
                 table: "Course",
-                column: "PaymentDueDate");
+                column: "FasApplicationDueDate");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Course_SchoolId",

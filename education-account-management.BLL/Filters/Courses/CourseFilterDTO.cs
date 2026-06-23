@@ -1,6 +1,3 @@
-
-
-
 namespace Filters.Courses
 {
     public class CourseFilterDTO : FilterDTO
@@ -17,7 +14,7 @@ namespace Filters.Courses
                 ["miscFeeAmount"] = nameof(Course.MiscFeeAmount),
                 ["gstAmount"] = nameof(Course.GstAmount),
                 ["enrollmentDueDate"] = nameof(Course.EnrollmentDueDate),
-                ["paymentDueDate"] = nameof(Course.PaymentDueDate),
+                ["fasApplicationDueDate"] = nameof(Course.FasApplicationDueDate),
                 ["startDate"] = nameof(Course.StartDate),
                 ["endDate"] = nameof(Course.EndDate),
             };

@@ -10,8 +10,6 @@ namespace DTOs.Courses
 
         public decimal MiscFeeAmount { get; set; }
 
-        public decimal GstAmount { get; set; }
-
         public DateTime EnrollmentDueDate { get; set; }
 
         public DateTime FasApplicationDueDate { get; set; }
@@ -30,8 +28,6 @@ namespace DTOs.Courses
         public decimal CourseFeeAmount { get; set; }
 
         public decimal MiscFeeAmount { get; set; }
-
-        public decimal GstAmount { get; set; }
 
         public DateTime EnrollmentDueDate { get; set; }
 
@@ -81,7 +77,7 @@ namespace DTOs.Courses
 
     public class PublishCourseDTO
     {
-        public byte[] RowVersion { get; set; } = [];
+        public List<int> Ids { get; set; } = [];
     }
 
     public class DeleteSelectedCoursesDTO

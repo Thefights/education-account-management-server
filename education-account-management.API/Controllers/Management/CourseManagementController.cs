@@ -38,14 +38,13 @@ public class CourseManagementController(
         return Result.SuccessData(result, "Course updated successfully");
     }
 
-    [HttpPost("{id}/publish")]
+    [HttpPost("publish")]
     public async Task<IActionResult> Publish(
-        int id,
         PublishCourseDTO publishDTO,
         CancellationToken cancellationToken)
     {
-        var result = await _service.PublishAsync(id, publishDTO, cancellationToken);
-        return Result.SuccessData(result, "Course published successfully");
+        var result = await _service.PublishAsync(publishDTO, cancellationToken);
+        return Result.SuccessData(result, $"{result.Count} Course(s) published successfully");
     }
 
     [HttpDelete("{id}")]

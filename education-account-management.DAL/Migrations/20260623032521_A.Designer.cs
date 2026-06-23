@@ -12,7 +12,7 @@ using Persistence.SqlServer;
 namespace educationaccountmanagement.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260622074642_A")]
+    [Migration("20260623032521_A")]
     partial class A
     {
         /// <inheritdoc />
@@ -400,8 +400,28 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<DateTime?>("BecameOutstandingAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("CourseCodeSnapshot")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("nvarchar(16)");
+
+                    b.Property<string>("CourseDescriptionSnapshot")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<DateTime>("CourseEndDateSnapshot")
+                        .HasColumnType("datetime2");
+
                     b.Property<decimal>("CourseFeeAmountSnapshot")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("CourseNameSnapshot")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<DateTime>("CourseStartDateSnapshot")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -436,11 +456,19 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<decimal>("PaidAmount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("PaymentDueDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<decimal>("RemainingAmount")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<string>("SchoolNameSnapshot")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -462,11 +490,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         .IsUnique()
                         .HasFilter("\"IsDeleted\" = 0 AND \"EnrollmentId\" IS NOT NULL");
 
-                    b.HasIndex("PaymentDueDate");
-
                     b.HasIndex("Status");
-
-                    b.HasIndex("Status", "PaymentDueDate");
 
                     b.ToTable("Charge", t =>
                         {
@@ -479,7 +503,12 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 1,
+                            CourseCodeSnapshot = "CRS-2026-A1B2C3D",
+                            CourseDescriptionSnapshot = "Foundation course in applied mathematics.",
+                            CourseEndDateSnapshot = new DateTime(2026, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 100m,
+                            CourseNameSnapshot = "Applied Mathematics",
+                            CourseStartDateSnapshot = new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 1,
                             GrossAmount = 120m,
@@ -488,15 +517,21 @@ namespace educationaccountmanagement.DAL.Migrations
                             MiscFeeAmountSnapshot = 10m,
                             NetAmount = 120m,
                             PaidAmount = 120m,
-                            PaymentDueDate = new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RemainingAmount = 0m,
+                            RowVersion = new byte[0],
+                            SchoolNameSnapshot = "Northview Secondary School",
                             Status = 3,
                             SubsidyAmount = 0m
                         },
                         new
                         {
                             Id = 2,
+                            CourseCodeSnapshot = "CRS-2026-B2C3D4E",
+                            CourseDescriptionSnapshot = "Introduction to programming and computing.",
+                            CourseEndDateSnapshot = new DateTime(2026, 12, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 115m,
+                            CourseNameSnapshot = "Computer Science Fundamentals",
+                            CourseStartDateSnapshot = new DateTime(2026, 10, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 2,
                             GrossAmount = 140m,
@@ -505,32 +540,44 @@ namespace educationaccountmanagement.DAL.Migrations
                             MiscFeeAmountSnapshot = 12m,
                             NetAmount = 140m,
                             PaidAmount = 70m,
-                            PaymentDueDate = new DateTime(2026, 7, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             RemainingAmount = 70m,
+                            RowVersion = new byte[0],
+                            SchoolNameSnapshot = "Eastbridge Secondary School",
                             Status = 2,
                             SubsidyAmount = 0m
                         },
                         new
                         {
                             Id = 3,
+                            CourseCodeSnapshot = "CRS-2026-C3D4E5F",
+                            CourseDescriptionSnapshot = "Professional written and verbal communication.",
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 130m,
+                            CourseNameSnapshot = "Business Communication",
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 3,
                             GrossAmount = 160m,
                             GstAmountSnapshot = 15m,
                             IsDeleted = false,
                             MiscFeeAmountSnapshot = 15m,
-                            NetAmount = 140m,
+                            NetAmount = 160m,
                             PaidAmount = 140m,
-                            PaymentDueDate = new DateTime(2026, 7, 3, 0, 0, 0, 0, DateTimeKind.Utc),
-                            RemainingAmount = 0m,
-                            Status = 3,
-                            SubsidyAmount = 20m
+                            RemainingAmount = 20m,
+                            RowVersion = new byte[0],
+                            SchoolNameSnapshot = "Westhaven Secondary School",
+                            Status = 2,
+                            SubsidyAmount = 0m
                         },
                         new
                         {
                             Id = 4,
+                            CourseCodeSnapshot = "CRS-2026-D4E5F6G",
+                            CourseDescriptionSnapshot = "Environmental systems and sustainability.",
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 145m,
+                            CourseNameSnapshot = "Environmental Science",
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 4,
                             GrossAmount = 180m,
@@ -539,33 +586,45 @@ namespace educationaccountmanagement.DAL.Migrations
                             MiscFeeAmountSnapshot = 17m,
                             NetAmount = 180m,
                             PaidAmount = 180m,
-                            PaymentDueDate = new DateTime(2026, 2, 4, 0, 0, 0, 0, DateTimeKind.Utc),
                             RemainingAmount = 0m,
+                            RowVersion = new byte[0],
+                            SchoolNameSnapshot = "Southpoint Secondary School",
                             Status = 3,
                             SubsidyAmount = 0m
                         },
                         new
                         {
                             Id = 5,
+                            CourseCodeSnapshot = "CRS-2026-E5F6G7H",
+                            CourseDescriptionSnapshot = "Digital design principles and production.",
+                            CourseEndDateSnapshot = new DateTime(2026, 9, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 160m,
+                            CourseNameSnapshot = "Digital Media Design",
+                            CourseStartDateSnapshot = new DateTime(2026, 7, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 5,
                             GrossAmount = 200m,
                             GstAmountSnapshot = 20m,
                             IsDeleted = false,
                             MiscFeeAmountSnapshot = 20m,
-                            NetAmount = 180m,
+                            NetAmount = 200m,
                             PaidAmount = 180m,
-                            PaymentDueDate = new DateTime(2026, 2, 5, 0, 0, 0, 0, DateTimeKind.Utc),
-                            RemainingAmount = 0m,
-                            Status = 3,
-                            SubsidyAmount = 20m
+                            RemainingAmount = 20m,
+                            RowVersion = new byte[0],
+                            SchoolNameSnapshot = "Central Heights School",
+                            Status = 2,
+                            SubsidyAmount = 0m
                         },
                         new
                         {
                             Id = 6,
                             BecameOutstandingAt = new DateTime(2026, 2, 7, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseCodeSnapshot = "CRS-2026-F6G7H8J",
+                            CourseDescriptionSnapshot = "Core hospitality service operations.",
+                            CourseEndDateSnapshot = new DateTime(2026, 9, 16, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 175m,
+                            CourseNameSnapshot = "Hospitality Operations",
+                            CourseStartDateSnapshot = new DateTime(2026, 7, 16, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 6,
                             GrossAmount = 220m,
@@ -575,33 +634,45 @@ namespace educationaccountmanagement.DAL.Migrations
                             MiscFeeAmountSnapshot = 22m,
                             NetAmount = 220m,
                             PaidAmount = 150m,
-                            PaymentDueDate = new DateTime(2026, 2, 6, 0, 0, 0, 0, DateTimeKind.Utc),
                             RemainingAmount = 70m,
+                            RowVersion = new byte[0],
+                            SchoolNameSnapshot = "Riverside Learning Institute",
                             Status = 4,
                             SubsidyAmount = 0m
                         },
                         new
                         {
                             Id = 7,
+                            CourseCodeSnapshot = "CRS-2026-G7H8J9K",
+                            CourseDescriptionSnapshot = "Fundamentals of electrical systems.",
+                            CourseEndDateSnapshot = new DateTime(2026, 8, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 190m,
+                            CourseNameSnapshot = "Electrical Engineering Basics",
+                            CourseStartDateSnapshot = new DateTime(2026, 5, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 7,
                             GrossAmount = 240m,
                             GstAmountSnapshot = 25m,
                             IsDeleted = false,
                             MiscFeeAmountSnapshot = 25m,
-                            NetAmount = 200m,
+                            NetAmount = 240m,
                             PaidAmount = 200m,
-                            PaymentDueDate = new DateTime(2026, 2, 7, 0, 0, 0, 0, DateTimeKind.Utc),
-                            RemainingAmount = 0m,
-                            Status = 3,
-                            SubsidyAmount = 40m
+                            RemainingAmount = 40m,
+                            RowVersion = new byte[0],
+                            SchoolNameSnapshot = "Lakeside Technical School",
+                            Status = 2,
+                            SubsidyAmount = 0m
                         },
                         new
                         {
                             Id = 8,
                             BecameOutstandingAt = new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseCodeSnapshot = "CRS-2026-H8J9K0L",
+                            CourseDescriptionSnapshot = "Writing techniques across common genres.",
+                            CourseEndDateSnapshot = new DateTime(2026, 8, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 205m,
+                            CourseNameSnapshot = "Creative Writing",
+                            CourseStartDateSnapshot = new DateTime(2026, 5, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 8,
                             GrossAmount = 260m,
@@ -611,8 +682,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             MiscFeeAmountSnapshot = 27m,
                             NetAmount = 260m,
                             PaidAmount = 200m,
-                            PaymentDueDate = new DateTime(2026, 2, 8, 0, 0, 0, 0, DateTimeKind.Utc),
                             RemainingAmount = 60m,
+                            RowVersion = new byte[0],
+                            SchoolNameSnapshot = "Greenfield Academy",
                             Status = 4,
                             SubsidyAmount = 0m
                         },
@@ -620,25 +692,36 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 9,
                             BecameOutstandingAt = new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseCodeSnapshot = "CRS-2026-J9K0L1M",
+                            CourseDescriptionSnapshot = "Data preparation, analysis and reporting.",
+                            CourseEndDateSnapshot = new DateTime(2026, 5, 8, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 220m,
+                            CourseNameSnapshot = "Data Analytics",
+                            CourseStartDateSnapshot = new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 9,
                             GrossAmount = 280m,
                             GstAmountSnapshot = 30m,
                             IsDeleted = false,
                             MiscFeeAmountSnapshot = 30m,
-                            NetAmount = 250m,
+                            NetAmount = 280m,
                             PaidAmount = 0m,
-                            PaymentDueDate = new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc),
-                            RemainingAmount = 250m,
+                            RemainingAmount = 280m,
+                            RowVersion = new byte[0],
+                            SchoolNameSnapshot = "Harbourfront School",
                             Status = 4,
-                            SubsidyAmount = 30m
+                            SubsidyAmount = 0m
                         },
                         new
                         {
                             Id = 10,
                             BecameOutstandingAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseCodeSnapshot = "CRS-2026-K0L1M2N",
+                            CourseDescriptionSnapshot = "Archived office applications programme.",
+                            CourseEndDateSnapshot = new DateTime(2026, 5, 9, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 235m,
+                            CourseNameSnapshot = "Legacy Office Applications",
+                            CourseStartDateSnapshot = new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 10,
                             GrossAmount = 300m,
@@ -647,8 +730,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             MiscFeeAmountSnapshot = 32m,
                             NetAmount = 300m,
                             PaidAmount = 0m,
-                            PaymentDueDate = new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc),
                             RemainingAmount = 300m,
+                            RowVersion = new byte[0],
+                            SchoolNameSnapshot = "Hillcrest Education Centre",
                             Status = 4,
                             SubsidyAmount = 0m
                         });
@@ -1163,6 +1247,9 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<DateTime>("EnrollmentDueDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("FasApplicationDueDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<decimal>("GstAmount")
                         .HasColumnType("decimal(18,2)");
 
@@ -1172,8 +1259,11 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<decimal>("MiscFeeAmount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("PaymentDueDate")
-                        .HasColumnType("datetime2");
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
 
                     b.Property<int>("SchoolId")
                         .HasColumnType("int");
@@ -1192,13 +1282,19 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CourseName");
+                    b.HasIndex("CourseCode")
+                        .IsUnique()
+                        .HasFilter("\"IsDeleted\" = 0 AND \"CourseCode\" IS NOT NULL");
+
+                    b.HasIndex("CourseName")
+                        .IsUnique()
+                        .HasFilter("\"IsDeleted\" = 0 AND \"CourseName\" IS NOT NULL");
 
                     b.HasIndex("EndDate");
 
                     b.HasIndex("EnrollmentDueDate");
 
-                    b.HasIndex("PaymentDueDate");
+                    b.HasIndex("FasApplicationDueDate");
 
                     b.HasIndex("SchoolId");
 
@@ -1214,7 +1310,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             t.HasCheckConstraint("CK_Course_Amounts_NonNegative", "[CourseFeeAmount] >= 0 AND [MiscFeeAmount] >= 0 AND [GstAmount] >= 0");
 
-                            t.HasCheckConstraint("CK_Course_Date_Order", "[EnrollmentDueDate] <= [PaymentDueDate] AND [EnrollmentDueDate] <= [StartDate] AND [StartDate] <= [EndDate]");
+                            t.HasCheckConstraint("CK_Course_Date_Order", "[EnrollmentDueDate] <= [FasApplicationDueDate] AND [FasApplicationDueDate] <= [StartDate] AND [StartDate] <= [EndDate]");
                         });
 
                     b.HasData(
@@ -1228,10 +1324,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Foundation course in applied mathematics.",
                             EndDate = new DateTime(2026, 9, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDueDate = new DateTime(2026, 1, 15, 0, 0, 0, 0, DateTimeKind.Utc),
-                            GstAmount = 10m,
+                            FasApplicationDueDate = new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            GstAmount = 9.90m,
                             IsDeleted = false,
                             MiscFeeAmount = 10m,
-                            PaymentDueDate = new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             SchoolId = 1,
                             StartDate = new DateTime(2026, 8, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Status = 3
@@ -1246,10 +1343,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Introduction to programming and computing.",
                             EndDate = new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDueDate = new DateTime(2026, 1, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            GstAmount = 13m,
+                            FasApplicationDueDate = new DateTime(2026, 7, 2, 0, 0, 0, 0, DateTimeKind.Utc),
+                            GstAmount = 11.43m,
                             IsDeleted = false,
                             MiscFeeAmount = 12m,
-                            PaymentDueDate = new DateTime(2026, 7, 2, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             SchoolId = 2,
                             StartDate = new DateTime(2026, 8, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             Status = 3
@@ -1264,10 +1362,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Professional written and verbal communication.",
                             EndDate = new DateTime(2026, 10, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDueDate = new DateTime(2026, 1, 17, 0, 0, 0, 0, DateTimeKind.Utc),
-                            GstAmount = 15m,
+                            FasApplicationDueDate = new DateTime(2026, 7, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            GstAmount = 13.05m,
                             IsDeleted = false,
                             MiscFeeAmount = 15m,
-                            PaymentDueDate = new DateTime(2026, 7, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             SchoolId = 3,
                             StartDate = new DateTime(2026, 8, 3, 0, 0, 0, 0, DateTimeKind.Utc),
                             Status = 3
@@ -1282,10 +1381,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Environmental systems and sustainability.",
                             EndDate = new DateTime(2026, 8, 3, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDueDate = new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Utc),
-                            GstAmount = 18m,
+                            FasApplicationDueDate = new DateTime(2026, 2, 4, 0, 0, 0, 0, DateTimeKind.Utc),
+                            GstAmount = 14.58m,
                             IsDeleted = false,
                             MiscFeeAmount = 17m,
-                            PaymentDueDate = new DateTime(2026, 2, 4, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             SchoolId = 4,
                             StartDate = new DateTime(2026, 5, 4, 0, 0, 0, 0, DateTimeKind.Utc),
                             Status = 4
@@ -1300,10 +1400,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Digital design principles and production.",
                             EndDate = new DateTime(2026, 8, 4, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDueDate = new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc),
-                            GstAmount = 20m,
+                            FasApplicationDueDate = new DateTime(2026, 2, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            GstAmount = 16.20m,
                             IsDeleted = false,
                             MiscFeeAmount = 20m,
-                            PaymentDueDate = new DateTime(2026, 2, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             SchoolId = 5,
                             StartDate = new DateTime(2026, 5, 5, 0, 0, 0, 0, DateTimeKind.Utc),
                             Status = 4
@@ -1318,10 +1419,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Core hospitality service operations.",
                             EndDate = new DateTime(2026, 8, 5, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDueDate = new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc),
-                            GstAmount = 23m,
+                            FasApplicationDueDate = new DateTime(2026, 2, 6, 0, 0, 0, 0, DateTimeKind.Utc),
+                            GstAmount = 17.73m,
                             IsDeleted = false,
                             MiscFeeAmount = 22m,
-                            PaymentDueDate = new DateTime(2026, 2, 6, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             SchoolId = 6,
                             StartDate = new DateTime(2026, 5, 6, 0, 0, 0, 0, DateTimeKind.Utc),
                             Status = 4
@@ -1336,10 +1438,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Fundamentals of electrical systems.",
                             EndDate = new DateTime(2026, 5, 6, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDueDate = new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc),
-                            GstAmount = 25m,
+                            FasApplicationDueDate = new DateTime(2026, 2, 7, 0, 0, 0, 0, DateTimeKind.Utc),
+                            GstAmount = 19.35m,
                             IsDeleted = false,
                             MiscFeeAmount = 25m,
-                            PaymentDueDate = new DateTime(2026, 2, 7, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             SchoolId = 7,
                             StartDate = new DateTime(2026, 3, 7, 0, 0, 0, 0, DateTimeKind.Utc),
                             Status = 5
@@ -1354,10 +1457,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Writing techniques across common genres.",
                             EndDate = new DateTime(2026, 5, 7, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDueDate = new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc),
-                            GstAmount = 28m,
+                            FasApplicationDueDate = new DateTime(2026, 2, 8, 0, 0, 0, 0, DateTimeKind.Utc),
+                            GstAmount = 20.88m,
                             IsDeleted = false,
                             MiscFeeAmount = 27m,
-                            PaymentDueDate = new DateTime(2026, 2, 8, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             SchoolId = 8,
                             StartDate = new DateTime(2026, 3, 8, 0, 0, 0, 0, DateTimeKind.Utc),
                             Status = 5
@@ -1372,10 +1476,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Data preparation, analysis and reporting.",
                             EndDate = new DateTime(2026, 5, 8, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDueDate = new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc),
-                            GstAmount = 30m,
+                            FasApplicationDueDate = new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc),
+                            GstAmount = 22.50m,
                             IsDeleted = false,
                             MiscFeeAmount = 30m,
-                            PaymentDueDate = new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             SchoolId = 9,
                             StartDate = new DateTime(2026, 3, 9, 0, 0, 0, 0, DateTimeKind.Utc),
                             Status = 5
@@ -1390,10 +1495,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Archived office applications programme.",
                             EndDate = new DateTime(2026, 5, 9, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDueDate = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
-                            GstAmount = 33m,
+                            FasApplicationDueDate = new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            GstAmount = 24.03m,
                             IsDeleted = false,
                             MiscFeeAmount = 32m,
-                            PaymentDueDate = new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            RowVersion = new byte[0],
                             SchoolId = 10,
                             StartDate = new DateTime(2026, 3, 10, 0, 0, 0, 0, DateTimeKind.Utc),
                             Status = 5
@@ -3207,8 +3313,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             Amount = 140m,
                             ChargeGrossAmountSnapshot = 160m,
                             ChargeId = 3,
-                            ChargeNetAmountSnapshot = 140m,
-                            ChargeRemainingAmountSnapshot = 140m,
+                            ChargeNetAmountSnapshot = 160m,
+                            ChargeRemainingAmountSnapshot = 160m,
                             CourseNameSnapshot = "Business Communication",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
@@ -3235,8 +3341,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             Amount = 180m,
                             ChargeGrossAmountSnapshot = 200m,
                             ChargeId = 5,
-                            ChargeNetAmountSnapshot = 180m,
-                            ChargeRemainingAmountSnapshot = 180m,
+                            ChargeNetAmountSnapshot = 200m,
+                            ChargeRemainingAmountSnapshot = 200m,
                             CourseNameSnapshot = "Digital Media Design",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
@@ -3277,8 +3383,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             Amount = 200m,
                             ChargeGrossAmountSnapshot = 240m,
                             ChargeId = 7,
-                            ChargeNetAmountSnapshot = 200m,
-                            ChargeRemainingAmountSnapshot = 200m,
+                            ChargeNetAmountSnapshot = 240m,
+                            ChargeRemainingAmountSnapshot = 240m,
                             CourseNameSnapshot = "Electrical Engineering Basics",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
@@ -6753,7 +6859,7 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasOne("Models.Course", "Course")
                         .WithMany("Enrollments")
                         .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Models.SchoolStudent", "SchoolStudent")
