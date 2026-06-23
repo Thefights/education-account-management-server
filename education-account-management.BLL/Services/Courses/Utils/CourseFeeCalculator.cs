@@ -1,4 +1,4 @@
-namespace Services.Courses.Utils;
+﻿namespace Services.Courses.Utils;
 
 public static class CourseFeeCalculator
 {

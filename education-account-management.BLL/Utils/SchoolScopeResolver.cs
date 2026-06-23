@@ -1,4 +1,4 @@
-namespace Services.Utils;
+﻿namespace Utils;
 
 public class SchoolScopeResolver(
     IUnitOfWork unitOfWork,

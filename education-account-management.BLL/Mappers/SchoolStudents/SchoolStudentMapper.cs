@@ -1,7 +1,7 @@
-using DTOs.SchoolStudents;
+﻿using DTOs.SchoolStudents;
 using Riok.Mapperly.Abstractions;
 
-namespace Mappers
+namespace Mappers.SchoolStudents
 {
     [Mapper(RequiredMappingStrategy = RequiredMappingStrategy.None)]
     public partial class SchoolStudentMapper :

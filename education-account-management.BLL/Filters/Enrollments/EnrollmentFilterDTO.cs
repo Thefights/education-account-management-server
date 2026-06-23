@@ -1,4 +1,4 @@
-namespace Filters.Enrollments;
+﻿namespace Filters.Enrollments;
 
 public class EnrollmentFilterDTO : FilterDTO
 {

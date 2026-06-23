@@ -1,6 +1,6 @@
-using DTOs.TopUp;
+﻿using DTOs.TopUp;
 
-namespace Mappers;
+namespace Mappers.TopUp;
 
 public static class TopupConditionTreeMapper
 {

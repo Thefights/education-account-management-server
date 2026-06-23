@@ -1,4 +1,4 @@
-namespace DTOs.Enrollments;
+﻿namespace DTOs.Enrollments;
 
 public class AssignEnrollmentsDTO
 {

@@ -1,4 +1,4 @@
-namespace Services.EducationAccounts.Utils;
+﻿namespace Services.EducationAccounts.Utils;
 
 public static class EducationAccountClosureHelper
 {

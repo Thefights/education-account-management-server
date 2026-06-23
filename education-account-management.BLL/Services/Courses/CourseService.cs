@@ -1,10 +1,9 @@
-using DTOs.Courses;
+﻿using DTOs.Courses;
 using Interfaces.Audit;
 using Interfaces.Courses;
 using Results;
 using Services.Base;
 using Services.Courses.Utils;
-using Services.Utils;
 using Validators;
 
 namespace Services.Courses;

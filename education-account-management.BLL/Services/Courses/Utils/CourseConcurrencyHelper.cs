@@ -1,20 +1,28 @@
-namespace Services.Courses.Utils;
+﻿namespace Services.Courses.Utils;
 
-public static class CourseConcurrencyHelper
+public static class CourseDateTimeHelper
 {
-    public static void Validate(byte[] suppliedRowVersion, byte[] currentRowVersion)
+    public static void NormalizeToUtc(Course course)
     {
-        if (suppliedRowVersion.Length == 0)
+        course.EnrollmentDueDate = NormalizeToUtc(
+            course.EnrollmentDueDate,
+            nameof(Course.EnrollmentDueDate));
+        course.FasApplicationDueDate = NormalizeToUtc(
+            course.FasApplicationDueDate,
+            nameof(Course.FasApplicationDueDate));
+        course.StartDate = NormalizeToUtc(course.StartDate, nameof(Course.StartDate));
+        course.EndDate = NormalizeToUtc(course.EndDate, nameof(Course.EndDate));
+    }
+
+    public static DateTime NormalizeToUtc(DateTime value, string propertyName)
+    {
+        if (value.Kind == DateTimeKind.Unspecified)
         {
             throw new ValidationFailureException(
-                nameof(Course.RowVersion),
-                $"{nameof(Course.RowVersion)} is required.");
+                propertyName,
+                $"{propertyName} must include a timezone offset.");
         }
 
-        if (!suppliedRowVersion.SequenceEqual(currentRowVersion))
-        {
-            throw new DbUpdateConcurrencyException(
-                "The course was changed or deleted by another request.");
-        }
+        return value.ToUniversalTime();
     }
 }

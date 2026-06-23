@@ -1,7 +1,7 @@
-using DTOs.TopUp;
+﻿using DTOs.TopUp;
 using Riok.Mapperly.Abstractions;
 
-namespace Mappers;
+namespace Mappers.TopUp;
 
 [Mapper(RequiredMappingStrategy = RequiredMappingStrategy.None)]
 public partial class SystemTopupMapper : ICrudMapper<SystemTopup, CreateSystemTopupDTO, GetSystemTopupDTO, UpdateSystemTopupDTO>

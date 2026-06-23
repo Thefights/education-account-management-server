@@ -2,14 +2,10 @@ using Authorization;
 using Common.HttpResults;
 using Controllers.Base;
 using DTOs.Courses;
-using DTOs.Enrollments;
 using Exceptions;
 using Filters.Courses;
-using Filters.SchoolStudents;
 using Interfaces.Courses;
-using Interfaces.Enrollments;
 using Models;
-using Services.Courses;
 
 namespace Controllers.Management;
 

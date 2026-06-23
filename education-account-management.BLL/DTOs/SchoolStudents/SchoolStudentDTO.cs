@@ -1,4 +1,4 @@
-namespace DTOs.SchoolStudents
+﻿namespace DTOs.SchoolStudents
 {
     public class CreateSchoolStudentDTO
     {

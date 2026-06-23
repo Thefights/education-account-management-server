@@ -1,4 +1,4 @@
-namespace Interfaces.Courses;
+﻿namespace Interfaces.Courses;
 
 public interface ICourseLifecycleService
 {

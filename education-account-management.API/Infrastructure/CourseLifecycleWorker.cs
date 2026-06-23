@@ -1,6 +1,4 @@
-using Interfaces.Courses;
-
-namespace Infrastructure;
+﻿namespace Infrastructure;
 
 public class CourseLifecycleWorker(
     IServiceScopeFactory serviceScopeFactory,

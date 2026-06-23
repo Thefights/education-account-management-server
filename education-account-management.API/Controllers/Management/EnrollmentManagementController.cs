@@ -1,9 +1,6 @@
-using Authorization;
+﻿using Authorization;
 using Common.HttpResults;
 using Controllers.Base;
-using DTOs.Enrollments;
-using Filters.Enrollments;
-using Interfaces.Enrollments;
 
 namespace Controllers.Management;
 
