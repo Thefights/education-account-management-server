@@ -14,6 +14,8 @@ namespace Mappers
 
         [MapProperty(nameof(Course.School) + "." + nameof(School.SchoolName),
             nameof(GetCourseDTO.SchoolName))]
+        [MapProperty(nameof(Course.Enrollments) + "." + nameof(Course.Enrollments.Count),
+            nameof(GetCourseDTO.EnrollmentCount))]
         public partial GetCourseDTO MapToGetDTO(Course model);
 
         public partial List<GetCourseDTO> MapToGetDTOList(List<Course> models);

@@ -33,20 +33,20 @@ namespace Filters.SchoolStudents
         [FilterField(FilterOperationEnum.In, nameof(SchoolStudent.Status))]
         public List<SchoolStudentStatus>? Statuses { get; set; }
 
-        [FilterField(FilterOperationEnum.Contains, nameof(SchoolStudent.EducationAccount.Citizen.Nric))]
-        [SearchField(nameof(SchoolStudent.EducationAccount.Citizen.Nric))]
+        [FilterField(FilterOperationEnum.Contains, $"{nameof(SchoolStudent.EducationAccount)}.{nameof(EducationAccount.Citizen)}.{nameof(Citizen.Nric)}")]
+        [SearchField($"{nameof(SchoolStudent.EducationAccount)}.{nameof(EducationAccount.Citizen)}.{nameof(Citizen.Nric)}")]
         public string? Nric { get; set; }
 
-        [FilterField(FilterOperationEnum.Contains, nameof(SchoolStudent.EducationAccount.Citizen.FullName))]
-        [SearchField(nameof(SchoolStudent.EducationAccount.Citizen.FullName))]
+        [FilterField(FilterOperationEnum.Contains, $"{nameof(SchoolStudent.EducationAccount)}.{nameof(EducationAccount.Citizen)}.{nameof(Citizen.FullName)}")]
+        [SearchField($"{nameof(SchoolStudent.EducationAccount)}.{nameof(EducationAccount.Citizen)}.{nameof(Citizen.FullName)}")]
         public string? FullName { get; set; }
 
-        [FilterField(FilterOperationEnum.Contains, nameof(SchoolStudent.EducationAccount.Citizen.Email))]
-        [SearchField(nameof(SchoolStudent.EducationAccount.Citizen.Email))]
+        [FilterField(FilterOperationEnum.Contains, $"{nameof(SchoolStudent.EducationAccount)}.{nameof(EducationAccount.Citizen)}.{nameof(Citizen.Email)}")]
+        [SearchField($"{nameof(SchoolStudent.EducationAccount)}.{nameof(EducationAccount.Citizen)}.{nameof(Citizen.Email)}")]
         public string? Email { get; set; }
 
-        [FilterField(FilterOperationEnum.Contains, nameof(SchoolStudent.EducationAccount.Citizen.PhoneNumber))]
-        [SearchField(nameof(SchoolStudent.EducationAccount.Citizen.PhoneNumber))]
+        [FilterField(FilterOperationEnum.Contains, $"{nameof(SchoolStudent.EducationAccount)}.{nameof(EducationAccount.Citizen)}.{nameof(Citizen.PhoneNumber)}")]
+        [SearchField($"{nameof(SchoolStudent.EducationAccount)}.{nameof(EducationAccount.Citizen)}.{nameof(Citizen.PhoneNumber)}")]
         public string? PhoneNumber { get; set; }
     }
 }

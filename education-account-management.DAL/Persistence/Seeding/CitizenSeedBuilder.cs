@@ -11,6 +11,7 @@ public sealed class CitizenSeedBuilder : ISeedBuilder
     {
         var createdAt = SeedDataConstants.CreatedAt;
 
+        // Original 1-15
         var citizens = Enumerable.Range(1, 15).Select(id => new Citizen
         {
             Id = id,
@@ -34,6 +35,7 @@ public sealed class CitizenSeedBuilder : ISeedBuilder
             CreatedAt = createdAt
         }).ToList();
 
+        // Original 16
         citizens.Add(new Citizen
         {
             Id = 16,
@@ -49,18 +51,35 @@ public sealed class CitizenSeedBuilder : ISeedBuilder
             CreatedAt = createdAt
         });
 
-        citizens.AddRange(Enumerable.Range(17, 10).Select(id => new Citizen
+        // Add 17 to 100 for enrolled students
+        citizens.AddRange(Enumerable.Range(17, 84).Select(id => new Citizen
         {
             Id = id,
             Nric = SingaporeNricUtil.Generate(id),
-            FullName = $"Unlinked Test Citizen {id:000}",
-            Email = $"unlinked.citizen{id:000}@example.com",
-            PhoneNumber = $"+65900000{id:00}",
-            ResidentialAddress = $"{id} Test Avenue, Singapore",
-            MailingAddress = $"{id} Test Avenue, Singapore",
-            DateOfBirth = new DateOnly(2000 + ((id - 17) % 5), ((id - 17) % 12) + 1, 15),
+            FullName = $"School Student Citizen {id:000}",
+            Email = $"student.citizen{id:000}@example.com",
+            PhoneNumber = $"+659{id:0000000}",
+            ResidentialAddress = $"{id} Student Avenue, Singapore",
+            MailingAddress = $"{id} Student Avenue, Singapore",
+            DateOfBirth = new DateOnly(2000 + (id % 5), ((id - 1) % 12) + 1, 15),
             CitizenshipStatus = CitizenshipStatus.Active,
-            SchoolingStatus = id % 2 == 0 ? "Enrolled" : "Not Enrolled",
+            SchoolingStatus = "Enrolled",
+            CreatedAt = createdAt
+        }));
+
+        // Add 101 to 130 for unlinked/free citizens
+        citizens.AddRange(Enumerable.Range(101, 30).Select(id => new Citizen
+        {
+            Id = id,
+            Nric = SingaporeNricUtil.Generate(id),
+            FullName = $"Free Citizen {id:000}",
+            Email = $"free.citizen{id:000}@example.com",
+            PhoneNumber = $"+659{id:0000000}",
+            ResidentialAddress = $"{id} Free Avenue, Singapore",
+            MailingAddress = $"{id} Free Avenue, Singapore",
+            DateOfBirth = new DateOnly(2000 + (id % 5), ((id - 1) % 12) + 1, 15),
+            CitizenshipStatus = CitizenshipStatus.Active,
+            SchoolingStatus = "Not Enrolled",
             CreatedAt = createdAt
         }));
 
@@ -68,5 +87,4 @@ public sealed class CitizenSeedBuilder : ISeedBuilder
 
         return modelBuilder;
     }
-
 }

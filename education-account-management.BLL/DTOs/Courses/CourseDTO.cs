@@ -72,7 +72,15 @@ namespace DTOs.Courses
 
         public DateTime EndDate { get; set; }
 
+        public int EnrollmentCount { get; set; }
+
         public byte[] RowVersion { get; set; } = [];
+    }
+
+    public class AssignCourseStudentsDTO
+    {
+        [MessageMinLength(1)]
+        public List<int> SchoolStudentIds { get; set; } = [];
     }
 
     public class PublishCourseDTO

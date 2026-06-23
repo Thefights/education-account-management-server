@@ -2,9 +2,12 @@ using Authorization;
 using Common.HttpResults;
 using Controllers.Base;
 using DTOs.Courses;
+using DTOs.Enrollments;
 using Exceptions;
 using Filters.Courses;
+using Filters.SchoolStudents;
 using Interfaces.Courses;
+using Interfaces.Enrollments;
 using Models;
 using Services.Courses;
 
@@ -13,11 +16,13 @@ namespace Controllers.Management;
 [Authorize(Roles = RolePolicy.SchoolAdmin)]
 public class CourseManagementController(
     ICourseService service,
-    CourseImportService importService)
+    CourseImportService importService,
+    IEnrollmentService enrollmentService)
     : GetController<GetCourseDTO, CourseFilterDTO>(service)
 {
     private readonly ICourseService _service = service;
     private readonly CourseImportService _importService = importService;
+    private readonly IEnrollmentService _enrollmentService = enrollmentService;
 
     [HttpPost]
     public async Task<IActionResult> Create(
@@ -73,6 +78,35 @@ public class CourseManagementController(
     {
         var result = await _importService.ImportAsync(file, cancellationToken);
         return Result.SuccessData(result, "Course CSV import processed.");
+    }
+
+    [HttpGet("{id}/eligible-students")]
+    public async Task<IActionResult> GetEligibleStudents(
+        int id,
+        SchoolStudentFilterDTO filterDTO,
+        CancellationToken cancellationToken)
+    {
+        var result = await _enrollmentService.GetEligibleStudentsAsync(
+            id,
+            filterDTO,
+            cancellationToken);
+        return Result.SuccessData(result);
+    }
+
+    [HttpPost("{id}/enrollments")]
+    public async Task<IActionResult> AssignStudents(
+        int id,
+        AssignCourseStudentsDTO assignDTO,
+        CancellationToken cancellationToken)
+    {
+        var result = await _enrollmentService.AssignAsync(
+            new AssignEnrollmentsDTO
+            {
+                CourseId = id,
+                SchoolStudentIds = assignDTO.SchoolStudentIds
+            },
+            cancellationToken);
+        return Result.SuccessData(result, $"{result.Count} student(s) assigned successfully");
     }
 
     private static byte[] ParseIfMatchHeader(string ifMatch)
