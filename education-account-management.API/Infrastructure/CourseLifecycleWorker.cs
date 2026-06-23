@@ -1,26 +1,27 @@
-﻿namespace Infrastructure;
-
-using Interfaces.Courses;
-
-public class CourseLifecycleWorker(
-    IServiceScopeFactory serviceScopeFactory,
-    ILogger<CourseLifecycleWorker> logger,
-    TimeProvider timeProvider)
-    : BaseBackgroundJob(serviceScopeFactory, logger)
+﻿namespace Infrastructure
 {
-    private readonly TimeProvider _timeProvider = timeProvider;
+    using Interfaces.Courses;
 
-    protected override string JobName => nameof(CourseLifecycleWorker);
-
-    protected override TimeSpan Interval => TimeSpan.FromMinutes(5);
-
-    protected override async Task ExecuteJobAsync(
-        IServiceProvider serviceProvider,
-        CancellationToken cancellationToken)
+    public class CourseLifecycleWorker(
+        IServiceScopeFactory serviceScopeFactory,
+        ILogger<CourseLifecycleWorker> logger,
+        TimeProvider timeProvider)
+        : BaseBackgroundJob(serviceScopeFactory, logger)
     {
-        var lifecycleService = serviceProvider.GetRequiredService<ICourseLifecycleService>();
-        await lifecycleService.ProcessDateTransitionsAsync(
-           _timeProvider.GetUtcNow().UtcDateTime,
-           cancellationToken);
+        private readonly TimeProvider _timeProvider = timeProvider;
+
+        protected override string JobName => nameof(CourseLifecycleWorker);
+
+        protected override TimeSpan Interval => TimeSpan.FromMinutes(5);
+
+        protected override async Task ExecuteJobAsync(
+            IServiceProvider serviceProvider,
+            CancellationToken cancellationToken)
+        {
+            var lifecycleService = serviceProvider.GetRequiredService<ICourseLifecycleService>();
+            await lifecycleService.ProcessDateTransitionsAsync(
+               _timeProvider.GetUtcNow().UtcDateTime,
+               cancellationToken);
+        }
     }
 }

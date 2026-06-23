@@ -1,8 +1,9 @@
-﻿namespace Enums;
-
-public enum ScheduleTopUpStatus
+﻿namespace Enums
 {
-    Active = 1,
-    Inactive = 2,
-    Completed = 3
+    public enum ScheduleTopUpStatus
+    {
+        Active = 1,
+        Inactive = 2,
+        Completed = 3
+    }
 }

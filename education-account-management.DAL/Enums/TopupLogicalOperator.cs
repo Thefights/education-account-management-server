@@ -1,7 +1,8 @@
-﻿namespace Enums;
-
-public enum TopupLogicalOperator
+﻿namespace Enums
 {
-    And = 1,
-    Or = 2
+    public enum TopupLogicalOperator
+    {
+        And = 1,
+        Or = 2
+    }
 }

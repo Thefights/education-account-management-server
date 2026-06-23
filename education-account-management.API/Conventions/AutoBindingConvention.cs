@@ -4,60 +4,61 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Security.Claims;
 using System.Text.RegularExpressions;
 
-namespace Conventions;
-
-public sealed class AutoBindingConvention : IActionModelConvention
+namespace Conventions
 {
-    private static readonly Regex RouteParamRegex = new("{([^}:]+)(:[^}]*)?}", RegexOptions.Compiled);
-
-    public void Apply(ActionModel action)
+    public sealed class AutoBindingConvention : IActionModelConvention
     {
-        var httpMethods = action.Selectors
-            .SelectMany(s => s.ActionConstraints?.OfType<HttpMethodActionConstraint>()
-                              ?? Enumerable.Empty<HttpMethodActionConstraint>())
-            .SelectMany(c => c.HttpMethods)
-            .Distinct(StringComparer.OrdinalIgnoreCase)
-            .ToArray();
+        private static readonly Regex RouteParamRegex = new("{([^}:]+)(:[^}]*)?}", RegexOptions.Compiled);
 
-        bool isPureGet = httpMethods.Length == 1 &&
-                         httpMethods[0].Equals("GET", StringComparison.OrdinalIgnoreCase);
-
-        var routeParams = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        foreach (var selector in action.Selectors)
+        public void Apply(ActionModel action)
         {
-            var template = selector.AttributeRouteModel?.Template ?? string.Empty;
-            foreach (Match m in RouteParamRegex.Matches(template))
+            var httpMethods = action.Selectors
+                .SelectMany(s => s.ActionConstraints?.OfType<HttpMethodActionConstraint>()
+                                  ?? Enumerable.Empty<HttpMethodActionConstraint>())
+                .SelectMany(c => c.HttpMethods)
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .ToArray();
+
+            bool isPureGet = httpMethods.Length == 1 &&
+                             httpMethods[0].Equals("GET", StringComparison.OrdinalIgnoreCase);
+
+            var routeParams = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (var selector in action.Selectors)
             {
-                var name = m.Groups[1].Value;
-                if (!string.IsNullOrWhiteSpace(name))
+                var template = selector.AttributeRouteModel?.Template ?? string.Empty;
+                foreach (Match m in RouteParamRegex.Matches(template))
                 {
-                    routeParams.Add(name);
+                    var name = m.Groups[1].Value;
+                    if (!string.IsNullOrWhiteSpace(name))
+                    {
+                        routeParams.Add(name);
+                    }
                 }
             }
-        }
 
-        foreach (var parameter in action.Parameters)
-        {
-            if (parameter.Attributes.Any(a => a is IBindingSourceMetadata))
+            foreach (var parameter in action.Parameters)
             {
-                continue;
+                if (parameter.Attributes.Any(a => a is IBindingSourceMetadata))
+                {
+                    continue;
+                }
+
+                var t = parameter.ParameterType;
+                if (t == typeof(HttpContext) || t == typeof(ClaimsPrincipal) || t == typeof(CancellationToken))
+                {
+                    continue;
+                }
+
+                var name = parameter.ParameterName ?? string.Empty;
+
+                if (routeParams.Contains(name))
+                {
+                    parameter.BindingInfo = BindingInfo.GetBindingInfo([new FromRouteAttribute()]);
+                    continue;
+                }
+
+                parameter.BindingInfo = isPureGet ? BindingInfo.GetBindingInfo([new FromQueryAttribute()]) : BindingInfo.GetBindingInfo([new FromFormAttribute()]);
             }
-
-            var t = parameter.ParameterType;
-            if (t == typeof(HttpContext) || t == typeof(ClaimsPrincipal) || t == typeof(CancellationToken))
-            {
-                continue;
-            }
-
-            var name = parameter.ParameterName ?? string.Empty;
-
-            if (routeParams.Contains(name))
-            {
-                parameter.BindingInfo = BindingInfo.GetBindingInfo([new FromRouteAttribute()]);
-                continue;
-            }
-
-            parameter.BindingInfo = isPureGet ? BindingInfo.GetBindingInfo([new FromQueryAttribute()]) : BindingInfo.GetBindingInfo([new FromFormAttribute()]);
         }
     }
 }

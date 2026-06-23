@@ -1,7 +1,8 @@
-﻿namespace Enums;
-
-public enum SystemTopupStatus
+﻿namespace Enums
 {
-    Active = 1,
-    Inactive = 2
+    public enum SystemTopupStatus
+    {
+        Active = 1,
+        Inactive = 2
+    }
 }

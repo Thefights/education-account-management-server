@@ -1,17 +1,18 @@
-﻿namespace Services.Courses.Utils;
-
-public static class CourseFeeCalculator
+﻿namespace Services.Courses.Utils
 {
-    private const decimal GstRate = 0.09m;
-
-    public static decimal CalculateGstAmount(
-        decimal courseFeeAmount,
-        decimal miscFeeAmount)
+    public static class CourseFeeCalculator
     {
-        var taxableAmount = courseFeeAmount + miscFeeAmount;
-        return decimal.Round(
-            taxableAmount * GstRate,
-            2,
-            MidpointRounding.AwayFromZero);
+        private const decimal GstRate = 0.09m;
+
+        public static decimal CalculateGstAmount(
+            decimal courseFeeAmount,
+            decimal miscFeeAmount)
+        {
+            var taxableAmount = courseFeeAmount + miscFeeAmount;
+            return decimal.Round(
+                taxableAmount * GstRate,
+                2,
+                MidpointRounding.AwayFromZero);
+        }
     }
 }

@@ -1,47 +1,48 @@
-﻿namespace Services.Courses.Utils;
-
-public static class CourseDateTimeHelper
+﻿namespace Services.Courses.Utils
 {
-    public static void NormalizeToUtc(Course course)
+    public static class CourseDateTimeHelper
     {
-        course.EnrollmentDueDate = NormalizeToUtc(
-            course.EnrollmentDueDate,
-            nameof(Course.EnrollmentDueDate));
-        course.FasApplicationDueDate = NormalizeToUtc(
-            course.FasApplicationDueDate,
-            nameof(Course.FasApplicationDueDate));
-        course.StartDate = NormalizeToUtc(course.StartDate, nameof(Course.StartDate));
-        course.EndDate = NormalizeToUtc(course.EndDate, nameof(Course.EndDate));
-    }
-
-    public static DateTime NormalizeToUtc(DateTime value, string propertyName)
-    {
-        if (value.Kind == DateTimeKind.Unspecified)
+        public static void NormalizeToUtc(Course course)
         {
-            throw new ValidationFailureException(
-                propertyName,
-                $"{propertyName} must include a timezone offset.");
+            course.EnrollmentDueDate = NormalizeToUtc(
+                course.EnrollmentDueDate,
+                nameof(Course.EnrollmentDueDate));
+            course.FasApplicationDueDate = NormalizeToUtc(
+                course.FasApplicationDueDate,
+                nameof(Course.FasApplicationDueDate));
+            course.StartDate = NormalizeToUtc(course.StartDate, nameof(Course.StartDate));
+            course.EndDate = NormalizeToUtc(course.EndDate, nameof(Course.EndDate));
         }
 
-        return value.ToUniversalTime();
-    }
-}
-
-public static class CourseConcurrencyHelper
-{
-    public static void Validate(byte[] suppliedRowVersion, byte[] currentRowVersion)
-    {
-        if (suppliedRowVersion.Length == 0)
+        public static DateTime NormalizeToUtc(DateTime value, string propertyName)
         {
-            throw new ValidationFailureException(
-                nameof(Course.RowVersion),
-                $"{nameof(Course.RowVersion)} is required.");
+            if (value.Kind == DateTimeKind.Unspecified)
+            {
+                throw new ValidationFailureException(
+                    propertyName,
+                    $"{propertyName} must include a timezone offset.");
+            }
+
+            return value.ToUniversalTime();
         }
+    }
 
-        if (!suppliedRowVersion.SequenceEqual(currentRowVersion))
+    public static class CourseConcurrencyHelper
+    {
+        public static void Validate(byte[] suppliedRowVersion, byte[] currentRowVersion)
         {
-            throw new DbUpdateConcurrencyException(
-                "The course was changed or deleted by another request.");
+            if (suppliedRowVersion.Length == 0)
+            {
+                throw new ValidationFailureException(
+                    nameof(Course.RowVersion),
+                    $"{nameof(Course.RowVersion)} is required.");
+            }
+
+            if (!suppliedRowVersion.SequenceEqual(currentRowVersion))
+            {
+                throw new DbUpdateConcurrencyException(
+                    "The course was changed or deleted by another request.");
+            }
         }
     }
 }

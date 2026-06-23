@@ -4,113 +4,114 @@ using Interfaces.Csv;
 using Services.Base;
 using Services.Courses.Utils;
 
-namespace Services.Courses;
-
-public class CourseImportService(
-    IUnitOfWork unitOfWork,
-    ICsvImportProfile<Course, CreateCourseDTO> profile,
-    SchoolScopeResolver schoolScopeResolver,
-    TimeProvider timeProvider)
-    : CsvImportService<Course, CreateCourseDTO>(unitOfWork, profile)
+namespace Services.Courses
 {
-    private readonly ICsvImportProfile<Course, CreateCourseDTO> _profile = profile;
-    private readonly SchoolScopeResolver _schoolScopeResolver = schoolScopeResolver;
-    private readonly TimeProvider _timeProvider = timeProvider;
-
-    public override async Task<BatchImportResultDTO> ImportAsync(
-        IFormFile file,
-        CancellationToken cancellationToken = default)
+    public class CourseImportService(
+        IUnitOfWork unitOfWork,
+        ICsvImportProfile<Course, CreateCourseDTO> profile,
+        SchoolScopeResolver schoolScopeResolver,
+        TimeProvider timeProvider)
+        : CsvImportService<Course, CreateCourseDTO>(unitOfWork, profile)
     {
-        var fileErrors = ValidateFile(file);
-        if (fileErrors.Count != 0)
+        private readonly ICsvImportProfile<Course, CreateCourseDTO> _profile = profile;
+        private readonly SchoolScopeResolver _schoolScopeResolver = schoolScopeResolver;
+        private readonly TimeProvider _timeProvider = timeProvider;
+
+        public override async Task<BatchImportResultDTO> ImportAsync(
+            IFormFile file,
+            CancellationToken cancellationToken = default)
         {
-            return CsvImportHelper.BuildFailureResult(0, fileErrors);
-        }
-
-        var rows = ReadRows(file);
-        if (rows.Errors.Count != 0)
-        {
-            return CsvImportHelper.BuildFailureResult(rows.Total, rows.Errors);
-        }
-
-        if (rows.Items.Count == 0)
-        {
-            return CsvImportHelper.BuildFailureResult(
-                0,
-                [BatchImportErrorDTO.Create(0, "File", "CSV file must contain at least one data row.")]);
-        }
-
-        var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
-        var utcNow = _timeProvider.GetUtcNow().UtcDateTime;
-        var reservedCodes = new HashSet<string>(StringComparer.Ordinal);
-        var errors = new List<BatchImportErrorDTO>();
-        var entities = new List<Course>();
-
-        foreach (var item in rows.Items)
-        {
-            errors.AddRange(await _profile.ValidateRowAsync(
-                item.Row,
-                item.RowNumber,
-                cancellationToken));
-
-            try
+            var fileErrors = ValidateFile(file);
+            if (fileErrors.Count != 0)
             {
-                var course = _profile.MapToEntity(item.Row);
-                course.SchoolId = schoolId;
-                course.Status = CourseStatus.Draft;
-                course.GstAmount = CourseFeeCalculator.CalculateGstAmount(
-                    course.CourseFeeAmount,
-                    course.MiscFeeAmount);
-                CourseDateTimeHelper.NormalizeToUtc(course);
-                course.CourseCode = await CourseCodeGenerator.GenerateUniqueAsync(
-                    Repository,
-                    schoolId,
-                    utcNow,
-                    reservedCodes,
-                    cancellationToken);
-                CsvImportHelper.AddEntityValidationErrors(errors, course, item.RowNumber);
-                entities.Add(course);
+                return CsvImportHelper.BuildFailureResult(0, fileErrors);
             }
-            catch (ValidationFailureException ex)
+
+            var rows = ReadRows(file);
+            if (rows.Errors.Count != 0)
             {
-                AddValidationErrors(errors, ex, item.RowNumber);
+                return CsvImportHelper.BuildFailureResult(rows.Total, rows.Errors);
             }
-            catch (Exception ex) when (ex is not OperationCanceledException)
+
+            if (rows.Items.Count == 0)
             {
-                errors.Add(BatchImportErrorDTO.Create(item.RowNumber, string.Empty, ex.Message));
+                return CsvImportHelper.BuildFailureResult(
+                    0,
+                    [BatchImportErrorDTO.Create(0, "File", "CSV file must contain at least one data row.")]);
             }
+
+            var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
+            var utcNow = _timeProvider.GetUtcNow().UtcDateTime;
+            var reservedCodes = new HashSet<string>(StringComparer.Ordinal);
+            var errors = new List<BatchImportErrorDTO>();
+            var entities = new List<Course>();
+
+            foreach (var item in rows.Items)
+            {
+                errors.AddRange(await _profile.ValidateRowAsync(
+                    item.Row,
+                    item.RowNumber,
+                    cancellationToken));
+
+                try
+                {
+                    var course = _profile.MapToEntity(item.Row);
+                    course.SchoolId = schoolId;
+                    course.Status = CourseStatus.Draft;
+                    course.GstAmount = CourseFeeCalculator.CalculateGstAmount(
+                        course.CourseFeeAmount,
+                        course.MiscFeeAmount);
+                    CourseDateTimeHelper.NormalizeToUtc(course);
+                    course.CourseCode = await CourseCodeGenerator.GenerateUniqueAsync(
+                        Repository,
+                        schoolId,
+                        utcNow,
+                        reservedCodes,
+                        cancellationToken);
+                    CsvImportHelper.AddEntityValidationErrors(errors, course, item.RowNumber);
+                    entities.Add(course);
+                }
+                catch (ValidationFailureException ex)
+                {
+                    AddValidationErrors(errors, ex, item.RowNumber);
+                }
+                catch (Exception ex) when (ex is not OperationCanceledException)
+                {
+                    errors.Add(BatchImportErrorDTO.Create(item.RowNumber, string.Empty, ex.Message));
+                }
+            }
+
+            if (errors.Count != 0)
+            {
+                return CsvImportHelper.BuildFailureResult(rows.Total, errors);
+            }
+
+            await UnitOfWork.ExecuteInTransactionAsync(
+                async (_, token) =>
+                {
+                    await Repository.AddRangeAsync(entities, token);
+                    await UnitOfWork.SaveChangeAsync(token);
+                },
+                cancellationToken);
+
+            return new BatchImportResultDTO
+            {
+                Total = rows.Total,
+                Succeeded = rows.Total,
+                Failed = 0,
+                Errors = []
+            };
         }
 
-        if (errors.Count != 0)
+        private static void AddValidationErrors(
+            List<BatchImportErrorDTO> errors,
+            ValidationFailureException exception,
+            int rowNumber)
         {
-            return CsvImportHelper.BuildFailureResult(rows.Total, errors);
+            errors.AddRange(exception.FieldErrors.Select(error =>
+                BatchImportErrorDTO.Create(rowNumber, error.Key, error.Value)));
+            errors.AddRange(exception.GlobalErrors.Select(error =>
+                BatchImportErrorDTO.Create(rowNumber, string.Empty, error)));
         }
-
-        await UnitOfWork.ExecuteInTransactionAsync(
-            async (_, token) =>
-            {
-                await Repository.AddRangeAsync(entities, token);
-                await UnitOfWork.SaveChangeAsync(token);
-            },
-            cancellationToken);
-
-        return new BatchImportResultDTO
-        {
-            Total = rows.Total,
-            Succeeded = rows.Total,
-            Failed = 0,
-            Errors = []
-        };
-    }
-
-    private static void AddValidationErrors(
-        List<BatchImportErrorDTO> errors,
-        ValidationFailureException exception,
-        int rowNumber)
-    {
-        errors.AddRange(exception.FieldErrors.Select(error =>
-            BatchImportErrorDTO.Create(rowNumber, error.Key, error.Value)));
-        errors.AddRange(exception.GlobalErrors.Select(error =>
-            BatchImportErrorDTO.Create(rowNumber, string.Empty, error)));
     }
 }
