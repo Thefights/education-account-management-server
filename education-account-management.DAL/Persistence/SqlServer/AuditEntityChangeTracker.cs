@@ -1,32 +1,33 @@
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace Persistence.SqlServer;
-
-public static class AuditEntityChangeTracker
+namespace Persistence.SqlServer
 {
-    public static void Apply(ChangeTracker changeTracker, int? currentUserId, DateTime now)
+    public static class AuditEntityChangeTracker
     {
-        foreach (var entry in changeTracker.Entries<AuditEntity>())
+        public static void Apply(ChangeTracker changeTracker, int? currentUserId, DateTime now)
         {
-            switch (entry.State)
+            foreach (var entry in changeTracker.Entries<AuditEntity>())
             {
-                case EntityState.Added:
-                    entry.Entity.CreatedAt = now;
-                    entry.Entity.CreatedBy = currentUserId;
-                    break;
+                switch (entry.State)
+                {
+                    case EntityState.Added:
+                        entry.Entity.CreatedAt = now;
+                        entry.Entity.CreatedBy = currentUserId;
+                        break;
 
-                case EntityState.Modified:
-                    entry.Entity.UpdatedAt = now;
-                    entry.Entity.UpdatedBy = currentUserId;
-                    break;
+                    case EntityState.Modified:
+                        entry.Entity.UpdatedAt = now;
+                        entry.Entity.UpdatedBy = currentUserId;
+                        break;
 
-                case EntityState.Deleted:
-                    entry.State = EntityState.Modified;
-                    entry.Entity.IsDeleted = true;
-                    entry.Entity.DeletedAt = now;
-                    entry.Entity.UpdatedAt = now;
-                    entry.Entity.UpdatedBy = currentUserId;
-                    break;
+                    case EntityState.Deleted:
+                        entry.State = EntityState.Modified;
+                        entry.Entity.IsDeleted = true;
+                        entry.Entity.DeletedAt = now;
+                        entry.Entity.UpdatedAt = now;
+                        entry.Entity.UpdatedBy = currentUserId;
+                        break;
+                }
             }
         }
     }

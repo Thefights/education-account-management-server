@@ -1,42 +1,40 @@
-using Authorization;
+﻿using Authorization;
 using Common.HttpResults;
 using Controllers.Base;
-using DTOs.Enrollments;
-using Filters.Enrollments;
-using Interfaces.Enrollments;
 
-namespace Controllers.Management;
-
-[Authorize(Roles = RolePolicy.SchoolAdmin)]
-public class EnrollmentManagementController(IEnrollmentService service)
-    : GetController<GetEnrollmentDTO, EnrollmentFilterDTO>(service)
+namespace Controllers.Management
 {
-    private readonly IEnrollmentService _service = service;
-
-    [HttpPost]
-    public async Task<IActionResult> Assign(
-        AssignEnrollmentsDTO assignDTO,
-        CancellationToken cancellationToken)
+    [Authorize(Roles = RolePolicy.SchoolAdmin)]
+    public class EnrollmentManagementController(IEnrollmentService service)
+        : GetController<GetEnrollmentDTO, EnrollmentFilterDTO>(service)
     {
-        var result = await _service.AssignAsync(assignDTO, cancellationToken);
-        return Result.SuccessData(result, $"{result.Count} student(s) assigned successfully");
-    }
+        private readonly IEnrollmentService _service = service;
 
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> Remove(
-        int id,
-        CancellationToken cancellationToken)
-    {
-        await _service.RemoveAsync(id, cancellationToken);
-        return Result.SuccessAction("Enrollment removed successfully");
-    }
+        [HttpPost]
+        public async Task<IActionResult> Assign(
+            AssignEnrollmentsDTO assignDTO,
+            CancellationToken cancellationToken)
+        {
+            var result = await _service.AssignAsync(assignDTO, cancellationToken);
+            return Result.SuccessData(result, $"{result.Count} student(s) assigned successfully");
+        }
 
-    [HttpDelete("selected")]
-    public async Task<IActionResult> RemoveSelected(
-        RemoveSelectedEnrollmentsDTO removeDTO,
-        CancellationToken cancellationToken)
-    {
-        await _service.RemoveSelectedAsync(removeDTO, cancellationToken);
-        return Result.SuccessAction($"{removeDTO.Ids.Count} enrollment(s) removed successfully");
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Remove(
+            int id,
+            CancellationToken cancellationToken)
+        {
+            await _service.RemoveAsync(id, cancellationToken);
+            return Result.SuccessAction("Enrollment removed successfully");
+        }
+
+        [HttpDelete("selected")]
+        public async Task<IActionResult> RemoveSelected(
+            RemoveSelectedEnrollmentsDTO removeDTO,
+            CancellationToken cancellationToken)
+        {
+            await _service.RemoveSelectedAsync(removeDTO, cancellationToken);
+            return Result.SuccessAction($"{removeDTO.Ids.Count} enrollment(s) removed successfully");
+        }
     }
 }

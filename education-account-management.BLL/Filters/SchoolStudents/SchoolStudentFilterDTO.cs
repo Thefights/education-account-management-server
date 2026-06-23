@@ -1,4 +1,4 @@
-namespace Filters.SchoolStudents
+﻿namespace Filters.SchoolStudents
 {
     public class SchoolStudentFilterDTO : FilterDTO
     {

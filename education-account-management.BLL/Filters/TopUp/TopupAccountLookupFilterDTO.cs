@@ -1,5 +1,6 @@
-namespace Filters.TopUp;
-
-public sealed class TopupAccountLookupFilterDTO : FilterDTO
+namespace Filters.TopUp
 {
+    public sealed class TopupAccountLookupFilterDTO : FilterDTO
+    {
+    }
 }

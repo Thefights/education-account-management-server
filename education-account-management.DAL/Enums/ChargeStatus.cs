@@ -5,6 +5,6 @@
         Unpaid = 1,
         PartiallyPaid = 2,
         Paid = 3,
-        Outstanding = 4
+        Outstanding = 4,
     }
 }

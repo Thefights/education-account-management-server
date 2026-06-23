@@ -1,9 +1,10 @@
-using DTOs.TopUp;
+﻿using DTOs.TopUp;
 using Interfaces.Base;
 
-namespace Interfaces.TopUp;
-
-public interface ISystemTopupService : IBaseCrudService<CreateSystemTopupDTO, GetSystemTopupDTO, UpdateSystemTopupDTO>
+namespace Interfaces.TopUp
 {
-    Task UpdateStatusesAsync(BatchUpdateSystemTopupStatusDTO dto, CancellationToken cancellationToken = default);
+    public interface ISystemTopupService : IBaseCrudService<CreateSystemTopupDTO, GetSystemTopupDTO, UpdateSystemTopupDTO>
+    {
+        Task UpdateStatusesAsync(BatchUpdateSystemTopupStatusDTO dto, CancellationToken cancellationToken = default);
+    }
 }

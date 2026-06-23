@@ -1,23 +1,24 @@
 using Models;
 using Persistence.Seeding.Constants;
 
-namespace Persistence.Seeding;
-
-public sealed class TopupSystemApplicationSeedBuilder : ISeedBuilder
+namespace Persistence.Seeding
 {
-    public int Priority => 152;
-
-    public ModelBuilder Seed(ModelBuilder modelBuilder)
+    public sealed class TopupSystemApplicationSeedBuilder : ISeedBuilder
     {
-        modelBuilder.Entity<TopupSystemApplication>().HasData(
-            new TopupSystemApplication
-            {
-                Id = 1,
-                SystemTopupId = 21,
-                EducationAccountId = 3,
-                TopupExecutionTargetId = 3
-            });
+        public int Priority => 152;
 
-        return modelBuilder;
+        public ModelBuilder Seed(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<TopupSystemApplication>().HasData(
+                new TopupSystemApplication
+                {
+                    Id = 1,
+                    SystemTopupId = 21,
+                    EducationAccountId = 3,
+                    TopupExecutionTargetId = 3
+                });
+
+            return modelBuilder;
+        }
     }
 }

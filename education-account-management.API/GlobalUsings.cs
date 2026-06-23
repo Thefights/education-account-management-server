@@ -1,6 +1,17 @@
 global using Asp.Versioning;
+global using DTOs.Enrollments;
+global using DTOs.SchoolStudents;
+global using DTOs.TopUp;
 global using education_account_management.BLL;
+global using Filters.Enrollments;
+global using Filters.SchoolStudents;
+global using Filters.TopUp;
+global using Interfaces.Enrollments;
+global using Interfaces.SchoolStudents;
+global using Interfaces.TopUp;
 global using Microsoft.AspNetCore.Authorization;
 global using Microsoft.AspNetCore.Mvc;
+global using Models;
+global using Services.Courses;
 global using Interfaces;
 global using Filters;

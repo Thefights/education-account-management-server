@@ -5256,6 +5256,150 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             SchoolNameSnapshot = "Hillcrest Education Centre",
                             SchoolStudentId = 10
+                        },
+                        new
+                        {
+                            Id = 11,
+                            AccountNumberSnapshot = "EDU-2026-00000000009",
+                            CitizenEmailSnapshot = "citizen009@example.com",
+                            CitizenFullNameSnapshot = "Citizen 009",
+                            CitizenNricSnapshot = "S0000009D",
+                            CitizenPhoneNumberSnapshot = "+6590000009",
+                            CourseDescriptionSnapshot = "Foundation course in applied mathematics.",
+                            CourseId = 1,
+                            CourseNameSnapshot = "Applied Mathematics",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            SchoolNameSnapshot = "Northview Secondary School",
+                            SchoolStudentId = 9
+                        },
+                        new
+                        {
+                            Id = 13,
+                            AccountNumberSnapshot = "EDU-2026-00000000009",
+                            CitizenEmailSnapshot = "citizen009@example.com",
+                            CitizenFullNameSnapshot = "Citizen 009",
+                            CitizenNricSnapshot = "S0000009D",
+                            CitizenPhoneNumberSnapshot = "+6590000009",
+                            CourseDescriptionSnapshot = "Introduction to programming and computing.",
+                            CourseId = 2,
+                            CourseNameSnapshot = "Computer Science Fundamentals",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            SchoolNameSnapshot = "Eastbridge Secondary School",
+                            SchoolStudentId = 9
+                        },
+                        new
+                        {
+                            Id = 14,
+                            AccountNumberSnapshot = "EDU-2026-00000000009",
+                            CitizenEmailSnapshot = "citizen009@example.com",
+                            CitizenFullNameSnapshot = "Citizen 009",
+                            CitizenNricSnapshot = "S0000009D",
+                            CitizenPhoneNumberSnapshot = "+6590000009",
+                            CourseDescriptionSnapshot = "Professional written and verbal communication.",
+                            CourseId = 3,
+                            CourseNameSnapshot = "Business Communication",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            SchoolNameSnapshot = "Westhaven Secondary School",
+                            SchoolStudentId = 9
+                        },
+                        new
+                        {
+                            Id = 12,
+                            AccountNumberSnapshot = "EDU-2026-00000000009",
+                            CitizenEmailSnapshot = "citizen009@example.com",
+                            CitizenFullNameSnapshot = "Citizen 009",
+                            CitizenNricSnapshot = "S0000009D",
+                            CitizenPhoneNumberSnapshot = "+6590000009",
+                            CourseDescriptionSnapshot = "Environmental systems and sustainability.",
+                            CourseId = 4,
+                            CourseNameSnapshot = "Environmental Science",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            SchoolNameSnapshot = "Southpoint Secondary School",
+                            SchoolStudentId = 9
+                        },
+                        new
+                        {
+                            Id = 15,
+                            AccountNumberSnapshot = "EDU-2026-00000000009",
+                            CitizenEmailSnapshot = "citizen009@example.com",
+                            CitizenFullNameSnapshot = "Citizen 009",
+                            CitizenNricSnapshot = "S0000009D",
+                            CitizenPhoneNumberSnapshot = "+6590000009",
+                            CourseDescriptionSnapshot = "Digital design principles and production.",
+                            CourseId = 5,
+                            CourseNameSnapshot = "Digital Media Design",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            SchoolNameSnapshot = "Central Heights School",
+                            SchoolStudentId = 9
+                        },
+                        new
+                        {
+                            Id = 16,
+                            AccountNumberSnapshot = "EDU-2026-00000000009",
+                            CitizenEmailSnapshot = "citizen009@example.com",
+                            CitizenFullNameSnapshot = "Citizen 009",
+                            CitizenNricSnapshot = "S0000009D",
+                            CitizenPhoneNumberSnapshot = "+6590000009",
+                            CourseDescriptionSnapshot = "Core hospitality service operations.",
+                            CourseId = 6,
+                            CourseNameSnapshot = "Hospitality Operations",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            SchoolNameSnapshot = "Riverside Learning Institute",
+                            SchoolStudentId = 9
+                        },
+                        new
+                        {
+                            Id = 17,
+                            AccountNumberSnapshot = "EDU-2026-00000000009",
+                            CitizenEmailSnapshot = "citizen009@example.com",
+                            CitizenFullNameSnapshot = "Citizen 009",
+                            CitizenNricSnapshot = "S0000009D",
+                            CitizenPhoneNumberSnapshot = "+6590000009",
+                            CourseDescriptionSnapshot = "Fundamentals of electrical systems.",
+                            CourseId = 7,
+                            CourseNameSnapshot = "Electrical Engineering Basics",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            SchoolNameSnapshot = "Lakeside Technical School",
+                            SchoolStudentId = 9
+                        },
+                        new
+                        {
+                            Id = 18,
+                            AccountNumberSnapshot = "EDU-2026-00000000009",
+                            CitizenEmailSnapshot = "citizen009@example.com",
+                            CitizenFullNameSnapshot = "Citizen 009",
+                            CitizenNricSnapshot = "S0000009D",
+                            CitizenPhoneNumberSnapshot = "+6590000009",
+                            CourseDescriptionSnapshot = "Writing techniques across common genres.",
+                            CourseId = 8,
+                            CourseNameSnapshot = "Creative Writing",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            SchoolNameSnapshot = "Greenfield Academy",
+                            SchoolStudentId = 9
+                        },
+                        new
+                        {
+                            Id = 19,
+                            AccountNumberSnapshot = "EDU-2026-00000000009",
+                            CitizenEmailSnapshot = "citizen009@example.com",
+                            CitizenFullNameSnapshot = "Citizen 009",
+                            CitizenNricSnapshot = "S0000009D",
+                            CitizenPhoneNumberSnapshot = "+6590000009",
+                            CourseDescriptionSnapshot = "Archived office applications programme.",
+                            CourseId = 10,
+                            CourseNameSnapshot = "Legacy Office Applications",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            SchoolNameSnapshot = "Hillcrest Education Centre",
+                            SchoolStudentId = 9
                         });
                 });
 

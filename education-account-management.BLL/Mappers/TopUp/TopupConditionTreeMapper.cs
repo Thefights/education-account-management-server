@@ -1,130 +1,131 @@
-using DTOs.TopUp;
+﻿using DTOs.TopUp;
 
-namespace Mappers;
-
-public static class TopupConditionTreeMapper
+namespace Mappers.TopUp
 {
-    public static SystemTopupConditionGroup MapSystemGroup(
-        TopupConditionGroupRequestDTO source,
-        int systemTopupId,
-        SystemTopupConditionGroup? parent = null)
+    public static class TopupConditionTreeMapper
     {
-        var group = new SystemTopupConditionGroup
+        public static SystemTopupConditionGroup MapSystemGroup(
+            TopupConditionGroupRequestDTO source,
+            int systemTopupId,
+            SystemTopupConditionGroup? parent = null)
         {
-            SystemTopupId = systemTopupId,
-            ParentGroup = parent,
-            LogicalOperator = source.LogicalOperator,
-            DisplayOrder = source.DisplayOrder,
-            Conditions = source.Conditions.Select(condition => new SystemTopupCondition
+            var group = new SystemTopupConditionGroup
             {
-                Field = condition.Field,
-                Operator = condition.Operator,
-                ValueText = condition.ValueText,
-                ValueNumber = condition.ValueNumber,
-                ValueNumberTo = condition.ValueNumberTo,
-                DisplayOrder = condition.DisplayOrder
-            }).ToList()
-        };
-        group.ChildGroups = source.Groups
-            .Select(child => MapSystemGroup(child, systemTopupId, group))
-            .ToList();
-        return group;
-    }
+                SystemTopupId = systemTopupId,
+                ParentGroup = parent,
+                LogicalOperator = source.LogicalOperator,
+                DisplayOrder = source.DisplayOrder,
+                Conditions = source.Conditions.Select(condition => new SystemTopupCondition
+                {
+                    Field = condition.Field,
+                    Operator = condition.Operator,
+                    ValueText = condition.ValueText,
+                    ValueNumber = condition.ValueNumber,
+                    ValueNumberTo = condition.ValueNumberTo,
+                    DisplayOrder = condition.DisplayOrder
+                }).ToList()
+            };
+            group.ChildGroups = source.Groups
+                .Select(child => MapSystemGroup(child, systemTopupId, group))
+                .ToList();
+            return group;
+        }
 
-    public static ScheduleTopUpConditionGroup MapScheduleGroup(
-        TopupConditionGroupRequestDTO source,
-        int scheduleTopUpId,
-        ScheduleTopUpConditionGroup? parent = null)
-    {
-        var group = new ScheduleTopUpConditionGroup
+        public static ScheduleTopUpConditionGroup MapScheduleGroup(
+            TopupConditionGroupRequestDTO source,
+            int scheduleTopUpId,
+            ScheduleTopUpConditionGroup? parent = null)
         {
-            ScheduleTopUpId = scheduleTopUpId,
-            ParentGroup = parent,
-            LogicalOperator = source.LogicalOperator,
-            DisplayOrder = source.DisplayOrder,
-            Conditions = source.Conditions.Select(condition => new ScheduleTopUpCondition
+            var group = new ScheduleTopUpConditionGroup
             {
-                Field = condition.Field,
-                Operator = condition.Operator,
-                ValueText = condition.ValueText,
-                ValueNumber = condition.ValueNumber,
-                ValueNumberTo = condition.ValueNumberTo,
-                DisplayOrder = condition.DisplayOrder
-            }).ToList()
-        };
-        group.ChildGroups = source.Groups
-            .Select(child => MapScheduleGroup(child, scheduleTopUpId, group))
-            .ToList();
-        return group;
-    }
+                ScheduleTopUpId = scheduleTopUpId,
+                ParentGroup = parent,
+                LogicalOperator = source.LogicalOperator,
+                DisplayOrder = source.DisplayOrder,
+                Conditions = source.Conditions.Select(condition => new ScheduleTopUpCondition
+                {
+                    Field = condition.Field,
+                    Operator = condition.Operator,
+                    ValueText = condition.ValueText,
+                    ValueNumber = condition.ValueNumber,
+                    ValueNumberTo = condition.ValueNumberTo,
+                    DisplayOrder = condition.DisplayOrder
+                }).ToList()
+            };
+            group.ChildGroups = source.Groups
+                .Select(child => MapScheduleGroup(child, scheduleTopUpId, group))
+                .ToList();
+            return group;
+        }
 
-    public static TopupConditionGroupDTO MapSystemTree(IReadOnlyCollection<SystemTopupConditionGroup> groups)
-    {
-        var root = groups.Single(group => group.ParentGroupId == null);
-        var children = groups.Where(group => group.ParentGroupId.HasValue)
-            .GroupBy(group => group.ParentGroupId!.Value)
-            .ToDictionary(group => group.Key, group => group.ToList());
-        return MapSystemGroup(root, children);
-    }
-
-    public static TopupConditionGroupDTO MapScheduleTree(IReadOnlyCollection<ScheduleTopUpConditionGroup> groups)
-    {
-        var root = groups.Single(group => group.ParentGroupId == null);
-        var children = groups.Where(group => group.ParentGroupId.HasValue)
-            .GroupBy(group => group.ParentGroupId!.Value)
-            .ToDictionary(group => group.Key, group => group.ToList());
-        return MapScheduleGroup(root, children);
-    }
-
-    private static TopupConditionGroupDTO MapSystemGroup(
-        SystemTopupConditionGroup group,
-        IReadOnlyDictionary<int, List<SystemTopupConditionGroup>> children)
-    {
-        return new TopupConditionGroupDTO
+        public static TopupConditionGroupDTO MapSystemTree(IReadOnlyCollection<SystemTopupConditionGroup> groups)
         {
-            Id = group.Id,
-            LogicalOperator = group.LogicalOperator.ToString(),
-            DisplayOrder = group.DisplayOrder,
-            Conditions = group.Conditions.OrderBy(condition => condition.DisplayOrder).Select(condition => new TopupConditionDTO
-            {
-                Id = condition.Id,
-                Field = condition.Field.ToString(),
-                Operator = condition.Operator.ToString(),
-                ValueText = condition.ValueText,
-                ValueNumber = condition.ValueNumber,
-                ValueNumberTo = condition.ValueNumberTo,
-                DisplayOrder = condition.DisplayOrder
-            }).ToList(),
-            Groups = children.GetValueOrDefault(group.Id, [])
-                .OrderBy(child => child.DisplayOrder)
-                .Select(child => MapSystemGroup(child, children))
-                .ToList()
-        };
-    }
+            var root = groups.Single(group => group.ParentGroupId == null);
+            var children = groups.Where(group => group.ParentGroupId.HasValue)
+                .GroupBy(group => group.ParentGroupId!.Value)
+                .ToDictionary(group => group.Key, group => group.ToList());
+            return MapSystemGroup(root, children);
+        }
 
-    private static TopupConditionGroupDTO MapScheduleGroup(
-        ScheduleTopUpConditionGroup group,
-        IReadOnlyDictionary<int, List<ScheduleTopUpConditionGroup>> children)
-    {
-        return new TopupConditionGroupDTO
+        public static TopupConditionGroupDTO MapScheduleTree(IReadOnlyCollection<ScheduleTopUpConditionGroup> groups)
         {
-            Id = group.Id,
-            LogicalOperator = group.LogicalOperator.ToString(),
-            DisplayOrder = group.DisplayOrder,
-            Conditions = group.Conditions.OrderBy(condition => condition.DisplayOrder).Select(condition => new TopupConditionDTO
+            var root = groups.Single(group => group.ParentGroupId == null);
+            var children = groups.Where(group => group.ParentGroupId.HasValue)
+                .GroupBy(group => group.ParentGroupId!.Value)
+                .ToDictionary(group => group.Key, group => group.ToList());
+            return MapScheduleGroup(root, children);
+        }
+
+        private static TopupConditionGroupDTO MapSystemGroup(
+            SystemTopupConditionGroup group,
+            IReadOnlyDictionary<int, List<SystemTopupConditionGroup>> children)
+        {
+            return new TopupConditionGroupDTO
             {
-                Id = condition.Id,
-                Field = condition.Field.ToString(),
-                Operator = condition.Operator.ToString(),
-                ValueText = condition.ValueText,
-                ValueNumber = condition.ValueNumber,
-                ValueNumberTo = condition.ValueNumberTo,
-                DisplayOrder = condition.DisplayOrder
-            }).ToList(),
-            Groups = children.GetValueOrDefault(group.Id, [])
-                .OrderBy(child => child.DisplayOrder)
-                .Select(child => MapScheduleGroup(child, children))
-                .ToList()
-        };
+                Id = group.Id,
+                LogicalOperator = group.LogicalOperator.ToString(),
+                DisplayOrder = group.DisplayOrder,
+                Conditions = group.Conditions.OrderBy(condition => condition.DisplayOrder).Select(condition => new TopupConditionDTO
+                {
+                    Id = condition.Id,
+                    Field = condition.Field.ToString(),
+                    Operator = condition.Operator.ToString(),
+                    ValueText = condition.ValueText,
+                    ValueNumber = condition.ValueNumber,
+                    ValueNumberTo = condition.ValueNumberTo,
+                    DisplayOrder = condition.DisplayOrder
+                }).ToList(),
+                Groups = children.GetValueOrDefault(group.Id, [])
+                    .OrderBy(child => child.DisplayOrder)
+                    .Select(child => MapSystemGroup(child, children))
+                    .ToList()
+            };
+        }
+
+        private static TopupConditionGroupDTO MapScheduleGroup(
+            ScheduleTopUpConditionGroup group,
+            IReadOnlyDictionary<int, List<ScheduleTopUpConditionGroup>> children)
+        {
+            return new TopupConditionGroupDTO
+            {
+                Id = group.Id,
+                LogicalOperator = group.LogicalOperator.ToString(),
+                DisplayOrder = group.DisplayOrder,
+                Conditions = group.Conditions.OrderBy(condition => condition.DisplayOrder).Select(condition => new TopupConditionDTO
+                {
+                    Id = condition.Id,
+                    Field = condition.Field.ToString(),
+                    Operator = condition.Operator.ToString(),
+                    ValueText = condition.ValueText,
+                    ValueNumber = condition.ValueNumber,
+                    ValueNumberTo = condition.ValueNumberTo,
+                    DisplayOrder = condition.DisplayOrder
+                }).ToList(),
+                Groups = children.GetValueOrDefault(group.Id, [])
+                    .OrderBy(child => child.DisplayOrder)
+                    .Select(child => MapScheduleGroup(child, children))
+                    .ToList()
+            };
+        }
     }
 }

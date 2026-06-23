@@ -1,8 +1,9 @@
-namespace Enums;
-
-public enum TopupConditionField
+﻿namespace Enums
 {
-    Age = 1,
-    Balance = 2,
-    SchoolingStatus = 3
+    public enum TopupConditionField
+    {
+        Age = 1,
+        Balance = 2,
+        SchoolingStatus = 3
+    }
 }

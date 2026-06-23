@@ -1,4 +1,4 @@
-using EntityAnnotations.DateAttributes;
+﻿using EntityAnnotations.DateAttributes;
 
 namespace Models
 {

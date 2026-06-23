@@ -3,6 +3,7 @@ namespace Models
     public class OutstandingDeductionRun : AuditEntity
     {
         [MessageRequired, MessageMaxLength(7), RegularExpression(@"^\d{4}-(0[1-9]|1[0-2])$")]
+        [Unique]
         public string RunMonth { get; set; } = string.Empty;
 
         [NotDefaultValue]
