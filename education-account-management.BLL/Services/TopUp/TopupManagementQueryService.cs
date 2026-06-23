@@ -143,7 +143,7 @@ public sealed class TopupManagementQueryService(IUnitOfWork unitOfWork) : ITopup
             var search = filter.Search.Trim();
             query = query.Where(execution =>
                 execution.ExecutionCode.Contains(search) ||
-                (execution.RuleNameSnapshot != null && execution.RuleNameSnapshot.Contains(search)));
+                (execution.TopupNameSnapshot != null && execution.TopupNameSnapshot.Contains(search)));
         }
         if (!string.IsNullOrWhiteSpace(filter.AccountNumber))
         {
@@ -204,19 +204,17 @@ public sealed class TopupManagementQueryService(IUnitOfWork unitOfWork) : ITopup
             ExecutionCode = execution.ExecutionCode,
             SourceType = execution.SourceType.ToString(),
             Status = execution.Status.ToString(),
-            TopupRuleId = execution.TopupRuleId,
-            TopupScheduleId = execution.TopupScheduleId,
+            SystemTopupId = execution.SystemTopupId,
+            ScheduleTopUpId = execution.ScheduleTopUpId,
             ManualAmount = execution.ManualAmount,
             ManualReason = execution.ManualReason,
             TotalTargetCount = execution.TotalTargetCount,
             SuccessCount = execution.SuccessCount,
             FailedCount = execution.FailedCount,
             TotalExecutedAmount = execution.TotalExecutedAmount,
-            RuleNameSnapshot = execution.RuleNameSnapshot,
-            RuleTypeSnapshot = execution.RuleTypeSnapshot.HasValue ? execution.RuleTypeSnapshot.Value.ToString() : null,
-            MatchModeSnapshot = execution.MatchModeSnapshot.HasValue ? execution.MatchModeSnapshot.Value.ToString() : null,
+            TopupNameSnapshot = execution.TopupNameSnapshot,
             TopupAmountSnapshot = execution.TopupAmountSnapshot,
-            RuleConditionsSnapshot = execution.RuleConditionsSnapshot,
+            ConditionsSnapshot = execution.ConditionsSnapshot,
             CreatedAt = execution.CreatedAt,
             UpdatedAt = execution.UpdatedAt
         };

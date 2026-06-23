@@ -40,11 +40,17 @@ namespace Persistence.SqlServer
 
         public DbSet<OutstandingDeductionTarget> OutstandingDeductionTarget { get; set; }
 
-        public DbSet<TopupRule> TopupRule { get; set; }
+        public DbSet<SystemTopup> SystemTopup { get; set; }
 
-        public DbSet<TopupRuleCondition> TopupRuleCondition { get; set; }
+        public DbSet<SystemTopupConditionGroup> SystemTopupConditionGroup { get; set; }
 
-        public DbSet<TopupSchedule> TopupSchedule { get; set; }
+        public DbSet<SystemTopupCondition> SystemTopupCondition { get; set; }
+
+        public DbSet<ScheduleTopUp> ScheduleTopUp { get; set; }
+
+        public DbSet<ScheduleTopUpConditionGroup> ScheduleTopUpConditionGroup { get; set; }
+
+        public DbSet<ScheduleTopUpCondition> ScheduleTopUpCondition { get; set; }
 
         public DbSet<EducationAccountSweepReport> EducationAccountSweepReports { get; set; }
 

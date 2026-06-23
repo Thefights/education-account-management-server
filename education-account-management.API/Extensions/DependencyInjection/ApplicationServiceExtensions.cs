@@ -80,8 +80,8 @@ public static class ApplicationServiceExtensions
         services.AddScoped<IEducationAccountImportService, EducationAccountImportService>();
         services.AddScoped<ITransactionHistoryService, TransactionHistoryService>();
 
-        services.AddScoped<ITopupRuleService, TopupRuleService>();
-        services.AddScoped<ITopupScheduleService, TopupScheduleService>();
+        services.AddScoped<ISystemTopupService, SystemTopupService>();
+        services.AddScoped<IScheduleTopUpService, ScheduleTopUpService>();
         services.AddScoped<ITopupService, TopupService>();
         services.AddScoped<ITopupManagementQueryService, TopupManagementQueryService>();
         services.AddScoped<ITopupBackgroundService, TopupBackgroundService>();
@@ -107,8 +107,8 @@ public static class ApplicationServiceExtensions
         services.AddScoped<EducationAccountMapper>();
         services.AddScoped<EnrollmentMapper>();
         services.AddScoped<TransactionHistoryMapper>();
-        services.AddScoped<TopupRuleMapper>();
-        services.AddScoped<TopupScheduleMapper>();
+        services.AddScoped<SystemTopupMapper>();
+        services.AddScoped<ScheduleTopUpMapper>();
         services.AddScoped<AiAssistantSettingMapper>();
         services.AddScoped<AdminMapper>();
         services.AddScoped<CourseMapper>();

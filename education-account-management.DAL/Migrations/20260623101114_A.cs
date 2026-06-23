@@ -125,6 +125,34 @@ namespace educationaccountmanagement.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ScheduleTopUp",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    TopupAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    Frequency = table.Column<int>(type: "int", nullable: false),
+                    OneTimeExecutionAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ExecuteAtDay = table.Column<int>(type: "int", nullable: true),
+                    ExecuteAtMonth = table.Column<int>(type: "int", nullable: true),
+                    ExecutionTime = table.Column<TimeOnly>(type: "time", nullable: false),
+                    NextExecutionAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ScheduleTopUp", x => x.Id);
+                    table.CheckConstraint("CK_ScheduleTopUp_Amount_By_Status", "([Status] IN (1, 3) AND [TopupAmount] > 0) OR ([Status] = 2 AND ([TopupAmount] IS NULL OR [TopupAmount] > 0))");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "School",
                 columns: table => new
                 {
@@ -148,14 +176,12 @@ namespace educationaccountmanagement.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TopupRule",
+                name: "SystemTopup",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RuleName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    Type = table.Column<int>(type: "int", nullable: false),
-                    MatchMode = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     TopupAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -167,8 +193,8 @@ namespace educationaccountmanagement.DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TopupRule", x => x.Id);
-                    table.CheckConstraint("CK_TopupRule_Amount_By_MatchMode", "([MatchMode] = 1 AND [TopupAmount] > 0) OR ([MatchMode] = 2 AND [TopupAmount] IS NULL)");
+                    table.PrimaryKey("PK_SystemTopup", x => x.Id);
+                    table.CheckConstraint("CK_SystemTopup_Amount_By_Status", "([Status] = 1 AND [TopupAmount] > 0) OR ([Status] = 2 AND ([TopupAmount] IS NULL OR [TopupAmount] > 0))");
                 });
 
             migrationBuilder.CreateTable(
@@ -257,6 +283,34 @@ namespace educationaccountmanagement.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ScheduleTopUpConditionGroup",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ScheduleTopUpId = table.Column<int>(type: "int", nullable: false),
+                    ParentGroupId = table.Column<int>(type: "int", nullable: true),
+                    LogicalOperator = table.Column<int>(type: "int", nullable: false),
+                    DisplayOrder = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ScheduleTopUpConditionGroup", x => x.Id);
+                    table.CheckConstraint("CK_ScheduleTopUpConditionGroup_DisplayOrder_NonNegative", "[DisplayOrder] >= 0");
+                    table.ForeignKey(
+                        name: "FK_ScheduleTopUpConditionGroup_ScheduleTopUpConditionGroup_ParentGroupId",
+                        column: x => x.ParentGroupId,
+                        principalTable: "ScheduleTopUpConditionGroup",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_ScheduleTopUpConditionGroup_ScheduleTopUp_ScheduleTopUpId",
+                        column: x => x.ScheduleTopUpId,
+                        principalTable: "ScheduleTopUp",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Course",
                 columns: table => new
                 {
@@ -296,52 +350,54 @@ namespace educationaccountmanagement.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TopupRuleCondition",
+                name: "SystemTopupConditionGroup",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Field = table.Column<int>(type: "int", nullable: false),
-                    Operator = table.Column<int>(type: "int", nullable: false),
-                    ValueText = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    ValueNumber = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    ConditionAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    DisplayOrder = table.Column<int>(type: "int", nullable: false),
-                    TopupRuleId = table.Column<int>(type: "int", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<int>(type: "int", nullable: true),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
-                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    SystemTopupId = table.Column<int>(type: "int", nullable: false),
+                    ParentGroupId = table.Column<int>(type: "int", nullable: true),
+                    LogicalOperator = table.Column<int>(type: "int", nullable: false),
+                    DisplayOrder = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TopupRuleCondition", x => x.Id);
-                    table.CheckConstraint("CK_TopupRuleCondition_DisplayOrder_NonNegative", "[DisplayOrder] >= 0");
-                    table.CheckConstraint("CK_TopupRuleCondition_Value_By_Field", "([Field] IN (1, 2) AND [ValueNumber] IS NOT NULL AND [ValueText] IS NULL) OR ([Field] = 3 AND [ValueText] IS NOT NULL AND [ValueNumber] IS NULL)");
+                    table.PrimaryKey("PK_SystemTopupConditionGroup", x => x.Id);
+                    table.CheckConstraint("CK_SystemTopupConditionGroup_DisplayOrder_NonNegative", "[DisplayOrder] >= 0");
                     table.ForeignKey(
-                        name: "FK_TopupRuleCondition_TopupRule_TopupRuleId",
-                        column: x => x.TopupRuleId,
-                        principalTable: "TopupRule",
+                        name: "FK_SystemTopupConditionGroup_SystemTopupConditionGroup_ParentGroupId",
+                        column: x => x.ParentGroupId,
+                        principalTable: "SystemTopupConditionGroup",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_SystemTopupConditionGroup_SystemTopup_SystemTopupId",
+                        column: x => x.SystemTopupId,
+                        principalTable: "SystemTopup",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "TopupSchedule",
+                name: "TopupExecution",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TopupRuleId = table.Column<int>(type: "int", nullable: false),
-                    Frequency = table.Column<int>(type: "int", nullable: false),
-                    OneTimeExecutionAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ExecuteAtDay = table.Column<int>(type: "int", nullable: true),
-                    ExecuteAtMonth = table.Column<int>(type: "int", nullable: true),
-                    ExecutionTime = table.Column<TimeOnly>(type: "time", nullable: false),
-                    NextExecutionAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ExecutionCode = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    SourceType = table.Column<int>(type: "int", nullable: false),
+                    SystemTopupId = table.Column<int>(type: "int", nullable: true),
+                    ScheduleTopUpId = table.Column<int>(type: "int", nullable: true),
+                    IdempotencyKey = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ManualAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    ManualReason = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false),
+                    TotalTargetCount = table.Column<int>(type: "int", nullable: false),
+                    SuccessCount = table.Column<int>(type: "int", nullable: false),
+                    FailedCount = table.Column<int>(type: "int", nullable: false),
+                    TotalExecutedAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TopupNameSnapshot = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
+                    TopupAmountSnapshot = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    ConditionsSnapshot = table.Column<string>(type: "nvarchar(4000)", maxLength: 4000, nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<int>(type: "int", nullable: true),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -351,13 +407,19 @@ namespace educationaccountmanagement.DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TopupSchedule", x => x.Id);
+                    table.PrimaryKey("PK_TopupExecution", x => x.Id);
+                    table.CheckConstraint("CK_TopupExecution_Counts_And_Amount_NonNegative", "[TotalExecutedAmount] >= 0 AND [TotalTargetCount] >= 0 AND [SuccessCount] >= 0 AND [FailedCount] >= 0 AND [SuccessCount] + [FailedCount] <= [TotalTargetCount]");
+                    table.CheckConstraint("CK_TopupExecution_Source_Fields", "([SourceType] = 1 AND [SystemTopupId] IS NOT NULL AND [ScheduleTopUpId] IS NULL AND [ManualAmount] IS NULL AND [ManualReason] IS NULL) OR ([SourceType] = 2 AND [SystemTopupId] IS NULL AND [ScheduleTopUpId] IS NOT NULL AND [ManualAmount] IS NULL AND [ManualReason] IS NULL) OR ([SourceType] = 3 AND [SystemTopupId] IS NULL AND [ScheduleTopUpId] IS NULL AND [ManualAmount] > 0 AND [ManualReason] IS NOT NULL)");
                     table.ForeignKey(
-                        name: "FK_TopupSchedule_TopupRule_TopupRuleId",
-                        column: x => x.TopupRuleId,
-                        principalTable: "TopupRule",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        name: "FK_TopupExecution_ScheduleTopUp_ScheduleTopUpId",
+                        column: x => x.ScheduleTopUpId,
+                        principalTable: "ScheduleTopUp",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_TopupExecution_SystemTopup_SystemTopupId",
+                        column: x => x.SystemTopupId,
+                        principalTable: "SystemTopup",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -602,50 +664,57 @@ namespace educationaccountmanagement.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TopupExecution",
+                name: "ScheduleTopUpCondition",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ExecutionCode = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    SourceType = table.Column<int>(type: "int", nullable: false),
-                    TopupRuleId = table.Column<int>(type: "int", nullable: true),
-                    TopupScheduleId = table.Column<int>(type: "int", nullable: true),
-                    IdempotencyKey = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    ManualAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    ManualReason = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
-                    Status = table.Column<int>(type: "int", nullable: false),
-                    TotalTargetCount = table.Column<int>(type: "int", nullable: false),
-                    SuccessCount = table.Column<int>(type: "int", nullable: false),
-                    FailedCount = table.Column<int>(type: "int", nullable: false),
-                    TotalExecutedAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    RuleNameSnapshot = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
-                    RuleTypeSnapshot = table.Column<int>(type: "int", nullable: true),
-                    MatchModeSnapshot = table.Column<int>(type: "int", nullable: true),
-                    TopupAmountSnapshot = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    RuleConditionsSnapshot = table.Column<string>(type: "nvarchar(4000)", maxLength: 4000, nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<int>(type: "int", nullable: true),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
-                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    GroupId = table.Column<int>(type: "int", nullable: false),
+                    Field = table.Column<int>(type: "int", nullable: false),
+                    Operator = table.Column<int>(type: "int", nullable: false),
+                    ValueText = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    ValueNumber = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    ValueNumberTo = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    DisplayOrder = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TopupExecution", x => x.Id);
-                    table.CheckConstraint("CK_TopupExecution_Counts_And_Amount_NonNegative", "[TotalExecutedAmount] >= 0 AND [TotalTargetCount] >= 0 AND [SuccessCount] >= 0 AND [FailedCount] >= 0 AND [SuccessCount] + [FailedCount] <= [TotalTargetCount]");
-                    table.CheckConstraint("CK_TopupExecution_Source_Fields", "([SourceType] = 1 AND [TopupRuleId] IS NOT NULL AND [TopupScheduleId] IS NULL AND [ManualAmount] IS NULL AND [ManualReason] IS NULL) OR ([SourceType] = 2 AND [TopupRuleId] IS NOT NULL AND [TopupScheduleId] IS NOT NULL AND [ManualAmount] IS NULL AND [ManualReason] IS NULL) OR ([SourceType] = 3 AND [TopupRuleId] IS NULL AND [TopupScheduleId] IS NULL AND [ManualAmount] > 0 AND [ManualReason] IS NOT NULL)");
+                    table.PrimaryKey("PK_ScheduleTopUpCondition", x => x.Id);
+                    table.CheckConstraint("CK_ScheduleTopUpCondition_DisplayOrder_NonNegative", "[DisplayOrder] >= 0");
+                    table.CheckConstraint("CK_ScheduleTopUpCondition_Value_By_Field", "([Field] IN (1, 2) AND [ValueNumber] IS NOT NULL AND [ValueText] IS NULL AND (([Operator] = 7 AND [ValueNumberTo] IS NOT NULL AND [ValueNumberTo] >= [ValueNumber]) OR ([Operator] <> 7 AND [ValueNumberTo] IS NULL))) OR ([Field] = 3 AND [Operator] IN (1, 2) AND [ValueText] IS NOT NULL AND [ValueNumber] IS NULL AND [ValueNumberTo] IS NULL)");
                     table.ForeignKey(
-                        name: "FK_TopupExecution_TopupRule_TopupRuleId",
-                        column: x => x.TopupRuleId,
-                        principalTable: "TopupRule",
-                        principalColumn: "Id");
+                        name: "FK_ScheduleTopUpCondition_ScheduleTopUpConditionGroup_GroupId",
+                        column: x => x.GroupId,
+                        principalTable: "ScheduleTopUpConditionGroup",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SystemTopupCondition",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    GroupId = table.Column<int>(type: "int", nullable: false),
+                    Field = table.Column<int>(type: "int", nullable: false),
+                    Operator = table.Column<int>(type: "int", nullable: false),
+                    ValueText = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    ValueNumber = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    ValueNumberTo = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    DisplayOrder = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SystemTopupCondition", x => x.Id);
+                    table.CheckConstraint("CK_SystemTopupCondition_DisplayOrder_NonNegative", "[DisplayOrder] >= 0");
+                    table.CheckConstraint("CK_SystemTopupCondition_Value_By_Field", "([Field] IN (1, 2) AND [ValueNumber] IS NOT NULL AND [ValueText] IS NULL AND (([Operator] = 7 AND [ValueNumberTo] IS NOT NULL AND [ValueNumberTo] >= [ValueNumber]) OR ([Operator] <> 7 AND [ValueNumberTo] IS NULL))) OR ([Field] = 3 AND [Operator] IN (1, 2) AND [ValueText] IS NOT NULL AND [ValueNumber] IS NULL AND [ValueNumberTo] IS NULL)");
                     table.ForeignKey(
-                        name: "FK_TopupExecution_TopupSchedule_TopupScheduleId",
-                        column: x => x.TopupScheduleId,
-                        principalTable: "TopupSchedule",
-                        principalColumn: "Id");
+                        name: "FK_SystemTopupCondition_SystemTopupConditionGroup_GroupId",
+                        column: x => x.GroupId,
+                        principalTable: "SystemTopupConditionGroup",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -678,46 +747,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         name: "FK_Payment_EducationCreditTransaction_EducationCreditTransactionId",
                         column: x => x.EducationCreditTransactionId,
                         principalTable: "EducationCreditTransaction",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Enrollment",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CourseId = table.Column<int>(type: "int", nullable: false),
-                    SchoolStudentId = table.Column<int>(type: "int", nullable: false),
-                    SchoolNameSnapshot = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    CourseNameSnapshot = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    CourseDescriptionSnapshot = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
-                    CitizenNricSnapshot = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    CitizenFullNameSnapshot = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    CitizenEmailSnapshot = table.Column<string>(type: "nvarchar(320)", maxLength: 320, nullable: true),
-                    CitizenPhoneNumberSnapshot = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
-                    AccountNumberSnapshot = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreatedBy = table.Column<int>(type: "int", nullable: true),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
-                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Enrollment", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Enrollment_Course_CourseId",
-                        column: x => x.CourseId,
-                        principalTable: "Course",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Enrollment_SchoolStudent_SchoolStudentId",
-                        column: x => x.SchoolStudentId,
-                        principalTable: "SchoolStudent",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -767,6 +796,76 @@ namespace educationaccountmanagement.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Enrollment",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CourseId = table.Column<int>(type: "int", nullable: false),
+                    SchoolStudentId = table.Column<int>(type: "int", nullable: false),
+                    SchoolNameSnapshot = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    CourseNameSnapshot = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    CourseDescriptionSnapshot = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
+                    CitizenNricSnapshot = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    CitizenFullNameSnapshot = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    CitizenEmailSnapshot = table.Column<string>(type: "nvarchar(320)", maxLength: 320, nullable: true),
+                    CitizenPhoneNumberSnapshot = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    AccountNumberSnapshot = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Enrollment", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Enrollment_Course_CourseId",
+                        column: x => x.CourseId,
+                        principalTable: "Course",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Enrollment_SchoolStudent_SchoolStudentId",
+                        column: x => x.SchoolStudentId,
+                        principalTable: "SchoolStudent",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TopupSystemApplication",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SystemTopupId = table.Column<int>(type: "int", nullable: false),
+                    EducationAccountId = table.Column<int>(type: "int", nullable: false),
+                    TopupExecutionTargetId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TopupSystemApplication", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TopupSystemApplication_EducationAccount_EducationAccountId",
+                        column: x => x.EducationAccountId,
+                        principalTable: "EducationAccount",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_TopupSystemApplication_SystemTopup_SystemTopupId",
+                        column: x => x.SystemTopupId,
+                        principalTable: "SystemTopup",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_TopupSystemApplication_TopupExecutionTarget_TopupExecutionTargetId",
+                        column: x => x.TopupExecutionTargetId,
+                        principalTable: "TopupExecutionTarget",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Charge",
                 columns: table => new
                 {
@@ -809,36 +908,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         principalTable: "Enrollment",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TopupSystemApplication",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TopupRuleId = table.Column<int>(type: "int", nullable: false),
-                    EducationAccountId = table.Column<int>(type: "int", nullable: false),
-                    TopupExecutionTargetId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TopupSystemApplication", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_TopupSystemApplication_EducationAccount_EducationAccountId",
-                        column: x => x.EducationAccountId,
-                        principalTable: "EducationAccount",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_TopupSystemApplication_TopupExecutionTarget_TopupExecutionTargetId",
-                        column: x => x.TopupExecutionTargetId,
-                        principalTable: "TopupExecutionTarget",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_TopupSystemApplication_TopupRule_TopupRuleId",
-                        column: x => x.TopupRuleId,
-                        principalTable: "TopupRule",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -1138,6 +1207,33 @@ namespace educationaccountmanagement.DAL.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "ScheduleTopUp",
+                columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "ExecuteAtDay", "ExecuteAtMonth", "ExecutionTime", "Frequency", "IsDeleted", "Name", "NextExecutionAt", "OneTimeExecutionAt", "Status", "TopupAmount", "UpdatedAt", "UpdatedBy" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, null, new TimeOnly(14, 29, 0), 2, false, "Scheduled Top-up 001", new DateTime(2027, 1, 1, 14, 29, 0, 0, DateTimeKind.Unspecified), null, 1, 490m, null, null },
+                    { 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, null, new TimeOnly(19, 26, 0), 2, false, "Scheduled Top-up 002", new DateTime(2027, 1, 2, 19, 26, 0, 0, DateTimeKind.Unspecified), null, 1, 200m, null, null },
+                    { 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, null, new TimeOnly(15, 39, 0), 1, false, "Scheduled Top-up 003", null, new DateTime(2027, 1, 3, 15, 39, 0, 0, DateTimeKind.Unspecified), 2, 130m, null, null },
+                    { 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 4, null, new TimeOnly(4, 58, 0), 2, false, "Scheduled Top-up 004", new DateTime(2027, 1, 4, 4, 58, 0, 0, DateTimeKind.Unspecified), null, 1, 90m, null, null },
+                    { 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 5, null, new TimeOnly(18, 30, 0), 2, false, "Scheduled Top-up 005", new DateTime(2027, 1, 5, 18, 30, 0, 0, DateTimeKind.Unspecified), null, 1, 420m, null, null },
+                    { 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 6, 7, new TimeOnly(5, 24, 0), 3, false, "Scheduled Top-up 006", null, null, 2, 350m, null, null },
+                    { 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, null, new TimeOnly(23, 4, 0), 1, false, "Scheduled Top-up 007", new DateTime(2027, 1, 7, 23, 4, 0, 0, DateTimeKind.Unspecified), new DateTime(2027, 1, 7, 23, 4, 0, 0, DateTimeKind.Unspecified), 1, 420m, null, null },
+                    { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 8, 9, new TimeOnly(19, 4, 0), 3, false, "Scheduled Top-up 008", new DateTime(2027, 9, 8, 19, 4, 0, 0, DateTimeKind.Unspecified), null, 1, 450m, null, null },
+                    { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 9, null, new TimeOnly(9, 41, 0), 2, false, "Scheduled Top-up 009", new DateTime(2027, 1, 9, 9, 41, 0, 0, DateTimeKind.Unspecified), null, 1, 230m, null, null },
+                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, null, new TimeOnly(12, 26, 0), 1, false, "Scheduled Top-up 010", new DateTime(2027, 1, 10, 12, 26, 0, 0, DateTimeKind.Unspecified), new DateTime(2027, 1, 10, 12, 26, 0, 0, DateTimeKind.Unspecified), 1, 480m, null, null },
+                    { 11, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 11, null, new TimeOnly(5, 48, 0), 2, false, "Scheduled Top-up 011", new DateTime(2027, 1, 11, 5, 48, 0, 0, DateTimeKind.Unspecified), null, 1, 70m, null, null },
+                    { 12, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 12, null, new TimeOnly(2, 38, 0), 2, false, "Scheduled Top-up 012", new DateTime(2027, 1, 12, 2, 38, 0, 0, DateTimeKind.Unspecified), null, 1, 260m, null, null },
+                    { 13, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 13, null, new TimeOnly(9, 43, 0), 2, false, "Scheduled Top-up 013", new DateTime(2027, 1, 13, 9, 43, 0, 0, DateTimeKind.Unspecified), null, 1, 190m, null, null },
+                    { 14, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, null, new TimeOnly(14, 48, 0), 1, false, "Scheduled Top-up 014", new DateTime(2027, 1, 14, 14, 48, 0, 0, DateTimeKind.Unspecified), new DateTime(2027, 1, 14, 14, 48, 0, 0, DateTimeKind.Unspecified), 1, 440m, null, null },
+                    { 15, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 15, 4, new TimeOnly(2, 3, 0), 3, false, "Scheduled Top-up 015", null, null, 2, 290m, null, null },
+                    { 16, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, null, new TimeOnly(1, 3, 0), 1, false, "Scheduled Top-up 016", new DateTime(2027, 1, 16, 1, 3, 0, 0, DateTimeKind.Unspecified), new DateTime(2027, 1, 16, 1, 3, 0, 0, DateTimeKind.Unspecified), 1, 470m, null, null },
+                    { 17, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 17, null, new TimeOnly(18, 26, 0), 2, false, "Scheduled Top-up 017", new DateTime(2027, 1, 17, 18, 26, 0, 0, DateTimeKind.Unspecified), null, 1, 460m, null, null },
+                    { 18, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, null, new TimeOnly(3, 56, 0), 1, false, "Scheduled Top-up 018", new DateTime(2027, 1, 18, 3, 56, 0, 0, DateTimeKind.Unspecified), new DateTime(2027, 1, 18, 3, 56, 0, 0, DateTimeKind.Unspecified), 1, 480m, null, null },
+                    { 19, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 19, 8, new TimeOnly(3, 33, 0), 3, false, "Scheduled Top-up 019", new DateTime(2027, 8, 19, 3, 33, 0, 0, DateTimeKind.Unspecified), null, 1, 210m, null, null },
+                    { 20, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, null, new TimeOnly(15, 19, 0), 1, false, "Scheduled Top-up 020", new DateTime(2027, 1, 20, 15, 19, 0, 0, DateTimeKind.Unspecified), new DateTime(2027, 1, 20, 15, 19, 0, 0, DateTimeKind.Unspecified), 1, 270m, null, null }
+                });
+
+            migrationBuilder.InsertData(
                 table: "School",
                 columns: new[] { "Id", "Address", "CreatedAt", "CreatedBy", "DeletedAt", "Email", "IsDeleted", "PhoneNumber", "SchoolName", "Status", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
@@ -1155,66 +1251,46 @@ namespace educationaccountmanagement.DAL.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "TopupExecution",
-                columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "ExecutionCode", "FailedCount", "IdempotencyKey", "IsDeleted", "ManualAmount", "ManualReason", "MatchModeSnapshot", "RuleConditionsSnapshot", "RuleNameSnapshot", "RuleTypeSnapshot", "SourceType", "Status", "SuccessCount", "TopupAmountSnapshot", "TopupRuleId", "TopupScheduleId", "TotalExecutedAmount", "TotalTargetCount", "UpdatedAt", "UpdatedBy" },
-                values: new object[] { 1, new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc), 7, null, "TOPUP-SEED-MANUAL-001", 1, "seed-manual-topup-001", false, 100m, "Seeded manual top-up execution.", null, null, null, null, 3, 3, 1, null, null, null, 100m, 2, null, null });
-
-            migrationBuilder.InsertData(
-                table: "TopupRule",
-                columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "IsDeleted", "MatchMode", "RuleName", "Status", "TopupAmount", "Type", "UpdatedAt", "UpdatedBy" },
+                table: "SystemTopup",
+                columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "IsDeleted", "Name", "Status", "TopupAmount", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 001", 2, 70m, 2, null, null },
-                    { 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 002", 1, 770m, 2, null, null },
-                    { 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 003", 1, 790m, 2, null, null },
-                    { 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 2, "Random Top-up Rule 004", 1, null, 2, null, null },
-                    { 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 005", 1, 730m, 2, null, null },
-                    { 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 006", 1, 510m, 2, null, null },
-                    { 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 007", 1, 390m, 2, null, null },
-                    { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 2, "Random Top-up Rule 008", 2, null, 2, null, null },
-                    { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 009", 1, 140m, 2, null, null },
-                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 010", 1, 200m, 2, null, null },
-                    { 11, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 011", 1, 860m, 2, null, null },
-                    { 12, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 2, "Random Top-up Rule 012", 1, null, 2, null, null },
-                    { 13, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 013", 1, 530m, 2, null, null },
-                    { 14, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 014", 1, 710m, 2, null, null },
-                    { 15, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 015", 1, 620m, 2, null, null },
-                    { 16, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 2, "Random Top-up Rule 016", 1, null, 2, null, null },
-                    { 17, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 017", 1, 400m, 2, null, null },
-                    { 18, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 018", 1, 680m, 2, null, null },
-                    { 19, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 019", 1, 520m, 2, null, null },
-                    { 20, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 2, "Random Top-up Rule 020", 1, null, 2, null, null },
-                    { 21, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 021", 2, 770m, 1, null, null },
-                    { 22, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 022", 1, 480m, 1, null, null },
-                    { 23, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 023", 1, 490m, 1, null, null },
-                    { 24, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 2, "Random Top-up Rule 024", 1, null, 1, null, null },
-                    { 25, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 025", 1, 270m, 1, null, null },
-                    { 26, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 026", 1, 630m, 1, null, null },
-                    { 27, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 027", 1, 370m, 1, null, null },
-                    { 28, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 2, "Random Top-up Rule 028", 1, null, 1, null, null },
-                    { 29, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 029", 1, 850m, 1, null, null },
-                    { 30, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 030", 1, 610m, 1, null, null },
-                    { 31, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 031", 2, 500m, 1, null, null },
-                    { 32, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 2, "Random Top-up Rule 032", 1, null, 1, null, null },
-                    { 33, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 033", 2, 710m, 1, null, null },
-                    { 34, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 034", 1, 930m, 1, null, null },
-                    { 35, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 035", 1, 100m, 1, null, null },
-                    { 36, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 2, "Random Top-up Rule 036", 1, null, 1, null, null },
-                    { 37, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 037", 1, 20m, 1, null, null },
-                    { 38, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 038", 1, 20m, 1, null, null },
-                    { 39, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 039", 1, 730m, 1, null, null },
-                    { 40, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 2, "Random Top-up Rule 040", 1, null, 1, null, null },
-                    { 41, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 041", 1, 740m, 1, null, null },
-                    { 42, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 042", 1, 440m, 1, null, null },
-                    { 43, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 043", 1, 650m, 1, null, null },
-                    { 44, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 2, "Random Top-up Rule 044", 1, null, 1, null, null },
-                    { 45, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 045", 2, 80m, 1, null, null },
-                    { 46, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 046", 1, 290m, 1, null, null },
-                    { 47, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 047", 1, 880m, 1, null, null },
-                    { 48, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 2, "Random Top-up Rule 048", 1, null, 1, null, null },
-                    { 49, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 049", 2, 600m, 1, null, null },
-                    { 50, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Random Top-up Rule 050", 2, 770m, 1, null, null }
+                    { 21, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "System Top-up 021", 2, 70m, null, null },
+                    { 22, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "System Top-up 022", 1, 770m, null, null },
+                    { 23, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "System Top-up 023", 1, 790m, null, null },
+                    { 24, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "System Top-up 024", 1, 170m, null, null },
+                    { 25, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "System Top-up 025", 1, 260m, null, null },
+                    { 26, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "System Top-up 026", 1, 230m, null, null },
+                    { 27, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "System Top-up 027", 2, 220m, null, null },
+                    { 28, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "System Top-up 028", 1, 140m, null, null },
+                    { 29, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "System Top-up 029", 1, 200m, null, null },
+                    { 30, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "System Top-up 030", 1, 860m, null, null },
+                    { 31, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "System Top-up 031", 1, 110m, null, null },
+                    { 32, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "System Top-up 032", 1, 360m, null, null },
+                    { 33, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "System Top-up 033", 1, 580m, null, null },
+                    { 34, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "System Top-up 034", 1, 730m, null, null },
+                    { 35, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "System Top-up 035", 1, 400m, null, null },
+                    { 36, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "System Top-up 036", 1, 680m, null, null },
+                    { 37, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "System Top-up 037", 1, 520m, null, null },
+                    { 38, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "System Top-up 038", 1, 260m, null, null },
+                    { 39, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "System Top-up 039", 1, 10m, null, null },
+                    { 40, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "System Top-up 040", 1, 450m, null, null },
+                    { 41, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "System Top-up 041", 1, 710m, null, null },
+                    { 42, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "System Top-up 042", 1, 270m, null, null },
+                    { 43, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "System Top-up 043", 1, 630m, null, null },
+                    { 44, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "System Top-up 044", 1, 370m, null, null },
+                    { 45, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "System Top-up 045", 1, 180m, null, null },
+                    { 46, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "System Top-up 046", 1, 640m, null, null },
+                    { 47, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "System Top-up 047", 1, 440m, null, null },
+                    { 48, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "System Top-up 048", 1, 30m, null, null },
+                    { 49, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "System Top-up 049", 2, 710m, null, null },
+                    { 50, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "System Top-up 050", 1, 930m, null, null }
                 });
+
+            migrationBuilder.InsertData(
+                table: "TopupExecution",
+                columns: new[] { "Id", "ConditionsSnapshot", "CreatedAt", "CreatedBy", "DeletedAt", "ExecutionCode", "FailedCount", "IdempotencyKey", "IsDeleted", "ManualAmount", "ManualReason", "ScheduleTopUpId", "SourceType", "Status", "SuccessCount", "SystemTopupId", "TopupAmountSnapshot", "TopupNameSnapshot", "TotalExecutedAmount", "TotalTargetCount", "UpdatedAt", "UpdatedBy" },
+                values: new object[] { 1, null, new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc), 7, null, "TOPUP-SEED-MANUAL-001", 1, "seed-manual-topup-001", false, 100m, "Seeded manual top-up execution.", null, 3, 3, 1, null, null, null, 100m, 2, null, null });
 
             migrationBuilder.InsertData(
                 table: "User",
@@ -1436,6 +1512,33 @@ namespace educationaccountmanagement.DAL.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "ScheduleTopUpConditionGroup",
+                columns: new[] { "Id", "DisplayOrder", "LogicalOperator", "ParentGroupId", "ScheduleTopUpId" },
+                values: new object[,]
+                {
+                    { 1, 0, 1, null, 1 },
+                    { 2, 0, 1, null, 2 },
+                    { 3, 0, 1, null, 3 },
+                    { 4, 0, 1, null, 4 },
+                    { 5, 0, 1, null, 5 },
+                    { 6, 0, 1, null, 6 },
+                    { 7, 0, 1, null, 7 },
+                    { 8, 0, 1, null, 8 },
+                    { 9, 0, 1, null, 9 },
+                    { 10, 0, 1, null, 10 },
+                    { 11, 0, 1, null, 11 },
+                    { 12, 0, 1, null, 12 },
+                    { 13, 0, 1, null, 13 },
+                    { 14, 0, 1, null, 14 },
+                    { 15, 0, 1, null, 15 },
+                    { 16, 0, 1, null, 16 },
+                    { 17, 0, 1, null, 17 },
+                    { 18, 0, 1, null, 18 },
+                    { 19, 0, 1, null, 19 },
+                    { 20, 0, 1, null, 20 }
+                });
+
+            migrationBuilder.InsertData(
                 table: "SsoIdentity",
                 columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "IsDeleted", "Provider", "ProviderUserId", "UpdatedAt", "UpdatedBy", "UserId" },
                 values: new object[,]
@@ -1451,143 +1554,46 @@ namespace educationaccountmanagement.DAL.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "SystemTopupConditionGroup",
+                columns: new[] { "Id", "DisplayOrder", "LogicalOperator", "ParentGroupId", "SystemTopupId" },
+                values: new object[,]
+                {
+                    { 1, 0, 1, null, 21 },
+                    { 2, 0, 1, null, 22 },
+                    { 3, 0, 1, null, 23 },
+                    { 4, 0, 1, null, 24 },
+                    { 5, 0, 1, null, 25 },
+                    { 6, 0, 1, null, 26 },
+                    { 7, 0, 1, null, 27 },
+                    { 8, 0, 1, null, 28 },
+                    { 9, 0, 1, null, 29 },
+                    { 10, 0, 1, null, 30 },
+                    { 11, 0, 1, null, 31 },
+                    { 12, 0, 1, null, 32 },
+                    { 13, 0, 1, null, 33 },
+                    { 14, 0, 1, null, 34 },
+                    { 15, 0, 1, null, 35 },
+                    { 16, 0, 1, null, 36 },
+                    { 17, 0, 1, null, 37 },
+                    { 18, 0, 1, null, 38 },
+                    { 19, 0, 1, null, 39 },
+                    { 20, 0, 1, null, 40 },
+                    { 21, 0, 1, null, 41 },
+                    { 22, 0, 1, null, 42 },
+                    { 23, 0, 1, null, 43 },
+                    { 24, 0, 1, null, 44 },
+                    { 25, 0, 1, null, 45 },
+                    { 26, 0, 1, null, 46 },
+                    { 27, 0, 1, null, 47 },
+                    { 28, 0, 1, null, 48 },
+                    { 29, 0, 1, null, 49 },
+                    { 30, 0, 1, null, 50 }
+                });
+
+            migrationBuilder.InsertData(
                 table: "TopupExecution",
-                columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "ExecutionCode", "FailedCount", "IdempotencyKey", "IsDeleted", "ManualAmount", "ManualReason", "MatchModeSnapshot", "RuleConditionsSnapshot", "RuleNameSnapshot", "RuleTypeSnapshot", "SourceType", "Status", "SuccessCount", "TopupAmountSnapshot", "TopupRuleId", "TopupScheduleId", "TotalExecutedAmount", "TotalTargetCount", "UpdatedAt", "UpdatedBy" },
-                values: new object[] { 2, new DateTime(2026, 1, 12, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "TOPUP-SEED-SYSTEM-001", 0, "seed-system-topup-001", false, null, null, 1, null, "Random Top-up Rule 021", 1, 1, 3, 1, 200m, 21, null, 200m, 1, null, null });
-
-            migrationBuilder.InsertData(
-                table: "TopupRuleCondition",
-                columns: new[] { "Id", "ConditionAmount", "CreatedAt", "CreatedBy", "DeletedAt", "DisplayOrder", "Field", "IsDeleted", "Operator", "TopupRuleId", "UpdatedAt", "UpdatedBy", "ValueNumber", "ValueText" },
-                values: new object[,]
-                {
-                    { 1, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, false, 4, 1, null, null, 12m, null },
-                    { 2, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 1, false, 6, 1, null, null, 22m, null },
-                    { 3, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 2, false, 4, 2, null, null, 700m, null },
-                    { 4, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 2, false, 6, 2, null, null, 1500m, null },
-                    { 5, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, false, 4, 3, null, null, 16m, null },
-                    { 6, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 1, false, 6, 3, null, null, 19m, null },
-                    { 7, 100m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 2, false, 4, 4, null, null, 200m, null },
-                    { 8, 150m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 2, false, 6, 4, null, null, 600m, null },
-                    { 9, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, false, 4, 5, null, null, 12m, null },
-                    { 10, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 1, false, 6, 5, null, null, 14m, null },
-                    { 11, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 2, false, 4, 6, null, null, 100m, null },
-                    { 12, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 2, false, 6, 6, null, null, 900m, null },
-                    { 13, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 2, false, 4, 7, null, null, 300m, null },
-                    { 14, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 2, false, 6, 7, null, null, 400m, null },
-                    { 15, 100m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 2, false, 4, 8, null, null, 300m, null },
-                    { 16, 150m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 2, false, 6, 8, null, null, 1000m, null },
-                    { 17, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 2, false, 4, 9, null, null, 600m, null },
-                    { 18, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 2, false, 6, 9, null, null, 1300m, null },
-                    { 19, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 2, false, 4, 10, null, null, 300m, null },
-                    { 20, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 2, false, 6, 10, null, null, 600m, null },
-                    { 21, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 2, false, 4, 11, null, null, 200m, null },
-                    { 22, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 2, false, 6, 11, null, null, 700m, null },
-                    { 23, 100m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, false, 4, 12, null, null, 13m, null },
-                    { 24, 150m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 1, false, 6, 12, null, null, 22m, null },
-                    { 25, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, false, 4, 13, null, null, 14m, null },
-                    { 26, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 1, false, 6, 13, null, null, 19m, null },
-                    { 27, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, false, 4, 14, null, null, 16m, null },
-                    { 28, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 1, false, 6, 14, null, null, 20m, null },
-                    { 29, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, false, 4, 15, null, null, 13m, null },
-                    { 30, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 1, false, 6, 15, null, null, 20m, null },
-                    { 31, 100m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, false, 4, 16, null, null, 14m, null },
-                    { 32, 150m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 1, false, 6, 16, null, null, 23m, null },
-                    { 33, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, false, 4, 17, null, null, 17m, null },
-                    { 34, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 1, false, 6, 17, null, null, 22m, null },
-                    { 35, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 2, false, 4, 18, null, null, 400m, null },
-                    { 36, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 2, false, 6, 18, null, null, 900m, null },
-                    { 37, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, false, 4, 19, null, null, 15m, null },
-                    { 38, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 1, false, 6, 19, null, null, 22m, null },
-                    { 39, 100m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, false, 4, 20, null, null, 17m, null },
-                    { 40, 150m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 1, false, 6, 20, null, null, 19m, null },
-                    { 41, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, false, 4, 21, null, null, 14m, null },
-                    { 42, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 1, false, 6, 21, null, null, 18m, null },
-                    { 43, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, false, 4, 22, null, null, 16m, null },
-                    { 44, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 1, false, 6, 22, null, null, 17m, null },
-                    { 45, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 2, false, 4, 23, null, null, 700m, null },
-                    { 46, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 2, false, 6, 23, null, null, 1400m, null },
-                    { 47, 100m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, false, 4, 24, null, null, 16m, null },
-                    { 48, 150m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 1, false, 6, 24, null, null, 22m, null },
-                    { 49, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, false, 4, 25, null, null, 14m, null },
-                    { 50, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 1, false, 6, 25, null, null, 21m, null },
-                    { 51, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 2, false, 4, 26, null, null, 200m, null },
-                    { 52, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 2, false, 6, 26, null, null, 300m, null },
-                    { 53, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, false, 4, 27, null, null, 13m, null },
-                    { 54, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 1, false, 6, 27, null, null, 16m, null },
-                    { 55, 100m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 2, false, 4, 28, null, null, 500m, null },
-                    { 56, 150m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 2, false, 6, 28, null, null, 1000m, null },
-                    { 57, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 2, false, 4, 29, null, null, 0m, null },
-                    { 58, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 2, false, 6, 29, null, null, 700m, null },
-                    { 59, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, false, 4, 30, null, null, 14m, null },
-                    { 60, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 1, false, 6, 30, null, null, 22m, null },
-                    { 61, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, false, 4, 31, null, null, 17m, null },
-                    { 62, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 1, false, 6, 31, null, null, 21m, null },
-                    { 63, 100m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, false, 4, 32, null, null, 14m, null },
-                    { 64, 150m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 1, false, 6, 32, null, null, 17m, null },
-                    { 65, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, false, 4, 33, null, null, 13m, null },
-                    { 66, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 1, false, 6, 33, null, null, 19m, null },
-                    { 67, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 2, false, 4, 34, null, null, 400m, null },
-                    { 68, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 2, false, 6, 34, null, null, 1000m, null },
-                    { 69, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, false, 4, 35, null, null, 16m, null },
-                    { 70, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 1, false, 6, 35, null, null, 17m, null },
-                    { 71, 100m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 2, false, 4, 36, null, null, 100m, null },
-                    { 72, 150m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 2, false, 6, 36, null, null, 200m, null },
-                    { 73, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 2, false, 4, 37, null, null, 300m, null },
-                    { 74, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 2, false, 6, 37, null, null, 600m, null },
-                    { 75, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 2, false, 4, 38, null, null, 900m, null },
-                    { 76, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 2, false, 6, 38, null, null, 1500m, null },
-                    { 77, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 2, false, 4, 39, null, null, 200m, null },
-                    { 78, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 2, false, 6, 39, null, null, 1000m, null },
-                    { 79, 100m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 2, false, 4, 40, null, null, 400m, null },
-                    { 80, 150m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 2, false, 6, 40, null, null, 1100m, null },
-                    { 81, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, false, 4, 41, null, null, 17m, null },
-                    { 82, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 1, false, 6, 41, null, null, 19m, null },
-                    { 83, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, false, 4, 42, null, null, 13m, null },
-                    { 84, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 1, false, 6, 42, null, null, 22m, null },
-                    { 85, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, false, 4, 43, null, null, 13m, null },
-                    { 86, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 1, false, 6, 43, null, null, 24m, null },
-                    { 87, 100m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, false, 4, 44, null, null, 15m, null },
-                    { 88, 150m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 1, false, 6, 44, null, null, 16m, null },
-                    { 89, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 2, false, 4, 45, null, null, 400m, null },
-                    { 90, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 2, false, 6, 45, null, null, 1200m, null },
-                    { 91, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 2, false, 4, 46, null, null, 700m, null },
-                    { 92, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 2, false, 6, 46, null, null, 1400m, null },
-                    { 93, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, false, 4, 47, null, null, 16m, null },
-                    { 94, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 1, false, 6, 47, null, null, 24m, null },
-                    { 95, 100m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 2, false, 4, 48, null, null, 100m, null },
-                    { 96, 150m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 2, false, 6, 48, null, null, 200m, null },
-                    { 97, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, false, 4, 49, null, null, 14m, null },
-                    { 98, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 1, false, 6, 49, null, null, 24m, null },
-                    { 99, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 2, false, 4, 50, null, null, 300m, null },
-                    { 100, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 2, false, 6, 50, null, null, 500m, null }
-                });
-
-            migrationBuilder.InsertData(
-                table: "TopupSchedule",
-                columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "ExecuteAtDay", "ExecuteAtMonth", "ExecutionTime", "Frequency", "IsDeleted", "NextExecutionAt", "OneTimeExecutionAt", "Status", "TopupRuleId", "UpdatedAt", "UpdatedBy" },
-                values: new object[,]
-                {
-                    { 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, null, new TimeOnly(1, 46, 0), 1, false, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1, null, null },
-                    { 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 8, 7, new TimeOnly(19, 9, 0), 3, false, new DateTime(2027, 7, 8, 19, 9, 0, 0, DateTimeKind.Unspecified), null, 1, 2, null, null },
-                    { 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, null, new TimeOnly(9, 12, 0), 1, false, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 3, null, null },
-                    { 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, null, new TimeOnly(17, 11, 0), 1, false, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 4, null, null },
-                    { 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 11, 9, new TimeOnly(8, 6, 0), 3, false, new DateTime(2027, 9, 11, 8, 6, 0, 0, DateTimeKind.Unspecified), null, 1, 5, null, null },
-                    { 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 12, null, new TimeOnly(14, 43, 0), 2, false, new DateTime(2027, 3, 12, 14, 43, 0, 0, DateTimeKind.Unspecified), null, 1, 6, null, null },
-                    { 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 8, 10, new TimeOnly(5, 31, 0), 3, false, new DateTime(2027, 10, 8, 5, 31, 0, 0, DateTimeKind.Unspecified), null, 1, 7, null, null },
-                    { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, null, new TimeOnly(11, 26, 0), 1, false, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 8, null, null },
-                    { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 18, 4, new TimeOnly(10, 16, 0), 3, false, new DateTime(2027, 4, 18, 10, 16, 0, 0, DateTimeKind.Unspecified), null, 1, 9, null, null },
-                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 19, null, new TimeOnly(20, 10, 0), 2, false, new DateTime(2027, 8, 19, 20, 10, 0, 0, DateTimeKind.Unspecified), null, 1, 10, null, null },
-                    { 11, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 20, null, new TimeOnly(11, 1, 0), 2, false, new DateTime(2027, 1, 20, 11, 1, 0, 0, DateTimeKind.Unspecified), null, 1, 11, null, null },
-                    { 12, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 10, 1, new TimeOnly(4, 5, 0), 3, false, new DateTime(2027, 1, 10, 4, 5, 0, 0, DateTimeKind.Unspecified), null, 1, 12, null, null },
-                    { 13, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 22, 5, new TimeOnly(0, 52, 0), 3, false, new DateTime(2027, 5, 22, 0, 52, 0, 0, DateTimeKind.Unspecified), null, 1, 13, null, null },
-                    { 14, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 19, 8, new TimeOnly(17, 26, 0), 3, false, new DateTime(2027, 8, 19, 17, 26, 0, 0, DateTimeKind.Unspecified), null, 1, 14, null, null },
-                    { 15, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, null, new TimeOnly(1, 4, 0), 1, false, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 15, null, null },
-                    { 16, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, null, new TimeOnly(21, 34, 0), 1, false, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 16, null, null },
-                    { 17, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 13, null, new TimeOnly(1, 46, 0), 2, false, null, null, 2, 17, null, null },
-                    { 18, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, null, new TimeOnly(22, 33, 0), 1, false, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 18, null, null },
-                    { 19, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 13, null, new TimeOnly(7, 6, 0), 2, false, new DateTime(2027, 8, 13, 7, 6, 0, 0, DateTimeKind.Unspecified), null, 1, 19, null, null },
-                    { 20, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 4, null, new TimeOnly(15, 5, 0), 2, false, new DateTime(2027, 12, 4, 15, 5, 0, 0, DateTimeKind.Unspecified), null, 1, 20, null, null }
-                });
+                columns: new[] { "Id", "ConditionsSnapshot", "CreatedAt", "CreatedBy", "DeletedAt", "ExecutionCode", "FailedCount", "IdempotencyKey", "IsDeleted", "ManualAmount", "ManualReason", "ScheduleTopUpId", "SourceType", "Status", "SuccessCount", "SystemTopupId", "TopupAmountSnapshot", "TopupNameSnapshot", "TotalExecutedAmount", "TotalTargetCount", "UpdatedAt", "UpdatedBy" },
+                values: new object[] { 2, "{\"logicalOperator\":\"And\",\"conditions\":[]}", new DateTime(2026, 1, 12, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "TOPUP-SEED-SYSTEM-001", 0, "seed-system-topup-001", false, null, null, null, 1, 3, 1, 21, 200m, "System Top-up 021", 200m, 1, null, null });
 
             migrationBuilder.InsertData(
                 table: "User",
@@ -1650,6 +1656,33 @@ namespace educationaccountmanagement.DAL.Migrations
                 {
                     { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc), false, null, "refresh-token-hash-009", null, null, 9 },
                     { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc), false, null, "refresh-token-hash-010", null, null, 10 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ScheduleTopUpCondition",
+                columns: new[] { "Id", "DisplayOrder", "Field", "GroupId", "Operator", "ValueNumber", "ValueNumberTo", "ValueText" },
+                values: new object[,]
+                {
+                    { 1, 0, 2, 1, 6, 1000m, null, null },
+                    { 2, 0, 2, 2, 6, 1000m, null, null },
+                    { 3, 0, 2, 3, 6, 1000m, null, null },
+                    { 4, 0, 2, 4, 6, 1000m, null, null },
+                    { 5, 0, 2, 5, 6, 1000m, null, null },
+                    { 6, 0, 2, 6, 6, 1000m, null, null },
+                    { 7, 0, 2, 7, 6, 1000m, null, null },
+                    { 8, 0, 2, 8, 6, 1000m, null, null },
+                    { 9, 0, 2, 9, 6, 1000m, null, null },
+                    { 10, 0, 2, 10, 6, 1000m, null, null },
+                    { 11, 0, 2, 11, 6, 1000m, null, null },
+                    { 12, 0, 2, 12, 6, 1000m, null, null },
+                    { 13, 0, 2, 13, 6, 1000m, null, null },
+                    { 14, 0, 2, 14, 6, 1000m, null, null },
+                    { 15, 0, 2, 15, 6, 1000m, null, null },
+                    { 16, 0, 2, 16, 6, 1000m, null, null },
+                    { 17, 0, 2, 17, 6, 1000m, null, null },
+                    { 18, 0, 2, 18, 6, 1000m, null, null },
+                    { 19, 0, 2, 19, 6, 1000m, null, null },
+                    { 20, 0, 2, 20, 6, 1000m, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -1774,6 +1807,73 @@ namespace educationaccountmanagement.DAL.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "SystemTopupCondition",
+                columns: new[] { "Id", "DisplayOrder", "Field", "GroupId", "Operator", "ValueNumber", "ValueNumberTo", "ValueText" },
+                values: new object[,]
+                {
+                    { 1, 0, 3, 1, 1, null, null, "Enrolled" },
+                    { 2, 1, 1, 1, 7, 16m, 25m, null },
+                    { 3, 0, 3, 2, 1, null, null, "Enrolled" },
+                    { 4, 1, 1, 2, 7, 16m, 25m, null },
+                    { 5, 0, 3, 3, 1, null, null, "Enrolled" },
+                    { 6, 1, 1, 3, 7, 16m, 25m, null },
+                    { 7, 0, 3, 4, 1, null, null, "Enrolled" },
+                    { 8, 1, 1, 4, 7, 16m, 25m, null },
+                    { 9, 0, 3, 5, 1, null, null, "Enrolled" },
+                    { 10, 1, 1, 5, 7, 16m, 25m, null },
+                    { 11, 0, 3, 6, 1, null, null, "Enrolled" },
+                    { 12, 1, 1, 6, 7, 16m, 25m, null },
+                    { 13, 0, 3, 7, 1, null, null, "Enrolled" },
+                    { 14, 1, 1, 7, 7, 16m, 25m, null },
+                    { 15, 0, 3, 8, 1, null, null, "Enrolled" },
+                    { 16, 1, 1, 8, 7, 16m, 25m, null },
+                    { 17, 0, 3, 9, 1, null, null, "Enrolled" },
+                    { 18, 1, 1, 9, 7, 16m, 25m, null },
+                    { 19, 0, 3, 10, 1, null, null, "Enrolled" },
+                    { 20, 1, 1, 10, 7, 16m, 25m, null },
+                    { 21, 0, 3, 11, 1, null, null, "Enrolled" },
+                    { 22, 1, 1, 11, 7, 16m, 25m, null },
+                    { 23, 0, 3, 12, 1, null, null, "Enrolled" },
+                    { 24, 1, 1, 12, 7, 16m, 25m, null },
+                    { 25, 0, 3, 13, 1, null, null, "Enrolled" },
+                    { 26, 1, 1, 13, 7, 16m, 25m, null },
+                    { 27, 0, 3, 14, 1, null, null, "Enrolled" },
+                    { 28, 1, 1, 14, 7, 16m, 25m, null },
+                    { 29, 0, 3, 15, 1, null, null, "Enrolled" },
+                    { 30, 1, 1, 15, 7, 16m, 25m, null },
+                    { 31, 0, 3, 16, 1, null, null, "Enrolled" },
+                    { 32, 1, 1, 16, 7, 16m, 25m, null },
+                    { 33, 0, 3, 17, 1, null, null, "Enrolled" },
+                    { 34, 1, 1, 17, 7, 16m, 25m, null },
+                    { 35, 0, 3, 18, 1, null, null, "Enrolled" },
+                    { 36, 1, 1, 18, 7, 16m, 25m, null },
+                    { 37, 0, 3, 19, 1, null, null, "Enrolled" },
+                    { 38, 1, 1, 19, 7, 16m, 25m, null },
+                    { 39, 0, 3, 20, 1, null, null, "Enrolled" },
+                    { 40, 1, 1, 20, 7, 16m, 25m, null },
+                    { 41, 0, 3, 21, 1, null, null, "Enrolled" },
+                    { 42, 1, 1, 21, 7, 16m, 25m, null },
+                    { 43, 0, 3, 22, 1, null, null, "Enrolled" },
+                    { 44, 1, 1, 22, 7, 16m, 25m, null },
+                    { 45, 0, 3, 23, 1, null, null, "Enrolled" },
+                    { 46, 1, 1, 23, 7, 16m, 25m, null },
+                    { 47, 0, 3, 24, 1, null, null, "Enrolled" },
+                    { 48, 1, 1, 24, 7, 16m, 25m, null },
+                    { 49, 0, 3, 25, 1, null, null, "Enrolled" },
+                    { 50, 1, 1, 25, 7, 16m, 25m, null },
+                    { 51, 0, 3, 26, 1, null, null, "Enrolled" },
+                    { 52, 1, 1, 26, 7, 16m, 25m, null },
+                    { 53, 0, 3, 27, 1, null, null, "Enrolled" },
+                    { 54, 1, 1, 27, 7, 16m, 25m, null },
+                    { 55, 0, 3, 28, 1, null, null, "Enrolled" },
+                    { 56, 1, 1, 28, 7, 16m, 25m, null },
+                    { 57, 0, 3, 29, 1, null, null, "Enrolled" },
+                    { 58, 1, 1, 29, 7, 16m, 25m, null },
+                    { 59, 0, 3, 30, 1, null, null, "Enrolled" },
+                    { 60, 1, 1, 30, 7, 16m, 25m, null }
+                });
+
+            migrationBuilder.InsertData(
                 table: "TopupExecutionTarget",
                 columns: new[] { "Id", "AccountNumber", "Amount", "CreatedAt", "CreatedBy", "DeletedAt", "EducationAccountId", "EducationCreditTransactionId", "FailureReason", "IsDeleted", "MatchedConditionsSnapshot", "Status", "TopupExecutionId", "UpdatedAt", "UpdatedBy" },
                 values: new object[] { 2, "EDU-2026-00000000002", 100m, new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc), 7, null, 2, null, "Seeded failure for manual review.", false, null, 4, 1, null, null });
@@ -1836,8 +1936,8 @@ namespace educationaccountmanagement.DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "TopupSystemApplication",
-                columns: new[] { "Id", "EducationAccountId", "TopupExecutionTargetId", "TopupRuleId" },
-                values: new object[] { 1, 3, 3, 21 });
+                columns: new[] { "Id", "EducationAccountId", "SystemTopupId", "TopupExecutionTargetId" },
+                values: new object[] { 1, 3, 21, 3 });
 
             migrationBuilder.InsertData(
                 table: "OutstandingDeductionTarget",
@@ -2276,6 +2376,45 @@ namespace educationaccountmanagement.DAL.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ScheduleTopUp_Name",
+                table: "ScheduleTopUp",
+                column: "Name",
+                unique: true,
+                filter: "\"IsDeleted\" = 0 AND \"Name\" IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ScheduleTopUp_NextExecutionAt",
+                table: "ScheduleTopUp",
+                column: "NextExecutionAt");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ScheduleTopUp_Status",
+                table: "ScheduleTopUp",
+                column: "Status");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ScheduleTopUpCondition_Field",
+                table: "ScheduleTopUpCondition",
+                column: "Field");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ScheduleTopUpCondition_GroupId",
+                table: "ScheduleTopUpCondition",
+                column: "GroupId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ScheduleTopUpConditionGroup_ParentGroupId",
+                table: "ScheduleTopUpConditionGroup",
+                column: "ParentGroupId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ScheduleTopUpConditionGroup_ScheduleTopUpId",
+                table: "ScheduleTopUpConditionGroup",
+                column: "ScheduleTopUpId",
+                unique: true,
+                filter: "[ParentGroupId] IS NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_School_Email",
                 table: "School",
                 column: "Email");
@@ -2337,6 +2476,40 @@ namespace educationaccountmanagement.DAL.Migrations
                 filter: "\"UserId\" IS NOT NULL AND \"Provider\" IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_SystemTopup_Name",
+                table: "SystemTopup",
+                column: "Name",
+                unique: true,
+                filter: "\"IsDeleted\" = 0 AND \"Name\" IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SystemTopup_Status",
+                table: "SystemTopup",
+                column: "Status");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SystemTopupCondition_Field",
+                table: "SystemTopupCondition",
+                column: "Field");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SystemTopupCondition_GroupId",
+                table: "SystemTopupCondition",
+                column: "GroupId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SystemTopupConditionGroup_ParentGroupId",
+                table: "SystemTopupConditionGroup",
+                column: "ParentGroupId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SystemTopupConditionGroup_SystemTopupId",
+                table: "SystemTopupConditionGroup",
+                column: "SystemTopupId",
+                unique: true,
+                filter: "[ParentGroupId] IS NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_TopupExecution_ExecutionCode",
                 table: "TopupExecution",
                 column: "ExecutionCode",
@@ -2351,6 +2524,11 @@ namespace educationaccountmanagement.DAL.Migrations
                 filter: "\"IsDeleted\" = 0 AND \"IdempotencyKey\" IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_TopupExecution_ScheduleTopUpId",
+                table: "TopupExecution",
+                column: "ScheduleTopUpId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_TopupExecution_SourceType",
                 table: "TopupExecution",
                 column: "SourceType");
@@ -2361,14 +2539,9 @@ namespace educationaccountmanagement.DAL.Migrations
                 column: "Status");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TopupExecution_TopupRuleId",
+                name: "IX_TopupExecution_SystemTopupId",
                 table: "TopupExecution",
-                column: "TopupRuleId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TopupExecution_TopupScheduleId",
-                table: "TopupExecution",
-                column: "TopupScheduleId");
+                column: "SystemTopupId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TopupExecutionTarget_EducationAccountId",
@@ -2400,69 +2573,25 @@ namespace educationaccountmanagement.DAL.Migrations
                 filter: "\"IsDeleted\" = 0 AND \"TopupExecutionId\" IS NOT NULL AND \"AccountNumber\" IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TopupRule_RuleName",
-                table: "TopupRule",
-                column: "RuleName",
-                unique: true,
-                filter: "\"IsDeleted\" = 0 AND \"RuleName\" IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TopupRule_Status",
-                table: "TopupRule",
-                column: "Status");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TopupRuleCondition_Field",
-                table: "TopupRuleCondition",
-                column: "Field");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TopupRuleCondition_Operator",
-                table: "TopupRuleCondition",
-                column: "Operator");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TopupRuleCondition_TopupRuleId",
-                table: "TopupRuleCondition",
-                column: "TopupRuleId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TopupSchedule_NextExecutionAt",
-                table: "TopupSchedule",
-                column: "NextExecutionAt");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TopupSchedule_Status",
-                table: "TopupSchedule",
-                column: "Status");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TopupSchedule_TopupRuleId",
-                table: "TopupSchedule",
-                column: "TopupRuleId",
-                unique: true,
-                filter: "\"IsDeleted\" = 0 AND \"TopupRuleId\" IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_TopupSystemApplication_EducationAccountId",
                 table: "TopupSystemApplication",
                 column: "EducationAccountId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TopupSystemApplication_TopupExecutionTargetId",
+                name: "IX_TopupSystemApplication_SystemTopupId",
                 table: "TopupSystemApplication",
-                column: "TopupExecutionTargetId",
+                column: "SystemTopupId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TopupSystemApplication_SystemTopupId_EducationAccountId",
+                table: "TopupSystemApplication",
+                columns: new[] { "SystemTopupId", "EducationAccountId" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_TopupSystemApplication_TopupRuleId",
+                name: "IX_TopupSystemApplication_TopupExecutionTargetId",
                 table: "TopupSystemApplication",
-                column: "TopupRuleId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TopupSystemApplication_TopupRuleId_EducationAccountId",
-                table: "TopupSystemApplication",
-                columns: new[] { "TopupRuleId", "EducationAccountId" },
+                column: "TopupExecutionTargetId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -2529,10 +2658,13 @@ namespace educationaccountmanagement.DAL.Migrations
                 name: "RefreshToken");
 
             migrationBuilder.DropTable(
+                name: "ScheduleTopUpCondition");
+
+            migrationBuilder.DropTable(
                 name: "SsoIdentity");
 
             migrationBuilder.DropTable(
-                name: "TopupRuleCondition");
+                name: "SystemTopupCondition");
 
             migrationBuilder.DropTable(
                 name: "TopupSystemApplication");
@@ -2551,6 +2683,12 @@ namespace educationaccountmanagement.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "Payment");
+
+            migrationBuilder.DropTable(
+                name: "ScheduleTopUpConditionGroup");
+
+            migrationBuilder.DropTable(
+                name: "SystemTopupConditionGroup");
 
             migrationBuilder.DropTable(
                 name: "TopupExecutionTarget");
@@ -2574,16 +2712,16 @@ namespace educationaccountmanagement.DAL.Migrations
                 name: "SchoolStudent");
 
             migrationBuilder.DropTable(
-                name: "TopupSchedule");
+                name: "ScheduleTopUp");
+
+            migrationBuilder.DropTable(
+                name: "SystemTopup");
 
             migrationBuilder.DropTable(
                 name: "EducationAccount");
 
             migrationBuilder.DropTable(
                 name: "School");
-
-            migrationBuilder.DropTable(
-                name: "TopupRule");
 
             migrationBuilder.DropTable(
                 name: "Citizen");

@@ -12,7 +12,7 @@ using Persistence.SqlServer;
 namespace educationaccountmanagement.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260623070506_A")]
+    [Migration("20260623101114_A")]
     partial class A
     {
         /// <inheritdoc />
@@ -6464,6 +6464,742 @@ namespace educationaccountmanagement.DAL.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Models.ScheduleTopUp", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ExecuteAtDay")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ExecuteAtMonth")
+                        .HasColumnType("int");
+
+                    b.Property<TimeOnly>("ExecutionTime")
+                        .HasColumnType("time");
+
+                    b.Property<int>("Frequency")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<DateTime?>("NextExecutionAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("OneTimeExecutionAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("TopupAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasFilter("\"IsDeleted\" = 0 AND \"Name\" IS NOT NULL");
+
+                    b.HasIndex("NextExecutionAt");
+
+                    b.HasIndex("Status");
+
+                    b.ToTable("ScheduleTopUp", t =>
+                        {
+                            t.HasCheckConstraint("CK_ScheduleTopUp_Amount_By_Status", "([Status] IN (1, 3) AND [TopupAmount] > 0) OR ([Status] = 2 AND ([TopupAmount] IS NULL OR [TopupAmount] > 0))");
+                        });
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ExecuteAtDay = 1,
+                            ExecutionTime = new TimeOnly(14, 29, 0),
+                            Frequency = 2,
+                            IsDeleted = false,
+                            Name = "Scheduled Top-up 001",
+                            NextExecutionAt = new DateTime(2027, 1, 1, 14, 29, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupAmount = 490m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ExecuteAtDay = 2,
+                            ExecutionTime = new TimeOnly(19, 26, 0),
+                            Frequency = 2,
+                            IsDeleted = false,
+                            Name = "Scheduled Top-up 002",
+                            NextExecutionAt = new DateTime(2027, 1, 2, 19, 26, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupAmount = 200m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ExecutionTime = new TimeOnly(15, 39, 0),
+                            Frequency = 1,
+                            IsDeleted = false,
+                            Name = "Scheduled Top-up 003",
+                            OneTimeExecutionAt = new DateTime(2027, 1, 3, 15, 39, 0, 0, DateTimeKind.Unspecified),
+                            Status = 2,
+                            TopupAmount = 130m
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ExecuteAtDay = 4,
+                            ExecutionTime = new TimeOnly(4, 58, 0),
+                            Frequency = 2,
+                            IsDeleted = false,
+                            Name = "Scheduled Top-up 004",
+                            NextExecutionAt = new DateTime(2027, 1, 4, 4, 58, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupAmount = 90m
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ExecuteAtDay = 5,
+                            ExecutionTime = new TimeOnly(18, 30, 0),
+                            Frequency = 2,
+                            IsDeleted = false,
+                            Name = "Scheduled Top-up 005",
+                            NextExecutionAt = new DateTime(2027, 1, 5, 18, 30, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupAmount = 420m
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ExecuteAtDay = 6,
+                            ExecuteAtMonth = 7,
+                            ExecutionTime = new TimeOnly(5, 24, 0),
+                            Frequency = 3,
+                            IsDeleted = false,
+                            Name = "Scheduled Top-up 006",
+                            Status = 2,
+                            TopupAmount = 350m
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ExecutionTime = new TimeOnly(23, 4, 0),
+                            Frequency = 1,
+                            IsDeleted = false,
+                            Name = "Scheduled Top-up 007",
+                            NextExecutionAt = new DateTime(2027, 1, 7, 23, 4, 0, 0, DateTimeKind.Unspecified),
+                            OneTimeExecutionAt = new DateTime(2027, 1, 7, 23, 4, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupAmount = 420m
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ExecuteAtDay = 8,
+                            ExecuteAtMonth = 9,
+                            ExecutionTime = new TimeOnly(19, 4, 0),
+                            Frequency = 3,
+                            IsDeleted = false,
+                            Name = "Scheduled Top-up 008",
+                            NextExecutionAt = new DateTime(2027, 9, 8, 19, 4, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupAmount = 450m
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ExecuteAtDay = 9,
+                            ExecutionTime = new TimeOnly(9, 41, 0),
+                            Frequency = 2,
+                            IsDeleted = false,
+                            Name = "Scheduled Top-up 009",
+                            NextExecutionAt = new DateTime(2027, 1, 9, 9, 41, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupAmount = 230m
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ExecutionTime = new TimeOnly(12, 26, 0),
+                            Frequency = 1,
+                            IsDeleted = false,
+                            Name = "Scheduled Top-up 010",
+                            NextExecutionAt = new DateTime(2027, 1, 10, 12, 26, 0, 0, DateTimeKind.Unspecified),
+                            OneTimeExecutionAt = new DateTime(2027, 1, 10, 12, 26, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupAmount = 480m
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ExecuteAtDay = 11,
+                            ExecutionTime = new TimeOnly(5, 48, 0),
+                            Frequency = 2,
+                            IsDeleted = false,
+                            Name = "Scheduled Top-up 011",
+                            NextExecutionAt = new DateTime(2027, 1, 11, 5, 48, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupAmount = 70m
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ExecuteAtDay = 12,
+                            ExecutionTime = new TimeOnly(2, 38, 0),
+                            Frequency = 2,
+                            IsDeleted = false,
+                            Name = "Scheduled Top-up 012",
+                            NextExecutionAt = new DateTime(2027, 1, 12, 2, 38, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupAmount = 260m
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ExecuteAtDay = 13,
+                            ExecutionTime = new TimeOnly(9, 43, 0),
+                            Frequency = 2,
+                            IsDeleted = false,
+                            Name = "Scheduled Top-up 013",
+                            NextExecutionAt = new DateTime(2027, 1, 13, 9, 43, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupAmount = 190m
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ExecutionTime = new TimeOnly(14, 48, 0),
+                            Frequency = 1,
+                            IsDeleted = false,
+                            Name = "Scheduled Top-up 014",
+                            NextExecutionAt = new DateTime(2027, 1, 14, 14, 48, 0, 0, DateTimeKind.Unspecified),
+                            OneTimeExecutionAt = new DateTime(2027, 1, 14, 14, 48, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupAmount = 440m
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ExecuteAtDay = 15,
+                            ExecuteAtMonth = 4,
+                            ExecutionTime = new TimeOnly(2, 3, 0),
+                            Frequency = 3,
+                            IsDeleted = false,
+                            Name = "Scheduled Top-up 015",
+                            Status = 2,
+                            TopupAmount = 290m
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ExecutionTime = new TimeOnly(1, 3, 0),
+                            Frequency = 1,
+                            IsDeleted = false,
+                            Name = "Scheduled Top-up 016",
+                            NextExecutionAt = new DateTime(2027, 1, 16, 1, 3, 0, 0, DateTimeKind.Unspecified),
+                            OneTimeExecutionAt = new DateTime(2027, 1, 16, 1, 3, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupAmount = 470m
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ExecuteAtDay = 17,
+                            ExecutionTime = new TimeOnly(18, 26, 0),
+                            Frequency = 2,
+                            IsDeleted = false,
+                            Name = "Scheduled Top-up 017",
+                            NextExecutionAt = new DateTime(2027, 1, 17, 18, 26, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupAmount = 460m
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ExecutionTime = new TimeOnly(3, 56, 0),
+                            Frequency = 1,
+                            IsDeleted = false,
+                            Name = "Scheduled Top-up 018",
+                            NextExecutionAt = new DateTime(2027, 1, 18, 3, 56, 0, 0, DateTimeKind.Unspecified),
+                            OneTimeExecutionAt = new DateTime(2027, 1, 18, 3, 56, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupAmount = 480m
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ExecuteAtDay = 19,
+                            ExecuteAtMonth = 8,
+                            ExecutionTime = new TimeOnly(3, 33, 0),
+                            Frequency = 3,
+                            IsDeleted = false,
+                            Name = "Scheduled Top-up 019",
+                            NextExecutionAt = new DateTime(2027, 8, 19, 3, 33, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupAmount = 210m
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ExecutionTime = new TimeOnly(15, 19, 0),
+                            Frequency = 1,
+                            IsDeleted = false,
+                            Name = "Scheduled Top-up 020",
+                            NextExecutionAt = new DateTime(2027, 1, 20, 15, 19, 0, 0, DateTimeKind.Unspecified),
+                            OneTimeExecutionAt = new DateTime(2027, 1, 20, 15, 19, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1,
+                            TopupAmount = 270m
+                        });
+                });
+
+            modelBuilder.Entity("Models.ScheduleTopUpCondition", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("DisplayOrder")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Field")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GroupId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Operator")
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("ValueNumber")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("ValueNumberTo")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ValueText")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Field");
+
+                    b.HasIndex("GroupId");
+
+                    b.ToTable("ScheduleTopUpCondition", t =>
+                        {
+                            t.HasCheckConstraint("CK_ScheduleTopUpCondition_DisplayOrder_NonNegative", "[DisplayOrder] >= 0");
+
+                            t.HasCheckConstraint("CK_ScheduleTopUpCondition_Value_By_Field", "([Field] IN (1, 2) AND [ValueNumber] IS NOT NULL AND [ValueText] IS NULL AND (([Operator] = 7 AND [ValueNumberTo] IS NOT NULL AND [ValueNumberTo] >= [ValueNumber]) OR ([Operator] <> 7 AND [ValueNumberTo] IS NULL))) OR ([Field] = 3 AND [Operator] IN (1, 2) AND [ValueText] IS NOT NULL AND [ValueNumber] IS NULL AND [ValueNumberTo] IS NULL)");
+                        });
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DisplayOrder = 0,
+                            Field = 2,
+                            GroupId = 1,
+                            Operator = 6,
+                            ValueNumber = 1000m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DisplayOrder = 0,
+                            Field = 2,
+                            GroupId = 2,
+                            Operator = 6,
+                            ValueNumber = 1000m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DisplayOrder = 0,
+                            Field = 2,
+                            GroupId = 3,
+                            Operator = 6,
+                            ValueNumber = 1000m
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DisplayOrder = 0,
+                            Field = 2,
+                            GroupId = 4,
+                            Operator = 6,
+                            ValueNumber = 1000m
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DisplayOrder = 0,
+                            Field = 2,
+                            GroupId = 5,
+                            Operator = 6,
+                            ValueNumber = 1000m
+                        },
+                        new
+                        {
+                            Id = 6,
+                            DisplayOrder = 0,
+                            Field = 2,
+                            GroupId = 6,
+                            Operator = 6,
+                            ValueNumber = 1000m
+                        },
+                        new
+                        {
+                            Id = 7,
+                            DisplayOrder = 0,
+                            Field = 2,
+                            GroupId = 7,
+                            Operator = 6,
+                            ValueNumber = 1000m
+                        },
+                        new
+                        {
+                            Id = 8,
+                            DisplayOrder = 0,
+                            Field = 2,
+                            GroupId = 8,
+                            Operator = 6,
+                            ValueNumber = 1000m
+                        },
+                        new
+                        {
+                            Id = 9,
+                            DisplayOrder = 0,
+                            Field = 2,
+                            GroupId = 9,
+                            Operator = 6,
+                            ValueNumber = 1000m
+                        },
+                        new
+                        {
+                            Id = 10,
+                            DisplayOrder = 0,
+                            Field = 2,
+                            GroupId = 10,
+                            Operator = 6,
+                            ValueNumber = 1000m
+                        },
+                        new
+                        {
+                            Id = 11,
+                            DisplayOrder = 0,
+                            Field = 2,
+                            GroupId = 11,
+                            Operator = 6,
+                            ValueNumber = 1000m
+                        },
+                        new
+                        {
+                            Id = 12,
+                            DisplayOrder = 0,
+                            Field = 2,
+                            GroupId = 12,
+                            Operator = 6,
+                            ValueNumber = 1000m
+                        },
+                        new
+                        {
+                            Id = 13,
+                            DisplayOrder = 0,
+                            Field = 2,
+                            GroupId = 13,
+                            Operator = 6,
+                            ValueNumber = 1000m
+                        },
+                        new
+                        {
+                            Id = 14,
+                            DisplayOrder = 0,
+                            Field = 2,
+                            GroupId = 14,
+                            Operator = 6,
+                            ValueNumber = 1000m
+                        },
+                        new
+                        {
+                            Id = 15,
+                            DisplayOrder = 0,
+                            Field = 2,
+                            GroupId = 15,
+                            Operator = 6,
+                            ValueNumber = 1000m
+                        },
+                        new
+                        {
+                            Id = 16,
+                            DisplayOrder = 0,
+                            Field = 2,
+                            GroupId = 16,
+                            Operator = 6,
+                            ValueNumber = 1000m
+                        },
+                        new
+                        {
+                            Id = 17,
+                            DisplayOrder = 0,
+                            Field = 2,
+                            GroupId = 17,
+                            Operator = 6,
+                            ValueNumber = 1000m
+                        },
+                        new
+                        {
+                            Id = 18,
+                            DisplayOrder = 0,
+                            Field = 2,
+                            GroupId = 18,
+                            Operator = 6,
+                            ValueNumber = 1000m
+                        },
+                        new
+                        {
+                            Id = 19,
+                            DisplayOrder = 0,
+                            Field = 2,
+                            GroupId = 19,
+                            Operator = 6,
+                            ValueNumber = 1000m
+                        },
+                        new
+                        {
+                            Id = 20,
+                            DisplayOrder = 0,
+                            Field = 2,
+                            GroupId = 20,
+                            Operator = 6,
+                            ValueNumber = 1000m
+                        });
+                });
+
+            modelBuilder.Entity("Models.ScheduleTopUpConditionGroup", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("DisplayOrder")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LogicalOperator")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ParentGroupId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ScheduleTopUpId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParentGroupId");
+
+                    b.HasIndex("ScheduleTopUpId")
+                        .IsUnique()
+                        .HasFilter("[ParentGroupId] IS NULL");
+
+                    b.ToTable("ScheduleTopUpConditionGroup", t =>
+                        {
+                            t.HasCheckConstraint("CK_ScheduleTopUpConditionGroup_DisplayOrder_NonNegative", "[DisplayOrder] >= 0");
+                        });
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            ScheduleTopUpId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            ScheduleTopUpId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            ScheduleTopUpId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            ScheduleTopUpId = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            ScheduleTopUpId = 5
+                        },
+                        new
+                        {
+                            Id = 6,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            ScheduleTopUpId = 6
+                        },
+                        new
+                        {
+                            Id = 7,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            ScheduleTopUpId = 7
+                        },
+                        new
+                        {
+                            Id = 8,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            ScheduleTopUpId = 8
+                        },
+                        new
+                        {
+                            Id = 9,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            ScheduleTopUpId = 9
+                        },
+                        new
+                        {
+                            Id = 10,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            ScheduleTopUpId = 10
+                        },
+                        new
+                        {
+                            Id = 11,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            ScheduleTopUpId = 11
+                        },
+                        new
+                        {
+                            Id = 12,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            ScheduleTopUpId = 12
+                        },
+                        new
+                        {
+                            Id = 13,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            ScheduleTopUpId = 13
+                        },
+                        new
+                        {
+                            Id = 14,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            ScheduleTopUpId = 14
+                        },
+                        new
+                        {
+                            Id = 15,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            ScheduleTopUpId = 15
+                        },
+                        new
+                        {
+                            Id = 16,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            ScheduleTopUpId = 16
+                        },
+                        new
+                        {
+                            Id = 17,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            ScheduleTopUpId = 17
+                        },
+                        new
+                        {
+                            Id = 18,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            ScheduleTopUpId = 18
+                        },
+                        new
+                        {
+                            Id = 19,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            ScheduleTopUpId = 19
+                        },
+                        new
+                        {
+                            Id = 20,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            ScheduleTopUpId = 20
+                        });
+                });
+
             modelBuilder.Entity("Models.School", b =>
                 {
                     b.Property<int>("Id")
@@ -7779,6 +8515,1191 @@ namespace educationaccountmanagement.DAL.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Models.SystemTopup", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("TopupAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasFilter("\"IsDeleted\" = 0 AND \"Name\" IS NOT NULL");
+
+                    b.HasIndex("Status");
+
+                    b.ToTable("SystemTopup", t =>
+                        {
+                            t.HasCheckConstraint("CK_SystemTopup_Amount_By_Status", "([Status] = 1 AND [TopupAmount] > 0) OR ([Status] = 2 AND ([TopupAmount] IS NULL OR [TopupAmount] > 0))");
+                        });
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 21,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Name = "System Top-up 021",
+                            Status = 2,
+                            TopupAmount = 70m
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Name = "System Top-up 022",
+                            Status = 1,
+                            TopupAmount = 770m
+                        },
+                        new
+                        {
+                            Id = 23,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Name = "System Top-up 023",
+                            Status = 1,
+                            TopupAmount = 790m
+                        },
+                        new
+                        {
+                            Id = 24,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Name = "System Top-up 024",
+                            Status = 1,
+                            TopupAmount = 170m
+                        },
+                        new
+                        {
+                            Id = 25,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Name = "System Top-up 025",
+                            Status = 1,
+                            TopupAmount = 260m
+                        },
+                        new
+                        {
+                            Id = 26,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Name = "System Top-up 026",
+                            Status = 1,
+                            TopupAmount = 230m
+                        },
+                        new
+                        {
+                            Id = 27,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Name = "System Top-up 027",
+                            Status = 2,
+                            TopupAmount = 220m
+                        },
+                        new
+                        {
+                            Id = 28,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Name = "System Top-up 028",
+                            Status = 1,
+                            TopupAmount = 140m
+                        },
+                        new
+                        {
+                            Id = 29,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Name = "System Top-up 029",
+                            Status = 1,
+                            TopupAmount = 200m
+                        },
+                        new
+                        {
+                            Id = 30,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Name = "System Top-up 030",
+                            Status = 1,
+                            TopupAmount = 860m
+                        },
+                        new
+                        {
+                            Id = 31,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Name = "System Top-up 031",
+                            Status = 1,
+                            TopupAmount = 110m
+                        },
+                        new
+                        {
+                            Id = 32,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Name = "System Top-up 032",
+                            Status = 1,
+                            TopupAmount = 360m
+                        },
+                        new
+                        {
+                            Id = 33,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Name = "System Top-up 033",
+                            Status = 1,
+                            TopupAmount = 580m
+                        },
+                        new
+                        {
+                            Id = 34,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Name = "System Top-up 034",
+                            Status = 1,
+                            TopupAmount = 730m
+                        },
+                        new
+                        {
+                            Id = 35,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Name = "System Top-up 035",
+                            Status = 1,
+                            TopupAmount = 400m
+                        },
+                        new
+                        {
+                            Id = 36,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Name = "System Top-up 036",
+                            Status = 1,
+                            TopupAmount = 680m
+                        },
+                        new
+                        {
+                            Id = 37,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Name = "System Top-up 037",
+                            Status = 1,
+                            TopupAmount = 520m
+                        },
+                        new
+                        {
+                            Id = 38,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Name = "System Top-up 038",
+                            Status = 1,
+                            TopupAmount = 260m
+                        },
+                        new
+                        {
+                            Id = 39,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Name = "System Top-up 039",
+                            Status = 1,
+                            TopupAmount = 10m
+                        },
+                        new
+                        {
+                            Id = 40,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Name = "System Top-up 040",
+                            Status = 1,
+                            TopupAmount = 450m
+                        },
+                        new
+                        {
+                            Id = 41,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Name = "System Top-up 041",
+                            Status = 1,
+                            TopupAmount = 710m
+                        },
+                        new
+                        {
+                            Id = 42,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Name = "System Top-up 042",
+                            Status = 1,
+                            TopupAmount = 270m
+                        },
+                        new
+                        {
+                            Id = 43,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Name = "System Top-up 043",
+                            Status = 1,
+                            TopupAmount = 630m
+                        },
+                        new
+                        {
+                            Id = 44,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Name = "System Top-up 044",
+                            Status = 1,
+                            TopupAmount = 370m
+                        },
+                        new
+                        {
+                            Id = 45,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Name = "System Top-up 045",
+                            Status = 1,
+                            TopupAmount = 180m
+                        },
+                        new
+                        {
+                            Id = 46,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Name = "System Top-up 046",
+                            Status = 1,
+                            TopupAmount = 640m
+                        },
+                        new
+                        {
+                            Id = 47,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Name = "System Top-up 047",
+                            Status = 1,
+                            TopupAmount = 440m
+                        },
+                        new
+                        {
+                            Id = 48,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Name = "System Top-up 048",
+                            Status = 1,
+                            TopupAmount = 30m
+                        },
+                        new
+                        {
+                            Id = 49,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Name = "System Top-up 049",
+                            Status = 2,
+                            TopupAmount = 710m
+                        },
+                        new
+                        {
+                            Id = 50,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Name = "System Top-up 050",
+                            Status = 1,
+                            TopupAmount = 930m
+                        });
+                });
+
+            modelBuilder.Entity("Models.SystemTopupCondition", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("DisplayOrder")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Field")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GroupId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Operator")
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("ValueNumber")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("ValueNumberTo")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ValueText")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Field");
+
+                    b.HasIndex("GroupId");
+
+                    b.ToTable("SystemTopupCondition", t =>
+                        {
+                            t.HasCheckConstraint("CK_SystemTopupCondition_DisplayOrder_NonNegative", "[DisplayOrder] >= 0");
+
+                            t.HasCheckConstraint("CK_SystemTopupCondition_Value_By_Field", "([Field] IN (1, 2) AND [ValueNumber] IS NOT NULL AND [ValueText] IS NULL AND (([Operator] = 7 AND [ValueNumberTo] IS NOT NULL AND [ValueNumberTo] >= [ValueNumber]) OR ([Operator] <> 7 AND [ValueNumberTo] IS NULL))) OR ([Field] = 3 AND [Operator] IN (1, 2) AND [ValueText] IS NOT NULL AND [ValueNumber] IS NULL AND [ValueNumberTo] IS NULL)");
+                        });
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DisplayOrder = 0,
+                            Field = 3,
+                            GroupId = 1,
+                            Operator = 1,
+                            ValueText = "Enrolled"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 1,
+                            Operator = 7,
+                            ValueNumber = 16m,
+                            ValueNumberTo = 25m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DisplayOrder = 0,
+                            Field = 3,
+                            GroupId = 2,
+                            Operator = 1,
+                            ValueText = "Enrolled"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 2,
+                            Operator = 7,
+                            ValueNumber = 16m,
+                            ValueNumberTo = 25m
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DisplayOrder = 0,
+                            Field = 3,
+                            GroupId = 3,
+                            Operator = 1,
+                            ValueText = "Enrolled"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 3,
+                            Operator = 7,
+                            ValueNumber = 16m,
+                            ValueNumberTo = 25m
+                        },
+                        new
+                        {
+                            Id = 7,
+                            DisplayOrder = 0,
+                            Field = 3,
+                            GroupId = 4,
+                            Operator = 1,
+                            ValueText = "Enrolled"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 4,
+                            Operator = 7,
+                            ValueNumber = 16m,
+                            ValueNumberTo = 25m
+                        },
+                        new
+                        {
+                            Id = 9,
+                            DisplayOrder = 0,
+                            Field = 3,
+                            GroupId = 5,
+                            Operator = 1,
+                            ValueText = "Enrolled"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 5,
+                            Operator = 7,
+                            ValueNumber = 16m,
+                            ValueNumberTo = 25m
+                        },
+                        new
+                        {
+                            Id = 11,
+                            DisplayOrder = 0,
+                            Field = 3,
+                            GroupId = 6,
+                            Operator = 1,
+                            ValueText = "Enrolled"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 6,
+                            Operator = 7,
+                            ValueNumber = 16m,
+                            ValueNumberTo = 25m
+                        },
+                        new
+                        {
+                            Id = 13,
+                            DisplayOrder = 0,
+                            Field = 3,
+                            GroupId = 7,
+                            Operator = 1,
+                            ValueText = "Enrolled"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 7,
+                            Operator = 7,
+                            ValueNumber = 16m,
+                            ValueNumberTo = 25m
+                        },
+                        new
+                        {
+                            Id = 15,
+                            DisplayOrder = 0,
+                            Field = 3,
+                            GroupId = 8,
+                            Operator = 1,
+                            ValueText = "Enrolled"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 8,
+                            Operator = 7,
+                            ValueNumber = 16m,
+                            ValueNumberTo = 25m
+                        },
+                        new
+                        {
+                            Id = 17,
+                            DisplayOrder = 0,
+                            Field = 3,
+                            GroupId = 9,
+                            Operator = 1,
+                            ValueText = "Enrolled"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 9,
+                            Operator = 7,
+                            ValueNumber = 16m,
+                            ValueNumberTo = 25m
+                        },
+                        new
+                        {
+                            Id = 19,
+                            DisplayOrder = 0,
+                            Field = 3,
+                            GroupId = 10,
+                            Operator = 1,
+                            ValueText = "Enrolled"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 10,
+                            Operator = 7,
+                            ValueNumber = 16m,
+                            ValueNumberTo = 25m
+                        },
+                        new
+                        {
+                            Id = 21,
+                            DisplayOrder = 0,
+                            Field = 3,
+                            GroupId = 11,
+                            Operator = 1,
+                            ValueText = "Enrolled"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 11,
+                            Operator = 7,
+                            ValueNumber = 16m,
+                            ValueNumberTo = 25m
+                        },
+                        new
+                        {
+                            Id = 23,
+                            DisplayOrder = 0,
+                            Field = 3,
+                            GroupId = 12,
+                            Operator = 1,
+                            ValueText = "Enrolled"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 12,
+                            Operator = 7,
+                            ValueNumber = 16m,
+                            ValueNumberTo = 25m
+                        },
+                        new
+                        {
+                            Id = 25,
+                            DisplayOrder = 0,
+                            Field = 3,
+                            GroupId = 13,
+                            Operator = 1,
+                            ValueText = "Enrolled"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 13,
+                            Operator = 7,
+                            ValueNumber = 16m,
+                            ValueNumberTo = 25m
+                        },
+                        new
+                        {
+                            Id = 27,
+                            DisplayOrder = 0,
+                            Field = 3,
+                            GroupId = 14,
+                            Operator = 1,
+                            ValueText = "Enrolled"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 14,
+                            Operator = 7,
+                            ValueNumber = 16m,
+                            ValueNumberTo = 25m
+                        },
+                        new
+                        {
+                            Id = 29,
+                            DisplayOrder = 0,
+                            Field = 3,
+                            GroupId = 15,
+                            Operator = 1,
+                            ValueText = "Enrolled"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 15,
+                            Operator = 7,
+                            ValueNumber = 16m,
+                            ValueNumberTo = 25m
+                        },
+                        new
+                        {
+                            Id = 31,
+                            DisplayOrder = 0,
+                            Field = 3,
+                            GroupId = 16,
+                            Operator = 1,
+                            ValueText = "Enrolled"
+                        },
+                        new
+                        {
+                            Id = 32,
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 16,
+                            Operator = 7,
+                            ValueNumber = 16m,
+                            ValueNumberTo = 25m
+                        },
+                        new
+                        {
+                            Id = 33,
+                            DisplayOrder = 0,
+                            Field = 3,
+                            GroupId = 17,
+                            Operator = 1,
+                            ValueText = "Enrolled"
+                        },
+                        new
+                        {
+                            Id = 34,
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 17,
+                            Operator = 7,
+                            ValueNumber = 16m,
+                            ValueNumberTo = 25m
+                        },
+                        new
+                        {
+                            Id = 35,
+                            DisplayOrder = 0,
+                            Field = 3,
+                            GroupId = 18,
+                            Operator = 1,
+                            ValueText = "Enrolled"
+                        },
+                        new
+                        {
+                            Id = 36,
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 18,
+                            Operator = 7,
+                            ValueNumber = 16m,
+                            ValueNumberTo = 25m
+                        },
+                        new
+                        {
+                            Id = 37,
+                            DisplayOrder = 0,
+                            Field = 3,
+                            GroupId = 19,
+                            Operator = 1,
+                            ValueText = "Enrolled"
+                        },
+                        new
+                        {
+                            Id = 38,
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 19,
+                            Operator = 7,
+                            ValueNumber = 16m,
+                            ValueNumberTo = 25m
+                        },
+                        new
+                        {
+                            Id = 39,
+                            DisplayOrder = 0,
+                            Field = 3,
+                            GroupId = 20,
+                            Operator = 1,
+                            ValueText = "Enrolled"
+                        },
+                        new
+                        {
+                            Id = 40,
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 20,
+                            Operator = 7,
+                            ValueNumber = 16m,
+                            ValueNumberTo = 25m
+                        },
+                        new
+                        {
+                            Id = 41,
+                            DisplayOrder = 0,
+                            Field = 3,
+                            GroupId = 21,
+                            Operator = 1,
+                            ValueText = "Enrolled"
+                        },
+                        new
+                        {
+                            Id = 42,
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 21,
+                            Operator = 7,
+                            ValueNumber = 16m,
+                            ValueNumberTo = 25m
+                        },
+                        new
+                        {
+                            Id = 43,
+                            DisplayOrder = 0,
+                            Field = 3,
+                            GroupId = 22,
+                            Operator = 1,
+                            ValueText = "Enrolled"
+                        },
+                        new
+                        {
+                            Id = 44,
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 22,
+                            Operator = 7,
+                            ValueNumber = 16m,
+                            ValueNumberTo = 25m
+                        },
+                        new
+                        {
+                            Id = 45,
+                            DisplayOrder = 0,
+                            Field = 3,
+                            GroupId = 23,
+                            Operator = 1,
+                            ValueText = "Enrolled"
+                        },
+                        new
+                        {
+                            Id = 46,
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 23,
+                            Operator = 7,
+                            ValueNumber = 16m,
+                            ValueNumberTo = 25m
+                        },
+                        new
+                        {
+                            Id = 47,
+                            DisplayOrder = 0,
+                            Field = 3,
+                            GroupId = 24,
+                            Operator = 1,
+                            ValueText = "Enrolled"
+                        },
+                        new
+                        {
+                            Id = 48,
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 24,
+                            Operator = 7,
+                            ValueNumber = 16m,
+                            ValueNumberTo = 25m
+                        },
+                        new
+                        {
+                            Id = 49,
+                            DisplayOrder = 0,
+                            Field = 3,
+                            GroupId = 25,
+                            Operator = 1,
+                            ValueText = "Enrolled"
+                        },
+                        new
+                        {
+                            Id = 50,
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 25,
+                            Operator = 7,
+                            ValueNumber = 16m,
+                            ValueNumberTo = 25m
+                        },
+                        new
+                        {
+                            Id = 51,
+                            DisplayOrder = 0,
+                            Field = 3,
+                            GroupId = 26,
+                            Operator = 1,
+                            ValueText = "Enrolled"
+                        },
+                        new
+                        {
+                            Id = 52,
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 26,
+                            Operator = 7,
+                            ValueNumber = 16m,
+                            ValueNumberTo = 25m
+                        },
+                        new
+                        {
+                            Id = 53,
+                            DisplayOrder = 0,
+                            Field = 3,
+                            GroupId = 27,
+                            Operator = 1,
+                            ValueText = "Enrolled"
+                        },
+                        new
+                        {
+                            Id = 54,
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 27,
+                            Operator = 7,
+                            ValueNumber = 16m,
+                            ValueNumberTo = 25m
+                        },
+                        new
+                        {
+                            Id = 55,
+                            DisplayOrder = 0,
+                            Field = 3,
+                            GroupId = 28,
+                            Operator = 1,
+                            ValueText = "Enrolled"
+                        },
+                        new
+                        {
+                            Id = 56,
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 28,
+                            Operator = 7,
+                            ValueNumber = 16m,
+                            ValueNumberTo = 25m
+                        },
+                        new
+                        {
+                            Id = 57,
+                            DisplayOrder = 0,
+                            Field = 3,
+                            GroupId = 29,
+                            Operator = 1,
+                            ValueText = "Enrolled"
+                        },
+                        new
+                        {
+                            Id = 58,
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 29,
+                            Operator = 7,
+                            ValueNumber = 16m,
+                            ValueNumberTo = 25m
+                        },
+                        new
+                        {
+                            Id = 59,
+                            DisplayOrder = 0,
+                            Field = 3,
+                            GroupId = 30,
+                            Operator = 1,
+                            ValueText = "Enrolled"
+                        },
+                        new
+                        {
+                            Id = 60,
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 30,
+                            Operator = 7,
+                            ValueNumber = 16m,
+                            ValueNumberTo = 25m
+                        });
+                });
+
+            modelBuilder.Entity("Models.SystemTopupConditionGroup", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("DisplayOrder")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LogicalOperator")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ParentGroupId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SystemTopupId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParentGroupId");
+
+                    b.HasIndex("SystemTopupId")
+                        .IsUnique()
+                        .HasFilter("[ParentGroupId] IS NULL");
+
+                    b.ToTable("SystemTopupConditionGroup", t =>
+                        {
+                            t.HasCheckConstraint("CK_SystemTopupConditionGroup_DisplayOrder_NonNegative", "[DisplayOrder] >= 0");
+                        });
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            SystemTopupId = 21
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            SystemTopupId = 22
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            SystemTopupId = 23
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            SystemTopupId = 24
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            SystemTopupId = 25
+                        },
+                        new
+                        {
+                            Id = 6,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            SystemTopupId = 26
+                        },
+                        new
+                        {
+                            Id = 7,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            SystemTopupId = 27
+                        },
+                        new
+                        {
+                            Id = 8,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            SystemTopupId = 28
+                        },
+                        new
+                        {
+                            Id = 9,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            SystemTopupId = 29
+                        },
+                        new
+                        {
+                            Id = 10,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            SystemTopupId = 30
+                        },
+                        new
+                        {
+                            Id = 11,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            SystemTopupId = 31
+                        },
+                        new
+                        {
+                            Id = 12,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            SystemTopupId = 32
+                        },
+                        new
+                        {
+                            Id = 13,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            SystemTopupId = 33
+                        },
+                        new
+                        {
+                            Id = 14,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            SystemTopupId = 34
+                        },
+                        new
+                        {
+                            Id = 15,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            SystemTopupId = 35
+                        },
+                        new
+                        {
+                            Id = 16,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            SystemTopupId = 36
+                        },
+                        new
+                        {
+                            Id = 17,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            SystemTopupId = 37
+                        },
+                        new
+                        {
+                            Id = 18,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            SystemTopupId = 38
+                        },
+                        new
+                        {
+                            Id = 19,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            SystemTopupId = 39
+                        },
+                        new
+                        {
+                            Id = 20,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            SystemTopupId = 40
+                        },
+                        new
+                        {
+                            Id = 21,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            SystemTopupId = 41
+                        },
+                        new
+                        {
+                            Id = 22,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            SystemTopupId = 42
+                        },
+                        new
+                        {
+                            Id = 23,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            SystemTopupId = 43
+                        },
+                        new
+                        {
+                            Id = 24,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            SystemTopupId = 44
+                        },
+                        new
+                        {
+                            Id = 25,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            SystemTopupId = 45
+                        },
+                        new
+                        {
+                            Id = 26,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            SystemTopupId = 46
+                        },
+                        new
+                        {
+                            Id = 27,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            SystemTopupId = 47
+                        },
+                        new
+                        {
+                            Id = 28,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            SystemTopupId = 48
+                        },
+                        new
+                        {
+                            Id = 29,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            SystemTopupId = 49
+                        },
+                        new
+                        {
+                            Id = 30,
+                            DisplayOrder = 0,
+                            LogicalOperator = 1,
+                            SystemTopupId = 50
+                        });
+                });
+
             modelBuilder.Entity("Models.TopupExecution", b =>
                 {
                     b.Property<int>("Id")
@@ -7786,6 +9707,10 @@ namespace educationaccountmanagement.DAL.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ConditionsSnapshot")
+                        .HasMaxLength(4000)
+                        .HasColumnType("nvarchar(4000)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -7819,18 +9744,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<int?>("MatchModeSnapshot")
-                        .HasColumnType("int");
-
-                    b.Property<string>("RuleConditionsSnapshot")
-                        .HasMaxLength(4000)
-                        .HasColumnType("nvarchar(4000)");
-
-                    b.Property<string>("RuleNameSnapshot")
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<int?>("RuleTypeSnapshot")
+                    b.Property<int?>("ScheduleTopUpId")
                         .HasColumnType("int");
 
                     b.Property<int>("SourceType")
@@ -7842,14 +9756,15 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<int>("SuccessCount")
                         .HasColumnType("int");
 
+                    b.Property<int?>("SystemTopupId")
+                        .HasColumnType("int");
+
                     b.Property<decimal?>("TopupAmountSnapshot")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("TopupRuleId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TopupScheduleId")
-                        .HasColumnType("int");
+                    b.Property<string>("TopupNameSnapshot")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<decimal>("TotalExecutedAmount")
                         .HasColumnType("decimal(18,2)");
@@ -7873,19 +9788,19 @@ namespace educationaccountmanagement.DAL.Migrations
                         .IsUnique()
                         .HasFilter("\"IsDeleted\" = 0 AND \"IdempotencyKey\" IS NOT NULL");
 
+                    b.HasIndex("ScheduleTopUpId");
+
                     b.HasIndex("SourceType");
 
                     b.HasIndex("Status");
 
-                    b.HasIndex("TopupRuleId");
-
-                    b.HasIndex("TopupScheduleId");
+                    b.HasIndex("SystemTopupId");
 
                     b.ToTable("TopupExecution", t =>
                         {
                             t.HasCheckConstraint("CK_TopupExecution_Counts_And_Amount_NonNegative", "[TotalExecutedAmount] >= 0 AND [TotalTargetCount] >= 0 AND [SuccessCount] >= 0 AND [FailedCount] >= 0 AND [SuccessCount] + [FailedCount] <= [TotalTargetCount]");
 
-                            t.HasCheckConstraint("CK_TopupExecution_Source_Fields", "([SourceType] = 1 AND [TopupRuleId] IS NOT NULL AND [TopupScheduleId] IS NULL AND [ManualAmount] IS NULL AND [ManualReason] IS NULL) OR ([SourceType] = 2 AND [TopupRuleId] IS NOT NULL AND [TopupScheduleId] IS NOT NULL AND [ManualAmount] IS NULL AND [ManualReason] IS NULL) OR ([SourceType] = 3 AND [TopupRuleId] IS NULL AND [TopupScheduleId] IS NULL AND [ManualAmount] > 0 AND [ManualReason] IS NOT NULL)");
+                            t.HasCheckConstraint("CK_TopupExecution_Source_Fields", "([SourceType] = 1 AND [SystemTopupId] IS NOT NULL AND [ScheduleTopUpId] IS NULL AND [ManualAmount] IS NULL AND [ManualReason] IS NULL) OR ([SourceType] = 2 AND [SystemTopupId] IS NULL AND [ScheduleTopUpId] IS NOT NULL AND [ManualAmount] IS NULL AND [ManualReason] IS NULL) OR ([SourceType] = 3 AND [SystemTopupId] IS NULL AND [ScheduleTopUpId] IS NULL AND [ManualAmount] > 0 AND [ManualReason] IS NOT NULL)");
                         });
 
                     b.HasData(
@@ -7909,19 +9824,18 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 2,
+                            ConditionsSnapshot = "{\"logicalOperator\":\"And\",\"conditions\":[]}",
                             CreatedAt = new DateTime(2026, 1, 12, 0, 0, 0, 0, DateTimeKind.Utc),
                             ExecutionCode = "TOPUP-SEED-SYSTEM-001",
                             FailedCount = 0,
                             IdempotencyKey = "seed-system-topup-001",
                             IsDeleted = false,
-                            MatchModeSnapshot = 1,
-                            RuleNameSnapshot = "Random Top-up Rule 021",
-                            RuleTypeSnapshot = 1,
                             SourceType = 1,
                             Status = 3,
                             SuccessCount = 1,
+                            SystemTopupId = 21,
                             TopupAmountSnapshot = 200m,
-                            TopupRuleId = 21,
+                            TopupNameSnapshot = "System Top-up 021",
                             TotalExecutedAmount = 200m,
                             TotalTargetCount = 1
                         });
@@ -8045,2103 +9959,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Models.TopupRule", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("MatchMode")
-                        .HasColumnType("int");
-
-                    b.Property<string>("RuleName")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<decimal?>("TopupAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RuleName")
-                        .IsUnique()
-                        .HasFilter("\"IsDeleted\" = 0 AND \"RuleName\" IS NOT NULL");
-
-                    b.HasIndex("Status");
-
-                    b.ToTable("TopupRule", t =>
-                        {
-                            t.HasCheckConstraint("CK_TopupRule_Amount_By_MatchMode", "([MatchMode] = 1 AND [TopupAmount] > 0) OR ([MatchMode] = 2 AND [TopupAmount] IS NULL)");
-                        });
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 001",
-                            Status = 2,
-                            TopupAmount = 70m,
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 002",
-                            Status = 1,
-                            TopupAmount = 770m,
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 003",
-                            Status = 1,
-                            TopupAmount = 790m,
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 2,
-                            RuleName = "Random Top-up Rule 004",
-                            Status = 1,
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 005",
-                            Status = 1,
-                            TopupAmount = 730m,
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 006",
-                            Status = 1,
-                            TopupAmount = 510m,
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 007",
-                            Status = 1,
-                            TopupAmount = 390m,
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 2,
-                            RuleName = "Random Top-up Rule 008",
-                            Status = 2,
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 009",
-                            Status = 1,
-                            TopupAmount = 140m,
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 10,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 010",
-                            Status = 1,
-                            TopupAmount = 200m,
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 11,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 011",
-                            Status = 1,
-                            TopupAmount = 860m,
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 12,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 2,
-                            RuleName = "Random Top-up Rule 012",
-                            Status = 1,
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 13,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 013",
-                            Status = 1,
-                            TopupAmount = 530m,
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 14,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 014",
-                            Status = 1,
-                            TopupAmount = 710m,
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 15,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 015",
-                            Status = 1,
-                            TopupAmount = 620m,
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 16,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 2,
-                            RuleName = "Random Top-up Rule 016",
-                            Status = 1,
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 17,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 017",
-                            Status = 1,
-                            TopupAmount = 400m,
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 18,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 018",
-                            Status = 1,
-                            TopupAmount = 680m,
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 19,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 019",
-                            Status = 1,
-                            TopupAmount = 520m,
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 20,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 2,
-                            RuleName = "Random Top-up Rule 020",
-                            Status = 1,
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 21,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 021",
-                            Status = 2,
-                            TopupAmount = 770m,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 22,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 022",
-                            Status = 1,
-                            TopupAmount = 480m,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 23,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 023",
-                            Status = 1,
-                            TopupAmount = 490m,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 24,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 2,
-                            RuleName = "Random Top-up Rule 024",
-                            Status = 1,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 25,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 025",
-                            Status = 1,
-                            TopupAmount = 270m,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 26,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 026",
-                            Status = 1,
-                            TopupAmount = 630m,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 27,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 027",
-                            Status = 1,
-                            TopupAmount = 370m,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 28,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 2,
-                            RuleName = "Random Top-up Rule 028",
-                            Status = 1,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 29,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 029",
-                            Status = 1,
-                            TopupAmount = 850m,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 30,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 030",
-                            Status = 1,
-                            TopupAmount = 610m,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 31,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 031",
-                            Status = 2,
-                            TopupAmount = 500m,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 32,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 2,
-                            RuleName = "Random Top-up Rule 032",
-                            Status = 1,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 33,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 033",
-                            Status = 2,
-                            TopupAmount = 710m,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 34,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 034",
-                            Status = 1,
-                            TopupAmount = 930m,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 35,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 035",
-                            Status = 1,
-                            TopupAmount = 100m,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 36,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 2,
-                            RuleName = "Random Top-up Rule 036",
-                            Status = 1,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 37,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 037",
-                            Status = 1,
-                            TopupAmount = 20m,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 38,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 038",
-                            Status = 1,
-                            TopupAmount = 20m,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 39,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 039",
-                            Status = 1,
-                            TopupAmount = 730m,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 40,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 2,
-                            RuleName = "Random Top-up Rule 040",
-                            Status = 1,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 41,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 041",
-                            Status = 1,
-                            TopupAmount = 740m,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 42,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 042",
-                            Status = 1,
-                            TopupAmount = 440m,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 43,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 043",
-                            Status = 1,
-                            TopupAmount = 650m,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 44,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 2,
-                            RuleName = "Random Top-up Rule 044",
-                            Status = 1,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 45,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 045",
-                            Status = 2,
-                            TopupAmount = 80m,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 46,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 046",
-                            Status = 1,
-                            TopupAmount = 290m,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 47,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 047",
-                            Status = 1,
-                            TopupAmount = 880m,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 48,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 2,
-                            RuleName = "Random Top-up Rule 048",
-                            Status = 1,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 49,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 049",
-                            Status = 2,
-                            TopupAmount = 600m,
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 50,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            MatchMode = 1,
-                            RuleName = "Random Top-up Rule 050",
-                            Status = 2,
-                            TopupAmount = 770m,
-                            Type = 1
-                        });
-                });
-
-            modelBuilder.Entity("Models.TopupRuleCondition", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<decimal?>("ConditionAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("DisplayOrder")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Field")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("Operator")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TopupRuleId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<decimal?>("ValueNumber")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("ValueText")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Field");
-
-                    b.HasIndex("Operator");
-
-                    b.HasIndex("TopupRuleId");
-
-                    b.ToTable("TopupRuleCondition", t =>
-                        {
-                            t.HasCheckConstraint("CK_TopupRuleCondition_DisplayOrder_NonNegative", "[DisplayOrder] >= 0");
-
-                            t.HasCheckConstraint("CK_TopupRuleCondition_Value_By_Field", "([Field] IN (1, 2) AND [ValueNumber] IS NOT NULL AND [ValueText] IS NULL) OR ([Field] = 3 AND [ValueText] IS NOT NULL AND [ValueNumber] IS NULL)");
-                        });
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 1,
-                            ValueNumber = 12m
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 1,
-                            ValueNumber = 22m
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 2,
-                            ValueNumber = 700m
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 2,
-                            ValueNumber = 1500m
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 3,
-                            ValueNumber = 16m
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 3,
-                            ValueNumber = 19m
-                        },
-                        new
-                        {
-                            Id = 7,
-                            ConditionAmount = 100m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 4,
-                            ValueNumber = 200m
-                        },
-                        new
-                        {
-                            Id = 8,
-                            ConditionAmount = 150m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 4,
-                            ValueNumber = 600m
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 5,
-                            ValueNumber = 12m
-                        },
-                        new
-                        {
-                            Id = 10,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 5,
-                            ValueNumber = 14m
-                        },
-                        new
-                        {
-                            Id = 11,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 6,
-                            ValueNumber = 100m
-                        },
-                        new
-                        {
-                            Id = 12,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 6,
-                            ValueNumber = 900m
-                        },
-                        new
-                        {
-                            Id = 13,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 7,
-                            ValueNumber = 300m
-                        },
-                        new
-                        {
-                            Id = 14,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 7,
-                            ValueNumber = 400m
-                        },
-                        new
-                        {
-                            Id = 15,
-                            ConditionAmount = 100m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 8,
-                            ValueNumber = 300m
-                        },
-                        new
-                        {
-                            Id = 16,
-                            ConditionAmount = 150m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 8,
-                            ValueNumber = 1000m
-                        },
-                        new
-                        {
-                            Id = 17,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 9,
-                            ValueNumber = 600m
-                        },
-                        new
-                        {
-                            Id = 18,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 9,
-                            ValueNumber = 1300m
-                        },
-                        new
-                        {
-                            Id = 19,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 10,
-                            ValueNumber = 300m
-                        },
-                        new
-                        {
-                            Id = 20,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 10,
-                            ValueNumber = 600m
-                        },
-                        new
-                        {
-                            Id = 21,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 11,
-                            ValueNumber = 200m
-                        },
-                        new
-                        {
-                            Id = 22,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 11,
-                            ValueNumber = 700m
-                        },
-                        new
-                        {
-                            Id = 23,
-                            ConditionAmount = 100m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 12,
-                            ValueNumber = 13m
-                        },
-                        new
-                        {
-                            Id = 24,
-                            ConditionAmount = 150m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 12,
-                            ValueNumber = 22m
-                        },
-                        new
-                        {
-                            Id = 25,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 13,
-                            ValueNumber = 14m
-                        },
-                        new
-                        {
-                            Id = 26,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 13,
-                            ValueNumber = 19m
-                        },
-                        new
-                        {
-                            Id = 27,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 14,
-                            ValueNumber = 16m
-                        },
-                        new
-                        {
-                            Id = 28,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 14,
-                            ValueNumber = 20m
-                        },
-                        new
-                        {
-                            Id = 29,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 15,
-                            ValueNumber = 13m
-                        },
-                        new
-                        {
-                            Id = 30,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 15,
-                            ValueNumber = 20m
-                        },
-                        new
-                        {
-                            Id = 31,
-                            ConditionAmount = 100m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 16,
-                            ValueNumber = 14m
-                        },
-                        new
-                        {
-                            Id = 32,
-                            ConditionAmount = 150m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 16,
-                            ValueNumber = 23m
-                        },
-                        new
-                        {
-                            Id = 33,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 17,
-                            ValueNumber = 17m
-                        },
-                        new
-                        {
-                            Id = 34,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 17,
-                            ValueNumber = 22m
-                        },
-                        new
-                        {
-                            Id = 35,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 18,
-                            ValueNumber = 400m
-                        },
-                        new
-                        {
-                            Id = 36,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 18,
-                            ValueNumber = 900m
-                        },
-                        new
-                        {
-                            Id = 37,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 19,
-                            ValueNumber = 15m
-                        },
-                        new
-                        {
-                            Id = 38,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 19,
-                            ValueNumber = 22m
-                        },
-                        new
-                        {
-                            Id = 39,
-                            ConditionAmount = 100m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 20,
-                            ValueNumber = 17m
-                        },
-                        new
-                        {
-                            Id = 40,
-                            ConditionAmount = 150m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 20,
-                            ValueNumber = 19m
-                        },
-                        new
-                        {
-                            Id = 41,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 21,
-                            ValueNumber = 14m
-                        },
-                        new
-                        {
-                            Id = 42,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 21,
-                            ValueNumber = 18m
-                        },
-                        new
-                        {
-                            Id = 43,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 22,
-                            ValueNumber = 16m
-                        },
-                        new
-                        {
-                            Id = 44,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 22,
-                            ValueNumber = 17m
-                        },
-                        new
-                        {
-                            Id = 45,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 23,
-                            ValueNumber = 700m
-                        },
-                        new
-                        {
-                            Id = 46,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 23,
-                            ValueNumber = 1400m
-                        },
-                        new
-                        {
-                            Id = 47,
-                            ConditionAmount = 100m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 24,
-                            ValueNumber = 16m
-                        },
-                        new
-                        {
-                            Id = 48,
-                            ConditionAmount = 150m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 24,
-                            ValueNumber = 22m
-                        },
-                        new
-                        {
-                            Id = 49,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 25,
-                            ValueNumber = 14m
-                        },
-                        new
-                        {
-                            Id = 50,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 25,
-                            ValueNumber = 21m
-                        },
-                        new
-                        {
-                            Id = 51,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 26,
-                            ValueNumber = 200m
-                        },
-                        new
-                        {
-                            Id = 52,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 26,
-                            ValueNumber = 300m
-                        },
-                        new
-                        {
-                            Id = 53,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 27,
-                            ValueNumber = 13m
-                        },
-                        new
-                        {
-                            Id = 54,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 27,
-                            ValueNumber = 16m
-                        },
-                        new
-                        {
-                            Id = 55,
-                            ConditionAmount = 100m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 28,
-                            ValueNumber = 500m
-                        },
-                        new
-                        {
-                            Id = 56,
-                            ConditionAmount = 150m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 28,
-                            ValueNumber = 1000m
-                        },
-                        new
-                        {
-                            Id = 57,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 29,
-                            ValueNumber = 0m
-                        },
-                        new
-                        {
-                            Id = 58,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 29,
-                            ValueNumber = 700m
-                        },
-                        new
-                        {
-                            Id = 59,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 30,
-                            ValueNumber = 14m
-                        },
-                        new
-                        {
-                            Id = 60,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 30,
-                            ValueNumber = 22m
-                        },
-                        new
-                        {
-                            Id = 61,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 31,
-                            ValueNumber = 17m
-                        },
-                        new
-                        {
-                            Id = 62,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 31,
-                            ValueNumber = 21m
-                        },
-                        new
-                        {
-                            Id = 63,
-                            ConditionAmount = 100m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 32,
-                            ValueNumber = 14m
-                        },
-                        new
-                        {
-                            Id = 64,
-                            ConditionAmount = 150m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 32,
-                            ValueNumber = 17m
-                        },
-                        new
-                        {
-                            Id = 65,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 33,
-                            ValueNumber = 13m
-                        },
-                        new
-                        {
-                            Id = 66,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 33,
-                            ValueNumber = 19m
-                        },
-                        new
-                        {
-                            Id = 67,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 34,
-                            ValueNumber = 400m
-                        },
-                        new
-                        {
-                            Id = 68,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 34,
-                            ValueNumber = 1000m
-                        },
-                        new
-                        {
-                            Id = 69,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 35,
-                            ValueNumber = 16m
-                        },
-                        new
-                        {
-                            Id = 70,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 35,
-                            ValueNumber = 17m
-                        },
-                        new
-                        {
-                            Id = 71,
-                            ConditionAmount = 100m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 36,
-                            ValueNumber = 100m
-                        },
-                        new
-                        {
-                            Id = 72,
-                            ConditionAmount = 150m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 36,
-                            ValueNumber = 200m
-                        },
-                        new
-                        {
-                            Id = 73,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 37,
-                            ValueNumber = 300m
-                        },
-                        new
-                        {
-                            Id = 74,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 37,
-                            ValueNumber = 600m
-                        },
-                        new
-                        {
-                            Id = 75,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 38,
-                            ValueNumber = 900m
-                        },
-                        new
-                        {
-                            Id = 76,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 38,
-                            ValueNumber = 1500m
-                        },
-                        new
-                        {
-                            Id = 77,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 39,
-                            ValueNumber = 200m
-                        },
-                        new
-                        {
-                            Id = 78,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 39,
-                            ValueNumber = 1000m
-                        },
-                        new
-                        {
-                            Id = 79,
-                            ConditionAmount = 100m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 40,
-                            ValueNumber = 400m
-                        },
-                        new
-                        {
-                            Id = 80,
-                            ConditionAmount = 150m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 40,
-                            ValueNumber = 1100m
-                        },
-                        new
-                        {
-                            Id = 81,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 41,
-                            ValueNumber = 17m
-                        },
-                        new
-                        {
-                            Id = 82,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 41,
-                            ValueNumber = 19m
-                        },
-                        new
-                        {
-                            Id = 83,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 42,
-                            ValueNumber = 13m
-                        },
-                        new
-                        {
-                            Id = 84,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 42,
-                            ValueNumber = 22m
-                        },
-                        new
-                        {
-                            Id = 85,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 43,
-                            ValueNumber = 13m
-                        },
-                        new
-                        {
-                            Id = 86,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 43,
-                            ValueNumber = 24m
-                        },
-                        new
-                        {
-                            Id = 87,
-                            ConditionAmount = 100m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 44,
-                            ValueNumber = 15m
-                        },
-                        new
-                        {
-                            Id = 88,
-                            ConditionAmount = 150m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 44,
-                            ValueNumber = 16m
-                        },
-                        new
-                        {
-                            Id = 89,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 45,
-                            ValueNumber = 400m
-                        },
-                        new
-                        {
-                            Id = 90,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 45,
-                            ValueNumber = 1200m
-                        },
-                        new
-                        {
-                            Id = 91,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 46,
-                            ValueNumber = 700m
-                        },
-                        new
-                        {
-                            Id = 92,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 46,
-                            ValueNumber = 1400m
-                        },
-                        new
-                        {
-                            Id = 93,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 47,
-                            ValueNumber = 16m
-                        },
-                        new
-                        {
-                            Id = 94,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 47,
-                            ValueNumber = 24m
-                        },
-                        new
-                        {
-                            Id = 95,
-                            ConditionAmount = 100m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 48,
-                            ValueNumber = 100m
-                        },
-                        new
-                        {
-                            Id = 96,
-                            ConditionAmount = 150m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 48,
-                            ValueNumber = 200m
-                        },
-                        new
-                        {
-                            Id = 97,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 49,
-                            ValueNumber = 14m
-                        },
-                        new
-                        {
-                            Id = 98,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 1,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 49,
-                            ValueNumber = 24m
-                        },
-                        new
-                        {
-                            Id = 99,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 1,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 4,
-                            TopupRuleId = 50,
-                            ValueNumber = 300m
-                        },
-                        new
-                        {
-                            Id = 100,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DisplayOrder = 2,
-                            Field = 2,
-                            IsDeleted = false,
-                            Operator = 6,
-                            TopupRuleId = 50,
-                            ValueNumber = 500m
-                        });
-                });
-
-            modelBuilder.Entity("Models.TopupSchedule", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("ExecuteAtDay")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ExecuteAtMonth")
-                        .HasColumnType("int");
-
-                    b.Property<TimeOnly>("ExecutionTime")
-                        .HasColumnType("time");
-
-                    b.Property<int>("Frequency")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("NextExecutionAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("OneTimeExecutionAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TopupRuleId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NextExecutionAt");
-
-                    b.HasIndex("Status");
-
-                    b.HasIndex("TopupRuleId")
-                        .IsUnique()
-                        .HasFilter("\"IsDeleted\" = 0 AND \"TopupRuleId\" IS NOT NULL");
-
-                    b.ToTable("TopupSchedule");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExecutionTime = new TimeOnly(1, 46, 0),
-                            Frequency = 1,
-                            IsDeleted = false,
-                            NextExecutionAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            OneTimeExecutionAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Status = 1,
-                            TopupRuleId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExecuteAtDay = 8,
-                            ExecuteAtMonth = 7,
-                            ExecutionTime = new TimeOnly(19, 9, 0),
-                            Frequency = 3,
-                            IsDeleted = false,
-                            NextExecutionAt = new DateTime(2027, 7, 8, 19, 9, 0, 0, DateTimeKind.Unspecified),
-                            Status = 1,
-                            TopupRuleId = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExecutionTime = new TimeOnly(9, 12, 0),
-                            Frequency = 1,
-                            IsDeleted = false,
-                            OneTimeExecutionAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Status = 2,
-                            TopupRuleId = 3
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExecutionTime = new TimeOnly(17, 11, 0),
-                            Frequency = 1,
-                            IsDeleted = false,
-                            NextExecutionAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            OneTimeExecutionAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Status = 1,
-                            TopupRuleId = 4
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExecuteAtDay = 11,
-                            ExecuteAtMonth = 9,
-                            ExecutionTime = new TimeOnly(8, 6, 0),
-                            Frequency = 3,
-                            IsDeleted = false,
-                            NextExecutionAt = new DateTime(2027, 9, 11, 8, 6, 0, 0, DateTimeKind.Unspecified),
-                            Status = 1,
-                            TopupRuleId = 5
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExecuteAtDay = 12,
-                            ExecutionTime = new TimeOnly(14, 43, 0),
-                            Frequency = 2,
-                            IsDeleted = false,
-                            NextExecutionAt = new DateTime(2027, 3, 12, 14, 43, 0, 0, DateTimeKind.Unspecified),
-                            Status = 1,
-                            TopupRuleId = 6
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExecuteAtDay = 8,
-                            ExecuteAtMonth = 10,
-                            ExecutionTime = new TimeOnly(5, 31, 0),
-                            Frequency = 3,
-                            IsDeleted = false,
-                            NextExecutionAt = new DateTime(2027, 10, 8, 5, 31, 0, 0, DateTimeKind.Unspecified),
-                            Status = 1,
-                            TopupRuleId = 7
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExecutionTime = new TimeOnly(11, 26, 0),
-                            Frequency = 1,
-                            IsDeleted = false,
-                            NextExecutionAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            OneTimeExecutionAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Status = 1,
-                            TopupRuleId = 8
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExecuteAtDay = 18,
-                            ExecuteAtMonth = 4,
-                            ExecutionTime = new TimeOnly(10, 16, 0),
-                            Frequency = 3,
-                            IsDeleted = false,
-                            NextExecutionAt = new DateTime(2027, 4, 18, 10, 16, 0, 0, DateTimeKind.Unspecified),
-                            Status = 1,
-                            TopupRuleId = 9
-                        },
-                        new
-                        {
-                            Id = 10,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExecuteAtDay = 19,
-                            ExecutionTime = new TimeOnly(20, 10, 0),
-                            Frequency = 2,
-                            IsDeleted = false,
-                            NextExecutionAt = new DateTime(2027, 8, 19, 20, 10, 0, 0, DateTimeKind.Unspecified),
-                            Status = 1,
-                            TopupRuleId = 10
-                        },
-                        new
-                        {
-                            Id = 11,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExecuteAtDay = 20,
-                            ExecutionTime = new TimeOnly(11, 1, 0),
-                            Frequency = 2,
-                            IsDeleted = false,
-                            NextExecutionAt = new DateTime(2027, 1, 20, 11, 1, 0, 0, DateTimeKind.Unspecified),
-                            Status = 1,
-                            TopupRuleId = 11
-                        },
-                        new
-                        {
-                            Id = 12,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExecuteAtDay = 10,
-                            ExecuteAtMonth = 1,
-                            ExecutionTime = new TimeOnly(4, 5, 0),
-                            Frequency = 3,
-                            IsDeleted = false,
-                            NextExecutionAt = new DateTime(2027, 1, 10, 4, 5, 0, 0, DateTimeKind.Unspecified),
-                            Status = 1,
-                            TopupRuleId = 12
-                        },
-                        new
-                        {
-                            Id = 13,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExecuteAtDay = 22,
-                            ExecuteAtMonth = 5,
-                            ExecutionTime = new TimeOnly(0, 52, 0),
-                            Frequency = 3,
-                            IsDeleted = false,
-                            NextExecutionAt = new DateTime(2027, 5, 22, 0, 52, 0, 0, DateTimeKind.Unspecified),
-                            Status = 1,
-                            TopupRuleId = 13
-                        },
-                        new
-                        {
-                            Id = 14,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExecuteAtDay = 19,
-                            ExecuteAtMonth = 8,
-                            ExecutionTime = new TimeOnly(17, 26, 0),
-                            Frequency = 3,
-                            IsDeleted = false,
-                            NextExecutionAt = new DateTime(2027, 8, 19, 17, 26, 0, 0, DateTimeKind.Unspecified),
-                            Status = 1,
-                            TopupRuleId = 14
-                        },
-                        new
-                        {
-                            Id = 15,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExecutionTime = new TimeOnly(1, 4, 0),
-                            Frequency = 1,
-                            IsDeleted = false,
-                            NextExecutionAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            OneTimeExecutionAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Status = 1,
-                            TopupRuleId = 15
-                        },
-                        new
-                        {
-                            Id = 16,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExecutionTime = new TimeOnly(21, 34, 0),
-                            Frequency = 1,
-                            IsDeleted = false,
-                            NextExecutionAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            OneTimeExecutionAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Status = 1,
-                            TopupRuleId = 16
-                        },
-                        new
-                        {
-                            Id = 17,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExecuteAtDay = 13,
-                            ExecutionTime = new TimeOnly(1, 46, 0),
-                            Frequency = 2,
-                            IsDeleted = false,
-                            Status = 2,
-                            TopupRuleId = 17
-                        },
-                        new
-                        {
-                            Id = 18,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExecutionTime = new TimeOnly(22, 33, 0),
-                            Frequency = 1,
-                            IsDeleted = false,
-                            NextExecutionAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            OneTimeExecutionAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Status = 1,
-                            TopupRuleId = 18
-                        },
-                        new
-                        {
-                            Id = 19,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExecuteAtDay = 13,
-                            ExecutionTime = new TimeOnly(7, 6, 0),
-                            Frequency = 2,
-                            IsDeleted = false,
-                            NextExecutionAt = new DateTime(2027, 8, 13, 7, 6, 0, 0, DateTimeKind.Unspecified),
-                            Status = 1,
-                            TopupRuleId = 19
-                        },
-                        new
-                        {
-                            Id = 20,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ExecuteAtDay = 4,
-                            ExecutionTime = new TimeOnly(15, 5, 0),
-                            Frequency = 2,
-                            IsDeleted = false,
-                            NextExecutionAt = new DateTime(2027, 12, 4, 15, 5, 0, 0, DateTimeKind.Unspecified),
-                            Status = 1,
-                            TopupRuleId = 20
-                        });
-                });
-
             modelBuilder.Entity("Models.TopupSystemApplication", b =>
                 {
                     b.Property<int>("Id")
@@ -10153,22 +9970,22 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<int>("EducationAccountId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TopupExecutionTargetId")
+                    b.Property<int>("SystemTopupId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TopupRuleId")
+                    b.Property<int>("TopupExecutionTargetId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("EducationAccountId");
 
+                    b.HasIndex("SystemTopupId");
+
                     b.HasIndex("TopupExecutionTargetId")
                         .IsUnique();
 
-                    b.HasIndex("TopupRuleId");
-
-                    b.HasIndex("TopupRuleId", "EducationAccountId")
+                    b.HasIndex("SystemTopupId", "EducationAccountId")
                         .IsUnique();
 
                     b.ToTable("TopupSystemApplication");
@@ -10178,8 +9995,8 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1,
                             EducationAccountId = 3,
-                            TopupExecutionTargetId = 3,
-                            TopupRuleId = 21
+                            SystemTopupId = 21,
+                            TopupExecutionTargetId = 3
                         });
                 });
 
@@ -10644,6 +10461,35 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Models.ScheduleTopUpCondition", b =>
+                {
+                    b.HasOne("Models.ScheduleTopUpConditionGroup", "Group")
+                        .WithMany("Conditions")
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Group");
+                });
+
+            modelBuilder.Entity("Models.ScheduleTopUpConditionGroup", b =>
+                {
+                    b.HasOne("Models.ScheduleTopUpConditionGroup", "ParentGroup")
+                        .WithMany("ChildGroups")
+                        .HasForeignKey("ParentGroupId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.HasOne("Models.ScheduleTopUp", "ScheduleTopUp")
+                        .WithMany("ConditionGroups")
+                        .HasForeignKey("ScheduleTopUpId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ParentGroup");
+
+                    b.Navigation("ScheduleTopUp");
+                });
+
             modelBuilder.Entity("Models.SchoolStudent", b =>
                 {
                     b.HasOne("Models.EducationAccount", "EducationAccount")
@@ -10674,21 +10520,50 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Models.SystemTopupCondition", b =>
+                {
+                    b.HasOne("Models.SystemTopupConditionGroup", "Group")
+                        .WithMany("Conditions")
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Group");
+                });
+
+            modelBuilder.Entity("Models.SystemTopupConditionGroup", b =>
+                {
+                    b.HasOne("Models.SystemTopupConditionGroup", "ParentGroup")
+                        .WithMany("ChildGroups")
+                        .HasForeignKey("ParentGroupId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.HasOne("Models.SystemTopup", "SystemTopup")
+                        .WithMany("ConditionGroups")
+                        .HasForeignKey("SystemTopupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ParentGroup");
+
+                    b.Navigation("SystemTopup");
+                });
+
             modelBuilder.Entity("Models.TopupExecution", b =>
                 {
-                    b.HasOne("Models.TopupRule", "TopupRule")
+                    b.HasOne("Models.ScheduleTopUp", "ScheduleTopUp")
                         .WithMany("Executions")
-                        .HasForeignKey("TopupRuleId")
+                        .HasForeignKey("ScheduleTopUpId")
                         .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Models.TopupSchedule", "TopupSchedule")
+                    b.HasOne("Models.SystemTopup", "SystemTopup")
                         .WithMany("Executions")
-                        .HasForeignKey("TopupScheduleId")
+                        .HasForeignKey("SystemTopupId")
                         .OnDelete(DeleteBehavior.NoAction);
 
-                    b.Navigation("TopupRule");
+                    b.Navigation("ScheduleTopUp");
 
-                    b.Navigation("TopupSchedule");
+                    b.Navigation("SystemTopup");
                 });
 
             modelBuilder.Entity("Models.TopupExecutionTarget", b =>
@@ -10716,33 +10591,17 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Navigation("TopupExecution");
                 });
 
-            modelBuilder.Entity("Models.TopupRuleCondition", b =>
-                {
-                    b.HasOne("Models.TopupRule", "TopupRule")
-                        .WithMany("Conditions")
-                        .HasForeignKey("TopupRuleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("TopupRule");
-                });
-
-            modelBuilder.Entity("Models.TopupSchedule", b =>
-                {
-                    b.HasOne("Models.TopupRule", "TopupRule")
-                        .WithOne("Schedule")
-                        .HasForeignKey("Models.TopupSchedule", "TopupRuleId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("TopupRule");
-                });
-
             modelBuilder.Entity("Models.TopupSystemApplication", b =>
                 {
                     b.HasOne("Models.EducationAccount", "EducationAccount")
                         .WithMany("TopupSystemApplications")
                         .HasForeignKey("EducationAccountId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Models.SystemTopup", "SystemTopup")
+                        .WithMany("Applications")
+                        .HasForeignKey("SystemTopupId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
@@ -10752,17 +10611,11 @@ namespace educationaccountmanagement.DAL.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("Models.TopupRule", "TopupRule")
-                        .WithMany("SystemApplications")
-                        .HasForeignKey("TopupRuleId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.Navigation("EducationAccount");
 
-                    b.Navigation("TopupExecutionTarget");
+                    b.Navigation("SystemTopup");
 
-                    b.Navigation("TopupRule");
+                    b.Navigation("TopupExecutionTarget");
                 });
 
             modelBuilder.Entity("Models.User", b =>
@@ -10858,6 +10711,20 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Navigation("PaymentAllocations");
                 });
 
+            modelBuilder.Entity("Models.ScheduleTopUp", b =>
+                {
+                    b.Navigation("ConditionGroups");
+
+                    b.Navigation("Executions");
+                });
+
+            modelBuilder.Entity("Models.ScheduleTopUpConditionGroup", b =>
+                {
+                    b.Navigation("ChildGroups");
+
+                    b.Navigation("Conditions");
+                });
+
             modelBuilder.Entity("Models.School", b =>
                 {
                     b.Navigation("AdminProfiles");
@@ -10872,25 +10739,25 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Navigation("Enrollments");
                 });
 
+            modelBuilder.Entity("Models.SystemTopup", b =>
+                {
+                    b.Navigation("Applications");
+
+                    b.Navigation("ConditionGroups");
+
+                    b.Navigation("Executions");
+                });
+
+            modelBuilder.Entity("Models.SystemTopupConditionGroup", b =>
+                {
+                    b.Navigation("ChildGroups");
+
+                    b.Navigation("Conditions");
+                });
+
             modelBuilder.Entity("Models.TopupExecution", b =>
                 {
                     b.Navigation("Targets");
-                });
-
-            modelBuilder.Entity("Models.TopupRule", b =>
-                {
-                    b.Navigation("Conditions");
-
-                    b.Navigation("Executions");
-
-                    b.Navigation("Schedule");
-
-                    b.Navigation("SystemApplications");
-                });
-
-            modelBuilder.Entity("Models.TopupSchedule", b =>
-                {
-                    b.Navigation("Executions");
                 });
 
             modelBuilder.Entity("Models.User", b =>

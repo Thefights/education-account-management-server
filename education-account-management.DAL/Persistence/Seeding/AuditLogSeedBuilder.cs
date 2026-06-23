@@ -15,7 +15,7 @@ namespace Persistence.Seeding
             {
                 Id = id,
                 Category = id % 3 == 0
-                       ? AuditLogCategory.TopupConfig
+                       ? AuditLogCategory.Topup
                        : id % 2 == 0 ? AuditLogCategory.Transaction : AuditLogCategory.Security,
                 Action = id % 2 == 0 ? "CreditTransactionCreated" : "AdminLoginSucceeded",
                 IpAddress = $"127.0.0.{id}",

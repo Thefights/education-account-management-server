@@ -13,7 +13,7 @@ public sealed class TopupSystemApplicationSeedBuilder : ISeedBuilder
             new TopupSystemApplication
             {
                 Id = 1,
-                TopupRuleId = 21,
+                SystemTopupId = 21,
                 EducationAccountId = 3,
                 TopupExecutionTargetId = 3
             });

@@ -36,6 +36,18 @@ public static class ModelRelationshipConfigurator
             .WithOne(transaction => transaction.TopupExecutionTarget)
             .HasForeignKey<TopupExecutionTarget>(target => target.EducationCreditTransactionId);
 
+        modelBuilder.Entity<SystemTopupConditionGroup>()
+            .HasOne(group => group.ParentGroup)
+            .WithMany(group => group.ChildGroups)
+            .HasForeignKey(group => group.ParentGroupId)
+            .OnDelete(DeleteBehavior.NoAction);
+
+        modelBuilder.Entity<ScheduleTopUpConditionGroup>()
+            .HasOne(group => group.ParentGroup)
+            .WithMany(group => group.ChildGroups)
+            .HasForeignKey(group => group.ParentGroupId)
+            .OnDelete(DeleteBehavior.NoAction);
+
         modelBuilder.Entity<OutstandingDeductionTarget>()
             .HasOne(target => target.EducationCreditTransaction)
             .WithOne(transaction => transaction.OutstandingDeductionTarget)

@@ -3,7 +3,7 @@
 ### AuditLogCategory
 - AccountCreation
 - StatusChange
-- TopupConfig
+- Topup
 - Security
 - Transaction
 - Billing
@@ -77,31 +77,29 @@
 - Pending
 - Executing
 - Completed
-### TopupMatchMode
+### TopupLogicalOperator
 - And
 - Or
-### TopupRuleConditionField
+### TopupConditionField
 - Age
 - Balance
 - SchoolingStatus
-### TopupRuleConditionOperator
+### TopupConditionOperator
 - Equals
 - NotEquals
 - GreaterThan
 - GreaterThanOrEqual
 - LessThan
 - LessThanOrEqual
-### TopupRuleStatus
+- Between
+### SystemTopupStatus
 - Active
 - Inactive
-### TopupRuleType
-- System
-- Schedule
-### TopupScheduleStatus
+### ScheduleTopUpStatus
 - Active
 - Inactive
 - Completed
-### TopupScheduleType
+### ScheduleTopUpFrequency
 - OneTime
 - Monthly
 - Yearly
@@ -291,10 +289,10 @@
 ### TopupExecution
 - `ExecutionCode` (string)
 - `SourceType` (TopupExecutionSourceType)
-- `TopupRuleId` (int?)
-- `TopupRule` (TopupRule?)
-- `TopupScheduleId` (int?)
-- `TopupSchedule` (TopupSchedule?)
+- `SystemTopupId` (int?)
+- `SystemTopup` (SystemTopup?)
+- `ScheduleTopUpId` (int?)
+- `ScheduleTopUp` (ScheduleTopUp?)
 - `IdempotencyKey` (string)
 - `ManualAmount` (decimal?)
 - `ManualReason` (string?)
@@ -303,11 +301,9 @@
 - `SuccessCount` (int)
 - `FailedCount` (int)
 - `TotalExecutedAmount` (decimal)
-- `RuleNameSnapshot` (string?)
-- `RuleTypeSnapshot` (TopupRuleType?)
-- `MatchModeSnapshot` (TopupMatchMode?)
+- `TopupNameSnapshot` (string?)
 - `TopupAmountSnapshot` (decimal?)
-- `RuleConditionsSnapshot` (string?)
+- `ConditionsSnapshot` (string?)
 - `Targets` (ICollection<TopupExecutionTarget>)
 ### TopupExecutionTarget
 - `TopupExecutionId` (int)
@@ -321,39 +317,64 @@
 - `MatchedConditionsSnapshot` (string?)
 - `EducationCreditTransactionId` (int?)
 - `EducationCreditTransaction` (EducationCreditTransaction?)
-### TopupRule
-- `RuleName` (string)
-- `Type` (TopupRuleType)
-- `MatchMode` (TopupMatchMode)
+### SystemTopup
+- `Name` (string)
 - `TopupAmount` (decimal?)
-- `Status` (TopupRuleStatus)
-- `Conditions` (ICollection<TopupRuleCondition>)
-- `Schedule` (TopupSchedule?)
+- `Status` (SystemTopupStatus)
+- `ConditionGroups` (ICollection<SystemTopupConditionGroup>)
 - `Executions` (ICollection<TopupExecution>)
-- `SystemApplications` (ICollection<TopupSystemApplication>)
-### TopupRuleCondition
-- `Field` (TopupRuleConditionField)
-- `Operator` (TopupRuleConditionOperator)
+- `Applications` (ICollection<TopupSystemApplication>)
+### SystemTopupConditionGroup
+- `SystemTopupId` (int)
+- `SystemTopup` (SystemTopup)
+- `ParentGroupId` (int?)
+- `ParentGroup` (SystemTopupConditionGroup?)
+- `LogicalOperator` (TopupLogicalOperator)
+- `DisplayOrder` (int)
+- `ChildGroups` (ICollection<SystemTopupConditionGroup>)
+- `Conditions` (ICollection<SystemTopupCondition>)
+### SystemTopupCondition
+- `GroupId` (int)
+- `Group` (SystemTopupConditionGroup)
+- `Field` (TopupConditionField)
+- `Operator` (TopupConditionOperator)
 - `ValueText` (string?)
 - `ValueNumber` (decimal?)
-- `ConditionAmount` (decimal?)
+- `ValueNumberTo` (decimal?)
 - `DisplayOrder` (int)
-- `TopupRuleId` (int)
-- `TopupRule` (TopupRule)
-### TopupSchedule
-- `TopupRuleId` (int)
-- `TopupRule` (TopupRule)
-- `Frequency` (TopupScheduleType)
+### ScheduleTopUp
+- `Name` (string)
+- `TopupAmount` (decimal?)
+- `Frequency` (ScheduleTopUpFrequency)
 - `OneTimeExecutionAt` (DateTime?)
 - `ExecuteAtDay` (int?)
 - `ExecuteAtMonth` (int?)
 - `ExecutionTime` (TimeOnly)
 - `NextExecutionAt` (DateTime?)
-- `Status` (TopupScheduleStatus)
+- `Status` (ScheduleTopUpStatus)
+- `ConditionGroups` (ICollection<ScheduleTopUpConditionGroup>)
 - `Executions` (ICollection<TopupExecution>)
+### ScheduleTopUpConditionGroup
+- `ScheduleTopUpId` (int)
+- `ScheduleTopUp` (ScheduleTopUp)
+- `ParentGroupId` (int?)
+- `ParentGroup` (ScheduleTopUpConditionGroup?)
+- `LogicalOperator` (TopupLogicalOperator)
+- `DisplayOrder` (int)
+- `ChildGroups` (ICollection<ScheduleTopUpConditionGroup>)
+- `Conditions` (ICollection<ScheduleTopUpCondition>)
+### ScheduleTopUpCondition
+- `GroupId` (int)
+- `Group` (ScheduleTopUpConditionGroup)
+- `Field` (TopupConditionField)
+- `Operator` (TopupConditionOperator)
+- `ValueText` (string?)
+- `ValueNumber` (decimal?)
+- `ValueNumberTo` (decimal?)
+- `DisplayOrder` (int)
 ### TopupSystemApplication
-- `TopupRuleId` (int)
-- `TopupRule` (TopupRule)
+- `SystemTopupId` (int)
+- `SystemTopup` (SystemTopup)
 - `EducationAccountId` (int)
 - `EducationAccount` (EducationAccount)
 - `TopupExecutionTargetId` (int)

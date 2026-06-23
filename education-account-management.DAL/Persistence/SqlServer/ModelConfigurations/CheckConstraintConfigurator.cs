@@ -74,22 +74,22 @@ public static class CheckConstraintConfigurator
                 "[BalanceBefore] >= 0 AND [RemainingBefore] >= 0 AND [DeductedAmount] >= 0 " +
                 "AND [BalanceAfter] >= 0 AND [RemainingAfter] >= 0"));
 
-        modelBuilder.Entity<TopupRule>().ToTable(table =>
+        modelBuilder.Entity<SystemTopup>().ToTable(table =>
             table.HasCheckConstraint(
-                "CK_TopupRule_Amount_By_MatchMode",
-                "([MatchMode] = 1 AND [TopupAmount] > 0) OR " +
-                "([MatchMode] = 2 AND [TopupAmount] IS NULL)"));
+                "CK_SystemTopup_Amount_By_Status",
+                "([Status] = 1 AND [TopupAmount] > 0) OR " +
+                "([Status] = 2 AND ([TopupAmount] IS NULL OR [TopupAmount] > 0))"));
 
-        modelBuilder.Entity<TopupRuleCondition>().ToTable(table =>
-        {
+        modelBuilder.Entity<ScheduleTopUp>().ToTable(table =>
             table.HasCheckConstraint(
-                "CK_TopupRuleCondition_Value_By_Field",
-                "([Field] IN (1, 2) AND [ValueNumber] IS NOT NULL AND [ValueText] IS NULL) OR " +
-                "([Field] = 3 AND [ValueText] IS NOT NULL AND [ValueNumber] IS NULL)");
-            table.HasCheckConstraint(
-                "CK_TopupRuleCondition_DisplayOrder_NonNegative",
-                "[DisplayOrder] >= 0");
-        });
+                "CK_ScheduleTopUp_Amount_By_Status",
+                "([Status] IN (1, 3) AND [TopupAmount] > 0) OR " +
+                "([Status] = 2 AND ([TopupAmount] IS NULL OR [TopupAmount] > 0))"));
+
+        ConfigureConditionConstraints<SystemTopupCondition>(modelBuilder, "SystemTopupCondition");
+        ConfigureConditionConstraints<ScheduleTopUpCondition>(modelBuilder, "ScheduleTopUpCondition");
+        ConfigureGroupConstraints<SystemTopupConditionGroup>(modelBuilder, "SystemTopupConditionGroup");
+        ConfigureGroupConstraints<ScheduleTopUpConditionGroup>(modelBuilder, "ScheduleTopUpConditionGroup");
 
         modelBuilder.Entity<TopupExecution>().ToTable(table =>
         {
@@ -100,11 +100,11 @@ public static class CheckConstraintConfigurator
                 "AND [SuccessCount] + [FailedCount] <= [TotalTargetCount]");
             table.HasCheckConstraint(
                 "CK_TopupExecution_Source_Fields",
-                "([SourceType] = 1 AND [TopupRuleId] IS NOT NULL AND [TopupScheduleId] IS NULL " +
+                "([SourceType] = 1 AND [SystemTopupId] IS NOT NULL AND [ScheduleTopUpId] IS NULL " +
                 "AND [ManualAmount] IS NULL AND [ManualReason] IS NULL) OR " +
-                "([SourceType] = 2 AND [TopupRuleId] IS NOT NULL AND [TopupScheduleId] IS NOT NULL " +
+                "([SourceType] = 2 AND [SystemTopupId] IS NULL AND [ScheduleTopUpId] IS NOT NULL " +
                 "AND [ManualAmount] IS NULL AND [ManualReason] IS NULL) OR " +
-                "([SourceType] = 3 AND [TopupRuleId] IS NULL AND [TopupScheduleId] IS NULL " +
+                "([SourceType] = 3 AND [SystemTopupId] IS NULL AND [ScheduleTopUpId] IS NULL " +
                 "AND [ManualAmount] > 0 AND [ManualReason] IS NOT NULL)");
         });
 
@@ -118,5 +118,28 @@ public static class CheckConstraintConfigurator
                 "([Status] = 4 AND [EducationCreditTransactionId] IS NULL AND [FailureReason] IS NOT NULL) OR " +
                 "([Status] IN (1, 2) AND [EducationCreditTransactionId] IS NULL)");
         });
+    }
+
+    private static void ConfigureConditionConstraints<TCondition>(ModelBuilder modelBuilder, string tableName)
+        where TCondition : BaseEntity
+    {
+        modelBuilder.Entity<TCondition>().ToTable(table =>
+        {
+            table.HasCheckConstraint(
+                $"CK_{tableName}_Value_By_Field",
+                "([Field] IN (1, 2) AND [ValueNumber] IS NOT NULL AND [ValueText] IS NULL AND " +
+                "(([Operator] = 7 AND [ValueNumberTo] IS NOT NULL AND [ValueNumberTo] >= [ValueNumber]) OR " +
+                "([Operator] <> 7 AND [ValueNumberTo] IS NULL))) OR " +
+                "([Field] = 3 AND [Operator] IN (1, 2) AND [ValueText] IS NOT NULL " +
+                "AND [ValueNumber] IS NULL AND [ValueNumberTo] IS NULL)");
+            table.HasCheckConstraint($"CK_{tableName}_DisplayOrder_NonNegative", "[DisplayOrder] >= 0");
+        });
+    }
+
+    private static void ConfigureGroupConstraints<TGroup>(ModelBuilder modelBuilder, string tableName)
+        where TGroup : BaseEntity
+    {
+        modelBuilder.Entity<TGroup>().ToTable(table =>
+            table.HasCheckConstraint($"CK_{tableName}_DisplayOrder_NonNegative", "[DisplayOrder] >= 0"));
     }
 }

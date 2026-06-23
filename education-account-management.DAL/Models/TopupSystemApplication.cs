@@ -5,9 +5,9 @@ namespace Models
     public class TopupSystemApplication : BaseEntity
     {
         [NotDefaultValue]
-        public int TopupRuleId { get; set; }
+        public int SystemTopupId { get; set; }
         [OnDelete(OnDeleteBehavior.NoAction)]
-        public TopupRule TopupRule { get; set; } = null!;
+        public SystemTopup SystemTopup { get; set; } = null!;
 
         [NotDefaultValue]
         public int EducationAccountId { get; set; }
