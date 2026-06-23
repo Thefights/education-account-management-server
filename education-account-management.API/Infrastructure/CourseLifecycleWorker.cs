@@ -1,5 +1,7 @@
 ﻿namespace Infrastructure;
 
+using Interfaces.Courses;
+
 public class CourseLifecycleWorker(
     IServiceScopeFactory serviceScopeFactory,
     ILogger<CourseLifecycleWorker> logger,

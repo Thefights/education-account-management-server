@@ -1,17 +1,6 @@
-using Emails;
-using Enums;
 using Interfaces.Email;
 using Interfaces.Payments;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Logging;
-using Models;
-using Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Services.Payments
 {
@@ -84,7 +73,6 @@ namespace Services.Payments
             var accountIdsWithOutstandingCharges = await _chargeRepository.Query()
                 .Where(c => c.RemainingAmount > 0
                          && c.Status != ChargeStatus.Paid
-                         && c.Status != ChargeStatus.Cancelled
                          && c.Enrollment.SchoolStudent.EducationAccount.Status != EducationAccountStatus.Closed)
                 .Select(c => c.Enrollment.SchoolStudent.EducationAccountId)
                 .Distinct()
@@ -113,10 +101,9 @@ namespace Services.Payments
                         .ThenInclude(e => e.Course)
                     .Where(c => batchAccountIds.Contains(c.Enrollment.SchoolStudent.EducationAccountId)
                              && c.RemainingAmount > 0
-                             && c.Status != ChargeStatus.Paid
-                             && c.Status != ChargeStatus.Cancelled)
+                             && c.Status != ChargeStatus.Paid)
                     .OrderBy(c => c.Enrollment.SchoolStudent.EducationAccountId)
-                    .ThenBy(c => c.PaymentDueDate)
+                    .ThenBy(c => c.Enrollment.Course.FasApplicationDueDate)
                     .ToListAsync(cancellationToken);
 
                 var chargesGroupedByAccount = charges.GroupBy(c => c.Enrollment.SchoolStudent.EducationAccountId);
@@ -124,7 +111,7 @@ namespace Services.Payments
                 foreach (var accountGroup in chargesGroupedByAccount)
                 {
                     var accountId = accountGroup.Key;
-                    var accountCharges = accountGroup.OrderBy(c => c.PaymentDueDate).ToList();
+                    var accountCharges = accountGroup.OrderBy(c => c.Enrollment.Course.FasApplicationDueDate).ToList();
 
                     if (!accountsMap.TryGetValue(accountId, out var account))
                     {
@@ -165,7 +152,7 @@ namespace Services.Payments
                                 transaction.TryValidate();
                                 await _transactionRepository.AddAsync(transaction, token);
 
-                                 var payment = new Payment
+                                var payment = new Payment
                                 {
                                     EducationCreditTransaction = transaction,
                                     PaymentMethod = PaymentMethod.EducationBalance,

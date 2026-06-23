@@ -42,7 +42,6 @@ namespace Services.Payments
             var chargesInfo = await _enrollmentRepository.Query()
                 .Where(e => e.SchoolStudent.EducationAccountId == account.Id &&
                             e.Charge != null &&
-                            e.Charge.Status != ChargeStatus.Cancelled &&
                             e.Charge.Status != ChargeStatus.Paid &&
                             e.Charge.RemainingAmount > 0)
                 .Select(e => e.Charge!.RemainingAmount)
@@ -87,7 +86,7 @@ namespace Services.Payments
 
             Expression<Func<Enrollment, bool>> filterExpr = e =>
                 e.SchoolStudent.EducationAccountId == accountId &&
-                e.Charge!.Status != ChargeStatus.Cancelled;
+                e.Charge != null;
 
             if (filter.Status != StudentTuitionFilterStatus.All)
             {
@@ -102,14 +101,14 @@ namespace Services.Payments
                     filterExpr = e =>
                         e.SchoolStudent.EducationAccountId == accountId &&
                         (e.Charge!.Status == ChargeStatus.Outstanding || 
-                         ((e.Charge.Status == ChargeStatus.Unpaid || e.Charge.Status == ChargeStatus.PartiallyPaid) && e.Charge.PaymentDueDate < now));
+                         ((e.Charge.Status == ChargeStatus.Unpaid || e.Charge.Status == ChargeStatus.PartiallyPaid) && e.Course.FasApplicationDueDate < now));
                 }
                 else if (filter.Status == StudentTuitionFilterStatus.Due)
                 {
                     filterExpr = e =>
                         e.SchoolStudent.EducationAccountId == accountId &&
                         (e.Charge!.Status == ChargeStatus.Unpaid || e.Charge.Status == ChargeStatus.PartiallyPaid) &&
-                        e.Charge.PaymentDueDate >= now;
+                        e.Course.FasApplicationDueDate >= now;
                 }
             }
 
@@ -121,9 +120,9 @@ namespace Services.Payments
                     CourseCode = e.Course.CourseCode,
                     CourseName = e.CourseNameSnapshot,
                     CourseDescription = e.CourseDescriptionSnapshot,
-                    PaymentDueDate = e.Charge!.PaymentDueDate,
+                    PaymentDueDate = e.Course.FasApplicationDueDate,
                     PaymentStatus = e.Charge.Status == ChargeStatus.Paid ? "Paid" :
-                                    (e.Charge.Status == ChargeStatus.Outstanding || e.Charge.PaymentDueDate < now) ? "Overdue" :
+                                    (e.Charge.Status == ChargeStatus.Outstanding || e.Course.FasApplicationDueDate < now) ? "Overdue" :
                                     "Due",
                     CourseFee = e.Charge.CourseFeeAmountSnapshot,
                     MiscFee = e.Charge.MiscFeeAmountSnapshot,
