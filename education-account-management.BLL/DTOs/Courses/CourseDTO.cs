@@ -94,3 +94,4 @@ namespace DTOs.Courses
         public byte[] RowVersion { get; set; } = [];
     }
 }
+
