@@ -354,6 +354,9 @@ public class StripeService(
         var sessionData = JsonSerializer.Deserialize<StripeSessionMetadataDTO>(metadata["sessionData"]);
         if (sessionData == null) throw new DataNotFoundException($"Session data not found for sessionId {session.Id}");
 
+        var accountId = _currentUserService.UserId;
+        if(sessionData.AccountId != accountId) throw new DataConflictException($"Current User not belong to payment Session {session.Id}");
+
         await ProcessPaymentInternalAsync(
            sessionData.PaymentId,
            sessionData.AccountId,
@@ -553,8 +556,14 @@ public class StripeService(
     /// </summary>
     public async Task<PaymentSessionResponseDTO> HandleSessionSuccessAsync(string sessionId, CancellationToken cancellationToken = default)
     {
+        var accountId = _currentUserService.UserId;
         var payment = await _paymentRepository.Query(tracking: false)
-            .FirstOrDefaultAsync(p => p.ExternalReference == sessionId, cancellationToken);
+            .FirstOrDefaultAsync(p => 
+            p.ExternalReference == sessionId &&
+            p.EducationCreditTransaction != null &&
+            p.EducationCreditTransaction.EducationAccountId == accountId,
+            cancellationToken);
+
         if (payment == null) throw new DataNotFoundException($"Session not found for sessionId {sessionId}");
 
         return new PaymentSessionResponseDTO
