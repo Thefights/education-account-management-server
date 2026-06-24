@@ -16,6 +16,7 @@ builder.Services.AddApplicationDbContext<ApplicationDbContext>(configuration);
 builder.Services.AddBaseServices(configuration);
 builder.Services.AddSecurityServices(configuration);
 builder.Services.AddSwaggerServices(configuration);
+builder.Services.AddStripeServices(builder.Configuration);
 builder.Services.AddMiddlewares();
 
 var app = builder.Build();

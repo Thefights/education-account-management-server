@@ -1,5 +1,7 @@
 using Amazon.Runtime;
 using Amazon.S3;
+using BLL.Interfaces.Payments;
+using BLL.Services.Payments;
 using DTOs.Courses;
 using DTOs.Schools;
 using Emails;
@@ -83,6 +85,7 @@ namespace Extensions.DependencyInjection
             services.AddScoped<ITopupService, TopupService>();
             services.AddScoped<ITopupManagementQueryService, TopupManagementQueryService>();
             services.AddScoped<ITopupBackgroundService, TopupBackgroundService>();
+            services.AddScoped<IStripeService, StripeService>();
 
             services.AddScoped<IEducationAccountSweepReportService, EducationAccountSweepReportService>();
             services.AddScoped<IAiAssistantSettingService, AiAssistantSettingService>();
