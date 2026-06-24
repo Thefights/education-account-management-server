@@ -32,9 +32,31 @@ namespace Persistence.SqlServer
 
         public DbSet<Charge> Charge { get; set; }
 
+        public DbSet<ChargeInstallment> ChargeInstallment { get; set; }
+
         public DbSet<Payment> Payment { get; set; }
 
         public DbSet<PaymentAllocation> PaymentAllocation { get; set; }
+
+        public DbSet<Country> Country { get; set; }
+
+        public DbSet<FasScheme> FasScheme { get; set; }
+
+        public DbSet<FasSchemeConditionGroup> FasSchemeConditionGroup { get; set; }
+
+        public DbSet<FasSchemeCondition> FasSchemeCondition { get; set; }
+
+        public DbSet<FasSchemeTier> FasSchemeTier { get; set; }
+
+        public DbSet<FasSchemeRequiredDocument> FasSchemeRequiredDocument { get; set; }
+
+        public DbSet<FasSchemeCourse> FasSchemeCourse { get; set; }
+
+        public DbSet<FasApplication> FasApplication { get; set; }
+
+        public DbSet<FasApplicationDocument> FasApplicationDocument { get; set; }
+
+        public DbSet<FasTierOverrideHistory> FasTierOverrideHistory { get; set; }
 
         public DbSet<OutstandingDeductionRun> OutstandingDeductionRun { get; set; }
 

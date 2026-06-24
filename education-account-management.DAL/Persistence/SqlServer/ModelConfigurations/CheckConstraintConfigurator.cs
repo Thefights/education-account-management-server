@@ -7,7 +7,10 @@ namespace Persistence.SqlServer.ModelConfigurations
         public static void ConfigureCheckConstraints(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AiAssistantSetting>().ToTable(table =>
-                table.HasCheckConstraint("CK_AiAssistantSetting_Singleton", "[Id] = 1"));
+            {
+                table.HasCheckConstraint("CK_AiAssistantSetting_Singleton", "[Id] = 1");
+                table.HasCheckConstraint("CK_AiAssistantSetting_TaxRate", "[TaxRate] >= 0");
+            });
 
             modelBuilder.Entity<EducationAccount>().ToTable(table =>
                 table.HasCheckConstraint(
@@ -32,7 +35,7 @@ namespace Persistence.SqlServer.ModelConfigurations
                     "[CourseFeeAmount] >= 0 AND [MiscFeeAmount] >= 0 AND [GstAmount] >= 0");
                 table.HasCheckConstraint(
                     "CK_Course_Date_Order",
-                    "[FasApplicationDueDate] <= [StartDate] AND [StartDate] <= [EndDate]");
+                    "[FasApplicationDueDate] <= [StartDate] AND [EnrollmentDeadline] <= [StartDate] AND [StartDate] <= [EndDate]");
             });
 
             modelBuilder.Entity<Charge>().ToTable(table =>
@@ -59,6 +62,15 @@ namespace Persistence.SqlServer.ModelConfigurations
                     "CK_PaymentAllocation_Amounts",
                     "[Amount] > 0 AND [ChargeGrossAmountSnapshot] >= 0 " +
                     "AND [ChargeNetAmountSnapshot] >= 0 AND [ChargeRemainingAmountSnapshot] >= 0"));
+
+            modelBuilder.Entity<ChargeInstallment>().ToTable(table =>
+            {
+                table.HasCheckConstraint(
+                    "CK_ChargeInstallment_Amounts",
+                    "[Amount] > 0 AND [PaidAmount] >= 0 AND [RemainingAmount] >= 0 " +
+                    "AND [PaidAmount] <= [Amount] AND [RemainingAmount] = [Amount] - [PaidAmount]");
+                table.HasCheckConstraint("CK_ChargeInstallment_Number_Positive", "[InstallmentNumber] > 0");
+            });
 
             modelBuilder.Entity<OutstandingDeductionRun>().ToTable(table =>
                 table.HasCheckConstraint(
@@ -89,6 +101,8 @@ namespace Persistence.SqlServer.ModelConfigurations
             ConfigureConditionConstraints<ScheduleTopUpCondition>(modelBuilder, "ScheduleTopUpCondition");
             ConfigureGroupConstraints<SystemTopupConditionGroup>(modelBuilder, "SystemTopupConditionGroup");
             ConfigureGroupConstraints<ScheduleTopUpConditionGroup>(modelBuilder, "ScheduleTopUpConditionGroup");
+            ConfigureFasConditionConstraints(modelBuilder);
+            ConfigureGroupConstraints<FasSchemeConditionGroup>(modelBuilder, "FasSchemeConditionGroup");
 
             modelBuilder.Entity<TopupExecution>().ToTable(table =>
             {
@@ -116,6 +130,21 @@ namespace Persistence.SqlServer.ModelConfigurations
                     "AND [EducationCreditTransactionId] IS NOT NULL AND [FailureReason] IS NULL) OR " +
                     "([Status] = 4 AND [EducationCreditTransactionId] IS NULL AND [FailureReason] IS NOT NULL) OR " +
                     "([Status] IN (1, 2) AND [EducationCreditTransactionId] IS NULL)");
+            });
+        }
+
+        private static void ConfigureFasConditionConstraints(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<FasSchemeCondition>().ToTable(table =>
+            {
+                table.HasCheckConstraint(
+                    "CK_FasSchemeCondition_Value_By_Field",
+                    "([Field] IN (1, 4, 5) AND [ValueNumber] IS NOT NULL AND [CountryId] IS NULL AND " +
+                    "(([Operator] = 7 AND [ValueNumberTo] IS NOT NULL AND [ValueNumberTo] >= [ValueNumber]) OR " +
+                    "([Operator] <> 7 AND [ValueNumberTo] IS NULL))) OR " +
+                    "([Field] IN (2, 3) AND [CountryId] IS NOT NULL AND [Operator] IN (1, 2) " +
+                    "AND [ValueNumber] IS NULL AND [ValueNumberTo] IS NULL)");
+                table.HasCheckConstraint("CK_FasSchemeCondition_DisplayOrder_NonNegative", "[DisplayOrder] >= 0");
             });
         }
 

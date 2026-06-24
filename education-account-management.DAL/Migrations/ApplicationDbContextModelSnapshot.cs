@@ -219,6 +219,9 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<bool>("IsEnabled")
                         .HasColumnType("bit");
 
+                    b.Property<decimal>("TaxRate")
+                        .HasColumnType("decimal(5,4)");
+
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
@@ -230,6 +233,8 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.ToTable("AiAssistantSetting", t =>
                         {
                             t.HasCheckConstraint("CK_AiAssistantSetting_Singleton", "[Id] = 1");
+
+                            t.HasCheckConstraint("CK_AiAssistantSetting_TaxRate", "[TaxRate] >= 0");
                         });
 
                     b.HasData(
@@ -238,7 +243,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             Id = 1,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            IsEnabled = true
+                            IsEnabled = true,
+                            TaxRate = 0.09m
                         });
                 });
 
@@ -394,6 +400,32 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("AppliedFasApplicationId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("AppliedFasCourseFeeSubsidyValueSnapshot")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("AppliedFasIsPerComponentSnapshot")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal?>("AppliedFasMiscFeeSubsidyValueSnapshot")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("AppliedFasSchemeNameSnapshot")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<int?>("AppliedFasSubsidyTypeSnapshot")
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("AppliedFasSubsidyValueSnapshot")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("AppliedFasTierNameSnapshot")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<DateTime?>("BecameOutstandingAt")
                         .HasColumnType("datetime2");
 
@@ -473,6 +505,9 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<decimal>("SubsidyAmount")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<decimal>("TaxRateSnapshot")
+                        .HasColumnType("decimal(5,4)");
+
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
@@ -480,6 +515,8 @@ namespace educationaccountmanagement.DAL.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AppliedFasApplicationId");
 
                     b.HasIndex("BecameOutstandingAt");
 
@@ -500,6 +537,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 1,
+                            AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-A1B2C3D",
                             CourseDescriptionSnapshot = "Foundation course in applied mathematics.",
                             CourseEndDateSnapshot = new DateTime(2026, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -518,11 +556,13 @@ namespace educationaccountmanagement.DAL.Migrations
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
                             Status = 3,
-                            SubsidyAmount = 0m
+                            SubsidyAmount = 0m,
+                            TaxRateSnapshot = 0.09m
                         },
                         new
                         {
                             Id = 2,
+                            AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-B2C3D4E",
                             CourseDescriptionSnapshot = "Introduction to programming and computing.",
                             CourseEndDateSnapshot = new DateTime(2026, 12, 2, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -541,11 +581,13 @@ namespace educationaccountmanagement.DAL.Migrations
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Eastbridge Secondary School",
                             Status = 2,
-                            SubsidyAmount = 0m
+                            SubsidyAmount = 0m,
+                            TaxRateSnapshot = 0.09m
                         },
                         new
                         {
                             Id = 3,
+                            AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-C3D4E5F",
                             CourseDescriptionSnapshot = "Professional written and verbal communication.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -564,11 +606,13 @@ namespace educationaccountmanagement.DAL.Migrations
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Westhaven Secondary School",
                             Status = 2,
-                            SubsidyAmount = 0m
+                            SubsidyAmount = 0m,
+                            TaxRateSnapshot = 0.09m
                         },
                         new
                         {
                             Id = 4,
+                            AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-D4E5F6G",
                             CourseDescriptionSnapshot = "Environmental systems and sustainability.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 2, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -587,11 +631,13 @@ namespace educationaccountmanagement.DAL.Migrations
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Southpoint Secondary School",
                             Status = 3,
-                            SubsidyAmount = 0m
+                            SubsidyAmount = 0m,
+                            TaxRateSnapshot = 0.09m
                         },
                         new
                         {
                             Id = 5,
+                            AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-E5F6G7H",
                             CourseDescriptionSnapshot = "Digital design principles and production.",
                             CourseEndDateSnapshot = new DateTime(2026, 9, 15, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -610,11 +656,13 @@ namespace educationaccountmanagement.DAL.Migrations
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Central Heights School",
                             Status = 2,
-                            SubsidyAmount = 0m
+                            SubsidyAmount = 0m,
+                            TaxRateSnapshot = 0.09m
                         },
                         new
                         {
                             Id = 6,
+                            AppliedFasIsPerComponentSnapshot = false,
                             BecameOutstandingAt = new DateTime(2026, 2, 7, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseCodeSnapshot = "CRS-2026-F6G7H8J",
                             CourseDescriptionSnapshot = "Core hospitality service operations.",
@@ -635,11 +683,13 @@ namespace educationaccountmanagement.DAL.Migrations
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Riverside Learning Institute",
                             Status = 4,
-                            SubsidyAmount = 0m
+                            SubsidyAmount = 0m,
+                            TaxRateSnapshot = 0.09m
                         },
                         new
                         {
                             Id = 7,
+                            AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-G7H8J9K",
                             CourseDescriptionSnapshot = "Fundamentals of electrical systems.",
                             CourseEndDateSnapshot = new DateTime(2026, 8, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -658,11 +708,13 @@ namespace educationaccountmanagement.DAL.Migrations
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Lakeside Technical School",
                             Status = 2,
-                            SubsidyAmount = 0m
+                            SubsidyAmount = 0m,
+                            TaxRateSnapshot = 0.09m
                         },
                         new
                         {
                             Id = 8,
+                            AppliedFasIsPerComponentSnapshot = false,
                             BecameOutstandingAt = new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseCodeSnapshot = "CRS-2026-H8J9K0L",
                             CourseDescriptionSnapshot = "Writing techniques across common genres.",
@@ -683,11 +735,13 @@ namespace educationaccountmanagement.DAL.Migrations
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Greenfield Academy",
                             Status = 4,
-                            SubsidyAmount = 0m
+                            SubsidyAmount = 0m,
+                            TaxRateSnapshot = 0.09m
                         },
                         new
                         {
                             Id = 9,
+                            AppliedFasIsPerComponentSnapshot = false,
                             BecameOutstandingAt = new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseCodeSnapshot = "CRS-2026-J9K0L1M",
                             CourseDescriptionSnapshot = "Data preparation, analysis and reporting.",
@@ -707,11 +761,13 @@ namespace educationaccountmanagement.DAL.Migrations
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Harbourfront School",
                             Status = 4,
-                            SubsidyAmount = 0m
+                            SubsidyAmount = 0m,
+                            TaxRateSnapshot = 0.09m
                         },
                         new
                         {
                             Id = 10,
+                            AppliedFasIsPerComponentSnapshot = false,
                             BecameOutstandingAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseCodeSnapshot = "CRS-2026-K0L1M2N",
                             CourseDescriptionSnapshot = "Archived office applications programme.",
@@ -731,7 +787,214 @@ namespace educationaccountmanagement.DAL.Migrations
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Hillcrest Education Centre",
                             Status = 4,
-                            SubsidyAmount = 0m
+                            SubsidyAmount = 0m,
+                            TaxRateSnapshot = 0.09m
+                        });
+                });
+
+            modelBuilder.Entity("Models.ChargeInstallment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime?>("BecameOverdueAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ChargeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DueDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("InstallmentNumber")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("PaidAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("RemainingAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ChargeId");
+
+                    b.HasIndex("DueDate");
+
+                    b.HasIndex("Status");
+
+                    b.HasIndex("ChargeId", "InstallmentNumber")
+                        .IsUnique()
+                        .HasFilter("\"IsDeleted\" = 0 AND \"ChargeId\" IS NOT NULL AND \"InstallmentNumber\" IS NOT NULL");
+
+                    b.ToTable("ChargeInstallment", t =>
+                        {
+                            t.HasCheckConstraint("CK_ChargeInstallment_Amounts", "[Amount] > 0 AND [PaidAmount] >= 0 AND [RemainingAmount] >= 0 AND [PaidAmount] <= [Amount] AND [RemainingAmount] = [Amount] - [PaidAmount]");
+
+                            t.HasCheckConstraint("CK_ChargeInstallment_Number_Positive", "[InstallmentNumber] > 0");
+                        });
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Amount = 120m,
+                            ChargeId = 1,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 8, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
+                            IsDeleted = false,
+                            PaidAmount = 120m,
+                            RemainingAmount = 0m,
+                            Status = 4
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Amount = 70m,
+                            ChargeId = 2,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 8, 2, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
+                            IsDeleted = false,
+                            PaidAmount = 35m,
+                            RemainingAmount = 35m,
+                            Status = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Amount = 80m,
+                            ChargeId = 3,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 8, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
+                            IsDeleted = false,
+                            PaidAmount = 70m,
+                            RemainingAmount = 10m,
+                            Status = 2
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Amount = 180m,
+                            ChargeId = 4,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 8, 4, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
+                            IsDeleted = false,
+                            PaidAmount = 180m,
+                            RemainingAmount = 0m,
+                            Status = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Amount = 100m,
+                            ChargeId = 5,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 8, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
+                            IsDeleted = false,
+                            PaidAmount = 90m,
+                            RemainingAmount = 10m,
+                            Status = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Amount = 110m,
+                            BecameOverdueAt = new DateTime(2026, 5, 7, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ChargeId = 6,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 5, 6, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
+                            IsDeleted = false,
+                            PaidAmount = 75m,
+                            RemainingAmount = 35m,
+                            Status = 3
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Amount = 120m,
+                            ChargeId = 7,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 5, 7, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
+                            IsDeleted = false,
+                            PaidAmount = 100m,
+                            RemainingAmount = 20m,
+                            Status = 2
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Amount = 130m,
+                            BecameOverdueAt = new DateTime(2026, 5, 9, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ChargeId = 8,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 5, 8, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
+                            IsDeleted = false,
+                            PaidAmount = 100m,
+                            RemainingAmount = 30m,
+                            Status = 3
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Amount = 140m,
+                            BecameOverdueAt = new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ChargeId = 9,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
+                            IsDeleted = false,
+                            PaidAmount = 0m,
+                            RemainingAmount = 140m,
+                            Status = 3
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Amount = 150m,
+                            BecameOverdueAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ChargeId = 10,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
+                            IsDeleted = false,
+                            PaidAmount = 0m,
+                            RemainingAmount = 150m,
+                            Status = 3
                         });
                 });
 
@@ -2764,6 +3027,152 @@ namespace educationaccountmanagement.DAL.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Models.Country", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(2)
+                        .HasColumnType("nvarchar(2)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Code")
+                        .IsUnique()
+                        .HasFilter("\"IsDeleted\" = 0 AND \"Code\" IS NOT NULL");
+
+                    b.HasIndex("IsActive");
+
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasFilter("\"IsDeleted\" = 0 AND \"Name\" IS NOT NULL");
+
+                    b.ToTable("Country");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Code = "SG",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Singapore"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Code = "MY",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Malaysia"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Code = "ID",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Indonesia"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Code = "VN",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Vietnam"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Code = "TH",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Thailand"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Code = "PH",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Philippines"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Code = "CN",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "China"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Code = "IN",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "India"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Code = "AU",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Australia"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Code = "GB",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "United Kingdom"
+                        });
+                });
+
             modelBuilder.Entity("Models.Course", b =>
                 {
                     b.Property<int>("Id")
@@ -2771,6 +3180,18 @@ namespace educationaccountmanagement.DAL.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("AllowFullPayment")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("AllowInstallment12Months")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("AllowInstallment3Months")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("AllowInstallment6Months")
+                        .HasColumnType("bit");
 
                     b.Property<string>("CourseCode")
                         .IsRequired()
@@ -2799,6 +3220,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         .HasColumnType("nvarchar(1000)");
 
                     b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("EnrollmentDeadline")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("FasApplicationDueDate")
@@ -2846,6 +3270,8 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasIndex("EndDate");
 
+                    b.HasIndex("EnrollmentDeadline");
+
                     b.HasIndex("FasApplicationDueDate");
 
                     b.HasIndex("SchoolId");
@@ -2862,19 +3288,24 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             t.HasCheckConstraint("CK_Course_Amounts_NonNegative", "[CourseFeeAmount] >= 0 AND [MiscFeeAmount] >= 0 AND [GstAmount] >= 0");
 
-                            t.HasCheckConstraint("CK_Course_Date_Order", "[FasApplicationDueDate] <= [StartDate] AND [StartDate] <= [EndDate]");
+                            t.HasCheckConstraint("CK_Course_Date_Order", "[FasApplicationDueDate] <= [StartDate] AND [EnrollmentDeadline] <= [StartDate] AND [StartDate] <= [EndDate]");
                         });
 
                     b.HasData(
                         new
                         {
                             Id = 1,
+                            AllowFullPayment = true,
+                            AllowInstallment12Months = false,
+                            AllowInstallment3Months = true,
+                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-A1B2C3D",
                             CourseFeeAmount = 100m,
                             CourseName = "Applied Mathematics",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Foundation course in applied mathematics.",
                             EndDate = new DateTime(2026, 9, 30, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentDeadline = new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasApplicationDueDate = new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 9.90m,
                             IsDeleted = false,
@@ -2887,12 +3318,17 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 2,
+                            AllowFullPayment = true,
+                            AllowInstallment12Months = false,
+                            AllowInstallment3Months = true,
+                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-B2C3D4E",
                             CourseFeeAmount = 115m,
                             CourseName = "Computer Science Fundamentals",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Introduction to programming and computing.",
                             EndDate = new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentDeadline = new DateTime(2026, 7, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasApplicationDueDate = new DateTime(2026, 7, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 11.43m,
                             IsDeleted = false,
@@ -2905,12 +3341,17 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 3,
+                            AllowFullPayment = true,
+                            AllowInstallment12Months = false,
+                            AllowInstallment3Months = true,
+                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-C3D4E5F",
                             CourseFeeAmount = 130m,
                             CourseName = "Business Communication",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Professional written and verbal communication.",
                             EndDate = new DateTime(2026, 10, 2, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentDeadline = new DateTime(2026, 7, 3, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasApplicationDueDate = new DateTime(2026, 7, 3, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 13.05m,
                             IsDeleted = false,
@@ -2923,12 +3364,17 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 4,
+                            AllowFullPayment = true,
+                            AllowInstallment12Months = false,
+                            AllowInstallment3Months = true,
+                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-D4E5F6G",
                             CourseFeeAmount = 145m,
                             CourseName = "Environmental Science",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Environmental systems and sustainability.",
                             EndDate = new DateTime(2026, 8, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentDeadline = new DateTime(2026, 2, 4, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasApplicationDueDate = new DateTime(2026, 2, 4, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 14.58m,
                             IsDeleted = false,
@@ -2941,12 +3387,17 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 5,
+                            AllowFullPayment = true,
+                            AllowInstallment12Months = false,
+                            AllowInstallment3Months = true,
+                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-E5F6G7H",
                             CourseFeeAmount = 160m,
                             CourseName = "Digital Media Design",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Digital design principles and production.",
                             EndDate = new DateTime(2026, 8, 4, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentDeadline = new DateTime(2026, 2, 5, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasApplicationDueDate = new DateTime(2026, 2, 5, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 16.20m,
                             IsDeleted = false,
@@ -2959,12 +3410,17 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 6,
+                            AllowFullPayment = true,
+                            AllowInstallment12Months = false,
+                            AllowInstallment3Months = true,
+                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-F6G7H8J",
                             CourseFeeAmount = 175m,
                             CourseName = "Hospitality Operations",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Core hospitality service operations.",
                             EndDate = new DateTime(2026, 8, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentDeadline = new DateTime(2026, 2, 6, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasApplicationDueDate = new DateTime(2026, 2, 6, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 17.73m,
                             IsDeleted = false,
@@ -2977,12 +3433,17 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 7,
+                            AllowFullPayment = true,
+                            AllowInstallment12Months = false,
+                            AllowInstallment3Months = true,
+                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-G7H8J9K",
                             CourseFeeAmount = 190m,
                             CourseName = "Electrical Engineering Basics",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Fundamentals of electrical systems.",
                             EndDate = new DateTime(2026, 5, 6, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentDeadline = new DateTime(2026, 2, 7, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasApplicationDueDate = new DateTime(2026, 2, 7, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 19.35m,
                             IsDeleted = false,
@@ -2995,12 +3456,17 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 8,
+                            AllowFullPayment = true,
+                            AllowInstallment12Months = false,
+                            AllowInstallment3Months = true,
+                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-H8J9K0L",
                             CourseFeeAmount = 205m,
                             CourseName = "Creative Writing",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Writing techniques across common genres.",
                             EndDate = new DateTime(2026, 5, 7, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentDeadline = new DateTime(2026, 2, 8, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasApplicationDueDate = new DateTime(2026, 2, 8, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 20.88m,
                             IsDeleted = false,
@@ -3013,12 +3479,17 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 9,
+                            AllowFullPayment = true,
+                            AllowInstallment12Months = false,
+                            AllowInstallment3Months = true,
+                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-J9K0L1M",
                             CourseFeeAmount = 220m,
                             CourseName = "Data Analytics",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Data preparation, analysis and reporting.",
                             EndDate = new DateTime(2026, 5, 8, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentDeadline = new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasApplicationDueDate = new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 22.50m,
                             IsDeleted = false,
@@ -3031,12 +3502,17 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 10,
+                            AllowFullPayment = true,
+                            AllowInstallment12Months = false,
+                            AllowInstallment3Months = true,
+                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-K0L1M2N",
                             CourseFeeAmount = 235m,
                             CourseName = "Legacy Office Applications",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Archived office applications programme.",
                             EndDate = new DateTime(2026, 5, 9, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentDeadline = new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasApplicationDueDate = new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 24.03m,
                             IsDeleted = false,
@@ -5410,6 +5886,1693 @@ namespace educationaccountmanagement.DAL.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Models.FasApplication", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ApplicationNumber")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<DateTime?>("ApprovedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ApprovedByUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ApprovedTierId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("DurationInMonthsSnapshot")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FasSchemeId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("GrossHouseholdIncomeSnapshot")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("HouseholdMemberCountSnapshot")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ParentNationalityId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("PerCapitaIncomeSnapshot")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("RecommendationReason")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int?>("RecommendedTierId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RejectionReason")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int>("SchoolStudentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentAgeSnapshot")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentNationalityId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ValidityEndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ValidityStartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("WithdrawnAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationNumber")
+                        .IsUnique()
+                        .HasFilter("\"IsDeleted\" = 0 AND \"ApplicationNumber\" IS NOT NULL");
+
+                    b.HasIndex("ApprovedByUserId");
+
+                    b.HasIndex("ApprovedTierId");
+
+                    b.HasIndex("FasSchemeId");
+
+                    b.HasIndex("ParentNationalityId");
+
+                    b.HasIndex("RecommendedTierId");
+
+                    b.HasIndex("SchoolStudentId");
+
+                    b.HasIndex("Status");
+
+                    b.HasIndex("StudentNationalityId");
+
+                    b.HasIndex("ValidityEndDate");
+
+                    b.ToTable("FasApplication");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ApplicationNumber = "FASAPP-0001",
+                            ApprovedAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApprovedByUserId = 1,
+                            ApprovedTierId = 1,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DurationInMonthsSnapshot = 6,
+                            FasSchemeId = 1,
+                            GrossHouseholdIncomeSnapshot = 2500m,
+                            HouseholdMemberCountSnapshot = 4,
+                            IsDeleted = false,
+                            ParentNationalityId = 1,
+                            PerCapitaIncomeSnapshot = 625m,
+                            RecommendationReason = "PCI <= 750",
+                            RecommendedTierId = 1,
+                            SchoolStudentId = 1,
+                            Status = 2,
+                            StudentAgeSnapshot = 18,
+                            StudentNationalityId = 1,
+                            ValidityEndDate = new DateTime(2026, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ApplicationNumber = "FASAPP-0002",
+                            ApprovedAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApprovedByUserId = 1,
+                            ApprovedTierId = 2,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DurationInMonthsSnapshot = 3,
+                            FasSchemeId = 2,
+                            GrossHouseholdIncomeSnapshot = 3000m,
+                            HouseholdMemberCountSnapshot = 4,
+                            IsDeleted = false,
+                            ParentNationalityId = 2,
+                            PerCapitaIncomeSnapshot = 750m,
+                            RecommendationReason = "GHI <= 3500",
+                            RecommendedTierId = 2,
+                            SchoolStudentId = 2,
+                            Status = 2,
+                            StudentAgeSnapshot = 17,
+                            StudentNationalityId = 1,
+                            ValidityEndDate = new DateTime(2026, 9, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ApplicationNumber = "FASAPP-0003",
+                            ApprovedAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApprovedByUserId = 1,
+                            ApprovedTierId = 3,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DurationInMonthsSnapshot = 12,
+                            FasSchemeId = 3,
+                            GrossHouseholdIncomeSnapshot = 2200m,
+                            HouseholdMemberCountSnapshot = 5,
+                            IsDeleted = false,
+                            ParentNationalityId = 1,
+                            PerCapitaIncomeSnapshot = 440m,
+                            RecommendationReason = "Singapore citizen and PCI <= 690",
+                            RecommendedTierId = 3,
+                            SchoolStudentId = 3,
+                            Status = 2,
+                            StudentAgeSnapshot = 19,
+                            StudentNationalityId = 1,
+                            ValidityEndDate = new DateTime(2027, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ApplicationNumber = "FASAPP-0004",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 4,
+                            GrossHouseholdIncomeSnapshot = 3600m,
+                            HouseholdMemberCountSnapshot = 4,
+                            IsDeleted = false,
+                            ParentNationalityId = 3,
+                            PerCapitaIncomeSnapshot = 900m,
+                            RecommendationReason = "Pending admin review",
+                            RecommendedTierId = 4,
+                            SchoolStudentId = 4,
+                            Status = 1,
+                            StudentAgeSnapshot = 20,
+                            StudentNationalityId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ApplicationNumber = "FASAPP-0005",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 5,
+                            GrossHouseholdIncomeSnapshot = 7000m,
+                            HouseholdMemberCountSnapshot = 4,
+                            IsDeleted = false,
+                            ParentNationalityId = 4,
+                            PerCapitaIncomeSnapshot = 1750m,
+                            RecommendationReason = "No tier matched",
+                            RecommendedTierId = 5,
+                            RejectionReason = "Income exceeds supported threshold.",
+                            SchoolStudentId = 5,
+                            Status = 3,
+                            StudentAgeSnapshot = 21,
+                            StudentNationalityId = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ApplicationNumber = "FASAPP-0006",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 6,
+                            GrossHouseholdIncomeSnapshot = 2800m,
+                            HouseholdMemberCountSnapshot = 5,
+                            IsDeleted = false,
+                            ParentNationalityId = 1,
+                            PerCapitaIncomeSnapshot = 560m,
+                            RecommendationReason = "Student withdrew before review",
+                            RecommendedTierId = 6,
+                            SchoolStudentId = 6,
+                            Status = 4,
+                            StudentAgeSnapshot = 18,
+                            StudentNationalityId = 1,
+                            WithdrawnAt = new DateTime(2026, 6, 3, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ApplicationNumber = "FASAPP-0007",
+                            ApprovedAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApprovedByUserId = 1,
+                            ApprovedTierId = 7,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DurationInMonthsSnapshot = 12,
+                            FasSchemeId = 7,
+                            GrossHouseholdIncomeSnapshot = 4800m,
+                            HouseholdMemberCountSnapshot = 4,
+                            IsDeleted = false,
+                            ParentNationalityId = 1,
+                            PerCapitaIncomeSnapshot = 1200m,
+                            RecommendationReason = "Special needs support threshold matched",
+                            RecommendedTierId = 7,
+                            SchoolStudentId = 7,
+                            Status = 2,
+                            StudentAgeSnapshot = 16,
+                            StudentNationalityId = 1,
+                            ValidityEndDate = new DateTime(2027, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ApplicationNumber = "FASAPP-0008",
+                            ApprovedAt = new DateTime(2025, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApprovedByUserId = 1,
+                            ApprovedTierId = 8,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DurationInMonthsSnapshot = 6,
+                            FasSchemeId = 8,
+                            GrossHouseholdIncomeSnapshot = 3200m,
+                            HouseholdMemberCountSnapshot = 5,
+                            IsDeleted = false,
+                            ParentNationalityId = 5,
+                            PerCapitaIncomeSnapshot = 640m,
+                            RecommendationReason = "PCI <= 850",
+                            RecommendedTierId = 8,
+                            SchoolStudentId = 8,
+                            Status = 2,
+                            StudentAgeSnapshot = 22,
+                            StudentNationalityId = 1,
+                            ValidityEndDate = new DateTime(2025, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ValidityStartDate = new DateTime(2025, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ApplicationNumber = "FASAPP-0009",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 9,
+                            GrossHouseholdIncomeSnapshot = 2600m,
+                            HouseholdMemberCountSnapshot = 3,
+                            IsDeleted = false,
+                            ParentNationalityId = 6,
+                            PerCapitaIncomeSnapshot = 866.67m,
+                            RecommendationReason = "Emergency aid review required",
+                            RecommendedTierId = 9,
+                            SchoolStudentId = 9,
+                            Status = 1,
+                            StudentAgeSnapshot = 17,
+                            StudentNationalityId = 1
+                        },
+                        new
+                        {
+                            Id = 10,
+                            ApplicationNumber = "FASAPP-0010",
+                            ApprovedAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApprovedByUserId = 1,
+                            ApprovedTierId = 10,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DurationInMonthsSnapshot = 12,
+                            FasSchemeId = 10,
+                            GrossHouseholdIncomeSnapshot = 3900m,
+                            HouseholdMemberCountSnapshot = 5,
+                            IsDeleted = false,
+                            ParentNationalityId = 1,
+                            PerCapitaIncomeSnapshot = 780m,
+                            RecommendationReason = "PCI <= 1000",
+                            RecommendedTierId = 10,
+                            SchoolStudentId = 10,
+                            Status = 2,
+                            StudentAgeSnapshot = 18,
+                            StudentNationalityId = 1,
+                            ValidityEndDate = new DateTime(2027, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        });
+                });
+
+            modelBuilder.Entity("Models.FasApplicationDocument", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DocumentNameSnapshot")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<int>("FasApplicationId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("FasSchemeRequiredDocumentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FileKey")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FasApplicationId");
+
+                    b.HasIndex("FasSchemeRequiredDocumentId");
+
+                    b.ToTable("FasApplicationDocument");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Recent Payslip",
+                            FasApplicationId = 1,
+                            FasSchemeRequiredDocumentId = 1,
+                            FileKey = "fas/applications/1/document.pdf",
+                            FileName = "fas-application-1.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Income Statement",
+                            FasApplicationId = 2,
+                            FasSchemeRequiredDocumentId = 2,
+                            FileKey = "fas/applications/2/document.pdf",
+                            FileName = "fas-application-2.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Recent Payslip",
+                            FasApplicationId = 3,
+                            FasSchemeRequiredDocumentId = 3,
+                            FileKey = "fas/applications/3/document.pdf",
+                            FileName = "fas-application-3.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Income Statement",
+                            FasApplicationId = 4,
+                            FasSchemeRequiredDocumentId = 4,
+                            FileKey = "fas/applications/4/document.pdf",
+                            FileName = "fas-application-4.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Recent Payslip",
+                            FasApplicationId = 5,
+                            FasSchemeRequiredDocumentId = 5,
+                            FileKey = "fas/applications/5/document.pdf",
+                            FileName = "fas-application-5.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Income Statement",
+                            FasApplicationId = 6,
+                            FasSchemeRequiredDocumentId = 6,
+                            FileKey = "fas/applications/6/document.pdf",
+                            FileName = "fas-application-6.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Recent Payslip",
+                            FasApplicationId = 7,
+                            FasSchemeRequiredDocumentId = 7,
+                            FileKey = "fas/applications/7/document.pdf",
+                            FileName = "fas-application-7.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Income Statement",
+                            FasApplicationId = 8,
+                            FasSchemeRequiredDocumentId = 8,
+                            FileKey = "fas/applications/8/document.pdf",
+                            FileName = "fas-application-8.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Recent Payslip",
+                            FasApplicationId = 9,
+                            FasSchemeRequiredDocumentId = 9,
+                            FileKey = "fas/applications/9/document.pdf",
+                            FileName = "fas-application-9.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Income Statement",
+                            FasApplicationId = 10,
+                            FasSchemeRequiredDocumentId = 10,
+                            FileKey = "fas/applications/10/document.pdf",
+                            FileName = "fas-application-10.pdf",
+                            IsDeleted = false
+                        });
+                });
+
+            modelBuilder.Entity("Models.FasScheme", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int>("DurationInMonths")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsPerComponent")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("PublishedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SchemeCode")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("SchemeName")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<int>("SchoolId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SubsidyType")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SchemeCode")
+                        .IsUnique()
+                        .HasFilter("\"IsDeleted\" = 0 AND \"SchemeCode\" IS NOT NULL");
+
+                    b.HasIndex("SchemeName");
+
+                    b.HasIndex("SchoolId");
+
+                    b.HasIndex("Status");
+
+                    b.ToTable("FasScheme");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Support for students from lower-income households.",
+                            DurationInMonths = 6,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-001",
+                            SchemeName = "Household Income Subsidy",
+                            SchoolId = 1,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Transport support for eligible students.",
+                            DurationInMonths = 3,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 2, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-002",
+                            SchemeName = "Transport Assistance",
+                            SchoolId = 2,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Course and misc fee assistance.",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = true,
+                            PublishedAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-003",
+                            SchemeName = "Study Grant",
+                            SchoolId = 3,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Draft meal support programme.",
+                            DurationInMonths = 6,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            SchemeCode = "FAS-004",
+                            SchemeName = "Meal Subsidy",
+                            SchoolId = 4,
+                            Status = 1,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Support for digital learning devices.",
+                            DurationInMonths = 9,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-005",
+                            SchemeName = "Digital Device Grant",
+                            SchoolId = 5,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Inactive uniform support programme.",
+                            DurationInMonths = 3,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-006",
+                            SchemeName = "Uniform Grant",
+                            SchoolId = 6,
+                            Status = 3,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Support for students with special learning needs.",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = true,
+                            PublishedAt = new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-007",
+                            SchemeName = "Special Needs Support",
+                            SchoolId = 7,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Support for textbooks and materials.",
+                            DurationInMonths = 6,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-008",
+                            SchemeName = "Learning Materials Grant",
+                            SchoolId = 8,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Short term emergency support.",
+                            DurationInMonths = 3,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-009",
+                            SchemeName = "Emergency Financial Aid",
+                            SchoolId = 9,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Support for STEM related courses.",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-010",
+                            SchemeName = "STEM Programme Grant",
+                            SchoolId = 10,
+                            Status = 2,
+                            SubsidyType = 1
+                        });
+                });
+
+            modelBuilder.Entity("Models.FasSchemeCondition", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CountryId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DisplayOrder")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Field")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GroupId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Operator")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("ValueNumber")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("ValueNumberTo")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.HasIndex("Field");
+
+                    b.HasIndex("GroupId");
+
+                    b.ToTable("FasSchemeCondition", t =>
+                        {
+                            t.HasCheckConstraint("CK_FasSchemeCondition_DisplayOrder_NonNegative", "[DisplayOrder] >= 0");
+
+                            t.HasCheckConstraint("CK_FasSchemeCondition_Value_By_Field", "([Field] IN (1, 4, 5) AND [ValueNumber] IS NOT NULL AND [CountryId] IS NULL AND (([Operator] = 7 AND [ValueNumberTo] IS NOT NULL AND [ValueNumberTo] >= [ValueNumber]) OR ([Operator] <> 7 AND [ValueNumberTo] IS NULL))) OR ([Field] IN (2, 3) AND [CountryId] IS NOT NULL AND [Operator] IN (1, 2) AND [ValueNumber] IS NULL AND [ValueNumberTo] IS NULL)");
+                        });
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 1,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 750m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 4,
+                            GroupId = 2,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 3500m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CountryId = 1,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 2,
+                            GroupId = 3,
+                            IsDeleted = false,
+                            Operator = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 4,
+                            IsDeleted = false,
+                            Operator = 7,
+                            ValueNumber = 16m,
+                            ValueNumberTo = 30m
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CountryId = 1,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 3,
+                            GroupId = 5,
+                            IsDeleted = false,
+                            Operator = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 6,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1000m
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 4,
+                            GroupId = 7,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 5000m
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CountryId = 1,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 2,
+                            GroupId = 8,
+                            IsDeleted = false,
+                            Operator = 1
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 9,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1200m
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 1,
+                            GroupId = 10,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 25m
+                        });
+                });
+
+            modelBuilder.Entity("Models.FasSchemeConditionGroup", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DisplayOrder")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FasSchemeId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LogicalOperator")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ParentGroupId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FasSchemeId")
+                        .IsUnique()
+                        .HasFilter("\"IsDeleted\" = 0 AND \"FasSchemeId\" IS NOT NULL");
+
+                    b.HasIndex("ParentGroupId");
+
+                    b.ToTable("FasSchemeConditionGroup", t =>
+                        {
+                            t.HasCheckConstraint("CK_FasSchemeConditionGroup_DisplayOrder_NonNegative", "[DisplayOrder] >= 0");
+                        });
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 1,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
+                            FasSchemeId = 2,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 3,
+                            FasSchemeId = 3,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 4,
+                            FasSchemeId = 4,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 5,
+                            FasSchemeId = 5,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 6,
+                            FasSchemeId = 6,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 7,
+                            FasSchemeId = 7,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 8,
+                            FasSchemeId = 8,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 9,
+                            FasSchemeId = 9,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 10,
+                            FasSchemeId = 10,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        });
+                });
+
+            modelBuilder.Entity("Models.FasSchemeCourse", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FasSchemeId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("FasSchemeId");
+
+                    b.HasIndex("FasSchemeId", "CourseId")
+                        .IsUnique()
+                        .HasFilter("\"IsDeleted\" = 0 AND \"FasSchemeId\" IS NOT NULL AND \"CourseId\" IS NOT NULL");
+
+                    b.ToTable("FasSchemeCourse");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CourseId = 1,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 1,
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CourseId = 2,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 2,
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CourseId = 3,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 3,
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CourseId = 4,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 4,
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CourseId = 5,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 5,
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CourseId = 6,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 6,
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CourseId = 7,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 7,
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CourseId = 8,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 8,
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CourseId = 9,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 9,
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CourseId = 10,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 10,
+                            IsDeleted = false
+                        });
+                });
+
+            modelBuilder.Entity("Models.FasSchemeRequiredDocument", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DisplayOrder")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DocumentName")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<int>("FasSchemeId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("TemplateFileKey")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FasSchemeId");
+
+                    b.HasIndex("FasSchemeId", "DocumentName")
+                        .IsUnique()
+                        .HasFilter("\"IsDeleted\" = 0 AND \"FasSchemeId\" IS NOT NULL AND \"DocumentName\" IS NOT NULL");
+
+                    b.ToTable("FasSchemeRequiredDocument");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 1,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-1.pdf"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 2,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-2.pdf"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 3,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-3.pdf"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 4,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-4.pdf"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 5,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-5.pdf"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 6,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-6.pdf"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 7,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-7.pdf"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 8,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-8.pdf"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 9,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-9.pdf"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 10,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-10.pdf"
+                        });
+                });
+
+            modelBuilder.Entity("Models.FasSchemeTier", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal?>("CourseFeeSubsidyValue")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DisplayOrder")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FasSchemeId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal?>("MaxPerCapitaIncome")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("MiscFeeSubsidyValue")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("SubsidyValue")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("TierName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FasSchemeId");
+
+                    b.HasIndex("FasSchemeId", "TierName")
+                        .IsUnique()
+                        .HasFilter("\"IsDeleted\" = 0 AND \"FasSchemeId\" IS NOT NULL AND \"TierName\" IS NOT NULL");
+
+                    b.ToTable("FasSchemeTier");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 1,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 750m,
+                            SubsidyValue = 75m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 2,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 900m,
+                            SubsidyValue = 300m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CourseFeeSubsidyValue = 100m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 3,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 690m,
+                            MiscFeeSubsidyValue = 50m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 4,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 800m,
+                            SubsidyValue = 50m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 5,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1000m,
+                            SubsidyValue = 500m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 6,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 750m,
+                            SubsidyValue = 200m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CourseFeeSubsidyValue = 75m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 7,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1500m,
+                            MiscFeeSubsidyValue = 75m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 8,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 850m,
+                            SubsidyValue = 40m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 9,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1200m,
+                            SubsidyValue = 250m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 10,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1000m,
+                            SubsidyValue = 60m,
+                            TierName = "Tier 1"
+                        });
+                });
+
+            modelBuilder.Entity("Models.FasTierOverrideHistory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FasApplicationId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ModifiedByUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NewTierId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("OldTierId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Reason")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FasApplicationId");
+
+                    b.HasIndex("ModifiedAt");
+
+                    b.HasIndex("ModifiedByUserId");
+
+                    b.HasIndex("NewTierId");
+
+                    b.HasIndex("OldTierId");
+
+                    b.ToTable("FasTierOverrideHistory");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationId = 1,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModifiedByUserId = 1,
+                            NewTierId = 1,
+                            OldTierId = 1,
+                            Reason = "Seed audit trail for tier review."
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationId = 2,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTime(2026, 6, 2, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModifiedByUserId = 1,
+                            NewTierId = 2,
+                            OldTierId = 2,
+                            Reason = "Seed audit trail for tier review."
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationId = 3,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTime(2026, 6, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModifiedByUserId = 1,
+                            NewTierId = 3,
+                            OldTierId = 3,
+                            Reason = "Seed audit trail for tier review."
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationId = 4,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTime(2026, 6, 4, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModifiedByUserId = 1,
+                            NewTierId = 4,
+                            OldTierId = 4,
+                            Reason = "Seed audit trail for tier review."
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationId = 5,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTime(2026, 6, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModifiedByUserId = 1,
+                            NewTierId = 5,
+                            OldTierId = 5,
+                            Reason = "Seed audit trail for tier review."
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationId = 6,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTime(2026, 6, 6, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModifiedByUserId = 1,
+                            NewTierId = 6,
+                            OldTierId = 6,
+                            Reason = "Seed audit trail for tier review."
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationId = 7,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTime(2026, 6, 7, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModifiedByUserId = 1,
+                            NewTierId = 7,
+                            OldTierId = 7,
+                            Reason = "Seed audit trail for tier review."
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationId = 8,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTime(2026, 6, 8, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModifiedByUserId = 1,
+                            NewTierId = 8,
+                            OldTierId = 8,
+                            Reason = "Seed audit trail for tier review."
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationId = 9,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTime(2026, 6, 9, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModifiedByUserId = 1,
+                            NewTierId = 9,
+                            OldTierId = 9,
+                            Reason = "Seed audit trail for tier review."
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationId = 10,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTime(2026, 6, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModifiedByUserId = 1,
+                            NewTierId = 10,
+                            OldTierId = 10,
+                            Reason = "Seed audit trail for tier review."
+                        });
+                });
+
             modelBuilder.Entity("Models.OutboxMessage", b =>
                 {
                     b.Property<int>("Id")
@@ -6268,6 +8431,9 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<int>("ChargeId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ChargeInstallmentId")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("ChargeNetAmountSnapshot")
                         .HasColumnType("decimal(18,2)");
 
@@ -6308,6 +8474,8 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ChargeId");
+
+                    b.HasIndex("ChargeInstallmentId");
 
                     b.HasIndex("PaymentId");
 
@@ -10438,13 +12606,31 @@ namespace educationaccountmanagement.DAL.Migrations
 
             modelBuilder.Entity("Models.Charge", b =>
                 {
+                    b.HasOne("Models.FasApplication", "AppliedFasApplication")
+                        .WithMany("AppliedCharges")
+                        .HasForeignKey("AppliedFasApplicationId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("Models.Enrollment", "Enrollment")
                         .WithOne("Charge")
                         .HasForeignKey("Models.Charge", "EnrollmentId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.Navigation("AppliedFasApplication");
+
                     b.Navigation("Enrollment");
+                });
+
+            modelBuilder.Entity("Models.ChargeInstallment", b =>
+                {
+                    b.HasOne("Models.Charge", "Charge")
+                        .WithMany("Installments")
+                        .HasForeignKey("ChargeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Charge");
                 });
 
             modelBuilder.Entity("Models.Course", b =>
@@ -10528,6 +12714,202 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Navigation("SchoolStudent");
                 });
 
+            modelBuilder.Entity("Models.FasApplication", b =>
+                {
+                    b.HasOne("Models.User", "ApprovedByUser")
+                        .WithMany()
+                        .HasForeignKey("ApprovedByUserId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.HasOne("Models.FasSchemeTier", "ApprovedTier")
+                        .WithMany("ApprovedApplications")
+                        .HasForeignKey("ApprovedTierId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.HasOne("Models.FasScheme", "FasScheme")
+                        .WithMany("Applications")
+                        .HasForeignKey("FasSchemeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Models.Country", "ParentNationality")
+                        .WithMany("ParentNationalityApplications")
+                        .HasForeignKey("ParentNationalityId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Models.FasSchemeTier", "RecommendedTier")
+                        .WithMany("RecommendedApplications")
+                        .HasForeignKey("RecommendedTierId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.HasOne("Models.SchoolStudent", "SchoolStudent")
+                        .WithMany()
+                        .HasForeignKey("SchoolStudentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Models.Country", "StudentNationality")
+                        .WithMany("StudentNationalityApplications")
+                        .HasForeignKey("StudentNationalityId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("ApprovedByUser");
+
+                    b.Navigation("ApprovedTier");
+
+                    b.Navigation("FasScheme");
+
+                    b.Navigation("ParentNationality");
+
+                    b.Navigation("RecommendedTier");
+
+                    b.Navigation("SchoolStudent");
+
+                    b.Navigation("StudentNationality");
+                });
+
+            modelBuilder.Entity("Models.FasApplicationDocument", b =>
+                {
+                    b.HasOne("Models.FasApplication", "FasApplication")
+                        .WithMany("Documents")
+                        .HasForeignKey("FasApplicationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Models.FasSchemeRequiredDocument", "FasSchemeRequiredDocument")
+                        .WithMany("ApplicationDocuments")
+                        .HasForeignKey("FasSchemeRequiredDocumentId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("FasApplication");
+
+                    b.Navigation("FasSchemeRequiredDocument");
+                });
+
+            modelBuilder.Entity("Models.FasScheme", b =>
+                {
+                    b.HasOne("Models.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("School");
+                });
+
+            modelBuilder.Entity("Models.FasSchemeCondition", b =>
+                {
+                    b.HasOne("Models.Country", "Country")
+                        .WithMany("FasSchemeConditions")
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Models.FasSchemeConditionGroup", "Group")
+                        .WithMany("Conditions")
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Country");
+
+                    b.Navigation("Group");
+                });
+
+            modelBuilder.Entity("Models.FasSchemeConditionGroup", b =>
+                {
+                    b.HasOne("Models.FasScheme", "FasScheme")
+                        .WithMany("ConditionGroups")
+                        .HasForeignKey("FasSchemeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Models.FasSchemeConditionGroup", "ParentGroup")
+                        .WithMany("ChildGroups")
+                        .HasForeignKey("ParentGroupId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.Navigation("FasScheme");
+
+                    b.Navigation("ParentGroup");
+                });
+
+            modelBuilder.Entity("Models.FasSchemeCourse", b =>
+                {
+                    b.HasOne("Models.Course", "Course")
+                        .WithMany("FasSchemeCourses")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Models.FasScheme", "FasScheme")
+                        .WithMany("SchemeCourses")
+                        .HasForeignKey("FasSchemeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("FasScheme");
+                });
+
+            modelBuilder.Entity("Models.FasSchemeRequiredDocument", b =>
+                {
+                    b.HasOne("Models.FasScheme", "FasScheme")
+                        .WithMany("RequiredDocuments")
+                        .HasForeignKey("FasSchemeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FasScheme");
+                });
+
+            modelBuilder.Entity("Models.FasSchemeTier", b =>
+                {
+                    b.HasOne("Models.FasScheme", "FasScheme")
+                        .WithMany("Tiers")
+                        .HasForeignKey("FasSchemeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FasScheme");
+                });
+
+            modelBuilder.Entity("Models.FasTierOverrideHistory", b =>
+                {
+                    b.HasOne("Models.FasApplication", "FasApplication")
+                        .WithMany("TierOverrideHistories")
+                        .HasForeignKey("FasApplicationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Models.User", "ModifiedByUser")
+                        .WithMany()
+                        .HasForeignKey("ModifiedByUserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Models.FasSchemeTier", "NewTier")
+                        .WithMany()
+                        .HasForeignKey("NewTierId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Models.FasSchemeTier", "OldTier")
+                        .WithMany()
+                        .HasForeignKey("OldTierId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.Navigation("FasApplication");
+
+                    b.Navigation("ModifiedByUser");
+
+                    b.Navigation("NewTier");
+
+                    b.Navigation("OldTier");
+                });
+
             modelBuilder.Entity("Models.OutstandingDeductionTarget", b =>
                 {
                     b.HasOne("Models.Charge", "Charge")
@@ -10587,6 +12969,11 @@ namespace educationaccountmanagement.DAL.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("Models.ChargeInstallment", "ChargeInstallment")
+                        .WithMany("PaymentAllocations")
+                        .HasForeignKey("ChargeInstallmentId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("Models.Payment", "Payment")
                         .WithMany("PaymentAllocations")
                         .HasForeignKey("PaymentId")
@@ -10594,6 +12981,8 @@ namespace educationaccountmanagement.DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("Charge");
+
+                    b.Navigation("ChargeInstallment");
 
                     b.Navigation("Payment");
                 });
@@ -10796,8 +13185,15 @@ namespace educationaccountmanagement.DAL.Migrations
 
             modelBuilder.Entity("Models.Charge", b =>
                 {
+                    b.Navigation("Installments");
+
                     b.Navigation("OutstandingDeductionTargets");
 
+                    b.Navigation("PaymentAllocations");
+                });
+
+            modelBuilder.Entity("Models.ChargeInstallment", b =>
+                {
                     b.Navigation("PaymentAllocations");
                 });
 
@@ -10808,9 +13204,20 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Models.Country", b =>
+                {
+                    b.Navigation("FasSchemeConditions");
+
+                    b.Navigation("ParentNationalityApplications");
+
+                    b.Navigation("StudentNationalityApplications");
+                });
+
             modelBuilder.Entity("Models.Course", b =>
                 {
                     b.Navigation("Enrollments");
+
+                    b.Navigation("FasSchemeCourses");
                 });
 
             modelBuilder.Entity("Models.EducationAccount", b =>
@@ -10845,6 +13252,47 @@ namespace educationaccountmanagement.DAL.Migrations
             modelBuilder.Entity("Models.Enrollment", b =>
                 {
                     b.Navigation("Charge");
+                });
+
+            modelBuilder.Entity("Models.FasApplication", b =>
+                {
+                    b.Navigation("AppliedCharges");
+
+                    b.Navigation("Documents");
+
+                    b.Navigation("TierOverrideHistories");
+                });
+
+            modelBuilder.Entity("Models.FasScheme", b =>
+                {
+                    b.Navigation("Applications");
+
+                    b.Navigation("ConditionGroups");
+
+                    b.Navigation("RequiredDocuments");
+
+                    b.Navigation("SchemeCourses");
+
+                    b.Navigation("Tiers");
+                });
+
+            modelBuilder.Entity("Models.FasSchemeConditionGroup", b =>
+                {
+                    b.Navigation("ChildGroups");
+
+                    b.Navigation("Conditions");
+                });
+
+            modelBuilder.Entity("Models.FasSchemeRequiredDocument", b =>
+                {
+                    b.Navigation("ApplicationDocuments");
+                });
+
+            modelBuilder.Entity("Models.FasSchemeTier", b =>
+                {
+                    b.Navigation("ApprovedApplications");
+
+                    b.Navigation("RecommendedApplications");
                 });
 
             modelBuilder.Entity("Models.OutstandingDeductionRun", b =>

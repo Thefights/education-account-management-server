@@ -70,6 +70,7 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(course => course.Status);
                 entity.HasIndex(course => course.CourseName);
                 entity.HasIndex(course => course.FasApplicationDueDate);
+                entity.HasIndex(course => course.EnrollmentDeadline);
                 entity.HasIndex(course => course.StartDate);
                 entity.HasIndex(course => course.EndDate);
                 entity.HasIndex(course => new { course.SchoolId, course.CourseCode }).IsUnique();
@@ -87,8 +88,17 @@ namespace Persistence.SqlServer.ModelConfigurations
             modelBuilder.Entity<Charge>(entity =>
             {
                 entity.HasIndex(charge => charge.EnrollmentId).IsUnique();
+                entity.HasIndex(charge => charge.AppliedFasApplicationId);
                 entity.HasIndex(charge => charge.Status);
                 entity.HasIndex(charge => charge.BecameOutstandingAt);
+            });
+
+            modelBuilder.Entity<ChargeInstallment>(entity =>
+            {
+                entity.HasIndex(installment => installment.ChargeId);
+                entity.HasIndex(installment => installment.Status);
+                entity.HasIndex(installment => installment.DueDate);
+                entity.HasIndex(installment => new { installment.ChargeId, installment.InstallmentNumber }).IsUnique();
             });
 
             modelBuilder.Entity<Payment>(entity =>
@@ -106,7 +116,80 @@ namespace Persistence.SqlServer.ModelConfigurations
             {
                 entity.HasIndex(allocation => allocation.PaymentId);
                 entity.HasIndex(allocation => allocation.ChargeId);
+                entity.HasIndex(allocation => allocation.ChargeInstallmentId);
                 entity.HasIndex(allocation => new { allocation.PaymentId, allocation.ChargeId }).IsUnique();
+            });
+
+            modelBuilder.Entity<Country>(entity =>
+            {
+                entity.HasIndex(country => country.Code).IsUnique();
+                entity.HasIndex(country => country.Name).IsUnique();
+                entity.HasIndex(country => country.IsActive);
+            });
+
+            modelBuilder.Entity<FasScheme>(entity =>
+            {
+                entity.HasIndex(scheme => scheme.SchoolId);
+                entity.HasIndex(scheme => scheme.Status);
+                entity.HasIndex(scheme => scheme.SchemeCode).IsUnique();
+                entity.HasIndex(scheme => scheme.SchemeName);
+            });
+
+            modelBuilder.Entity<FasSchemeConditionGroup>(entity =>
+            {
+                entity.HasIndex(group => group.FasSchemeId);
+                entity.HasIndex(group => group.ParentGroupId);
+                entity.HasIndex(group => group.FasSchemeId)
+                    .IsUnique()
+                    .HasFilter($"[{nameof(FasSchemeConditionGroup.ParentGroupId)}] IS NULL");
+            });
+
+            modelBuilder.Entity<FasSchemeCondition>(entity =>
+            {
+                entity.HasIndex(condition => condition.GroupId);
+                entity.HasIndex(condition => condition.Field);
+                entity.HasIndex(condition => condition.CountryId);
+            });
+
+            modelBuilder.Entity<FasSchemeTier>(entity =>
+            {
+                entity.HasIndex(tier => tier.FasSchemeId);
+                entity.HasIndex(tier => new { tier.FasSchemeId, tier.TierName }).IsUnique();
+            });
+
+            modelBuilder.Entity<FasSchemeRequiredDocument>(entity =>
+            {
+                entity.HasIndex(document => document.FasSchemeId);
+                entity.HasIndex(document => new { document.FasSchemeId, document.DocumentName }).IsUnique();
+            });
+
+            modelBuilder.Entity<FasSchemeCourse>(entity =>
+            {
+                entity.HasIndex(schemeCourse => schemeCourse.FasSchemeId);
+                entity.HasIndex(schemeCourse => schemeCourse.CourseId);
+                entity.HasIndex(schemeCourse => new { schemeCourse.FasSchemeId, schemeCourse.CourseId }).IsUnique();
+            });
+
+            modelBuilder.Entity<FasApplication>(entity =>
+            {
+                entity.HasIndex(application => application.FasSchemeId);
+                entity.HasIndex(application => application.SchoolStudentId);
+                entity.HasIndex(application => application.Status);
+                entity.HasIndex(application => application.ApplicationNumber).IsUnique();
+                entity.HasIndex(application => application.ValidityEndDate);
+            });
+
+            modelBuilder.Entity<FasApplicationDocument>(entity =>
+            {
+                entity.HasIndex(document => document.FasApplicationId);
+                entity.HasIndex(document => document.FasSchemeRequiredDocumentId);
+            });
+
+            modelBuilder.Entity<FasTierOverrideHistory>(entity =>
+            {
+                entity.HasIndex(history => history.FasApplicationId);
+                entity.HasIndex(history => history.ModifiedByUserId);
+                entity.HasIndex(history => history.ModifiedAt);
             });
 
             modelBuilder.Entity<SystemTopup>(entity =>
