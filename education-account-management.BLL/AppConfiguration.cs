@@ -16,6 +16,7 @@ namespace education_account_management.BLL
         public EmailConfig EmailConfig { get; set; } = null!;
         public RedisConfig RedisConfig { get; set; } = null!;
         public R2Config R2Config { get; set; } = null!;
+        public StripeConfig StripeConfig { get; set; } = null!;
     }
 
     #region AppInfo
@@ -154,7 +155,7 @@ namespace education_account_management.BLL
     #endregion
 
     #region StripeConfig
-    public class StripeSettings
+    public class StripeConfig
     {
         public string SecretKey { get; set; } = string.Empty;
         public string WebhookSecret { get; set; } = string.Empty;

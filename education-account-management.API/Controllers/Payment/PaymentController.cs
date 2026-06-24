@@ -13,7 +13,7 @@ namespace API.Controllers.Payment
 
         [HttpPost("create-session")]
         [Authorize(Roles = RolePolicy.AccountHolder)]
-        public async Task<IActionResult> CreateSession([FromBody] CreatePaymentSessionRequest request, CancellationToken token)
+        public async Task<IActionResult> CreateSession(CreatePaymentSessionRequest request, CancellationToken token)
         {
             var response = await _stripeService.CreateCheckoutSessionAsync(request.CourseIds, token);
             return Result.SuccessData(response);
@@ -21,7 +21,7 @@ namespace API.Controllers.Payment
 
         [HttpPost("success")]
         [Authorize(Roles = RolePolicy.AccountHolder)]
-        public async Task<IActionResult> Success([FromQuery(Name = "session_id")] string sessionId, CancellationToken token)
+        public async Task<IActionResult> Success([FromQuery] string sessionId, CancellationToken token)
         {
             var response = await _stripeService.HandleSessionSuccessAsync(sessionId, token);
 
@@ -30,7 +30,7 @@ namespace API.Controllers.Payment
 
         [HttpPost("cancel")]
         [Authorize(Roles = RolePolicy.AccountHolder)]
-        public async Task<IActionResult> Cancel([FromQuery(Name = "session_id")] string sessionId, CancellationToken token)
+        public async Task<IActionResult> Cancel([FromQuery] string sessionId, CancellationToken token)
         {
             var response = await _stripeService.HandleSessionCancelledAsync(sessionId, token);
             

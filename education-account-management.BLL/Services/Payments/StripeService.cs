@@ -2,7 +2,6 @@ using BLL.Interfaces.Payments;
 using DTOs.Payments;
 using Interfaces.Audit;
 using Interfaces.Email;
-using Microsoft.Extensions.Options;
 using Stripe;
 using Stripe.Checkout;
 using System.Text.Json;
@@ -10,14 +9,14 @@ using System.Text.Json;
 namespace BLL.Services.Payments;
 
 public class StripeService(
-    IOptions<StripeSettings> stripeSettings,
+    AppConfiguration configuration,
     IUnitOfWork unitOfWork,
     IOutboxWriter outboxWriter,
     IEmailService emailService,
     ICurrentUserService currentUserService,
     IAuditLogWriter auditLogWriter) : IStripeService
 {
-    private readonly IOptions<StripeSettings> _stripeSettings = stripeSettings;
+    private readonly AppConfiguration _configuration = configuration;
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly IOutboxWriter _outboxWriter = outboxWriter;
     private readonly IEmailService _emailService = emailService;
@@ -30,6 +29,7 @@ public class StripeService(
     private readonly IGenericRepository<Payment> _paymentRepository = unitOfWork.Repository<Payment>();
     private readonly IGenericRepository<PaymentAllocation> _paymentAllocationRepository = unitOfWork.Repository<PaymentAllocation>();
     private readonly IGenericRepository<EducationCreditTransaction> _transactionRepository = unitOfWork.Repository<EducationCreditTransaction>();
+
 
     /// <summary>
     /// Tạo phiên thanh toán (Checkout Session) qua Stripe cho danh sách các khóa học được chọn.
@@ -120,12 +120,12 @@ public class StripeService(
 
         var options = new SessionCreateOptions
         {
-            PaymentMethodTypes = new List<string> { _stripeSettings.Value.Method },
+            PaymentMethodTypes = new List<string> { _configuration.StripeConfig.Method },
             LineItems = lineItems,
-            Mode = _stripeSettings.Value.Mode,
-            SuccessUrl = _stripeSettings.Value.SuccessUrl,
-            CancelUrl = _stripeSettings.Value.CancelUrl,
-            ExpiresAt = DateTime.UtcNow.AddMinutes(_stripeSettings.Value.SessionExpiryMinutes),
+            Mode = _configuration.StripeConfig.Mode,
+            SuccessUrl = _configuration.StripeConfig.SuccessUrl,
+            CancelUrl = _configuration.StripeConfig.CancelUrl,
+            ExpiresAt = DateTime.UtcNow.AddMinutes(_configuration.StripeConfig.SessionExpiryMinutes),
             CustomerEmail = educationAccount.Citizen.Email ?? "",
             Metadata = new Dictionary<string, string>
             {
@@ -318,7 +318,7 @@ public class StripeService(
             stripeEvent = EventUtility.ConstructEvent(
                 payload,
                 stripeSignature,
-                _stripeSettings.Value.WebhookSecret
+                _configuration.StripeConfig.WebhookSecret
             );
         }
         catch (StripeException)
