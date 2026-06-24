@@ -1,4 +1,8 @@
 <Solution>
+  <Folder Name="/.github/" />
+  <Folder Name="/.github/workflows/">
+    <File Path="deploy-be.yml" />
+  </Folder>
   <Project Path="education-account-management.API/education-account-management.API.csproj" />
   <Project Path="education-account-management.BLL/education-account-management.BLL.csproj" />
   <Project Path="education-account-management.DAL/education-account-management.DAL.csproj" />
