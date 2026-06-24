@@ -49,14 +49,10 @@ public class StripeService(
             throw new ValidationFailureException(new Dictionary<string, string>
             { { "CourseIds", "At least one course must be selected for payment." } });
 
+        //lấy dữ liệu cần thiết
         var sessionService = new SessionService();
         var accountId = _currentUserService.UserId;
 
-        //kiểm tra payment có tồn tại trước đó hay không tránh việc spam tạo link thanh toán cho cùng 1 list course
-        var paymentExisting = await ValidateExistingPayment(accountId, courseIds, sessionService, cancellationToken);
-        if (paymentExisting != null) return paymentExisting;
-
-        //lấy dữ liệu cần thiết
         var enrollments = await _enrollmentRepository.Query(tracking: false)
             .Include(e => e.Course)
             .Include(e => e.Charge)
@@ -67,9 +63,14 @@ public class StripeService(
         var educationAccount = await _accountRepository.Query(tracking: false)
             .Include(a => a.Citizen)
             .FirstOrDefaultAsync(a => a.SchoolStudent!.EducationAccountId == accountId, cancellationToken);
+        if (educationAccount == null) throw new InternalAppException("Current system user not found!");
 
         //kiểm tra request 
         ValidatePaymentRequest(courseIds, enrollments, educationAccount);
+
+        //kiểm tra payment có tồn tại trước đó hay không tránh việc spam tạo link thanh toán cho cùng 1 list course
+        var paymentExisting = await ValidateExistingPayment(educationAccount!.AccountNumber, courseIds, sessionService, cancellationToken);
+        if (paymentExisting != null) return paymentExisting;
 
         //tính toán số tiền cần phải trả qua stripe
         decimal accountCreditBalance = educationAccount!.EducationCreditBalance;
@@ -232,17 +233,15 @@ public class StripeService(
     /// Kiểm tra xem học viên đã có phiên thanh toán Stripe nào đang mở (Pending) cho danh sách khóa học này chưa.
     /// Nếu có và phiên trên Stripe vẫn đang chờ thanh toán (open/unpaid), sẽ trả về luôn link cũ thay vì tạo link mới.
     /// </summary>
-    private async Task<PaymentSessionResponseDTO?> ValidateExistingPayment(int accountId, List<int> courseIds, SessionService sessionService, CancellationToken cancellationToken)
+    private async Task<PaymentSessionResponseDTO?> ValidateExistingPayment(string accountNumber, List<int> courseIds, SessionService sessionService, CancellationToken cancellationToken)
     {
         var existingPayment = await _paymentRepository.Query(tracking: false)
        .Include(p => p.PaymentAllocations)
        .FirstOrDefaultAsync(p =>
         p.Status == PaymentStatus.Pending &&
-        p.ExternalReference == null &&
+        p.ExternalReference != null &&
         p.PaymentMethod == Enums.PaymentMethod.OnlinePayment &&
-        p.PaymentAllocations.Any() &&
-        p.PaymentAllocations.All(a => a.Charge.Enrollment.SchoolStudentId == accountId) &
-        p.PaymentAllocations.All(a => courseIds.Contains(a.Charge.Enrollment.CourseId)),
+        p.AccountNumberSnapshot == accountNumber,
         cancellationToken);
 
         if (existingPayment != null)
@@ -355,7 +354,7 @@ public class StripeService(
         if (sessionData == null) throw new DataNotFoundException($"Session data not found for sessionId {session.Id}");
 
         var accountId = _currentUserService.UserId;
-        if(sessionData.AccountId != accountId) throw new DataConflictException($"Current User not belong to payment Session {session.Id}");
+        if (sessionData.AccountId != accountId) throw new DataConflictException($"Current User not belong to payment Session {session.Id}");
 
         await ProcessPaymentInternalAsync(
            sessionData.PaymentId,
@@ -450,7 +449,7 @@ public class StripeService(
 
                 payment.Status = targetStatus;
                 payment.ExternalReference = externalReference;
-                payment.PaidAt = paidAt;
+                if (isSuccess) payment.PaidAt = paidAt;
 
                 var balanceBefore = educationAccount.EducationCreditBalance;
                 var totalCreditBalanceCovered = chargeCoveredByCreditBalanceDict.Values.Sum();
@@ -558,7 +557,7 @@ public class StripeService(
     {
         var accountId = _currentUserService.UserId;
         var payment = await _paymentRepository.Query(tracking: false)
-            .FirstOrDefaultAsync(p => 
+            .FirstOrDefaultAsync(p =>
             p.ExternalReference == sessionId &&
             p.EducationCreditTransaction != null &&
             p.EducationCreditTransaction.EducationAccountId == accountId,
