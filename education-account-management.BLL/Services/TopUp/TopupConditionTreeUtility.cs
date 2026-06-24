@@ -4,7 +4,8 @@ namespace Services.TopUp
 {
     internal static class TopupConditionTreeUtility
     {
-        private const int MaximumDepth = 5;
+        // Root group plus one child-group level.
+        private const int MaximumDepth = 2;
         private const int MaximumNodeCount = 100;
 
         public static void Validate(TopupConditionGroupRequestDTO root)

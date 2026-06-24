@@ -153,12 +153,12 @@ namespace Services.TopUp
             }
             if (filter.CreatedFrom.HasValue)
             {
-                var createdFrom = filter.CreatedFrom.Value.Date;
+                var createdFrom = filter.CreatedFrom.Value;
                 query = query.Where(execution => execution.CreatedAt >= createdFrom);
             }
             if (filter.CreatedTo.HasValue)
             {
-                var createdTo = filter.CreatedTo.Value.Date.AddDays(1).AddTicks(-1);
+                var createdTo = filter.CreatedTo.Value;
                 query = query.Where(execution => execution.CreatedAt <= createdTo);
             }
             return query;
@@ -173,9 +173,14 @@ namespace Services.TopUp
             return field switch
             {
                 "executioncode" => descending ? query.OrderByDescending(x => x.ExecutionCode) : query.OrderBy(x => x.ExecutionCode),
+                "topupnamesnapshot" => descending ? query.OrderByDescending(x => x.TopupNameSnapshot) : query.OrderBy(x => x.TopupNameSnapshot),
                 "sourcetype" => descending ? query.OrderByDescending(x => x.SourceType) : query.OrderBy(x => x.SourceType),
                 "status" => descending ? query.OrderByDescending(x => x.Status) : query.OrderBy(x => x.Status),
+                "totaltargetcount" => descending ? query.OrderByDescending(x => x.TotalTargetCount) : query.OrderBy(x => x.TotalTargetCount),
+                "successcount" => descending ? query.OrderByDescending(x => x.SuccessCount) : query.OrderBy(x => x.SuccessCount),
+                "failedcount" => descending ? query.OrderByDescending(x => x.FailedCount) : query.OrderBy(x => x.FailedCount),
                 "totalexecutedamount" => descending ? query.OrderByDescending(x => x.TotalExecutedAmount) : query.OrderBy(x => x.TotalExecutedAmount),
+                "createdat" => descending ? query.OrderByDescending(x => x.CreatedAt) : query.OrderBy(x => x.CreatedAt),
                 _ => descending ? query.OrderByDescending(x => x.CreatedAt) : query.OrderBy(x => x.CreatedAt)
             };
         }
@@ -189,8 +194,15 @@ namespace Services.TopUp
             return field switch
             {
                 "accountnumber" => descending ? query.OrderByDescending(x => x.AccountNumber) : query.OrderBy(x => x.AccountNumber),
+                "accountname" => descending
+                    ? query.OrderByDescending(x => x.EducationAccount != null ? x.EducationAccount.Citizen.FullName : string.Empty)
+                    : query.OrderBy(x => x.EducationAccount != null ? x.EducationAccount.Citizen.FullName : string.Empty),
                 "amount" => descending ? query.OrderByDescending(x => x.Amount) : query.OrderBy(x => x.Amount),
                 "status" => descending ? query.OrderByDescending(x => x.Status) : query.OrderBy(x => x.Status),
+                "transactioncode" => descending
+                    ? query.OrderByDescending(x => x.EducationCreditTransaction != null ? (Guid?)x.EducationCreditTransaction.TransactionCode : null)
+                    : query.OrderBy(x => x.EducationCreditTransaction != null ? (Guid?)x.EducationCreditTransaction.TransactionCode : null),
+                "failurereason" => descending ? query.OrderByDescending(x => x.FailureReason) : query.OrderBy(x => x.FailureReason),
                 "createdat" => descending ? query.OrderByDescending(x => x.CreatedAt) : query.OrderBy(x => x.CreatedAt),
                 _ => query.OrderByDescending(x => x.Id)
             };

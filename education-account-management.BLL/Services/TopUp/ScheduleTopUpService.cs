@@ -27,13 +27,13 @@ namespace Services.TopUp
         {
             ArgumentNullException.ThrowIfNull(createDTO);
             ValidateAmount(createDTO.TopupAmount, ScheduleTopUpStatus.Active);
-            ValidateSchedule(createDTO.Frequency, createDTO.OneTimeExecutionAt, createDTO.ExecuteAtDay,
-                createDTO.ExecuteAtMonth, ScheduleTopUpStatus.Active);
+            ValidateSchedule(createDTO.Frequency, createDTO.ScheduleExecutionAt, ScheduleTopUpStatus.Active);
             TopupConditionTreeUtility.Validate(createDTO.RootConditionGroup);
 
             var id = await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
             {
                 var schedule = _mapper.MapFromCreateDTO(createDTO);
+                ApplyScheduleExecution(schedule, createDTO.Frequency, createDTO.ScheduleExecutionAt);
                 schedule.Status = ScheduleTopUpStatus.Active;
                 schedule.NextExecutionAt = ComputeFirstExecutionAt(schedule);
                 schedule.TryValidate();
@@ -59,8 +59,7 @@ namespace Services.TopUp
         {
             ArgumentNullException.ThrowIfNull(updateDTO);
             ValidateAmount(updateDTO.TopupAmount, updateDTO.Status);
-            ValidateSchedule(updateDTO.Frequency, updateDTO.OneTimeExecutionAt, updateDTO.ExecuteAtDay,
-                updateDTO.ExecuteAtMonth, updateDTO.Status);
+            ValidateSchedule(updateDTO.Frequency, updateDTO.ScheduleExecutionAt, updateDTO.Status);
             TopupConditionTreeUtility.Validate(updateDTO.RootConditionGroup);
 
             await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
@@ -79,6 +78,7 @@ namespace Services.TopUp
                 await _unitOfWork.SaveChangeAsync(token);
 
                 _mapper.MapFromUpdateDTO(updateDTO, schedule);
+                ApplyScheduleExecution(schedule, updateDTO.Frequency, updateDTO.ScheduleExecutionAt);
                 schedule.NextExecutionAt = ComputeFirstExecutionAt(schedule);
                 schedule.TryValidate();
                 await UniqueConstraintValidator.ValidateAsync(_repository, schedule, schedule.Id, token);
@@ -206,36 +206,38 @@ namespace Services.TopUp
 
         private static void ValidateSchedule(
             ScheduleTopUpFrequency frequency,
-            DateTime? oneTimeExecutionAt,
-            int? executeAtDay,
-            int? executeAtMonth,
+            DateTime? scheduleExecutionAt,
             ScheduleTopUpStatus status)
         {
             var errors = new Dictionary<string, string>();
             if (status == ScheduleTopUpStatus.Completed)
                 errors[nameof(status)] = "Completed status is managed by schedule execution.";
-            if (frequency == ScheduleTopUpFrequency.OneTime)
-            {
-                if (!oneTimeExecutionAt.HasValue) errors[nameof(oneTimeExecutionAt)] = "One-time execution date and time is required.";
-                if (executeAtDay.HasValue) errors[nameof(executeAtDay)] = "Execution day must be null for OneTime.";
-                if (executeAtMonth.HasValue) errors[nameof(executeAtMonth)] = "Execution month must be null for OneTime.";
-            }
-            else if (frequency == ScheduleTopUpFrequency.Monthly)
-            {
-                if (oneTimeExecutionAt.HasValue) errors[nameof(oneTimeExecutionAt)] = "One-time date must be null for Monthly.";
-                if (executeAtDay is < 1 or > 31) errors[nameof(executeAtDay)] = "Execution day must be between 1 and 31.";
-                if (executeAtMonth.HasValue) errors[nameof(executeAtMonth)] = "Execution month must be null for Monthly.";
-            }
-            else if (frequency == ScheduleTopUpFrequency.Yearly)
-            {
-                if (oneTimeExecutionAt.HasValue) errors[nameof(oneTimeExecutionAt)] = "One-time date must be null for Yearly.";
-                if (executeAtDay is < 1 or > 31) errors[nameof(executeAtDay)] = "Execution day must be between 1 and 31.";
-                if (executeAtMonth is < 1 or > 12) errors[nameof(executeAtMonth)] = "Execution month must be between 1 and 12.";
-                if (executeAtDay.HasValue && executeAtMonth.HasValue &&
-                    executeAtDay > DateTime.DaysInMonth(2024, executeAtMonth.Value))
-                    errors[nameof(executeAtDay)] = "Execution day is invalid for the selected month.";
-            }
+            if (!scheduleExecutionAt.HasValue)
+                errors[nameof(scheduleExecutionAt)] = "Schedule execution date and time is required.";
             if (errors.Count != 0) throw new ValidationFailureException(errors);
+        }
+
+        private static void ApplyScheduleExecution(
+            ScheduleTopUp schedule,
+            ScheduleTopUpFrequency frequency,
+            DateTime? scheduleExecutionAt)
+        {
+            if (!scheduleExecutionAt.HasValue)
+            {
+                schedule.OneTimeExecutionAt = null;
+                schedule.ExecuteAtDay = null;
+                schedule.ExecuteAtMonth = null;
+                schedule.ExecutionTime = TimeOnly.MinValue;
+                return;
+            }
+
+            var executionAt = scheduleExecutionAt.Value;
+            schedule.OneTimeExecutionAt = frequency == ScheduleTopUpFrequency.OneTime ? executionAt : null;
+            schedule.ExecuteAtDay = frequency is ScheduleTopUpFrequency.Monthly or ScheduleTopUpFrequency.Yearly
+                ? executionAt.Day
+                : null;
+            schedule.ExecuteAtMonth = frequency == ScheduleTopUpFrequency.Yearly ? executionAt.Month : null;
+            schedule.ExecutionTime = TimeOnly.FromDateTime(executionAt);
         }
 
         private static DateTime? ComputeFirstExecutionAt(ScheduleTopUp schedule)
