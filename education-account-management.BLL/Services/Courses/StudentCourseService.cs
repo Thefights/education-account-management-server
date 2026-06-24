@@ -25,15 +25,15 @@ namespace Services.Courses
         private readonly IGenericRepository<Enrollment> _enrollmentRepository = unitOfWork.Repository<Enrollment>();
 
         public async Task<PaginationResult<GetCourseDTO>> GetMyCoursesPaginatedAsync(
-            StudentCourseFilterDTO filter, 
-            CancellationToken cancellationToken = default)
+    StudentCourseFilterDTO filter,
+    CancellationToken cancellationToken = default)
         {
             ArgumentNullException.ThrowIfNull(filter);
 
             if (filter.Tab == CourseStatus.Draft || filter.Tab == CourseStatus.Enrolling)
             {
                 throw new ValidationFailureException(
-                    nameof(filter.Tab), 
+                    nameof(filter.Tab),
                     "Students are not allowed to view courses in Draft or Enrolling status.");
             }
 
@@ -53,13 +53,13 @@ namespace Services.Courses
             //Default StartDate Desc
             var (total, courses) = await _enrollmentRepository.GetProjectedPaginatedAsync(
                 projection: query => _mapper.ProjectToGetDTO(query.Select(e => e.Course)),
-                filterExpr: e => e.SchoolStudent.EducationAccountId == accountId 
-                              && e.Course.Status != CourseStatus.Draft 
-                              && e.Course.Status != CourseStatus.Enrolling 
+                filterExpr: e => e.SchoolStudent.EducationAccountId == accountId
+                              && e.Course.Status != CourseStatus.Draft
+                              && e.Course.Status != CourseStatus.Enrolling
                               && e.Course.Status == filter.Tab,
-                filterStr: null,
-                search: null,
-                searchFields: null,
+                filterStr: filter.Filter,
+                search: filter.Search,
+                searchFields: filter.SearchFields,
                 order: filter.SortExpression,
                 page: filter.Page,
                 pageSize: pageSize,

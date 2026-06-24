@@ -18,5 +18,13 @@ namespace Filters.Courses
         public override string Sort { get; set; } = "startDate desc";
 
         public override IReadOnlyDictionary<string, string> SortFields => AllowedSortFields;
+
+        [FilterField(FilterOperationEnum.Contains, $"{nameof(Course)}.{nameof(Course.CourseName)}")]
+        [SearchField($"{nameof(Course)}.{nameof(Course.CourseName)}")]
+        public string? CourseName { get; set; }
+
+        [FilterField(FilterOperationEnum.Contains, $"{nameof(Course)}.{nameof(Course.CourseCode)}")]
+        [SearchField($"{nameof(Course)}.{nameof(Course.CourseCode)}")]
+        public string? CourseCode { get; set; }
     }
 }
