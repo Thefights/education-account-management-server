@@ -1,4 +1,4 @@
-﻿using Models;
+using Models;
 using Persistence.Seeding.Constants;
 
 namespace Persistence.Seeding
@@ -14,6 +14,7 @@ namespace Persistence.Seeding
                 {
                     Id = 1,
                     IsEnabled = true,
+                    TaxRate = 0.09m,
                     CreatedAt = SeedDataConstants.CreatedAt
                 });
 

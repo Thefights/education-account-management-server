@@ -20,6 +20,7 @@ namespace educationaccountmanagement.DAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IsEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    TaxRate = table.Column<decimal>(type: "decimal(5,4)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<int>(type: "int", nullable: true),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -31,6 +32,7 @@ namespace educationaccountmanagement.DAL.Migrations
                 {
                     table.PrimaryKey("PK_AiAssistantSetting", x => x.Id);
                     table.CheckConstraint("CK_AiAssistantSetting_Singleton", "[Id] = 1");
+                    table.CheckConstraint("CK_AiAssistantSetting_TaxRate", "[TaxRate] >= 0");
                 });
 
             migrationBuilder.CreateTable(
@@ -58,6 +60,27 @@ namespace educationaccountmanagement.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Citizen", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Country",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Code = table.Column<string>(type: "nvarchar(2)", maxLength: 2, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Country", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -324,7 +347,12 @@ namespace educationaccountmanagement.DAL.Migrations
                     CourseFeeAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     MiscFeeAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     GstAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    EnrollmentDeadline = table.Column<DateTime>(type: "datetime2", nullable: false),
                     FasApplicationDueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    AllowFullPayment = table.Column<bool>(type: "bit", nullable: false),
+                    AllowInstallment3Months = table.Column<bool>(type: "bit", nullable: false),
+                    AllowInstallment6Months = table.Column<bool>(type: "bit", nullable: false),
+                    AllowInstallment12Months = table.Column<bool>(type: "bit", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false),
@@ -339,9 +367,42 @@ namespace educationaccountmanagement.DAL.Migrations
                 {
                     table.PrimaryKey("PK_Course", x => x.Id);
                     table.CheckConstraint("CK_Course_Amounts_NonNegative", "[CourseFeeAmount] >= 0 AND [MiscFeeAmount] >= 0 AND [GstAmount] >= 0");
-                    table.CheckConstraint("CK_Course_Date_Order", "[FasApplicationDueDate] <= [StartDate] AND [StartDate] <= [EndDate]");
+                    table.CheckConstraint("CK_Course_Date_Order", "[FasApplicationDueDate] <= [StartDate] AND [EnrollmentDeadline] <= [StartDate] AND [StartDate] <= [EndDate]");
                     table.ForeignKey(
                         name: "FK_Course_School_SchoolId",
+                        column: x => x.SchoolId,
+                        principalTable: "School",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FasScheme",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SchoolId = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    SchemeCode = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    SchemeName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
+                    DurationInMonths = table.Column<int>(type: "int", nullable: false),
+                    SubsidyType = table.Column<int>(type: "int", nullable: false),
+                    IsPerComponent = table.Column<bool>(type: "bit", nullable: false),
+                    PublishedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FasScheme", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FasScheme_School_SchoolId",
                         column: x => x.SchoolId,
                         principalTable: "School",
                         principalColumn: "Id",
@@ -690,6 +751,131 @@ namespace educationaccountmanagement.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "FasSchemeConditionGroup",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FasSchemeId = table.Column<int>(type: "int", nullable: false),
+                    ParentGroupId = table.Column<int>(type: "int", nullable: true),
+                    LogicalOperator = table.Column<int>(type: "int", nullable: false),
+                    DisplayOrder = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FasSchemeConditionGroup", x => x.Id);
+                    table.CheckConstraint("CK_FasSchemeConditionGroup_DisplayOrder_NonNegative", "[DisplayOrder] >= 0");
+                    table.ForeignKey(
+                        name: "FK_FasSchemeConditionGroup_FasSchemeConditionGroup_ParentGroupId",
+                        column: x => x.ParentGroupId,
+                        principalTable: "FasSchemeConditionGroup",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_FasSchemeConditionGroup_FasScheme_FasSchemeId",
+                        column: x => x.FasSchemeId,
+                        principalTable: "FasScheme",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FasSchemeCourse",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FasSchemeId = table.Column<int>(type: "int", nullable: false),
+                    CourseId = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FasSchemeCourse", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FasSchemeCourse_Course_CourseId",
+                        column: x => x.CourseId,
+                        principalTable: "Course",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FasSchemeCourse_FasScheme_FasSchemeId",
+                        column: x => x.FasSchemeId,
+                        principalTable: "FasScheme",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FasSchemeRequiredDocument",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FasSchemeId = table.Column<int>(type: "int", nullable: false),
+                    DocumentName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    TemplateFileKey = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    DisplayOrder = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FasSchemeRequiredDocument", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FasSchemeRequiredDocument_FasScheme_FasSchemeId",
+                        column: x => x.FasSchemeId,
+                        principalTable: "FasScheme",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FasSchemeTier",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FasSchemeId = table.Column<int>(type: "int", nullable: false),
+                    TierName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    MaxPerCapitaIncome = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    SubsidyValue = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    CourseFeeSubsidyValue = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    MiscFeeSubsidyValue = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    DisplayOrder = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FasSchemeTier", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FasSchemeTier_FasScheme_FasSchemeId",
+                        column: x => x.FasSchemeId,
+                        principalTable: "FasScheme",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "SystemTopupCondition",
                 columns: table => new
                 {
@@ -836,6 +1022,120 @@ namespace educationaccountmanagement.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "FasSchemeCondition",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    GroupId = table.Column<int>(type: "int", nullable: false),
+                    Field = table.Column<int>(type: "int", nullable: false),
+                    Operator = table.Column<int>(type: "int", nullable: false),
+                    ValueNumber = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    ValueNumberTo = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    CountryId = table.Column<int>(type: "int", nullable: true),
+                    DisplayOrder = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FasSchemeCondition", x => x.Id);
+                    table.CheckConstraint("CK_FasSchemeCondition_DisplayOrder_NonNegative", "[DisplayOrder] >= 0");
+                    table.CheckConstraint("CK_FasSchemeCondition_Value_By_Field", "([Field] IN (1, 4, 5) AND [ValueNumber] IS NOT NULL AND [CountryId] IS NULL AND (([Operator] = 7 AND [ValueNumberTo] IS NOT NULL AND [ValueNumberTo] >= [ValueNumber]) OR ([Operator] <> 7 AND [ValueNumberTo] IS NULL))) OR ([Field] IN (2, 3) AND [CountryId] IS NOT NULL AND [Operator] IN (1, 2) AND [ValueNumber] IS NULL AND [ValueNumberTo] IS NULL)");
+                    table.ForeignKey(
+                        name: "FK_FasSchemeCondition_Country_CountryId",
+                        column: x => x.CountryId,
+                        principalTable: "Country",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_FasSchemeCondition_FasSchemeConditionGroup_GroupId",
+                        column: x => x.GroupId,
+                        principalTable: "FasSchemeConditionGroup",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FasApplication",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FasSchemeId = table.Column<int>(type: "int", nullable: false),
+                    SchoolStudentId = table.Column<int>(type: "int", nullable: false),
+                    RecommendedTierId = table.Column<int>(type: "int", nullable: true),
+                    ApprovedTierId = table.Column<int>(type: "int", nullable: true),
+                    ApplicationNumber = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    StudentAgeSnapshot = table.Column<int>(type: "int", nullable: false),
+                    StudentNationalityId = table.Column<int>(type: "int", nullable: false),
+                    ParentNationalityId = table.Column<int>(type: "int", nullable: false),
+                    GrossHouseholdIncomeSnapshot = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    HouseholdMemberCountSnapshot = table.Column<int>(type: "int", nullable: false),
+                    PerCapitaIncomeSnapshot = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    RecommendationReason = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
+                    RejectionReason = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
+                    ApprovedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ApprovedByUserId = table.Column<int>(type: "int", nullable: true),
+                    DurationInMonthsSnapshot = table.Column<int>(type: "int", nullable: true),
+                    ValidityStartDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ValidityEndDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    WithdrawnAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FasApplication", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FasApplication_Country_ParentNationalityId",
+                        column: x => x.ParentNationalityId,
+                        principalTable: "Country",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_FasApplication_Country_StudentNationalityId",
+                        column: x => x.StudentNationalityId,
+                        principalTable: "Country",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_FasApplication_FasSchemeTier_ApprovedTierId",
+                        column: x => x.ApprovedTierId,
+                        principalTable: "FasSchemeTier",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_FasApplication_FasSchemeTier_RecommendedTierId",
+                        column: x => x.RecommendedTierId,
+                        principalTable: "FasSchemeTier",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_FasApplication_FasScheme_FasSchemeId",
+                        column: x => x.FasSchemeId,
+                        principalTable: "FasScheme",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_FasApplication_SchoolStudent_SchoolStudentId",
+                        column: x => x.SchoolStudentId,
+                        principalTable: "SchoolStudent",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_FasApplication_User_ApprovedByUserId",
+                        column: x => x.ApprovedByUserId,
+                        principalTable: "User",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "TopupSystemApplication",
                 columns: table => new
                 {
@@ -872,6 +1172,7 @@ namespace educationaccountmanagement.DAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EnrollmentId = table.Column<int>(type: "int", nullable: false),
+                    AppliedFasApplicationId = table.Column<int>(type: "int", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false),
                     SchoolNameSnapshot = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     CourseCodeSnapshot = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
@@ -882,6 +1183,14 @@ namespace educationaccountmanagement.DAL.Migrations
                     CourseFeeAmountSnapshot = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     MiscFeeAmountSnapshot = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     GstAmountSnapshot = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TaxRateSnapshot = table.Column<decimal>(type: "decimal(5,4)", nullable: false),
+                    AppliedFasSchemeNameSnapshot = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
+                    AppliedFasTierNameSnapshot = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    AppliedFasSubsidyTypeSnapshot = table.Column<int>(type: "int", nullable: true),
+                    AppliedFasIsPerComponentSnapshot = table.Column<bool>(type: "bit", nullable: false),
+                    AppliedFasSubsidyValueSnapshot = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    AppliedFasCourseFeeSubsidyValueSnapshot = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    AppliedFasMiscFeeSubsidyValueSnapshot = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     GrossAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     SubsidyAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     NetAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -908,6 +1217,126 @@ namespace educationaccountmanagement.DAL.Migrations
                         principalTable: "Enrollment",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Charge_FasApplication_AppliedFasApplicationId",
+                        column: x => x.AppliedFasApplicationId,
+                        principalTable: "FasApplication",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FasApplicationDocument",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FasApplicationId = table.Column<int>(type: "int", nullable: false),
+                    FasSchemeRequiredDocumentId = table.Column<int>(type: "int", nullable: true),
+                    DocumentNameSnapshot = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    FileKey = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    FileName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FasApplicationDocument", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FasApplicationDocument_FasApplication_FasApplicationId",
+                        column: x => x.FasApplicationId,
+                        principalTable: "FasApplication",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FasApplicationDocument_FasSchemeRequiredDocument_FasSchemeRequiredDocumentId",
+                        column: x => x.FasSchemeRequiredDocumentId,
+                        principalTable: "FasSchemeRequiredDocument",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FasTierOverrideHistory",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FasApplicationId = table.Column<int>(type: "int", nullable: false),
+                    OldTierId = table.Column<int>(type: "int", nullable: true),
+                    NewTierId = table.Column<int>(type: "int", nullable: false),
+                    ModifiedByUserId = table.Column<int>(type: "int", nullable: false),
+                    ModifiedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Reason = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FasTierOverrideHistory", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FasTierOverrideHistory_FasApplication_FasApplicationId",
+                        column: x => x.FasApplicationId,
+                        principalTable: "FasApplication",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FasTierOverrideHistory_FasSchemeTier_NewTierId",
+                        column: x => x.NewTierId,
+                        principalTable: "FasSchemeTier",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_FasTierOverrideHistory_FasSchemeTier_OldTierId",
+                        column: x => x.OldTierId,
+                        principalTable: "FasSchemeTier",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_FasTierOverrideHistory_User_ModifiedByUserId",
+                        column: x => x.ModifiedByUserId,
+                        principalTable: "User",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ChargeInstallment",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ChargeId = table.Column<int>(type: "int", nullable: false),
+                    InstallmentNumber = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    DueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PaidAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    RemainingAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    BecameOverdueAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ChargeInstallment", x => x.Id);
+                    table.CheckConstraint("CK_ChargeInstallment_Amounts", "[Amount] > 0 AND [PaidAmount] >= 0 AND [RemainingAmount] >= 0 AND [PaidAmount] <= [Amount] AND [RemainingAmount] = [Amount] - [PaidAmount]");
+                    table.CheckConstraint("CK_ChargeInstallment_Number_Positive", "[InstallmentNumber] > 0");
+                    table.ForeignKey(
+                        name: "FK_ChargeInstallment_Charge_ChargeId",
+                        column: x => x.ChargeId,
+                        principalTable: "Charge",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -979,6 +1408,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PaymentId = table.Column<int>(type: "int", nullable: false),
                     ChargeId = table.Column<int>(type: "int", nullable: false),
+                    ChargeInstallmentId = table.Column<int>(type: "int", nullable: true),
                     CourseNameSnapshot = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     SchoolNameSnapshot = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     ChargeGrossAmountSnapshot = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -997,6 +1427,12 @@ namespace educationaccountmanagement.DAL.Migrations
                     table.PrimaryKey("PK_PaymentAllocation", x => x.Id);
                     table.CheckConstraint("CK_PaymentAllocation_Amounts", "[Amount] > 0 AND [ChargeGrossAmountSnapshot] >= 0 AND [ChargeNetAmountSnapshot] >= 0 AND [ChargeRemainingAmountSnapshot] >= 0");
                     table.ForeignKey(
+                        name: "FK_PaymentAllocation_ChargeInstallment_ChargeInstallmentId",
+                        column: x => x.ChargeInstallmentId,
+                        principalTable: "ChargeInstallment",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
                         name: "FK_PaymentAllocation_Charge_ChargeId",
                         column: x => x.ChargeId,
                         principalTable: "Charge",
@@ -1012,8 +1448,8 @@ namespace educationaccountmanagement.DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "AiAssistantSetting",
-                columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "IsDeleted", "IsEnabled", "UpdatedAt", "UpdatedBy" },
-                values: new object[] { 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, true, null, null });
+                columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "IsDeleted", "IsEnabled", "TaxRate", "UpdatedAt", "UpdatedBy" },
+                values: new object[] { 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, true, 0.09m, null, null });
 
             migrationBuilder.InsertData(
                 table: "Citizen",
@@ -1150,6 +1586,23 @@ namespace educationaccountmanagement.DAL.Migrations
                     { 128, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, new DateOnly(2003, 8, 15), null, "free.citizen128@example.com", "Free Citizen 128", false, "128 Free Avenue, Singapore", "S0000128G", "+6590000128", "128 Free Avenue, Singapore", "Not Enrolled", null, null },
                     { 129, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, new DateOnly(2004, 9, 15), null, "free.citizen129@example.com", "Free Citizen 129", false, "129 Free Avenue, Singapore", "S0000129E", "+6590000129", "129 Free Avenue, Singapore", "Not Enrolled", null, null },
                     { 130, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, new DateOnly(2000, 10, 15), null, "free.citizen130@example.com", "Free Citizen 130", false, "130 Free Avenue, Singapore", "S0000130I", "+6590000130", "130 Free Avenue, Singapore", "Not Enrolled", null, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Country",
+                columns: new[] { "Id", "Code", "CreatedAt", "CreatedBy", "DeletedAt", "IsActive", "IsDeleted", "Name", "UpdatedAt", "UpdatedBy" },
+                values: new object[,]
+                {
+                    { 1, "SG", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, true, false, "Singapore", null, null },
+                    { 2, "MY", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, true, false, "Malaysia", null, null },
+                    { 3, "ID", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, true, false, "Indonesia", null, null },
+                    { 4, "VN", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, true, false, "Vietnam", null, null },
+                    { 5, "TH", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, true, false, "Thailand", null, null },
+                    { 6, "PH", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, true, false, "Philippines", null, null },
+                    { 7, "CN", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, true, false, "China", null, null },
+                    { 8, "IN", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, true, false, "India", null, null },
+                    { 9, "AU", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, true, false, "Australia", null, null },
+                    { 10, "GB", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, true, false, "United Kingdom", null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -1340,19 +1793,19 @@ namespace educationaccountmanagement.DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "Course",
-                columns: new[] { "Id", "CourseCode", "CourseFeeAmount", "CourseName", "CreatedAt", "CreatedBy", "DeletedAt", "Description", "EndDate", "FasApplicationDueDate", "GstAmount", "IsDeleted", "MiscFeeAmount", "SchoolId", "StartDate", "Status", "UpdatedAt", "UpdatedBy" },
+                columns: new[] { "Id", "AllowFullPayment", "AllowInstallment12Months", "AllowInstallment3Months", "AllowInstallment6Months", "CourseCode", "CourseFeeAmount", "CourseName", "CreatedAt", "CreatedBy", "DeletedAt", "Description", "EndDate", "EnrollmentDeadline", "FasApplicationDueDate", "GstAmount", "IsDeleted", "MiscFeeAmount", "SchoolId", "StartDate", "Status", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "CRS-2026-A1B2C3D", 100m, "Applied Mathematics", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Foundation course in applied mathematics.", new DateTime(2026, 9, 30, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc), 9.90m, false, 10m, 1, new DateTime(2026, 8, 1, 0, 0, 0, 0, DateTimeKind.Utc), 3, null, null },
-                    { 2, "CRS-2026-B2C3D4E", 115m, "Computer Science Fundamentals", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Introduction to programming and computing.", new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 7, 2, 0, 0, 0, 0, DateTimeKind.Utc), 11.43m, false, 12m, 2, new DateTime(2026, 8, 2, 0, 0, 0, 0, DateTimeKind.Utc), 3, null, null },
-                    { 3, "CRS-2026-C3D4E5F", 130m, "Business Communication", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Professional written and verbal communication.", new DateTime(2026, 10, 2, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 7, 3, 0, 0, 0, 0, DateTimeKind.Utc), 13.05m, false, 15m, 3, new DateTime(2026, 8, 3, 0, 0, 0, 0, DateTimeKind.Utc), 3, null, null },
-                    { 4, "CRS-2026-D4E5F6G", 145m, "Environmental Science", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Environmental systems and sustainability.", new DateTime(2026, 8, 3, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 4, 0, 0, 0, 0, DateTimeKind.Utc), 14.58m, false, 17m, 4, new DateTime(2026, 5, 4, 0, 0, 0, 0, DateTimeKind.Utc), 4, null, null },
-                    { 5, "CRS-2026-E5F6G7H", 160m, "Digital Media Design", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Digital design principles and production.", new DateTime(2026, 8, 4, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 5, 0, 0, 0, 0, DateTimeKind.Utc), 16.20m, false, 20m, 5, new DateTime(2026, 5, 5, 0, 0, 0, 0, DateTimeKind.Utc), 4, null, null },
-                    { 6, "CRS-2026-F6G7H8J", 175m, "Hospitality Operations", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Core hospitality service operations.", new DateTime(2026, 8, 5, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 6, 0, 0, 0, 0, DateTimeKind.Utc), 17.73m, false, 22m, 6, new DateTime(2026, 5, 6, 0, 0, 0, 0, DateTimeKind.Utc), 4, null, null },
-                    { 7, "CRS-2026-G7H8J9K", 190m, "Electrical Engineering Basics", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Fundamentals of electrical systems.", new DateTime(2026, 5, 6, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 7, 0, 0, 0, 0, DateTimeKind.Utc), 19.35m, false, 25m, 7, new DateTime(2026, 3, 7, 0, 0, 0, 0, DateTimeKind.Utc), 5, null, null },
-                    { 8, "CRS-2026-H8J9K0L", 205m, "Creative Writing", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Writing techniques across common genres.", new DateTime(2026, 5, 7, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 8, 0, 0, 0, 0, DateTimeKind.Utc), 20.88m, false, 27m, 8, new DateTime(2026, 3, 8, 0, 0, 0, 0, DateTimeKind.Utc), 5, null, null },
-                    { 9, "CRS-2026-J9K0L1M", 220m, "Data Analytics", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Data preparation, analysis and reporting.", new DateTime(2026, 5, 8, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc), 22.50m, false, 30m, 9, new DateTime(2026, 3, 9, 0, 0, 0, 0, DateTimeKind.Utc), 5, null, null },
-                    { 10, "CRS-2026-K0L1M2N", 235m, "Legacy Office Applications", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Archived office applications programme.", new DateTime(2026, 5, 9, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc), 24.03m, false, 32m, 10, new DateTime(2026, 3, 10, 0, 0, 0, 0, DateTimeKind.Utc), 5, null, null }
+                    { 1, true, false, true, true, "CRS-2026-A1B2C3D", 100m, "Applied Mathematics", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Foundation course in applied mathematics.", new DateTime(2026, 9, 30, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc), 9.90m, false, 10m, 1, new DateTime(2026, 8, 1, 0, 0, 0, 0, DateTimeKind.Utc), 3, null, null },
+                    { 2, true, false, true, true, "CRS-2026-B2C3D4E", 115m, "Computer Science Fundamentals", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Introduction to programming and computing.", new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 7, 2, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 7, 2, 0, 0, 0, 0, DateTimeKind.Utc), 11.43m, false, 12m, 2, new DateTime(2026, 8, 2, 0, 0, 0, 0, DateTimeKind.Utc), 3, null, null },
+                    { 3, true, false, true, true, "CRS-2026-C3D4E5F", 130m, "Business Communication", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Professional written and verbal communication.", new DateTime(2026, 10, 2, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 7, 3, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 7, 3, 0, 0, 0, 0, DateTimeKind.Utc), 13.05m, false, 15m, 3, new DateTime(2026, 8, 3, 0, 0, 0, 0, DateTimeKind.Utc), 3, null, null },
+                    { 4, true, false, true, true, "CRS-2026-D4E5F6G", 145m, "Environmental Science", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Environmental systems and sustainability.", new DateTime(2026, 8, 3, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 4, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 4, 0, 0, 0, 0, DateTimeKind.Utc), 14.58m, false, 17m, 4, new DateTime(2026, 5, 4, 0, 0, 0, 0, DateTimeKind.Utc), 4, null, null },
+                    { 5, true, false, true, true, "CRS-2026-E5F6G7H", 160m, "Digital Media Design", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Digital design principles and production.", new DateTime(2026, 8, 4, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 5, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 5, 0, 0, 0, 0, DateTimeKind.Utc), 16.20m, false, 20m, 5, new DateTime(2026, 5, 5, 0, 0, 0, 0, DateTimeKind.Utc), 4, null, null },
+                    { 6, true, false, true, true, "CRS-2026-F6G7H8J", 175m, "Hospitality Operations", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Core hospitality service operations.", new DateTime(2026, 8, 5, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 6, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 6, 0, 0, 0, 0, DateTimeKind.Utc), 17.73m, false, 22m, 6, new DateTime(2026, 5, 6, 0, 0, 0, 0, DateTimeKind.Utc), 4, null, null },
+                    { 7, true, false, true, true, "CRS-2026-G7H8J9K", 190m, "Electrical Engineering Basics", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Fundamentals of electrical systems.", new DateTime(2026, 5, 6, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 7, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 7, 0, 0, 0, 0, DateTimeKind.Utc), 19.35m, false, 25m, 7, new DateTime(2026, 3, 7, 0, 0, 0, 0, DateTimeKind.Utc), 5, null, null },
+                    { 8, true, false, true, true, "CRS-2026-H8J9K0L", 205m, "Creative Writing", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Writing techniques across common genres.", new DateTime(2026, 5, 7, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 8, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 8, 0, 0, 0, 0, DateTimeKind.Utc), 20.88m, false, 27m, 8, new DateTime(2026, 3, 8, 0, 0, 0, 0, DateTimeKind.Utc), 5, null, null },
+                    { 9, true, false, true, true, "CRS-2026-J9K0L1M", 220m, "Data Analytics", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Data preparation, analysis and reporting.", new DateTime(2026, 5, 8, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc), 22.50m, false, 30m, 9, new DateTime(2026, 3, 9, 0, 0, 0, 0, DateTimeKind.Utc), 5, null, null },
+                    { 10, true, false, true, true, "CRS-2026-K0L1M2N", 235m, "Legacy Office Applications", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Archived office applications programme.", new DateTime(2026, 5, 9, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc), 24.03m, false, 32m, 10, new DateTime(2026, 3, 10, 0, 0, 0, 0, DateTimeKind.Utc), 5, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -1494,6 +1947,23 @@ namespace educationaccountmanagement.DAL.Migrations
                     { 5, 0, "S0000005A", "Eligible citizen account created.", 1, 2 },
                     { 6, 2, "S0000006Z", "Active enrollment requires an extension.", 1, 2 },
                     { 7, 1, "S0000007H", "Outstanding reconciliation requires manual handling.", 2, 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "FasScheme",
+                columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "Description", "DurationInMonths", "IsDeleted", "IsPerComponent", "PublishedAt", "SchemeCode", "SchemeName", "SchoolId", "Status", "SubsidyType", "UpdatedAt", "UpdatedBy" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Support for students from lower-income households.", 6, false, false, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "FAS-001", "Household Income Subsidy", 1, 2, 1, null, null },
+                    { 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Transport support for eligible students.", 3, false, false, new DateTime(2026, 1, 2, 0, 0, 0, 0, DateTimeKind.Utc), "FAS-002", "Transport Assistance", 2, 2, 2, null, null },
+                    { 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Course and misc fee assistance.", 12, false, true, new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc), "FAS-003", "Study Grant", 3, 2, 1, null, null },
+                    { 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Draft meal support programme.", 6, false, false, null, "FAS-004", "Meal Subsidy", 4, 1, 1, null, null },
+                    { 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Support for digital learning devices.", 9, false, false, new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc), "FAS-005", "Digital Device Grant", 5, 2, 2, null, null },
+                    { 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Inactive uniform support programme.", 3, false, false, new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc), "FAS-006", "Uniform Grant", 6, 3, 2, null, null },
+                    { 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Support for students with special learning needs.", 12, false, true, new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc), "FAS-007", "Special Needs Support", 7, 2, 1, null, null },
+                    { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Support for textbooks and materials.", 6, false, false, new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc), "FAS-008", "Learning Materials Grant", 8, 2, 1, null, null },
+                    { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Short term emergency support.", 3, false, false, new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc), "FAS-009", "Emergency Financial Aid", 9, 2, 2, null, null },
+                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Support for STEM related courses.", 12, false, false, new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc), "FAS-010", "STEM Programme Grant", 10, 2, 1, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -1647,6 +2117,74 @@ namespace educationaccountmanagement.DAL.Migrations
                     { 8, 70m, 0m, 70m, new DateTime(2026, 4, 5, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "April outstanding charge auto deduction.", 2, 8, false, new Guid("00000000-0000-0000-0000-000000000008"), 3, null, null },
                     { 9, 180m, 1220m, 1400m, new DateTime(2026, 1, 23, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Course fee payment for Environmental Science.", 2, 4, false, new Guid("00000000-0000-0000-0000-000000000009"), 2, null, null },
                     { 10, 180m, 1320m, 1500m, new DateTime(2026, 1, 24, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Course fee payment for Digital Media Design.", 2, 5, false, new Guid("00000000-0000-0000-0000-000000000010"), 2, null, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "FasSchemeConditionGroup",
+                columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "DisplayOrder", "FasSchemeId", "IsDeleted", "LogicalOperator", "ParentGroupId", "UpdatedAt", "UpdatedBy" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, false, 1, null, null, null },
+                    { 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 2, false, 1, null, null, null },
+                    { 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 3, 3, false, 1, null, null, null },
+                    { 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 4, 4, false, 1, null, null, null },
+                    { 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 5, 5, false, 1, null, null, null },
+                    { 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 6, 6, false, 1, null, null, null },
+                    { 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 7, 7, false, 1, null, null, null },
+                    { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 8, 8, false, 1, null, null, null },
+                    { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 9, 9, false, 1, null, null, null },
+                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 10, 10, false, 1, null, null, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "FasSchemeCourse",
+                columns: new[] { "Id", "CourseId", "CreatedAt", "CreatedBy", "DeletedAt", "FasSchemeId", "IsDeleted", "UpdatedAt", "UpdatedBy" },
+                values: new object[,]
+                {
+                    { 1, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, null, null },
+                    { 2, 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, null, null },
+                    { 3, 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 3, false, null, null },
+                    { 4, 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 4, false, null, null },
+                    { 5, 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 5, false, null, null },
+                    { 6, 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 6, false, null, null },
+                    { 7, 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 7, false, null, null },
+                    { 8, 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 8, false, null, null },
+                    { 9, 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 9, false, null, null },
+                    { 10, 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 10, false, null, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "FasSchemeRequiredDocument",
+                columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "DisplayOrder", "DocumentName", "FasSchemeId", "IsDeleted", "TemplateFileKey", "UpdatedAt", "UpdatedBy" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, "Recent Payslip", 1, false, "fas/templates/document-1.pdf", null, null },
+                    { 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, "Income Statement", 2, false, "fas/templates/document-2.pdf", null, null },
+                    { 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, "Recent Payslip", 3, false, "fas/templates/document-3.pdf", null, null },
+                    { 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, "Income Statement", 4, false, "fas/templates/document-4.pdf", null, null },
+                    { 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, "Recent Payslip", 5, false, "fas/templates/document-5.pdf", null, null },
+                    { 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, "Income Statement", 6, false, "fas/templates/document-6.pdf", null, null },
+                    { 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, "Recent Payslip", 7, false, "fas/templates/document-7.pdf", null, null },
+                    { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, "Income Statement", 8, false, "fas/templates/document-8.pdf", null, null },
+                    { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, "Recent Payslip", 9, false, "fas/templates/document-9.pdf", null, null },
+                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, "Income Statement", 10, false, "fas/templates/document-10.pdf", null, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "FasSchemeTier",
+                columns: new[] { "Id", "CourseFeeSubsidyValue", "CreatedAt", "CreatedBy", "DeletedAt", "DisplayOrder", "FasSchemeId", "IsDeleted", "MaxPerCapitaIncome", "MiscFeeSubsidyValue", "SubsidyValue", "TierName", "UpdatedAt", "UpdatedBy" },
+                values: new object[,]
+                {
+                    { 1, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, false, 750m, null, 75m, "Tier 1", null, null },
+                    { 2, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 2, false, 900m, null, 300m, "Tier 1", null, null },
+                    { 3, 100m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 3, false, 690m, 50m, null, "Tier 1", null, null },
+                    { 4, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 4, false, 800m, null, 50m, "Tier 1", null, null },
+                    { 5, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 5, false, 1000m, null, 500m, "Tier 1", null, null },
+                    { 6, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 6, false, 750m, null, 200m, "Tier 1", null, null },
+                    { 7, 75m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 7, false, 1500m, 75m, null, "Tier 1", null, null },
+                    { 8, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 8, false, 850m, null, 40m, "Tier 1", null, null },
+                    { 9, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 9, false, 1200m, null, 250m, "Tier 1", null, null },
+                    { 10, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 10, false, 1000m, null, 60m, "Tier 1", null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -1905,6 +2443,40 @@ namespace educationaccountmanagement.DAL.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "FasApplication",
+                columns: new[] { "Id", "ApplicationNumber", "ApprovedAt", "ApprovedByUserId", "ApprovedTierId", "CreatedAt", "CreatedBy", "DeletedAt", "DurationInMonthsSnapshot", "FasSchemeId", "GrossHouseholdIncomeSnapshot", "HouseholdMemberCountSnapshot", "IsDeleted", "ParentNationalityId", "PerCapitaIncomeSnapshot", "RecommendationReason", "RecommendedTierId", "RejectionReason", "SchoolStudentId", "Status", "StudentAgeSnapshot", "StudentNationalityId", "UpdatedAt", "UpdatedBy", "ValidityEndDate", "ValidityStartDate", "WithdrawnAt" },
+                values: new object[,]
+                {
+                    { 1, "FASAPP-0001", new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), 1, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 6, 1, 2500m, 4, false, 1, 625m, "PCI <= 750", 1, null, 1, 2, 18, 1, null, null, new DateTime(2026, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), null },
+                    { 2, "FASAPP-0002", new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), 1, 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 3, 2, 3000m, 4, false, 2, 750m, "GHI <= 3500", 2, null, 2, 2, 17, 1, null, null, new DateTime(2026, 9, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), null },
+                    { 3, "FASAPP-0003", new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), 1, 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 12, 3, 2200m, 5, false, 1, 440m, "Singapore citizen and PCI <= 690", 3, null, 3, 2, 19, 1, null, null, new DateTime(2027, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), null },
+                    { 4, "FASAPP-0004", null, null, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, 4, 3600m, 4, false, 3, 900m, "Pending admin review", 4, null, 4, 1, 20, 1, null, null, null, null, null },
+                    { 5, "FASAPP-0005", null, null, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, 5, 7000m, 4, false, 4, 1750m, "No tier matched", 5, "Income exceeds supported threshold.", 5, 3, 21, 1, null, null, null, null, null },
+                    { 6, "FASAPP-0006", null, null, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, 6, 2800m, 5, false, 1, 560m, "Student withdrew before review", 6, null, 6, 4, 18, 1, null, null, null, null, new DateTime(2026, 6, 3, 0, 0, 0, 0, DateTimeKind.Utc) },
+                    { 7, "FASAPP-0007", new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), 1, 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 12, 7, 4800m, 4, false, 1, 1200m, "Special needs support threshold matched", 7, null, 7, 2, 16, 1, null, null, new DateTime(2027, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), null },
+                    { 8, "FASAPP-0008", new DateTime(2025, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), 1, 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 6, 8, 3200m, 5, false, 5, 640m, "PCI <= 850", 8, null, 8, 2, 22, 1, null, null, new DateTime(2025, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2025, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), null },
+                    { 9, "FASAPP-0009", null, null, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, 9, 2600m, 3, false, 6, 866.67m, "Emergency aid review required", 9, null, 9, 1, 17, 1, null, null, null, null, null },
+                    { 10, "FASAPP-0010", new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), 1, 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 12, 10, 3900m, 5, false, 1, 780m, "PCI <= 1000", 10, null, 10, 2, 18, 1, null, null, new DateTime(2027, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "FasSchemeCondition",
+                columns: new[] { "Id", "CountryId", "CreatedAt", "CreatedBy", "DeletedAt", "DisplayOrder", "Field", "GroupId", "IsDeleted", "Operator", "UpdatedAt", "UpdatedBy", "ValueNumber", "ValueNumberTo" },
+                values: new object[,]
+                {
+                    { 1, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 5, 1, false, 4, null, null, 750m, null },
+                    { 2, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 4, 2, false, 4, null, null, 3500m, null },
+                    { 3, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 2, 3, false, 1, null, null, null, null },
+                    { 4, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, 4, false, 7, null, null, 16m, 30m },
+                    { 5, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 3, 5, false, 1, null, null, null, null },
+                    { 6, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 5, 6, false, 4, null, null, 1000m, null },
+                    { 7, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 4, 7, false, 4, null, null, 5000m, null },
+                    { 8, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 2, 8, false, 1, null, null, null, null },
+                    { 9, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 5, 9, false, 4, null, null, 1200m, null },
+                    { 10, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, 10, false, 4, null, null, 25m, null }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Payment",
                 columns: new[] { "Id", "AccountNumberSnapshot", "CitizenFullNameSnapshot", "CitizenNricSnapshot", "CreatedAt", "CreatedBy", "DeletedAt", "EducationCreditTransactionId", "ExternalReference", "IsDeleted", "PaidAt", "PaymentMethod", "Status", "TotalAmount", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
@@ -1928,25 +2500,76 @@ namespace educationaccountmanagement.DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "Charge",
-                columns: new[] { "Id", "BecameOutstandingAt", "CourseCodeSnapshot", "CourseDescriptionSnapshot", "CourseEndDateSnapshot", "CourseFeeAmountSnapshot", "CourseNameSnapshot", "CourseStartDateSnapshot", "CreatedAt", "CreatedBy", "DeletedAt", "EnrollmentId", "GrossAmount", "GstAmountSnapshot", "IsDeleted", "LastAutoDeductedAt", "MiscFeeAmountSnapshot", "NetAmount", "PaidAmount", "RemainingAmount", "SchoolNameSnapshot", "Status", "SubsidyAmount", "UpdatedAt", "UpdatedBy" },
+                columns: new[] { "Id", "AppliedFasApplicationId", "AppliedFasCourseFeeSubsidyValueSnapshot", "AppliedFasIsPerComponentSnapshot", "AppliedFasMiscFeeSubsidyValueSnapshot", "AppliedFasSchemeNameSnapshot", "AppliedFasSubsidyTypeSnapshot", "AppliedFasSubsidyValueSnapshot", "AppliedFasTierNameSnapshot", "BecameOutstandingAt", "CourseCodeSnapshot", "CourseDescriptionSnapshot", "CourseEndDateSnapshot", "CourseFeeAmountSnapshot", "CourseNameSnapshot", "CourseStartDateSnapshot", "CreatedAt", "CreatedBy", "DeletedAt", "EnrollmentId", "GrossAmount", "GstAmountSnapshot", "IsDeleted", "LastAutoDeductedAt", "MiscFeeAmountSnapshot", "NetAmount", "PaidAmount", "RemainingAmount", "SchoolNameSnapshot", "Status", "SubsidyAmount", "TaxRateSnapshot", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, null, "CRS-2026-A1B2C3D", "Foundation course in applied mathematics.", new DateTime(2026, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc), 100m, "Applied Mathematics", new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 120m, 10m, false, null, 10m, 120m, 120m, 0m, "Northview Secondary School", 3, 0m, null, null },
-                    { 2, null, "CRS-2026-B2C3D4E", "Introduction to programming and computing.", new DateTime(2026, 12, 2, 0, 0, 0, 0, DateTimeKind.Utc), 115m, "Computer Science Fundamentals", new DateTime(2026, 10, 2, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 140m, 13m, false, null, 12m, 140m, 70m, 70m, "Eastbridge Secondary School", 2, 0m, null, null },
-                    { 3, null, "CRS-2026-C3D4E5F", "Professional written and verbal communication.", new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Utc), 130m, "Business Communication", new DateTime(2026, 8, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 3, 160m, 15m, false, null, 15m, 160m, 140m, 20m, "Westhaven Secondary School", 2, 0m, null, null },
-                    { 4, null, "CRS-2026-D4E5F6G", "Environmental systems and sustainability.", new DateTime(2026, 10, 2, 0, 0, 0, 0, DateTimeKind.Utc), 145m, "Environmental Science", new DateTime(2026, 8, 2, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 4, 180m, 18m, false, null, 17m, 180m, 180m, 0m, "Southpoint Secondary School", 3, 0m, null, null },
-                    { 5, null, "CRS-2026-E5F6G7H", "Digital design principles and production.", new DateTime(2026, 9, 15, 0, 0, 0, 0, DateTimeKind.Utc), 160m, "Digital Media Design", new DateTime(2026, 7, 15, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 5, 200m, 20m, false, null, 20m, 200m, 180m, 20m, "Central Heights School", 2, 0m, null, null },
-                    { 6, new DateTime(2026, 2, 7, 0, 0, 0, 0, DateTimeKind.Utc), "CRS-2026-F6G7H8J", "Core hospitality service operations.", new DateTime(2026, 9, 16, 0, 0, 0, 0, DateTimeKind.Utc), 175m, "Hospitality Operations", new DateTime(2026, 7, 16, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 6, 220m, 23m, false, new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc), 22m, 220m, 150m, 70m, "Riverside Learning Institute", 4, 0m, null, null },
-                    { 7, null, "CRS-2026-G7H8J9K", "Fundamentals of electrical systems.", new DateTime(2026, 8, 1, 0, 0, 0, 0, DateTimeKind.Utc), 190m, "Electrical Engineering Basics", new DateTime(2026, 5, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 7, 240m, 25m, false, null, 25m, 240m, 200m, 40m, "Lakeside Technical School", 2, 0m, null, null },
-                    { 8, new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc), "CRS-2026-H8J9K0L", "Writing techniques across common genres.", new DateTime(2026, 8, 2, 0, 0, 0, 0, DateTimeKind.Utc), 205m, "Creative Writing", new DateTime(2026, 5, 2, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 8, 260m, 28m, false, new DateTime(2026, 4, 5, 0, 0, 0, 0, DateTimeKind.Utc), 27m, 260m, 200m, 60m, "Greenfield Academy", 4, 0m, null, null },
-                    { 9, new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc), "CRS-2026-J9K0L1M", "Data preparation, analysis and reporting.", new DateTime(2026, 5, 8, 0, 0, 0, 0, DateTimeKind.Utc), 220m, "Data Analytics", new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 9, 280m, 30m, false, null, 30m, 280m, 0m, 280m, "Harbourfront School", 4, 0m, null, null },
-                    { 10, new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Utc), "CRS-2026-K0L1M2N", "Archived office applications programme.", new DateTime(2026, 5, 9, 0, 0, 0, 0, DateTimeKind.Utc), 235m, "Legacy Office Applications", new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 10, 300m, 33m, false, null, 32m, 300m, 0m, 300m, "Hillcrest Education Centre", 4, 0m, null, null }
+                    { 1, null, null, false, null, null, null, null, null, null, "CRS-2026-A1B2C3D", "Foundation course in applied mathematics.", new DateTime(2026, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc), 100m, "Applied Mathematics", new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 120m, 10m, false, null, 10m, 120m, 120m, 0m, "Northview Secondary School", 3, 0m, 0.09m, null, null },
+                    { 2, null, null, false, null, null, null, null, null, null, "CRS-2026-B2C3D4E", "Introduction to programming and computing.", new DateTime(2026, 12, 2, 0, 0, 0, 0, DateTimeKind.Utc), 115m, "Computer Science Fundamentals", new DateTime(2026, 10, 2, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, 140m, 13m, false, null, 12m, 140m, 70m, 70m, "Eastbridge Secondary School", 2, 0m, 0.09m, null, null },
+                    { 3, null, null, false, null, null, null, null, null, null, "CRS-2026-C3D4E5F", "Professional written and verbal communication.", new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Utc), 130m, "Business Communication", new DateTime(2026, 8, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 3, 160m, 15m, false, null, 15m, 160m, 140m, 20m, "Westhaven Secondary School", 2, 0m, 0.09m, null, null },
+                    { 4, null, null, false, null, null, null, null, null, null, "CRS-2026-D4E5F6G", "Environmental systems and sustainability.", new DateTime(2026, 10, 2, 0, 0, 0, 0, DateTimeKind.Utc), 145m, "Environmental Science", new DateTime(2026, 8, 2, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 4, 180m, 18m, false, null, 17m, 180m, 180m, 0m, "Southpoint Secondary School", 3, 0m, 0.09m, null, null },
+                    { 5, null, null, false, null, null, null, null, null, null, "CRS-2026-E5F6G7H", "Digital design principles and production.", new DateTime(2026, 9, 15, 0, 0, 0, 0, DateTimeKind.Utc), 160m, "Digital Media Design", new DateTime(2026, 7, 15, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 5, 200m, 20m, false, null, 20m, 200m, 180m, 20m, "Central Heights School", 2, 0m, 0.09m, null, null },
+                    { 6, null, null, false, null, null, null, null, null, new DateTime(2026, 2, 7, 0, 0, 0, 0, DateTimeKind.Utc), "CRS-2026-F6G7H8J", "Core hospitality service operations.", new DateTime(2026, 9, 16, 0, 0, 0, 0, DateTimeKind.Utc), 175m, "Hospitality Operations", new DateTime(2026, 7, 16, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 6, 220m, 23m, false, new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc), 22m, 220m, 150m, 70m, "Riverside Learning Institute", 4, 0m, 0.09m, null, null },
+                    { 7, null, null, false, null, null, null, null, null, null, "CRS-2026-G7H8J9K", "Fundamentals of electrical systems.", new DateTime(2026, 8, 1, 0, 0, 0, 0, DateTimeKind.Utc), 190m, "Electrical Engineering Basics", new DateTime(2026, 5, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 7, 240m, 25m, false, null, 25m, 240m, 200m, 40m, "Lakeside Technical School", 2, 0m, 0.09m, null, null },
+                    { 8, null, null, false, null, null, null, null, null, new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc), "CRS-2026-H8J9K0L", "Writing techniques across common genres.", new DateTime(2026, 8, 2, 0, 0, 0, 0, DateTimeKind.Utc), 205m, "Creative Writing", new DateTime(2026, 5, 2, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 8, 260m, 28m, false, new DateTime(2026, 4, 5, 0, 0, 0, 0, DateTimeKind.Utc), 27m, 260m, 200m, 60m, "Greenfield Academy", 4, 0m, 0.09m, null, null },
+                    { 9, null, null, false, null, null, null, null, null, new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc), "CRS-2026-J9K0L1M", "Data preparation, analysis and reporting.", new DateTime(2026, 5, 8, 0, 0, 0, 0, DateTimeKind.Utc), 220m, "Data Analytics", new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 9, 280m, 30m, false, null, 30m, 280m, 0m, 280m, "Harbourfront School", 4, 0m, 0.09m, null, null },
+                    { 10, null, null, false, null, null, null, null, null, new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Utc), "CRS-2026-K0L1M2N", "Archived office applications programme.", new DateTime(2026, 5, 9, 0, 0, 0, 0, DateTimeKind.Utc), 235m, "Legacy Office Applications", new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 10, 300m, 33m, false, null, 32m, 300m, 0m, 300m, "Hillcrest Education Centre", 4, 0m, 0.09m, null, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "FasApplicationDocument",
+                columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "DocumentNameSnapshot", "FasApplicationId", "FasSchemeRequiredDocumentId", "FileKey", "FileName", "IsDeleted", "UpdatedAt", "UpdatedBy" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Recent Payslip", 1, 1, "fas/applications/1/document.pdf", "fas-application-1.pdf", false, null, null },
+                    { 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Income Statement", 2, 2, "fas/applications/2/document.pdf", "fas-application-2.pdf", false, null, null },
+                    { 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Recent Payslip", 3, 3, "fas/applications/3/document.pdf", "fas-application-3.pdf", false, null, null },
+                    { 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Income Statement", 4, 4, "fas/applications/4/document.pdf", "fas-application-4.pdf", false, null, null },
+                    { 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Recent Payslip", 5, 5, "fas/applications/5/document.pdf", "fas-application-5.pdf", false, null, null },
+                    { 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Income Statement", 6, 6, "fas/applications/6/document.pdf", "fas-application-6.pdf", false, null, null },
+                    { 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Recent Payslip", 7, 7, "fas/applications/7/document.pdf", "fas-application-7.pdf", false, null, null },
+                    { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Income Statement", 8, 8, "fas/applications/8/document.pdf", "fas-application-8.pdf", false, null, null },
+                    { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Recent Payslip", 9, 9, "fas/applications/9/document.pdf", "fas-application-9.pdf", false, null, null },
+                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Income Statement", 10, 10, "fas/applications/10/document.pdf", "fas-application-10.pdf", false, null, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "FasTierOverrideHistory",
+                columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "FasApplicationId", "IsDeleted", "ModifiedAt", "ModifiedByUserId", "NewTierId", "OldTierId", "Reason", "UpdatedAt", "UpdatedBy" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), 1, 1, 1, "Seed audit trail for tier review.", null, null },
+                    { 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, new DateTime(2026, 6, 2, 0, 0, 0, 0, DateTimeKind.Utc), 1, 2, 2, "Seed audit trail for tier review.", null, null },
+                    { 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 3, false, new DateTime(2026, 6, 3, 0, 0, 0, 0, DateTimeKind.Utc), 1, 3, 3, "Seed audit trail for tier review.", null, null },
+                    { 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 4, false, new DateTime(2026, 6, 4, 0, 0, 0, 0, DateTimeKind.Utc), 1, 4, 4, "Seed audit trail for tier review.", null, null },
+                    { 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 5, false, new DateTime(2026, 6, 5, 0, 0, 0, 0, DateTimeKind.Utc), 1, 5, 5, "Seed audit trail for tier review.", null, null },
+                    { 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 6, false, new DateTime(2026, 6, 6, 0, 0, 0, 0, DateTimeKind.Utc), 1, 6, 6, "Seed audit trail for tier review.", null, null },
+                    { 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 7, false, new DateTime(2026, 6, 7, 0, 0, 0, 0, DateTimeKind.Utc), 1, 7, 7, "Seed audit trail for tier review.", null, null },
+                    { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 8, false, new DateTime(2026, 6, 8, 0, 0, 0, 0, DateTimeKind.Utc), 1, 8, 8, "Seed audit trail for tier review.", null, null },
+                    { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 9, false, new DateTime(2026, 6, 9, 0, 0, 0, 0, DateTimeKind.Utc), 1, 9, 9, "Seed audit trail for tier review.", null, null },
+                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 10, false, new DateTime(2026, 6, 10, 0, 0, 0, 0, DateTimeKind.Utc), 1, 10, 10, "Seed audit trail for tier review.", null, null }
                 });
 
             migrationBuilder.InsertData(
                 table: "TopupSystemApplication",
                 columns: new[] { "Id", "EducationAccountId", "SystemTopupId", "TopupExecutionTargetId" },
                 values: new object[] { 1, 3, 21, 3 });
+
+            migrationBuilder.InsertData(
+                table: "ChargeInstallment",
+                columns: new[] { "Id", "Amount", "BecameOverdueAt", "ChargeId", "CreatedAt", "CreatedBy", "DeletedAt", "DueDate", "InstallmentNumber", "IsDeleted", "PaidAmount", "RemainingAmount", "Status", "UpdatedAt", "UpdatedBy" },
+                values: new object[,]
+                {
+                    { 1, 120m, null, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 8, 1, 0, 0, 0, 0, DateTimeKind.Utc), 1, false, 120m, 0m, 4, null, null },
+                    { 2, 70m, null, 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 8, 2, 0, 0, 0, 0, DateTimeKind.Utc), 1, false, 35m, 35m, 2, null, null },
+                    { 3, 80m, null, 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 8, 3, 0, 0, 0, 0, DateTimeKind.Utc), 1, false, 70m, 10m, 2, null, null },
+                    { 4, 180m, null, 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 8, 4, 0, 0, 0, 0, DateTimeKind.Utc), 1, false, 180m, 0m, 4, null, null },
+                    { 5, 100m, null, 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 8, 5, 0, 0, 0, 0, DateTimeKind.Utc), 1, false, 90m, 10m, 2, null, null },
+                    { 6, 110m, new DateTime(2026, 5, 7, 0, 0, 0, 0, DateTimeKind.Utc), 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 5, 6, 0, 0, 0, 0, DateTimeKind.Utc), 1, false, 75m, 35m, 3, null, null },
+                    { 7, 120m, null, 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 5, 7, 0, 0, 0, 0, DateTimeKind.Utc), 1, false, 100m, 20m, 2, null, null },
+                    { 8, 130m, new DateTime(2026, 5, 9, 0, 0, 0, 0, DateTimeKind.Utc), 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 5, 8, 0, 0, 0, 0, DateTimeKind.Utc), 1, false, 100m, 30m, 3, null, null },
+                    { 9, 140m, new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc), 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc), 1, false, 0m, 140m, 3, null, null },
+                    { 10, 150m, new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Utc), 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc), 1, false, 0m, 150m, 3, null, null }
+                });
 
             migrationBuilder.InsertData(
                 table: "OutstandingDeductionTarget",
@@ -1967,19 +2590,19 @@ namespace educationaccountmanagement.DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "PaymentAllocation",
-                columns: new[] { "Id", "Amount", "ChargeGrossAmountSnapshot", "ChargeId", "ChargeNetAmountSnapshot", "ChargeRemainingAmountSnapshot", "CourseNameSnapshot", "CreatedAt", "CreatedBy", "DeletedAt", "IsDeleted", "PaymentId", "SchoolNameSnapshot", "UpdatedAt", "UpdatedBy" },
+                columns: new[] { "Id", "Amount", "ChargeGrossAmountSnapshot", "ChargeId", "ChargeInstallmentId", "ChargeNetAmountSnapshot", "ChargeRemainingAmountSnapshot", "CourseNameSnapshot", "CreatedAt", "CreatedBy", "DeletedAt", "IsDeleted", "PaymentId", "SchoolNameSnapshot", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, 70m, 140m, 2, 140m, 140m, "Computer Science Fundamentals", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Eastbridge Secondary School", null, null },
-                    { 2, 140m, 160m, 3, 160m, 160m, "Business Communication", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 2, "Westhaven Secondary School", null, null },
-                    { 3, 180m, 180m, 4, 180m, 180m, "Environmental Science", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 3, "Southpoint Secondary School", null, null },
-                    { 4, 180m, 200m, 5, 200m, 200m, "Digital Media Design", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 4, "Central Heights School", null, null },
-                    { 5, 120m, 120m, 1, 120m, 120m, "Applied Mathematics", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 5, "Northview Secondary School", null, null },
-                    { 6, 100m, 220m, 6, 220m, 220m, "Hospitality Operations", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 6, "Riverside Learning Institute", null, null },
-                    { 7, 200m, 240m, 7, 240m, 240m, "Electrical Engineering Basics", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 7, "Lakeside Technical School", null, null },
-                    { 8, 130m, 260m, 8, 260m, 260m, "Creative Writing", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 8, "Greenfield Academy", null, null },
-                    { 9, 50m, 220m, 6, 220m, 120m, "Hospitality Operations", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 9, "Riverside Learning Institute", null, null },
-                    { 10, 70m, 260m, 8, 260m, 130m, "Creative Writing", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 10, "Greenfield Academy", null, null }
+                    { 1, 70m, 140m, 2, null, 140m, 140m, "Computer Science Fundamentals", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "Eastbridge Secondary School", null, null },
+                    { 2, 140m, 160m, 3, null, 160m, 160m, "Business Communication", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 2, "Westhaven Secondary School", null, null },
+                    { 3, 180m, 180m, 4, null, 180m, 180m, "Environmental Science", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 3, "Southpoint Secondary School", null, null },
+                    { 4, 180m, 200m, 5, null, 200m, 200m, "Digital Media Design", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 4, "Central Heights School", null, null },
+                    { 5, 120m, 120m, 1, null, 120m, 120m, "Applied Mathematics", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 5, "Northview Secondary School", null, null },
+                    { 6, 100m, 220m, 6, null, 220m, 220m, "Hospitality Operations", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 6, "Riverside Learning Institute", null, null },
+                    { 7, 200m, 240m, 7, null, 240m, 240m, "Electrical Engineering Basics", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 7, "Lakeside Technical School", null, null },
+                    { 8, 130m, 260m, 8, null, 260m, 260m, "Creative Writing", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 8, "Greenfield Academy", null, null },
+                    { 9, 50m, 220m, 6, null, 220m, 120m, "Hospitality Operations", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 9, "Riverside Learning Institute", null, null },
+                    { 10, 70m, 260m, 8, null, 260m, 130m, "Creative Writing", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 10, "Greenfield Academy", null, null }
                 });
 
             migrationBuilder.CreateIndex(
@@ -2029,6 +2652,11 @@ namespace educationaccountmanagement.DAL.Migrations
                 column: "OccurredAt");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Charge_AppliedFasApplicationId",
+                table: "Charge",
+                column: "AppliedFasApplicationId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Charge_BecameOutstandingAt",
                 table: "Charge",
                 column: "BecameOutstandingAt");
@@ -2043,6 +2671,28 @@ namespace educationaccountmanagement.DAL.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Charge_Status",
                 table: "Charge",
+                column: "Status");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ChargeInstallment_ChargeId",
+                table: "ChargeInstallment",
+                column: "ChargeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ChargeInstallment_ChargeId_InstallmentNumber",
+                table: "ChargeInstallment",
+                columns: new[] { "ChargeId", "InstallmentNumber" },
+                unique: true,
+                filter: "\"IsDeleted\" = 0 AND \"ChargeId\" IS NOT NULL AND \"InstallmentNumber\" IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ChargeInstallment_DueDate",
+                table: "ChargeInstallment",
+                column: "DueDate");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ChargeInstallment_Status",
+                table: "ChargeInstallment",
                 column: "Status");
 
             migrationBuilder.CreateIndex(
@@ -2068,6 +2718,25 @@ namespace educationaccountmanagement.DAL.Migrations
                 filter: "\"Nric\" IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Country_Code",
+                table: "Country",
+                column: "Code",
+                unique: true,
+                filter: "\"IsDeleted\" = 0 AND \"Code\" IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Country_IsActive",
+                table: "Country",
+                column: "IsActive");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Country_Name",
+                table: "Country",
+                column: "Name",
+                unique: true,
+                filter: "\"IsDeleted\" = 0 AND \"Name\" IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Course_CourseCode",
                 table: "Course",
                 column: "CourseCode",
@@ -2085,6 +2754,11 @@ namespace educationaccountmanagement.DAL.Migrations
                 name: "IX_Course_EndDate",
                 table: "Course",
                 column: "EndDate");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Course_EnrollmentDeadline",
+                table: "Course",
+                column: "EnrollmentDeadline");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Course_FasApplicationDueDate",
@@ -2224,6 +2898,183 @@ namespace educationaccountmanagement.DAL.Migrations
                 column: "SchoolStudentId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_FasApplication_ApplicationNumber",
+                table: "FasApplication",
+                column: "ApplicationNumber",
+                unique: true,
+                filter: "\"IsDeleted\" = 0 AND \"ApplicationNumber\" IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasApplication_ApprovedByUserId",
+                table: "FasApplication",
+                column: "ApprovedByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasApplication_ApprovedTierId",
+                table: "FasApplication",
+                column: "ApprovedTierId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasApplication_FasSchemeId",
+                table: "FasApplication",
+                column: "FasSchemeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasApplication_ParentNationalityId",
+                table: "FasApplication",
+                column: "ParentNationalityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasApplication_RecommendedTierId",
+                table: "FasApplication",
+                column: "RecommendedTierId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasApplication_SchoolStudentId",
+                table: "FasApplication",
+                column: "SchoolStudentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasApplication_Status",
+                table: "FasApplication",
+                column: "Status");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasApplication_StudentNationalityId",
+                table: "FasApplication",
+                column: "StudentNationalityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasApplication_ValidityEndDate",
+                table: "FasApplication",
+                column: "ValidityEndDate");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasApplicationDocument_FasApplicationId",
+                table: "FasApplicationDocument",
+                column: "FasApplicationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasApplicationDocument_FasSchemeRequiredDocumentId",
+                table: "FasApplicationDocument",
+                column: "FasSchemeRequiredDocumentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasScheme_SchemeCode",
+                table: "FasScheme",
+                column: "SchemeCode",
+                unique: true,
+                filter: "\"IsDeleted\" = 0 AND \"SchemeCode\" IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasScheme_SchemeName",
+                table: "FasScheme",
+                column: "SchemeName");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasScheme_SchoolId",
+                table: "FasScheme",
+                column: "SchoolId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasScheme_Status",
+                table: "FasScheme",
+                column: "Status");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasSchemeCondition_CountryId",
+                table: "FasSchemeCondition",
+                column: "CountryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasSchemeCondition_Field",
+                table: "FasSchemeCondition",
+                column: "Field");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasSchemeCondition_GroupId",
+                table: "FasSchemeCondition",
+                column: "GroupId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasSchemeConditionGroup_FasSchemeId",
+                table: "FasSchemeConditionGroup",
+                column: "FasSchemeId",
+                unique: true,
+                filter: "\"IsDeleted\" = 0 AND \"FasSchemeId\" IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasSchemeConditionGroup_ParentGroupId",
+                table: "FasSchemeConditionGroup",
+                column: "ParentGroupId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasSchemeCourse_CourseId",
+                table: "FasSchemeCourse",
+                column: "CourseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasSchemeCourse_FasSchemeId",
+                table: "FasSchemeCourse",
+                column: "FasSchemeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasSchemeCourse_FasSchemeId_CourseId",
+                table: "FasSchemeCourse",
+                columns: new[] { "FasSchemeId", "CourseId" },
+                unique: true,
+                filter: "\"IsDeleted\" = 0 AND \"FasSchemeId\" IS NOT NULL AND \"CourseId\" IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasSchemeRequiredDocument_FasSchemeId",
+                table: "FasSchemeRequiredDocument",
+                column: "FasSchemeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasSchemeRequiredDocument_FasSchemeId_DocumentName",
+                table: "FasSchemeRequiredDocument",
+                columns: new[] { "FasSchemeId", "DocumentName" },
+                unique: true,
+                filter: "\"IsDeleted\" = 0 AND \"FasSchemeId\" IS NOT NULL AND \"DocumentName\" IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasSchemeTier_FasSchemeId",
+                table: "FasSchemeTier",
+                column: "FasSchemeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasSchemeTier_FasSchemeId_TierName",
+                table: "FasSchemeTier",
+                columns: new[] { "FasSchemeId", "TierName" },
+                unique: true,
+                filter: "\"IsDeleted\" = 0 AND \"FasSchemeId\" IS NOT NULL AND \"TierName\" IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasTierOverrideHistory_FasApplicationId",
+                table: "FasTierOverrideHistory",
+                column: "FasApplicationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasTierOverrideHistory_ModifiedAt",
+                table: "FasTierOverrideHistory",
+                column: "ModifiedAt");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasTierOverrideHistory_ModifiedByUserId",
+                table: "FasTierOverrideHistory",
+                column: "ModifiedByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasTierOverrideHistory_NewTierId",
+                table: "FasTierOverrideHistory",
+                column: "NewTierId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasTierOverrideHistory_OldTierId",
+                table: "FasTierOverrideHistory",
+                column: "OldTierId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_OutboxMessage_OccurredAt",
                 table: "OutboxMessage",
                 column: "OccurredAt");
@@ -2344,6 +3195,11 @@ namespace educationaccountmanagement.DAL.Migrations
                 name: "IX_PaymentAllocation_ChargeId",
                 table: "PaymentAllocation",
                 column: "ChargeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PaymentAllocation_ChargeInstallmentId",
+                table: "PaymentAllocation",
+                column: "ChargeInstallmentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PaymentAllocation_PaymentId",
@@ -2650,6 +3506,18 @@ namespace educationaccountmanagement.DAL.Migrations
                 name: "EducationAccountSweepTargets");
 
             migrationBuilder.DropTable(
+                name: "FasApplicationDocument");
+
+            migrationBuilder.DropTable(
+                name: "FasSchemeCondition");
+
+            migrationBuilder.DropTable(
+                name: "FasSchemeCourse");
+
+            migrationBuilder.DropTable(
+                name: "FasTierOverrideHistory");
+
+            migrationBuilder.DropTable(
                 name: "OutboxMessage");
 
             migrationBuilder.DropTable(
@@ -2680,10 +3548,16 @@ namespace educationaccountmanagement.DAL.Migrations
                 name: "EducationAccountSweepReports");
 
             migrationBuilder.DropTable(
+                name: "FasSchemeRequiredDocument");
+
+            migrationBuilder.DropTable(
+                name: "FasSchemeConditionGroup");
+
+            migrationBuilder.DropTable(
                 name: "OutstandingDeductionRun");
 
             migrationBuilder.DropTable(
-                name: "Charge");
+                name: "ChargeInstallment");
 
             migrationBuilder.DropTable(
                 name: "Payment");
@@ -2698,10 +3572,7 @@ namespace educationaccountmanagement.DAL.Migrations
                 name: "TopupExecutionTarget");
 
             migrationBuilder.DropTable(
-                name: "User");
-
-            migrationBuilder.DropTable(
-                name: "Enrollment");
+                name: "Charge");
 
             migrationBuilder.DropTable(
                 name: "EducationCreditTransaction");
@@ -2710,16 +3581,34 @@ namespace educationaccountmanagement.DAL.Migrations
                 name: "TopupExecution");
 
             migrationBuilder.DropTable(
-                name: "Course");
+                name: "Enrollment");
 
             migrationBuilder.DropTable(
-                name: "SchoolStudent");
+                name: "FasApplication");
 
             migrationBuilder.DropTable(
                 name: "ScheduleTopUp");
 
             migrationBuilder.DropTable(
                 name: "SystemTopup");
+
+            migrationBuilder.DropTable(
+                name: "Course");
+
+            migrationBuilder.DropTable(
+                name: "Country");
+
+            migrationBuilder.DropTable(
+                name: "FasSchemeTier");
+
+            migrationBuilder.DropTable(
+                name: "SchoolStudent");
+
+            migrationBuilder.DropTable(
+                name: "User");
+
+            migrationBuilder.DropTable(
+                name: "FasScheme");
 
             migrationBuilder.DropTable(
                 name: "EducationAccount");

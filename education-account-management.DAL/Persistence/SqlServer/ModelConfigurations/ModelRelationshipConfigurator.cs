@@ -31,6 +31,60 @@ namespace Persistence.SqlServer.ModelConfigurations
                 .WithOne(transaction => transaction.Payment)
                 .HasForeignKey<Payment>(payment => payment.EducationCreditTransactionId);
 
+            modelBuilder.Entity<FasSchemeConditionGroup>()
+                .HasOne(group => group.ParentGroup)
+                .WithMany(group => group.ChildGroups)
+                .HasForeignKey(group => group.ParentGroupId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<FasApplication>()
+                .HasOne(application => application.StudentNationality)
+                .WithMany(country => country.StudentNationalityApplications)
+                .HasForeignKey(application => application.StudentNationalityId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<FasApplication>()
+                .HasOne(application => application.ParentNationality)
+                .WithMany(country => country.ParentNationalityApplications)
+                .HasForeignKey(application => application.ParentNationalityId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<FasApplication>()
+                .HasOne(application => application.RecommendedTier)
+                .WithMany(tier => tier.RecommendedApplications)
+                .HasForeignKey(application => application.RecommendedTierId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<FasApplication>()
+                .HasOne(application => application.ApprovedTier)
+                .WithMany(tier => tier.ApprovedApplications)
+                .HasForeignKey(application => application.ApprovedTierId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<FasApplication>()
+                .HasOne(application => application.ApprovedByUser)
+                .WithMany()
+                .HasForeignKey(application => application.ApprovedByUserId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<FasTierOverrideHistory>()
+                .HasOne(history => history.OldTier)
+                .WithMany()
+                .HasForeignKey(history => history.OldTierId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<FasTierOverrideHistory>()
+                .HasOne(history => history.NewTier)
+                .WithMany()
+                .HasForeignKey(history => history.NewTierId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<FasTierOverrideHistory>()
+                .HasOne(history => history.ModifiedByUser)
+                .WithMany()
+                .HasForeignKey(history => history.ModifiedByUserId)
+                .OnDelete(DeleteBehavior.NoAction);
+
             modelBuilder.Entity<TopupExecutionTarget>()
                 .HasOne(target => target.EducationCreditTransaction)
                 .WithOne(transaction => transaction.TopupExecutionTarget)
