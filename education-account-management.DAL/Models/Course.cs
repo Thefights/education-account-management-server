@@ -29,10 +29,7 @@ namespace Models
         [Column(TypeName = "decimal(18,2)"), NumberPositive]
         public decimal GstAmount { get; set; }
 
-        [NotDefaultValue, DateValidator(NotAfter = nameof(FasApplicationDueDate))]
-        public DateTime EnrollmentDueDate { get; set; }
-
-        [NotDefaultValue, DateValidator(NotBefore = nameof(EnrollmentDueDate), NotAfter = nameof(StartDate))]
+        [NotDefaultValue, DateValidator(NotAfter = nameof(StartDate))]
         public DateTime FasApplicationDueDate { get; set; }
 
         [NotDefaultValue, DateValidator(NotBefore = nameof(FasApplicationDueDate), NotAfter = nameof(EndDate))]

@@ -10,6 +10,9 @@
         public int SchoolStudentId { get; set; }
         public SchoolStudent SchoolStudent { get; set; } = null!;
 
+        [EnumDefined]
+        public EnrollmentStatus Status { get; set; } = EnrollmentStatus.Active;
+
         [MessageRequired, MessageMaxLength(150)]
         public string SchoolNameSnapshot { get; set; } = string.Empty;
 

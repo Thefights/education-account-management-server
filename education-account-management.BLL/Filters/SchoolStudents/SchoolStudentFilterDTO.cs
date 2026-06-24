@@ -22,6 +22,9 @@
         ["fullName"] =
             $"{nameof(SchoolStudent.EducationAccount)}.{nameof(EducationAccount.Citizen)}.{nameof(Citizen.FullName)}",
 
+        ["courses"] =
+            $"{nameof(SchoolStudent.Enrollments)}.Min({nameof(Enrollment.Course)}.{nameof(Course.CourseCode)})",
+
         ["status"] = nameof(SchoolStudent.Status),
     };
 

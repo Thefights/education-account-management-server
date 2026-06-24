@@ -12,7 +12,7 @@
 
         protected override string JobName => nameof(CourseLifecycleWorker);
 
-        protected override TimeSpan Interval => TimeSpan.FromMinutes(5);
+        protected override TimeSpan Interval => TimeSpan.FromMinutes(1);
 
         protected override async Task ExecuteJobAsync(
             IServiceProvider serviceProvider,

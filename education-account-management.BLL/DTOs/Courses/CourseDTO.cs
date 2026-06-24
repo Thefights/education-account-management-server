@@ -10,8 +10,6 @@ namespace DTOs.Courses
 
         public decimal MiscFeeAmount { get; set; }
 
-        public DateTime EnrollmentDueDate { get; set; }
-
         public DateTime FasApplicationDueDate { get; set; }
 
         public DateTime StartDate { get; set; }
@@ -28,8 +26,6 @@ namespace DTOs.Courses
         public decimal CourseFeeAmount { get; set; }
 
         public decimal MiscFeeAmount { get; set; }
-
-        public DateTime EnrollmentDueDate { get; set; }
 
         public DateTime FasApplicationDueDate { get; set; }
 
@@ -63,8 +59,6 @@ namespace DTOs.Courses
         public decimal GstAmount { get; set; }
 
         public decimal TotalFeeAmount => CourseFeeAmount + MiscFeeAmount + GstAmount;
-
-        public DateTime EnrollmentDueDate { get; set; }
 
         public DateTime FasApplicationDueDate { get; set; }
 

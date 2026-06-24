@@ -31,5 +31,18 @@
         public string? PhoneNumber { get; set; }
 
         public DateOnly DateOfBirth { get; set; }
+
+        public List<GetSchoolStudentCourseDTO> Courses { get; set; } = [];
+    }
+
+    public class GetSchoolStudentCourseDTO
+    {
+        public int Id { get; set; }
+
+        public string CourseCode { get; set; } = string.Empty;
+
+        public string CourseName { get; set; } = string.Empty;
+
+        public string? Status { get; set; }
     }
 }

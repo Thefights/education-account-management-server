@@ -6,6 +6,7 @@
             new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
             {
                 ["id"] = nameof(Enrollment.Id),
+                ["status"] = nameof(Enrollment.Status),
                 ["courseCode"] = $"{nameof(Enrollment.Course)}.{nameof(Course.CourseCode)}",
                 ["courseName"] = nameof(Enrollment.CourseNameSnapshot),
                 ["citizenNric"] = nameof(Enrollment.CitizenNricSnapshot),
@@ -21,11 +22,9 @@
         public int? CourseId { get; set; }
 
         [FilterField(FilterOperationEnum.Contains, $"{nameof(Enrollment.Course)}.{nameof(Course.CourseCode)}")]
-        [SearchField($"{nameof(Enrollment.Course)}.{nameof(Course.CourseCode)}")]
         public string? CourseCode { get; set; }
 
         [FilterField(FilterOperationEnum.Contains, nameof(Enrollment.CourseNameSnapshot))]
-        [SearchField(nameof(Enrollment.CourseNameSnapshot))]
         public string? CourseName { get; set; }
 
         [FilterField(FilterOperationEnum.Contains, nameof(Enrollment.CitizenNricSnapshot))]
@@ -39,6 +38,14 @@
         [FilterField(FilterOperationEnum.Contains, nameof(Enrollment.AccountNumberSnapshot))]
         [SearchField(nameof(Enrollment.AccountNumberSnapshot))]
         public string? AccountNumber { get; set; }
+
+        [FilterField(FilterOperationEnum.Contains, nameof(Enrollment.CitizenEmailSnapshot))]
+        [SearchField(nameof(Enrollment.CitizenEmailSnapshot))]
+        public string? CitizenEmail { get; set; }
+
+        [FilterField(FilterOperationEnum.Contains, nameof(Enrollment.CitizenPhoneNumberSnapshot))]
+        [SearchField(nameof(Enrollment.CitizenPhoneNumberSnapshot))]
+        public string? CitizenPhoneNumber { get; set; }
 
         [FilterField(FilterOperationEnum.In, $"{nameof(Enrollment.Charge)}.{nameof(Charge.Status)}")]
         public List<ChargeStatus>? ChargeStatuses { get; set; }

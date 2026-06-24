@@ -36,5 +36,14 @@ namespace Controllers.Management
             await _service.RemoveSelectedAsync(removeDTO, cancellationToken);
             return Result.SuccessAction($"{removeDTO.Ids.Count} enrollment(s) removed successfully");
         }
+
+        [HttpPut("{id}/withdraw")]
+        public async Task<IActionResult> Withdraw(
+            int id,
+            CancellationToken cancellationToken)
+        {
+            await _service.WithdrawAsync(id, cancellationToken);
+            return Result.SuccessAction("Student withdrawn successfully");
+        }
     }
 }

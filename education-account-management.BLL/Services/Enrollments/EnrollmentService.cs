@@ -50,7 +50,7 @@ namespace Services.Enrollments
                             token)
                         ?? throw new DataNotFoundException(typeof(Course), assignDTO.CourseId);
 
-                    ValidateCourseIsEnrolling(course);
+                    ValidateCourseIsDraft(course);
 
                     var students = await _schoolStudentRepository.Query()
                         .Where(student => assignDTO.SchoolStudentIds.Contains(student.Id)
@@ -134,7 +134,7 @@ namespace Services.Enrollments
                     cancellationToken)
                 ?? throw new DataNotFoundException(typeof(Course), courseId);
 
-            ValidateCourseIsEnrolling(course);
+            ValidateCourseIsDraft(course);
 
             var pageSize = Math.Clamp(filterDTO.PageSize, 1, 100);
             var (total, students) = await _schoolStudentRepository.GetProjectedPaginatedAsync(
@@ -219,6 +219,35 @@ namespace Services.Enrollments
                 cancellationToken);
         }
 
+        public async Task WithdrawAsync(
+            int id,
+            CancellationToken cancellationToken = default)
+        {
+            var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
+            var enrollment = await _repository.Query(tracking: true)
+                .Include(item => item.Course)
+                .FirstOrDefaultAsync(
+                    item => item.Id == id && item.Course.SchoolId == schoolId,
+                    cancellationToken)
+                ?? throw new DataNotFoundException(typeof(Enrollment), id);
+
+            if (enrollment.Course.Status is not CourseStatus.Upcoming and not CourseStatus.InProgress)
+            {
+                throw new DataConflictException(
+                    "A student can only withdraw from an Upcoming or In Progress course.");
+            }
+
+            if (enrollment.Status == EnrollmentStatus.Withdrawn)
+            {
+                throw new DataConflictException("The student has already withdrawn from this course.");
+            }
+
+            enrollment.Status = EnrollmentStatus.Withdrawn;
+            enrollment.UpdatedAt = _timeProvider.GetUtcNow().UtcDateTime;
+            _repository.Update(enrollment);
+            await _unitOfWork.SaveChangeAsync(cancellationToken);
+        }
+
         public override async Task<PaginationResult<GetEnrollmentDTO>> GetAllPaginatedAsync(
             FilterDTO filterDTO,
             CancellationToken cancellationToken = default)
@@ -278,7 +307,7 @@ namespace Services.Enrollments
 
         private static void ValidateCanRemove(Enrollment enrollment)
         {
-            ValidateCourseIsEnrolling(enrollment.Course);
+            ValidateCourseIsDraft(enrollment.Course);
             if (enrollment.Charge != null)
             {
                 throw new DataConflictException(
@@ -286,12 +315,12 @@ namespace Services.Enrollments
             }
         }
 
-        private static void ValidateCourseIsEnrolling(Course course)
+        private static void ValidateCourseIsDraft(Course course)
         {
-            if (course.Status != CourseStatus.Enrolling)
+            if (course.Status != CourseStatus.Draft)
             {
                 throw new DataConflictException(
-                    "The enrollment list can only be changed while the course is Enrolling.");
+                    "The enrollment list can only be changed while the course is in Draft status.");
             }
         }
 
