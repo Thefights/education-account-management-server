@@ -152,4 +152,18 @@ namespace education_account_management.BLL
         public string PublicBaseUrl { get; set; } = null!;
     }
     #endregion
+
+    #region StripeConfig
+    public class StripeSettings
+    {
+        public string SecretKey { get; set; } = string.Empty;
+        public string WebhookSecret { get; set; } = string.Empty;
+        public string SuccessUrl { get; set; } = string.Empty;
+        public string CancelUrl { get; set; } = string.Empty;
+        public string Method { get; set; } = string.Empty;
+        public string Mode { get; set; } = string.Empty;
+        public int SessionExpiryMinutes { get; set; }
+        public string ClientUrl { get; set; } = string.Empty;
+    }
+    #endregion
 }
