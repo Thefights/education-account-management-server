@@ -41,23 +41,23 @@ public class StripeService(
     /// 5. Nếu số dư không đủ: Tạo link thanh toán Stripe cho số tiền còn lại cần trả.
     /// </summary>
     public async Task<PaymentSessionResponseDTO> CreateCheckoutSessionAsync(
-        List<int> courseIds,
+        List<int> chargeIds,
         CancellationToken cancellationToken = default)
     {
-        ArgumentNullException.ThrowIfNull(courseIds);
-        if (courseIds.Count == 0)
+        ArgumentNullException.ThrowIfNull(chargeIds);
+        if (chargeIds.Count == 0)
             throw new ValidationFailureException(new Dictionary<string, string>
-            { { "CourseIds", "At least one course must be selected for payment." } });
+            { { "ChargeIds", "At least one charge must be selected for payment." } });
 
-        //lấy dữ liệu cần thiết
         var sessionService = new SessionService();
         var accountId = _currentUserService.UserId;
 
-        var enrollments = await _enrollmentRepository.Query(tracking: false)
-            .Include(e => e.Course)
-            .Include(e => e.Charge)
-            .Where(e => e.SchoolStudentId == accountId && courseIds.Contains(e.CourseId))
-            .OrderBy(e => e.Course.StartDate)
+        //lấy dữ liệu cần thiết
+        var charges = await _chargeRepository.Query(tracking: false)
+            .Include(c => c.Enrollment)
+            .ThenInclude(e => e.Course)
+            .Where(c => c.Enrollment.SchoolStudentId == accountId && chargeIds.Contains(c.Id))
+            .OrderBy(c => c.Enrollment.Course.StartDate)
             .ToListAsync(cancellationToken);
 
         var educationAccount = await _accountRepository.Query(tracking: false)
@@ -65,28 +65,28 @@ public class StripeService(
             .FirstOrDefaultAsync(a => a.SchoolStudent!.EducationAccountId == accountId, cancellationToken);
         if (educationAccount == null) throw new InternalAppException("Current system user not found!");
 
-        //kiểm tra request 
-        ValidatePaymentRequest(courseIds, enrollments, educationAccount);
-
         //kiểm tra payment có tồn tại trước đó hay không tránh việc spam tạo link thanh toán cho cùng 1 list course
-        var paymentExisting = await ValidateExistingPayment(educationAccount!.AccountNumber, courseIds, sessionService, cancellationToken);
+        var paymentExisting = await ValidateExistingStripePayment(educationAccount.AccountNumber, sessionService, cancellationToken);
         if (paymentExisting != null) return paymentExisting;
+
+        //kiểm tra request 
+        ValidatePaymentRequest(chargeIds, charges, educationAccount);
 
         //tính toán số tiền cần phải trả qua stripe
         decimal accountCreditBalance = educationAccount!.EducationCreditBalance;
-        decimal totalOwed = enrollments.Sum(e => e.Charge!.RemainingAmount);
+        decimal totalOwed = charges.Sum(c => c.RemainingAmount);
 
         decimal balanceToApply = Math.Min(accountCreditBalance, totalOwed);
         decimal remainingToPayViaStripe = totalOwed - balanceToApply;
 
         //Tạo payment
-        var payment = await CreatePayment(accountId, enrollments, educationAccount, totalOwed, balanceToApply, cancellationToken);
+        var payment = await CreatePayment(accountId, charges, educationAccount, totalOwed, balanceToApply, cancellationToken);
 
         //Tạo item thanh toán trên stripe
         var lineItems = new List<SessionLineItemOptions>();
-        var chargeIds = new List<int>();
+        var sessionChargeIds = new List<int>();
         var chargeCoveredByCreditBalanceDict = new Dictionary<int, decimal>();
-        CreateItemsCheckOut(enrollments, accountCreditBalance, lineItems, chargeIds, chargeCoveredByCreditBalanceDict);
+        CreateItemsCheckOut(charges, accountCreditBalance, lineItems, sessionChargeIds, chargeCoveredByCreditBalanceDict);
 
         //trong trường hợp số tiền cần phải trả qua stripe = 0 (tức tài khoản credit đã đủ để trả toàn bộ)
         if (remainingToPayViaStripe <= 0)
@@ -94,7 +94,7 @@ public class StripeService(
             await ProcessPaymentInternalAsync(
                 payment.Id,
                 accountId,
-                chargeIds,
+                sessionChargeIds,
                 chargeCoveredByCreditBalanceDict,
                 remainingToPayViaStripe,
                 null,
@@ -113,7 +113,7 @@ public class StripeService(
         {
             AccountId = accountId,
             PaymentId = payment.Id,
-            ChargeIds = chargeIds,
+            ChargeIds = sessionChargeIds,
             RemainingPaymentViaStripe = remainingToPayViaStripe,
             ChargeCoveredByCreditBalanceDict = chargeCoveredByCreditBalanceDict
         };
@@ -160,11 +160,11 @@ public class StripeService(
     /// - Xác định số tiền còn lại phải thanh toán qua Stripe.
     /// - Tạo danh sách các mục (Line Items) để hiển thị trên giao diện thanh toán của Stripe.
     /// </summary>
-    private static void CreateItemsCheckOut(List<Enrollment> enrollments, decimal accountCreditBalance, List<SessionLineItemOptions> lineItems, List<int> chargeIds, Dictionary<int, decimal> chargeCoveredByCreditBalanceDict)
+    private static void CreateItemsCheckOut(List<Models.Charge> charges, decimal accountCreditBalance, List<SessionLineItemOptions> lineItems, List<int> chargeIds, Dictionary<int, decimal> chargeCoveredByCreditBalanceDict)
     {
-        foreach (var enrollment in enrollments)
+        foreach (var charge in charges)
         {
-            var charge = enrollment.Charge!;
+            var enrollment = charge.Enrollment;
             chargeIds.Add(charge.Id);
 
             decimal chargeAmountRemaining = charge.RemainingAmount;
@@ -186,7 +186,8 @@ public class StripeService(
                     {
                         Name = enrollment.CourseNameSnapshot,
                         Description = coveredByCreditBalance > 0
-                            ? $"• Course Fee Remaining: {chargeAmountRemaining:C} SGD | • Credit Balance Applied: -{coveredByCreditBalance:C} SGD"
+                            ? $"• Course Fee Remaining: {chargeAmountRemaining:C} SGD \n" +
+                              $"• Credit Balance Applied: -{coveredByCreditBalance:C} SGD"
                             : $"• Course Fee Remaining: {chargeAmountRemaining:C} SGD"
                     }
                 },
@@ -199,7 +200,7 @@ public class StripeService(
     /// Tạo bản ghi Payment ban đầu với trạng thái "Pending" (đang chờ xử lý) lưu vào database.
     /// Bước này thực hiện trong một Transaction để đảm bảo tính toàn vẹn dữ liệu.
     /// </summary>
-    private async Task<Payment> CreatePayment(int accountId, List<Enrollment> enrollments, EducationAccount educationAccount, decimal totalOwed, decimal balanceToApply, CancellationToken cancellationToken)
+    private async Task<Payment> CreatePayment(int accountId, List<Models.Charge> charges, EducationAccount educationAccount, decimal totalOwed, decimal balanceToApply, CancellationToken cancellationToken)
     {
         Payment payment = null!;
         await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
@@ -211,8 +212,8 @@ public class StripeService(
                 TotalAmount = totalOwed,
                 ExternalReference = null,
                 AccountNumberSnapshot = educationAccount.AccountNumber,
-                CitizenNricSnapshot = enrollments.First().CitizenNricSnapshot,
-                CitizenFullNameSnapshot = enrollments.First().CitizenFullNameSnapshot,
+                CitizenNricSnapshot = charges.First().Enrollment.CitizenNricSnapshot,
+                CitizenFullNameSnapshot = charges.First().Enrollment.CitizenFullNameSnapshot,
                 PaidAt = null
             };
             payment.TryValidate();
@@ -233,10 +234,9 @@ public class StripeService(
     /// Kiểm tra xem học viên đã có phiên thanh toán Stripe nào đang mở (Pending) cho danh sách khóa học này chưa.
     /// Nếu có và phiên trên Stripe vẫn đang chờ thanh toán (open/unpaid), sẽ trả về luôn link cũ thay vì tạo link mới.
     /// </summary>
-    private async Task<PaymentSessionResponseDTO?> ValidateExistingPayment(string accountNumber, List<int> courseIds, SessionService sessionService, CancellationToken cancellationToken)
+    private async Task<PaymentSessionResponseDTO?> ValidateExistingStripePayment(string accountNumber, SessionService sessionService, CancellationToken cancellationToken)
     {
         var existingPayment = await _paymentRepository.Query(tracking: false)
-       .Include(p => p.PaymentAllocations)
        .FirstOrDefaultAsync(p =>
         p.Status == PaymentStatus.Pending &&
         p.ExternalReference != null &&
@@ -265,41 +265,34 @@ public class StripeService(
     /// - Khóa học không ở trạng thái nháp (Draft).
     /// - Phải có hóa đơn (Charge) cho khóa học và hóa đơn chưa được thanh toán hết.
     /// </summary>
-    private static void ValidatePaymentRequest(List<int> requestedCourseIds, List<Enrollment> enrollments, EducationAccount? account)
+    private static void ValidatePaymentRequest(List<int> requestedChargeIds, List<Models.Charge> charges, EducationAccount account)
     {
         var errors = new Dictionary<string, string>();
 
-        if (account == null || account.Status != EducationAccountStatus.Active)
+        if (account.Status != EducationAccountStatus.Active)
             errors["EducationAccount"] = "User does not have an active education account.";
 
-        var distinctRequestedIds = requestedCourseIds.Distinct().ToList();
+        var distinctRequestedIds = requestedChargeIds.Distinct().ToList();
 
-        if (enrollments.Count != distinctRequestedIds.Count)
+        if (charges.Count != distinctRequestedIds.Count)
         {
-            var foundIds = enrollments.Select(e => e.CourseId).ToList();
+            var foundIds = charges.Select(c => c.Id).ToList();
             var missingIds = distinctRequestedIds.Except(foundIds);
-            errors["CourseIds"] = $"Student is not enrolled in course ID(s): {string.Join(", ", missingIds)}.";
+            errors["ChargeIds"] = $"Charge ID(s) not found or not belonging to user: {string.Join(", ", missingIds)}.";
         }
 
-        foreach (var enrollment in enrollments)
+        foreach (var charge in charges)
         {
+            var enrollment = charge.Enrollment;
+
             if (enrollment.Course.Status == CourseStatus.Draft)
                 errors[$"Course_{enrollment.CourseId}"] = $"Course '{enrollment.CourseNameSnapshot}' is not open for billing.";
 
-            if (enrollment.Charge == null)
-            {
-                errors[$"Charge_{enrollment.CourseId}"] = $"No billing invoice generated for '{enrollment.CourseNameSnapshot}'.";
-                continue;
-            }
+            if (charge.Status == ChargeStatus.Paid)
+                errors[$"Charge_{charge.Id}"] = $"The charge for '{enrollment.CourseNameSnapshot}' has already paid.";
 
-            if (enrollment.Charge.Status == ChargeStatus.Paid)
-                errors[$"Charge_{enrollment.CourseId}"] = $"The charge for '{enrollment.CourseNameSnapshot}' has already paid.";
-
-            if (enrollment.Charge.RemainingAmount <= 0)
-                errors[$"Charge_{enrollment.CourseId}"] = $"The remaining amount for '{enrollment.CourseNameSnapshot}' has already been fully paid.";
-
-            //if (enrollment.Charge.PaymentDueDate < DateTime.UtcNow)
-            //    errors[$"Charge_{enrollment.CourseId}"] = $"Payment due date for '{enrollment.CourseNameSnapshot}' has passed.";
+            if (charge.RemainingAmount <= 0)
+                errors[$"Charge_{charge.Id}"] = $"The remaining amount for '{enrollment.CourseNameSnapshot}' has already been fully paid.";
         }
 
         if (errors.Count != 0) throw new ValidationFailureException(errors);
@@ -331,11 +324,11 @@ public class StripeService(
         {
             case "checkout.session.completed":
                 if (stripeEvent.Data.Object is Session completedSession)
-                    await ProcessStripeSessionAsync(completedSession, PaymentStatus.Succeeded, CancellationToken.None);
+                    await ProcessStripeSessionAsync(null, completedSession, PaymentStatus.Succeeded, CancellationToken.None);
                 break;
             case "checkout.session.expired":
                 if (stripeEvent.Data.Object is Session expiredSession)
-                    await ProcessStripeSessionAsync(expiredSession, PaymentStatus.Failed, CancellationToken.None);
+                    await ProcessStripeSessionAsync(null, expiredSession, PaymentStatus.Failed, CancellationToken.None);
                 break;
         }
     }
@@ -345,7 +338,7 @@ public class StripeService(
     /// Trích xuất dữ liệu metadata (đã được đính kèm khi tạo session) từ webhook của Stripe
     /// và chuyển qua hàm xử lý logic thanh toán nội bộ.
     /// </summary>
-    private async Task ProcessStripeSessionAsync(Session session, PaymentStatus targetStatus, CancellationToken cancellationToken)
+    private async Task ProcessStripeSessionAsync(int? accountId, Session session, PaymentStatus targetStatus, CancellationToken cancellationToken)
     {
         var metadata = session.Metadata;
         if (metadata == null || !metadata.ContainsKey("sessionData")) throw new DataNotFoundException($"Session not found for sessionId {session.Id}");
@@ -353,8 +346,7 @@ public class StripeService(
         var sessionData = JsonSerializer.Deserialize<StripeSessionMetadataDTO>(metadata["sessionData"]);
         if (sessionData == null) throw new DataNotFoundException($"Session data not found for sessionId {session.Id}");
 
-        var accountId = _currentUserService.UserId;
-        if (sessionData.AccountId != accountId) throw new DataConflictException($"Current User not belong to payment Session {session.Id}");
+        if (accountId != null && sessionData.AccountId != accountId) throw new DataConflictException($"Current User not belong to payment Session {session.Id}");
 
         await ProcessPaymentInternalAsync(
            sessionData.PaymentId,
@@ -582,7 +574,9 @@ public class StripeService(
         var session = await sessionService.GetAsync(sessionId, cancellationToken: cancellationToken);
         if (session == null) throw new DataNotFoundException($"Session not found for sessionId {sessionId}");
 
-        await ProcessStripeSessionAsync(session, PaymentStatus.Canceled, cancellationToken);
+        var accountId = _currentUserService.UserId;
+
+        await ProcessStripeSessionAsync(accountId, session, PaymentStatus.Canceled, cancellationToken);
 
         return new PaymentSessionResponseDTO
         {

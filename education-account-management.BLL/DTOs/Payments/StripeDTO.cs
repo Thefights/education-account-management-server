@@ -1,4 +1,4 @@
-﻿
+
 
 namespace DTOs.Payments
 {
@@ -14,7 +14,7 @@ namespace DTOs.Payments
 
     public class CreatePaymentSessionRequest
     {
-        public List<int> CourseIds { get; set; } = [];
+        public List<int> ChargeIds { get; set; } = [];
     }
 
     public class PaymentSessionResponseDTO

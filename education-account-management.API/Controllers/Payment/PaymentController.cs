@@ -1,4 +1,4 @@
-﻿using Authorization;
+using Authorization;
 using BLL.Interfaces.Payments;
 using Common.HttpResults;
 using Controllers.Base;
@@ -15,7 +15,7 @@ namespace API.Controllers.Payment
         [Authorize(Roles = RolePolicy.AccountHolder)]
         public async Task<IActionResult> CreateSession(CreatePaymentSessionRequest request, CancellationToken token)
         {
-            var response = await _stripeService.CreateCheckoutSessionAsync(request.CourseIds, token);
+            var response = await _stripeService.CreateCheckoutSessionAsync(request.ChargeIds, token);
             return Result.SuccessData(response);
         }
 
