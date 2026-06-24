@@ -7,8 +7,12 @@ namespace Filters.TopUp
             {
                 ["id"] = "Id",
                 ["executionCode"] = "ExecutionCode",
+                ["topupNameSnapshot"] = "TopupNameSnapshot",
                 ["sourceType"] = "SourceType",
                 ["status"] = "Status",
+                ["totalTargetCount"] = "TotalTargetCount",
+                ["successCount"] = "SuccessCount",
+                ["failedCount"] = "FailedCount",
                 ["totalExecutedAmount"] = "TotalExecutedAmount",
                 ["createdAt"] = "CreatedAt"
             };
@@ -28,8 +32,11 @@ namespace Filters.TopUp
             {
                 ["id"] = "Id",
                 ["accountNumber"] = "AccountNumber",
+                ["accountName"] = "EducationAccount.Citizen.FullName",
                 ["amount"] = "Amount",
                 ["status"] = "Status",
+                ["transactionCode"] = "EducationCreditTransaction.TransactionCode",
+                ["failureReason"] = "FailureReason",
                 ["createdAt"] = "CreatedAt"
             };
 

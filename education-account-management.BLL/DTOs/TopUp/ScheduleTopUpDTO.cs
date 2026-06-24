@@ -23,10 +23,7 @@
         [EnumDefined]
         public ScheduleTopUpFrequency Frequency { get; set; }
 
-        public DateTime? OneTimeExecutionAt { get; set; }
-        public int? ExecuteAtDay { get; set; }
-        public int? ExecuteAtMonth { get; set; }
-        public TimeOnly ExecutionTime { get; set; }
+        public DateTime? ScheduleExecutionAt { get; set; }
         public TopupConditionGroupRequestDTO RootConditionGroup { get; set; } = new();
     }
 
@@ -38,10 +35,7 @@
         [EnumDefined]
         public ScheduleTopUpFrequency Frequency { get; set; }
 
-        public DateTime? OneTimeExecutionAt { get; set; }
-        public int? ExecuteAtDay { get; set; }
-        public int? ExecuteAtMonth { get; set; }
-        public TimeOnly ExecutionTime { get; set; }
+        public DateTime? ScheduleExecutionAt { get; set; }
 
         [EnumDefined]
         public ScheduleTopUpStatus Status { get; set; }
