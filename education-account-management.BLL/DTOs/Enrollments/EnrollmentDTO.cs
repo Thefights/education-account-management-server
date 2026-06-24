@@ -26,6 +26,8 @@
 
         public int SchoolStudentId { get; set; }
 
+        public string? Status { get; set; }
+
         public string SchoolName { get; set; } = string.Empty;
 
         public string CourseName { get; set; } = string.Empty;

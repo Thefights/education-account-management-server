@@ -1,7 +1,3 @@
-using EntityAnnotations;
-using Enums;
-using System.ComponentModel.DataAnnotations;
-
 namespace DTOs.Admin
 {
     public class UpdateAdminStatusDTO

@@ -151,11 +151,11 @@ namespace Services.Courses
                                 $"Course {course.Id} is not in Draft status.");
                         }
 
-                        if (course.EnrollmentDueDate <= utcNow)
+                        if (course.FasApplicationDueDate <= utcNow)
                         {
                             throw new ValidationFailureException(
-                                nameof(Course.EnrollmentDueDate),
-                                $"Course {course.Id} enrollment due date must be in the future when publishing.");
+                                nameof(Course.FasApplicationDueDate),
+                                $"Course {course.Id} FAS application due date must be in the future when publishing.");
                         }
 
                         course.TryValidate();
@@ -354,9 +354,6 @@ namespace Services.Courses
             Course course,
             UpdateCourseDTO updateDTO)
         {
-            var enrollmentDueDate = CourseDateTimeHelper.NormalizeToUtc(
-                updateDTO.EnrollmentDueDate,
-                nameof(updateDTO.EnrollmentDueDate));
             var fasApplicationDueDate = CourseDateTimeHelper.NormalizeToUtc(
                 updateDTO.FasApplicationDueDate,
                 nameof(updateDTO.FasApplicationDueDate));
@@ -373,7 +370,6 @@ namespace Services.Courses
             if (course.CourseFeeAmount != updateDTO.CourseFeeAmount
                 || course.MiscFeeAmount != updateDTO.MiscFeeAmount
                 || course.GstAmount != gstAmount
-                || course.EnrollmentDueDate != enrollmentDueDate
                 || course.FasApplicationDueDate != fasApplicationDueDate
                 || course.StartDate != startDate
                 || course.EndDate != endDate)

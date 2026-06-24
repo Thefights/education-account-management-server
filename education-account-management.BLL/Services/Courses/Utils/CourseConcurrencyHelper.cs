@@ -4,9 +4,6 @@
     {
         public static void NormalizeToUtc(Course course)
         {
-            course.EnrollmentDueDate = NormalizeToUtc(
-                course.EnrollmentDueDate,
-                nameof(Course.EnrollmentDueDate));
             course.FasApplicationDueDate = NormalizeToUtc(
                 course.FasApplicationDueDate,
                 nameof(Course.FasApplicationDueDate));

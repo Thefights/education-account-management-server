@@ -2801,9 +2801,6 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("EnrollmentDueDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<DateTime>("FasApplicationDueDate")
                         .HasColumnType("datetime2");
 
@@ -2849,8 +2846,6 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasIndex("EndDate");
 
-                    b.HasIndex("EnrollmentDueDate");
-
                     b.HasIndex("FasApplicationDueDate");
 
                     b.HasIndex("SchoolId");
@@ -2867,7 +2862,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             t.HasCheckConstraint("CK_Course_Amounts_NonNegative", "[CourseFeeAmount] >= 0 AND [MiscFeeAmount] >= 0 AND [GstAmount] >= 0");
 
-                            t.HasCheckConstraint("CK_Course_Date_Order", "[EnrollmentDueDate] <= [FasApplicationDueDate] AND [FasApplicationDueDate] <= [StartDate] AND [StartDate] <= [EndDate]");
+                            t.HasCheckConstraint("CK_Course_Date_Order", "[FasApplicationDueDate] <= [StartDate] AND [StartDate] <= [EndDate]");
                         });
 
                     b.HasData(
@@ -2880,7 +2875,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Foundation course in applied mathematics.",
                             EndDate = new DateTime(2026, 9, 30, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EnrollmentDueDate = new DateTime(2026, 1, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasApplicationDueDate = new DateTime(2026, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 9.90m,
                             IsDeleted = false,
@@ -2899,7 +2893,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Introduction to programming and computing.",
                             EndDate = new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EnrollmentDueDate = new DateTime(2026, 1, 16, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasApplicationDueDate = new DateTime(2026, 7, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 11.43m,
                             IsDeleted = false,
@@ -2918,7 +2911,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Professional written and verbal communication.",
                             EndDate = new DateTime(2026, 10, 2, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EnrollmentDueDate = new DateTime(2026, 1, 17, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasApplicationDueDate = new DateTime(2026, 7, 3, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 13.05m,
                             IsDeleted = false,
@@ -2937,7 +2929,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Environmental systems and sustainability.",
                             EndDate = new DateTime(2026, 8, 3, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EnrollmentDueDate = new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasApplicationDueDate = new DateTime(2026, 2, 4, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 14.58m,
                             IsDeleted = false,
@@ -2956,7 +2947,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Digital design principles and production.",
                             EndDate = new DateTime(2026, 8, 4, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EnrollmentDueDate = new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasApplicationDueDate = new DateTime(2026, 2, 5, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 16.20m,
                             IsDeleted = false,
@@ -2975,7 +2965,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Core hospitality service operations.",
                             EndDate = new DateTime(2026, 8, 5, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EnrollmentDueDate = new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasApplicationDueDate = new DateTime(2026, 2, 6, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 17.73m,
                             IsDeleted = false,
@@ -2994,7 +2983,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Fundamentals of electrical systems.",
                             EndDate = new DateTime(2026, 5, 6, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EnrollmentDueDate = new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasApplicationDueDate = new DateTime(2026, 2, 7, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 19.35m,
                             IsDeleted = false,
@@ -3013,7 +3001,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Writing techniques across common genres.",
                             EndDate = new DateTime(2026, 5, 7, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EnrollmentDueDate = new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasApplicationDueDate = new DateTime(2026, 2, 8, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 20.88m,
                             IsDeleted = false,
@@ -3032,7 +3019,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Data preparation, analysis and reporting.",
                             EndDate = new DateTime(2026, 5, 8, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EnrollmentDueDate = new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasApplicationDueDate = new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 22.50m,
                             IsDeleted = false,
@@ -3051,7 +3037,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Archived office applications programme.",
                             EndDate = new DateTime(2026, 5, 9, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EnrollmentDueDate = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasApplicationDueDate = new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 24.03m,
                             IsDeleted = false,
@@ -5074,6 +5059,11 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<int>("SchoolStudentId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Status")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
+
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
@@ -5111,7 +5101,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             SchoolNameSnapshot = "Northview Secondary School",
-                            SchoolStudentId = 1
+                            SchoolStudentId = 1,
+                            Status = 1
                         },
                         new
                         {
@@ -5127,7 +5118,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             SchoolNameSnapshot = "Eastbridge Secondary School",
-                            SchoolStudentId = 2
+                            SchoolStudentId = 2,
+                            Status = 1
                         },
                         new
                         {
@@ -5143,7 +5135,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             SchoolNameSnapshot = "Westhaven Secondary School",
-                            SchoolStudentId = 3
+                            SchoolStudentId = 3,
+                            Status = 1
                         },
                         new
                         {
@@ -5159,7 +5152,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             SchoolNameSnapshot = "Southpoint Secondary School",
-                            SchoolStudentId = 4
+                            SchoolStudentId = 4,
+                            Status = 1
                         },
                         new
                         {
@@ -5175,7 +5169,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             SchoolNameSnapshot = "Central Heights School",
-                            SchoolStudentId = 5
+                            SchoolStudentId = 5,
+                            Status = 1
                         },
                         new
                         {
@@ -5191,7 +5186,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             SchoolNameSnapshot = "Riverside Learning Institute",
-                            SchoolStudentId = 6
+                            SchoolStudentId = 6,
+                            Status = 1
                         },
                         new
                         {
@@ -5207,7 +5203,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             SchoolNameSnapshot = "Lakeside Technical School",
-                            SchoolStudentId = 7
+                            SchoolStudentId = 7,
+                            Status = 1
                         },
                         new
                         {
@@ -5223,7 +5220,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             SchoolNameSnapshot = "Greenfield Academy",
-                            SchoolStudentId = 8
+                            SchoolStudentId = 8,
+                            Status = 1
                         },
                         new
                         {
@@ -5239,7 +5237,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             SchoolNameSnapshot = "Harbourfront School",
-                            SchoolStudentId = 9
+                            SchoolStudentId = 9,
+                            Status = 1
                         },
                         new
                         {
@@ -5255,7 +5254,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             SchoolNameSnapshot = "Hillcrest Education Centre",
-                            SchoolStudentId = 10
+                            SchoolStudentId = 10,
+                            Status = 1
                         },
                         new
                         {
@@ -5271,7 +5271,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             SchoolNameSnapshot = "Northview Secondary School",
-                            SchoolStudentId = 9
+                            SchoolStudentId = 9,
+                            Status = 1
                         },
                         new
                         {
@@ -5287,7 +5288,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             SchoolNameSnapshot = "Eastbridge Secondary School",
-                            SchoolStudentId = 9
+                            SchoolStudentId = 9,
+                            Status = 1
                         },
                         new
                         {
@@ -5303,7 +5305,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             SchoolNameSnapshot = "Westhaven Secondary School",
-                            SchoolStudentId = 9
+                            SchoolStudentId = 9,
+                            Status = 1
                         },
                         new
                         {
@@ -5319,7 +5322,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             SchoolNameSnapshot = "Southpoint Secondary School",
-                            SchoolStudentId = 9
+                            SchoolStudentId = 9,
+                            Status = 1
                         },
                         new
                         {
@@ -5335,7 +5339,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             SchoolNameSnapshot = "Central Heights School",
-                            SchoolStudentId = 9
+                            SchoolStudentId = 9,
+                            Status = 1
                         },
                         new
                         {
@@ -5351,7 +5356,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             SchoolNameSnapshot = "Riverside Learning Institute",
-                            SchoolStudentId = 9
+                            SchoolStudentId = 9,
+                            Status = 1
                         },
                         new
                         {
@@ -5367,7 +5373,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             SchoolNameSnapshot = "Lakeside Technical School",
-                            SchoolStudentId = 9
+                            SchoolStudentId = 9,
+                            Status = 1
                         },
                         new
                         {
@@ -5383,7 +5390,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             SchoolNameSnapshot = "Greenfield Academy",
-                            SchoolStudentId = 9
+                            SchoolStudentId = 9,
+                            Status = 1
                         },
                         new
                         {
@@ -5399,7 +5407,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             SchoolNameSnapshot = "Hillcrest Education Centre",
-                            SchoolStudentId = 9
+                            SchoolStudentId = 9,
+                            Status = 1
                         });
                 });
 

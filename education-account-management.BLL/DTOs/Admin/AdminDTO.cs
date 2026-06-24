@@ -44,9 +44,6 @@ namespace DTOs.Admin
 
         public string AzureObjectId { get; set; } = string.Empty;
 
-
-
-
         public string StaffCode { get; set; } = string.Empty;
 
         public string FullName { get; set; } = string.Empty;

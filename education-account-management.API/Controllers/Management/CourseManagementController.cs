@@ -5,7 +5,6 @@ using DTOs.Courses;
 using Exceptions;
 using Filters.Courses;
 using Interfaces.Courses;
-using Models;
 
 namespace Controllers.Management
 {

@@ -24,5 +24,9 @@ namespace Interfaces.Enrollments
         Task RemoveSelectedAsync(
             RemoveSelectedEnrollmentsDTO removeDTO,
             CancellationToken cancellationToken = default);
+
+        Task WithdrawAsync(
+            int id,
+            CancellationToken cancellationToken = default);
     }
 }

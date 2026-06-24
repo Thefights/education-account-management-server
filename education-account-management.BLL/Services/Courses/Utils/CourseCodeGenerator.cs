@@ -16,8 +16,8 @@ namespace Services.Courses.Utils
                 suffix[index] = Alphabet[RandomNumberGenerator.GetInt32(Alphabet.Length)];
             }
 
-            var singaporeYear = utcNow.AddHours(8).Year;
-            return $"CRS-{singaporeYear}-{suffix}";
+            var utcYear = utcNow.Year;
+            return $"CRS-{utcYear}-{suffix}";
         }
 
         public static async Task<string> GenerateUniqueAsync(
