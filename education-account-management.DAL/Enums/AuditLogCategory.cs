@@ -4,8 +4,10 @@ namespace Enums
     {
         AccountCreation = 1,
         StatusChange = 2,
-        TopupConfig = 3,
+        Topup = 3,
         Security = 4,
-        Transaction = 5
+        Transaction = 5,
+        Billing = 6,
+        AI = 7
     }
 }

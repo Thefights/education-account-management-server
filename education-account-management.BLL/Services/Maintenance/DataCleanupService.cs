@@ -1,7 +1,4 @@
-using Enums;
 using Interfaces.Maintenance;
-using Models;
-using Repositories.Interfaces;
 
 namespace Services.Maintenance
 {
@@ -14,7 +11,6 @@ namespace Services.Maintenance
 
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly ILogger<DataCleanupService> _logger = logger;
-        private readonly IGenericRepository<OtpVerification> _otpVerificationRepository = unitOfWork.Repository<OtpVerification>();
         private readonly IGenericRepository<RefreshToken> _refreshTokenRepository = unitOfWork.Repository<RefreshToken>();
         private readonly IGenericRepository<OutboxMessage> _outboxMessageRepository = unitOfWork.Repository<OutboxMessage>();
 
@@ -29,41 +25,13 @@ namespace Services.Maintenance
             var authTransientCutoff = now.AddDays(-Math.Max(1, authTransientRetentionDays));
             var outboxCutoff = now.AddDays(-Math.Max(1, outboxRetentionDays));
 
-            var deletedOtpCount = await DeleteOtpVerificationsAsync(authTransientCutoff, normalizedBatchSize, cancellationToken);
             var deletedRefreshTokenCount = await DeleteRefreshTokensAsync(authTransientCutoff, normalizedBatchSize, cancellationToken);
             var deletedOutboxMessageCount = await DeleteOutboxMessagesAsync(outboxCutoff, normalizedBatchSize, cancellationToken);
 
             _logger.LogInformation(
-                "Data cleanup completed. DeletedOtpCount: {DeletedOtpCount}, DeletedRefreshTokenCount: {DeletedRefreshTokenCount}, DeletedOutboxMessageCount: {DeletedOutboxMessageCount}.",
-                deletedOtpCount,
+                "Data cleanup completed. DeletedRefreshTokenCount: {DeletedRefreshTokenCount}, DeletedOutboxMessageCount: {DeletedOutboxMessageCount}.",
                 deletedRefreshTokenCount,
                 deletedOutboxMessageCount);
-        }
-
-        private async Task<int> DeleteOtpVerificationsAsync(
-            DateTime cutoff,
-            int batchSize,
-            CancellationToken cancellationToken)
-        {
-            var totalDeleted = 0;
-            while (true)
-            {
-                var items = await _otpVerificationRepository
-                    .Query(tracking: true)
-                    .Where(otp => otp.ExpiresAt < cutoff)
-                    .OrderBy(otp => otp.Id)
-                    .Take(batchSize)
-                    .ToListAsync(cancellationToken);
-
-                if (items.Count == 0)
-                {
-                    return totalDeleted;
-                }
-
-                _otpVerificationRepository.RemoveRange(items);
-                await _unitOfWork.SaveChangeAsync(cancellationToken);
-                totalDeleted += items.Count;
-            }
         }
 
         private async Task<int> DeleteRefreshTokensAsync(

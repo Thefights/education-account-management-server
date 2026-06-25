@@ -1,0 +1,15 @@
+services:
+  education-account-management-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: education-account-management-api:latest
+    container_name: education-account-management-api
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: http://+:8080
+    ports:
+      - "5000:8080"

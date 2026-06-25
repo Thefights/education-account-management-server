@@ -1,19 +1,20 @@
-﻿using Models;
+using Models;
 using Persistence.SqlServer.ModelConfigurations;
+using Repositories.Interfaces;
 
 namespace Persistence.SqlServer
 {
-    public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
+    public class ApplicationDbContext(
+        DbContextOptions<ApplicationDbContext> options,
+        IAuditUserContext auditUserContext) : DbContext(options)
     {
-        public DbSet<Citizen> Citizen { get; set; }
+        private readonly IAuditUserContext _auditUserContext = auditUserContext;
 
-        public DbSet<AuthAccount> AuthAccount { get; set; }
+        public DbSet<Citizen> Citizen { get; set; }
 
         public DbSet<SsoIdentity> SsoIdentity { get; set; }
 
         public DbSet<RefreshToken> RefreshToken { get; set; }
-
-        public DbSet<OtpVerification> OtpVerification { get; set; }
 
         public DbSet<User> User { get; set; }
 
@@ -21,27 +22,79 @@ namespace Persistence.SqlServer
 
         public DbSet<EducationAccount> EducationAccount { get; set; }
 
-        public DbSet<TopupRule> TopupRule { get; set; }
+        public DbSet<School> School { get; set; }
 
-        public DbSet<TopupRuleCondition> TopupRuleCondition { get; set; }
+        public DbSet<SchoolStudent> SchoolStudent { get; set; }
 
-        public DbSet<TopupBatch> TopupBatch { get; set; }
+        public DbSet<Course> Course { get; set; }
 
-        public DbSet<TopupBatchTarget> TopupBatchTarget { get; set; }
+        public DbSet<Enrollment> Enrollment { get; set; }
 
-        public DbSet<AdhocTopupBatch> AdhocTopupBatch { get; set; }
+        public DbSet<Charge> Charge { get; set; }
 
-        public DbSet<AdhocTopupBatchTarget> AdhocTopupBatchTarget { get; set; }
+        public DbSet<ChargeInstallment> ChargeInstallment { get; set; }
+
+        public DbSet<Payment> Payment { get; set; }
+
+        public DbSet<PaymentAllocation> PaymentAllocation { get; set; }
+
+        public DbSet<Country> Country { get; set; }
+
+        public DbSet<FasScheme> FasScheme { get; set; }
+
+        public DbSet<FasSchemeConditionGroup> FasSchemeConditionGroup { get; set; }
+
+        public DbSet<FasSchemeCondition> FasSchemeCondition { get; set; }
+
+        public DbSet<FasSchemeTier> FasSchemeTier { get; set; }
+
+        public DbSet<FasSchemeRequiredDocument> FasSchemeRequiredDocument { get; set; }
+
+        public DbSet<FasSchemeCourse> FasSchemeCourse { get; set; }
+
+        public DbSet<FasApplication> FasApplication { get; set; }
+
+        public DbSet<FasApplicationDocument> FasApplicationDocument { get; set; }
+
+        public DbSet<FasTierOverrideHistory> FasTierOverrideHistory { get; set; }
+
+        public DbSet<OutstandingDeductionRun> OutstandingDeductionRun { get; set; }
+
+        public DbSet<OutstandingDeductionTarget> OutstandingDeductionTarget { get; set; }
+
+        public DbSet<SystemTopup> SystemTopup { get; set; }
+
+        public DbSet<SystemTopupConditionGroup> SystemTopupConditionGroup { get; set; }
+
+        public DbSet<SystemTopupCondition> SystemTopupCondition { get; set; }
+
+        public DbSet<ScheduleTopUp> ScheduleTopUp { get; set; }
+
+        public DbSet<ScheduleTopUpConditionGroup> ScheduleTopUpConditionGroup { get; set; }
+
+        public DbSet<ScheduleTopUpCondition> ScheduleTopUpCondition { get; set; }
+
+        public DbSet<EducationAccountSweepReport> EducationAccountSweepReports { get; set; }
+
+        public DbSet<EducationAccountSweepTarget> EducationAccountSweepTargets { get; set; }
+
+        public DbSet<TopupExecution> TopupExecution { get; set; }
+
+        public DbSet<TopupExecutionTarget> TopupExecutionTarget { get; set; }
+
+        public DbSet<TopupSystemApplication> TopupSystemApplication { get; set; }
 
         public DbSet<EducationCreditTransaction> EducationCreditTransaction { get; set; }
 
-        public DbSet<TopupBatchTargetTransaction> TopupBatchTargetTransaction { get; set; }
+        public DbSet<EducationAccountStatusHistory> EducationAccountStatusHistory { get; set; }
 
-        public DbSet<AdhocTopupBatchTargetTransaction> AdhocTopupBatchTargetTransaction { get; set; }
+        public DbSet<UserStatusHistory> UserStatusHistory { get; set; }
 
         public DbSet<AuditLog> AuditLog { get; set; }
 
         public DbSet<OutboxMessage> OutboxMessage { get; set; }
+
+        public DbSet<AiAssistantSetting> AiAssistantSetting { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -49,83 +102,22 @@ namespace Persistence.SqlServer
 
             SoftDeleteQueryFilter.ConfigureQueryFilter(modelBuilder);
             DeleteBehaviorConfigurator.ConfigureNavigationDeleteBehaviors(modelBuilder);
-            ConfigureSchema(modelBuilder);
+            ModelRelationshipConfigurator.ConfigureRelationships(modelBuilder);
+            CheckConstraintConfigurator.ConfigureCheckConstraints(modelBuilder);
             ModelIndexConfigurator.ConfigureIndexes(modelBuilder);
             UniqueIndexConfigurator.ConfigureUniqueIndexes(modelBuilder);
             SeedDataConfigurator.ConfigureSeedData(modelBuilder);
         }
 
-        private static void ConfigureSchema(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<User>()
-                .HasOne(user => user.AuthAccount)
-                .WithOne()
-                .HasForeignKey<User>(user => user.AuthAccountId);
-
-            modelBuilder.Entity<AdminProfile>()
-                .HasOne(adminProfile => adminProfile.User)
-                .WithOne(user => user.AdminProfile)
-                .HasForeignKey<AdminProfile>(adminProfile => adminProfile.UserId);
-
-            modelBuilder.Entity<EducationAccount>()
-                .HasOne(educationAccount => educationAccount.Citizen)
-                .WithOne(citizen => citizen.EducationAccount)
-                .HasForeignKey<EducationAccount>(educationAccount => educationAccount.CitizenId);
-
-            modelBuilder.Entity<TopupBatchTargetTransaction>()
-                .HasOne(link => link.TopupBatchTarget)
-                .WithOne(target => target.TopupBatchTargetTransaction)
-                .HasForeignKey<TopupBatchTargetTransaction>(link => link.TopupBatchTargetId);
-
-            modelBuilder.Entity<TopupBatchTargetTransaction>()
-                .HasOne(link => link.EducationCreditTransaction)
-                .WithOne(transaction => transaction.TopupBatchTargetTransaction)
-                .HasForeignKey<TopupBatchTargetTransaction>(link => link.EducationCreditTransactionId);
-
-            modelBuilder.Entity<AdhocTopupBatchTargetTransaction>()
-                .HasOne(link => link.AdhocTopupBatchTarget)
-                .WithOne(target => target.AdhocTopupBatchTargetTransaction)
-                .HasForeignKey<AdhocTopupBatchTargetTransaction>(link => link.AdhocTopupBatchTargetId);
-
-            modelBuilder.Entity<AdhocTopupBatchTargetTransaction>()
-                .HasOne(link => link.EducationCreditTransaction)
-                .WithOne(transaction => transaction.AdhocTopupBatchTargetTransaction)
-                .HasForeignKey<AdhocTopupBatchTargetTransaction>(link => link.EducationCreditTransactionId);
-
-        }
-
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             await ForeignKeyValidator.ValidateForeignKeysAsync(this, cancellationToken);
-            ApplyAuditFields();
+            var now = DateTime.UtcNow;
+            AuditEntityChangeTracker.Apply(ChangeTracker, _auditUserContext.CurrentUserId, now);
             await SoftDeleteCascadeHandler.ApplySoftDeleteCascadeAsync(this, cancellationToken);
+            AuditEntityChangeTracker.Apply(ChangeTracker, _auditUserContext.CurrentUserId, now);
 
             return await base.SaveChangesAsync(cancellationToken);
-        }
-
-        private void ApplyAuditFields()
-        {
-            var now = DateTime.UtcNow;
-
-            foreach (var entry in ChangeTracker.Entries<AuditEntity>())
-            {
-                switch (entry.State)
-                {
-                    case EntityState.Added:
-                        entry.Entity.CreatedAt = now;
-                        break;
-
-                    case EntityState.Modified:
-                        entry.Entity.UpdatedAt = now;
-                        break;
-
-                    case EntityState.Deleted:
-                        entry.State = EntityState.Modified;
-                        entry.Entity.IsDeleted = true;
-                        entry.Entity.DeletedAt = now;
-                        break;
-                }
-            }
         }
     }
 }

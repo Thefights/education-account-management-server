@@ -12,7 +12,7 @@ namespace Models
         public DateTime? RevokedAt { get; set; }
 
         [NotDefaultValue]
-        public int AuthAccountId { get; set; }
-        public AuthAccount AuthAccount { get; set; } = null!;
+        public int UserId { get; set; }
+        public User User { get; set; } = null!;
     }
 }

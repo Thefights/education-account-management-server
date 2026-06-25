@@ -11,8 +11,17 @@ namespace Models
         [MessageRequired, MessageMaxLength(320), EmailValidator, Unique]
         public string Email { get; set; } = string.Empty;
 
-        [NotDefaultValue]
+        [MessageMaxLength(20), PhoneNumberValidator]
+        public string? PhoneNumber { get; set; }
+
+        [NotDefaultValue, Unique]
         public int UserId { get; set; }
+
+        [Required, MessageMaxLength(9), SingaporeNric]
+        public string Nric { get; set; } = string.Empty;
         public User User { get; set; } = null!;
+
+        public int? SchoolId { get; set; }
+        public School? School { get; set; }
     }
 }

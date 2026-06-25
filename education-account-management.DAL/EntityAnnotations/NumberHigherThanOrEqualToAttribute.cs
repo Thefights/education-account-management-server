@@ -3,22 +3,14 @@ using Utils;
 namespace EntityAnnotations
 {
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
-    public class NumberHigherThanOrEqualToAttribute : ValidationAttribute
+    public class NumberHigherThanOrEqualToAttribute(
+        double minValue,
+        string? comparisonProperty,
+        bool useComparisonProperty) : ValidationAttribute
     {
-        private readonly double? _minValue;
-        private readonly string? _comparisonProperty;
+        public NumberHigherThanOrEqualToAttribute(double minValue) : this(minValue, null, false) { }
 
-        public NumberHigherThanOrEqualToAttribute(double minValue)
-        {
-            _minValue = minValue;
-            ErrorMessage = "{0} must be higher than or equal to {1}";
-        }
-
-        public NumberHigherThanOrEqualToAttribute(string comparisonProperty)
-        {
-            _comparisonProperty = comparisonProperty;
-            ErrorMessage = "{0} must be higher than or equal to {1}";
-        }
+        public NumberHigherThanOrEqualToAttribute(string comparisonProperty) : this(0, comparisonProperty, true) { }
 
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
@@ -33,12 +25,12 @@ namespace EntityAnnotations
 
             double comparisonValue;
 
-            if (_comparisonProperty != null)
+            if (useComparisonProperty && comparisonProperty != null)
             {
-                PropertyInfo? prop = validationContext.ObjectType.GetProperty(_comparisonProperty);
+                PropertyInfo? prop = validationContext.ObjectType.GetProperty(comparisonProperty);
                 if (prop == null)
                     return new ValidationResult(
-                        $"Property '{_comparisonProperty}' not found",
+                        $"Property '{comparisonProperty}' not found",
                         new[] { validationContext.MemberName ?? string.Empty }
                     );
 
@@ -46,15 +38,15 @@ namespace EntityAnnotations
                 double? converted = TryConvertToDouble(otherValue);
                 if (converted == null)
                     return new ValidationResult(
-                        $"Property '{_comparisonProperty}' must be numeric",
+                        $"Property '{comparisonProperty}' must be numeric",
                         new[] { validationContext.MemberName ?? string.Empty }
                     );
 
                 comparisonValue = converted.Value;
             }
-            else if (_minValue.HasValue)
+            else if (!useComparisonProperty)
             {
-                comparisonValue = _minValue.Value;
+                comparisonValue = minValue;
             }
             else
             {
@@ -88,7 +80,7 @@ namespace EntityAnnotations
 
         private string FormatErrorMessage(string name, double comparisonValue)
         {
-            return string.Format(ErrorMessageString, name.SplitWords(), comparisonValue);
+            return string.Format("{0} must be higher than or equal to {1}", name.SplitWords(), comparisonValue);
         }
     }
 }

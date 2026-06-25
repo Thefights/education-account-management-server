@@ -17,5 +17,28 @@ namespace Utils
                 return TimeOnly.FromTimeSpan(timeSpan);
             return null;
         }
+
+        public static int? TryCalculateAge(object? value)
+        {
+            DateOnly? dateOfBirth = value switch
+            {
+                DateOnly dob => dob,
+                DateTime dob => DateOnly.FromDateTime(dob),
+                _ => null
+            };
+
+            if (dateOfBirth is null)
+                return null;
+
+            var today = DateOnly.FromDateTime(DateTime.Today);
+
+            int age = today.Year - dateOfBirth.Value.Year;
+
+            if (today < dateOfBirth.Value.AddYears(age))
+                age--;
+
+            return age;
+        }
+
     }
 }

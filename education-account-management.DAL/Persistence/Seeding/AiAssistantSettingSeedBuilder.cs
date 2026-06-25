@@ -1,0 +1,25 @@
+using Models;
+using Persistence.Seeding.Constants;
+
+namespace Persistence.Seeding
+{
+    public sealed class AiAssistantSettingSeedBuilder : ISeedBuilder
+    {
+        public int Priority => 180;
+
+        public ModelBuilder Seed(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<AiAssistantSetting>().HasData(
+                new AiAssistantSetting
+                {
+                    Id = 1,
+                    IsEnabled = true,
+                    TaxRate = 0.09m,
+                    InstallmentDueDay = 5,
+                    CreatedAt = SeedDataConstants.CreatedAt
+                });
+
+            return modelBuilder;
+        }
+    }
+}

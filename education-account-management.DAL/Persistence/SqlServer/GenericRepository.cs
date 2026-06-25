@@ -1,4 +1,3 @@
-﻿using Common;
 using Repositories.Interfaces;
 using System.Linq.Expressions;
 
@@ -60,6 +59,34 @@ namespace Persistence.SqlServer
                 .ApplyOrdering(order);
 
             return await projection(query).ToListAsync(cancellationToken);
+        }
+
+        public async Task<List<T>> GetByIdsAsync(
+            List<int> ids,
+            string[]? includes = null,
+            CancellationToken cancellationToken = default)
+        {
+            if (ids.Count == 0 || !typeof(BaseEntity).IsAssignableFrom(typeof(T)))
+            {
+                return [];
+            }
+
+            IQueryable<T> query = BuildQuery(includes: includes);
+
+            if (ids.Count == 1)
+            {
+                int id = ids[0];
+
+                var entity = await query.FirstOrDefaultAsync(
+                    e => (e as BaseEntity)!.Id == id,
+                    cancellationToken);
+
+                return entity != null ? [entity] : [];
+            }
+
+            return await query
+                .Where(e => ids.Contains((e as BaseEntity)!.Id))
+                .ToListAsync(cancellationToken);
         }
 
         public async Task<List<T>> GetTrackedByIdsAsync(
@@ -124,6 +151,31 @@ namespace Persistence.SqlServer
             {
                 query = query.ApplyPaging(page, pageSize);
             }
+
+            return (total, await projection(query).ToListAsync(cancellationToken));
+        }
+
+        public async Task<(int Count, List<TResult> Items)> GetProjectedPaginatedAsync<TResult>(
+            Func<IQueryable<T>, IQueryable<TResult>> projection,
+            Expression<Func<T, bool>>? filterExpr,
+            string? filterStr,
+            string? search,
+            string[]? searchFields,
+            string order,
+            int page,
+            int pageSize,
+            string[]? includes = null,
+            CancellationToken cancellationToken = default)
+        {
+            page = Math.Max(page, 1);
+            pageSize = Math.Clamp(pageSize, 1, 100);
+
+            var query = BuildQuery(filterExpr, includes)
+                .ApplyFiltering(filterStr)
+                .ApplySearch(search, searchFields)
+                .ApplyOrdering(order);
+            var total = await query.CountAsync(cancellationToken);
+            query = query.ApplyPaging(page, pageSize);
 
             return (total, await projection(query).ToListAsync(cancellationToken));
         }

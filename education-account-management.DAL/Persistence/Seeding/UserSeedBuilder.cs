@@ -1,34 +1,39 @@
-using Enums;
 using Models;
 using Persistence.Seeding.Constants;
 
-namespace Persistence.Seeding;
-
-public sealed class UserSeedBuilder : ISeedBuilder
+namespace Persistence.Seeding
 {
-    public int Priority => 60;
-
-    public ModelBuilder Seed(ModelBuilder modelBuilder)
+    public sealed class UserSeedBuilder : ISeedBuilder
     {
-        var createdAt = SeedDataConstants.CreatedAt;
+        public int Priority => 60;
 
-        modelBuilder.Entity<User>().HasData(
-            Enumerable.Range(1, 10).Select(id => new User
-            {
-                Id = id,
-                Role = id switch
-                {
-                    1 => UserRole.SystemAdmin,
-                    2 => UserRole.FinanceAdmin,
-                    3 => UserRole.CourseAdmin,
-                    _ => UserRole.AccountHolder
-                },
-                AuthAccountId = id,
-                CitizenId = id,
-                CreatedAt = createdAt
-            }).ToArray());
+        public ModelBuilder Seed(ModelBuilder modelBuilder)
+        {
+            var createdAt = SeedDataConstants.CreatedAt;
 
-        return modelBuilder;
+            modelBuilder.Entity<User>().HasData(
+         Enumerable.Range(1, 15).Select(id => new User
+         {
+             Id = id,
+             Role = id switch
+             {
+                 <= 6 => UserRole.SystemAdmin,
+
+                 7 => UserRole.FinanceAdmin,
+                 8 => UserRole.SchoolAdmin,
+
+                 _ => UserRole.AccountHolder
+             },
+             Status = id % 5 == 0 ? UserStatus.Inactive : UserStatus.Active,
+             FailedLoginCount = id % 3,
+             LockedUntil = id == 5 ? createdAt.AddHours(1) : null,
+             LastLoginAt = id % 2 == 0 ? createdAt.AddDays(id) : null,
+             CitizenId = id >= 9 ? id : null,
+             CreatedAt = createdAt
+         }).ToArray());
+
+            return modelBuilder;
+        }
+
     }
-
 }

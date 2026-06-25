@@ -9,4 +9,5 @@ namespace Interfaces.Audit
             ExportAuditLogRequestDTO request,
             CancellationToken cancellationToken = default);
     }
+
 }

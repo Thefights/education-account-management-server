@@ -1,9 +1,6 @@
-﻿using Common;
-using Filters.Base;
-using Interfaces.Base;
-using Mappers.Base;
-using Repositories.Interfaces;
+﻿using Interfaces.Base;
 using Results;
+using System.Linq.Expressions;
 
 namespace Services.Base
 {
@@ -25,9 +22,20 @@ namespace Services.Base
         {
             ArgumentNullException.ThrowIfNull(filterDTO);
 
+            return await GetAllPaginatedAsync(filterDTO, predicate: null, cancellationToken);
+        }
+
+        protected async Task<PaginationResult<TGetDTO>> GetAllPaginatedAsync(
+            FilterDTO filterDTO,
+            Expression<Func<TModel, bool>>? predicate,
+            CancellationToken cancellationToken = default)
+        {
+            ArgumentNullException.ThrowIfNull(filterDTO);
+
             var pageSize = Math.Clamp(filterDTO.PageSize, 1, 100);
             var (total, items) = await _repository.GetProjectedPaginatedAsync(
                 _readMapper.ProjectToGetDTO,
+                predicate,
                 filterDTO.Filter,
                 filterDTO.Search,
                 filterDTO.SearchFields,
@@ -35,7 +43,7 @@ namespace Services.Base
                 filterDTO.Page,
                 pageSize,
                 _includes,
-                cancellationToken);
+                cancellationToken: cancellationToken);
 
             return new PaginationResult<TGetDTO>(total, pageSize, items);
         }

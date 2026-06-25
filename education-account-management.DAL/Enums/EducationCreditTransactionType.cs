@@ -3,9 +3,8 @@ namespace Enums
     public enum EducationCreditTransactionType
     {
         Topup = 1,
-        CourseFee = 2,
-        Refund = 3,
-        Adjustment = 4,
-        Interest = 5
+        CourseFeePayment = 2,
+        OutstandingAutoDeduction = 3,
+        ExpiredBalance = 4
     }
 }

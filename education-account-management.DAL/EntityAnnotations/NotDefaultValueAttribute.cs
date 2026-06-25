@@ -3,13 +3,8 @@ using Utils;
 namespace EntityAnnotations
 {
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
-    public class NotDefaultValueAttribute : ValidationAttribute
+    public class NotDefaultValueAttribute() : ValidationAttribute
     {
-        public NotDefaultValueAttribute()
-        {
-            ErrorMessage = "{0} cannot be default value";
-        }
-
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
             if (value == null)
@@ -32,7 +27,7 @@ namespace EntityAnnotations
 
         public override string FormatErrorMessage(string name)
         {
-            return string.Format(ErrorMessageString, name.SplitWords());
+            return string.Format("{0} cannot be default value", name.SplitWords());
         }
     }
 }

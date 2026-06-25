@@ -1,6 +1,3 @@
-using Common;
-using Enums;
-
 namespace Models
 {
     public class OutboxMessage : BaseEntity
@@ -9,7 +6,7 @@ namespace Models
         public string Type { get; set; } = string.Empty;
 
         [MessageRequired]
-        [Column(TypeName = "json")]
+        [Column(TypeName = "nvarchar(max)")]
         public string PayloadJson { get; set; } = string.Empty;
 
         [EnumDefined]

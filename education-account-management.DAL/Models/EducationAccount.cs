@@ -1,7 +1,4 @@
-using Common;
-using EntityAnnotations;
-using EntityAnnotations.OnDeleteAttributes;
-using Enums;
+using EntityAnnotations.DateAttributes;
 
 namespace Models
 {
@@ -16,21 +13,33 @@ namespace Models
         [EnumDefined]
         public EducationAccountStatus Status { get; set; } = EducationAccountStatus.Active;
 
-        public DateTime OpenedAt { get; set; }
+        public DateTime OpenedAt { get; set; } = DateTime.UtcNow;
 
+        [DateValidator(NotBefore = nameof(OpenedAt))]
         public DateTime? ClosedAt { get; set; }
 
         [NotDefaultValue]
         public int CitizenId { get; set; }
         public Citizen Citizen { get; set; } = null!;
 
-        [OnDelete(OnDeleteBehavior.Cascade)]
-        public ICollection<TopupBatchTarget> TopupBatchTargets { get; set; } = [];
+        [Timestamp]
+        public byte[] RowVersion { get; set; } = [];
 
-        [OnDelete(OnDeleteBehavior.Cascade)]
-        public ICollection<AdhocTopupBatchTarget> AdhocTopupBatchTargets { get; set; } = [];
+        public SchoolStudent? SchoolStudent { get; set; }
 
-        [OnDelete(OnDeleteBehavior.Cascade)]
+        [OnDelete(OnDeleteBehavior.Restrict)]
+        public ICollection<TopupExecutionTarget> TopupExecutionTargets { get; set; } = [];
+
+        [OnDelete(OnDeleteBehavior.Restrict)]
+        public ICollection<TopupSystemApplication> TopupSystemApplications { get; set; } = [];
+
+        [OnDelete(OnDeleteBehavior.Restrict)]
         public ICollection<EducationCreditTransaction> EducationCreditTransactions { get; set; } = [];
+
+        [OnDelete(OnDeleteBehavior.Restrict)]
+        public ICollection<OutstandingDeductionTarget> OutstandingDeductionTargets { get; set; } = [];
+
+        [OnDelete(OnDeleteBehavior.Cascade)]
+        public ICollection<EducationAccountStatusHistory> StatusHistories { get; set; } = [];
     }
 }

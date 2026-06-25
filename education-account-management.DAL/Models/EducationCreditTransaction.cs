@@ -1,7 +1,3 @@
-using Common;
-using EntityAnnotations.OnDeleteAttributes;
-using Enums;
-
 namespace Models
 {
     public class EducationCreditTransaction : AuditEntity
@@ -15,7 +11,7 @@ namespace Models
         [EnumDefined]
         public EducationCreditTransactionDirection Direction { get; set; } = EducationCreditTransactionDirection.Credit;
 
-        [Column(TypeName = "decimal(18,2)")]
+        [Column(TypeName = "decimal(18,2)"), NumberHigherThan(0)]
         public decimal Amount { get; set; }
 
         [Column(TypeName = "decimal(18,2)")]
@@ -24,17 +20,19 @@ namespace Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal BalanceAfter { get; set; }
 
-        [MessageMaxLength(500)]
+        [MessageMaxLength(300)]
         public string? Description { get; set; }
 
         [NotDefaultValue]
         public int EducationAccountId { get; set; }
         public EducationAccount EducationAccount { get; set; } = null!;
 
-        [OnDelete(OnDeleteBehavior.Cascade)]
-        public TopupBatchTargetTransaction? TopupBatchTargetTransaction { get; set; }
+        [OnDelete(OnDeleteBehavior.Restrict)]
+        public TopupExecutionTarget? TopupExecutionTarget { get; set; }
 
-        [OnDelete(OnDeleteBehavior.Cascade)]
-        public AdhocTopupBatchTargetTransaction? AdhocTopupBatchTargetTransaction { get; set; }
+        [OnDelete(OnDeleteBehavior.Restrict)]
+        public Payment? Payment { get; set; }
+
+        public OutstandingDeductionTarget? OutstandingDeductionTarget { get; set; }
     }
 }

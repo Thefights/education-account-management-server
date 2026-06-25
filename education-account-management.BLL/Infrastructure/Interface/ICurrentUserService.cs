@@ -6,8 +6,10 @@ namespace Infrastructure.Interface
     {
         int UserId { get; }
 
-        int AuthId { get; }
+        int? CurrentUserId { get; }
 
         UserRole Role { get; }
+
+        string UserName { get; }
     }
 }

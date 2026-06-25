@@ -1,6 +1,4 @@
-﻿using Common;
-using EntityAnnotations.OnDeleteAttributes;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Persistence.SqlServer.ModelConfigurations
 {
@@ -88,7 +86,7 @@ namespace Persistence.SqlServer.ModelConfigurations
 
                             await ProcessEntityCascadeAsync(context, relatedEntity, cancellationToken);
                         }
-                        else if (relatedEntity is Entity && relatedEntity is not AuditEntity)
+                        else if (relatedEntity is Entity and not AuditEntity)
                         {
                             context.Remove(relatedEntity);
                             await ProcessEntityCascadeAsync(context, relatedEntity, cancellationToken);
@@ -159,10 +157,7 @@ namespace Persistence.SqlServer.ModelConfigurations
 
                 var navProp = related.GetType().GetProperty(navigation.ForeignKey.PrincipalToDependent?.Name ?? "")
                               ?? related.GetType().GetProperty(navigation.Inverse?.Name ?? "");
-                if (navProp != null)
-                {
-                    navProp.SetValue(related, null);
-                }
+                navProp?.SetValue(related, null);
             }
 
             await Task.CompletedTask;

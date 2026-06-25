@@ -8,15 +8,7 @@ namespace Extensions
             this IServiceCollection services,
             AppConfiguration configuration)
         {
-            services.AddResilienceServices(configuration);
-            services.AddCacheServices(configuration);
-            services.AddAuthServices(configuration);
-            services.AddEmailServices(configuration);
-            services.AddStorageServices(configuration);
-            services.AddAuditServices();
-            services.AddCsvServices();
-            services.AddMappers();
-            services.AddBackgroundJobServices();
+            services.AddApplicationServices(configuration);
 
             return services;
         }

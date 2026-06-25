@@ -5,12 +5,16 @@ namespace Infrastructure
         ILogger logger)
         : BackgroundService
     {
-        private readonly IServiceScopeFactory _serviceScopeFactory = serviceScopeFactory;
-        private readonly ILogger _logger = logger;
+        protected readonly IServiceScopeFactory _serviceScopeFactory = serviceScopeFactory;
+        protected readonly ILogger _logger = logger;
 
         protected abstract string JobName { get; }
 
         protected abstract TimeSpan Interval { get; }
+
+        protected virtual bool RunImmediately => true;
+
+        protected virtual TimeSpan GetDelayBeforeNextExecution() => Interval;
 
         protected abstract Task ExecuteJobAsync(
             IServiceProvider serviceProvider,
@@ -18,6 +22,9 @@ namespace Infrastructure
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            if (!RunImmediately && !await DelayAsync(stoppingToken))
+                return;
+
             while (!stoppingToken.IsCancellationRequested)
             {
                 try
@@ -35,14 +42,20 @@ namespace Infrastructure
                     _logger.LogError(ex, "Background job {JobName} failed.", JobName);
                 }
 
-                try
-                {
-                    await Task.Delay(Interval, stoppingToken);
-                }
-                catch (OperationCanceledException) when (stoppingToken.IsCancellationRequested)
-                {
-                    return;
-                }
+                if (!await DelayAsync(stoppingToken)) return;
+            }
+        }
+
+        private async Task<bool> DelayAsync(CancellationToken stoppingToken)
+        {
+            try
+            {
+                await Task.Delay(GetDelayBeforeNextExecution(), stoppingToken);
+                return true;
+            }
+            catch (OperationCanceledException) when (stoppingToken.IsCancellationRequested)
+            {
+                return false;
             }
         }
     }

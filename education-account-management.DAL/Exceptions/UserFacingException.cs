@@ -1,19 +1,11 @@
 namespace Exceptions
 {
-    public class UserFacingException : Exception
+    public class UserFacingException(
+        string? message,
+        int statusCode,
+        Exception? innerException = null)
+        : Exception(string.IsNullOrWhiteSpace(message) ? "An error occurred." : message, innerException)
     {
-        public int StatusCode { get; }
-
-        public UserFacingException(string? message, int statusCode)
-            : base(string.IsNullOrWhiteSpace(message) ? "An error occurred." : message)
-        {
-            StatusCode = statusCode;
-        }
-
-        public UserFacingException(string? message, int statusCode, Exception? innerException)
-            : base(string.IsNullOrWhiteSpace(message) ? "An error occurred." : message, innerException)
-        {
-            StatusCode = statusCode;
-        }
+        public int StatusCode { get; } = statusCode;
     }
 }

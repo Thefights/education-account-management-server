@@ -4,7 +4,7 @@ namespace Enums
     {
         SystemAdmin = 1,
         FinanceAdmin = 2,
-        CourseAdmin = 3,
+        SchoolAdmin = 3,
         AccountHolder = 4
     }
 }

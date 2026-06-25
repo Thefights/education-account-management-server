@@ -93,6 +93,97 @@ namespace Emails
             return new EmailTemplate("Your verification code", html, text);
         }
 
+        public EmailTemplate BuildAutoDeductSuccessEmail(string appName, string displayName, decimal deductedAmount, decimal remainingOutstanding)
+        {
+            var safeAppName = Html(appName);
+            var safeDisplayName = Html(displayName);
+
+            var html = WrapHtml(
+                safeAppName,
+                "Outstanding Fees Auto-Deduction Report",
+                $"""
+                <p style="margin:0 0 16px;">Hi {safeDisplayName},</p>
+
+                <p style="margin:0 0 16px;">
+                  We have automatically processed the monthly deduction from your top-up balance to settle your outstanding fees.
+                </p>
+
+                <div style="background:#ecfdf5;border:1px solid #bbf7d0;padding:16px 18px;
+                            border-radius:10px;margin:24px 0;">
+                  <div style="font-weight:700;color:#065f46;">Deduction Details</div>
+                  <div style="font-size:14px;color:#047857;margin-top:4px;">
+                    Amount Deducted: <strong>${deductedAmount:N2}</strong>
+                  </div>
+                  <div style="font-size:14px;color:#047857;margin-top:4px;">
+                    Remaining Outstanding: <strong>${remainingOutstanding:N2}</strong>
+                  </div>
+                </div>
+
+                <p style="margin:0;color:#6b7280;">
+                  Thank you. If you have any questions, please contact the finance administrator.
+                </p>
+                """);
+
+            var text = $"""
+                Outstanding Fees Auto-Deduction Report
+
+                Hi {displayName},
+
+                We have automatically processed the monthly deduction from your top-up balance to settle your outstanding fees.
+
+                Amount Deducted: ${deductedAmount:N2}
+                Remaining Outstanding: ${remainingOutstanding:N2}
+
+                Thank you.
+                """;
+
+            return new EmailTemplate("Outstanding Fees Auto-Deduction Report", html, text);
+        }
+
+        public EmailTemplate BuildPaymentReminderEmail(string appName, string displayName, decimal totalOutstanding)
+        {
+            var safeAppName = Html(appName);
+            var safeDisplayName = Html(displayName);
+
+            var html = WrapHtml(
+                safeAppName,
+                "Payment Reminder: Outstanding Fees",
+                $"""
+                <p style="margin:0 0 16px;">Hi {safeDisplayName},</p>
+
+                <p style="margin:0 0 16px;">
+                  This is a reminder that you have outstanding fees that require your attention.
+                </p>
+
+                <div style="background:#fff7ed;border-left:4px solid #f97316;padding:16px 18px;
+                            border-radius:8px;margin:24px 0;">
+                  <div style="font-size:13px;color:#9a3412;margin-bottom:4px;">Outstanding Amount Due</div>
+                  <div style="font-size:18px;font-weight:700;color:#7c2d12;">${totalOutstanding:N2}</div>
+                </div>
+
+                <p style="margin:0 0 16px;">
+                  Please top up your education account balance to enable auto-deduction, or make payment as soon as possible.
+                </p>
+
+                <p style="margin:0;color:#6b7280;">
+                  If you have already paid, please ignore this email.
+                </p>
+                """);
+
+            var text = $"""
+                Payment Reminder: Outstanding Fees
+
+                Hi {displayName},
+
+                This is a reminder that you have outstanding fees of ${totalOutstanding:N2} that require your attention.
+                Please top up your education account balance to enable auto-deduction, or make payment as soon as possible.
+
+                If you have already paid, please ignore this email.
+                """;
+
+            return new EmailTemplate("Payment Reminder: Outstanding Fees", html, text);
+        }
+
         private static string WrapHtml(string appName, string title, string body)
         {
             return $"""
