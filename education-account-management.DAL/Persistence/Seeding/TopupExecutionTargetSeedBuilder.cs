@@ -33,7 +33,7 @@ namespace Persistence.Seeding
                     AccountNumber = "EDU-2026-00000000002",
                     Amount = 100m,
                     Status = TopupTargetStatus.Failed,
-                    FailureReason = "Seeded failure for manual review.",
+                    FailureReason = "Account holder verification was pending.",
                     CreatedAt = createdAt,
                     CreatedBy = 7
                 },

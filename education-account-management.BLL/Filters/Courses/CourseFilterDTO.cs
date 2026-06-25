@@ -14,7 +14,7 @@ namespace Filters.Courses
                 ["courseFeeAmount"] = nameof(Course.CourseFeeAmount),
                 ["miscFeeAmount"] = nameof(Course.MiscFeeAmount),
                 ["gstAmount"] = nameof(Course.GstAmount),
-                ["fasApplicationDueDate"] = nameof(Course.FasApplicationDueDate),
+                ["enrollmentDeadline"] = nameof(Course.EnrollmentDeadline),
                 ["startDate"] = nameof(Course.StartDate),
                 ["endDate"] = nameof(Course.EndDate),
             };

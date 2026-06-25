@@ -16,6 +16,8 @@ namespace Services.Courses
         private readonly ICsvImportProfile<Course, CreateCourseDTO> _profile = profile;
         private readonly SchoolScopeResolver _schoolScopeResolver = schoolScopeResolver;
         private readonly TimeProvider _timeProvider = timeProvider;
+        private readonly IGenericRepository<AiAssistantSetting> _settingRepository =
+            unitOfWork.Repository<AiAssistantSetting>();
 
         public override async Task<BatchImportResultDTO> ImportAsync(
             IFormFile file,
@@ -42,6 +44,7 @@ namespace Services.Courses
 
             var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
             var utcNow = _timeProvider.GetUtcNow().UtcDateTime;
+            var taxRate = await GetTaxRateAsync(cancellationToken);
             var reservedCodes = new HashSet<string>(StringComparer.Ordinal);
             var errors = new List<BatchImportErrorDTO>();
             var entities = new List<Course>();
@@ -58,9 +61,11 @@ namespace Services.Courses
                     var course = _profile.MapToEntity(item.Row);
                     course.SchoolId = schoolId;
                     course.Status = CourseStatus.Draft;
-                    course.GstAmount = CourseFeeCalculator.CalculateGstAmount(
+                    course.FasApplicationDueDate = course.EnrollmentDeadline;
+                    course.GstAmount = CourseFeeCalculator.CalculateTaxAmount(
                         course.CourseFeeAmount,
-                        course.MiscFeeAmount);
+                        course.MiscFeeAmount,
+                        taxRate);
                     CourseDateTimeHelper.NormalizeToUtc(course);
                     course.CourseCode = await CourseCodeGenerator.GenerateUniqueAsync(
                         Repository,
@@ -112,6 +117,14 @@ namespace Services.Courses
                 BatchImportErrorDTO.Create(rowNumber, error.Key, error.Value)));
             errors.AddRange(exception.GlobalErrors.Select(error =>
                 BatchImportErrorDTO.Create(rowNumber, string.Empty, error)));
+        }
+
+        private async Task<decimal> GetTaxRateAsync(CancellationToken cancellationToken)
+        {
+            return await _settingRepository.Query()
+                .OrderBy(setting => setting.Id)
+                .Select(setting => setting.TaxRate)
+                .FirstOrDefaultAsync(cancellationToken);
         }
     }
 }

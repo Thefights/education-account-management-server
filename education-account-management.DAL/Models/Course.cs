@@ -58,7 +58,7 @@ namespace Models
         public bool AllowInstallment12Months { get; set; }
 
         // Ngày bắt đầu course.
-        [NotDefaultValue, DateValidator(NotBefore = nameof(FasApplicationDueDate), NotAfter = nameof(EndDate))]
+        [NotDefaultValue, DateValidator(NotBefore = nameof(EnrollmentDeadline), NotAfter = nameof(EndDate))]
         public DateTime StartDate { get; set; }
 
         // Ngày kết thúc course.
@@ -73,7 +73,7 @@ namespace Models
         [OnDelete(OnDeleteBehavior.Cascade)]
         public ICollection<Enrollment> Enrollments { get; set; } = [];
 
-        // Các FAS scheme được phép apply vào course này.
+        // Legacy: FAS không còn apply qua course; giữ navigation để tương thích migration cũ.
         [OnDelete(OnDeleteBehavior.Cascade)]
         public ICollection<FasSchemeCourse> FasSchemeCourses { get; set; } = [];
     }
