@@ -559,7 +559,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 0m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 3,
+                            Status = 2,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -634,7 +634,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 0m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Southpoint Secondary School",
-                            Status = 3,
+                            Status = 2,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -686,7 +686,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 70m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Riverside Learning Institute",
-                            Status = 4,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -738,7 +738,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 60m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Greenfield Academy",
-                            Status = 4,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -764,7 +764,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 280m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Harbourfront School",
-                            Status = 4,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -790,7 +790,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 300m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Hillcrest Education Centre",
-                            Status = 4,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         });
