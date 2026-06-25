@@ -20,6 +20,10 @@ namespace DTOs.EducationAccounts
 
         public DateOnly ExpectedClosingDate => DateOfBirth.AddYears(31);
 
+        public int Age => DateTime.Today.Year - DateOfBirth.Year - (DateTime.Today.DayOfYear < DateOfBirth.DayOfYear ? 1 : 0);
+
+        public bool IsSingaporean { get; set; }
+
         public string? Email { get; set; }
 
         public string? PhoneNumber { get; set; }

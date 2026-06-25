@@ -12,7 +12,7 @@ using Persistence.SqlServer;
 namespace educationaccountmanagement.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260625095958_A")]
+    [Migration("20260625114032_A")]
     partial class A
     {
         /// <inheritdoc />
@@ -9069,22 +9069,17 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<int>("FasSchemeId")
                         .HasColumnType("int");
 
-                    b.Property<string>("FatherNationalitySnapshot")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.Property<decimal>("GrossHouseholdIncomeSnapshot")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("GuardianNationalitySnapshot")
+                        .HasColumnType("int");
 
                     b.Property<int>("HouseholdMemberCountSnapshot")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
-
-                    b.Property<string>("MotherNationalitySnapshot")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
 
                     b.Property<decimal>("PerCapitaIncomeSnapshot")
                         .HasColumnType("decimal(18,2)");
@@ -9109,10 +9104,8 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<int>("StudentAgeSnapshot")
                         .HasColumnType("int");
 
-                    b.Property<string>("StudentNationalitySnapshot")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                    b.Property<int>("StudentNationalitySnapshot")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -9162,18 +9155,17 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DurationInMonthsSnapshot = 6,
                             FasSchemeId = 1,
-                            FatherNationalitySnapshot = "Singapore",
                             GrossHouseholdIncomeSnapshot = 2500m,
+                            GuardianNationalitySnapshot = 1,
                             HouseholdMemberCountSnapshot = 4,
                             IsDeleted = false,
-                            MotherNationalitySnapshot = "Singapore",
                             PerCapitaIncomeSnapshot = 625m,
                             RecommendationReason = "PCI <= 750",
                             RecommendedTierId = 1,
                             SchoolStudentId = 1,
                             Status = 2,
                             StudentAgeSnapshot = 18,
-                            StudentNationalitySnapshot = "Singapore",
+                            StudentNationalitySnapshot = 1,
                             ValidityEndDate = new DateTime(2026, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
@@ -9187,18 +9179,17 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DurationInMonthsSnapshot = 3,
                             FasSchemeId = 2,
-                            FatherNationalitySnapshot = "Malaysia",
                             GrossHouseholdIncomeSnapshot = 3000m,
+                            GuardianNationalitySnapshot = 2,
                             HouseholdMemberCountSnapshot = 4,
                             IsDeleted = false,
-                            MotherNationalitySnapshot = "Malaysia",
                             PerCapitaIncomeSnapshot = 750m,
                             RecommendationReason = "GHI <= 3500",
                             RecommendedTierId = 2,
                             SchoolStudentId = 2,
                             Status = 2,
                             StudentAgeSnapshot = 17,
-                            StudentNationalitySnapshot = "Singapore",
+                            StudentNationalitySnapshot = 1,
                             ValidityEndDate = new DateTime(2026, 9, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
@@ -9212,18 +9203,17 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DurationInMonthsSnapshot = 12,
                             FasSchemeId = 3,
-                            FatherNationalitySnapshot = "Singapore",
                             GrossHouseholdIncomeSnapshot = 2200m,
+                            GuardianNationalitySnapshot = 1,
                             HouseholdMemberCountSnapshot = 5,
                             IsDeleted = false,
-                            MotherNationalitySnapshot = "Singapore",
                             PerCapitaIncomeSnapshot = 440m,
                             RecommendationReason = "Singapore citizen and PCI <= 690",
                             RecommendedTierId = 3,
                             SchoolStudentId = 3,
                             Status = 2,
                             StudentAgeSnapshot = 19,
-                            StudentNationalitySnapshot = "Singapore",
+                            StudentNationalitySnapshot = 1,
                             ValidityEndDate = new DateTime(2027, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
@@ -9233,18 +9223,17 @@ namespace educationaccountmanagement.DAL.Migrations
                             ApplicationNumber = "FASAPP-0004",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasSchemeId = 4,
-                            FatherNationalitySnapshot = "Indonesia",
                             GrossHouseholdIncomeSnapshot = 3600m,
+                            GuardianNationalitySnapshot = 2,
                             HouseholdMemberCountSnapshot = 4,
                             IsDeleted = false,
-                            MotherNationalitySnapshot = "Indonesia",
                             PerCapitaIncomeSnapshot = 900m,
                             RecommendationReason = "Pending admin review",
                             RecommendedTierId = 4,
                             SchoolStudentId = 4,
                             Status = 1,
                             StudentAgeSnapshot = 20,
-                            StudentNationalitySnapshot = "Singapore"
+                            StudentNationalitySnapshot = 1
                         },
                         new
                         {
@@ -9252,11 +9241,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             ApplicationNumber = "FASAPP-0005",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasSchemeId = 5,
-                            FatherNationalitySnapshot = "Vietnam",
                             GrossHouseholdIncomeSnapshot = 7000m,
+                            GuardianNationalitySnapshot = 2,
                             HouseholdMemberCountSnapshot = 4,
                             IsDeleted = false,
-                            MotherNationalitySnapshot = "Vietnam",
                             PerCapitaIncomeSnapshot = 1750m,
                             RecommendationReason = "No tier matched",
                             RecommendedTierId = 5,
@@ -9264,7 +9252,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             SchoolStudentId = 5,
                             Status = 3,
                             StudentAgeSnapshot = 21,
-                            StudentNationalitySnapshot = "Singapore"
+                            StudentNationalitySnapshot = 1
                         },
                         new
                         {
@@ -9272,18 +9260,17 @@ namespace educationaccountmanagement.DAL.Migrations
                             ApplicationNumber = "FASAPP-0006",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasSchemeId = 6,
-                            FatherNationalitySnapshot = "Singapore",
                             GrossHouseholdIncomeSnapshot = 2800m,
+                            GuardianNationalitySnapshot = 1,
                             HouseholdMemberCountSnapshot = 5,
                             IsDeleted = false,
-                            MotherNationalitySnapshot = "Singapore",
                             PerCapitaIncomeSnapshot = 560m,
                             RecommendationReason = "Student withdrew before review",
                             RecommendedTierId = 6,
                             SchoolStudentId = 6,
                             Status = 4,
                             StudentAgeSnapshot = 18,
-                            StudentNationalitySnapshot = "Singapore",
+                            StudentNationalitySnapshot = 1,
                             WithdrawnAt = new DateTime(2026, 6, 3, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
@@ -9296,18 +9283,17 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DurationInMonthsSnapshot = 12,
                             FasSchemeId = 7,
-                            FatherNationalitySnapshot = "Singapore",
                             GrossHouseholdIncomeSnapshot = 4800m,
+                            GuardianNationalitySnapshot = 1,
                             HouseholdMemberCountSnapshot = 4,
                             IsDeleted = false,
-                            MotherNationalitySnapshot = "Singapore",
                             PerCapitaIncomeSnapshot = 1200m,
                             RecommendationReason = "Special needs support threshold matched",
                             RecommendedTierId = 7,
                             SchoolStudentId = 7,
                             Status = 2,
                             StudentAgeSnapshot = 16,
-                            StudentNationalitySnapshot = "Singapore",
+                            StudentNationalitySnapshot = 1,
                             ValidityEndDate = new DateTime(2027, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
@@ -9321,18 +9307,17 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DurationInMonthsSnapshot = 6,
                             FasSchemeId = 8,
-                            FatherNationalitySnapshot = "Thailand",
                             GrossHouseholdIncomeSnapshot = 3200m,
+                            GuardianNationalitySnapshot = 2,
                             HouseholdMemberCountSnapshot = 5,
                             IsDeleted = false,
-                            MotherNationalitySnapshot = "Thailand",
                             PerCapitaIncomeSnapshot = 640m,
                             RecommendationReason = "PCI <= 850",
                             RecommendedTierId = 8,
                             SchoolStudentId = 8,
                             Status = 2,
                             StudentAgeSnapshot = 22,
-                            StudentNationalitySnapshot = "Singapore",
+                            StudentNationalitySnapshot = 1,
                             ValidityEndDate = new DateTime(2025, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ValidityStartDate = new DateTime(2025, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
@@ -9342,18 +9327,17 @@ namespace educationaccountmanagement.DAL.Migrations
                             ApplicationNumber = "FASAPP-0009",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasSchemeId = 9,
-                            FatherNationalitySnapshot = "Philippines",
                             GrossHouseholdIncomeSnapshot = 2600m,
+                            GuardianNationalitySnapshot = 2,
                             HouseholdMemberCountSnapshot = 3,
                             IsDeleted = false,
-                            MotherNationalitySnapshot = "Philippines",
                             PerCapitaIncomeSnapshot = 866.67m,
                             RecommendationReason = "Emergency aid review required",
                             RecommendedTierId = 9,
                             SchoolStudentId = 9,
                             Status = 1,
                             StudentAgeSnapshot = 17,
-                            StudentNationalitySnapshot = "Singapore"
+                            StudentNationalitySnapshot = 1
                         },
                         new
                         {
@@ -9365,18 +9349,17 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DurationInMonthsSnapshot = 12,
                             FasSchemeId = 10,
-                            FatherNationalitySnapshot = "Singapore",
                             GrossHouseholdIncomeSnapshot = 3900m,
+                            GuardianNationalitySnapshot = 1,
                             HouseholdMemberCountSnapshot = 5,
                             IsDeleted = false,
-                            MotherNationalitySnapshot = "Singapore",
                             PerCapitaIncomeSnapshot = 780m,
                             RecommendationReason = "PCI <= 1000",
                             RecommendedTierId = 10,
                             SchoolStudentId = 10,
                             Status = 2,
                             StudentAgeSnapshot = 18,
-                            StudentNationalitySnapshot = "Singapore",
+                            StudentNationalitySnapshot = 1,
                             ValidityEndDate = new DateTime(2027, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         });
