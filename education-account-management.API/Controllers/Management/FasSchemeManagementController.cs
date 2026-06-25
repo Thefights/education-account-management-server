@@ -12,41 +12,15 @@ namespace Controllers.Management
 {
     [Authorize(Roles = RolePolicy.SchoolAdmin)]
     public class FasSchemeManagementController(IFasSchemeService service)
-        : GetController<GetFasSchemeDTO, FasSchemeFilterDTO>(service)
+        : CrudController<CreateFasSchemeDTO, GetFasSchemeDTO, UpdateFasSchemeDTO, FasSchemeFilterDTO>(service)
     {
         private readonly IFasSchemeService _fasSchemeService = service;
 
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateFasSchemeDTO createDTO)
-        {
-            var result = await _fasSchemeService.CreateAsync(createDTO);
-            return Result.SuccessData(result, "FasScheme created successfully");
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] UpdateFasSchemeDTO updateDTO)
-        {
-            var result = await _fasSchemeService.UpdateAsync(id, updateDTO);
-            return Result.SuccessData(result, "FasScheme updated successfully");
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            await _fasSchemeService.DeleteAsync(id);
-            return Result.SuccessAction("FasScheme deleted successfully");
-        }
-
-        [HttpDelete("selected")]
-        public async Task<IActionResult> DeleteSelectedIds([FromQuery] List<int> ids)
-        {
-            await _fasSchemeService.DeleteSelectedIdsAsync(ids);
-            return Result.SuccessAction($"{ids.Count} selected FasSchemes deleted successfully");
-        }
+        protected override string? EntityName => "FasScheme";
 
         [HttpPut("status")]
         public async Task<IActionResult> UpdateStatus(
-            [FromBody] BatchUpdateFasSchemeStatusDTO dto,
+            BatchUpdateFasSchemeStatusDTO dto,
             CancellationToken cancellationToken)
         {
             await _fasSchemeService.UpdateStatusesAsync(dto, cancellationToken);
