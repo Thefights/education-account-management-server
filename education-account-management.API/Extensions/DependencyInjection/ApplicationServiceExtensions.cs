@@ -98,12 +98,10 @@ namespace Extensions.DependencyInjection
             services.AddScoped<ISchoolStudentImportService, SchoolStudentImportService>();
 
             services.AddScoped<IDataCleanupService, DataCleanupService>();
-            services.AddScoped<IMonthlyAutoDeductService, MonthlyAutoDeductService>();
             services.AddHostedService<DataCleanupWorker>();
             services.AddHostedService<EducationAccountSweepWorker>();
             services.AddHostedService<TopupDailyWorker>();
             services.AddHostedService<CourseLifecycleWorker>();
-            services.AddHostedService<MonthlyAutoDeductWorker>();
 
             services.AddScoped<AuditLogMapper>();
             services.AddScoped<EducationAccountMapper>();
