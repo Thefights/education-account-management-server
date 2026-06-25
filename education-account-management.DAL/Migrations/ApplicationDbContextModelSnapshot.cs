@@ -6833,7 +6833,7 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasIndex("FasSchemeId")
                         .IsUnique()
-                        .HasFilter("\"IsDeleted\" = 0 AND \"FasSchemeId\" IS NOT NULL");
+                        .HasFilter("\"IsDeleted\" = 0 AND \"FasSchemeId\" IS NOT NULL AND \"ParentGroupId\" IS NULL");
 
                     b.HasIndex("ParentGroupId");
 

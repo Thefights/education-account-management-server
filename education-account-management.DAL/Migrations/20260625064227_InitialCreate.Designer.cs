@@ -12,8 +12,8 @@ using Persistence.SqlServer;
 namespace educationaccountmanagement.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260624194523_A")]
-    partial class A
+    [Migration("20260625064227_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -6836,7 +6836,7 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasIndex("FasSchemeId")
                         .IsUnique()
-                        .HasFilter("\"IsDeleted\" = 0 AND \"FasSchemeId\" IS NOT NULL");
+                        .HasFilter("\"IsDeleted\" = 0 AND \"FasSchemeId\" IS NOT NULL AND \"ParentGroupId\" IS NULL");
 
                     b.HasIndex("ParentGroupId");
 
