@@ -24,6 +24,12 @@ namespace Persistence.SqlServer.ModelConfigurations
                         var filterParts = IsPermanentUniqueIndex(entityType.ClrType, properties)
                             ? nullFilters
                             : new[] { $"\"{nameof(AuditEntity.IsDeleted)}\" = 0" }.Concat(nullFilters);
+
+                        if (entityType.ClrType.GetProperty("ParentGroupId") != null)
+                        {
+                            filterParts = filterParts.Concat(["\"ParentGroupId\" IS NULL"]);
+                        }
+
                         var filter = string.Join(" AND ", filterParts);
                         modelBuilder.Entity(entityType.ClrType)
                                     .HasIndex(properties)
