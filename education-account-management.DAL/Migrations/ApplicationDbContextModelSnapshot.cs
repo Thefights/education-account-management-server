@@ -9359,6 +9359,246 @@ namespace educationaccountmanagement.DAL.Migrations
                             StudentNationalitySnapshot = 1,
                             ValidityEndDate = new DateTime(2027, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ApplicationNumber = "FASAPP-20260111-A1B2C11",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 11,
+                            GrossHouseholdIncomeSnapshot = 2600m,
+                            GuardianNationalitySnapshot = 2,
+                            HouseholdMemberCountSnapshot = 3,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 866.67m,
+                            RecommendationReason = "Pending admin review",
+                            RecommendedTierId = 11,
+                            SchoolStudentId = 9,
+                            Status = 1,
+                            StudentAgeSnapshot = 17,
+                            StudentNationalitySnapshot = 1
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ApplicationNumber = "FASAPP-20260112-A1B2C12",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 12,
+                            GrossHouseholdIncomeSnapshot = 2600m,
+                            GuardianNationalitySnapshot = 2,
+                            HouseholdMemberCountSnapshot = 3,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 866.67m,
+                            RecommendationReason = "Pending admin review",
+                            RecommendedTierId = 12,
+                            SchoolStudentId = 9,
+                            Status = 1,
+                            StudentAgeSnapshot = 17,
+                            StudentNationalitySnapshot = 1
+                        },
+                        new
+                        {
+                            Id = 13,
+                            ApplicationNumber = "FASAPP-20260113-A1B2C13",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 13,
+                            GrossHouseholdIncomeSnapshot = 2600m,
+                            GuardianNationalitySnapshot = 2,
+                            HouseholdMemberCountSnapshot = 3,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 866.67m,
+                            RecommendationReason = "Pending admin review",
+                            RecommendedTierId = 13,
+                            SchoolStudentId = 9,
+                            Status = 1,
+                            StudentAgeSnapshot = 17,
+                            StudentNationalitySnapshot = 1
+                        },
+                        new
+                        {
+                            Id = 14,
+                            ApplicationNumber = "FASAPP-20260114-D4E5F14",
+                            ApprovedAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApprovedByUserId = 1,
+                            ApprovedTierId = 14,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DurationInMonthsSnapshot = 6,
+                            FasSchemeId = 14,
+                            GrossHouseholdIncomeSnapshot = 2600m,
+                            GuardianNationalitySnapshot = 2,
+                            HouseholdMemberCountSnapshot = 3,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 866.67m,
+                            RecommendationReason = "PCI matches",
+                            RecommendedTierId = 14,
+                            SchoolStudentId = 9,
+                            Status = 2,
+                            StudentAgeSnapshot = 17,
+                            StudentNationalitySnapshot = 1,
+                            ValidityEndDate = new DateTime(2026, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 15,
+                            ApplicationNumber = "FASAPP-20260115-D4E5F15",
+                            ApprovedAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApprovedByUserId = 1,
+                            ApprovedTierId = 15,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DurationInMonthsSnapshot = 6,
+                            FasSchemeId = 15,
+                            GrossHouseholdIncomeSnapshot = 2600m,
+                            GuardianNationalitySnapshot = 2,
+                            HouseholdMemberCountSnapshot = 3,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 866.67m,
+                            RecommendationReason = "PCI matches",
+                            RecommendedTierId = 15,
+                            SchoolStudentId = 9,
+                            Status = 2,
+                            StudentAgeSnapshot = 17,
+                            StudentNationalitySnapshot = 1,
+                            ValidityEndDate = new DateTime(2026, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 16,
+                            ApplicationNumber = "FASAPP-20260116-D4E5F16",
+                            ApprovedAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApprovedByUserId = 1,
+                            ApprovedTierId = 16,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DurationInMonthsSnapshot = 6,
+                            FasSchemeId = 16,
+                            GrossHouseholdIncomeSnapshot = 2600m,
+                            GuardianNationalitySnapshot = 2,
+                            HouseholdMemberCountSnapshot = 3,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 866.67m,
+                            RecommendationReason = "PCI matches",
+                            RecommendedTierId = 16,
+                            SchoolStudentId = 9,
+                            Status = 2,
+                            StudentAgeSnapshot = 17,
+                            StudentNationalitySnapshot = 1,
+                            ValidityEndDate = new DateTime(2026, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 17,
+                            ApplicationNumber = "FASAPP-20260117-G7H8I17",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 17,
+                            GrossHouseholdIncomeSnapshot = 12000m,
+                            GuardianNationalitySnapshot = 2,
+                            HouseholdMemberCountSnapshot = 3,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 4000m,
+                            RecommendationReason = "No tier matched",
+                            RecommendedTierId = 17,
+                            RejectionReason = "Income exceeds supported threshold.",
+                            SchoolStudentId = 9,
+                            Status = 3,
+                            StudentAgeSnapshot = 17,
+                            StudentNationalitySnapshot = 1
+                        },
+                        new
+                        {
+                            Id = 18,
+                            ApplicationNumber = "FASAPP-20260118-G7H8I18",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 18,
+                            GrossHouseholdIncomeSnapshot = 12000m,
+                            GuardianNationalitySnapshot = 2,
+                            HouseholdMemberCountSnapshot = 3,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 4000m,
+                            RecommendationReason = "No tier matched",
+                            RecommendedTierId = 18,
+                            RejectionReason = "The income proof document is invalid or blurry.",
+                            SchoolStudentId = 9,
+                            Status = 3,
+                            StudentAgeSnapshot = 17,
+                            StudentNationalitySnapshot = 1
+                        },
+                        new
+                        {
+                            Id = 19,
+                            ApplicationNumber = "FASAPP-20260119-G7H8I19",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 19,
+                            GrossHouseholdIncomeSnapshot = 12000m,
+                            GuardianNationalitySnapshot = 2,
+                            HouseholdMemberCountSnapshot = 3,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 4000m,
+                            RecommendationReason = "No tier matched",
+                            RecommendedTierId = 19,
+                            RejectionReason = "The student does not meet the eligibility conditions for this scheme.",
+                            SchoolStudentId = 9,
+                            Status = 3,
+                            StudentAgeSnapshot = 17,
+                            StudentNationalitySnapshot = 1
+                        },
+                        new
+                        {
+                            Id = 20,
+                            ApplicationNumber = "FASAPP-20260120-J1K2L20",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 20,
+                            GrossHouseholdIncomeSnapshot = 2600m,
+                            GuardianNationalitySnapshot = 2,
+                            HouseholdMemberCountSnapshot = 3,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 866.67m,
+                            RecommendationReason = "Student withdrew",
+                            RecommendedTierId = 20,
+                            SchoolStudentId = 9,
+                            Status = 4,
+                            StudentAgeSnapshot = 17,
+                            StudentNationalitySnapshot = 1,
+                            WithdrawnAt = new DateTime(2026, 6, 3, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 21,
+                            ApplicationNumber = "FASAPP-20260121-J1K2L21",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 17,
+                            GrossHouseholdIncomeSnapshot = 2600m,
+                            GuardianNationalitySnapshot = 2,
+                            HouseholdMemberCountSnapshot = 3,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 866.67m,
+                            RecommendationReason = "Student withdrew",
+                            RecommendedTierId = 17,
+                            SchoolStudentId = 9,
+                            Status = 4,
+                            StudentAgeSnapshot = 17,
+                            StudentNationalitySnapshot = 1,
+                            WithdrawnAt = new DateTime(2026, 6, 3, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 22,
+                            ApplicationNumber = "FASAPP-20260122-J1K2L22",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 18,
+                            GrossHouseholdIncomeSnapshot = 2600m,
+                            GuardianNationalitySnapshot = 2,
+                            HouseholdMemberCountSnapshot = 3,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 866.67m,
+                            RecommendationReason = "Student withdrew",
+                            RecommendedTierId = 18,
+                            SchoolStudentId = 9,
+                            Status = 4,
+                            StudentAgeSnapshot = 17,
+                            StudentNationalitySnapshot = 1,
+                            WithdrawnAt = new DateTime(2026, 6, 3, 0, 0, 0, 0, DateTimeKind.Utc)
                         });
                 });
 
@@ -9526,6 +9766,138 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeRequiredDocumentId = 10,
                             FileKey = "fas/applications/10/document.pdf",
                             FileName = "fas-application-10.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Recent Payslip",
+                            FasApplicationId = 11,
+                            FasSchemeRequiredDocumentId = 11,
+                            FileKey = "fas/applications/11/document.pdf",
+                            FileName = "fas-application-11.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Income Statement",
+                            FasApplicationId = 12,
+                            FasSchemeRequiredDocumentId = 12,
+                            FileKey = "fas/applications/12/document.pdf",
+                            FileName = "fas-application-12.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Recent Payslip",
+                            FasApplicationId = 13,
+                            FasSchemeRequiredDocumentId = 13,
+                            FileKey = "fas/applications/13/document.pdf",
+                            FileName = "fas-application-13.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Income Statement",
+                            FasApplicationId = 14,
+                            FasSchemeRequiredDocumentId = 14,
+                            FileKey = "fas/applications/14/document.pdf",
+                            FileName = "fas-application-14.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Recent Payslip",
+                            FasApplicationId = 15,
+                            FasSchemeRequiredDocumentId = 15,
+                            FileKey = "fas/applications/15/document.pdf",
+                            FileName = "fas-application-15.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Income Statement",
+                            FasApplicationId = 16,
+                            FasSchemeRequiredDocumentId = 16,
+                            FileKey = "fas/applications/16/document.pdf",
+                            FileName = "fas-application-16.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Recent Payslip",
+                            FasApplicationId = 17,
+                            FasSchemeRequiredDocumentId = 17,
+                            FileKey = "fas/applications/17/document.pdf",
+                            FileName = "fas-application-17.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Income Statement",
+                            FasApplicationId = 18,
+                            FasSchemeRequiredDocumentId = 18,
+                            FileKey = "fas/applications/18/document.pdf",
+                            FileName = "fas-application-18.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Recent Payslip",
+                            FasApplicationId = 19,
+                            FasSchemeRequiredDocumentId = 19,
+                            FileKey = "fas/applications/19/document.pdf",
+                            FileName = "fas-application-19.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Income Statement",
+                            FasApplicationId = 20,
+                            FasSchemeRequiredDocumentId = 20,
+                            FileKey = "fas/applications/20/document.pdf",
+                            FileName = "fas-application-20.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Recent Payslip",
+                            FasApplicationId = 21,
+                            FasSchemeRequiredDocumentId = 21,
+                            FileKey = "fas/applications/21/document.pdf",
+                            FileName = "fas-application-21.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Income Statement",
+                            FasApplicationId = 22,
+                            FasSchemeRequiredDocumentId = 22,
+                            FileKey = "fas/applications/22/document.pdf",
+                            FileName = "fas-application-22.pdf",
                             IsDeleted = false
                         });
                 });
@@ -9901,6 +10273,156 @@ namespace educationaccountmanagement.DAL.Migrations
                             SchoolId = 9,
                             Status = 2,
                             SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Auto generated scheme 21 for school 9 test F7.2",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-021",
+                            SchemeName = "School 9 Scheme 21 (For F7.2 Test)",
+                            SchoolId = 9,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Auto generated scheme 22 for school 9 test F7.2",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-022",
+                            SchemeName = "School 9 Scheme 22 (For F7.2 Test)",
+                            SchoolId = 9,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 23,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Auto generated scheme 23 for school 9 test F7.2",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-023",
+                            SchemeName = "School 9 Scheme 23 (For F7.2 Test)",
+                            SchoolId = 9,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 24,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Auto generated scheme 24 for school 9 test F7.2",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-024",
+                            SchemeName = "School 9 Scheme 24 (For F7.2 Test)",
+                            SchoolId = 9,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 25,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Auto generated scheme 25 for school 9 test F7.2",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-025",
+                            SchemeName = "School 9 Scheme 25 (For F7.2 Test)",
+                            SchoolId = 9,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 26,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Auto generated scheme 26 for school 9 test F7.2",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-026",
+                            SchemeName = "School 9 Scheme 26 (For F7.2 Test)",
+                            SchoolId = 9,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 27,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Auto generated scheme 27 for school 9 test F7.2",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-027",
+                            SchemeName = "School 9 Scheme 27 (For F7.2 Test)",
+                            SchoolId = 9,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 28,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Auto generated scheme 28 for school 9 test F7.2",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-028",
+                            SchemeName = "School 9 Scheme 28 (For F7.2 Test)",
+                            SchoolId = 9,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 29,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Auto generated scheme 29 for school 9 test F7.2",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-029",
+                            SchemeName = "School 9 Scheme 29 (For F7.2 Test)",
+                            SchoolId = 9,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 30,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Auto generated scheme 30 for school 9 test F7.2",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-030",
+                            SchemeName = "School 9 Scheme 30 (For F7.2 Test)",
+                            SchoolId = 9,
+                            Status = 2,
+                            SubsidyType = 1
                         });
                 });
 
@@ -10186,6 +10708,116 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Operator = 4,
                             ValueNumber = 10000m
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 21,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 10000m
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 22,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 10000m
+                        },
+                        new
+                        {
+                            Id = 23,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 23,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 10000m
+                        },
+                        new
+                        {
+                            Id = 24,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 24,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 10000m
+                        },
+                        new
+                        {
+                            Id = 25,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 25,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 10000m
+                        },
+                        new
+                        {
+                            Id = 26,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 26,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 10000m
+                        },
+                        new
+                        {
+                            Id = 27,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 27,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 10000m
+                        },
+                        new
+                        {
+                            Id = 28,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 28,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 10000m
+                        },
+                        new
+                        {
+                            Id = 29,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 29,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 10000m
+                        },
+                        new
+                        {
+                            Id = 30,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 30,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 10000m
                         });
                 });
 
@@ -10420,6 +11052,96 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 20,
                             IsDeleted = false,
                             LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 21,
+                            FasSchemeId = 21,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 22,
+                            FasSchemeId = 22,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 23,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 23,
+                            FasSchemeId = 23,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 24,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 24,
+                            FasSchemeId = 24,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 25,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 25,
+                            FasSchemeId = 25,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 26,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 26,
+                            FasSchemeId = 26,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 27,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 27,
+                            FasSchemeId = 27,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 28,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 28,
+                            FasSchemeId = 28,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 29,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 29,
+                            FasSchemeId = 29,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 30,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 30,
+                            FasSchemeId = 30,
+                            IsDeleted = false,
+                            LogicalOperator = 1
                         });
                 });
 
@@ -10633,7 +11355,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Id = 21,
                             CourseId = 21,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasSchemeId = 2,
+                            FasSchemeId = 21,
                             IsDeleted = false
                         },
                         new
@@ -10641,7 +11363,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Id = 22,
                             CourseId = 22,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasSchemeId = 2,
+                            FasSchemeId = 22,
                             IsDeleted = false
                         },
                         new
@@ -10649,7 +11371,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Id = 23,
                             CourseId = 23,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasSchemeId = 2,
+                            FasSchemeId = 23,
                             IsDeleted = false
                         },
                         new
@@ -10657,7 +11379,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Id = 24,
                             CourseId = 24,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasSchemeId = 2,
+                            FasSchemeId = 24,
                             IsDeleted = false
                         },
                         new
@@ -10665,7 +11387,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Id = 25,
                             CourseId = 25,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasSchemeId = 2,
+                            FasSchemeId = 25,
                             IsDeleted = false
                         },
                         new
@@ -10673,7 +11395,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Id = 26,
                             CourseId = 26,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasSchemeId = 2,
+                            FasSchemeId = 26,
                             IsDeleted = false
                         },
                         new
@@ -10681,7 +11403,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Id = 27,
                             CourseId = 27,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasSchemeId = 2,
+                            FasSchemeId = 27,
                             IsDeleted = false
                         },
                         new
@@ -10689,7 +11411,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Id = 28,
                             CourseId = 28,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasSchemeId = 2,
+                            FasSchemeId = 28,
                             IsDeleted = false
                         },
                         new
@@ -10697,7 +11419,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Id = 29,
                             CourseId = 29,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasSchemeId = 3,
+                            FasSchemeId = 29,
                             IsDeleted = false
                         },
                         new
@@ -10705,7 +11427,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Id = 30,
                             CourseId = 30,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasSchemeId = 3,
+                            FasSchemeId = 30,
                             IsDeleted = false
                         },
                         new
@@ -11521,6 +12243,106 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 20,
                             IsDeleted = false,
                             TemplateFileKey = "fas/templates/document-20.pdf"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 21,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-21.pdf"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 22,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-22.pdf"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 23,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-23.pdf"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 24,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-24.pdf"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 25,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-25.pdf"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 26,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-26.pdf"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 27,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-27.pdf"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 28,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-28.pdf"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 29,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-29.pdf"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 30,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-30.pdf"
                         });
                 });
 
@@ -11805,6 +12627,116 @@ namespace educationaccountmanagement.DAL.Migrations
                             MaxPerCapitaIncome = 10000m,
                             SubsidyValue = 100m,
                             TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 21,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 10000m,
+                            SubsidyValue = 100m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 22,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 10000m,
+                            SubsidyValue = 100m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 23,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 10000m,
+                            SubsidyValue = 100m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 24,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 10000m,
+                            SubsidyValue = 100m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 25,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 10000m,
+                            SubsidyValue = 100m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 26,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 10000m,
+                            SubsidyValue = 100m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 27,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 10000m,
+                            SubsidyValue = 100m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 28,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 10000m,
+                            SubsidyValue = 100m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 29,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 10000m,
+                            SubsidyValue = 100m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 30,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 10000m,
+                            SubsidyValue = 100m,
+                            TierName = "Tier 1"
                         });
                 });
 
@@ -11987,6 +12919,150 @@ namespace educationaccountmanagement.DAL.Migrations
                             ModifiedByUserId = 1,
                             NewTierId = 10,
                             OldTierId = 10,
+                            Reason = "Seed audit trail for tier review."
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationId = 11,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTime(2026, 6, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModifiedByUserId = 1,
+                            NewTierId = 11,
+                            OldTierId = 11,
+                            Reason = "Seed audit trail for tier review."
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationId = 12,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTime(2026, 6, 12, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModifiedByUserId = 1,
+                            NewTierId = 12,
+                            OldTierId = 12,
+                            Reason = "Seed audit trail for tier review."
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationId = 13,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTime(2026, 6, 13, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModifiedByUserId = 1,
+                            NewTierId = 13,
+                            OldTierId = 13,
+                            Reason = "Seed audit trail for tier review."
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationId = 14,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTime(2026, 6, 14, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModifiedByUserId = 1,
+                            NewTierId = 14,
+                            OldTierId = 14,
+                            Reason = "Seed audit trail for tier review."
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationId = 15,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTime(2026, 6, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModifiedByUserId = 1,
+                            NewTierId = 15,
+                            OldTierId = 15,
+                            Reason = "Seed audit trail for tier review."
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationId = 16,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTime(2026, 6, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModifiedByUserId = 1,
+                            NewTierId = 16,
+                            OldTierId = 16,
+                            Reason = "Seed audit trail for tier review."
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationId = 17,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTime(2026, 6, 17, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModifiedByUserId = 1,
+                            NewTierId = 17,
+                            OldTierId = 17,
+                            Reason = "Seed audit trail for tier review."
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationId = 18,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTime(2026, 6, 18, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModifiedByUserId = 1,
+                            NewTierId = 18,
+                            OldTierId = 18,
+                            Reason = "Seed audit trail for tier review."
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationId = 19,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTime(2026, 6, 19, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModifiedByUserId = 1,
+                            NewTierId = 19,
+                            OldTierId = 19,
+                            Reason = "Seed audit trail for tier review."
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationId = 20,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTime(2026, 6, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModifiedByUserId = 1,
+                            NewTierId = 20,
+                            OldTierId = 20,
+                            Reason = "Seed audit trail for tier review."
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationId = 21,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTime(2026, 6, 21, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModifiedByUserId = 1,
+                            NewTierId = 21,
+                            OldTierId = 21,
+                            Reason = "Seed audit trail for tier review."
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationId = 22,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTime(2026, 6, 22, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModifiedByUserId = 1,
+                            NewTierId = 22,
+                            OldTierId = 22,
                             Reason = "Seed audit trail for tier review."
                         });
                 });
