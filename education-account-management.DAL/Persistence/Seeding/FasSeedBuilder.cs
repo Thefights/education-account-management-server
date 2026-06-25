@@ -54,8 +54,29 @@ namespace Persistence.Seeding
             modelBuilder.Entity<FasSchemeRequiredDocument>().HasData(
                 Enumerable.Range(1, 10).Select(id => new FasSchemeRequiredDocument { Id = id, FasSchemeId = id, DocumentName = id % 2 == 0 ? "Income Statement" : "Recent Payslip", TemplateFileKey = $"fas/templates/document-{id}.pdf", DisplayOrder = 1, CreatedAt = createdAt }).ToArray());
 
-            modelBuilder.Entity<FasSchemeCourse>().HasData(
-                Enumerable.Range(1, 10).Select(id => new FasSchemeCourse { Id = id, FasSchemeId = id, CourseId = id, CreatedAt = createdAt }).ToArray());
+            var schemeCourses = Enumerable.Range(1, 10)
+                .Select(id => new FasSchemeCourse
+                {
+                    Id = id,
+                    FasSchemeId = id,
+                    CourseId = id,
+                    CreatedAt = createdAt
+                })
+                .ToList();
+            var schemeCourseId = 11;
+            for (var courseId = 11; courseId <= 100; courseId++)
+            {
+                var schoolId = ((courseId - 11) / 9) + 1;
+                schemeCourses.Add(new FasSchemeCourse
+                {
+                    Id = schemeCourseId++,
+                    FasSchemeId = schoolId,
+                    CourseId = courseId,
+                    CreatedAt = createdAt
+                });
+            }
+
+            modelBuilder.Entity<FasSchemeCourse>().HasData(schemeCourses);
 
             modelBuilder.Entity<FasApplication>().HasData(
                 new FasApplication { Id = 1, FasSchemeId = 1, SchoolStudentId = 1, RecommendedTierId = 1, ApprovedTierId = 1, ApplicationNumber = "FASAPP-0001", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 18, StudentNationalityId = 1, ParentNationalityId = 1, GrossHouseholdIncomeSnapshot = 2500m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 625m, RecommendationReason = "PCI <= 750", ApprovedAt = approvedAt, ApprovedByUserId = 1, DurationInMonthsSnapshot = 6, ValidityStartDate = approvedAt, ValidityEndDate = approvedAt.AddMonths(6), CreatedAt = createdAt },

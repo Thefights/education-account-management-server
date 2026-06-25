@@ -100,14 +100,14 @@ namespace Services.Payments
                 {
                     filterExpr = e =>
                         e.SchoolStudent.EducationAccountId == accountId &&
-                        (e.Charge!.Status == ChargeStatus.Outstanding || 
-                         ((e.Charge.Status == ChargeStatus.Unpaid || e.Charge.Status == ChargeStatus.PartiallyPaid) && e.Course.FasApplicationDueDate < now));
+                        (e.Charge!.Status == ChargeStatus.Overdue || 
+                         (e.Charge.Status == ChargeStatus.Unpaid && e.Course.FasApplicationDueDate < now));
                 }
                 else if (filter.Status == StudentTuitionFilterStatus.Due)
                 {
                     filterExpr = e =>
                         e.SchoolStudent.EducationAccountId == accountId &&
-                        (e.Charge!.Status == ChargeStatus.Unpaid || e.Charge.Status == ChargeStatus.PartiallyPaid) &&
+                        e.Charge!.Status == ChargeStatus.Unpaid &&
                         e.Course.FasApplicationDueDate >= now;
                 }
             }
@@ -122,7 +122,7 @@ namespace Services.Payments
                     CourseDescription = e.CourseDescriptionSnapshot,
                     PaymentDueDate = e.Course.FasApplicationDueDate,
                     PaymentStatus = e.Charge.Status == ChargeStatus.Paid ? "Paid" :
-                                    (e.Charge.Status == ChargeStatus.Outstanding || e.Course.FasApplicationDueDate < now) ? "Overdue" :
+                                    (e.Charge.Status == ChargeStatus.Overdue || e.Course.FasApplicationDueDate < now) ? "Overdue" :
                                     "Due",
                     CourseFee = e.Charge.CourseFeeAmountSnapshot,
                     MiscFee = e.Charge.MiscFeeAmountSnapshot,

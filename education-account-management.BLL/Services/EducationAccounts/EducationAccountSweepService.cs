@@ -117,7 +117,7 @@ namespace Services.EducationAccounts
                                 candidate.Status,
                                 account.Status,
                                 account.Status == EducationAccountStatus.Extended
-                                    ? "Education account extended because outstanding charges remain."
+                                    ? "Education account extended because unpaid charges remain."
                                     : "Education account closed at age 31.",
                                 token);
                         }

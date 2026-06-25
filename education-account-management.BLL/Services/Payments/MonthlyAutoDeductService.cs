@@ -179,7 +179,7 @@ namespace Services.Payments
 
                                         charge.PaidAmount = chargePaidAfter;
                                         charge.RemainingAmount = chargeRemainingAfter;
-                                        charge.Status = chargeRemainingAfter == 0 ? ChargeStatus.Paid : ChargeStatus.PartiallyPaid;
+                                        charge.Status = chargeRemainingAfter == 0 ? ChargeStatus.Paid : charge.Status;
                                         charge.LastAutoDeductedAt = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, sgtZone);
                                         charge.TryValidate();
                                         _chargeRepository.Update(charge);

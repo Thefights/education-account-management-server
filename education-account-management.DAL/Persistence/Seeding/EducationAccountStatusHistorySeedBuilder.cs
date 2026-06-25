@@ -28,7 +28,7 @@ namespace Persistence.Seeding
                     EducationAccountId = 6,
                     PreviousStatus = EducationAccountStatus.Active,
                     NewStatus = EducationAccountStatus.Extended,
-                    Reason = "Education account extended because outstanding charges remain.",
+                    Reason = "Education account extended because unpaid charges remain.",
                     ChangedAt = changedAt.AddDays(1),
                     ChangedByUserId = 1
                 });
