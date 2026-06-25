@@ -266,7 +266,6 @@ namespace Services.Courses
                     SchoolNameSnapshot = course.School.SchoolName,
                     CourseCodeSnapshot = course.CourseCode,
                     CourseNameSnapshot = course.CourseName,
-                    CourseDescriptionSnapshot = course.Description,
                     CourseStartDateSnapshot = course.StartDate,
                     CourseEndDateSnapshot = course.EndDate,
                     CourseFeeAmountSnapshot = course.CourseFeeAmount,

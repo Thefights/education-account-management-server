@@ -18,6 +18,10 @@ namespace Interfaces.Courses
             PublishCourseDTO publishDTO,
             CancellationToken cancellationToken = default);
 
+        Task<GetCourseDTO> DuplicateAsync(
+            int id,
+            CancellationToken cancellationToken = default);
+
         Task DeleteAsync(
             int id,
             byte[] rowVersion,

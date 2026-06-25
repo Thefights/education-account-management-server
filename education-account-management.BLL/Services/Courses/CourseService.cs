@@ -193,6 +193,56 @@ namespace Services.Courses
             return await GetAllByIdsAsync(ids, cancellationToken);
         }
 
+        public async Task<GetCourseDTO> DuplicateAsync(
+            int id,
+            CancellationToken cancellationToken = default)
+        {
+            var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
+            var duplicateId = await _unitOfWork.ExecuteInTransactionAsync(
+                async (_, token) =>
+                {
+                    var source = await _repository.Query()
+                        .FirstOrDefaultAsync(
+                            course => course.Id == id && course.SchoolId == schoolId,
+                            token)
+                        ?? throw new DataNotFoundException(typeof(Course), id);
+
+                    var duplicate = new Course
+                    {
+                        SchoolId = schoolId,
+                        Status = CourseStatus.Draft,
+                        CourseCode = await CourseCodeGenerator.GenerateUniqueAsync(
+                            _repository,
+                            schoolId,
+                            _timeProvider.GetUtcNow().UtcDateTime,
+                            cancellationToken: token),
+                        CourseName = await GenerateDuplicateCourseNameAsync(
+                            source.CourseName,
+                            token),
+                        CourseFeeAmount = source.CourseFeeAmount,
+                        MiscFeeAmount = source.MiscFeeAmount,
+                        GstAmount = source.GstAmount,
+                        EnrollmentDeadline = source.EnrollmentDeadline,
+                        FasApplicationDueDate = source.EnrollmentDeadline,
+                        StartDate = source.StartDate,
+                        EndDate = source.EndDate
+                    };
+
+                    duplicate.TryValidate();
+                    await UniqueConstraintValidator.ValidateAsync(
+                        _repository,
+                        duplicate,
+                        cancellationToken: token);
+                    await _repository.AddAsync(duplicate, token);
+                    await _unitOfWork.SaveChangeAsync(token);
+
+                    return duplicate.Id;
+                },
+                cancellationToken);
+
+            return await GetByIdAsync(duplicateId, cancellationToken);
+        }
+
         public async Task DeleteAsync(
             int id,
             byte[] rowVersion,
@@ -413,7 +463,6 @@ namespace Services.Courses
                 Status = course.Status.ToString(),
                 CourseCode = course.CourseCode,
                 CourseName = course.CourseName,
-                Description = course.Description,
                 CourseFeeAmount = course.CourseFeeAmount,
                 MiscFeeAmount = course.MiscFeeAmount,
                 GstAmount = course.GstAmount,
@@ -497,7 +546,6 @@ namespace Services.Courses
                     SchoolStudentId = student.Id,
                     SchoolNameSnapshot = schoolName,
                     CourseNameSnapshot = course.CourseName,
-                    CourseDescriptionSnapshot = course.Description,
                     CitizenNricSnapshot = citizen.Nric,
                     CitizenFullNameSnapshot = citizen.FullName,
                     CitizenEmailSnapshot = citizen.Email,
@@ -510,6 +558,44 @@ namespace Services.Courses
 
             await _enrollmentRepository.AddRangeAsync(enrollments, cancellationToken);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
+        }
+
+        private async Task<string> GenerateDuplicateCourseNameAsync(
+            string sourceName,
+            CancellationToken cancellationToken)
+        {
+            const int maxLength = 150;
+            var baseName = $"Copy of {sourceName}";
+            if (baseName.Length > maxLength)
+            {
+                baseName = baseName[..maxLength];
+            }
+
+            if (!await CourseNameExistsAsync(baseName, cancellationToken))
+            {
+                return baseName;
+            }
+
+            for (var suffix = 2; ; suffix++)
+            {
+                var suffixText = $" ({suffix})";
+                var trimmedBaseName = baseName.Length + suffixText.Length > maxLength
+                    ? baseName[..(maxLength - suffixText.Length)]
+                    : baseName;
+                var candidate = $"{trimmedBaseName}{suffixText}";
+                if (!await CourseNameExistsAsync(candidate, cancellationToken))
+                {
+                    return candidate;
+                }
+            }
+        }
+
+        private async Task<bool> CourseNameExistsAsync(
+            string courseName,
+            CancellationToken cancellationToken)
+        {
+            return await _repository.Query()
+                .AnyAsync(course => course.CourseName == courseName, cancellationToken);
         }
 
     }

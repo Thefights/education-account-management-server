@@ -4,8 +4,6 @@ namespace DTOs.Courses
     {
         public string CourseName { get; set; } = string.Empty;
 
-        public string? Description { get; set; }
-
         public decimal CourseFeeAmount { get; set; }
 
         public decimal MiscFeeAmount { get; set; }
@@ -22,8 +20,6 @@ namespace DTOs.Courses
     public class UpdateCourseDTO
     {
         public string CourseName { get; set; } = string.Empty;
-
-        public string? Description { get; set; }
 
         public decimal CourseFeeAmount { get; set; }
 
@@ -51,8 +47,6 @@ namespace DTOs.Courses
         public string CourseCode { get; set; } = string.Empty;
 
         public string CourseName { get; set; } = string.Empty;
-
-        public string? Description { get; set; }
 
         public decimal CourseFeeAmount { get; set; }
 

@@ -8,7 +8,6 @@ namespace Filters.Courses
                 ["id"] = nameof(Course.Id),
                 ["courseName"] = nameof(Course.CourseName),
                 ["courseCode"] = nameof(Course.CourseCode),
-                ["description"] = nameof(Course.Description),
                 ["status"] = nameof(Course.Status),
                 ["schoolName"] = $"{nameof(Course.School)}.{nameof(School.SchoolName)}",
                 ["courseFeeAmount"] = nameof(Course.CourseFeeAmount),

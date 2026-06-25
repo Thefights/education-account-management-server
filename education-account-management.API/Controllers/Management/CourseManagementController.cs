@@ -47,6 +47,15 @@ namespace Controllers.Management
             return Result.SuccessData(result, $"{result.Count} Course(s) published successfully");
         }
 
+        [HttpPost("{id}/duplicate")]
+        public async Task<IActionResult> Duplicate(
+            int id,
+            CancellationToken cancellationToken)
+        {
+            var result = await _service.DuplicateAsync(id, cancellationToken);
+            return Result.SuccessData(result, "Course duplicated successfully");
+        }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(
             int id,

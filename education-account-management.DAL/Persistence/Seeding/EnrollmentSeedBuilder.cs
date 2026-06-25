@@ -111,6 +111,122 @@ namespace Persistence.Seeding
                 }
             }
 
+            var baseCourseNames = new[]
+            {
+                "Quantitative Problem Solving", "Software Foundations with C#", "Professional Communication Lab",
+                "Sustainability Science Workshop", "Digital Media Production", "Service Operations Practicum",
+                "Electrical Systems Fundamentals", "Creative Writing Studio", "Data Analytics Essentials",
+                "Office Productivity for Business"
+            };
+            var baseCourseDescriptions = new[]
+            {
+                "Applied numeracy and structured problem-solving for academic pathways.",
+                "Core programming concepts, debugging, and application structure.",
+                "Practical writing, presentation, and workplace communication skills.",
+                "Environmental systems, resource planning, and sustainability practice.",
+                "Digital storytelling, layout, and media production workflows.",
+                "Customer operations, service standards, and scenario-based practice.",
+                "Foundational electrical theory, components, and safety practices.",
+                "Narrative craft, editing practice, and guided writing critique.",
+                "Data preparation, analysis, visualization, and reporting fundamentals.",
+                "Document, spreadsheet, and presentation workflows for business users."
+            };
+
+            static int GetCourseSchoolId(int courseId)
+            {
+                return courseId <= 10
+                    ? courseId
+                    : 1 + (courseId - 11) / 9;
+            }
+
+            static int[] GetSchoolStudentIds(int schoolId)
+            {
+                var ids = new int[10];
+                ids[0] = schoolId;
+                for (var index = 0; index < 9; index++)
+                {
+                    ids[index + 1] = 11 + (schoolId - 1) * 9 + index;
+                }
+
+                return ids;
+            }
+
+            static string GetCourseName(int courseId, string[] baseCourseNames, string[] topics)
+            {
+                if (courseId <= baseCourseNames.Length)
+                {
+                    return baseCourseNames[courseId - 1];
+                }
+
+                var offset = courseId - 11;
+                var schoolId = 1 + offset / 9;
+                var index = offset % 9;
+                return $"{topics[index]} - School {schoolId} Cohort {index + 1}";
+            }
+
+            static string GetCourseDescription(int courseId, string[] baseCourseDescriptions)
+            {
+                if (courseId <= baseCourseDescriptions.Length)
+                {
+                    return baseCourseDescriptions[courseId - 1];
+                }
+
+                return "Structured lessons with guided practice and applied assessments.";
+            }
+
+            var existingPairs = enrollments
+                .Select(enrollment => (enrollment.CourseId, enrollment.SchoolStudentId))
+                .ToHashSet();
+            var enrollmentCountsByCourse = enrollments
+                .GroupBy(enrollment => enrollment.CourseId)
+                .ToDictionary(group => group.Key, group => group.Count());
+
+            for (var courseId = 1; courseId <= 100; courseId++)
+            {
+                enrollmentCountsByCourse.TryGetValue(courseId, out var enrollmentCount);
+                var schoolId = GetCourseSchoolId(courseId);
+                var courseName = GetCourseName(courseId, baseCourseNames, topics);
+                var courseDescription = GetCourseDescription(courseId, baseCourseDescriptions);
+
+                foreach (var schoolStudentId in GetSchoolStudentIds(schoolId))
+                {
+                    if (enrollmentCount >= 10)
+                    {
+                        break;
+                    }
+
+                    if (!existingPairs.Add((courseId, schoolStudentId)))
+                    {
+                        continue;
+                    }
+
+                    var citizenName = GetCitizenName(
+                        schoolStudentId,
+                        primaryNames,
+                        givenNames,
+                        familyNames);
+                    enrollments.Add(new Enrollment
+                    {
+                        Id = enrollmentId++,
+                        CourseId = courseId,
+                        SchoolStudentId = schoolStudentId,
+                        SchoolNameSnapshot = schoolNames[schoolId - 1],
+                        CourseNameSnapshot = courseName,
+                        CourseDescriptionSnapshot = courseDescription,
+                        CitizenNricSnapshot = SingaporeNricUtil.Generate(schoolStudentId),
+                        CitizenFullNameSnapshot = citizenName,
+                        CitizenEmailSnapshot = $"{citizenName.ToLowerInvariant().Replace(" ", ".")}.{schoolStudentId}@example.com",
+                        CitizenPhoneNumberSnapshot = $"+659{schoolStudentId:0000000}",
+                        AccountNumberSnapshot = $"EDU-2026-{schoolStudentId:00000000000}",
+                        CreatedAt = createdAt
+                    });
+
+                    enrollmentCount++;
+                }
+
+                enrollmentCountsByCourse[courseId] = enrollmentCount;
+            }
+
             modelBuilder.Entity<Enrollment>().HasData(enrollments);
 
             return modelBuilder;
