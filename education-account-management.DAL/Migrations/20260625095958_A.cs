@@ -3180,7 +3180,7 @@ namespace educationaccountmanagement.DAL.Migrations
                 table: "FasSchemeConditionGroup",
                 column: "FasSchemeId",
                 unique: true,
-                filter: "\"IsDeleted\" = 0 AND \"FasSchemeId\" IS NOT NULL");
+                filter: "\"IsDeleted\" = 0 AND \"FasSchemeId\" IS NOT NULL AND \"ParentGroupId\" IS NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FasSchemeConditionGroup_ParentGroupId",

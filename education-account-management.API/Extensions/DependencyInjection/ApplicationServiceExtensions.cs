@@ -45,6 +45,9 @@ using Services.SchoolStudents;
 using Services.Storage;
 using Services.TopUp;
 using Services.TransactionHistory;
+using Interfaces.FasSchemes;
+using Mappers.FasSchemes;
+using Services.FasSchemes;
 using StackExchange.Redis;
 using System.Threading.RateLimiting;
 using Utils;
@@ -96,14 +99,13 @@ namespace Extensions.DependencyInjection
             services.AddScoped<ISchoolService, SchoolService>();
             services.AddScoped<ISchoolStudentService, SchoolStudentService>();
             services.AddScoped<ISchoolStudentImportService, SchoolStudentImportService>();
+            services.AddScoped<IFasSchemeService, FasSchemeService>();
 
             services.AddScoped<IDataCleanupService, DataCleanupService>();
-            services.AddScoped<IMonthlyAutoDeductService, MonthlyAutoDeductService>();
             services.AddHostedService<DataCleanupWorker>();
             services.AddHostedService<EducationAccountSweepWorker>();
             services.AddHostedService<TopupDailyWorker>();
             services.AddHostedService<CourseLifecycleWorker>();
-            services.AddHostedService<MonthlyAutoDeductWorker>();
 
             services.AddScoped<AuditLogMapper>();
             services.AddScoped<EducationAccountMapper>();
@@ -115,6 +117,7 @@ namespace Extensions.DependencyInjection
             services.AddScoped<AdminMapper>();
             services.AddScoped<CourseMapper>();
             services.AddScoped<SchoolMapper>();
+            services.AddScoped<FasSchemeMapper>();
             services.AddScoped<SchoolStudentMapper>();
 
             return services;

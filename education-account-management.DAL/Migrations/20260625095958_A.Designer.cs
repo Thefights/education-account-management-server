@@ -12,7 +12,7 @@ using Persistence.SqlServer;
 namespace educationaccountmanagement.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260625095347_A")]
+    [Migration("20260625095958_A")]
     partial class A
     {
         /// <inheritdoc />
@@ -9991,7 +9991,7 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasIndex("FasSchemeId")
                         .IsUnique()
-                        .HasFilter("\"IsDeleted\" = 0 AND \"FasSchemeId\" IS NOT NULL");
+                        .HasFilter("\"IsDeleted\" = 0 AND \"FasSchemeId\" IS NOT NULL AND \"ParentGroupId\" IS NULL");
 
                     b.HasIndex("ParentGroupId");
 
