@@ -12,10 +12,9 @@ namespace Filters.FasApplications
                 ["id"] = nameof(FasApplication.Id),
                 ["applicationNumber"] = nameof(FasApplication.ApplicationNumber),
                 ["createdAt"] = nameof(FasApplication.CreatedAt),
-                ["submittedAt"] = nameof(FasApplication.CreatedAt),
                 ["approvedAt"] = nameof(FasApplication.ApprovedAt),
                 ["status"] = nameof(FasApplication.Status),
-                ["schemeName"] = "FasScheme.SchemeName"
+                ["schemeName"] = $"{nameof(FasApplication.FasScheme)}.{nameof(FasScheme.SchemeName)}"
             };
 
         public override IReadOnlyDictionary<string, string> SortFields => AllowedSortFields;
