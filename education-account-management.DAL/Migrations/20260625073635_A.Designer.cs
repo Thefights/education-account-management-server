@@ -12,13 +12,8 @@ using Persistence.SqlServer;
 namespace educationaccountmanagement.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-<<<<<<<< HEAD:education-account-management.DAL/Migrations/20260625064227_InitialCreate.Designer.cs
-    [Migration("20260625064227_InitialCreate")]
-    partial class InitialCreate
-========
     [Migration("20260625073635_A")]
     partial class A
->>>>>>>> remotes/origin/main:education-account-management.DAL/Migrations/20260625073635_A.Designer.cs
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
