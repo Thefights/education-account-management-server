@@ -70,6 +70,7 @@ namespace Persistence.Seeding
                                       id % 5 == 2 ? "Not Enrolled" :
                                       id % 5 == 3 ? "Graduated" :
                                       id % 5 == 4 ? "Suspended" : "Withdrawn",
+                IsSingaporean = true,
                 CreatedAt = createdAt
             }).ToList();
 

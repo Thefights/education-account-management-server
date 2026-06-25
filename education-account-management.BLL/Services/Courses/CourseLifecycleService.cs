@@ -100,7 +100,6 @@ namespace Services.Courses
                         if (installment.Charge.Status != ChargeStatus.Paid)
                         {
                             installment.Charge.Status = ChargeStatus.Overdue;
-                            installment.Charge.BecameOutstandingAt ??= utcNow;
                             chargesToUpdate[installment.ChargeId] = installment.Charge;
                         }
                     }
@@ -205,7 +204,6 @@ namespace Services.Courses
                     foreach (var charge in overdueCharges)
                     {
                         charge.Status = ChargeStatus.Overdue;
-                        charge.BecameOutstandingAt ??= utcNow;
                         charge.TryValidate();
                     }
 

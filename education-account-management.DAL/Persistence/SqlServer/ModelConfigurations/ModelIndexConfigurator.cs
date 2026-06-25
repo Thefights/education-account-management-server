@@ -90,7 +90,6 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(charge => charge.EnrollmentId).IsUnique();
                 entity.HasIndex(charge => charge.AppliedFasApplicationId);
                 entity.HasIndex(charge => charge.Status);
-                entity.HasIndex(charge => charge.BecameOutstandingAt);
             });
 
             modelBuilder.Entity<ChargeInstallment>(entity =>
