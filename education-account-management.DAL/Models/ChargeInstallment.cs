@@ -13,7 +13,7 @@ namespace Models
 
         // Trạng thái thanh toán của kỳ trả góp.
         [EnumDefined]
-        public ChargeInstallmentStatus Status { get; set; } = ChargeInstallmentStatus.Upcoming;
+        public ChargeInstallmentStatus Status { get; set; } = ChargeInstallmentStatus.Unpaid;
 
         // Ngày đến hạn thanh toán của kỳ này.
         [NotDefaultValue]

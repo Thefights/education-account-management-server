@@ -35,7 +35,7 @@ namespace Persistence.SqlServer.ModelConfigurations
                     "[CourseFeeAmount] >= 0 AND [MiscFeeAmount] >= 0 AND [GstAmount] >= 0");
                 table.HasCheckConstraint(
                     "CK_Course_Date_Order",
-                    "[FasApplicationDueDate] <= [StartDate] AND [EnrollmentDeadline] <= [StartDate] AND [StartDate] <= [EndDate]");
+                    "[EnrollmentDeadline] <= [StartDate] AND [StartDate] <= [EndDate]");
             });
 
             modelBuilder.Entity<Charge>().ToTable(table =>

@@ -15,6 +15,7 @@ namespace Persistence.Seeding
                     Id = 1,
                     IsEnabled = true,
                     TaxRate = 0.09m,
+                    InstallmentDueDay = 5,
                     CreatedAt = SeedDataConstants.CreatedAt
                 });
 

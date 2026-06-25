@@ -17,7 +17,7 @@ namespace Persistence.Seeding
                     UserId = 5,
                     PreviousStatus = UserStatus.Active,
                     NewStatus = UserStatus.Inactive,
-                    Reason = "Seeded administrative suspension.",
+                    Reason = "Account paused after repeated failed sign-in verification.",
                     ChangedAt = SeedDataConstants.CreatedAt.AddDays(30),
                     ChangedByUserId = 1
                 });

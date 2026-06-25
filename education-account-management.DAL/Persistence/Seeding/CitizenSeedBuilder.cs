@@ -10,14 +10,52 @@ namespace Persistence.Seeding
         public ModelBuilder Seed(ModelBuilder modelBuilder)
         {
             var createdAt = SeedDataConstants.CreatedAt;
+            var primaryNames = new[]
+            {
+                "Sterling Quach",
+                "Amelia Tan",
+                "Marcus Lim",
+                "Priya Nair",
+                "Ethan Koh",
+                "Hannah Lee",
+                "Daniel Wong",
+                "Sofia Chen",
+                "Lucas Nguyen",
+                "Maya Rahman",
+                "Noah Teo",
+                "Aisha Fernandez",
+                "Ryan Chua",
+                "Chloe Goh",
+                "Irfan Hassan"
+            };
+            var givenNames = new[]
+            {
+                "Alina", "Benjamin", "Clara", "Darius", "Elena", "Farhan", "Grace", "Haruto",
+                "Isabelle", "Jasper", "Keira", "Leon", "Mei Lin", "Nathan", "Olivia", "Pranav",
+                "Qistina", "Rafael", "Selina", "Terence", "Umairah", "Victor", "Wen Jie", "Xavier",
+                "Yasmin", "Zachary", "Adeline", "Brandon", "Celeste", "Damien", "Evelyn", "Faris",
+                "Giselle", "Haziq", "Irene", "Jonas", "Kavya", "Lydia", "Malcolm", "Nadia"
+            };
+            var familyNames = new[]
+            {
+                "Ang", "Bala", "Chew", "Das", "Eng", "Foo", "Gan", "Ho", "Ismail", "Jeyaratnam",
+                "Kwek", "Lim", "Mohamed", "Ng", "Ong", "Pillai", "Quek", "Rao", "Sim", "Tan",
+                "Uddin", "Vasquez", "Wong", "Xu", "Yeo", "Zainal"
+            };
+            static string BuildSeedName(int id, string[] givenNames, string[] familyNames)
+            {
+                var givenName = givenNames[(id - 1) % givenNames.Length];
+                var familyName = familyNames[((id - 1) / givenNames.Length + id) % familyNames.Length];
+                return $"{givenName} {familyName}";
+            }
 
             // Original 1-15
             var citizens = Enumerable.Range(1, 15).Select(id => new Citizen
             {
                 Id = id,
                 Nric = SingaporeNricUtil.Generate(id),
-                FullName = $"Citizen {id:000}",
-                Email = $"citizen{id:000}@example.com",
+                FullName = primaryNames[id - 1],
+                Email = $"{primaryNames[id - 1].ToLowerInvariant().Replace(" ", ".")}@example.com",
                 PhoneNumber = $"+659{id:0000000}",
                 ResidentialAddress = $"Residential block {id}, Singapore",
                 MailingAddress = $"Mailing block {id}, Singapore",
@@ -40,11 +78,11 @@ namespace Persistence.Seeding
             {
                 Id = 16,
                 Nric = SingaporeNricUtil.Generate(16),
-                FullName = "Unlinked Test Citizen",
-                Email = "unlinked.citizen@example.com",
+                FullName = "Natalie Seah",
+                Email = "natalie.seah@example.com",
                 PhoneNumber = "+6590000016",
-                ResidentialAddress = "16 Test Avenue, Singapore",
-                MailingAddress = "16 Test Avenue, Singapore",
+                ResidentialAddress = "16 Orchard Link, Singapore",
+                MailingAddress = "16 Orchard Link, Singapore",
                 DateOfBirth = new DateOnly(2000, 1, 16),
                 CitizenshipStatus = CitizenshipStatus.Active,
                 SchoolingStatus = "Not Enrolled",
@@ -56,11 +94,11 @@ namespace Persistence.Seeding
             {
                 Id = id,
                 Nric = SingaporeNricUtil.Generate(id),
-                FullName = $"School Student Citizen {id:000}",
-                Email = $"student.citizen{id:000}@example.com",
+                FullName = BuildSeedName(id, givenNames, familyNames),
+                Email = $"{BuildSeedName(id, givenNames, familyNames).ToLowerInvariant().Replace(" ", ".")}.{id}@example.com",
                 PhoneNumber = $"+659{id:0000000}",
-                ResidentialAddress = $"{id} Student Avenue, Singapore",
-                MailingAddress = $"{id} Student Avenue, Singapore",
+                ResidentialAddress = $"{id} Learning Grove, Singapore",
+                MailingAddress = $"{id} Learning Grove, Singapore",
                 DateOfBirth = new DateOnly(2000 + (id % 5), ((id - 1) % 12) + 1, 15),
                 CitizenshipStatus = CitizenshipStatus.Active,
                 SchoolingStatus = "Enrolled",
@@ -72,11 +110,11 @@ namespace Persistence.Seeding
             {
                 Id = id,
                 Nric = SingaporeNricUtil.Generate(id),
-                FullName = $"Free Citizen {id:000}",
-                Email = $"free.citizen{id:000}@example.com",
+                FullName = BuildSeedName(id, givenNames, familyNames),
+                Email = $"{BuildSeedName(id, givenNames, familyNames).ToLowerInvariant().Replace(" ", ".")}.{id}@example.com",
                 PhoneNumber = $"+659{id:0000000}",
-                ResidentialAddress = $"{id} Free Avenue, Singapore",
-                MailingAddress = $"{id} Free Avenue, Singapore",
+                ResidentialAddress = $"{id} Community Crescent, Singapore",
+                MailingAddress = $"{id} Community Crescent, Singapore",
                 DateOfBirth = new DateOnly(2000 + (id % 5), ((id - 1) % 12) + 1, 15),
                 CitizenshipStatus = CitizenshipStatus.Active,
                 SchoolingStatus = "Not Enrolled",

@@ -2,15 +2,14 @@
 {
     public static class CourseFeeCalculator
     {
-        private const decimal GstRate = 0.09m;
-
-        public static decimal CalculateGstAmount(
+        public static decimal CalculateTaxAmount(
             decimal courseFeeAmount,
-            decimal miscFeeAmount)
+            decimal miscFeeAmount,
+            decimal taxRate)
         {
             var taxableAmount = courseFeeAmount + miscFeeAmount;
             return decimal.Round(
-                taxableAmount * GstRate,
+                taxableAmount * taxRate,
                 2,
                 MidpointRounding.AwayFromZero);
         }

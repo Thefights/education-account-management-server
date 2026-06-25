@@ -1,5 +1,6 @@
 using DTOs.FasSchemes;
 using Interfaces.Audit;
+using Interfaces.Base;
 using Interfaces.FasSchemes;
 using Mappers.FasSchemes;
 using Results;
@@ -20,7 +21,8 @@ namespace Services.FasSchemes
         FasSchemeMapper mapper,
         SchoolScopeResolver schoolScopeResolver,
         IAuditLogWriter auditLogWriter,
-        TimeProvider timeProvider)
+        TimeProvider timeProvider,
+        IFileValidator fileValidator)
         : BaseService<FasScheme, CreateFasSchemeDTO, GetFasSchemeDTO, UpdateFasSchemeDTO>(
             unitOfWork,
             mapper,
@@ -30,6 +32,7 @@ namespace Services.FasSchemes
         private readonly SchoolScopeResolver _schoolScopeResolver = schoolScopeResolver;
         private readonly IAuditLogWriter _auditLogWriter = auditLogWriter;
         private readonly TimeProvider _timeProvider = timeProvider;
+        private readonly IFileValidator _fileValidator = fileValidator;
 
         private readonly IGenericRepository<FasSchemeConditionGroup> _groupRepository =
             unitOfWork.Repository<FasSchemeConditionGroup>();
@@ -54,6 +57,7 @@ namespace Services.FasSchemes
             ValidateInput(createDTO.SchemeName, createDTO.Tiers.Count, createDTO.RootConditionGroup);
             FasConditionTreeUtility.Validate(createDTO.RootConditionGroup);
             await ValidateCoursesExistAsync(createDTO.SchemeCourses.Select(c => c.CourseId).ToList(), schoolId, cancellationToken);
+            await ValidateDocumentTemplatesAsync(createDTO.RequiredDocuments, cancellationToken);
 
             var id = await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
             {
@@ -122,6 +126,7 @@ namespace Services.FasSchemes
             ValidateInput(updateDTO.SchemeName, updateDTO.Tiers.Count, updateDTO.RootConditionGroup);
             FasConditionTreeUtility.Validate(updateDTO.RootConditionGroup);
             await ValidateCoursesExistAsync(updateDTO.SchemeCourses.Select(c => c.CourseId).ToList(), schoolId, cancellationToken);
+            await ValidateDocumentTemplatesAsync(updateDTO.RequiredDocuments, cancellationToken);
 
             await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
             {
@@ -406,7 +411,6 @@ namespace Services.FasSchemes
                     throw new ValidationFailureException(nameof(scheme.Status), "Only draft schemes can be deleted.");
                 }
 
-                // Delete child collections first (Cascade handles some, but let's be explicit and clean)
                 var groups = await _groupRepository.Query(tracking: true)
                     .Include(g => g.Conditions)
                     .Where(g => g.FasSchemeId == id)
@@ -549,6 +553,49 @@ namespace Services.FasSchemes
             if (count != courseIds.Distinct().Count())
             {
                 throw new ValidationFailureException(nameof(CreateFasSchemeDTO.SchemeCourses), "One or more selected courses do not exist or belong to another school.");
+            }
+        }
+
+        private async Task ValidateDocumentTemplatesAsync(
+            List<FasRequiredDocumentRequestDTO> documents,
+            CancellationToken cancellationToken)
+        {
+            foreach (var doc in documents)
+            {
+                if (string.IsNullOrWhiteSpace(doc.TemplateFileKey)) continue;
+
+                var extension = Path.GetExtension(doc.TemplateFileKey).ToLowerInvariant();
+                if (extension != ".docx" && extension != ".pdf")
+                {
+                    throw new ValidationFailureException(nameof(doc.TemplateFileKey), "Only .docx and .pdf templates are allowed.");
+                }
+
+                byte[] signature;
+                string contentType;
+
+                if (extension == ".pdf")
+                {
+                    signature = System.Text.Encoding.ASCII.GetBytes("%PDF-");
+                    contentType = "application/pdf";
+                }
+                else 
+                {
+                    signature = new byte[] { 0x50, 0x4B, 0x03, 0x04 };
+                    contentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                }
+
+                using var stream = new MemoryStream(signature);
+                var formFile = new FormFile(stream, 0, stream.Length, "file", doc.TemplateFileKey)
+                {
+                    Headers = new HeaderDictionary(),
+                    ContentType = contentType
+                };
+
+                var validationResult = await _fileValidator.ValidateAsync(formFile, cancellationToken);
+                if (!validationResult.IsValid)
+                {
+                    throw new ValidationFailureException(nameof(doc.TemplateFileKey), validationResult.ErrorMessage ?? "Invalid template file.");
+                }
             }
         }
 

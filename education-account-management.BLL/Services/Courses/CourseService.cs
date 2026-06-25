@@ -23,6 +23,14 @@ namespace Services.Courses
         private readonly SchoolScopeResolver _schoolScopeResolver = schoolScopeResolver;
         private readonly IAuditLogWriter _auditLogWriter = auditLogWriter;
         private readonly TimeProvider _timeProvider = timeProvider;
+        private readonly IGenericRepository<AiAssistantSetting> _settingRepository =
+            unitOfWork.Repository<AiAssistantSetting>();
+        private readonly IGenericRepository<SchoolStudent> _schoolStudentRepository =
+            unitOfWork.Repository<SchoolStudent>();
+        private readonly IGenericRepository<School> _schoolRepository =
+            unitOfWork.Repository<School>();
+        private readonly IGenericRepository<Enrollment> _enrollmentRepository =
+            unitOfWork.Repository<Enrollment>();
 
         public override async Task<GetCourseDTO> CreateAsync(
             CreateCourseDTO createDTO,
@@ -34,12 +42,16 @@ namespace Services.Courses
             var courseId = await _unitOfWork.ExecuteInTransactionAsync(
                 async (_, token) =>
                 {
+                    ValidateCreateStudentIds(createDTO.SchoolStudentIds);
                     var course = _mapper.MapFromCreateDTO(createDTO);
                     course.SchoolId = schoolId;
                     course.Status = CourseStatus.Draft;
-                    course.GstAmount = CourseFeeCalculator.CalculateGstAmount(
+                    course.FasApplicationDueDate = course.EnrollmentDeadline;
+                    var taxRate = await GetTaxRateAsync(token);
+                    course.GstAmount = CourseFeeCalculator.CalculateTaxAmount(
                         course.CourseFeeAmount,
-                        course.MiscFeeAmount);
+                        course.MiscFeeAmount,
+                        taxRate);
                     CourseDateTimeHelper.NormalizeToUtc(course);
                     course.CourseCode = await CourseCodeGenerator.GenerateUniqueAsync(
                         _repository,
@@ -54,6 +66,10 @@ namespace Services.Courses
 
                     await _repository.AddAsync(course, token);
                     await _unitOfWork.SaveChangeAsync(token);
+                    if (createDTO.SchoolStudentIds.Count > 0)
+                    {
+                        await CreateInitialEnrollmentsAsync(course, createDTO.SchoolStudentIds, schoolId, token);
+                    }
                     return course.Id;
                 },
                 cancellationToken);
@@ -87,9 +103,12 @@ namespace Services.Courses
                     }
 
                     _mapper.MapFromUpdateDTO(updateDTO, course);
-                    course.GstAmount = CourseFeeCalculator.CalculateGstAmount(
+                    course.FasApplicationDueDate = course.EnrollmentDeadline;
+                    var taxRate = await GetTaxRateAsync(token);
+                    course.GstAmount = CourseFeeCalculator.CalculateTaxAmount(
                         course.CourseFeeAmount,
-                        course.MiscFeeAmount);
+                        course.MiscFeeAmount,
+                        taxRate);
                     CourseDateTimeHelper.NormalizeToUtc(course);
                     course.TryValidate();
                     await UniqueConstraintValidator.ValidateAsync(
@@ -151,11 +170,11 @@ namespace Services.Courses
                                 $"Course {course.Id} is not in Draft status.");
                         }
 
-                        if (course.FasApplicationDueDate <= utcNow)
+                        if (course.EnrollmentDeadline <= utcNow)
                         {
                             throw new ValidationFailureException(
-                                nameof(Course.FasApplicationDueDate),
-                                $"Course {course.Id} FAS application due date must be in the future when publishing.");
+                                nameof(Course.EnrollmentDeadline),
+                                $"Course {course.Id} enrollment deadline must be in the future when publishing.");
                         }
 
                         course.TryValidate();
@@ -259,7 +278,7 @@ namespace Services.Courses
             var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
             var pageSize = Math.Clamp(filterDTO.PageSize, 1, 100);
             var (total, courses) = await _repository.GetProjectedPaginatedAsync(
-                _mapper.ProjectToGetDTO,
+                ProjectToGetDTO,
                 course => course.SchoolId == schoolId,
                 filterDTO.Filter,
                 filterDTO.Search,
@@ -278,7 +297,7 @@ namespace Services.Courses
         {
             var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
             return await _repository.GetProjectedAsync(
-                _mapper.ProjectToGetDTO,
+                ProjectToGetDTO,
                 course => course.SchoolId == schoolId,
                 _includes,
                 cancellationToken);
@@ -291,7 +310,7 @@ namespace Services.Courses
             ArgumentNullException.ThrowIfNull(ids);
             var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
             return await _repository.GetProjectedAsync(
-                _mapper.ProjectToGetDTO,
+                ProjectToGetDTO,
                 course => ids.Contains(course.Id) && course.SchoolId == schoolId,
                 _includes,
                 cancellationToken);
@@ -303,7 +322,7 @@ namespace Services.Courses
         {
             var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
             return await _repository.FirstOrDefaultProjectedAsync(
-                    _mapper.ProjectToGetDTO,
+                    ProjectToGetDTO,
                     course => course.Id == id && course.SchoolId == schoolId,
                     _includes,
                     cancellationToken)
@@ -354,29 +373,143 @@ namespace Services.Courses
             Course course,
             UpdateCourseDTO updateDTO)
         {
-            var fasApplicationDueDate = CourseDateTimeHelper.NormalizeToUtc(
-                updateDTO.FasApplicationDueDate,
-                nameof(updateDTO.FasApplicationDueDate));
+            var enrollmentDeadline = CourseDateTimeHelper.NormalizeToUtc(
+                updateDTO.EnrollmentDeadline,
+                nameof(updateDTO.EnrollmentDeadline));
             var startDate = CourseDateTimeHelper.NormalizeToUtc(
                 updateDTO.StartDate,
                 nameof(updateDTO.StartDate));
             var endDate = CourseDateTimeHelper.NormalizeToUtc(
                 updateDTO.EndDate,
                 nameof(updateDTO.EndDate));
-            var gstAmount = CourseFeeCalculator.CalculateGstAmount(
-                updateDTO.CourseFeeAmount,
-                updateDTO.MiscFeeAmount);
 
             if (course.CourseFeeAmount != updateDTO.CourseFeeAmount
                 || course.MiscFeeAmount != updateDTO.MiscFeeAmount
-                || course.GstAmount != gstAmount
-                || course.FasApplicationDueDate != fasApplicationDueDate
+                || course.EnrollmentDeadline != enrollmentDeadline
                 || course.StartDate != startDate
                 || course.EndDate != endDate)
             {
                 throw new DataConflictException(
                     "Fees and deadlines cannot be changed after a course is published.");
             }
+        }
+
+        private async Task<decimal> GetTaxRateAsync(CancellationToken cancellationToken)
+        {
+            var taxRate = await _settingRepository.Query()
+                .OrderBy(setting => setting.Id)
+                .Select(setting => setting.TaxRate)
+                .FirstOrDefaultAsync(cancellationToken);
+            return taxRate;
+        }
+
+        private static IQueryable<GetCourseDTO> ProjectToGetDTO(IQueryable<Course> query)
+        {
+            return query.Select(course => new GetCourseDTO
+            {
+                Id = course.Id,
+                SchoolId = course.SchoolId,
+                SchoolName = course.School.SchoolName,
+                Status = course.Status.ToString(),
+                CourseCode = course.CourseCode,
+                CourseName = course.CourseName,
+                Description = course.Description,
+                CourseFeeAmount = course.CourseFeeAmount,
+                MiscFeeAmount = course.MiscFeeAmount,
+                GstAmount = course.GstAmount,
+                EnrollmentDeadline = course.EnrollmentDeadline,
+                StartDate = course.StartDate,
+                EndDate = course.EndDate,
+                EnrollmentCount = course.Enrollments.Count,
+                RowVersion = course.RowVersion,
+                ApplicableFasSchemes = course.FasSchemeCourses
+                    .OrderBy(item => item.FasScheme.SchemeName)
+                    .Select(item => new GetCourseFasSchemeDTO
+                    {
+                        Id = item.FasScheme.Id,
+                        SchemeCode = item.FasScheme.SchemeCode,
+                        SchemeName = item.FasScheme.SchemeName,
+                        Status = item.FasScheme.Status.ToString(),
+                        SubsidyType = item.FasScheme.SubsidyType.ToString(),
+                        IsPerComponent = item.FasScheme.IsPerComponent
+                    })
+                    .ToList()
+            });
+        }
+
+        private static void ValidateCreateStudentIds(List<int> schoolStudentIds)
+        {
+            if (schoolStudentIds.Any(id => id <= 0))
+            {
+                throw new ValidationFailureException(
+                    nameof(CreateCourseDTO.SchoolStudentIds),
+                    "School student IDs must be greater than zero.");
+            }
+
+            if (schoolStudentIds.Distinct().Count() != schoolStudentIds.Count)
+            {
+                throw new ValidationFailureException(
+                    nameof(CreateCourseDTO.SchoolStudentIds),
+                    "Duplicate school student IDs are not allowed.");
+            }
+        }
+
+        private async Task CreateInitialEnrollmentsAsync(
+            Course course,
+            List<int> schoolStudentIds,
+            int schoolId,
+            CancellationToken cancellationToken)
+        {
+            var students = await _schoolStudentRepository.Query()
+                .Where(student => schoolStudentIds.Contains(student.Id)
+                    && student.SchoolId == schoolId)
+                .Include(student => student.EducationAccount)
+                    .ThenInclude(account => account.Citizen)
+                .ToListAsync(cancellationToken);
+
+            if (students.Count != schoolStudentIds.Count)
+            {
+                var foundIds = students.Select(student => student.Id).ToHashSet();
+                var firstNotFoundId = schoolStudentIds.First(id => !foundIds.Contains(id));
+                throw new DataNotFoundException(typeof(SchoolStudent), firstNotFoundId);
+            }
+
+            var inactiveStudent = students.FirstOrDefault(student =>
+                student.Status != SchoolStudentStatus.Active
+                || student.EducationAccount.Status == EducationAccountStatus.Closed);
+            if (inactiveStudent != null)
+            {
+                throw new DataConflictException(
+                    $"School student {inactiveStudent.Id} is not eligible for enrollment.");
+            }
+
+            var schoolName = await _schoolRepository.Query()
+                .Where(school => school.Id == schoolId)
+                .Select(school => school.SchoolName)
+                .FirstAsync(cancellationToken);
+
+            var enrollments = students.Select(student =>
+            {
+                var citizen = student.EducationAccount.Citizen;
+                var enrollment = new Enrollment
+                {
+                    CourseId = course.Id,
+                    SchoolStudentId = student.Id,
+                    SchoolNameSnapshot = schoolName,
+                    CourseNameSnapshot = course.CourseName,
+                    CourseDescriptionSnapshot = course.Description,
+                    CitizenNricSnapshot = citizen.Nric,
+                    CitizenFullNameSnapshot = citizen.FullName,
+                    CitizenEmailSnapshot = citizen.Email,
+                    CitizenPhoneNumberSnapshot = citizen.PhoneNumber,
+                    AccountNumberSnapshot = student.EducationAccount.AccountNumber
+                };
+                enrollment.TryValidate();
+                return enrollment;
+            }).ToList();
+
+            await _enrollmentRepository.AddRangeAsync(enrollments, cancellationToken);
+            await _unitOfWork.SaveChangeAsync(cancellationToken);
         }
 
     }

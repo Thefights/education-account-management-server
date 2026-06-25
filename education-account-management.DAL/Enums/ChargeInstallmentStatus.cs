@@ -2,9 +2,8 @@ namespace Enums
 {
     public enum ChargeInstallmentStatus
     {
-        Upcoming = 1,
-        Due = 2,
-        Overdue = 3,
-        Paid = 4
+        Unpaid = 1,
+        Paid = 2,
+        Overdue = 3
     }
 }

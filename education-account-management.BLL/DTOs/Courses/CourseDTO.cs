@@ -10,11 +10,13 @@ namespace DTOs.Courses
 
         public decimal MiscFeeAmount { get; set; }
 
-        public DateTime FasApplicationDueDate { get; set; }
+        public DateTime EnrollmentDeadline { get; set; }
 
         public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }
+
+        public List<int> SchoolStudentIds { get; set; } = [];
     }
 
     public class UpdateCourseDTO
@@ -27,7 +29,7 @@ namespace DTOs.Courses
 
         public decimal MiscFeeAmount { get; set; }
 
-        public DateTime FasApplicationDueDate { get; set; }
+        public DateTime EnrollmentDeadline { get; set; }
 
         public DateTime StartDate { get; set; }
 
@@ -60,7 +62,7 @@ namespace DTOs.Courses
 
         public decimal TotalFeeAmount => CourseFeeAmount + MiscFeeAmount + GstAmount;
 
-        public DateTime FasApplicationDueDate { get; set; }
+        public DateTime EnrollmentDeadline { get; set; }
 
         public DateTime StartDate { get; set; }
 
@@ -68,7 +70,24 @@ namespace DTOs.Courses
 
         public int EnrollmentCount { get; set; }
 
+        public List<GetCourseFasSchemeDTO> ApplicableFasSchemes { get; set; } = [];
+
         public byte[] RowVersion { get; set; } = [];
+    }
+
+    public class GetCourseFasSchemeDTO
+    {
+        public int Id { get; set; }
+
+        public string SchemeCode { get; set; } = string.Empty;
+
+        public string SchemeName { get; set; } = string.Empty;
+
+        public string? Status { get; set; }
+
+        public string? SubsidyType { get; set; }
+
+        public bool IsPerComponent { get; set; }
     }
 
     public class AssignCourseStudentsDTO
@@ -94,4 +113,3 @@ namespace DTOs.Courses
         public byte[] RowVersion { get; set; } = [];
     }
 }
-
