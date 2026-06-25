@@ -35,7 +35,12 @@ namespace Services.Admin
             CancellationToken cancellationToken = default)
         {
             ArgumentNullException.ThrowIfNull(createDTO);
-            await ValidateRequestAsync(createDTO.Role, createDTO.SchoolId, createDTO.AzureObjectId, cancellationToken);
+            await ValidateRequestAsync(
+                createDTO.Role,
+                createDTO.SchoolId,
+                createDTO.AzureObjectId,
+                createDTO.Nric,
+                cancellationToken);
             var staffCode = await GenerateUniqueStaffCodeAsync(cancellationToken);
 
             var userId = await _unitOfWork.ExecuteInTransactionAsync(
@@ -97,7 +102,13 @@ namespace Services.Admin
             {
                 updateDTO.SchoolId = null;
             }
-            await ValidateRequestAsync(updateDTO.Role, updateDTO.SchoolId, updateDTO.AzureObjectId, cancellationToken, userId);
+            await ValidateRequestAsync(
+                updateDTO.Role,
+                updateDTO.SchoolId,
+                updateDTO.AzureObjectId,
+                updateDTO.Nric,
+                cancellationToken,
+                userId);
 
             await _unitOfWork.ExecuteInTransactionAsync(
                 async (_, token) =>
@@ -202,6 +213,7 @@ namespace Services.Admin
             UserRole role,
             int? schoolId,
             string azureObjectId,
+            string nric,
             CancellationToken cancellationToken,
             int? excludedUserId = null)
         {
@@ -234,6 +246,17 @@ namespace Services.Admin
             if (identityExists)
             {
                 throw new DataConflictException("Azure ObjectId already exists.");
+            }
+
+            var normalizedNric = nric.Trim().ToUpperInvariant();
+            var nricExists = await _adminProfileRepository.Query()
+                .AnyAsync(
+                    profile => profile.Nric.ToUpper() == normalizedNric
+                        && (!excludedUserId.HasValue || profile.UserId != excludedUserId.Value),
+                    cancellationToken);
+            if (nricExists)
+            {
+                throw new DataConflictException("NRIC already exists.");
             }
         }
 

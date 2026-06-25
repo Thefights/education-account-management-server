@@ -5,7 +5,10 @@ using Interfaces.EducationAccounts;
 using Filters.Courses;
 using Interfaces.Courses;
 using Interfaces.Payments;
-using Microsoft.AspNetCore.Mvc;
+using Filters.FasSchemes;
+using Interfaces.FasSchemes;
+using Interfaces.FasApplications;
+using DTOs.FasApplications;
 
 namespace Controllers.AccountHolder
 {
@@ -46,5 +49,6 @@ namespace Controllers.AccountHolder
             var result = await _studentTuitionService.GetTuitionChargesPaginatedAsync(filter, cancellationToken);
             return Result.SuccessData(result);
         }
+
     }
 }

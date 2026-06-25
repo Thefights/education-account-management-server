@@ -1,3 +1,5 @@
+using Enums;
+
 namespace Models
 {
     public class FasApplication : AuditEntity
@@ -32,15 +34,13 @@ namespace Models
         [NumberPositive]
         public int StudentAgeSnapshot { get; set; }
 
-        // Quốc tịch học sinh tại thời điểm apply.
-        [NotDefaultValue]
-        public int StudentNationalityId { get; set; }
-        public Country StudentNationality { get; set; } = null!;
+        // Quốc tịch học sinh/phụ huynh tại thời điểm apply.
+        [EnumDefined]
+        public NationalityCategory StudentNationalitySnapshot { get; set; }
 
-        // Quốc tịch phụ huynh tại thời điểm apply.
-        [NotDefaultValue]
-        public int ParentNationalityId { get; set; }
-        public Country ParentNationality { get; set; } = null!;
+        // Quốc tịch của người giám hộ/ được xác thực qua document account holder qua việc attach document liên quan.
+        [EnumDefined]
+        public NationalityCategory GuardianNationalitySnapshot { get; set; }
 
         // Tổng thu nhập hộ gia đình hằng tháng tại thời điểm apply.
         [Column(TypeName = "decimal(18,2)"), NumberPositive]

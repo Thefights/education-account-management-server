@@ -19,6 +19,7 @@ namespace Mappers
         [MapProperty(nameof(EducationAccount.Status), nameof(GetEducationAccountDTO.Status))]
         [MapProperty(nameof(EducationAccount.EducationCreditBalance), nameof(GetEducationAccountDTO.Balance))]
         [MapProperty(nameof(EducationAccount.OpenedAt), nameof(GetEducationAccountDTO.CreatedDate))]
+        [MapProperty("Citizen.IsSingaporean", nameof(GetEducationAccountDTO.IsSingaporean))]
         public partial GetEducationAccountDTO MapToGetDTO(EducationAccount model);
 
         public partial List<GetEducationAccountDTO> MapToGetDTOList(List<EducationAccount> models);
