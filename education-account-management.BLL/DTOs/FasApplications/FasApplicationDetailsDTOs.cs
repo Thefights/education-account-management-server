@@ -1,0 +1,53 @@
+namespace DTOs.FasApplications
+{
+    public class FasApplicationDetailsDTO
+    {
+        public string ApplicationId { get; set; } = string.Empty;
+        public string Status { get; set; } = string.Empty;
+        public StudentProfileDTO StudentProfile { get; set; } = new();
+        public SchemeDetailsDTO Scheme { get; set; } = new();
+        public SystemSuggestedTierDTO? SystemSuggestedTier { get; set; }
+    }
+
+    public class StudentProfileDTO
+    {
+        public int Age { get; set; }
+        public string StudentNationality { get; set; } = string.Empty;
+        public string ParentNationality { get; set; } = string.Empty;
+        public decimal GrossHouseholdIncome { get; set; }
+        public int HouseholdMembers { get; set; }
+        public decimal PerCapitaIncome { get; set; }
+    }
+
+    public class SchemeDetailsDTO
+    {
+        public int Id { get; set; }
+        public string SchemeName { get; set; } = string.Empty;
+        public List<TierDetailsDTO> Tiers { get; set; } = [];
+        public List<ApplicationDocumentDTO> RequiredDocuments { get; set; } = [];
+    }
+
+    public class TierDetailsDTO
+    {
+        public int Id { get; set; }
+        public string TierName { get; set; } = string.Empty;
+        public string ConditionText { get; set; } = string.Empty;
+        public string SubsidyDescription { get; set; } = string.Empty;
+        public decimal? MaxPerCapitaIncome { get; set; }
+    }
+
+    public class ApplicationDocumentDTO
+    {
+        public int Id { get; set; }
+        public string DocumentName { get; set; } = string.Empty;
+        public string Status { get; set; } = string.Empty;
+        public string? FileUrl { get; set; }
+    }
+
+    public class SystemSuggestedTierDTO
+    {
+        public int Id { get; set; }
+        public string TierName { get; set; } = string.Empty;
+        public string Reason { get; set; } = string.Empty;
+    }
+}

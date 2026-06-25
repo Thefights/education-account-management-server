@@ -25,6 +25,9 @@ using Mappers.Admin;
 using Mappers.Enrollments;
 using Mappers.SchoolStudents;
 using Mappers.TopUp;
+using Mappers.FasApplications;
+using Interfaces.FasApplications.Management;
+using Services.FasApplications.Management;
 using Polly;
 using Polly.CircuitBreaker;
 using Polly.Retry;
@@ -96,6 +99,7 @@ namespace Extensions.DependencyInjection
             services.AddScoped<ISchoolService, SchoolService>();
             services.AddScoped<ISchoolStudentService, SchoolStudentService>();
             services.AddScoped<ISchoolStudentImportService, SchoolStudentImportService>();
+            services.AddScoped<IManagementFasApplicationService, ManagementFasApplicationService>();
 
             services.AddScoped<IDataCleanupService, DataCleanupService>();
             services.AddScoped<IMonthlyAutoDeductService, MonthlyAutoDeductService>();
@@ -116,6 +120,7 @@ namespace Extensions.DependencyInjection
             services.AddScoped<CourseMapper>();
             services.AddScoped<SchoolMapper>();
             services.AddScoped<SchoolStudentMapper>();
+            services.AddScoped<FasApplicationMapper>();
 
             return services;
         }
