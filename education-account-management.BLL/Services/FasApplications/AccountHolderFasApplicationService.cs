@@ -1,11 +1,13 @@
 using DTOs.FasApplications;
 using Enums;
 using Exceptions;
+using Filters.FasApplications;
 using Helpers.FasSchemes;
 using Interfaces.Base;
 using Interfaces.FasApplications;
 using Microsoft.EntityFrameworkCore;
 using Models;
+using Results;
 using Utils;
 
 namespace Services.FasApplications
@@ -147,6 +149,50 @@ namespace Services.FasApplications
             await _unitOfWork.SaveChangeAsync(cancellationToken);
 
             return applicationNumber;
+        }
+
+        public async Task<PaginationResult<FasApplicationSummaryDTO>> GetMyApplicationsAsync(FasApplicationFilterDTO filter, CancellationToken cancellationToken = default)
+        {
+            var currentAccountHolderId = _currentUserService.UserId;
+
+            // Lấy schoolStudentId của user hiện tại
+            var studentId = await _unitOfWork.Repository<SchoolStudent>()
+                .Query()
+                .Where(student => student.EducationAccount.Citizen.User != null 
+                    && student.EducationAccount.Citizen.User.Id == currentAccountHolderId)
+                .Select(student => student.Id)
+                .SingleOrDefaultAsync(cancellationToken);
+
+            if (studentId == 0)
+            {
+                throw new DataNotFoundException("SchoolStudent for the current account holder was not found.");
+            }
+
+            var pageSize = Math.Clamp(filter.PageSize, 1, 100);
+
+            var (total, items) = await _unitOfWork.Repository<FasApplication>().GetProjectedPaginatedAsync(
+                query => query.Select(a => new FasApplicationSummaryDTO
+                {
+                    Id = a.Id,
+                    ApplicationNumber = a.ApplicationNumber,
+                    SchemeName = a.FasScheme.SchemeName,
+                    Status = a.Status,
+                    SubmittedAt = a.CreatedAt,
+                    ApprovedDate = a.ApprovedAt,
+                    ValidityEndDate = a.ValidityEndDate,
+                    RejectionReason = a.RejectionReason
+                }),
+                a => a.SchoolStudentId == studentId,
+                filter.Filter,
+                filter.Search,
+                filter.SearchFields,
+                filter.SortExpression,
+                filter.Page,
+                pageSize,
+                null,
+                cancellationToken);
+
+            return new PaginationResult<FasApplicationSummaryDTO>(total, pageSize, items);
         }
     }
 }

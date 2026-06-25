@@ -2,6 +2,7 @@ using Authorization;
 using Common.HttpResults;
 using Controllers.Base;
 using DTOs.FasApplications;
+using Filters.FasApplications;
 using Filters.FasSchemes;
 using Interfaces.FasApplications;
 using Interfaces.FasSchemes;
@@ -30,6 +31,13 @@ namespace Controllers.AccountHolder
         {
             var applicationNumber = await _fasApplicationService.SubmitApplicationAsync(dto, cancellationToken);
             return Result.SuccessAction($"FAS application successfully created with ID: {applicationNumber}");
+        }
+
+        [HttpGet("fas-applications")]
+        public async Task<IActionResult> GetMyApplications([FromQuery] FasApplicationFilterDTO filter, CancellationToken cancellationToken)
+        {
+            var result = await _fasApplicationService.GetMyApplicationsAsync(filter, cancellationToken);
+            return Result.SuccessData(result);
         }
     }
 }
