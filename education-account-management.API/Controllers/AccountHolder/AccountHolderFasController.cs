@@ -46,5 +46,12 @@ namespace Controllers.AccountHolder
             await _fasApplicationService.WithdrawApplicationAsync(id, cancellationToken);
             return Result.SuccessAction("Application successfully withdrawn.");
         }
+
+        [HttpGet("fas-applications/{id}")]
+        public async Task<IActionResult> GetApplicationDetail([FromRoute] int id, CancellationToken cancellationToken)
+        {
+            var result = await _fasApplicationService.GetApplicationDetailAsync(id, cancellationToken);
+            return Result.SuccessData(result);
+        }
     }
 }

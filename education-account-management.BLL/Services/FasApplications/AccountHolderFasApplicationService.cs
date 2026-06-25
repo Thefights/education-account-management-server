@@ -230,5 +230,77 @@ namespace Services.FasApplications
 
             await _unitOfWork.SaveChangeAsync(cancellationToken);
         }
+
+        public async Task<FasApplicationDetailDTO> GetApplicationDetailAsync(int id, CancellationToken cancellationToken = default)
+        {
+            var currentAccountHolderId = _currentUserService.UserId;
+
+            // Lấy schoolStudentId của user hiện tại
+            var studentId = await _unitOfWork.Repository<SchoolStudent>()
+                .Query()
+                .Where(student => student.EducationAccount.Citizen.User != null
+                    && student.EducationAccount.Citizen.User.Id == currentAccountHolderId)
+                .Select(student => student.Id)
+                .SingleOrDefaultAsync(cancellationToken);
+
+            if (studentId == 0)
+            {
+                throw new DataNotFoundException("SchoolStudent for the current account holder was not found.");
+            }
+
+            var application = await _unitOfWork.Repository<FasApplication>()
+                .Query()
+                .Include(a => a.FasScheme)
+                .Include(a => a.ApprovedTier)
+                .Include(a => a.Documents)
+                .FirstOrDefaultAsync(a => a.Id == id && a.SchoolStudentId == studentId, cancellationToken);
+
+            if (application == null)
+            {
+                throw new DataNotFoundException("FAS Application not found.");
+            }
+
+            var result = new FasApplicationDetailDTO
+            {
+                Id = application.Id,
+                ApplicationNumber = application.ApplicationNumber,
+                Status = application.Status,
+                CreatedAt = application.CreatedAt,
+                WithdrawnAt = application.WithdrawnAt,
+                Scheme = new FasSchemeBasicInfoDTO
+                {
+                    Id = application.FasScheme.Id,
+                    SchemeCode = application.FasScheme.SchemeCode,
+                    SchemeName = application.FasScheme.SchemeName,
+                    Description = application.FasScheme.Description
+                },
+                StudentAgeSnapshot = application.StudentAgeSnapshot,
+                StudentNationalitySnapshot = application.StudentNationalitySnapshot,
+                GuardianNationalitySnapshot = application.GuardianNationalitySnapshot,
+                GrossHouseholdIncomeSnapshot = application.GrossHouseholdIncomeSnapshot,
+                HouseholdMemberCountSnapshot = application.HouseholdMemberCountSnapshot,
+                PerCapitaIncomeSnapshot = application.PerCapitaIncomeSnapshot,
+                RejectionReason = application.RejectionReason,
+                ApprovedAt = application.ApprovedAt,
+                ValidityStartDate = application.ValidityStartDate,
+                ValidityEndDate = application.ValidityEndDate,
+                ApprovedTier = application.ApprovedTier != null ? new FasApplicationTierDetailDTO
+                {
+                    TierName = application.ApprovedTier.TierName,
+                    SubsidyValue = application.ApprovedTier.SubsidyValue,
+                    CourseFeeSubsidyValue = application.ApprovedTier.CourseFeeSubsidyValue,
+                    MiscFeeSubsidyValue = application.ApprovedTier.MiscFeeSubsidyValue
+                } : null,
+                Documents = application.Documents.Select(d => new FasApplicationDocumentDetailDTO
+                {
+                    Id = d.Id,
+                    DocumentNameSnapshot = d.DocumentNameSnapshot,
+                    FileName = d.FileName,
+                    FileKey = d.FileKey
+                }).ToList()
+            };
+
+            return result;
+        }
     }
 }
