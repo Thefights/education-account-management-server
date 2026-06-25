@@ -18,7 +18,7 @@ namespace Persistence.Seeding
                 new EducationAccountSweepTarget { Id = 4, SweepReportId = 1, Nric = SingaporeNricUtil.Generate(4), Action = SweepAction.Create, Status = SweepTargetStatus.Failed, Reason = "Manual identity verification is required." },
                 new EducationAccountSweepTarget { Id = 5, SweepReportId = 2, Nric = SingaporeNricUtil.Generate(5), Action = SweepAction.Create, Status = SweepTargetStatus.Success, Reason = "Eligible citizen account created." },
                 new EducationAccountSweepTarget { Id = 6, SweepReportId = 2, Nric = SingaporeNricUtil.Generate(6), Action = SweepAction.Extend, Status = SweepTargetStatus.Success, Reason = "Active enrollment requires an extension." },
-                new EducationAccountSweepTarget { Id = 7, SweepReportId = 2, Nric = SingaporeNricUtil.Generate(7), Action = SweepAction.Close, Status = SweepTargetStatus.Failed, Reason = "Outstanding reconciliation requires manual handling." });
+                new EducationAccountSweepTarget { Id = 7, SweepReportId = 2, Nric = SingaporeNricUtil.Generate(7), Action = SweepAction.Close, Status = SweepTargetStatus.Failed, Reason = "Overdue charge reconciliation requires manual handling." });
 
             return modelBuilder;
         }

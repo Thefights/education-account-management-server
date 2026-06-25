@@ -38,18 +38,6 @@ namespace Persistence.SqlServer.ModelConfigurations
                 .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<FasApplication>()
-                .HasOne(application => application.StudentNationality)
-                .WithMany(country => country.StudentNationalityApplications)
-                .HasForeignKey(application => application.StudentNationalityId)
-                .OnDelete(DeleteBehavior.NoAction);
-
-            modelBuilder.Entity<FasApplication>()
-                .HasOne(application => application.ParentNationality)
-                .WithMany(country => country.ParentNationalityApplications)
-                .HasForeignKey(application => application.ParentNationalityId)
-                .OnDelete(DeleteBehavior.NoAction);
-
-            modelBuilder.Entity<FasApplication>()
                 .HasOne(application => application.RecommendedTier)
                 .WithMany(tier => tier.RecommendedApplications)
                 .HasForeignKey(application => application.RecommendedTierId)

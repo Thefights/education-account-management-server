@@ -4,8 +4,8 @@ namespace Enums
     {
         StudentAge = 1,
         StudentNationality = 2,
-        ParentNationality = 3,
-        GrossHouseholdIncome = 4,
-        PerCapitaIncome = 5
+        GuardianNationality = 3,
+        GrossHouseholdIncome = 5,
+        PerCapitaIncome = 6
     }
 }

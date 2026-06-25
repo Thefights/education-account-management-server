@@ -38,8 +38,6 @@ namespace Persistence.SqlServer
 
         public DbSet<PaymentAllocation> PaymentAllocation { get; set; }
 
-        public DbSet<Country> Country { get; set; }
-
         public DbSet<FasScheme> FasScheme { get; set; }
 
         public DbSet<FasSchemeConditionGroup> FasSchemeConditionGroup { get; set; }

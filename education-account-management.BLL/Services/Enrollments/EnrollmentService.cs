@@ -50,7 +50,7 @@ namespace Services.Enrollments
                             token)
                         ?? throw new DataNotFoundException(typeof(Course), assignDTO.CourseId);
 
-                    ValidateCourseIsDraft(course);
+                    ValidateCourseCanManageEnrollments(course);
 
                     var students = await _schoolStudentRepository.Query()
                         .Where(student => assignDTO.SchoolStudentIds.Contains(student.Id)
@@ -134,7 +134,7 @@ namespace Services.Enrollments
                     cancellationToken)
                 ?? throw new DataNotFoundException(typeof(Course), courseId);
 
-            ValidateCourseIsDraft(course);
+            ValidateCourseCanManageEnrollments(course);
 
             var pageSize = Math.Clamp(filterDTO.PageSize, 1, 100);
             var (total, students) = await _schoolStudentRepository.GetProjectedPaginatedAsync(
@@ -307,7 +307,7 @@ namespace Services.Enrollments
 
         private static void ValidateCanRemove(Enrollment enrollment)
         {
-            ValidateCourseIsDraft(enrollment.Course);
+            ValidateCourseCanManageEnrollments(enrollment.Course);
             if (enrollment.Charge != null)
             {
                 throw new DataConflictException(
@@ -315,12 +315,12 @@ namespace Services.Enrollments
             }
         }
 
-        private static void ValidateCourseIsDraft(Course course)
+        private static void ValidateCourseCanManageEnrollments(Course course)
         {
-            if (course.Status != CourseStatus.Draft)
+            if (course.Status is not CourseStatus.Draft and not CourseStatus.Enrolling)
             {
                 throw new DataConflictException(
-                    "The enrollment list can only be changed while the course is in Draft status.");
+                    "The enrollment list can only be changed while the course is in Draft or Enrolling status.");
             }
         }
 

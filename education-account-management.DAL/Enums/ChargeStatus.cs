@@ -1,10 +1,9 @@
-﻿namespace Enums
+namespace Enums
 {
     public enum ChargeStatus
     {
         Unpaid = 1,
-        PartiallyPaid = 2,
-        Paid = 3,
-        Outstanding = 4,
+        Paid = 2,
+        Overdue = 3
     }
 }

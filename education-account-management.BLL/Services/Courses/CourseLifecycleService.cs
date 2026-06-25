@@ -12,6 +12,10 @@ namespace Services.Courses
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly IGenericRepository<Course> _courseRepository = unitOfWork.Repository<Course>();
         private readonly IGenericRepository<Charge> _chargeRepository = unitOfWork.Repository<Charge>();
+        private readonly IGenericRepository<ChargeInstallment> _installmentRepository =
+            unitOfWork.Repository<ChargeInstallment>();
+        private readonly IGenericRepository<AiAssistantSetting> _settingRepository =
+            unitOfWork.Repository<AiAssistantSetting>();
         private readonly IAuditLogWriter _auditLogWriter = auditLogWriter;
 
         public async Task<int> ProcessDateTransitionsAsync(
@@ -19,10 +23,11 @@ namespace Services.Courses
             CancellationToken cancellationToken = default)
         {
             utcNow = CourseDateTimeHelper.NormalizeToUtc(utcNow, nameof(utcNow));
+            var overdueInstallmentCount = await MarkOverdueInstallmentsAsync(utcNow, cancellationToken);
             var courseIds = await _courseRepository.Query()
                 .Where(course =>
                     (course.Status == CourseStatus.Enrolling
-                        && course.FasApplicationDueDate <= utcNow)
+                        && course.EnrollmentDeadline <= utcNow)
                     || (course.Status == CourseStatus.Upcoming
                         && course.StartDate <= utcNow)
                     || (course.Status == CourseStatus.InProgress
@@ -64,7 +69,55 @@ namespace Services.Courses
                     failures);
             }
 
-            return transitionCount;
+            return transitionCount + overdueInstallmentCount;
+        }
+
+        private async Task<int> MarkOverdueInstallmentsAsync(
+            DateTime utcNow,
+            CancellationToken cancellationToken)
+        {
+            return await _unitOfWork.ExecuteInTransactionAsync(
+                async (_, token) =>
+                {
+                    var installments = await _installmentRepository.Query(tracking: true)
+                        .Include(installment => installment.Charge)
+                        .Where(installment => installment.Status == ChargeInstallmentStatus.Unpaid
+                            && installment.DueDate < utcNow)
+                        .ToListAsync(token);
+
+                    if (installments.Count == 0)
+                    {
+                        return 0;
+                    }
+
+                    var chargesToUpdate = new Dictionary<int, Charge>();
+                    foreach (var installment in installments)
+                    {
+                        installment.Status = ChargeInstallmentStatus.Overdue;
+                        installment.BecameOverdueAt ??= utcNow;
+                        installment.TryValidate();
+
+                        if (installment.Charge.Status != ChargeStatus.Paid)
+                        {
+                            installment.Charge.Status = ChargeStatus.Overdue;
+                            chargesToUpdate[installment.ChargeId] = installment.Charge;
+                        }
+                    }
+
+                    _installmentRepository.UpdateRange(installments);
+                    if (chargesToUpdate.Count > 0)
+                    {
+                        _chargeRepository.UpdateRange(chargesToUpdate.Values.ToList());
+                    }
+
+                    await _auditLogWriter.LogAsync(
+                        AuditLogCategory.Billing,
+                        $"Marked {installments.Count} installment(s) overdue.",
+                        cancellationToken: token);
+                    await _unitOfWork.SaveChangeAsync(token);
+                    return installments.Count;
+                },
+                cancellationToken);
         }
 
         public async Task FinalizeEnrollmentAndGenerateChargesAsync(
@@ -114,19 +167,19 @@ namespace Services.Courses
                     }
 
                     if (course.Status == CourseStatus.Enrolling
-                        && course.FasApplicationDueDate > utcNow)
+                        && course.EnrollmentDeadline > utcNow)
                     {
                         if (requireEnrollmentFinalization)
                         {
                             throw new DataConflictException(
-                                "The FAS application deadline has not been reached.");
+                                "The enrollment deadline has not been reached.");
                         }
 
                         return false;
                     }
 
                     var generatedChargeCount = 0;
-                    if (course.Status == CourseStatus.Enrolling && course.EndDate > utcNow)
+                    if (course.Status == CourseStatus.Enrolling)
                     {
                         generatedChargeCount = await GenerateMissingChargesAsync(course, token);
                     }
@@ -138,29 +191,28 @@ namespace Services.Courses
                         return false;
                     }
 
-                    var outstandingCharges = targetStatus == CourseStatus.Closed
+                    var overdueCharges = targetStatus == CourseStatus.Closed
                         ? course.Enrollments
                             .Select(enrollment => enrollment.Charge)
                             .Where(charge => charge != null
                                 && charge.RemainingAmount > 0
-                                && charge.Status is ChargeStatus.Unpaid or ChargeStatus.PartiallyPaid)
+                                && charge.Status == ChargeStatus.Unpaid)
                             .Cast<Charge>()
                             .ToList()
                         : [];
 
-                    foreach (var charge in outstandingCharges)
+                    foreach (var charge in overdueCharges)
                     {
-                        charge.Status = ChargeStatus.Outstanding;
-                        charge.BecameOutstandingAt ??= utcNow;
+                        charge.Status = ChargeStatus.Overdue;
                         charge.TryValidate();
                     }
 
-                    if (outstandingCharges.Count > 0)
+                    if (overdueCharges.Count > 0)
                     {
-                        _chargeRepository.UpdateRange(outstandingCharges);
+                        _chargeRepository.UpdateRange(overdueCharges);
                         await _auditLogWriter.LogAsync(
                             AuditLogCategory.Billing,
-                            $"Marked {outstandingCharges.Count} charge(s) outstanding for course {course.CourseCode}.",
+                            $"Marked {overdueCharges.Count} charge(s) overdue for course {course.CourseCode}.",
                             cancellationToken: token);
                     }
 
@@ -199,9 +251,14 @@ namespace Services.Courses
                     continue;
                 }
 
+                var taxRate = await GetTaxRateAsync(cancellationToken);
+                var taxAmount = CourseFeeCalculator.CalculateTaxAmount(
+                    course.CourseFeeAmount,
+                    course.MiscFeeAmount,
+                    taxRate);
                 var grossAmount = course.CourseFeeAmount
                     + course.MiscFeeAmount
-                    + course.GstAmount;
+                    + taxAmount;
                 var charge = new Charge
                 {
                     EnrollmentId = enrollment.Id,
@@ -214,7 +271,8 @@ namespace Services.Courses
                     CourseEndDateSnapshot = course.EndDate,
                     CourseFeeAmountSnapshot = course.CourseFeeAmount,
                     MiscFeeAmountSnapshot = course.MiscFeeAmount,
-                    GstAmountSnapshot = course.GstAmount,
+                    GstAmountSnapshot = taxAmount,
+                    TaxRateSnapshot = taxRate,
                     GrossAmount = grossAmount,
                     SubsidyAmount = 0m,
                     NetAmount = grossAmount,
@@ -229,6 +287,14 @@ namespace Services.Courses
             }
 
             return generatedCount;
+        }
+
+        private async Task<decimal> GetTaxRateAsync(CancellationToken cancellationToken)
+        {
+            return await _settingRepository.Query()
+                .OrderBy(setting => setting.Id)
+                .Select(setting => setting.TaxRate)
+                .FirstOrDefaultAsync(cancellationToken);
         }
 
         private static CourseStatus DetermineNextStatus(Course course, DateTime utcNow)

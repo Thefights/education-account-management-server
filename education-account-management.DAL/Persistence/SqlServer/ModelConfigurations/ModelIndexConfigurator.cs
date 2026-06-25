@@ -90,7 +90,6 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(charge => charge.EnrollmentId).IsUnique();
                 entity.HasIndex(charge => charge.AppliedFasApplicationId);
                 entity.HasIndex(charge => charge.Status);
-                entity.HasIndex(charge => charge.BecameOutstandingAt);
             });
 
             modelBuilder.Entity<ChargeInstallment>(entity =>
@@ -120,13 +119,6 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(allocation => new { allocation.PaymentId, allocation.ChargeId }).IsUnique();
             });
 
-            modelBuilder.Entity<Country>(entity =>
-            {
-                entity.HasIndex(country => country.Code).IsUnique();
-                entity.HasIndex(country => country.Name).IsUnique();
-                entity.HasIndex(country => country.IsActive);
-            });
-
             modelBuilder.Entity<FasScheme>(entity =>
             {
                 entity.HasIndex(scheme => scheme.SchoolId);
@@ -148,7 +140,6 @@ namespace Persistence.SqlServer.ModelConfigurations
             {
                 entity.HasIndex(condition => condition.GroupId);
                 entity.HasIndex(condition => condition.Field);
-                entity.HasIndex(condition => condition.CountryId);
             });
 
             modelBuilder.Entity<FasSchemeTier>(entity =>

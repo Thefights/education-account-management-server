@@ -15,6 +15,8 @@ using Interfaces.Courses;
 using Interfaces.Csv;
 using Interfaces.EducationAccounts;
 using Interfaces.Email;
+using Interfaces.FasApplications;
+using Interfaces.FasSchemes;
 using Interfaces.Maintenance;
 using Interfaces.Payments;
 using Interfaces.Schools;
@@ -41,6 +43,7 @@ using Services.Base;
 using Services.EducationAccounts;
 using Services.Email;
 using Services.Enrollments;
+using Services.FasApplications;
 using Services.Maintenance;
 using Services.Payments;
 using Services.Schools;
@@ -48,6 +51,8 @@ using Services.SchoolStudents;
 using Services.Storage;
 using Services.TopUp;
 using Services.TransactionHistory;
+using Mappers.FasSchemes;
+using Services.FasSchemes;
 using StackExchange.Redis;
 using System.Threading.RateLimiting;
 using Utils;
@@ -80,6 +85,8 @@ namespace Extensions.DependencyInjection
             services.AddScoped<IEducationAccountSweepService, EducationAccountSweepService>();
             services.AddScoped<IEducationAccountImportService, EducationAccountImportService>();
             services.AddScoped<ITransactionHistoryService, TransactionHistoryService>();
+            services.AddScoped<IAccountHolderFasSchemeService, AccountHolderFasSchemeService>();
+            services.AddScoped<IAccountHolderFasApplicationService, AccountHolderFasApplicationService>();
 
             services.AddScoped<ISystemTopupService, SystemTopupService>();
             services.AddScoped<IScheduleTopUpService, ScheduleTopUpService>();
@@ -100,14 +107,13 @@ namespace Extensions.DependencyInjection
             services.AddScoped<ISchoolStudentService, SchoolStudentService>();
             services.AddScoped<ISchoolStudentImportService, SchoolStudentImportService>();
             services.AddScoped<IManagementFasApplicationService, ManagementFasApplicationService>();
+            services.AddScoped<IFasSchemeService, FasSchemeService>();
 
             services.AddScoped<IDataCleanupService, DataCleanupService>();
-            services.AddScoped<IMonthlyAutoDeductService, MonthlyAutoDeductService>();
             services.AddHostedService<DataCleanupWorker>();
             services.AddHostedService<EducationAccountSweepWorker>();
             services.AddHostedService<TopupDailyWorker>();
             services.AddHostedService<CourseLifecycleWorker>();
-            services.AddHostedService<MonthlyAutoDeductWorker>();
 
             services.AddScoped<AuditLogMapper>();
             services.AddScoped<EducationAccountMapper>();
@@ -119,6 +125,7 @@ namespace Extensions.DependencyInjection
             services.AddScoped<AdminMapper>();
             services.AddScoped<CourseMapper>();
             services.AddScoped<SchoolMapper>();
+            services.AddScoped<FasSchemeMapper>();
             services.AddScoped<SchoolStudentMapper>();
             services.AddScoped<FasApplicationMapper>();
 

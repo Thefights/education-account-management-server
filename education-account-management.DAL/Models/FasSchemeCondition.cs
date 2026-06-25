@@ -23,9 +23,9 @@ namespace Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal? ValueNumberTo { get; set; }
 
-        // Quốc gia dùng cho StudentNationality hoặc ParentNationality.
-        public int? CountryId { get; set; }
-        public Country? Country { get; set; }
+        // Text dùng cho Student/Father/Mother nationality do người dùng tự nhập.
+        [MessageMaxLength(100)]
+        public string? ValueText { get; set; }
 
         // Thứ tự hiển thị condition trong group.
         [NumberPositive]
