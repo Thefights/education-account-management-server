@@ -194,5 +194,41 @@ namespace Services.FasApplications
 
             return new PaginationResult<FasApplicationSummaryDTO>(total, pageSize, items);
         }
+        public async Task WithdrawApplicationAsync(int id, CancellationToken cancellationToken = default)
+        {
+            var currentAccountHolderId = _currentUserService.UserId;
+
+            // Lấy schoolStudentId của user hiện tại
+            var studentId = await _unitOfWork.Repository<SchoolStudent>()
+                .Query()
+                .Where(student => student.EducationAccount.Citizen.User != null 
+                    && student.EducationAccount.Citizen.User.Id == currentAccountHolderId)
+                .Select(student => student.Id)
+                .SingleOrDefaultAsync(cancellationToken);
+
+            if (studentId == 0)
+            {
+                throw new DataNotFoundException("SchoolStudent for the current account holder was not found.");
+            }
+
+            var application = await _unitOfWork.Repository<FasApplication>()
+                .Query()
+                .FirstOrDefaultAsync(a => a.Id == id && a.SchoolStudentId == studentId, cancellationToken);
+
+            if (application == null)
+            {
+                throw new DataNotFoundException("FAS Application not found.");
+            }
+
+            if (application.Status != FasApplicationStatus.Pending)
+            {
+                throw new ValidationFailureException(nameof(application.Status), "Only pending applications can be withdrawn.");
+            }
+
+            application.Status = FasApplicationStatus.Withdrawn;
+            application.WithdrawnAt = DateTime.UtcNow;
+
+            await _unitOfWork.SaveChangeAsync(cancellationToken);
+        }
     }
 }
