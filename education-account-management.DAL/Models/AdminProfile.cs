@@ -17,7 +17,7 @@ namespace Models
         [NotDefaultValue, Unique]
         public int UserId { get; set; }
 
-        [Required, MessageMaxLength(9), SingaporeNric]
+        [MessageRequired, MessageMaxLength(9), SingaporeNric, Unique]
         public string Nric { get; set; } = string.Empty;
         public User User { get; set; } = null!;
 

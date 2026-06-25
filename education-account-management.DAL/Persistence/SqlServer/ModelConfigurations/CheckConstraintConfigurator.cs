@@ -67,8 +67,7 @@ namespace Persistence.SqlServer.ModelConfigurations
             {
                 table.HasCheckConstraint(
                     "CK_ChargeInstallment_Amounts",
-                    "[Amount] > 0 AND [PaidAmount] >= 0 AND [RemainingAmount] >= 0 " +
-                    "AND [PaidAmount] <= [Amount] AND [RemainingAmount] = [Amount] - [PaidAmount]");
+                    "[Amount] > 0");
                 table.HasCheckConstraint("CK_ChargeInstallment_Number_Positive", "[InstallmentNumber] > 0");
             });
 
@@ -139,10 +138,10 @@ namespace Persistence.SqlServer.ModelConfigurations
             {
                 table.HasCheckConstraint(
                     "CK_FasSchemeCondition_Value_By_Field",
-                    "([Field] IN (1, 4, 5) AND [ValueNumber] IS NOT NULL AND [CountryId] IS NULL AND " +
+                    "([Field] IN (1, 5, 6) AND [ValueNumber] IS NOT NULL AND [ValueText] IS NULL AND " +
                     "(([Operator] = 7 AND [ValueNumberTo] IS NOT NULL AND [ValueNumberTo] >= [ValueNumber]) OR " +
                     "([Operator] <> 7 AND [ValueNumberTo] IS NULL))) OR " +
-                    "([Field] IN (2, 3) AND [CountryId] IS NOT NULL AND [Operator] IN (1, 2) " +
+                    "([Field] IN (2, 3, 4) AND [ValueText] IS NOT NULL AND [Operator] IN (1, 2) " +
                     "AND [ValueNumber] IS NULL AND [ValueNumberTo] IS NULL)");
                 table.HasCheckConstraint("CK_FasSchemeCondition_DisplayOrder_NonNegative", "[DisplayOrder] >= 0");
             });

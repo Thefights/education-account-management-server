@@ -82,7 +82,6 @@ namespace Services.Courses
                     var installments = await _installmentRepository.Query(tracking: true)
                         .Include(installment => installment.Charge)
                         .Where(installment => installment.Status == ChargeInstallmentStatus.Unpaid
-                            && installment.RemainingAmount > 0
                             && installment.DueDate < utcNow)
                         .ToListAsync(token);
 
