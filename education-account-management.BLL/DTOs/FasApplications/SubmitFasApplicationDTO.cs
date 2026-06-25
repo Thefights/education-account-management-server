@@ -19,9 +19,6 @@ namespace DTOs.FasApplications
         public int FasSchemeId { get; set; }
 
         [EnumDefined]
-        public NationalityCategory StudentNationality { get; set; }
-
-        [EnumDefined]
         public NationalityCategory GuardianNationality { get; set; }
 
         public decimal GrossHouseholdIncome { get; set; }

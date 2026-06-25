@@ -28,6 +28,7 @@ namespace Services.FasApplications
                     && student.EducationAccount.Citizen.User.Id == currentAccountHolderId)
                 .Select(student => new {
                     student.Id,
+                    student.SchoolId,
                     student.EducationAccount.Citizen.IsSingaporean,
                     student.EducationAccount.Citizen.DateOfBirth
                 })
@@ -38,7 +39,7 @@ namespace Services.FasApplications
                 throw new DataNotFoundException("SchoolStudent for the current account holder was not found.");
             }
 
-            // 2. Kiểm tra tính hợp lệ của Scheme (có tồn tại và đang hoạt động không)
+            // 2. Kiểm tra tính hợp lệ của Scheme (có tồn tại, đang hoạt động, và thuộc về trường của học sinh)
             var scheme = await _unitOfWork.Repository<FasScheme>()
                 .Query()
                 .Include(s => s.Tiers)
@@ -47,11 +48,11 @@ namespace Services.FasApplications
                 .Include(s => s.ConditionGroups)
                     .ThenInclude(cg => cg.ChildGroups)
                         .ThenInclude(child => child.Conditions)
-                .FirstOrDefaultAsync(s => s.Id == dto.FasSchemeId && s.Status == FasSchemeStatus.Active, cancellationToken);
+                .FirstOrDefaultAsync(s => s.Id == dto.FasSchemeId && s.Status == FasSchemeStatus.Active && s.SchoolId == studentInfo.SchoolId, cancellationToken);
 
             if (scheme == null)
             {
-                throw new UserFacingException("The selected scheme is either invalid or inactive.", 400);
+                throw new DataNotFoundException(typeof(FasScheme), dto.FasSchemeId);
             }
 
             // 3. Kiểm tra xem học sinh đã có hồ sơ nào đang chờ duyệt hoặc đã được duyệt cho Scheme này chưa
@@ -63,17 +64,19 @@ namespace Services.FasApplications
             
             if (existingApplication)
             {
-                throw new UserFacingException("You already have a pending or approved application for this scheme.", 400);
+                throw new DataConflictException("You already have a pending or approved application for this scheme.");
             }
 
             // 4. Đánh giá các điều kiện cơ bản của Scheme
             int? recommendedTierId = null;
             string recommendationReason = "Failed scheme baseline conditions";
-            int studentAge = DateTime.UtcNow.Year - studentInfo.DateOfBirth.Year - (DateTime.UtcNow.DayOfYear < studentInfo.DateOfBirth.DayOfYear ? 1 : 0);
+            int studentAge = DateTime.UtcNow.Year - studentInfo.DateOfBirth.Year;
+            if (studentInfo.DateOfBirth > DateOnly.FromDateTime(DateTime.UtcNow.AddYears(-studentAge))) studentAge--;
 
             bool isEligible = FasConditionEvaluator.Evaluate(
                 scheme.ConditionGroups, 
                 studentAge, 
+                studentInfo.IsSingaporean,
                 dto.GuardianNationality, 
                 dto.GrossHouseholdIncome, 
                 dto.HouseholdMemberCount);
@@ -101,7 +104,7 @@ namespace Services.FasApplications
             }
 
             // Tạo mã hồ sơ (Application Number) ngẫu nhiên
-            var applicationNumber = $"FASAPP-{DateTime.UtcNow:yyyyMMdd}-{Guid.NewGuid().ToString()[..6].ToUpper()}";
+            var applicationNumber = $"FASAPP-{DateTime.UtcNow:yyyyMMdd}-{Guid.NewGuid().ToString("N")[..7].ToUpper()}";
 
             // 5. Khởi tạo đối tượng hồ sơ (Entity) và lưu các thông tin Snapshot tại thời điểm nộp
             var application = new FasApplication

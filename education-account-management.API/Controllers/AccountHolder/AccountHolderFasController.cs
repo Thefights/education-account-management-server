@@ -26,7 +26,7 @@ namespace Controllers.AccountHolder
         }
 
         [HttpPost("fas-applications")]
-        public async Task<IActionResult> SubmitApplication([FromBody] SubmitFasApplicationDTO dto, CancellationToken cancellationToken)
+        public async Task<IActionResult> SubmitApplication([FromForm] SubmitFasApplicationDTO dto, CancellationToken cancellationToken)
         {
             var applicationNumber = await _fasApplicationService.SubmitApplicationAsync(dto, cancellationToken);
             return Result.SuccessAction($"FAS application successfully created with ID: {applicationNumber}");

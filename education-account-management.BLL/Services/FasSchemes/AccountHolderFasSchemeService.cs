@@ -26,6 +26,7 @@ namespace Services.FasSchemes
                     && student.EducationAccount.Citizen.User.Id == currentAccountHolderId)
                 .Select(student => new {
                     student.Id,
+                    student.EducationAccount.Citizen.IsSingaporean,
                     student.EducationAccount.Citizen.DateOfBirth
                 })
                 .SingleOrDefaultAsync(cancellationToken);
@@ -88,7 +89,7 @@ namespace Services.FasSchemes
             var eligibleSchemes = new List<FasScheme>();
             foreach (var scheme in availableSchemes)
             {
-                bool isEligible = Evaluate(scheme.ConditionGroups, filter, studentAge);
+                bool isEligible = Evaluate(scheme.ConditionGroups, filter, studentAge, studentInfo.IsSingaporean);
                 if (isEligible)
                 {
                     eligibleSchemes.Add(scheme);
@@ -134,7 +135,7 @@ namespace Services.FasSchemes
             };
         }
 
-        private bool Evaluate(ICollection<FasSchemeConditionGroup> conditionGroups, FasSchemeFilterDTO filter, int studentAge)
+        private bool Evaluate(ICollection<FasSchemeConditionGroup> conditionGroups, FasSchemeFilterDTO filter, int studentAge, bool isSingaporean)
         {
             // If filter values are not provided, we consider them eligible for the list view
             // to show potential schemes.
@@ -146,6 +147,7 @@ namespace Services.FasSchemes
             return FasConditionEvaluator.Evaluate(
                 conditionGroups, 
                 studentAge, 
+                isSingaporean,
                 filter.GuardianNationality.Value, 
                 filter.GrossHouseholdIncome.Value, 
                 filter.HouseholdMemberCount.Value);

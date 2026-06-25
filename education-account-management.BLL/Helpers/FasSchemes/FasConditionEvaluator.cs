@@ -5,7 +5,7 @@ namespace Helpers.FasSchemes
 {
     public static class FasConditionEvaluator
     {
-        public static bool Evaluate(ICollection<FasSchemeConditionGroup>? conditionGroups, int studentAge, NationalityCategory guardianNationality, decimal grossHouseholdIncome, int householdMemberCount)
+        public static bool Evaluate(ICollection<FasSchemeConditionGroup>? conditionGroups, int studentAge, bool isSingaporean, NationalityCategory guardianNationality, decimal grossHouseholdIncome, int householdMemberCount)
         {
             if (conditionGroups == null || !conditionGroups.Any())
             {
@@ -18,10 +18,10 @@ namespace Helpers.FasSchemes
                 return true;
             }
 
-            return EvaluateGroup(rootGroup, studentAge, guardianNationality, grossHouseholdIncome, householdMemberCount);
+            return EvaluateGroup(rootGroup, studentAge, isSingaporean, guardianNationality, grossHouseholdIncome, householdMemberCount);
         }
 
-        private static bool EvaluateGroup(FasSchemeConditionGroup group, int studentAge, NationalityCategory guardianNationality, decimal grossHouseholdIncome, int householdMemberCount)
+        private static bool EvaluateGroup(FasSchemeConditionGroup group, int studentAge, bool isSingaporean, NationalityCategory guardianNationality, decimal grossHouseholdIncome, int householdMemberCount)
         {
             bool result = group.LogicalOperator == TopupLogicalOperator.And;
 
@@ -29,7 +29,7 @@ namespace Helpers.FasSchemes
             {
                 foreach (var condition in group.Conditions)
                 {
-                    bool conditionResult = EvaluateCondition(condition, studentAge, guardianNationality, grossHouseholdIncome, householdMemberCount);
+                    bool conditionResult = EvaluateCondition(condition, studentAge, isSingaporean, guardianNationality, grossHouseholdIncome, householdMemberCount);
                     if (group.LogicalOperator == TopupLogicalOperator.And)
                     {
                         result = result && conditionResult;
@@ -47,7 +47,7 @@ namespace Helpers.FasSchemes
             {
                 foreach (var childGroup in group.ChildGroups)
                 {
-                    bool childGroupResult = EvaluateGroup(childGroup, studentAge, guardianNationality, grossHouseholdIncome, householdMemberCount);
+                    bool childGroupResult = EvaluateGroup(childGroup, studentAge, isSingaporean, guardianNationality, grossHouseholdIncome, householdMemberCount);
                     if (group.LogicalOperator == TopupLogicalOperator.And)
                     {
                         result = result && childGroupResult;
@@ -64,7 +64,7 @@ namespace Helpers.FasSchemes
             return result;
         }
 
-        private static bool EvaluateCondition(FasSchemeCondition condition, int studentAge, NationalityCategory guardianNationality, decimal grossHouseholdIncome, int householdMemberCount)
+        private static bool EvaluateCondition(FasSchemeCondition condition, int studentAge, bool isSingaporean, NationalityCategory guardianNationality, decimal grossHouseholdIncome, int householdMemberCount)
         {
             decimal valueToCompare = 0;
             string? textToCompare = null;
@@ -75,7 +75,7 @@ namespace Helpers.FasSchemes
                     valueToCompare = studentAge;
                     break;
                 case FasConditionField.StudentNationality:
-                    textToCompare = "Singapore"; // Quy tắc mặc định: học sinh trong hệ thống luôn là công dân Singapore
+                    textToCompare = isSingaporean ? "Singapore" : "Other";
                     break;
                 case FasConditionField.GuardianNationality:
                     textToCompare = guardianNationality == NationalityCategory.SingaporeCitizen ? "Singapore" : "Other";
