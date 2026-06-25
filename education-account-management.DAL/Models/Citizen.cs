@@ -28,6 +28,8 @@ namespace Models
         [MessageMaxLength(50)]
         public string? SchoolingStatus { get; set; }
 
+        public bool IsSingaporean { get; set; }
+
         [OnDelete(OnDeleteBehavior.SetNull)]
         public User? User { get; set; }
 

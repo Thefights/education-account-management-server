@@ -21,7 +21,7 @@ namespace Mappers.FasSchemes
                     Operator = condition.Operator,
                     ValueNumber = condition.ValueNumber,
                     ValueNumberTo = condition.ValueNumberTo,
-                    CountryId = condition.CountryId,
+                    //CountryId = condition.CountryId,
                     DisplayOrder = condition.DisplayOrder
                 }).ToList()
             };
@@ -58,7 +58,7 @@ namespace Mappers.FasSchemes
                     Operator = condition.Operator.ToString(),
                     ValueNumber = condition.ValueNumber,
                     ValueNumberTo = condition.ValueNumberTo,
-                    CountryId = condition.CountryId,
+                    //CountryId = condition.CountryId,
                     DisplayOrder = condition.DisplayOrder
                 }).ToList(),
                 Groups = children.GetValueOrDefault(group.Id, [])

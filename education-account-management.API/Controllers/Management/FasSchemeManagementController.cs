@@ -4,9 +4,6 @@ using Controllers.Base;
 using DTOs.FasSchemes;
 using Filters.FasSchemes;
 using Interfaces.FasSchemes;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Controllers.Management
 {

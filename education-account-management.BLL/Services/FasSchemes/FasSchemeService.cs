@@ -5,14 +5,7 @@ using Interfaces.FasSchemes;
 using Mappers.FasSchemes;
 using Results;
 using Services.Base;
-using Utils;
 using Validators;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 
 namespace Services.FasSchemes
 {
@@ -565,7 +558,7 @@ namespace Services.FasSchemes
                 if (string.IsNullOrWhiteSpace(doc.TemplateFileKey)) continue;
 
                 var extension = Path.GetExtension(doc.TemplateFileKey).ToLowerInvariant();
-                if (extension != ".docx" && extension != ".pdf")
+                if (extension is not ".docx" and not ".pdf")
                 {
                     throw new ValidationFailureException(nameof(doc.TemplateFileKey), "Only .docx and .pdf templates are allowed.");
                 }
@@ -578,7 +571,7 @@ namespace Services.FasSchemes
                     signature = System.Text.Encoding.ASCII.GetBytes("%PDF-");
                     contentType = "application/pdf";
                 }
-                else 
+                else
                 {
                     signature = new byte[] { 0x50, 0x4B, 0x03, 0x04 };
                     contentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
@@ -624,7 +617,7 @@ namespace Services.FasSchemes
                     Operator = c.Operator,
                     ValueNumber = c.ValueNumber,
                     ValueNumberTo = c.ValueNumberTo,
-                    CountryId = c.CountryId,
+                    //CountryId = c.CountryId,
                     DisplayOrder = c.DisplayOrder
                 }).ToList()
             };

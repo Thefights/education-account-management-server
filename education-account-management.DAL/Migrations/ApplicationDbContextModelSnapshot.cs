@@ -84,6 +84,10 @@ namespace educationaccountmanagement.DAL.Migrations
                         .IsUnique()
                         .HasFilter("\"IsDeleted\" = 0 AND \"Email\" IS NOT NULL");
 
+                    b.HasIndex("Nric")
+                        .IsUnique()
+                        .HasFilter("\"IsDeleted\" = 0 AND \"Nric\" IS NOT NULL");
+
                     b.HasIndex("SchoolId");
 
                     b.HasIndex("StaffCode")
@@ -430,9 +434,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<DateTime?>("BecameOutstandingAt")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("CourseCodeSnapshot")
                         .IsRequired()
                         .HasMaxLength(16)
@@ -477,9 +478,6 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime?>("LastAutoDeductedAt")
-                        .HasColumnType("datetime2");
-
                     b.Property<decimal>("MiscFeeAmountSnapshot")
                         .HasColumnType("decimal(18,2)");
 
@@ -521,8 +519,6 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AppliedFasApplicationId");
-
-                    b.HasIndex("BecameOutstandingAt");
 
                     b.HasIndex("EnrollmentId")
                         .IsUnique()
@@ -667,7 +663,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 6,
                             AppliedFasIsPerComponentSnapshot = false,
-                            BecameOutstandingAt = new DateTime(2026, 2, 7, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseCodeSnapshot = "CRS-2026-F6G7H8J",
                             CourseDescriptionSnapshot = "Customer operations, service standards, and scenario-based practice.",
                             CourseEndDateSnapshot = new DateTime(2026, 9, 16, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -679,7 +674,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             GrossAmount = 220m,
                             GstAmountSnapshot = 23m,
                             IsDeleted = false,
-                            LastAutoDeductedAt = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc),
                             MiscFeeAmountSnapshot = 22m,
                             NetAmount = 220m,
                             PaidAmount = 150m,
@@ -719,7 +713,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 8,
                             AppliedFasIsPerComponentSnapshot = false,
-                            BecameOutstandingAt = new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseCodeSnapshot = "CRS-2026-H8J9K0L",
                             CourseDescriptionSnapshot = "Narrative craft, editing practice, and guided writing critique.",
                             CourseEndDateSnapshot = new DateTime(2026, 8, 2, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -731,7 +724,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             GrossAmount = 260m,
                             GstAmountSnapshot = 28m,
                             IsDeleted = false,
-                            LastAutoDeductedAt = new DateTime(2026, 4, 5, 0, 0, 0, 0, DateTimeKind.Utc),
                             MiscFeeAmountSnapshot = 27m,
                             NetAmount = 260m,
                             PaidAmount = 200m,
@@ -746,7 +738,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 9,
                             AppliedFasIsPerComponentSnapshot = false,
-                            BecameOutstandingAt = new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseCodeSnapshot = "CRS-2026-J9K0L1M",
                             CourseDescriptionSnapshot = "Data preparation, analysis, visualization, and reporting fundamentals.",
                             CourseEndDateSnapshot = new DateTime(2026, 5, 8, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -772,7 +763,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 10,
                             AppliedFasIsPerComponentSnapshot = false,
-                            BecameOutstandingAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseCodeSnapshot = "CRS-2026-K0L1M2N",
                             CourseDescriptionSnapshot = "Document, spreadsheet, and presentation workflows for business users.",
                             CourseEndDateSnapshot = new DateTime(2026, 5, 9, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -831,12 +821,6 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<decimal>("PaidAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("RemainingAmount")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -860,7 +844,7 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.ToTable("ChargeInstallment", t =>
                         {
-                            t.HasCheckConstraint("CK_ChargeInstallment_Amounts", "[Amount] > 0 AND [PaidAmount] >= 0 AND [RemainingAmount] >= 0 AND [PaidAmount] <= [Amount] AND [RemainingAmount] = [Amount] - [PaidAmount]");
+                            t.HasCheckConstraint("CK_ChargeInstallment_Amounts", "[Amount] > 0");
 
                             t.HasCheckConstraint("CK_ChargeInstallment_Number_Positive", "[InstallmentNumber] > 0");
                         });
@@ -875,8 +859,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             DueDate = new DateTime(2026, 8, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
                             IsDeleted = false,
-                            PaidAmount = 120m,
-                            RemainingAmount = 0m,
                             Status = 2
                         },
                         new
@@ -888,8 +870,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             DueDate = new DateTime(2026, 8, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
                             IsDeleted = false,
-                            PaidAmount = 0m,
-                            RemainingAmount = 70m,
                             Status = 1
                         },
                         new
@@ -901,8 +881,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             DueDate = new DateTime(2026, 8, 3, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
                             IsDeleted = false,
-                            PaidAmount = 0m,
-                            RemainingAmount = 80m,
                             Status = 1
                         },
                         new
@@ -914,8 +892,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             DueDate = new DateTime(2026, 8, 4, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
                             IsDeleted = false,
-                            PaidAmount = 180m,
-                            RemainingAmount = 0m,
                             Status = 2
                         },
                         new
@@ -927,8 +903,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             DueDate = new DateTime(2026, 8, 5, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
                             IsDeleted = false,
-                            PaidAmount = 0m,
-                            RemainingAmount = 100m,
                             Status = 1
                         },
                         new
@@ -941,8 +915,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             DueDate = new DateTime(2026, 5, 6, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
                             IsDeleted = false,
-                            PaidAmount = 0m,
-                            RemainingAmount = 110m,
                             Status = 3
                         },
                         new
@@ -954,8 +926,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             DueDate = new DateTime(2026, 5, 7, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
                             IsDeleted = false,
-                            PaidAmount = 0m,
-                            RemainingAmount = 120m,
                             Status = 1
                         },
                         new
@@ -968,8 +938,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             DueDate = new DateTime(2026, 5, 8, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
                             IsDeleted = false,
-                            PaidAmount = 0m,
-                            RemainingAmount = 130m,
                             Status = 3
                         },
                         new
@@ -982,8 +950,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             DueDate = new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
                             IsDeleted = false,
-                            PaidAmount = 0m,
-                            RemainingAmount = 140m,
                             Status = 3
                         },
                         new
@@ -996,8 +962,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             DueDate = new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
                             IsDeleted = false,
-                            PaidAmount = 0m,
-                            RemainingAmount = 150m,
                             Status = 3
                         });
                 });
@@ -1035,6 +999,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         .HasColumnType("nvarchar(150)");
 
                     b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSingaporean")
                         .HasColumnType("bit");
 
                     b.Property<string>("MailingAddress")
@@ -1088,6 +1055,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "sterling.quach@example.com",
                             FullName = "Sterling Quach",
                             IsDeleted = false,
+                            IsSingaporean = true,
                             MailingAddress = "Mailing block 1, Singapore",
                             Nric = "S0000001I",
                             PhoneNumber = "+6590000001",
@@ -1103,6 +1071,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "amelia.tan@example.com",
                             FullName = "Amelia Tan",
                             IsDeleted = false,
+                            IsSingaporean = true,
                             MailingAddress = "Mailing block 2, Singapore",
                             Nric = "S0000002G",
                             PhoneNumber = "+6590000002",
@@ -1118,6 +1087,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "marcus.lim@example.com",
                             FullName = "Marcus Lim",
                             IsDeleted = false,
+                            IsSingaporean = true,
                             MailingAddress = "Mailing block 3, Singapore",
                             Nric = "S0000003E",
                             PhoneNumber = "+6590000003",
@@ -1133,6 +1103,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "priya.nair@example.com",
                             FullName = "Priya Nair",
                             IsDeleted = false,
+                            IsSingaporean = true,
                             MailingAddress = "Mailing block 4, Singapore",
                             Nric = "S0000004C",
                             PhoneNumber = "+6590000004",
@@ -1148,6 +1119,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "ethan.koh@example.com",
                             FullName = "Ethan Koh",
                             IsDeleted = false,
+                            IsSingaporean = true,
                             MailingAddress = "Mailing block 5, Singapore",
                             Nric = "S0000005A",
                             PhoneNumber = "+6590000005",
@@ -1163,6 +1135,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "hannah.lee@example.com",
                             FullName = "Hannah Lee",
                             IsDeleted = false,
+                            IsSingaporean = true,
                             MailingAddress = "Mailing block 6, Singapore",
                             Nric = "S0000006Z",
                             PhoneNumber = "+6590000006",
@@ -1178,6 +1151,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "daniel.wong@example.com",
                             FullName = "Daniel Wong",
                             IsDeleted = false,
+                            IsSingaporean = true,
                             MailingAddress = "Mailing block 7, Singapore",
                             Nric = "S0000007H",
                             PhoneNumber = "+6590000007",
@@ -1193,6 +1167,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "sofia.chen@example.com",
                             FullName = "Sofia Chen",
                             IsDeleted = false,
+                            IsSingaporean = true,
                             MailingAddress = "Mailing block 8, Singapore",
                             Nric = "S0000008F",
                             PhoneNumber = "+6590000008",
@@ -1208,6 +1183,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "lucas.nguyen@example.com",
                             FullName = "Lucas Nguyen",
                             IsDeleted = false,
+                            IsSingaporean = true,
                             MailingAddress = "Mailing block 9, Singapore",
                             Nric = "S0000009D",
                             PhoneNumber = "+6590000009",
@@ -1223,6 +1199,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "maya.rahman@example.com",
                             FullName = "Maya Rahman",
                             IsDeleted = false,
+                            IsSingaporean = true,
                             MailingAddress = "Mailing block 10, Singapore",
                             Nric = "S0000010H",
                             PhoneNumber = "+6590000010",
@@ -1238,6 +1215,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "noah.teo@example.com",
                             FullName = "Noah Teo",
                             IsDeleted = false,
+                            IsSingaporean = true,
                             MailingAddress = "Mailing block 11, Singapore",
                             Nric = "S0000011F",
                             PhoneNumber = "+6590000011",
@@ -1253,6 +1231,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "aisha.fernandez@example.com",
                             FullName = "Aisha Fernandez",
                             IsDeleted = false,
+                            IsSingaporean = true,
                             MailingAddress = "Mailing block 12, Singapore",
                             Nric = "S0000012D",
                             PhoneNumber = "+6590000012",
@@ -1268,6 +1247,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "ryan.chua@example.com",
                             FullName = "Ryan Chua",
                             IsDeleted = false,
+                            IsSingaporean = true,
                             MailingAddress = "Mailing block 13, Singapore",
                             Nric = "S0000013B",
                             PhoneNumber = "+6590000013",
@@ -1283,6 +1263,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "chloe.goh@example.com",
                             FullName = "Chloe Goh",
                             IsDeleted = false,
+                            IsSingaporean = true,
                             MailingAddress = "Mailing block 14, Singapore",
                             Nric = "S0000014J",
                             PhoneNumber = "+6590000014",
@@ -1298,6 +1279,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "irfan.hassan@example.com",
                             FullName = "Irfan Hassan",
                             IsDeleted = false,
+                            IsSingaporean = true,
                             MailingAddress = "Mailing block 15, Singapore",
                             Nric = "S0000015I",
                             PhoneNumber = "+6590000015",
@@ -1313,6 +1295,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "natalie.seah@example.com",
                             FullName = "Natalie Seah",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "16 Orchard Link, Singapore",
                             Nric = "S0000016G",
                             PhoneNumber = "+6590000016",
@@ -1328,6 +1311,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "qistina.rao.17@example.com",
                             FullName = "Qistina Rao",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "17 Learning Grove, Singapore",
                             Nric = "S0000017E",
                             PhoneNumber = "+6590000017",
@@ -1343,6 +1327,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "rafael.sim.18@example.com",
                             FullName = "Rafael Sim",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "18 Learning Grove, Singapore",
                             Nric = "S0000018C",
                             PhoneNumber = "+6590000018",
@@ -1358,6 +1343,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "selina.tan.19@example.com",
                             FullName = "Selina Tan",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "19 Learning Grove, Singapore",
                             Nric = "S0000019A",
                             PhoneNumber = "+6590000019",
@@ -1373,6 +1359,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "terence.uddin.20@example.com",
                             FullName = "Terence Uddin",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "20 Learning Grove, Singapore",
                             Nric = "S0000020E",
                             PhoneNumber = "+6590000020",
@@ -1388,6 +1375,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "umairah.vasquez.21@example.com",
                             FullName = "Umairah Vasquez",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "21 Learning Grove, Singapore",
                             Nric = "S0000021C",
                             PhoneNumber = "+6590000021",
@@ -1403,6 +1391,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "victor.wong.22@example.com",
                             FullName = "Victor Wong",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "22 Learning Grove, Singapore",
                             Nric = "S0000022A",
                             PhoneNumber = "+6590000022",
@@ -1418,6 +1407,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "wen.jie.xu.23@example.com",
                             FullName = "Wen Jie Xu",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "23 Learning Grove, Singapore",
                             Nric = "S0000023Z",
                             PhoneNumber = "+6590000023",
@@ -1433,6 +1423,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "xavier.yeo.24@example.com",
                             FullName = "Xavier Yeo",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "24 Learning Grove, Singapore",
                             Nric = "S0000024H",
                             PhoneNumber = "+6590000024",
@@ -1448,6 +1439,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "yasmin.zainal.25@example.com",
                             FullName = "Yasmin Zainal",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "25 Learning Grove, Singapore",
                             Nric = "S0000025F",
                             PhoneNumber = "+6590000025",
@@ -1463,6 +1455,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "zachary.ang.26@example.com",
                             FullName = "Zachary Ang",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "26 Learning Grove, Singapore",
                             Nric = "S0000026D",
                             PhoneNumber = "+6590000026",
@@ -1478,6 +1471,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "adeline.bala.27@example.com",
                             FullName = "Adeline Bala",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "27 Learning Grove, Singapore",
                             Nric = "S0000027B",
                             PhoneNumber = "+6590000027",
@@ -1493,6 +1487,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "brandon.chew.28@example.com",
                             FullName = "Brandon Chew",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "28 Learning Grove, Singapore",
                             Nric = "S0000028J",
                             PhoneNumber = "+6590000028",
@@ -1508,6 +1503,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "celeste.das.29@example.com",
                             FullName = "Celeste Das",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "29 Learning Grove, Singapore",
                             Nric = "S0000029I",
                             PhoneNumber = "+6590000029",
@@ -1523,6 +1519,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "damien.eng.30@example.com",
                             FullName = "Damien Eng",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "30 Learning Grove, Singapore",
                             Nric = "S0000030B",
                             PhoneNumber = "+6590000030",
@@ -1538,6 +1535,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "evelyn.foo.31@example.com",
                             FullName = "Evelyn Foo",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "31 Learning Grove, Singapore",
                             Nric = "S0000031J",
                             PhoneNumber = "+6590000031",
@@ -1553,6 +1551,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "faris.gan.32@example.com",
                             FullName = "Faris Gan",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "32 Learning Grove, Singapore",
                             Nric = "S0000032I",
                             PhoneNumber = "+6590000032",
@@ -1568,6 +1567,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "giselle.ho.33@example.com",
                             FullName = "Giselle Ho",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "33 Learning Grove, Singapore",
                             Nric = "S0000033G",
                             PhoneNumber = "+6590000033",
@@ -1583,6 +1583,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "haziq.ismail.34@example.com",
                             FullName = "Haziq Ismail",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "34 Learning Grove, Singapore",
                             Nric = "S0000034E",
                             PhoneNumber = "+6590000034",
@@ -1598,6 +1599,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "irene.jeyaratnam.35@example.com",
                             FullName = "Irene Jeyaratnam",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "35 Learning Grove, Singapore",
                             Nric = "S0000035C",
                             PhoneNumber = "+6590000035",
@@ -1613,6 +1615,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "jonas.kwek.36@example.com",
                             FullName = "Jonas Kwek",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "36 Learning Grove, Singapore",
                             Nric = "S0000036A",
                             PhoneNumber = "+6590000036",
@@ -1628,6 +1631,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "kavya.lim.37@example.com",
                             FullName = "Kavya Lim",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "37 Learning Grove, Singapore",
                             Nric = "S0000037Z",
                             PhoneNumber = "+6590000037",
@@ -1643,6 +1647,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "lydia.mohamed.38@example.com",
                             FullName = "Lydia Mohamed",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "38 Learning Grove, Singapore",
                             Nric = "S0000038H",
                             PhoneNumber = "+6590000038",
@@ -1658,6 +1663,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "malcolm.ng.39@example.com",
                             FullName = "Malcolm Ng",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "39 Learning Grove, Singapore",
                             Nric = "S0000039F",
                             PhoneNumber = "+6590000039",
@@ -1673,6 +1679,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "nadia.ong.40@example.com",
                             FullName = "Nadia Ong",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "40 Learning Grove, Singapore",
                             Nric = "S0000040Z",
                             PhoneNumber = "+6590000040",
@@ -1688,6 +1695,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "alina.quek.41@example.com",
                             FullName = "Alina Quek",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "41 Learning Grove, Singapore",
                             Nric = "S0000041H",
                             PhoneNumber = "+6590000041",
@@ -1703,6 +1711,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "benjamin.rao.42@example.com",
                             FullName = "Benjamin Rao",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "42 Learning Grove, Singapore",
                             Nric = "S0000042F",
                             PhoneNumber = "+6590000042",
@@ -1718,6 +1727,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "clara.sim.43@example.com",
                             FullName = "Clara Sim",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "43 Learning Grove, Singapore",
                             Nric = "S0000043D",
                             PhoneNumber = "+6590000043",
@@ -1733,6 +1743,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "darius.tan.44@example.com",
                             FullName = "Darius Tan",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "44 Learning Grove, Singapore",
                             Nric = "S0000044B",
                             PhoneNumber = "+6590000044",
@@ -1748,6 +1759,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "elena.uddin.45@example.com",
                             FullName = "Elena Uddin",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "45 Learning Grove, Singapore",
                             Nric = "S0000045J",
                             PhoneNumber = "+6590000045",
@@ -1763,6 +1775,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "farhan.vasquez.46@example.com",
                             FullName = "Farhan Vasquez",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "46 Learning Grove, Singapore",
                             Nric = "S0000046I",
                             PhoneNumber = "+6590000046",
@@ -1778,6 +1791,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "grace.wong.47@example.com",
                             FullName = "Grace Wong",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "47 Learning Grove, Singapore",
                             Nric = "S0000047G",
                             PhoneNumber = "+6590000047",
@@ -1793,6 +1807,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "haruto.xu.48@example.com",
                             FullName = "Haruto Xu",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "48 Learning Grove, Singapore",
                             Nric = "S0000048E",
                             PhoneNumber = "+6590000048",
@@ -1808,6 +1823,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "isabelle.yeo.49@example.com",
                             FullName = "Isabelle Yeo",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "49 Learning Grove, Singapore",
                             Nric = "S0000049C",
                             PhoneNumber = "+6590000049",
@@ -1823,6 +1839,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "jasper.zainal.50@example.com",
                             FullName = "Jasper Zainal",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "50 Learning Grove, Singapore",
                             Nric = "S0000050G",
                             PhoneNumber = "+6590000050",
@@ -1838,6 +1855,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "keira.ang.51@example.com",
                             FullName = "Keira Ang",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "51 Learning Grove, Singapore",
                             Nric = "S0000051E",
                             PhoneNumber = "+6590000051",
@@ -1853,6 +1871,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "leon.bala.52@example.com",
                             FullName = "Leon Bala",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "52 Learning Grove, Singapore",
                             Nric = "S0000052C",
                             PhoneNumber = "+6590000052",
@@ -1868,6 +1887,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "mei.lin.chew.53@example.com",
                             FullName = "Mei Lin Chew",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "53 Learning Grove, Singapore",
                             Nric = "S0000053A",
                             PhoneNumber = "+6590000053",
@@ -1883,6 +1903,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "nathan.das.54@example.com",
                             FullName = "Nathan Das",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "54 Learning Grove, Singapore",
                             Nric = "S0000054Z",
                             PhoneNumber = "+6590000054",
@@ -1898,6 +1919,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "olivia.eng.55@example.com",
                             FullName = "Olivia Eng",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "55 Learning Grove, Singapore",
                             Nric = "S0000055H",
                             PhoneNumber = "+6590000055",
@@ -1913,6 +1935,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "pranav.foo.56@example.com",
                             FullName = "Pranav Foo",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "56 Learning Grove, Singapore",
                             Nric = "S0000056F",
                             PhoneNumber = "+6590000056",
@@ -1928,6 +1951,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "qistina.gan.57@example.com",
                             FullName = "Qistina Gan",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "57 Learning Grove, Singapore",
                             Nric = "S0000057D",
                             PhoneNumber = "+6590000057",
@@ -1943,6 +1967,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "rafael.ho.58@example.com",
                             FullName = "Rafael Ho",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "58 Learning Grove, Singapore",
                             Nric = "S0000058B",
                             PhoneNumber = "+6590000058",
@@ -1958,6 +1983,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "selina.ismail.59@example.com",
                             FullName = "Selina Ismail",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "59 Learning Grove, Singapore",
                             Nric = "S0000059J",
                             PhoneNumber = "+6590000059",
@@ -1973,6 +1999,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "terence.jeyaratnam.60@example.com",
                             FullName = "Terence Jeyaratnam",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "60 Learning Grove, Singapore",
                             Nric = "S0000060D",
                             PhoneNumber = "+6590000060",
@@ -1988,6 +2015,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "umairah.kwek.61@example.com",
                             FullName = "Umairah Kwek",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "61 Learning Grove, Singapore",
                             Nric = "S0000061B",
                             PhoneNumber = "+6590000061",
@@ -2003,6 +2031,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "victor.lim.62@example.com",
                             FullName = "Victor Lim",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "62 Learning Grove, Singapore",
                             Nric = "S0000062J",
                             PhoneNumber = "+6590000062",
@@ -2018,6 +2047,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "wen.jie.mohamed.63@example.com",
                             FullName = "Wen Jie Mohamed",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "63 Learning Grove, Singapore",
                             Nric = "S0000063I",
                             PhoneNumber = "+6590000063",
@@ -2033,6 +2063,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "xavier.ng.64@example.com",
                             FullName = "Xavier Ng",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "64 Learning Grove, Singapore",
                             Nric = "S0000064G",
                             PhoneNumber = "+6590000064",
@@ -2048,6 +2079,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "yasmin.ong.65@example.com",
                             FullName = "Yasmin Ong",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "65 Learning Grove, Singapore",
                             Nric = "S0000065E",
                             PhoneNumber = "+6590000065",
@@ -2063,6 +2095,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "zachary.pillai.66@example.com",
                             FullName = "Zachary Pillai",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "66 Learning Grove, Singapore",
                             Nric = "S0000066C",
                             PhoneNumber = "+6590000066",
@@ -2078,6 +2111,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "adeline.quek.67@example.com",
                             FullName = "Adeline Quek",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "67 Learning Grove, Singapore",
                             Nric = "S0000067A",
                             PhoneNumber = "+6590000067",
@@ -2093,6 +2127,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "brandon.rao.68@example.com",
                             FullName = "Brandon Rao",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "68 Learning Grove, Singapore",
                             Nric = "S0000068Z",
                             PhoneNumber = "+6590000068",
@@ -2108,6 +2143,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "celeste.sim.69@example.com",
                             FullName = "Celeste Sim",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "69 Learning Grove, Singapore",
                             Nric = "S0000069H",
                             PhoneNumber = "+6590000069",
@@ -2123,6 +2159,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "damien.tan.70@example.com",
                             FullName = "Damien Tan",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "70 Learning Grove, Singapore",
                             Nric = "S0000070A",
                             PhoneNumber = "+6590000070",
@@ -2138,6 +2175,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "evelyn.uddin.71@example.com",
                             FullName = "Evelyn Uddin",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "71 Learning Grove, Singapore",
                             Nric = "S0000071Z",
                             PhoneNumber = "+6590000071",
@@ -2153,6 +2191,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "faris.vasquez.72@example.com",
                             FullName = "Faris Vasquez",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "72 Learning Grove, Singapore",
                             Nric = "S0000072H",
                             PhoneNumber = "+6590000072",
@@ -2168,6 +2207,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "giselle.wong.73@example.com",
                             FullName = "Giselle Wong",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "73 Learning Grove, Singapore",
                             Nric = "S0000073F",
                             PhoneNumber = "+6590000073",
@@ -2183,6 +2223,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "haziq.xu.74@example.com",
                             FullName = "Haziq Xu",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "74 Learning Grove, Singapore",
                             Nric = "S0000074D",
                             PhoneNumber = "+6590000074",
@@ -2198,6 +2239,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "irene.yeo.75@example.com",
                             FullName = "Irene Yeo",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "75 Learning Grove, Singapore",
                             Nric = "S0000075B",
                             PhoneNumber = "+6590000075",
@@ -2213,6 +2255,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "jonas.zainal.76@example.com",
                             FullName = "Jonas Zainal",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "76 Learning Grove, Singapore",
                             Nric = "S0000076J",
                             PhoneNumber = "+6590000076",
@@ -2228,6 +2271,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "kavya.ang.77@example.com",
                             FullName = "Kavya Ang",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "77 Learning Grove, Singapore",
                             Nric = "S0000077I",
                             PhoneNumber = "+6590000077",
@@ -2243,6 +2287,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "lydia.bala.78@example.com",
                             FullName = "Lydia Bala",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "78 Learning Grove, Singapore",
                             Nric = "S0000078G",
                             PhoneNumber = "+6590000078",
@@ -2258,6 +2303,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "malcolm.chew.79@example.com",
                             FullName = "Malcolm Chew",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "79 Learning Grove, Singapore",
                             Nric = "S0000079E",
                             PhoneNumber = "+6590000079",
@@ -2273,6 +2319,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "nadia.das.80@example.com",
                             FullName = "Nadia Das",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "80 Learning Grove, Singapore",
                             Nric = "S0000080I",
                             PhoneNumber = "+6590000080",
@@ -2288,6 +2335,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "alina.foo.81@example.com",
                             FullName = "Alina Foo",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "81 Learning Grove, Singapore",
                             Nric = "S0000081G",
                             PhoneNumber = "+6590000081",
@@ -2303,6 +2351,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "benjamin.gan.82@example.com",
                             FullName = "Benjamin Gan",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "82 Learning Grove, Singapore",
                             Nric = "S0000082E",
                             PhoneNumber = "+6590000082",
@@ -2318,6 +2367,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "clara.ho.83@example.com",
                             FullName = "Clara Ho",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "83 Learning Grove, Singapore",
                             Nric = "S0000083C",
                             PhoneNumber = "+6590000083",
@@ -2333,6 +2383,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "darius.ismail.84@example.com",
                             FullName = "Darius Ismail",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "84 Learning Grove, Singapore",
                             Nric = "S0000084A",
                             PhoneNumber = "+6590000084",
@@ -2348,6 +2399,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "elena.jeyaratnam.85@example.com",
                             FullName = "Elena Jeyaratnam",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "85 Learning Grove, Singapore",
                             Nric = "S0000085Z",
                             PhoneNumber = "+6590000085",
@@ -2363,6 +2415,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "farhan.kwek.86@example.com",
                             FullName = "Farhan Kwek",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "86 Learning Grove, Singapore",
                             Nric = "S0000086H",
                             PhoneNumber = "+6590000086",
@@ -2378,6 +2431,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "grace.lim.87@example.com",
                             FullName = "Grace Lim",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "87 Learning Grove, Singapore",
                             Nric = "S0000087F",
                             PhoneNumber = "+6590000087",
@@ -2393,6 +2447,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "haruto.mohamed.88@example.com",
                             FullName = "Haruto Mohamed",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "88 Learning Grove, Singapore",
                             Nric = "S0000088D",
                             PhoneNumber = "+6590000088",
@@ -2408,6 +2463,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "isabelle.ng.89@example.com",
                             FullName = "Isabelle Ng",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "89 Learning Grove, Singapore",
                             Nric = "S0000089B",
                             PhoneNumber = "+6590000089",
@@ -2423,6 +2479,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "jasper.ong.90@example.com",
                             FullName = "Jasper Ong",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "90 Learning Grove, Singapore",
                             Nric = "S0000090F",
                             PhoneNumber = "+6590000090",
@@ -2438,6 +2495,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "keira.pillai.91@example.com",
                             FullName = "Keira Pillai",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "91 Learning Grove, Singapore",
                             Nric = "S0000091D",
                             PhoneNumber = "+6590000091",
@@ -2453,6 +2511,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "leon.quek.92@example.com",
                             FullName = "Leon Quek",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "92 Learning Grove, Singapore",
                             Nric = "S0000092B",
                             PhoneNumber = "+6590000092",
@@ -2468,6 +2527,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "mei.lin.rao.93@example.com",
                             FullName = "Mei Lin Rao",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "93 Learning Grove, Singapore",
                             Nric = "S0000093J",
                             PhoneNumber = "+6590000093",
@@ -2483,6 +2543,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "nathan.sim.94@example.com",
                             FullName = "Nathan Sim",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "94 Learning Grove, Singapore",
                             Nric = "S0000094I",
                             PhoneNumber = "+6590000094",
@@ -2498,6 +2559,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "olivia.tan.95@example.com",
                             FullName = "Olivia Tan",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "95 Learning Grove, Singapore",
                             Nric = "S0000095G",
                             PhoneNumber = "+6590000095",
@@ -2513,6 +2575,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "pranav.uddin.96@example.com",
                             FullName = "Pranav Uddin",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "96 Learning Grove, Singapore",
                             Nric = "S0000096E",
                             PhoneNumber = "+6590000096",
@@ -2528,6 +2591,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "qistina.vasquez.97@example.com",
                             FullName = "Qistina Vasquez",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "97 Learning Grove, Singapore",
                             Nric = "S0000097C",
                             PhoneNumber = "+6590000097",
@@ -2543,6 +2607,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "rafael.wong.98@example.com",
                             FullName = "Rafael Wong",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "98 Learning Grove, Singapore",
                             Nric = "S0000098A",
                             PhoneNumber = "+6590000098",
@@ -2558,6 +2623,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "selina.xu.99@example.com",
                             FullName = "Selina Xu",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "99 Learning Grove, Singapore",
                             Nric = "S0000099Z",
                             PhoneNumber = "+6590000099",
@@ -2573,6 +2639,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "terence.yeo.100@example.com",
                             FullName = "Terence Yeo",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "100 Learning Grove, Singapore",
                             Nric = "S0000100G",
                             PhoneNumber = "+6590000100",
@@ -2588,6 +2655,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "umairah.zainal.101@example.com",
                             FullName = "Umairah Zainal",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "101 Community Crescent, Singapore",
                             Nric = "S0000101E",
                             PhoneNumber = "+6590000101",
@@ -2603,6 +2671,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "victor.ang.102@example.com",
                             FullName = "Victor Ang",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "102 Community Crescent, Singapore",
                             Nric = "S0000102C",
                             PhoneNumber = "+6590000102",
@@ -2618,6 +2687,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "wen.jie.bala.103@example.com",
                             FullName = "Wen Jie Bala",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "103 Community Crescent, Singapore",
                             Nric = "S0000103A",
                             PhoneNumber = "+6590000103",
@@ -2633,6 +2703,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "xavier.chew.104@example.com",
                             FullName = "Xavier Chew",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "104 Community Crescent, Singapore",
                             Nric = "S0000104Z",
                             PhoneNumber = "+6590000104",
@@ -2648,6 +2719,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "yasmin.das.105@example.com",
                             FullName = "Yasmin Das",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "105 Community Crescent, Singapore",
                             Nric = "S0000105H",
                             PhoneNumber = "+6590000105",
@@ -2663,6 +2735,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "zachary.eng.106@example.com",
                             FullName = "Zachary Eng",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "106 Community Crescent, Singapore",
                             Nric = "S0000106F",
                             PhoneNumber = "+6590000106",
@@ -2678,6 +2751,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "adeline.foo.107@example.com",
                             FullName = "Adeline Foo",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "107 Community Crescent, Singapore",
                             Nric = "S0000107D",
                             PhoneNumber = "+6590000107",
@@ -2693,6 +2767,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "brandon.gan.108@example.com",
                             FullName = "Brandon Gan",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "108 Community Crescent, Singapore",
                             Nric = "S0000108B",
                             PhoneNumber = "+6590000108",
@@ -2708,6 +2783,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "celeste.ho.109@example.com",
                             FullName = "Celeste Ho",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "109 Community Crescent, Singapore",
                             Nric = "S0000109J",
                             PhoneNumber = "+6590000109",
@@ -2723,6 +2799,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "damien.ismail.110@example.com",
                             FullName = "Damien Ismail",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "110 Community Crescent, Singapore",
                             Nric = "S0000110D",
                             PhoneNumber = "+6590000110",
@@ -2738,6 +2815,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "evelyn.jeyaratnam.111@example.com",
                             FullName = "Evelyn Jeyaratnam",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "111 Community Crescent, Singapore",
                             Nric = "S0000111B",
                             PhoneNumber = "+6590000111",
@@ -2753,6 +2831,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "faris.kwek.112@example.com",
                             FullName = "Faris Kwek",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "112 Community Crescent, Singapore",
                             Nric = "S0000112J",
                             PhoneNumber = "+6590000112",
@@ -2768,6 +2847,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "giselle.lim.113@example.com",
                             FullName = "Giselle Lim",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "113 Community Crescent, Singapore",
                             Nric = "S0000113I",
                             PhoneNumber = "+6590000113",
@@ -2783,6 +2863,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "haziq.mohamed.114@example.com",
                             FullName = "Haziq Mohamed",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "114 Community Crescent, Singapore",
                             Nric = "S0000114G",
                             PhoneNumber = "+6590000114",
@@ -2798,6 +2879,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "irene.ng.115@example.com",
                             FullName = "Irene Ng",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "115 Community Crescent, Singapore",
                             Nric = "S0000115E",
                             PhoneNumber = "+6590000115",
@@ -2813,6 +2895,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "jonas.ong.116@example.com",
                             FullName = "Jonas Ong",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "116 Community Crescent, Singapore",
                             Nric = "S0000116C",
                             PhoneNumber = "+6590000116",
@@ -2828,6 +2911,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "kavya.pillai.117@example.com",
                             FullName = "Kavya Pillai",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "117 Community Crescent, Singapore",
                             Nric = "S0000117A",
                             PhoneNumber = "+6590000117",
@@ -2843,6 +2927,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "lydia.quek.118@example.com",
                             FullName = "Lydia Quek",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "118 Community Crescent, Singapore",
                             Nric = "S0000118Z",
                             PhoneNumber = "+6590000118",
@@ -2858,6 +2943,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "malcolm.rao.119@example.com",
                             FullName = "Malcolm Rao",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "119 Community Crescent, Singapore",
                             Nric = "S0000119H",
                             PhoneNumber = "+6590000119",
@@ -2873,6 +2959,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "nadia.sim.120@example.com",
                             FullName = "Nadia Sim",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "120 Community Crescent, Singapore",
                             Nric = "S0000120A",
                             PhoneNumber = "+6590000120",
@@ -2888,6 +2975,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "alina.uddin.121@example.com",
                             FullName = "Alina Uddin",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "121 Community Crescent, Singapore",
                             Nric = "S0000121Z",
                             PhoneNumber = "+6590000121",
@@ -2903,6 +2991,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "benjamin.vasquez.122@example.com",
                             FullName = "Benjamin Vasquez",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "122 Community Crescent, Singapore",
                             Nric = "S0000122H",
                             PhoneNumber = "+6590000122",
@@ -2918,6 +3007,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "clara.wong.123@example.com",
                             FullName = "Clara Wong",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "123 Community Crescent, Singapore",
                             Nric = "S0000123F",
                             PhoneNumber = "+6590000123",
@@ -2933,6 +3023,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "darius.xu.124@example.com",
                             FullName = "Darius Xu",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "124 Community Crescent, Singapore",
                             Nric = "S0000124D",
                             PhoneNumber = "+6590000124",
@@ -2948,6 +3039,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "elena.yeo.125@example.com",
                             FullName = "Elena Yeo",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "125 Community Crescent, Singapore",
                             Nric = "S0000125B",
                             PhoneNumber = "+6590000125",
@@ -2963,6 +3055,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "farhan.zainal.126@example.com",
                             FullName = "Farhan Zainal",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "126 Community Crescent, Singapore",
                             Nric = "S0000126J",
                             PhoneNumber = "+6590000126",
@@ -2978,6 +3071,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "grace.ang.127@example.com",
                             FullName = "Grace Ang",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "127 Community Crescent, Singapore",
                             Nric = "S0000127I",
                             PhoneNumber = "+6590000127",
@@ -2993,6 +3087,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "haruto.bala.128@example.com",
                             FullName = "Haruto Bala",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "128 Community Crescent, Singapore",
                             Nric = "S0000128G",
                             PhoneNumber = "+6590000128",
@@ -3008,6 +3103,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "isabelle.chew.129@example.com",
                             FullName = "Isabelle Chew",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "129 Community Crescent, Singapore",
                             Nric = "S0000129E",
                             PhoneNumber = "+6590000129",
@@ -3023,157 +3119,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             Email = "jasper.das.130@example.com",
                             FullName = "Jasper Das",
                             IsDeleted = false,
+                            IsSingaporean = false,
                             MailingAddress = "130 Community Crescent, Singapore",
                             Nric = "S0000130I",
                             PhoneNumber = "+6590000130",
                             ResidentialAddress = "130 Community Crescent, Singapore",
                             SchoolingStatus = "Not Enrolled"
-                        });
-                });
-
-            modelBuilder.Entity("Models.Country", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasMaxLength(2)
-                        .HasColumnType("nvarchar(2)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Code")
-                        .IsUnique()
-                        .HasFilter("\"IsDeleted\" = 0 AND \"Code\" IS NOT NULL");
-
-                    b.HasIndex("IsActive");
-
-                    b.HasIndex("Name")
-                        .IsUnique()
-                        .HasFilter("\"IsDeleted\" = 0 AND \"Name\" IS NOT NULL");
-
-                    b.ToTable("Country");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Code = "SG",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsActive = true,
-                            IsDeleted = false,
-                            Name = "Singapore"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Code = "MY",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsActive = true,
-                            IsDeleted = false,
-                            Name = "Malaysia"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Code = "ID",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsActive = true,
-                            IsDeleted = false,
-                            Name = "Indonesia"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Code = "VN",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsActive = true,
-                            IsDeleted = false,
-                            Name = "Vietnam"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Code = "TH",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsActive = true,
-                            IsDeleted = false,
-                            Name = "Thailand"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Code = "PH",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsActive = true,
-                            IsDeleted = false,
-                            Name = "Philippines"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Code = "CN",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsActive = true,
-                            IsDeleted = false,
-                            Name = "China"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Code = "IN",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsActive = true,
-                            IsDeleted = false,
-                            Name = "India"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Code = "AU",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsActive = true,
-                            IsDeleted = false,
-                            Name = "Australia"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Code = "GB",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsActive = true,
-                            IsDeleted = false,
-                            Name = "United Kingdom"
                         });
                 });
 
@@ -3184,18 +3135,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("AllowFullPayment")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("AllowInstallment12Months")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("AllowInstallment3Months")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("AllowInstallment6Months")
-                        .HasColumnType("bit");
 
                     b.Property<string>("CourseCode")
                         .IsRequired()
@@ -3299,10 +3238,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-A1B2C3D",
                             CourseFeeAmount = 100m,
                             CourseName = "Quantitative Problem Solving",
@@ -3322,10 +3257,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-B2C3D4E",
                             CourseFeeAmount = 115m,
                             CourseName = "Software Foundations with C#",
@@ -3345,10 +3276,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-C3D4E5F",
                             CourseFeeAmount = 130m,
                             CourseName = "Professional Communication Lab",
@@ -3368,10 +3295,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 4,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-D4E5F6G",
                             CourseFeeAmount = 145m,
                             CourseName = "Sustainability Science Workshop",
@@ -3391,10 +3314,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 5,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-E5F6G7H",
                             CourseFeeAmount = 160m,
                             CourseName = "Digital Media Production",
@@ -3414,10 +3333,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 6,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-F6G7H8J",
                             CourseFeeAmount = 175m,
                             CourseName = "Service Operations Practicum",
@@ -3437,10 +3352,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 7,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-G7H8J9K",
                             CourseFeeAmount = 190m,
                             CourseName = "Electrical Systems Fundamentals",
@@ -3460,10 +3371,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 8,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-H8J9K0L",
                             CourseFeeAmount = 205m,
                             CourseName = "Creative Writing Studio",
@@ -3483,10 +3390,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 9,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-J9K0L1M",
                             CourseFeeAmount = 220m,
                             CourseName = "Data Analytics Essentials",
@@ -3506,10 +3409,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 10,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-K0L1M2N",
                             CourseFeeAmount = 235m,
                             CourseName = "Office Productivity for Business",
@@ -3529,10 +3428,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 11,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0101XA",
                             CourseFeeAmount = 130m,
                             CourseName = "Academic Writing - School 1 Cohort 1",
@@ -3552,10 +3447,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 12,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0102XB",
                             CourseFeeAmount = 145m,
                             CourseName = "Business Numeracy - School 1 Cohort 2",
@@ -3575,10 +3466,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 13,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0103XC",
                             CourseFeeAmount = 160m,
                             CourseName = "Digital Literacy - School 1 Cohort 3",
@@ -3598,10 +3485,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 14,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0104XD",
                             CourseFeeAmount = 175m,
                             CourseName = "Career Readiness - School 1 Cohort 4",
@@ -3621,10 +3504,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 15,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0105XE",
                             CourseFeeAmount = 190m,
                             CourseName = "Applied Science - School 1 Cohort 5",
@@ -3644,10 +3523,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 16,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0106XF",
                             CourseFeeAmount = 205m,
                             CourseName = "Financial Literacy - School 1 Cohort 6",
@@ -3667,10 +3542,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 17,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0107XG",
                             CourseFeeAmount = 220m,
                             CourseName = "Project Collaboration - School 1 Cohort 7",
@@ -3690,10 +3561,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 18,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0108XH",
                             CourseFeeAmount = 235m,
                             CourseName = "Data Skills - School 1 Cohort 8",
@@ -3713,10 +3580,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 19,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0109XI",
                             CourseFeeAmount = 250m,
                             CourseName = "Workplace Communication - School 1 Cohort 9",
@@ -3736,10 +3599,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 20,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0201XA",
                             CourseFeeAmount = 140m,
                             CourseName = "Academic Writing - School 2 Cohort 1",
@@ -3759,10 +3618,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 21,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0202XB",
                             CourseFeeAmount = 155m,
                             CourseName = "Business Numeracy - School 2 Cohort 2",
@@ -3782,10 +3637,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 22,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0203XC",
                             CourseFeeAmount = 170m,
                             CourseName = "Digital Literacy - School 2 Cohort 3",
@@ -3805,10 +3656,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 23,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0204XD",
                             CourseFeeAmount = 185m,
                             CourseName = "Career Readiness - School 2 Cohort 4",
@@ -3828,10 +3675,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 24,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0205XE",
                             CourseFeeAmount = 200m,
                             CourseName = "Applied Science - School 2 Cohort 5",
@@ -3851,10 +3694,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 25,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0206XF",
                             CourseFeeAmount = 215m,
                             CourseName = "Financial Literacy - School 2 Cohort 6",
@@ -3874,10 +3713,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 26,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0207XG",
                             CourseFeeAmount = 230m,
                             CourseName = "Project Collaboration - School 2 Cohort 7",
@@ -3897,10 +3732,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 27,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0208XH",
                             CourseFeeAmount = 245m,
                             CourseName = "Data Skills - School 2 Cohort 8",
@@ -3920,10 +3751,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 28,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0209XI",
                             CourseFeeAmount = 260m,
                             CourseName = "Workplace Communication - School 2 Cohort 9",
@@ -3943,10 +3770,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 29,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0301XA",
                             CourseFeeAmount = 150m,
                             CourseName = "Academic Writing - School 3 Cohort 1",
@@ -3966,10 +3789,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 30,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0302XB",
                             CourseFeeAmount = 165m,
                             CourseName = "Business Numeracy - School 3 Cohort 2",
@@ -3989,10 +3808,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 31,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0303XC",
                             CourseFeeAmount = 180m,
                             CourseName = "Digital Literacy - School 3 Cohort 3",
@@ -4012,10 +3827,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 32,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0304XD",
                             CourseFeeAmount = 195m,
                             CourseName = "Career Readiness - School 3 Cohort 4",
@@ -4035,10 +3846,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 33,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0305XE",
                             CourseFeeAmount = 210m,
                             CourseName = "Applied Science - School 3 Cohort 5",
@@ -4058,10 +3865,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 34,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0306XF",
                             CourseFeeAmount = 225m,
                             CourseName = "Financial Literacy - School 3 Cohort 6",
@@ -4081,10 +3884,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 35,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0307XG",
                             CourseFeeAmount = 240m,
                             CourseName = "Project Collaboration - School 3 Cohort 7",
@@ -4104,10 +3903,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 36,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0308XH",
                             CourseFeeAmount = 255m,
                             CourseName = "Data Skills - School 3 Cohort 8",
@@ -4127,10 +3922,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 37,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0309XI",
                             CourseFeeAmount = 270m,
                             CourseName = "Workplace Communication - School 3 Cohort 9",
@@ -4150,10 +3941,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 38,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0401XA",
                             CourseFeeAmount = 160m,
                             CourseName = "Academic Writing - School 4 Cohort 1",
@@ -4173,10 +3960,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 39,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0402XB",
                             CourseFeeAmount = 175m,
                             CourseName = "Business Numeracy - School 4 Cohort 2",
@@ -4196,10 +3979,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 40,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0403XC",
                             CourseFeeAmount = 190m,
                             CourseName = "Digital Literacy - School 4 Cohort 3",
@@ -4219,10 +3998,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 41,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0404XD",
                             CourseFeeAmount = 205m,
                             CourseName = "Career Readiness - School 4 Cohort 4",
@@ -4242,10 +4017,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 42,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0405XE",
                             CourseFeeAmount = 220m,
                             CourseName = "Applied Science - School 4 Cohort 5",
@@ -4265,10 +4036,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 43,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0406XF",
                             CourseFeeAmount = 235m,
                             CourseName = "Financial Literacy - School 4 Cohort 6",
@@ -4288,10 +4055,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 44,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0407XG",
                             CourseFeeAmount = 250m,
                             CourseName = "Project Collaboration - School 4 Cohort 7",
@@ -4311,10 +4074,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 45,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0408XH",
                             CourseFeeAmount = 265m,
                             CourseName = "Data Skills - School 4 Cohort 8",
@@ -4334,10 +4093,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 46,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0409XI",
                             CourseFeeAmount = 280m,
                             CourseName = "Workplace Communication - School 4 Cohort 9",
@@ -4357,10 +4112,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 47,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0501XA",
                             CourseFeeAmount = 170m,
                             CourseName = "Academic Writing - School 5 Cohort 1",
@@ -4380,10 +4131,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 48,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0502XB",
                             CourseFeeAmount = 185m,
                             CourseName = "Business Numeracy - School 5 Cohort 2",
@@ -4403,10 +4150,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 49,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0503XC",
                             CourseFeeAmount = 200m,
                             CourseName = "Digital Literacy - School 5 Cohort 3",
@@ -4426,10 +4169,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 50,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0504XD",
                             CourseFeeAmount = 215m,
                             CourseName = "Career Readiness - School 5 Cohort 4",
@@ -4449,10 +4188,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 51,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0505XE",
                             CourseFeeAmount = 230m,
                             CourseName = "Applied Science - School 5 Cohort 5",
@@ -4472,10 +4207,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 52,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0506XF",
                             CourseFeeAmount = 245m,
                             CourseName = "Financial Literacy - School 5 Cohort 6",
@@ -4495,10 +4226,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 53,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0507XG",
                             CourseFeeAmount = 260m,
                             CourseName = "Project Collaboration - School 5 Cohort 7",
@@ -4518,10 +4245,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 54,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0508XH",
                             CourseFeeAmount = 275m,
                             CourseName = "Data Skills - School 5 Cohort 8",
@@ -4541,10 +4264,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 55,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0509XI",
                             CourseFeeAmount = 290m,
                             CourseName = "Workplace Communication - School 5 Cohort 9",
@@ -4564,10 +4283,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 56,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0601XA",
                             CourseFeeAmount = 180m,
                             CourseName = "Academic Writing - School 6 Cohort 1",
@@ -4587,10 +4302,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 57,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0602XB",
                             CourseFeeAmount = 195m,
                             CourseName = "Business Numeracy - School 6 Cohort 2",
@@ -4610,10 +4321,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 58,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0603XC",
                             CourseFeeAmount = 210m,
                             CourseName = "Digital Literacy - School 6 Cohort 3",
@@ -4633,10 +4340,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 59,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0604XD",
                             CourseFeeAmount = 225m,
                             CourseName = "Career Readiness - School 6 Cohort 4",
@@ -4656,10 +4359,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 60,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0605XE",
                             CourseFeeAmount = 240m,
                             CourseName = "Applied Science - School 6 Cohort 5",
@@ -4679,10 +4378,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 61,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0606XF",
                             CourseFeeAmount = 255m,
                             CourseName = "Financial Literacy - School 6 Cohort 6",
@@ -4702,10 +4397,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 62,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0607XG",
                             CourseFeeAmount = 270m,
                             CourseName = "Project Collaboration - School 6 Cohort 7",
@@ -4725,10 +4416,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 63,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0608XH",
                             CourseFeeAmount = 285m,
                             CourseName = "Data Skills - School 6 Cohort 8",
@@ -4748,10 +4435,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 64,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0609XI",
                             CourseFeeAmount = 300m,
                             CourseName = "Workplace Communication - School 6 Cohort 9",
@@ -4771,10 +4454,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 65,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0701XA",
                             CourseFeeAmount = 190m,
                             CourseName = "Academic Writing - School 7 Cohort 1",
@@ -4794,10 +4473,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 66,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0702XB",
                             CourseFeeAmount = 205m,
                             CourseName = "Business Numeracy - School 7 Cohort 2",
@@ -4817,10 +4492,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 67,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0703XC",
                             CourseFeeAmount = 220m,
                             CourseName = "Digital Literacy - School 7 Cohort 3",
@@ -4840,10 +4511,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 68,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0704XD",
                             CourseFeeAmount = 235m,
                             CourseName = "Career Readiness - School 7 Cohort 4",
@@ -4863,10 +4530,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 69,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0705XE",
                             CourseFeeAmount = 250m,
                             CourseName = "Applied Science - School 7 Cohort 5",
@@ -4886,10 +4549,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 70,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0706XF",
                             CourseFeeAmount = 265m,
                             CourseName = "Financial Literacy - School 7 Cohort 6",
@@ -4909,10 +4568,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 71,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0707XG",
                             CourseFeeAmount = 280m,
                             CourseName = "Project Collaboration - School 7 Cohort 7",
@@ -4932,10 +4587,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 72,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0708XH",
                             CourseFeeAmount = 295m,
                             CourseName = "Data Skills - School 7 Cohort 8",
@@ -4955,10 +4606,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 73,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0709XI",
                             CourseFeeAmount = 310m,
                             CourseName = "Workplace Communication - School 7 Cohort 9",
@@ -4978,10 +4625,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 74,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0801XA",
                             CourseFeeAmount = 200m,
                             CourseName = "Academic Writing - School 8 Cohort 1",
@@ -5001,10 +4644,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 75,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0802XB",
                             CourseFeeAmount = 215m,
                             CourseName = "Business Numeracy - School 8 Cohort 2",
@@ -5024,10 +4663,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 76,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0803XC",
                             CourseFeeAmount = 230m,
                             CourseName = "Digital Literacy - School 8 Cohort 3",
@@ -5047,10 +4682,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 77,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0804XD",
                             CourseFeeAmount = 245m,
                             CourseName = "Career Readiness - School 8 Cohort 4",
@@ -5070,10 +4701,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 78,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0805XE",
                             CourseFeeAmount = 260m,
                             CourseName = "Applied Science - School 8 Cohort 5",
@@ -5093,10 +4720,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 79,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0806XF",
                             CourseFeeAmount = 275m,
                             CourseName = "Financial Literacy - School 8 Cohort 6",
@@ -5116,10 +4739,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 80,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0807XG",
                             CourseFeeAmount = 290m,
                             CourseName = "Project Collaboration - School 8 Cohort 7",
@@ -5139,10 +4758,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 81,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0808XH",
                             CourseFeeAmount = 305m,
                             CourseName = "Data Skills - School 8 Cohort 8",
@@ -5162,10 +4777,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 82,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0809XI",
                             CourseFeeAmount = 320m,
                             CourseName = "Workplace Communication - School 8 Cohort 9",
@@ -5185,10 +4796,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 83,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0901XA",
                             CourseFeeAmount = 210m,
                             CourseName = "Academic Writing - School 9 Cohort 1",
@@ -5208,10 +4815,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 84,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0902XB",
                             CourseFeeAmount = 225m,
                             CourseName = "Business Numeracy - School 9 Cohort 2",
@@ -5231,10 +4834,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 85,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0903XC",
                             CourseFeeAmount = 240m,
                             CourseName = "Digital Literacy - School 9 Cohort 3",
@@ -5254,10 +4853,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 86,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0904XD",
                             CourseFeeAmount = 255m,
                             CourseName = "Career Readiness - School 9 Cohort 4",
@@ -5277,10 +4872,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 87,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0905XE",
                             CourseFeeAmount = 270m,
                             CourseName = "Applied Science - School 9 Cohort 5",
@@ -5300,10 +4891,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 88,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0906XF",
                             CourseFeeAmount = 285m,
                             CourseName = "Financial Literacy - School 9 Cohort 6",
@@ -5323,10 +4910,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 89,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0907XG",
                             CourseFeeAmount = 300m,
                             CourseName = "Project Collaboration - School 9 Cohort 7",
@@ -5346,10 +4929,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 90,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0908XH",
                             CourseFeeAmount = 315m,
                             CourseName = "Data Skills - School 9 Cohort 8",
@@ -5369,10 +4948,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 91,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S0909XI",
                             CourseFeeAmount = 330m,
                             CourseName = "Workplace Communication - School 9 Cohort 9",
@@ -5392,10 +4967,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 92,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S1001XA",
                             CourseFeeAmount = 220m,
                             CourseName = "Academic Writing - School 10 Cohort 1",
@@ -5415,10 +4986,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 93,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S1002XB",
                             CourseFeeAmount = 235m,
                             CourseName = "Business Numeracy - School 10 Cohort 2",
@@ -5438,10 +5005,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 94,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S1003XC",
                             CourseFeeAmount = 250m,
                             CourseName = "Digital Literacy - School 10 Cohort 3",
@@ -5461,10 +5024,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 95,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S1004XD",
                             CourseFeeAmount = 265m,
                             CourseName = "Career Readiness - School 10 Cohort 4",
@@ -5484,10 +5043,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 96,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S1005XE",
                             CourseFeeAmount = 280m,
                             CourseName = "Applied Science - School 10 Cohort 5",
@@ -5507,10 +5062,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 97,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S1006XF",
                             CourseFeeAmount = 295m,
                             CourseName = "Financial Literacy - School 10 Cohort 6",
@@ -5530,10 +5081,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 98,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S1007XG",
                             CourseFeeAmount = 310m,
                             CourseName = "Project Collaboration - School 10 Cohort 7",
@@ -5553,10 +5100,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 99,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S1008XH",
                             CourseFeeAmount = 325m,
                             CourseName = "Data Skills - School 10 Cohort 8",
@@ -5576,10 +5119,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 100,
-                            AllowFullPayment = true,
-                            AllowInstallment12Months = false,
-                            AllowInstallment3Months = true,
-                            AllowInstallment6Months = true,
                             CourseCode = "CRS-2026-S1009XI",
                             CourseFeeAmount = 340m,
                             CourseName = "Workplace Communication - School 10 Cohort 9",
@@ -9527,6 +9066,10 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<int>("FasSchemeId")
                         .HasColumnType("int");
 
+                    b.Property<string>("FatherNationalitySnapshot")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<decimal>("GrossHouseholdIncomeSnapshot")
                         .HasColumnType("decimal(18,2)");
 
@@ -9536,8 +9079,9 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int>("ParentNationalityId")
-                        .HasColumnType("int");
+                    b.Property<string>("MotherNationalitySnapshot")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<decimal>("PerCapitaIncomeSnapshot")
                         .HasColumnType("decimal(18,2)");
@@ -9562,8 +9106,10 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<int>("StudentAgeSnapshot")
                         .HasColumnType("int");
 
-                    b.Property<int>("StudentNationalityId")
-                        .HasColumnType("int");
+                    b.Property<string>("StudentNationalitySnapshot")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -9592,15 +9138,11 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasIndex("FasSchemeId");
 
-                    b.HasIndex("ParentNationalityId");
-
                     b.HasIndex("RecommendedTierId");
 
                     b.HasIndex("SchoolStudentId");
 
                     b.HasIndex("Status");
-
-                    b.HasIndex("StudentNationalityId");
 
                     b.HasIndex("ValidityEndDate");
 
@@ -9617,17 +9159,18 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DurationInMonthsSnapshot = 6,
                             FasSchemeId = 1,
+                            FatherNationalitySnapshot = "Singapore",
                             GrossHouseholdIncomeSnapshot = 2500m,
                             HouseholdMemberCountSnapshot = 4,
                             IsDeleted = false,
-                            ParentNationalityId = 1,
+                            MotherNationalitySnapshot = "Singapore",
                             PerCapitaIncomeSnapshot = 625m,
                             RecommendationReason = "PCI <= 750",
                             RecommendedTierId = 1,
                             SchoolStudentId = 1,
                             Status = 2,
                             StudentAgeSnapshot = 18,
-                            StudentNationalityId = 1,
+                            StudentNationalitySnapshot = "Singapore",
                             ValidityEndDate = new DateTime(2026, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
@@ -9641,17 +9184,18 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DurationInMonthsSnapshot = 3,
                             FasSchemeId = 2,
+                            FatherNationalitySnapshot = "Malaysia",
                             GrossHouseholdIncomeSnapshot = 3000m,
                             HouseholdMemberCountSnapshot = 4,
                             IsDeleted = false,
-                            ParentNationalityId = 2,
+                            MotherNationalitySnapshot = "Malaysia",
                             PerCapitaIncomeSnapshot = 750m,
                             RecommendationReason = "GHI <= 3500",
                             RecommendedTierId = 2,
                             SchoolStudentId = 2,
                             Status = 2,
                             StudentAgeSnapshot = 17,
-                            StudentNationalityId = 1,
+                            StudentNationalitySnapshot = "Singapore",
                             ValidityEndDate = new DateTime(2026, 9, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
@@ -9665,17 +9209,18 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DurationInMonthsSnapshot = 12,
                             FasSchemeId = 3,
+                            FatherNationalitySnapshot = "Singapore",
                             GrossHouseholdIncomeSnapshot = 2200m,
                             HouseholdMemberCountSnapshot = 5,
                             IsDeleted = false,
-                            ParentNationalityId = 1,
+                            MotherNationalitySnapshot = "Singapore",
                             PerCapitaIncomeSnapshot = 440m,
                             RecommendationReason = "Singapore citizen and PCI <= 690",
                             RecommendedTierId = 3,
                             SchoolStudentId = 3,
                             Status = 2,
                             StudentAgeSnapshot = 19,
-                            StudentNationalityId = 1,
+                            StudentNationalitySnapshot = "Singapore",
                             ValidityEndDate = new DateTime(2027, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
@@ -9685,17 +9230,18 @@ namespace educationaccountmanagement.DAL.Migrations
                             ApplicationNumber = "FASAPP-0004",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasSchemeId = 4,
+                            FatherNationalitySnapshot = "Indonesia",
                             GrossHouseholdIncomeSnapshot = 3600m,
                             HouseholdMemberCountSnapshot = 4,
                             IsDeleted = false,
-                            ParentNationalityId = 3,
+                            MotherNationalitySnapshot = "Indonesia",
                             PerCapitaIncomeSnapshot = 900m,
                             RecommendationReason = "Pending admin review",
                             RecommendedTierId = 4,
                             SchoolStudentId = 4,
                             Status = 1,
                             StudentAgeSnapshot = 20,
-                            StudentNationalityId = 1
+                            StudentNationalitySnapshot = "Singapore"
                         },
                         new
                         {
@@ -9703,10 +9249,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             ApplicationNumber = "FASAPP-0005",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasSchemeId = 5,
+                            FatherNationalitySnapshot = "Vietnam",
                             GrossHouseholdIncomeSnapshot = 7000m,
                             HouseholdMemberCountSnapshot = 4,
                             IsDeleted = false,
-                            ParentNationalityId = 4,
+                            MotherNationalitySnapshot = "Vietnam",
                             PerCapitaIncomeSnapshot = 1750m,
                             RecommendationReason = "No tier matched",
                             RecommendedTierId = 5,
@@ -9714,7 +9261,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             SchoolStudentId = 5,
                             Status = 3,
                             StudentAgeSnapshot = 21,
-                            StudentNationalityId = 1
+                            StudentNationalitySnapshot = "Singapore"
                         },
                         new
                         {
@@ -9722,17 +9269,18 @@ namespace educationaccountmanagement.DAL.Migrations
                             ApplicationNumber = "FASAPP-0006",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasSchemeId = 6,
+                            FatherNationalitySnapshot = "Singapore",
                             GrossHouseholdIncomeSnapshot = 2800m,
                             HouseholdMemberCountSnapshot = 5,
                             IsDeleted = false,
-                            ParentNationalityId = 1,
+                            MotherNationalitySnapshot = "Singapore",
                             PerCapitaIncomeSnapshot = 560m,
                             RecommendationReason = "Student withdrew before review",
                             RecommendedTierId = 6,
                             SchoolStudentId = 6,
                             Status = 4,
                             StudentAgeSnapshot = 18,
-                            StudentNationalityId = 1,
+                            StudentNationalitySnapshot = "Singapore",
                             WithdrawnAt = new DateTime(2026, 6, 3, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
@@ -9745,17 +9293,18 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DurationInMonthsSnapshot = 12,
                             FasSchemeId = 7,
+                            FatherNationalitySnapshot = "Singapore",
                             GrossHouseholdIncomeSnapshot = 4800m,
                             HouseholdMemberCountSnapshot = 4,
                             IsDeleted = false,
-                            ParentNationalityId = 1,
+                            MotherNationalitySnapshot = "Singapore",
                             PerCapitaIncomeSnapshot = 1200m,
                             RecommendationReason = "Special needs support threshold matched",
                             RecommendedTierId = 7,
                             SchoolStudentId = 7,
                             Status = 2,
                             StudentAgeSnapshot = 16,
-                            StudentNationalityId = 1,
+                            StudentNationalitySnapshot = "Singapore",
                             ValidityEndDate = new DateTime(2027, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
@@ -9769,17 +9318,18 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DurationInMonthsSnapshot = 6,
                             FasSchemeId = 8,
+                            FatherNationalitySnapshot = "Thailand",
                             GrossHouseholdIncomeSnapshot = 3200m,
                             HouseholdMemberCountSnapshot = 5,
                             IsDeleted = false,
-                            ParentNationalityId = 5,
+                            MotherNationalitySnapshot = "Thailand",
                             PerCapitaIncomeSnapshot = 640m,
                             RecommendationReason = "PCI <= 850",
                             RecommendedTierId = 8,
                             SchoolStudentId = 8,
                             Status = 2,
                             StudentAgeSnapshot = 22,
-                            StudentNationalityId = 1,
+                            StudentNationalitySnapshot = "Singapore",
                             ValidityEndDate = new DateTime(2025, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ValidityStartDate = new DateTime(2025, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
@@ -9789,17 +9339,18 @@ namespace educationaccountmanagement.DAL.Migrations
                             ApplicationNumber = "FASAPP-0009",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasSchemeId = 9,
+                            FatherNationalitySnapshot = "Philippines",
                             GrossHouseholdIncomeSnapshot = 2600m,
                             HouseholdMemberCountSnapshot = 3,
                             IsDeleted = false,
-                            ParentNationalityId = 6,
+                            MotherNationalitySnapshot = "Philippines",
                             PerCapitaIncomeSnapshot = 866.67m,
                             RecommendationReason = "Emergency aid review required",
                             RecommendedTierId = 9,
                             SchoolStudentId = 9,
                             Status = 1,
                             StudentAgeSnapshot = 17,
-                            StudentNationalityId = 1
+                            StudentNationalitySnapshot = "Singapore"
                         },
                         new
                         {
@@ -9811,17 +9362,18 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DurationInMonthsSnapshot = 12,
                             FasSchemeId = 10,
+                            FatherNationalitySnapshot = "Singapore",
                             GrossHouseholdIncomeSnapshot = 3900m,
                             HouseholdMemberCountSnapshot = 5,
                             IsDeleted = false,
-                            ParentNationalityId = 1,
+                            MotherNationalitySnapshot = "Singapore",
                             PerCapitaIncomeSnapshot = 780m,
                             RecommendationReason = "PCI <= 1000",
                             RecommendedTierId = 10,
                             SchoolStudentId = 10,
                             Status = 2,
                             StudentAgeSnapshot = 18,
-                            StudentNationalityId = 1,
+                            StudentNationalitySnapshot = "Singapore",
                             ValidityEndDate = new DateTime(2027, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         });
@@ -10227,9 +9779,6 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CountryId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -10266,9 +9815,11 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<decimal?>("ValueNumberTo")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("Id");
+                    b.Property<string>("ValueText")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
-                    b.HasIndex("CountryId");
+                    b.HasKey("Id");
 
                     b.HasIndex("Field");
 
@@ -10278,7 +9829,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             t.HasCheckConstraint("CK_FasSchemeCondition_DisplayOrder_NonNegative", "[DisplayOrder] >= 0");
 
-                            t.HasCheckConstraint("CK_FasSchemeCondition_Value_By_Field", "([Field] IN (1, 4, 5) AND [ValueNumber] IS NOT NULL AND [CountryId] IS NULL AND (([Operator] = 7 AND [ValueNumberTo] IS NOT NULL AND [ValueNumberTo] >= [ValueNumber]) OR ([Operator] <> 7 AND [ValueNumberTo] IS NULL))) OR ([Field] IN (2, 3) AND [CountryId] IS NOT NULL AND [Operator] IN (1, 2) AND [ValueNumber] IS NULL AND [ValueNumberTo] IS NULL)");
+                            t.HasCheckConstraint("CK_FasSchemeCondition_Value_By_Field", "([Field] IN (1, 5, 6) AND [ValueNumber] IS NOT NULL AND [ValueText] IS NULL AND (([Operator] = 7 AND [ValueNumberTo] IS NOT NULL AND [ValueNumberTo] >= [ValueNumber]) OR ([Operator] <> 7 AND [ValueNumberTo] IS NULL))) OR ([Field] IN (2, 3, 4) AND [ValueText] IS NOT NULL AND [Operator] IN (1, 2) AND [ValueNumber] IS NULL AND [ValueNumberTo] IS NULL)");
                         });
 
                     b.HasData(
@@ -10287,7 +9838,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Id = 1,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DisplayOrder = 1,
-                            Field = 5,
+                            Field = 6,
                             GroupId = 1,
                             IsDeleted = false,
                             Operator = 4,
@@ -10298,7 +9849,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Id = 2,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DisplayOrder = 1,
-                            Field = 4,
+                            Field = 5,
                             GroupId = 2,
                             IsDeleted = false,
                             Operator = 4,
@@ -10307,13 +9858,13 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            CountryId = 1,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DisplayOrder = 1,
                             Field = 2,
                             GroupId = 3,
                             IsDeleted = false,
-                            Operator = 1
+                            Operator = 1,
+                            ValueText = "Singapore"
                         },
                         new
                         {
@@ -10330,20 +9881,20 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 5,
-                            CountryId = 1,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DisplayOrder = 1,
                             Field = 3,
                             GroupId = 5,
                             IsDeleted = false,
-                            Operator = 1
+                            Operator = 1,
+                            ValueText = "Singapore"
                         },
                         new
                         {
                             Id = 6,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DisplayOrder = 1,
-                            Field = 5,
+                            Field = 6,
                             GroupId = 6,
                             IsDeleted = false,
                             Operator = 4,
@@ -10354,7 +9905,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Id = 7,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DisplayOrder = 1,
-                            Field = 4,
+                            Field = 5,
                             GroupId = 7,
                             IsDeleted = false,
                             Operator = 4,
@@ -10363,20 +9914,20 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 8,
-                            CountryId = 1,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DisplayOrder = 1,
                             Field = 2,
                             GroupId = 8,
                             IsDeleted = false,
-                            Operator = 1
+                            Operator = 1,
+                            ValueText = "Singapore"
                         },
                         new
                         {
                             Id = 9,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DisplayOrder = 1,
-                            Field = 5,
+                            Field = 6,
                             GroupId = 9,
                             IsDeleted = false,
                             Operator = 4,
@@ -10437,7 +9988,7 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasIndex("FasSchemeId")
                         .IsUnique()
-                        .HasFilter("\"IsDeleted\" = 0 AND \"FasSchemeId\" IS NOT NULL");
+                        .HasFilter("\"IsDeleted\" = 0 AND \"FasSchemeId\" IS NOT NULL AND \"ParentGroupId\" IS NULL");
 
                     b.HasIndex("ParentGroupId");
 
@@ -17061,12 +16612,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Models.Country", "ParentNationality")
-                        .WithMany("ParentNationalityApplications")
-                        .HasForeignKey("ParentNationalityId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.HasOne("Models.FasSchemeTier", "RecommendedTier")
                         .WithMany("RecommendedApplications")
                         .HasForeignKey("RecommendedTierId")
@@ -17078,25 +16623,15 @@ namespace educationaccountmanagement.DAL.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Models.Country", "StudentNationality")
-                        .WithMany("StudentNationalityApplications")
-                        .HasForeignKey("StudentNationalityId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.Navigation("ApprovedByUser");
 
                     b.Navigation("ApprovedTier");
 
                     b.Navigation("FasScheme");
 
-                    b.Navigation("ParentNationality");
-
                     b.Navigation("RecommendedTier");
 
                     b.Navigation("SchoolStudent");
-
-                    b.Navigation("StudentNationality");
                 });
 
             modelBuilder.Entity("Models.FasApplicationDocument", b =>
@@ -17130,18 +16665,11 @@ namespace educationaccountmanagement.DAL.Migrations
 
             modelBuilder.Entity("Models.FasSchemeCondition", b =>
                 {
-                    b.HasOne("Models.Country", "Country")
-                        .WithMany("FasSchemeConditions")
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     b.HasOne("Models.FasSchemeConditionGroup", "Group")
                         .WithMany("Conditions")
                         .HasForeignKey("GroupId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Country");
 
                     b.Navigation("Group");
                 });
@@ -17531,15 +17059,6 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Navigation("EducationAccount");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Models.Country", b =>
-                {
-                    b.Navigation("FasSchemeConditions");
-
-                    b.Navigation("ParentNationalityApplications");
-
-                    b.Navigation("StudentNationalityApplications");
                 });
 
             modelBuilder.Entity("Models.Course", b =>

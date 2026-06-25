@@ -32,15 +32,15 @@ namespace Models
         [NumberPositive]
         public int StudentAgeSnapshot { get; set; }
 
-        // Quốc tịch học sinh tại thời điểm apply.
-        [NotDefaultValue]
-        public int StudentNationalityId { get; set; }
-        public Country StudentNationality { get; set; } = null!;
+        // Quốc tịch học sinh/phụ huynh do student nhập tại thời điểm apply.
+        [MessageMaxLength(100)]
+        public string StudentNationalitySnapshot { get; set; } = string.Empty;
 
-        // Quốc tịch phụ huynh tại thời điểm apply.
-        [NotDefaultValue]
-        public int ParentNationalityId { get; set; }
-        public Country ParentNationality { get; set; } = null!;
+        [MessageMaxLength(100)]
+        public string? FatherNationalitySnapshot { get; set; }
+
+        [MessageMaxLength(100)]
+        public string? MotherNationalitySnapshot { get; set; }
 
         // Tổng thu nhập hộ gia đình hằng tháng tại thời điểm apply.
         [Column(TypeName = "decimal(18,2)"), NumberPositive]
