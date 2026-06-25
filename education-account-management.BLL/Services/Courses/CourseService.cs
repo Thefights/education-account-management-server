@@ -31,6 +31,10 @@ namespace Services.Courses
             unitOfWork.Repository<School>();
         private readonly IGenericRepository<Enrollment> _enrollmentRepository =
             unitOfWork.Repository<Enrollment>();
+        private readonly IGenericRepository<FasScheme> _fasSchemeRepository =
+            unitOfWork.Repository<FasScheme>();
+        private readonly IGenericRepository<FasSchemeCourse> _fasSchemeCourseRepository =
+            unitOfWork.Repository<FasSchemeCourse>();
 
         public override async Task<GetCourseDTO> CreateAsync(
             CreateCourseDTO createDTO,
@@ -65,6 +69,8 @@ namespace Services.Courses
                         cancellationToken: token);
 
                     await _repository.AddAsync(course, token);
+                    await _unitOfWork.SaveChangeAsync(token);
+                    await SyncFasSchemesAsync(course.Id, createDTO.FasSchemeIds, schoolId, token);
                     await _unitOfWork.SaveChangeAsync(token);
                     if (createDTO.SchoolStudentIds.Count > 0)
                     {
@@ -118,6 +124,7 @@ namespace Services.Courses
                         token);
 
                     _repository.Update(course);
+                    await SyncFasSchemesAsync(course.Id, updateDTO.FasSchemeIds, schoolId, token);
                     await _unitOfWork.SaveChangeAsync(token);
                 },
                 cancellationToken);
@@ -202,6 +209,7 @@ namespace Services.Courses
                 async (_, token) =>
                 {
                     var source = await _repository.Query()
+                        .Include(course => course.FasSchemeCourses)
                         .FirstOrDefaultAsync(
                             course => course.Id == id && course.SchoolId == schoolId,
                             token)
@@ -235,12 +243,39 @@ namespace Services.Courses
                         cancellationToken: token);
                     await _repository.AddAsync(duplicate, token);
                     await _unitOfWork.SaveChangeAsync(token);
+                    await SyncFasSchemesAsync(
+                        duplicate.Id,
+                        source.FasSchemeCourses.Select(link => link.FasSchemeId).ToList(),
+                        schoolId,
+                        token);
+                    await _unitOfWork.SaveChangeAsync(token);
 
                     return duplicate.Id;
                 },
                 cancellationToken);
 
             return await GetByIdAsync(duplicateId, cancellationToken);
+        }
+
+        public async Task<GetCourseDTO> AssignFasSchemesAsync(
+            int id,
+            AssignCourseFasSchemesDTO assignDTO,
+            CancellationToken cancellationToken = default)
+        {
+            ArgumentNullException.ThrowIfNull(assignDTO);
+            var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
+
+            await _unitOfWork.ExecuteInTransactionAsync(
+                async (_, token) =>
+                {
+                    var course = await GetTrackedScopedCourseAsync(id, schoolId, token);
+                    ValidateCourseCanManageFas(course);
+                    await SyncFasSchemesAsync(id, assignDTO.FasSchemeIds, schoolId, token);
+                    await _unitOfWork.SaveChangeAsync(token);
+                },
+                cancellationToken);
+
+            return await GetByIdAsync(id, cancellationToken);
         }
 
         public async Task DeleteAsync(
@@ -480,10 +515,95 @@ namespace Services.Courses
                         SchemeName = item.FasScheme.SchemeName,
                         Status = item.FasScheme.Status.ToString(),
                         SubsidyType = item.FasScheme.SubsidyType.ToString(),
-                        IsPerComponent = item.FasScheme.IsPerComponent
+                        IsPerComponent = item.FasScheme.IsPerComponent,
+                        DurationInMonths = item.FasScheme.DurationInMonths,
+                        Tiers = item.FasScheme.Tiers
+                            .OrderBy(tier => tier.DisplayOrder)
+                            .Select(tier => new GetCourseFasSchemeTierDTO
+                            {
+                                Id = tier.Id,
+                                TierName = tier.TierName,
+                                MaxPerCapitaIncome = tier.MaxPerCapitaIncome,
+                                SubsidyValue = tier.SubsidyValue,
+                                CourseFeeSubsidyValue = tier.CourseFeeSubsidyValue,
+                                MiscFeeSubsidyValue = tier.MiscFeeSubsidyValue,
+                                DisplayOrder = tier.DisplayOrder
+                            })
+                            .ToList()
                     })
                     .ToList()
             });
+        }
+
+        private async Task SyncFasSchemesAsync(
+            int courseId,
+            List<int> fasSchemeIds,
+            int schoolId,
+            CancellationToken cancellationToken)
+        {
+            ValidateFasSchemeIds(fasSchemeIds);
+            var ids = fasSchemeIds.Distinct().ToList();
+
+            if (ids.Count > 0)
+            {
+                var existingSchemeIds = await _fasSchemeRepository.Query()
+                    .Where(scheme => ids.Contains(scheme.Id) && scheme.SchoolId == schoolId)
+                    .Select(scheme => scheme.Id)
+                    .ToListAsync(cancellationToken);
+
+                if (existingSchemeIds.Count != ids.Count)
+                {
+                    var foundIds = existingSchemeIds.ToHashSet();
+                    var firstNotFoundId = ids.First(id => !foundIds.Contains(id));
+                    throw new DataNotFoundException(typeof(FasScheme), firstNotFoundId);
+                }
+            }
+
+            var currentLinks = await _fasSchemeCourseRepository.Query(tracking: true)
+                .Where(link => link.CourseId == courseId)
+                .ToListAsync(cancellationToken);
+            if (currentLinks.Count > 0)
+            {
+                _fasSchemeCourseRepository.RemoveRange(currentLinks);
+            }
+
+            if (ids.Count == 0)
+            {
+                return;
+            }
+
+            var nextLinks = ids.Select(fasSchemeId => new FasSchemeCourse
+            {
+                CourseId = courseId,
+                FasSchemeId = fasSchemeId
+            }).ToList();
+            await _fasSchemeCourseRepository.AddRangeAsync(nextLinks, cancellationToken);
+        }
+
+        private static void ValidateFasSchemeIds(List<int> fasSchemeIds)
+        {
+            if (fasSchemeIds.Any(id => id <= 0))
+            {
+                throw new ValidationFailureException(
+                    nameof(AssignCourseFasSchemesDTO.FasSchemeIds),
+                    "FAS scheme IDs must be greater than zero.");
+            }
+
+            if (fasSchemeIds.Distinct().Count() != fasSchemeIds.Count)
+            {
+                throw new ValidationFailureException(
+                    nameof(AssignCourseFasSchemesDTO.FasSchemeIds),
+                    "Duplicate FAS scheme IDs are not allowed.");
+            }
+        }
+
+        private static void ValidateCourseCanManageFas(Course course)
+        {
+            if (course.Status is not CourseStatus.Draft and not CourseStatus.Enrolling)
+            {
+                throw new DataConflictException(
+                    "FAS schemes can only be changed while a course is Draft or Enrolling.");
+            }
         }
 
         private static void ValidateCreateStudentIds(List<int> schoolStudentIds)

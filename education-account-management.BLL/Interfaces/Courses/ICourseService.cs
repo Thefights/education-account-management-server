@@ -22,6 +22,11 @@ namespace Interfaces.Courses
             int id,
             CancellationToken cancellationToken = default);
 
+        Task<GetCourseDTO> AssignFasSchemesAsync(
+            int id,
+            AssignCourseFasSchemesDTO assignDTO,
+            CancellationToken cancellationToken = default);
+
         Task DeleteAsync(
             int id,
             byte[] rowVersion,
