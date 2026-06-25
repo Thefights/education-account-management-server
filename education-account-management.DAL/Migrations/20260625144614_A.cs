@@ -1044,9 +1044,8 @@ namespace educationaccountmanagement.DAL.Migrations
                     ApplicationNumber = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     StudentAgeSnapshot = table.Column<int>(type: "int", nullable: false),
-                    StudentNationalitySnapshot = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    FatherNationalitySnapshot = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    MotherNationalitySnapshot = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    StudentNationalitySnapshot = table.Column<int>(type: "int", nullable: false),
+                    GuardianNationalitySnapshot = table.Column<int>(type: "int", nullable: false),
                     GrossHouseholdIncomeSnapshot = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     HouseholdMemberCountSnapshot = table.Column<int>(type: "int", nullable: false),
                     PerCapitaIncomeSnapshot = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -1994,7 +1993,17 @@ namespace educationaccountmanagement.DAL.Migrations
                     { 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Support for students with special learning needs.", 12, false, true, new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc), "FAS-007", "Special Needs Support", 7, 2, 1, null, null },
                     { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Support for textbooks and materials.", 6, false, false, new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc), "FAS-008", "Learning Materials Grant", 8, 2, 1, null, null },
                     { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Short term emergency support.", 3, false, false, new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc), "FAS-009", "Emergency Financial Aid", 9, 2, 2, null, null },
-                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Support for STEM related courses.", 12, false, false, new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc), "FAS-010", "STEM Programme Grant", 10, 2, 1, null, null }
+                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Support for STEM related courses.", 12, false, false, new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc), "FAS-010", "STEM Programme Grant", 10, 2, 1, null, null },
+                    { 11, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Auto generated scheme 11 for school 9", 12, false, false, new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc), "FAS-011", "School 9 Scheme 11", 9, 2, 1, null, null },
+                    { 12, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Auto generated scheme 12 for school 9", 12, false, false, new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc), "FAS-012", "School 9 Scheme 12", 9, 2, 1, null, null },
+                    { 13, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Auto generated scheme 13 for school 9", 12, false, false, new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc), "FAS-013", "School 9 Scheme 13", 9, 2, 1, null, null },
+                    { 14, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Auto generated scheme 14 for school 9", 12, false, false, new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc), "FAS-014", "School 9 Scheme 14", 9, 2, 1, null, null },
+                    { 15, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Auto generated scheme 15 for school 9", 12, false, false, new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc), "FAS-015", "School 9 Scheme 15", 9, 2, 1, null, null },
+                    { 16, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Auto generated scheme 16 for school 9", 12, false, false, new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc), "FAS-016", "School 9 Scheme 16", 9, 2, 1, null, null },
+                    { 17, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Auto generated scheme 17 for school 9", 12, false, false, new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc), "FAS-017", "School 9 Scheme 17", 9, 2, 1, null, null },
+                    { 18, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Auto generated scheme 18 for school 9", 12, false, false, new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc), "FAS-018", "School 9 Scheme 18", 9, 2, 1, null, null },
+                    { 19, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Auto generated scheme 19 for school 9", 12, false, false, new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc), "FAS-019", "School 9 Scheme 19", 9, 2, 1, null, null },
+                    { 20, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Auto generated scheme 20 for school 9", 12, false, false, new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc), "FAS-020", "School 9 Scheme 20", 9, 2, 1, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -2164,7 +2173,17 @@ namespace educationaccountmanagement.DAL.Migrations
                     { 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 7, 7, false, 1, null, null, null },
                     { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 8, 8, false, 1, null, null, null },
                     { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 9, 9, false, 1, null, null, null },
-                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 10, 10, false, 1, null, null, null }
+                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 10, 10, false, 1, null, null, null },
+                    { 11, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 11, 11, false, 1, null, null, null },
+                    { 12, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 12, 12, false, 1, null, null, null },
+                    { 13, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 13, 13, false, 1, null, null, null },
+                    { 14, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 14, 14, false, 1, null, null, null },
+                    { 15, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 15, 15, false, 1, null, null, null },
+                    { 16, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 16, 16, false, 1, null, null, null },
+                    { 17, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 17, 17, false, 1, null, null, null },
+                    { 18, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 18, 18, false, 1, null, null, null },
+                    { 19, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 19, 19, false, 1, null, null, null },
+                    { 20, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 20, 20, false, 1, null, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -2182,16 +2201,16 @@ namespace educationaccountmanagement.DAL.Migrations
                     { 8, 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 8, false, null, null },
                     { 9, 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 9, false, null, null },
                     { 10, 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 10, false, null, null },
-                    { 11, 11, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, null, null },
-                    { 12, 12, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, null, null },
-                    { 13, 13, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, null, null },
-                    { 14, 14, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, null, null },
-                    { 15, 15, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, null, null },
-                    { 16, 16, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, null, null },
-                    { 17, 17, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, null, null },
-                    { 18, 18, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, null, null },
-                    { 19, 19, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, null, null },
-                    { 20, 20, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, null, null },
+                    { 11, 11, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 11, false, null, null },
+                    { 12, 12, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 12, false, null, null },
+                    { 13, 13, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 13, false, null, null },
+                    { 14, 14, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 14, false, null, null },
+                    { 15, 15, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 15, false, null, null },
+                    { 16, 16, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 16, false, null, null },
+                    { 17, 17, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 17, false, null, null },
+                    { 18, 18, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 18, false, null, null },
+                    { 19, 19, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 19, false, null, null },
+                    { 20, 20, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 20, false, null, null },
                     { 21, 21, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, null, null },
                     { 22, 22, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, null, null },
                     { 23, 23, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, null, null },
@@ -2288,7 +2307,17 @@ namespace educationaccountmanagement.DAL.Migrations
                     { 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, "Recent Payslip", 7, false, "fas/templates/document-7.pdf", null, null },
                     { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, "Income Statement", 8, false, "fas/templates/document-8.pdf", null, null },
                     { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, "Recent Payslip", 9, false, "fas/templates/document-9.pdf", null, null },
-                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, "Income Statement", 10, false, "fas/templates/document-10.pdf", null, null }
+                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, "Income Statement", 10, false, "fas/templates/document-10.pdf", null, null },
+                    { 11, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, "Recent Payslip", 11, false, "fas/templates/document-11.pdf", null, null },
+                    { 12, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, "Income Statement", 12, false, "fas/templates/document-12.pdf", null, null },
+                    { 13, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, "Recent Payslip", 13, false, "fas/templates/document-13.pdf", null, null },
+                    { 14, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, "Income Statement", 14, false, "fas/templates/document-14.pdf", null, null },
+                    { 15, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, "Recent Payslip", 15, false, "fas/templates/document-15.pdf", null, null },
+                    { 16, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, "Income Statement", 16, false, "fas/templates/document-16.pdf", null, null },
+                    { 17, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, "Recent Payslip", 17, false, "fas/templates/document-17.pdf", null, null },
+                    { 18, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, "Income Statement", 18, false, "fas/templates/document-18.pdf", null, null },
+                    { 19, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, "Recent Payslip", 19, false, "fas/templates/document-19.pdf", null, null },
+                    { 20, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, "Income Statement", 20, false, "fas/templates/document-20.pdf", null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -2305,7 +2334,17 @@ namespace educationaccountmanagement.DAL.Migrations
                     { 7, 75m, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 7, false, 1500m, 75m, null, "Tier 1", null, null },
                     { 8, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 8, false, 850m, null, 40m, "Tier 1", null, null },
                     { 9, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 9, false, 1200m, null, 250m, "Tier 1", null, null },
-                    { 10, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 10, false, 1000m, null, 60m, "Tier 1", null, null }
+                    { 10, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 10, false, 1000m, null, 60m, "Tier 1", null, null },
+                    { 11, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 11, false, 10000m, null, 100m, "Tier 1", null, null },
+                    { 12, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 12, false, 10000m, null, 100m, "Tier 1", null, null },
+                    { 13, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 13, false, 10000m, null, 100m, "Tier 1", null, null },
+                    { 14, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 14, false, 10000m, null, 100m, "Tier 1", null, null },
+                    { 15, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 15, false, 10000m, null, 100m, "Tier 1", null, null },
+                    { 16, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 16, false, 10000m, null, 100m, "Tier 1", null, null },
+                    { 17, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 17, false, 10000m, null, 100m, "Tier 1", null, null },
+                    { 18, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 18, false, 10000m, null, 100m, "Tier 1", null, null },
+                    { 19, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 19, false, 10000m, null, 100m, "Tier 1", null, null },
+                    { 20, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 20, false, 10000m, null, 100m, "Tier 1", null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -2655,19 +2694,19 @@ namespace educationaccountmanagement.DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "FasApplication",
-                columns: new[] { "Id", "ApplicationNumber", "ApprovedAt", "ApprovedByUserId", "ApprovedTierId", "CreatedAt", "CreatedBy", "DeletedAt", "DurationInMonthsSnapshot", "FasSchemeId", "FatherNationalitySnapshot", "GrossHouseholdIncomeSnapshot", "HouseholdMemberCountSnapshot", "IsDeleted", "MotherNationalitySnapshot", "PerCapitaIncomeSnapshot", "RecommendationReason", "RecommendedTierId", "RejectionReason", "SchoolStudentId", "Status", "StudentAgeSnapshot", "StudentNationalitySnapshot", "UpdatedAt", "UpdatedBy", "ValidityEndDate", "ValidityStartDate", "WithdrawnAt" },
+                columns: new[] { "Id", "ApplicationNumber", "ApprovedAt", "ApprovedByUserId", "ApprovedTierId", "CreatedAt", "CreatedBy", "DeletedAt", "DurationInMonthsSnapshot", "FasSchemeId", "GrossHouseholdIncomeSnapshot", "GuardianNationalitySnapshot", "HouseholdMemberCountSnapshot", "IsDeleted", "PerCapitaIncomeSnapshot", "RecommendationReason", "RecommendedTierId", "RejectionReason", "SchoolStudentId", "Status", "StudentAgeSnapshot", "StudentNationalitySnapshot", "UpdatedAt", "UpdatedBy", "ValidityEndDate", "ValidityStartDate", "WithdrawnAt" },
                 values: new object[,]
                 {
-                    { 1, "FASAPP-0001", new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), 1, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 6, 1, "Singapore", 2500m, 4, false, "Singapore", 625m, "PCI <= 750", 1, null, 1, 2, 18, "Singapore", null, null, new DateTime(2026, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), null },
-                    { 2, "FASAPP-0002", new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), 1, 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 3, 2, "Malaysia", 3000m, 4, false, "Malaysia", 750m, "GHI <= 3500", 2, null, 2, 2, 17, "Singapore", null, null, new DateTime(2026, 9, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), null },
-                    { 3, "FASAPP-0003", new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), 1, 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 12, 3, "Singapore", 2200m, 5, false, "Singapore", 440m, "Singapore citizen and PCI <= 690", 3, null, 3, 2, 19, "Singapore", null, null, new DateTime(2027, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), null },
-                    { 4, "FASAPP-0004", null, null, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, 4, "Indonesia", 3600m, 4, false, "Indonesia", 900m, "Pending admin review", 4, null, 4, 1, 20, "Singapore", null, null, null, null, null },
-                    { 5, "FASAPP-0005", null, null, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, 5, "Vietnam", 7000m, 4, false, "Vietnam", 1750m, "No tier matched", 5, "Income exceeds supported threshold.", 5, 3, 21, "Singapore", null, null, null, null, null },
-                    { 6, "FASAPP-0006", null, null, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, 6, "Singapore", 2800m, 5, false, "Singapore", 560m, "Student withdrew before review", 6, null, 6, 4, 18, "Singapore", null, null, null, null, new DateTime(2026, 6, 3, 0, 0, 0, 0, DateTimeKind.Utc) },
-                    { 7, "FASAPP-0007", new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), 1, 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 12, 7, "Singapore", 4800m, 4, false, "Singapore", 1200m, "Special needs support threshold matched", 7, null, 7, 2, 16, "Singapore", null, null, new DateTime(2027, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), null },
-                    { 8, "FASAPP-0008", new DateTime(2025, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), 1, 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 6, 8, "Thailand", 3200m, 5, false, "Thailand", 640m, "PCI <= 850", 8, null, 8, 2, 22, "Singapore", null, null, new DateTime(2025, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2025, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), null },
-                    { 9, "FASAPP-0009", null, null, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, 9, "Philippines", 2600m, 3, false, "Philippines", 866.67m, "Emergency aid review required", 9, null, 9, 1, 17, "Singapore", null, null, null, null, null },
-                    { 10, "FASAPP-0010", new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), 1, 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 12, 10, "Singapore", 3900m, 5, false, "Singapore", 780m, "PCI <= 1000", 10, null, 10, 2, 18, "Singapore", null, null, new DateTime(2027, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), null }
+                    { 1, "FASAPP-20260101-A1B2C3D", new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), 1, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 6, 1, 2500m, 1, 4, false, 625m, "PCI <= 750", 1, null, 1, 2, 18, 1, null, null, new DateTime(2026, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), null },
+                    { 2, "FASAPP-20260102-E4F5G6H", new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), 1, 2, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 3, 2, 3000m, 2, 4, false, 750m, "GHI <= 3500", 2, null, 2, 2, 17, 1, null, null, new DateTime(2026, 9, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), null },
+                    { 3, "FASAPP-20260103-I7J8K9L", new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), 1, 3, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 12, 3, 2200m, 1, 5, false, 440m, "Singapore citizen and PCI <= 690", 3, null, 3, 2, 19, 1, null, null, new DateTime(2027, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), null },
+                    { 4, "FASAPP-20260104-M1N2P3Q", null, null, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, 4, 3600m, 2, 4, false, 900m, "Pending admin review", 4, null, 4, 1, 20, 1, null, null, null, null, null },
+                    { 5, "FASAPP-20260105-R4S5T6U", null, null, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, 5, 7000m, 2, 4, false, 1750m, "No tier matched", 5, "Income exceeds supported threshold.", 5, 3, 21, 1, null, null, null, null, null },
+                    { 6, "FASAPP-20260106-V7W8X9Y", null, null, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, 6, 2800m, 1, 5, false, 560m, "Student withdrew before review", 6, null, 6, 4, 18, 1, null, null, null, null, new DateTime(2026, 6, 3, 0, 0, 0, 0, DateTimeKind.Utc) },
+                    { 7, "FASAPP-20260107-Z1A2B3C", new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), 1, 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 12, 7, 4800m, 1, 4, false, 1200m, "Special needs support threshold matched", 7, null, 7, 2, 16, 1, null, null, new DateTime(2027, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), null },
+                    { 8, "FASAPP-20260108-D4E5F6G", new DateTime(2025, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), 1, 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 6, 8, 3200m, 2, 5, false, 640m, "PCI <= 850", 8, null, 8, 2, 22, 1, null, null, new DateTime(2025, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2025, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), null },
+                    { 9, "FASAPP-20260109-H7J8K9L", null, null, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, null, 9, 2600m, 2, 3, false, 866.67m, "Emergency aid review required", 9, null, 9, 1, 17, 1, null, null, null, null, null },
+                    { 10, "FASAPP-20260110-M1N2P3Q", new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), 1, 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 12, 10, 3900m, 1, 5, false, 780m, "PCI <= 1000", 10, null, 10, 2, 18, 1, null, null, new DateTime(2027, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc), null }
                 });
 
             migrationBuilder.InsertData(
@@ -2684,7 +2723,17 @@ namespace educationaccountmanagement.DAL.Migrations
                     { 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 5, 7, false, 4, null, null, 5000m, null, null },
                     { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 2, 8, false, 1, null, null, null, null, "Singapore" },
                     { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 6, 9, false, 4, null, null, 1200m, null, null },
-                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, 10, false, 4, null, null, 25m, null, null }
+                    { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 1, 10, false, 4, null, null, 25m, null, null },
+                    { 11, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 5, 11, false, 4, null, null, 10000m, null, null },
+                    { 12, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 5, 12, false, 4, null, null, 10000m, null, null },
+                    { 13, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 5, 13, false, 4, null, null, 10000m, null, null },
+                    { 14, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 5, 14, false, 4, null, null, 10000m, null, null },
+                    { 15, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 5, 15, false, 4, null, null, 10000m, null, null },
+                    { 16, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 5, 16, false, 4, null, null, 10000m, null, null },
+                    { 17, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 5, 17, false, 4, null, null, 10000m, null, null },
+                    { 18, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 5, 18, false, 4, null, null, 10000m, null, null },
+                    { 19, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 5, 19, false, 4, null, null, 10000m, null, null },
+                    { 20, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, 5, 20, false, 4, null, null, 10000m, null, null }
                 });
 
             migrationBuilder.InsertData(

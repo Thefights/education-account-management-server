@@ -35,6 +35,6 @@ namespace Filters.FasSchemes
         [NumberPositive]
         public decimal? GrossHouseholdIncome { get; set; }
         public int? HouseholdMemberCount { get; set; }
-        public int? ParentNationalityId { get; set; }
+        public Enums.NationalityCategory? GuardianNationality { get; set; }
     }
 }

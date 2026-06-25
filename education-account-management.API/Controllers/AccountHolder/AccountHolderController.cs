@@ -5,9 +5,10 @@ using Interfaces.EducationAccounts;
 using Filters.Courses;
 using Interfaces.Courses;
 using Interfaces.Payments;
-using Interfaces.FasSchemes;
 using Filters.FasSchemes;
-using Microsoft.AspNetCore.Mvc;
+using Interfaces.FasSchemes;
+using Interfaces.FasApplications;
+using DTOs.FasApplications;
 
 namespace Controllers.AccountHolder
 {
@@ -15,13 +16,11 @@ namespace Controllers.AccountHolder
     public class AccountHolderController(
         IEducationAccountService educationAccountService,
         IStudentCourseService studentCourseService,
-        IStudentTuitionService studentTuitionService,
-        IAccountHolderFasSchemeService fasSchemeService) : BaseController
+        IStudentTuitionService studentTuitionService) : BaseController
     {
         private readonly IEducationAccountService _educationAccountService = educationAccountService;
         private readonly IStudentCourseService _studentCourseService = studentCourseService;
         private readonly IStudentTuitionService _studentTuitionService = studentTuitionService;
-        private readonly IAccountHolderFasSchemeService _fasSchemeService = fasSchemeService;
 
         [HttpGet("profile")]
         public async Task<IActionResult> GetProfile(CancellationToken cancellationToken)
@@ -51,11 +50,5 @@ namespace Controllers.AccountHolder
             return Result.SuccessData(result);
         }
 
-        [HttpGet("fas-schemes/available")]
-        public async Task<IActionResult> GetAvailableSchemes([FromQuery] FasSchemeFilterDTO filter, CancellationToken cancellationToken)
-        {
-            var result = await _fasSchemeService.GetAvailableSchemesAsync(filter, cancellationToken);
-            return Result.SuccessData(result);
-        }
     }
 }

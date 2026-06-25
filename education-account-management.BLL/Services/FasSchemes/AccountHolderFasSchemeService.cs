@@ -1,5 +1,8 @@
 using DTOs.FasSchemes;
+using Enums;
 using Filters.FasSchemes;
+using Helpers.FasSchemes;
+using Interfaces.Base;
 using Interfaces.FasSchemes;
 using Results;
 
@@ -23,6 +26,7 @@ namespace Services.FasSchemes
                     && student.EducationAccount.Citizen.User.Id == currentAccountHolderId)
                 .Select(student => new {
                     student.Id,
+                    student.EducationAccount.Citizen.IsSingaporean,
                     student.EducationAccount.Citizen.DateOfBirth
                 })
                 .SingleOrDefaultAsync(cancellationToken);
@@ -85,7 +89,7 @@ namespace Services.FasSchemes
             var eligibleSchemes = new List<FasScheme>();
             foreach (var scheme in availableSchemes)
             {
-                bool isEligible = Evaluate(scheme.ConditionGroups, filter, studentAge);
+                bool isEligible = Evaluate(scheme.ConditionGroups, filter, studentAge, studentInfo.IsSingaporean);
                 if (isEligible)
                 {
                     eligibleSchemes.Add(scheme);
@@ -131,131 +135,25 @@ namespace Services.FasSchemes
             };
         }
 
-        private bool Evaluate(ICollection<FasSchemeConditionGroup> conditionGroups, FasSchemeFilterDTO filter, int studentAge)
+        private bool Evaluate(ICollection<FasSchemeConditionGroup> conditionGroups, FasSchemeFilterDTO filter, int studentAge, bool isSingaporean)
         {
-            // Nếu Scheme không cấu hình bất kỳ điều kiện nào, coi như ai cũng được apply
-            if (conditionGroups == null || !conditionGroups.Any())
-            {
-                return true; 
-            }
-
-            var rootGroup = conditionGroups.FirstOrDefault(g => g.ParentGroupId == null);
-            if (rootGroup == null)
+            // If filter values are not provided, we consider them eligible for the list view
+            // to show potential schemes.
+            if (!filter.GrossHouseholdIncome.HasValue || !filter.HouseholdMemberCount.HasValue || !filter.GuardianNationality.HasValue)
             {
                 return true;
             }
 
-            return EvaluateGroup(rootGroup, filter, studentAge);
+            return FasConditionEvaluator.Evaluate(
+                conditionGroups, 
+                studentAge, 
+                isSingaporean,
+                filter.GuardianNationality.Value, 
+                filter.GrossHouseholdIncome.Value, 
+                filter.HouseholdMemberCount.Value);
         }
 
-        private bool EvaluateGroup(FasSchemeConditionGroup group, FasSchemeFilterDTO filter, int studentAge)
-        {
-            bool result = group.LogicalOperator == TopupLogicalOperator.And;
 
-            if (group.Conditions != null && group.Conditions.Any())
-            {
-                foreach (var condition in group.Conditions)
-                {
-                    bool conditionResult = EvaluateCondition(condition, filter, studentAge);
-                    if (group.LogicalOperator == TopupLogicalOperator.And)
-                    {
-                        result = result && conditionResult;
-                        if (!result) return false;
-                    }
-                    else
-                    {
-                        result = result || conditionResult;
-                        if (result) return true;
-                    }
-                }
-            }
-
-            if (group.ChildGroups != null && group.ChildGroups.Any())
-            {
-                foreach (var childGroup in group.ChildGroups)
-                {
-                    bool childGroupResult = EvaluateGroup(childGroup, filter, studentAge);
-                    if (group.LogicalOperator == TopupLogicalOperator.And)
-                    {
-                        result = result && childGroupResult;
-                        if (!result) return false;
-                    }
-                    else
-                    {
-                        result = result || childGroupResult;
-                        if (result) return true;
-                    }
-                }
-            }
-
-            return result;
-        }
-
-        private bool EvaluateCondition(FasSchemeCondition condition, FasSchemeFilterDTO filter, int studentAge)
-        {
-            decimal valueToCompare = 0;
-            int? idToCompare = null;
-
-            // Biến này để đánh dấu xem thông tin cần thiết đã được User gửi lên hay chưa (hoặc có sẵn trong DB không)
-            bool isProvided = true;
-
-            switch (condition.Field)
-            {
-                case FasConditionField.StudentAge:
-                    valueToCompare = studentAge; // Tuổi học sinh lấy từ DB
-                    break;
-                case FasConditionField.StudentNationality:
-                    idToCompare = 1; // Học sinh trong hệ thống này luôn được tính là Singapore Citizen (1)
-                    break;
-                case FasConditionField.ParentNationality:
-                    if (!filter.ParentNationalityId.HasValue) isProvided = false;
-                    idToCompare = filter.ParentNationalityId;
-                    break;
-                case FasConditionField.GrossHouseholdIncome:
-                    if (!filter.GrossHouseholdIncome.HasValue) isProvided = false;
-                    valueToCompare = filter.GrossHouseholdIncome ?? 0;
-                    break;
-                case FasConditionField.PerCapitaIncome:
-                    if (!filter.HouseholdMemberCount.HasValue || !filter.GrossHouseholdIncome.HasValue) isProvided = false;
-                    valueToCompare = (filter.HouseholdMemberCount ?? 0) > 0 
-                        ? (filter.GrossHouseholdIncome ?? 0) / filter.HouseholdMemberCount.Value 
-                        : 0;
-                    break;
-            }
-
-            // [QUAN TRỌNG]: Nếu User chưa gửi các thông tin như Thu nhập, Số người (khi gọi API dạng "Get All")
-            // Ta sẽ tự động BỎ QUA (Skip) điều kiện đó bằng cách trả về true.
-            // Điều này giúp Scheme vẫn xuất hiện trên màn hình như một lựa chọn "tiềm năng" thay vì bị loại bỏ sai.
-            if (!isProvided)
-            {
-                return true; 
-            }
-
-            if (idToCompare.HasValue)
-            {
-                int conditionCountryId = condition.CountryId ?? 0;
-                return condition.Operator switch
-                {
-                    FasConditionOperator.Equal => idToCompare.Value == conditionCountryId,
-                    FasConditionOperator.NotEqual => idToCompare.Value != conditionCountryId,
-                    _ => false
-                };
-            }
-
-            decimal targetValue = condition.ValueNumber ?? 0;
-
-            return condition.Operator switch
-            {
-                FasConditionOperator.Equal => valueToCompare == targetValue,
-                FasConditionOperator.NotEqual => valueToCompare != targetValue,
-                FasConditionOperator.LessThan => valueToCompare < targetValue,
-                FasConditionOperator.LessThanOrEqual => valueToCompare <= targetValue,
-                FasConditionOperator.GreaterThan => valueToCompare > targetValue,
-                FasConditionOperator.GreaterThanOrEqual => valueToCompare >= targetValue,
-                FasConditionOperator.Between => valueToCompare >= targetValue && valueToCompare <= (condition.ValueNumberTo ?? 0),
-                _ => false
-            };
-        }
 
         private List<string> GenerateConditionsSummary(ICollection<FasSchemeConditionGroup> conditionGroups)
         {
@@ -307,9 +205,9 @@ namespace Services.FasSchemes
                 _ => ""
             };
 
-            if (condition.Field == FasConditionField.StudentNationality || condition.Field == FasConditionField.ParentNationality)
+            if (condition.Field == FasConditionField.StudentNationality || condition.Field == FasConditionField.GuardianNationality)
             {
-                return $"{fieldName} {opStr} (Country {condition.CountryId})";
+                return $"{fieldName} {opStr} {condition.ValueText}";
             }
 
             if (condition.Operator == FasConditionOperator.Between)
