@@ -25,6 +25,7 @@ using Mappers.Admin;
 using Mappers.Enrollments;
 using Mappers.SchoolStudents;
 using Mappers.TopUp;
+using Interfaces.FasSchemes;
 using Polly;
 using Polly.CircuitBreaker;
 using Polly.Retry;
@@ -45,7 +46,6 @@ using Services.SchoolStudents;
 using Services.Storage;
 using Services.TopUp;
 using Services.TransactionHistory;
-using Interfaces.FasSchemes;
 using Mappers.FasSchemes;
 using Services.FasSchemes;
 using StackExchange.Redis;
@@ -80,6 +80,7 @@ namespace Extensions.DependencyInjection
             services.AddScoped<IEducationAccountSweepService, EducationAccountSweepService>();
             services.AddScoped<IEducationAccountImportService, EducationAccountImportService>();
             services.AddScoped<ITransactionHistoryService, TransactionHistoryService>();
+            services.AddScoped<IAccountHolderFasSchemeService, AccountHolderFasSchemeService>();
 
             services.AddScoped<ISystemTopupService, SystemTopupService>();
             services.AddScoped<IScheduleTopUpService, ScheduleTopUpService>();

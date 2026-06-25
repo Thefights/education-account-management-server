@@ -1,4 +1,5 @@
 using Filters.Base;
+using Models;
 
 namespace Filters.FasSchemes
 {
@@ -30,5 +31,10 @@ namespace Filters.FasSchemes
         [FilterField(FilterOperationEnum.Contains, nameof(FasScheme.SchemeCode))]
         [SearchField(nameof(FasScheme.SchemeCode))]
         public string? SchemeCode { get; set; }
+
+        [NumberPositive]
+        public decimal? GrossHouseholdIncome { get; set; }
+        public int? HouseholdMemberCount { get; set; }
+        public int? ParentNationalityId { get; set; }
     }
 }
