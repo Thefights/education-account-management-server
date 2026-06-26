@@ -88,7 +88,14 @@ namespace Services.Payments
                 e.SchoolStudent.EducationAccountId == accountId &&
                 e.Charge != null;
 
-            if (filter.Status != StudentTuitionFilterStatus.All)
+            if (filter.EnrollmentIds != null && filter.EnrollmentIds.Count > 0)
+            {
+                filterExpr = e =>
+                    e.SchoolStudent.EducationAccountId == accountId &&
+                    e.Charge != null &&
+                    filter.EnrollmentIds.Contains(e.Id);
+            }
+            else if (filter.Status != StudentTuitionFilterStatus.All)
             {
                 if (filter.Status == StudentTuitionFilterStatus.Paid)
                 {
@@ -122,6 +129,7 @@ namespace Services.Payments
                     CourseDescription = e.CourseDescriptionSnapshot,
                     PaymentDueDate = e.Course.FasApplicationDueDate,
                     PaymentStatus = e.Charge.Status == ChargeStatus.Paid ? "Paid" :
+                                    e.Charge.Installments.Count > 1 ? "Installment" :
                                     (e.Charge.Status == ChargeStatus.Overdue || e.Course.FasApplicationDueDate < now) ? "Overdue" :
                                     "Due",
                     CourseFee = e.Charge.CourseFeeAmountSnapshot,
@@ -131,7 +139,14 @@ namespace Services.Payments
                     FasSubsidyAmount = e.Charge.SubsidyAmount,
                     NetPayable = e.Charge.NetAmount,
                     PaidAmount = e.Charge.PaidAmount,
-                    RemainingAmount = e.Charge.RemainingAmount
+                    RemainingAmount = e.Charge.RemainingAmount,
+                    TaxRate = e.Charge.TaxRateSnapshot,
+                    IsInstallment = e.Charge.Installments.Count > 1,
+                    CurrentInstallmentNumber = e.Charge.Installments.Count > 1 ? e.Charge.Installments.Where(i => i.Status != ChargeInstallmentStatus.Paid).OrderBy(i => i.InstallmentNumber).Select(i => (int?)i.InstallmentNumber).FirstOrDefault() : null,
+                    TotalInstallments = e.Charge.Installments.Count > 1 ? (int?)e.Charge.Installments.Count : null,
+                    AppliedFasSchemeName = e.Charge.AppliedFasSchemeNameSnapshot,
+                    AppliedFasTierName = e.Charge.AppliedFasTierNameSnapshot,
+                    HasFasApplication = e.Charge.AppliedFasApplicationId.HasValue
                 }),
                 filterExpr: filterExpr,
                 filterStr: null,
