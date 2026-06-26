@@ -12,8 +12,8 @@ namespace DTOs.FasApplications
     public class StudentProfileDTO
     {
         public int Age { get; set; }
-        public string StudentNationality { get; set; } = string.Empty;
-        public string ParentNationality { get; set; } = string.Empty;
+        public NationalityCategory StudentNationality { get; set; } = NationalityCategory.SingaporeCitizen;
+        public NationalityCategory GuardianNationality { get; set; } = NationalityCategory.SingaporeCitizen;
         public decimal GrossHouseholdIncome { get; set; }
         public int HouseholdMembers { get; set; }
         public decimal PerCapitaIncome { get; set; }

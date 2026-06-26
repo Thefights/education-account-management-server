@@ -28,7 +28,7 @@ namespace Controllers.Management
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetApplicationDetails(
-            string id,
+            int id,
             CancellationToken cancellationToken)
         {
             var adminSchoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);

@@ -1,10 +1,14 @@
 using DTOs.FasApplications;
+using Enums;
 using Interfaces.FasApplications.Management;
 using Mappers.FasApplications;
+using Microsoft.EntityFrameworkCore;
+using Models;
+using Repositories.Interfaces;
 using System.Linq.Expressions;
 using Exceptions;
 
-namespace Services.FasApplications.Management
+namespace Services.FasApplications
 {
     public class ManagementFasApplicationService(IUnitOfWork unitOfWork, FasApplicationMapper mapper) : IManagementFasApplicationService
     {
@@ -14,7 +18,7 @@ namespace Services.FasApplications.Management
 
         public async Task<FasApplicationQueueResponseDTO> GetApplicationQueueAsync(GetFasApplicationListRequestDTO request, int adminSchoolId, CancellationToken cancellationToken = default)
         {
-            var now = DateTime.UtcNow;
+            var now = DateTime.UtcNow.AddHours(8);
             
             // 1. Build Base Filter for Admin's School
             Expression<Func<FasApplication, bool>> baseFilter = a => a.SchoolStudent.SchoolId == adminSchoolId;
@@ -97,8 +101,9 @@ namespace Services.FasApplications.Management
 
         public async Task<FasApplicationDetailsDTO> GetApplicationDetailsAsync(int applicationId, int adminSchoolId, CancellationToken cancellationToken = default)
         {
+            var repo = _unitOfWork.Repository<FasApplication>();
             
-            var application = await _fasApplicationRepository.Query()
+            var application = await repo.Query()
                 .Include(a => a.SchoolStudent)
                 .Include(a => a.SchoolStudent.EducationAccount)
                 .Include(a => a.SchoolStudent.EducationAccount.Citizen)
@@ -133,8 +138,8 @@ namespace Services.FasApplications.Management
                 StudentProfile = new StudentProfileDTO
                 {
                     Age = application.StudentAgeSnapshot,
-                    StudentNationality = application.StudentNationality.Name,
-                    ParentNationality = application.ParentNationality.Name,
+                    StudentNationality = application.StudentNationalitySnapshot,
+                    GuardianNationality = application.GuardianNationalitySnapshot,
                     GrossHouseholdIncome = application.GrossHouseholdIncomeSnapshot,
                     HouseholdMembers = application.HouseholdMemberCountSnapshot,
                     PerCapitaIncome = application.PerCapitaIncomeSnapshot

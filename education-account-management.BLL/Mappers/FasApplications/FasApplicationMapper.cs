@@ -7,7 +7,7 @@ namespace Mappers.FasApplications
     [Mapper(RequiredMappingStrategy = RequiredMappingStrategy.None)]
     public partial class FasApplicationMapper
     {
-        [MapProperty(nameof(FasApplication.ApplicationNumber), nameof(FasApplicationListItemDTO.Id))]
+        [MapProperty(nameof(FasApplication.Id), nameof(FasApplicationListItemDTO.Id))]
         [MapProperty($"{nameof(FasApplication.SchoolStudent)}.{nameof(SchoolStudent.EducationAccount)}.{nameof(EducationAccount.Citizen)}.{nameof(Citizen.FullName)}", nameof(FasApplicationListItemDTO.ApplicantName))]
         [MapProperty($"{nameof(FasApplication.SchoolStudent)}.{nameof(SchoolStudent.EducationAccount)}.{nameof(EducationAccount.AccountNumber)}", nameof(FasApplicationListItemDTO.AccountNumber))]
         [MapProperty($"{nameof(FasApplication.FasScheme)}.{nameof(FasScheme.SchemeName)}", nameof(FasApplicationListItemDTO.SchemeName))]
