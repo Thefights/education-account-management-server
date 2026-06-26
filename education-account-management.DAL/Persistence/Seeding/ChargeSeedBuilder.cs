@@ -75,6 +75,28 @@ namespace Persistence.Seeding
                     || (courseId > 10 && (courseId - 11) % 9 >= 4);
             }
 
+            static CourseStatus GetCourseStatus(int courseId)
+            {
+                if (courseId <= 10)
+                {
+                    return courseId switch
+                    {
+                        <= 3 => CourseStatus.Upcoming,
+                        <= 6 => CourseStatus.InProgress,
+                        _ => CourseStatus.Closed
+                    };
+                }
+
+                return ((courseId - 11) % 9) switch
+                {
+                    <= 1 => CourseStatus.Draft,
+                    <= 3 => CourseStatus.Enrolling,
+                    <= 5 => CourseStatus.Upcoming,
+                    <= 7 => CourseStatus.InProgress,
+                    _ => CourseStatus.Closed
+                };
+            }
+
             static (string Code, string Name, string Description, decimal CourseFee, decimal MiscFee, decimal Gst, DateTime StartDate, DateTime EndDate) GetCourseMeta(
                 int courseId,
                 string[] baseCodes,
@@ -212,13 +234,13 @@ namespace Persistence.Seeding
                     }
 
                     var netAmount = grossAmount - subsidyAmount;
-                    var isPastCourse = enrollment.CourseId is >= 7 and <= 10;
+                    var courseStatus = GetCourseStatus(enrollment.CourseId);
 
                     return new Charge
                     {
                         Id = enrollment.Id,
                         EnrollmentId = enrollment.Id,
-                        Status = isPastCourse ? ChargeStatus.Overdue : ChargeStatus.PendingPayment,
+                        Status = courseStatus == CourseStatus.Closed ? ChargeStatus.Overdue : ChargeStatus.PendingPayment,
                         SchoolNameSnapshot = schoolNames[schoolId - 1],
                         CourseCodeSnapshot = meta.Code,
                         CourseNameSnapshot = meta.Name,
