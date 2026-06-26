@@ -11,6 +11,15 @@ namespace Persistence.Seeding
         {
             var createdAt = SeedDataConstants.CreatedAt;
             var approvedAt = new DateTime(2026, 6, 1, 0, 0, 0, DateTimeKind.Utc);
+            var additionalFasSchemes = Enumerable.Range(1, 10)
+                .Where(schoolId => schoolId != 9)
+                .SelectMany(schoolId => Enumerable.Range(1, 9).Select(index => new
+                {
+                    Id = 100 + (schoolId - 1) * 9 + index,
+                    SchoolId = schoolId,
+                    Index = index
+                }))
+                .ToList();
 
             modelBuilder.Entity<FasScheme>().HasData(
                 new FasScheme { Id = 1, SchoolId = 1, Status = FasSchemeStatus.Active, SchemeCode = "FAS-001", SchemeName = "Household Income Subsidy", Description = "Support for students from lower-income households.", DurationInMonths = 6, SubsidyType = FasSubsidyType.Percent, PublishedAt = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc), CreatedAt = createdAt },
@@ -34,8 +43,34 @@ namespace Persistence.Seeding
                 new FasScheme { Id = 19, SchoolId = 9, Status = FasSchemeStatus.Active, SchemeCode = "FAS-019", SchemeName = "School 9 Scheme 19", Description = "Auto generated scheme 19 for school 9", DurationInMonths = 12, SubsidyType = FasSubsidyType.Percent, PublishedAt = new DateTime(2026, 1, 10, 0, 0, 0, DateTimeKind.Utc), CreatedAt = createdAt },
                 new FasScheme { Id = 20, SchoolId = 9, Status = FasSchemeStatus.Active, SchemeCode = "FAS-020", SchemeName = "School 9 Scheme 20", Description = "Auto generated scheme 20 for school 9", DurationInMonths = 12, SubsidyType = FasSubsidyType.Percent, PublishedAt = new DateTime(2026, 1, 10, 0, 0, 0, DateTimeKind.Utc), CreatedAt = createdAt });
 
+            modelBuilder.Entity<FasScheme>().HasData(
+                additionalFasSchemes.Select(item => new FasScheme
+                {
+                    Id = item.Id,
+                    SchoolId = item.SchoolId,
+                    Status = FasSchemeStatus.Active,
+                    SchemeCode = $"FAS-{item.Id:000}",
+                    SchemeName = $"School {item.SchoolId} Demo Scheme {item.Index + 1}",
+                    Description = $"Additional demo FAS scheme {item.Index + 1} for school {item.SchoolId}.",
+                    DurationInMonths = item.Index % 3 == 0 ? 12 : item.Index % 2 == 0 ? 6 : 3,
+                    SubsidyType = item.Index % 2 == 0 ? FasSubsidyType.Percent : FasSubsidyType.FixedAmount,
+                    PublishedAt = new DateTime(2026, 1, Math.Min(item.Index + 1, 28), 0, 0, 0, DateTimeKind.Utc),
+                    CreatedAt = createdAt
+                }).ToArray());
+
             modelBuilder.Entity<FasSchemeConditionGroup>().HasData(
                 Enumerable.Range(1, 20).Select(id => new FasSchemeConditionGroup { Id = id, FasSchemeId = id, ParentGroupId = null, LogicalOperator = TopupLogicalOperator.And, DisplayOrder = id, CreatedAt = createdAt }).ToArray());
+
+            modelBuilder.Entity<FasSchemeConditionGroup>().HasData(
+                additionalFasSchemes.Select(item => new FasSchemeConditionGroup
+                {
+                    Id = item.Id,
+                    FasSchemeId = item.Id,
+                    ParentGroupId = null,
+                    LogicalOperator = TopupLogicalOperator.And,
+                    DisplayOrder = item.Index,
+                    CreatedAt = createdAt
+                }).ToArray());
 
             modelBuilder.Entity<FasSchemeCondition>().HasData(
                 new FasSchemeCondition { Id = 1, GroupId = 1, Field = FasConditionField.PerCapitaIncome, Operator = FasConditionOperator.LessThanOrEqual, ValueNumber = 750m, DisplayOrder = 1, CreatedAt = createdAt },
@@ -58,6 +93,22 @@ namespace Persistence.Seeding
                 new FasSchemeCondition { Id = 18, GroupId = 18, Field = FasConditionField.GrossHouseholdIncome, Operator = FasConditionOperator.LessThanOrEqual, ValueNumber = 10000m, DisplayOrder = 1, CreatedAt = createdAt },
                 new FasSchemeCondition { Id = 19, GroupId = 19, Field = FasConditionField.GrossHouseholdIncome, Operator = FasConditionOperator.LessThanOrEqual, ValueNumber = 10000m, DisplayOrder = 1, CreatedAt = createdAt },
                 new FasSchemeCondition { Id = 20, GroupId = 20, Field = FasConditionField.GrossHouseholdIncome, Operator = FasConditionOperator.LessThanOrEqual, ValueNumber = 10000m, DisplayOrder = 1, CreatedAt = createdAt });
+
+            modelBuilder.Entity<FasSchemeCondition>().HasData(
+                additionalFasSchemes.Select(item => new FasSchemeCondition
+                {
+                    Id = item.Id,
+                    GroupId = item.Id,
+                    Field = item.Index % 2 == 0
+                        ? FasConditionField.PerCapitaIncome
+                        : FasConditionField.GrossHouseholdIncome,
+                    Operator = FasConditionOperator.LessThanOrEqual,
+                    ValueNumber = item.Index % 2 == 0
+                        ? 900m + item.Index * 100m
+                        : 3000m + item.Index * 500m,
+                    DisplayOrder = 1,
+                    CreatedAt = createdAt
+                }).ToArray());
 
             modelBuilder.Entity<FasSchemeTier>().HasData(
                 new FasSchemeTier { Id = 1, FasSchemeId = 1, TierName = "Tier 1", MaxPerCapitaIncome = 750m, SubsidyValue = 75m, DisplayOrder = 1, CreatedAt = createdAt },
@@ -91,8 +142,31 @@ namespace Persistence.Seeding
                 new FasSchemeTier { Id = 29, FasSchemeId = 9, TierName = "Tier 2", MaxPerCapitaIncome = 2000m, SubsidyValue = 100m, DisplayOrder = 2, CreatedAt = createdAt },
                 new FasSchemeTier { Id = 30, FasSchemeId = 10, TierName = "Tier 2", MaxPerCapitaIncome = 2000m, SubsidyValue = 30m, DisplayOrder = 2, CreatedAt = createdAt });
 
+            modelBuilder.Entity<FasSchemeTier>().HasData(
+                additionalFasSchemes.Select(item => new FasSchemeTier
+                {
+                    Id = item.Id,
+                    FasSchemeId = item.Id,
+                    TierName = "Tier 1",
+                    MaxPerCapitaIncome = 1000m + item.Index * 100m,
+                    SubsidyValue = item.Index % 2 == 0 ? 10m + item.Index * 5m : 50m + item.Index * 10m,
+                    DisplayOrder = 1,
+                    CreatedAt = createdAt
+                }).ToArray());
+
             modelBuilder.Entity<FasSchemeRequiredDocument>().HasData(
                 Enumerable.Range(1, 20).Select(id => new FasSchemeRequiredDocument { Id = id, FasSchemeId = id, DocumentName = id % 2 == 0 ? "Income Statement" : "Recent Payslip", TemplateFileKey = $"fas/templates/document-{id}.pdf", DisplayOrder = 1, CreatedAt = createdAt }).ToArray());
+
+            modelBuilder.Entity<FasSchemeRequiredDocument>().HasData(
+                additionalFasSchemes.Select(item => new FasSchemeRequiredDocument
+                {
+                    Id = item.Id,
+                    FasSchemeId = item.Id,
+                    DocumentName = item.Index % 2 == 0 ? "Income Statement" : "Recent Payslip",
+                    TemplateFileKey = $"fas/templates/document-{item.Id}.pdf",
+                    DisplayOrder = 1,
+                    CreatedAt = createdAt
+                }).ToArray());
 
             static int GetCourseSchoolId(int courseId)
             {

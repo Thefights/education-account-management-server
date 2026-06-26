@@ -1180,7 +1180,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 306.29m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -1305,7 +1305,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 317.19m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Eastbridge Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -1430,7 +1430,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 328.09m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Westhaven Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -1555,7 +1555,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 338.99m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Southpoint Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -1680,7 +1680,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 349.89m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Central Heights School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -1805,7 +1805,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 360.79m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Riverside Learning Institute",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -1930,7 +1930,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 371.69m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Lakeside Technical School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -2055,7 +2055,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 382.59m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Greenfield Academy",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -2180,7 +2180,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 393.49m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Harbourfront School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -2305,7 +2305,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 404.39m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Hillcrest Education Centre",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -5350,7 +5350,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 231.29m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 75m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -5380,7 +5380,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 271.29m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 35m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -5405,7 +5405,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 306.29m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -5430,7 +5430,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 306.29m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -5455,7 +5455,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 306.29m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -5480,7 +5480,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 306.29m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -5505,7 +5505,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 306.29m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -5530,7 +5530,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 306.29m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -5555,7 +5555,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 306.29m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -6525,7 +6525,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 17.19m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Eastbridge Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 300m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -6555,7 +6555,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 197.19m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Eastbridge Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 120m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -6580,7 +6580,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 317.19m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Eastbridge Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -6605,7 +6605,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 317.19m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Eastbridge Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -6630,7 +6630,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 317.19m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Eastbridge Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -6655,7 +6655,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 317.19m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Eastbridge Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -6680,7 +6680,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 317.19m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Eastbridge Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -6705,7 +6705,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 317.19m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Eastbridge Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -6730,7 +6730,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 317.19m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Eastbridge Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -7700,7 +7700,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 178.09m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Westhaven Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 150m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -7730,7 +7730,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 238.09m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Westhaven Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 90m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -7755,7 +7755,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 328.09m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Westhaven Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -7780,7 +7780,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 328.09m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Westhaven Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -7805,7 +7805,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 328.09m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Westhaven Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -7830,7 +7830,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 328.09m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Westhaven Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -7855,7 +7855,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 328.09m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Westhaven Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -7880,7 +7880,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 328.09m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Westhaven Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -7905,7 +7905,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 328.09m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Westhaven Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -8875,7 +8875,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 288.99m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Southpoint Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 50m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -8905,7 +8905,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 313.99m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Southpoint Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 25m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -8930,7 +8930,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 338.99m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Southpoint Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -8955,7 +8955,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 338.99m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Southpoint Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -8980,7 +8980,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 338.99m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Southpoint Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -9005,7 +9005,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 338.99m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Southpoint Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -9030,7 +9030,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 338.99m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Southpoint Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -9055,7 +9055,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 338.99m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Southpoint Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -9080,7 +9080,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 338.99m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Southpoint Secondary School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -10050,7 +10050,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 0.00m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Central Heights School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 349.89m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -10080,7 +10080,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 169.89m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Central Heights School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 180m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -10105,7 +10105,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 349.89m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Central Heights School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -10130,7 +10130,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 349.89m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Central Heights School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -10155,7 +10155,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 349.89m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Central Heights School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -10180,7 +10180,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 349.89m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Central Heights School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -10205,7 +10205,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 349.89m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Central Heights School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -10230,7 +10230,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 349.89m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Central Heights School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -10255,7 +10255,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 349.89m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Central Heights School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -11225,7 +11225,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 160.79m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Riverside Learning Institute",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 200m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -11255,7 +11255,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 280.79m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Riverside Learning Institute",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 80m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -11280,7 +11280,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 360.79m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Riverside Learning Institute",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -11305,7 +11305,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 360.79m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Riverside Learning Institute",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -11330,7 +11330,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 360.79m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Riverside Learning Institute",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -11355,7 +11355,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 360.79m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Riverside Learning Institute",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -11380,7 +11380,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 360.79m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Riverside Learning Institute",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -11405,7 +11405,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 360.79m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Riverside Learning Institute",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -11430,7 +11430,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 360.79m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Riverside Learning Institute",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -12400,7 +12400,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 221.69m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Lakeside Technical School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 150m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -12430,7 +12430,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 301.69m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Lakeside Technical School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 70m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -12455,7 +12455,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 371.69m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Lakeside Technical School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -12480,7 +12480,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 371.69m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Lakeside Technical School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -12505,7 +12505,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 371.69m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Lakeside Technical School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -12530,7 +12530,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 371.69m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Lakeside Technical School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -12555,7 +12555,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 371.69m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Lakeside Technical School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -12580,7 +12580,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 371.69m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Lakeside Technical School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -12605,7 +12605,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 371.69m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Lakeside Technical School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -13575,7 +13575,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 342.59m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Greenfield Academy",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 40m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -13605,7 +13605,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 362.59m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Greenfield Academy",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 20m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -13630,7 +13630,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 382.59m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Greenfield Academy",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -13655,7 +13655,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 382.59m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Greenfield Academy",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -13680,7 +13680,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 382.59m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Greenfield Academy",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -13705,7 +13705,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 382.59m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Greenfield Academy",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -13730,7 +13730,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 382.59m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Greenfield Academy",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -13755,7 +13755,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 382.59m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Greenfield Academy",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -13780,7 +13780,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 382.59m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Greenfield Academy",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -14750,7 +14750,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 143.49m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Harbourfront School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 250m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -14780,7 +14780,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 293.49m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Harbourfront School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 100m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -14805,7 +14805,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 393.49m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Harbourfront School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -14830,7 +14830,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 393.49m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Harbourfront School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -14855,7 +14855,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 393.49m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Harbourfront School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -14880,7 +14880,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 393.49m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Harbourfront School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -14905,7 +14905,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 393.49m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Harbourfront School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -14930,7 +14930,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 393.49m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Harbourfront School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -14955,7 +14955,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 393.49m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Harbourfront School",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -15925,7 +15925,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 344.39m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Hillcrest Education Centre",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 60m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -15955,7 +15955,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 374.39m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Hillcrest Education Centre",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 30m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -15980,7 +15980,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 404.39m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Hillcrest Education Centre",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -16005,7 +16005,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 404.39m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Hillcrest Education Centre",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -16030,7 +16030,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 404.39m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Hillcrest Education Centre",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -16055,7 +16055,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 404.39m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Hillcrest Education Centre",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -16080,7 +16080,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 404.39m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Hillcrest Education Centre",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -16105,7 +16105,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 404.39m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Hillcrest Education Centre",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -16130,7 +16130,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RemainingAmount = 404.39m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Hillcrest Education Centre",
-                            Status = 1,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         });
@@ -20460,7 +20460,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            AccountNumber = "EDU-2026-00000000001",
+                            AccountNumber = "EDU-2026-X9EUKF3",
                             CitizenId = 1,
                             ClosedAt = new DateTime(2026, 4, 12, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -20473,7 +20473,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            AccountNumber = "EDU-2026-00000000002",
+                            AccountNumber = "EDU-2026-3LGAWV9",
                             CitizenId = 2,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1130m,
@@ -20485,7 +20485,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            AccountNumber = "EDU-2026-00000000003",
+                            AccountNumber = "EDU-2026-XAT7E9E",
                             CitizenId = 3,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1160m,
@@ -20497,7 +20497,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 4,
-                            AccountNumber = "EDU-2026-00000000004",
+                            AccountNumber = "EDU-2026-3TS34HX",
                             CitizenId = 4,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1220m,
@@ -20509,7 +20509,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 5,
-                            AccountNumber = "EDU-2026-00000000005",
+                            AccountNumber = "EDU-2026-CWDX5AJ",
                             CitizenId = 5,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1320m,
@@ -20521,7 +20521,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 6,
-                            AccountNumber = "EDU-2026-00000000006",
+                            AccountNumber = "EDU-2026-XSKCN4U",
                             CitizenId = 6,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 450m,
@@ -20533,7 +20533,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 7,
-                            AccountNumber = "EDU-2026-00000000007",
+                            AccountNumber = "EDU-2026-ANKT5X5",
                             CitizenId = 7,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1700m,
@@ -20545,7 +20545,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 8,
-                            AccountNumber = "EDU-2026-00000000008",
+                            AccountNumber = "EDU-2026-S553K8A",
                             CitizenId = 8,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 0m,
@@ -20557,7 +20557,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 9,
-                            AccountNumber = "EDU-2026-00000000009",
+                            AccountNumber = "EDU-2026-G9R92UD",
                             CitizenId = 9,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1900m,
@@ -20569,7 +20569,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 10,
-                            AccountNumber = "EDU-2026-00000000010",
+                            AccountNumber = "EDU-2026-MVQY23P",
                             CitizenId = 10,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 2000m,
@@ -20581,7 +20581,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 11,
-                            AccountNumber = "EDU-2026-00000000011",
+                            AccountNumber = "EDU-2026-6W5A9YQ",
                             CitizenId = 11,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20593,7 +20593,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 12,
-                            AccountNumber = "EDU-2026-00000000012",
+                            AccountNumber = "EDU-2026-WR567FC",
                             CitizenId = 12,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20605,7 +20605,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 13,
-                            AccountNumber = "EDU-2026-00000000013",
+                            AccountNumber = "EDU-2026-8KMXW3A",
                             CitizenId = 13,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20617,7 +20617,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 14,
-                            AccountNumber = "EDU-2026-00000000014",
+                            AccountNumber = "EDU-2026-Y2AKLTP",
                             CitizenId = 14,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20629,7 +20629,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 15,
-                            AccountNumber = "EDU-2026-00000000015",
+                            AccountNumber = "EDU-2026-8B8F6EP",
                             CitizenId = 15,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20641,7 +20641,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 16,
-                            AccountNumber = "EDU-2026-00000000016",
+                            AccountNumber = "EDU-2026-PM4HP2L",
                             CitizenId = 16,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20653,7 +20653,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 17,
-                            AccountNumber = "EDU-2026-00000000017",
+                            AccountNumber = "EDU-2026-TJ5ZGWC",
                             CitizenId = 17,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20665,7 +20665,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 18,
-                            AccountNumber = "EDU-2026-00000000018",
+                            AccountNumber = "EDU-2026-BJ42M5A",
                             CitizenId = 18,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20677,7 +20677,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 19,
-                            AccountNumber = "EDU-2026-00000000019",
+                            AccountNumber = "EDU-2026-4K3E2VM",
                             CitizenId = 19,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20689,7 +20689,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 20,
-                            AccountNumber = "EDU-2026-00000000020",
+                            AccountNumber = "EDU-2026-KE29NED",
                             CitizenId = 20,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20701,7 +20701,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 21,
-                            AccountNumber = "EDU-2026-00000000021",
+                            AccountNumber = "EDU-2026-ZCJZG6L",
                             CitizenId = 21,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20713,7 +20713,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 22,
-                            AccountNumber = "EDU-2026-00000000022",
+                            AccountNumber = "EDU-2026-GREA9E2",
                             CitizenId = 22,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20725,7 +20725,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 23,
-                            AccountNumber = "EDU-2026-00000000023",
+                            AccountNumber = "EDU-2026-ZL7C8X4",
                             CitizenId = 23,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20737,7 +20737,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 24,
-                            AccountNumber = "EDU-2026-00000000024",
+                            AccountNumber = "EDU-2026-CCTRWL5",
                             CitizenId = 24,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20749,7 +20749,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 25,
-                            AccountNumber = "EDU-2026-00000000025",
+                            AccountNumber = "EDU-2026-6X2APTP",
                             CitizenId = 25,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20761,7 +20761,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 26,
-                            AccountNumber = "EDU-2026-00000000026",
+                            AccountNumber = "EDU-2026-FZD3UAP",
                             CitizenId = 26,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20773,7 +20773,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 27,
-                            AccountNumber = "EDU-2026-00000000027",
+                            AccountNumber = "EDU-2026-63UJ2UF",
                             CitizenId = 27,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20785,7 +20785,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 28,
-                            AccountNumber = "EDU-2026-00000000028",
+                            AccountNumber = "EDU-2026-TR5Z5D3",
                             CitizenId = 28,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20797,7 +20797,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 29,
-                            AccountNumber = "EDU-2026-00000000029",
+                            AccountNumber = "EDU-2026-2WFHAM9",
                             CitizenId = 29,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20809,7 +20809,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 30,
-                            AccountNumber = "EDU-2026-00000000030",
+                            AccountNumber = "EDU-2026-ZK6QLJP",
                             CitizenId = 30,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20821,7 +20821,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 31,
-                            AccountNumber = "EDU-2026-00000000031",
+                            AccountNumber = "EDU-2026-8TCLTDQ",
                             CitizenId = 31,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20833,7 +20833,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 32,
-                            AccountNumber = "EDU-2026-00000000032",
+                            AccountNumber = "EDU-2026-4MD2QV4",
                             CitizenId = 32,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20845,7 +20845,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 33,
-                            AccountNumber = "EDU-2026-00000000033",
+                            AccountNumber = "EDU-2026-P445GFR",
                             CitizenId = 33,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20857,7 +20857,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 34,
-                            AccountNumber = "EDU-2026-00000000034",
+                            AccountNumber = "EDU-2026-H5VK6UE",
                             CitizenId = 34,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20869,7 +20869,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 35,
-                            AccountNumber = "EDU-2026-00000000035",
+                            AccountNumber = "EDU-2026-K4GYB53",
                             CitizenId = 35,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20881,7 +20881,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 36,
-                            AccountNumber = "EDU-2026-00000000036",
+                            AccountNumber = "EDU-2026-NU32Y83",
                             CitizenId = 36,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20893,7 +20893,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 37,
-                            AccountNumber = "EDU-2026-00000000037",
+                            AccountNumber = "EDU-2026-5KZTP8L",
                             CitizenId = 37,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20905,7 +20905,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 38,
-                            AccountNumber = "EDU-2026-00000000038",
+                            AccountNumber = "EDU-2026-HPFV4XV",
                             CitizenId = 38,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20917,7 +20917,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 39,
-                            AccountNumber = "EDU-2026-00000000039",
+                            AccountNumber = "EDU-2026-EDPW32Q",
                             CitizenId = 39,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20929,7 +20929,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 40,
-                            AccountNumber = "EDU-2026-00000000040",
+                            AccountNumber = "EDU-2026-YSZD75Q",
                             CitizenId = 40,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20941,7 +20941,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 41,
-                            AccountNumber = "EDU-2026-00000000041",
+                            AccountNumber = "EDU-2026-X8YAX3G",
                             CitizenId = 41,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20953,7 +20953,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 42,
-                            AccountNumber = "EDU-2026-00000000042",
+                            AccountNumber = "EDU-2026-E73JAXD",
                             CitizenId = 42,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20965,7 +20965,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 43,
-                            AccountNumber = "EDU-2026-00000000043",
+                            AccountNumber = "EDU-2026-J46BKBU",
                             CitizenId = 43,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20977,7 +20977,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 44,
-                            AccountNumber = "EDU-2026-00000000044",
+                            AccountNumber = "EDU-2026-XF3YKPG",
                             CitizenId = 44,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -20989,7 +20989,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 45,
-                            AccountNumber = "EDU-2026-00000000045",
+                            AccountNumber = "EDU-2026-AUEK59P",
                             CitizenId = 45,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21001,7 +21001,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 46,
-                            AccountNumber = "EDU-2026-00000000046",
+                            AccountNumber = "EDU-2026-WYCLW4C",
                             CitizenId = 46,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21013,7 +21013,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 47,
-                            AccountNumber = "EDU-2026-00000000047",
+                            AccountNumber = "EDU-2026-KSQL7E2",
                             CitizenId = 47,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21025,7 +21025,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 48,
-                            AccountNumber = "EDU-2026-00000000048",
+                            AccountNumber = "EDU-2026-J6SNTZ5",
                             CitizenId = 48,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21037,7 +21037,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 49,
-                            AccountNumber = "EDU-2026-00000000049",
+                            AccountNumber = "EDU-2026-GHVBXR3",
                             CitizenId = 49,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21049,7 +21049,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 50,
-                            AccountNumber = "EDU-2026-00000000050",
+                            AccountNumber = "EDU-2026-Z7YP3EW",
                             CitizenId = 50,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21061,7 +21061,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 51,
-                            AccountNumber = "EDU-2026-00000000051",
+                            AccountNumber = "EDU-2026-UZM23Y5",
                             CitizenId = 51,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21073,7 +21073,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 52,
-                            AccountNumber = "EDU-2026-00000000052",
+                            AccountNumber = "EDU-2026-4GS4RMU",
                             CitizenId = 52,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21085,7 +21085,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 53,
-                            AccountNumber = "EDU-2026-00000000053",
+                            AccountNumber = "EDU-2026-BY2YKCV",
                             CitizenId = 53,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21097,7 +21097,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 54,
-                            AccountNumber = "EDU-2026-00000000054",
+                            AccountNumber = "EDU-2026-2KUFS7K",
                             CitizenId = 54,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21109,7 +21109,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 55,
-                            AccountNumber = "EDU-2026-00000000055",
+                            AccountNumber = "EDU-2026-XWNGZR4",
                             CitizenId = 55,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21121,7 +21121,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 56,
-                            AccountNumber = "EDU-2026-00000000056",
+                            AccountNumber = "EDU-2026-MG97NU4",
                             CitizenId = 56,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21133,7 +21133,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 57,
-                            AccountNumber = "EDU-2026-00000000057",
+                            AccountNumber = "EDU-2026-6BE7RJ7",
                             CitizenId = 57,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21145,7 +21145,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 58,
-                            AccountNumber = "EDU-2026-00000000058",
+                            AccountNumber = "EDU-2026-N34SNTV",
                             CitizenId = 58,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21157,7 +21157,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 59,
-                            AccountNumber = "EDU-2026-00000000059",
+                            AccountNumber = "EDU-2026-VX6V49Y",
                             CitizenId = 59,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21169,7 +21169,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 60,
-                            AccountNumber = "EDU-2026-00000000060",
+                            AccountNumber = "EDU-2026-CZXZH8L",
                             CitizenId = 60,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21181,7 +21181,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 61,
-                            AccountNumber = "EDU-2026-00000000061",
+                            AccountNumber = "EDU-2026-8E2DFRR",
                             CitizenId = 61,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21193,7 +21193,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 62,
-                            AccountNumber = "EDU-2026-00000000062",
+                            AccountNumber = "EDU-2026-WH6JUY3",
                             CitizenId = 62,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21205,7 +21205,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 63,
-                            AccountNumber = "EDU-2026-00000000063",
+                            AccountNumber = "EDU-2026-BTCG9WU",
                             CitizenId = 63,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21217,7 +21217,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 64,
-                            AccountNumber = "EDU-2026-00000000064",
+                            AccountNumber = "EDU-2026-G3RY59C",
                             CitizenId = 64,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21229,7 +21229,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 65,
-                            AccountNumber = "EDU-2026-00000000065",
+                            AccountNumber = "EDU-2026-WXSV77H",
                             CitizenId = 65,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21241,7 +21241,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 66,
-                            AccountNumber = "EDU-2026-00000000066",
+                            AccountNumber = "EDU-2026-NVPY2X8",
                             CitizenId = 66,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21253,7 +21253,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 67,
-                            AccountNumber = "EDU-2026-00000000067",
+                            AccountNumber = "EDU-2026-4LGHC4M",
                             CitizenId = 67,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21265,7 +21265,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 68,
-                            AccountNumber = "EDU-2026-00000000068",
+                            AccountNumber = "EDU-2026-CB759N3",
                             CitizenId = 68,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21277,7 +21277,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 69,
-                            AccountNumber = "EDU-2026-00000000069",
+                            AccountNumber = "EDU-2026-AJEBPR6",
                             CitizenId = 69,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21289,7 +21289,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 70,
-                            AccountNumber = "EDU-2026-00000000070",
+                            AccountNumber = "EDU-2026-SSB2RJA",
                             CitizenId = 70,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21301,7 +21301,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 71,
-                            AccountNumber = "EDU-2026-00000000071",
+                            AccountNumber = "EDU-2026-BDJT3M6",
                             CitizenId = 71,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21313,7 +21313,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 72,
-                            AccountNumber = "EDU-2026-00000000072",
+                            AccountNumber = "EDU-2026-UP4EBHA",
                             CitizenId = 72,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21325,7 +21325,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 73,
-                            AccountNumber = "EDU-2026-00000000073",
+                            AccountNumber = "EDU-2026-6FQKVDV",
                             CitizenId = 73,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21337,7 +21337,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 74,
-                            AccountNumber = "EDU-2026-00000000074",
+                            AccountNumber = "EDU-2026-QD3M8AQ",
                             CitizenId = 74,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21349,7 +21349,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 75,
-                            AccountNumber = "EDU-2026-00000000075",
+                            AccountNumber = "EDU-2026-WYT2BGP",
                             CitizenId = 75,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21361,7 +21361,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 76,
-                            AccountNumber = "EDU-2026-00000000076",
+                            AccountNumber = "EDU-2026-Q22WCNJ",
                             CitizenId = 76,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21373,7 +21373,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 77,
-                            AccountNumber = "EDU-2026-00000000077",
+                            AccountNumber = "EDU-2026-MQYB5BX",
                             CitizenId = 77,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21385,7 +21385,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 78,
-                            AccountNumber = "EDU-2026-00000000078",
+                            AccountNumber = "EDU-2026-ZQ373CC",
                             CitizenId = 78,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21397,7 +21397,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 79,
-                            AccountNumber = "EDU-2026-00000000079",
+                            AccountNumber = "EDU-2026-6X7Q9DZ",
                             CitizenId = 79,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21409,7 +21409,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 80,
-                            AccountNumber = "EDU-2026-00000000080",
+                            AccountNumber = "EDU-2026-WEW8V66",
                             CitizenId = 80,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21421,7 +21421,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 81,
-                            AccountNumber = "EDU-2026-00000000081",
+                            AccountNumber = "EDU-2026-N34HPDZ",
                             CitizenId = 81,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21433,7 +21433,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 82,
-                            AccountNumber = "EDU-2026-00000000082",
+                            AccountNumber = "EDU-2026-QF2TKBF",
                             CitizenId = 82,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21445,7 +21445,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 83,
-                            AccountNumber = "EDU-2026-00000000083",
+                            AccountNumber = "EDU-2026-FE6RU3R",
                             CitizenId = 83,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21457,7 +21457,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 84,
-                            AccountNumber = "EDU-2026-00000000084",
+                            AccountNumber = "EDU-2026-CD953YC",
                             CitizenId = 84,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21469,7 +21469,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 85,
-                            AccountNumber = "EDU-2026-00000000085",
+                            AccountNumber = "EDU-2026-9JV4TFW",
                             CitizenId = 85,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21481,7 +21481,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 86,
-                            AccountNumber = "EDU-2026-00000000086",
+                            AccountNumber = "EDU-2026-ENSP529",
                             CitizenId = 86,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21493,7 +21493,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 87,
-                            AccountNumber = "EDU-2026-00000000087",
+                            AccountNumber = "EDU-2026-S7NM7KA",
                             CitizenId = 87,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21505,7 +21505,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 88,
-                            AccountNumber = "EDU-2026-00000000088",
+                            AccountNumber = "EDU-2026-3MEM9AJ",
                             CitizenId = 88,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21517,7 +21517,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 89,
-                            AccountNumber = "EDU-2026-00000000089",
+                            AccountNumber = "EDU-2026-T7YEYDB",
                             CitizenId = 89,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21529,7 +21529,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 90,
-                            AccountNumber = "EDU-2026-00000000090",
+                            AccountNumber = "EDU-2026-FZBQG3E",
                             CitizenId = 90,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21541,7 +21541,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 91,
-                            AccountNumber = "EDU-2026-00000000091",
+                            AccountNumber = "EDU-2026-6D5C325",
                             CitizenId = 91,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21553,7 +21553,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 92,
-                            AccountNumber = "EDU-2026-00000000092",
+                            AccountNumber = "EDU-2026-4YEJWG7",
                             CitizenId = 92,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21565,7 +21565,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 93,
-                            AccountNumber = "EDU-2026-00000000093",
+                            AccountNumber = "EDU-2026-YXHYTW2",
                             CitizenId = 93,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21577,7 +21577,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 94,
-                            AccountNumber = "EDU-2026-00000000094",
+                            AccountNumber = "EDU-2026-H8KJ3BT",
                             CitizenId = 94,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21589,7 +21589,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 95,
-                            AccountNumber = "EDU-2026-00000000095",
+                            AccountNumber = "EDU-2026-PNJT4Z9",
                             CitizenId = 95,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21601,7 +21601,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 96,
-                            AccountNumber = "EDU-2026-00000000096",
+                            AccountNumber = "EDU-2026-4QZV9PZ",
                             CitizenId = 96,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21613,7 +21613,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 97,
-                            AccountNumber = "EDU-2026-00000000097",
+                            AccountNumber = "EDU-2026-B3KAHLE",
                             CitizenId = 97,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21625,7 +21625,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 98,
-                            AccountNumber = "EDU-2026-00000000098",
+                            AccountNumber = "EDU-2026-JF27YLS",
                             CitizenId = 98,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21637,7 +21637,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 99,
-                            AccountNumber = "EDU-2026-00000000099",
+                            AccountNumber = "EDU-2026-TAAMX5Y",
                             CitizenId = 99,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21649,7 +21649,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 100,
-                            AccountNumber = "EDU-2026-00000000100",
+                            AccountNumber = "EDU-2026-NCYRE83",
                             CitizenId = 100,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21661,7 +21661,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 101,
-                            AccountNumber = "EDU-2026-00000000101",
+                            AccountNumber = "EDU-2026-VFC53SQ",
                             CitizenId = 101,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21673,7 +21673,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 102,
-                            AccountNumber = "EDU-2026-00000000102",
+                            AccountNumber = "EDU-2026-A932H44",
                             CitizenId = 102,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21685,7 +21685,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 103,
-                            AccountNumber = "EDU-2026-00000000103",
+                            AccountNumber = "EDU-2026-9P5BKS7",
                             CitizenId = 103,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21697,7 +21697,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 104,
-                            AccountNumber = "EDU-2026-00000000104",
+                            AccountNumber = "EDU-2026-M8BM4GB",
                             CitizenId = 104,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21709,7 +21709,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 105,
-                            AccountNumber = "EDU-2026-00000000105",
+                            AccountNumber = "EDU-2026-RUF5UYH",
                             CitizenId = 105,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21721,7 +21721,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 106,
-                            AccountNumber = "EDU-2026-00000000106",
+                            AccountNumber = "EDU-2026-7W7XSPW",
                             CitizenId = 106,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21733,7 +21733,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 107,
-                            AccountNumber = "EDU-2026-00000000107",
+                            AccountNumber = "EDU-2026-XWUS42D",
                             CitizenId = 107,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21745,7 +21745,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 108,
-                            AccountNumber = "EDU-2026-00000000108",
+                            AccountNumber = "EDU-2026-X4MJKCJ",
                             CitizenId = 108,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21757,7 +21757,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 109,
-                            AccountNumber = "EDU-2026-00000000109",
+                            AccountNumber = "EDU-2026-Y3AFWU7",
                             CitizenId = 109,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21769,7 +21769,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 110,
-                            AccountNumber = "EDU-2026-00000000110",
+                            AccountNumber = "EDU-2026-9T4GB5H",
                             CitizenId = 110,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21781,7 +21781,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 111,
-                            AccountNumber = "EDU-2026-00000000111",
+                            AccountNumber = "EDU-2026-4KDYWXE",
                             CitizenId = 111,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21793,7 +21793,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 112,
-                            AccountNumber = "EDU-2026-00000000112",
+                            AccountNumber = "EDU-2026-94AHRGT",
                             CitizenId = 112,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21805,7 +21805,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 113,
-                            AccountNumber = "EDU-2026-00000000113",
+                            AccountNumber = "EDU-2026-USDU23H",
                             CitizenId = 113,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21817,7 +21817,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 114,
-                            AccountNumber = "EDU-2026-00000000114",
+                            AccountNumber = "EDU-2026-SUGULQ3",
                             CitizenId = 114,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21829,7 +21829,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 115,
-                            AccountNumber = "EDU-2026-00000000115",
+                            AccountNumber = "EDU-2026-H8BZ4D9",
                             CitizenId = 115,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21841,7 +21841,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 116,
-                            AccountNumber = "EDU-2026-00000000116",
+                            AccountNumber = "EDU-2026-PD8CH8H",
                             CitizenId = 116,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21853,7 +21853,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 117,
-                            AccountNumber = "EDU-2026-00000000117",
+                            AccountNumber = "EDU-2026-6TV9W5Y",
                             CitizenId = 117,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21865,7 +21865,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 118,
-                            AccountNumber = "EDU-2026-00000000118",
+                            AccountNumber = "EDU-2026-2FU5QY4",
                             CitizenId = 118,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21877,7 +21877,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 119,
-                            AccountNumber = "EDU-2026-00000000119",
+                            AccountNumber = "EDU-2026-6DDUHVB",
                             CitizenId = 119,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -21889,7 +21889,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 120,
-                            AccountNumber = "EDU-2026-00000000120",
+                            AccountNumber = "EDU-2026-DLFCXZ9",
                             CitizenId = 120,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1000m,
@@ -22423,7 +22423,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            AccountNumberSnapshot = "EDU-2026-00000000001",
+                            AccountNumberSnapshot = "EDU-2026-X9EUKF3",
                             CitizenEmailSnapshot = "sterling.quach@example.com",
                             CitizenFullNameSnapshot = "Sterling Quach",
                             CitizenNricSnapshot = "S0000001I",
@@ -22440,7 +22440,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            AccountNumberSnapshot = "EDU-2026-00000000002",
+                            AccountNumberSnapshot = "EDU-2026-3LGAWV9",
                             CitizenEmailSnapshot = "amelia.tan@example.com",
                             CitizenFullNameSnapshot = "Amelia Tan",
                             CitizenNricSnapshot = "S0000002G",
@@ -22457,7 +22457,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            AccountNumberSnapshot = "EDU-2026-00000000003",
+                            AccountNumberSnapshot = "EDU-2026-XAT7E9E",
                             CitizenEmailSnapshot = "marcus.lim@example.com",
                             CitizenFullNameSnapshot = "Marcus Lim",
                             CitizenNricSnapshot = "S0000003E",
@@ -22474,7 +22474,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 4,
-                            AccountNumberSnapshot = "EDU-2026-00000000004",
+                            AccountNumberSnapshot = "EDU-2026-3TS34HX",
                             CitizenEmailSnapshot = "priya.nair@example.com",
                             CitizenFullNameSnapshot = "Priya Nair",
                             CitizenNricSnapshot = "S0000004C",
@@ -22491,7 +22491,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 5,
-                            AccountNumberSnapshot = "EDU-2026-00000000005",
+                            AccountNumberSnapshot = "EDU-2026-CWDX5AJ",
                             CitizenEmailSnapshot = "ethan.koh@example.com",
                             CitizenFullNameSnapshot = "Ethan Koh",
                             CitizenNricSnapshot = "S0000005A",
@@ -22508,7 +22508,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 6,
-                            AccountNumberSnapshot = "EDU-2026-00000000006",
+                            AccountNumberSnapshot = "EDU-2026-XSKCN4U",
                             CitizenEmailSnapshot = "hannah.lee@example.com",
                             CitizenFullNameSnapshot = "Hannah Lee",
                             CitizenNricSnapshot = "S0000006Z",
@@ -22525,7 +22525,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 7,
-                            AccountNumberSnapshot = "EDU-2026-00000000007",
+                            AccountNumberSnapshot = "EDU-2026-ANKT5X5",
                             CitizenEmailSnapshot = "daniel.wong@example.com",
                             CitizenFullNameSnapshot = "Daniel Wong",
                             CitizenNricSnapshot = "S0000007H",
@@ -22542,7 +22542,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 8,
-                            AccountNumberSnapshot = "EDU-2026-00000000008",
+                            AccountNumberSnapshot = "EDU-2026-S553K8A",
                             CitizenEmailSnapshot = "sofia.chen@example.com",
                             CitizenFullNameSnapshot = "Sofia Chen",
                             CitizenNricSnapshot = "S0000008F",
@@ -22559,7 +22559,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 9,
-                            AccountNumberSnapshot = "EDU-2026-00000000009",
+                            AccountNumberSnapshot = "EDU-2026-G9R92UD",
                             CitizenEmailSnapshot = "lucas.nguyen@example.com",
                             CitizenFullNameSnapshot = "Lucas Nguyen",
                             CitizenNricSnapshot = "S0000009D",
@@ -22576,7 +22576,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 10,
-                            AccountNumberSnapshot = "EDU-2026-00000000010",
+                            AccountNumberSnapshot = "EDU-2026-MVQY23P",
                             CitizenEmailSnapshot = "maya.rahman@example.com",
                             CitizenFullNameSnapshot = "Maya Rahman",
                             CitizenNricSnapshot = "S0000010H",
@@ -22593,7 +22593,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 11,
-                            AccountNumberSnapshot = "EDU-2026-00000000009",
+                            AccountNumberSnapshot = "EDU-2026-G9R92UD",
                             CitizenEmailSnapshot = "lucas.nguyen@example.com",
                             CitizenFullNameSnapshot = "Lucas Nguyen",
                             CitizenNricSnapshot = "S0000009D",
@@ -22610,7 +22610,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 13,
-                            AccountNumberSnapshot = "EDU-2026-00000000009",
+                            AccountNumberSnapshot = "EDU-2026-G9R92UD",
                             CitizenEmailSnapshot = "lucas.nguyen@example.com",
                             CitizenFullNameSnapshot = "Lucas Nguyen",
                             CitizenNricSnapshot = "S0000009D",
@@ -22627,7 +22627,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 14,
-                            AccountNumberSnapshot = "EDU-2026-00000000009",
+                            AccountNumberSnapshot = "EDU-2026-G9R92UD",
                             CitizenEmailSnapshot = "lucas.nguyen@example.com",
                             CitizenFullNameSnapshot = "Lucas Nguyen",
                             CitizenNricSnapshot = "S0000009D",
@@ -22644,7 +22644,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 12,
-                            AccountNumberSnapshot = "EDU-2026-00000000009",
+                            AccountNumberSnapshot = "EDU-2026-G9R92UD",
                             CitizenEmailSnapshot = "lucas.nguyen@example.com",
                             CitizenFullNameSnapshot = "Lucas Nguyen",
                             CitizenNricSnapshot = "S0000009D",
@@ -22661,7 +22661,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 15,
-                            AccountNumberSnapshot = "EDU-2026-00000000009",
+                            AccountNumberSnapshot = "EDU-2026-G9R92UD",
                             CitizenEmailSnapshot = "lucas.nguyen@example.com",
                             CitizenFullNameSnapshot = "Lucas Nguyen",
                             CitizenNricSnapshot = "S0000009D",
@@ -22678,7 +22678,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 16,
-                            AccountNumberSnapshot = "EDU-2026-00000000009",
+                            AccountNumberSnapshot = "EDU-2026-G9R92UD",
                             CitizenEmailSnapshot = "lucas.nguyen@example.com",
                             CitizenFullNameSnapshot = "Lucas Nguyen",
                             CitizenNricSnapshot = "S0000009D",
@@ -22695,7 +22695,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 17,
-                            AccountNumberSnapshot = "EDU-2026-00000000009",
+                            AccountNumberSnapshot = "EDU-2026-G9R92UD",
                             CitizenEmailSnapshot = "lucas.nguyen@example.com",
                             CitizenFullNameSnapshot = "Lucas Nguyen",
                             CitizenNricSnapshot = "S0000009D",
@@ -22712,7 +22712,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 18,
-                            AccountNumberSnapshot = "EDU-2026-00000000009",
+                            AccountNumberSnapshot = "EDU-2026-G9R92UD",
                             CitizenEmailSnapshot = "lucas.nguyen@example.com",
                             CitizenFullNameSnapshot = "Lucas Nguyen",
                             CitizenNricSnapshot = "S0000009D",
@@ -22729,7 +22729,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 19,
-                            AccountNumberSnapshot = "EDU-2026-00000000009",
+                            AccountNumberSnapshot = "EDU-2026-G9R92UD",
                             CitizenEmailSnapshot = "lucas.nguyen@example.com",
                             CitizenFullNameSnapshot = "Lucas Nguyen",
                             CitizenNricSnapshot = "S0000009D",
@@ -22746,7 +22746,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 20,
-                            AccountNumberSnapshot = "EDU-2026-00000000011",
+                            AccountNumberSnapshot = "EDU-2026-6W5A9YQ",
                             CitizenEmailSnapshot = "noah.teo.11@example.com",
                             CitizenFullNameSnapshot = "Noah Teo",
                             CitizenNricSnapshot = "S0000011F",
@@ -22763,7 +22763,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 21,
-                            AccountNumberSnapshot = "EDU-2026-00000000012",
+                            AccountNumberSnapshot = "EDU-2026-WR567FC",
                             CitizenEmailSnapshot = "aisha.fernandez.12@example.com",
                             CitizenFullNameSnapshot = "Aisha Fernandez",
                             CitizenNricSnapshot = "S0000012D",
@@ -22780,7 +22780,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 22,
-                            AccountNumberSnapshot = "EDU-2026-00000000013",
+                            AccountNumberSnapshot = "EDU-2026-8KMXW3A",
                             CitizenEmailSnapshot = "ryan.chua.13@example.com",
                             CitizenFullNameSnapshot = "Ryan Chua",
                             CitizenNricSnapshot = "S0000013B",
@@ -22797,7 +22797,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 23,
-                            AccountNumberSnapshot = "EDU-2026-00000000014",
+                            AccountNumberSnapshot = "EDU-2026-Y2AKLTP",
                             CitizenEmailSnapshot = "chloe.goh.14@example.com",
                             CitizenFullNameSnapshot = "Chloe Goh",
                             CitizenNricSnapshot = "S0000014J",
@@ -22814,7 +22814,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 24,
-                            AccountNumberSnapshot = "EDU-2026-00000000015",
+                            AccountNumberSnapshot = "EDU-2026-8B8F6EP",
                             CitizenEmailSnapshot = "irfan.hassan.15@example.com",
                             CitizenFullNameSnapshot = "Irfan Hassan",
                             CitizenNricSnapshot = "S0000015I",
@@ -22831,7 +22831,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 25,
-                            AccountNumberSnapshot = "EDU-2026-00000000016",
+                            AccountNumberSnapshot = "EDU-2026-PM4HP2L",
                             CitizenEmailSnapshot = "natalie.seah.16@example.com",
                             CitizenFullNameSnapshot = "Natalie Seah",
                             CitizenNricSnapshot = "S0000016G",
@@ -22848,7 +22848,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 26,
-                            AccountNumberSnapshot = "EDU-2026-00000000017",
+                            AccountNumberSnapshot = "EDU-2026-TJ5ZGWC",
                             CitizenEmailSnapshot = "qistina.rao.17@example.com",
                             CitizenFullNameSnapshot = "Qistina Rao",
                             CitizenNricSnapshot = "S0000017E",
@@ -22865,7 +22865,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 27,
-                            AccountNumberSnapshot = "EDU-2026-00000000018",
+                            AccountNumberSnapshot = "EDU-2026-BJ42M5A",
                             CitizenEmailSnapshot = "rafael.sim.18@example.com",
                             CitizenFullNameSnapshot = "Rafael Sim",
                             CitizenNricSnapshot = "S0000018C",
@@ -22882,7 +22882,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 28,
-                            AccountNumberSnapshot = "EDU-2026-00000000019",
+                            AccountNumberSnapshot = "EDU-2026-4K3E2VM",
                             CitizenEmailSnapshot = "selina.tan.19@example.com",
                             CitizenFullNameSnapshot = "Selina Tan",
                             CitizenNricSnapshot = "S0000019A",
@@ -22899,7 +22899,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 29,
-                            AccountNumberSnapshot = "EDU-2026-00000000020",
+                            AccountNumberSnapshot = "EDU-2026-KE29NED",
                             CitizenEmailSnapshot = "terence.uddin.20@example.com",
                             CitizenFullNameSnapshot = "Terence Uddin",
                             CitizenNricSnapshot = "S0000020E",
@@ -22916,7 +22916,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 30,
-                            AccountNumberSnapshot = "EDU-2026-00000000021",
+                            AccountNumberSnapshot = "EDU-2026-ZCJZG6L",
                             CitizenEmailSnapshot = "umairah.vasquez.21@example.com",
                             CitizenFullNameSnapshot = "Umairah Vasquez",
                             CitizenNricSnapshot = "S0000021C",
@@ -22933,7 +22933,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 31,
-                            AccountNumberSnapshot = "EDU-2026-00000000022",
+                            AccountNumberSnapshot = "EDU-2026-GREA9E2",
                             CitizenEmailSnapshot = "victor.wong.22@example.com",
                             CitizenFullNameSnapshot = "Victor Wong",
                             CitizenNricSnapshot = "S0000022A",
@@ -22950,7 +22950,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 32,
-                            AccountNumberSnapshot = "EDU-2026-00000000023",
+                            AccountNumberSnapshot = "EDU-2026-ZL7C8X4",
                             CitizenEmailSnapshot = "wen.jie.xu.23@example.com",
                             CitizenFullNameSnapshot = "Wen Jie Xu",
                             CitizenNricSnapshot = "S0000023Z",
@@ -22967,7 +22967,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 33,
-                            AccountNumberSnapshot = "EDU-2026-00000000024",
+                            AccountNumberSnapshot = "EDU-2026-CCTRWL5",
                             CitizenEmailSnapshot = "xavier.yeo.24@example.com",
                             CitizenFullNameSnapshot = "Xavier Yeo",
                             CitizenNricSnapshot = "S0000024H",
@@ -22984,7 +22984,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 34,
-                            AccountNumberSnapshot = "EDU-2026-00000000025",
+                            AccountNumberSnapshot = "EDU-2026-6X2APTP",
                             CitizenEmailSnapshot = "yasmin.zainal.25@example.com",
                             CitizenFullNameSnapshot = "Yasmin Zainal",
                             CitizenNricSnapshot = "S0000025F",
@@ -23001,7 +23001,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 35,
-                            AccountNumberSnapshot = "EDU-2026-00000000026",
+                            AccountNumberSnapshot = "EDU-2026-FZD3UAP",
                             CitizenEmailSnapshot = "zachary.ang.26@example.com",
                             CitizenFullNameSnapshot = "Zachary Ang",
                             CitizenNricSnapshot = "S0000026D",
@@ -23018,7 +23018,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 36,
-                            AccountNumberSnapshot = "EDU-2026-00000000027",
+                            AccountNumberSnapshot = "EDU-2026-63UJ2UF",
                             CitizenEmailSnapshot = "adeline.bala.27@example.com",
                             CitizenFullNameSnapshot = "Adeline Bala",
                             CitizenNricSnapshot = "S0000027B",
@@ -23035,7 +23035,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 37,
-                            AccountNumberSnapshot = "EDU-2026-00000000028",
+                            AccountNumberSnapshot = "EDU-2026-TR5Z5D3",
                             CitizenEmailSnapshot = "brandon.chew.28@example.com",
                             CitizenFullNameSnapshot = "Brandon Chew",
                             CitizenNricSnapshot = "S0000028J",
@@ -23052,7 +23052,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 38,
-                            AccountNumberSnapshot = "EDU-2026-00000000029",
+                            AccountNumberSnapshot = "EDU-2026-2WFHAM9",
                             CitizenEmailSnapshot = "celeste.das.29@example.com",
                             CitizenFullNameSnapshot = "Celeste Das",
                             CitizenNricSnapshot = "S0000029I",
@@ -23069,7 +23069,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 39,
-                            AccountNumberSnapshot = "EDU-2026-00000000030",
+                            AccountNumberSnapshot = "EDU-2026-ZK6QLJP",
                             CitizenEmailSnapshot = "damien.eng.30@example.com",
                             CitizenFullNameSnapshot = "Damien Eng",
                             CitizenNricSnapshot = "S0000030B",
@@ -23086,7 +23086,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 40,
-                            AccountNumberSnapshot = "EDU-2026-00000000031",
+                            AccountNumberSnapshot = "EDU-2026-8TCLTDQ",
                             CitizenEmailSnapshot = "evelyn.foo.31@example.com",
                             CitizenFullNameSnapshot = "Evelyn Foo",
                             CitizenNricSnapshot = "S0000031J",
@@ -23103,7 +23103,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 41,
-                            AccountNumberSnapshot = "EDU-2026-00000000032",
+                            AccountNumberSnapshot = "EDU-2026-4MD2QV4",
                             CitizenEmailSnapshot = "faris.gan.32@example.com",
                             CitizenFullNameSnapshot = "Faris Gan",
                             CitizenNricSnapshot = "S0000032I",
@@ -23120,7 +23120,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 42,
-                            AccountNumberSnapshot = "EDU-2026-00000000033",
+                            AccountNumberSnapshot = "EDU-2026-P445GFR",
                             CitizenEmailSnapshot = "giselle.ho.33@example.com",
                             CitizenFullNameSnapshot = "Giselle Ho",
                             CitizenNricSnapshot = "S0000033G",
@@ -23137,7 +23137,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 43,
-                            AccountNumberSnapshot = "EDU-2026-00000000034",
+                            AccountNumberSnapshot = "EDU-2026-H5VK6UE",
                             CitizenEmailSnapshot = "haziq.ismail.34@example.com",
                             CitizenFullNameSnapshot = "Haziq Ismail",
                             CitizenNricSnapshot = "S0000034E",
@@ -23154,7 +23154,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 44,
-                            AccountNumberSnapshot = "EDU-2026-00000000035",
+                            AccountNumberSnapshot = "EDU-2026-K4GYB53",
                             CitizenEmailSnapshot = "irene.jeyaratnam.35@example.com",
                             CitizenFullNameSnapshot = "Irene Jeyaratnam",
                             CitizenNricSnapshot = "S0000035C",
@@ -23171,7 +23171,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 45,
-                            AccountNumberSnapshot = "EDU-2026-00000000036",
+                            AccountNumberSnapshot = "EDU-2026-NU32Y83",
                             CitizenEmailSnapshot = "jonas.kwek.36@example.com",
                             CitizenFullNameSnapshot = "Jonas Kwek",
                             CitizenNricSnapshot = "S0000036A",
@@ -23188,7 +23188,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 46,
-                            AccountNumberSnapshot = "EDU-2026-00000000037",
+                            AccountNumberSnapshot = "EDU-2026-5KZTP8L",
                             CitizenEmailSnapshot = "kavya.lim.37@example.com",
                             CitizenFullNameSnapshot = "Kavya Lim",
                             CitizenNricSnapshot = "S0000037Z",
@@ -23205,7 +23205,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 47,
-                            AccountNumberSnapshot = "EDU-2026-00000000038",
+                            AccountNumberSnapshot = "EDU-2026-HPFV4XV",
                             CitizenEmailSnapshot = "lydia.mohamed.38@example.com",
                             CitizenFullNameSnapshot = "Lydia Mohamed",
                             CitizenNricSnapshot = "S0000038H",
@@ -23222,7 +23222,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 48,
-                            AccountNumberSnapshot = "EDU-2026-00000000039",
+                            AccountNumberSnapshot = "EDU-2026-EDPW32Q",
                             CitizenEmailSnapshot = "malcolm.ng.39@example.com",
                             CitizenFullNameSnapshot = "Malcolm Ng",
                             CitizenNricSnapshot = "S0000039F",
@@ -23239,7 +23239,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 49,
-                            AccountNumberSnapshot = "EDU-2026-00000000040",
+                            AccountNumberSnapshot = "EDU-2026-YSZD75Q",
                             CitizenEmailSnapshot = "nadia.ong.40@example.com",
                             CitizenFullNameSnapshot = "Nadia Ong",
                             CitizenNricSnapshot = "S0000040Z",
@@ -23256,7 +23256,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 50,
-                            AccountNumberSnapshot = "EDU-2026-00000000041",
+                            AccountNumberSnapshot = "EDU-2026-X8YAX3G",
                             CitizenEmailSnapshot = "alina.quek.41@example.com",
                             CitizenFullNameSnapshot = "Alina Quek",
                             CitizenNricSnapshot = "S0000041H",
@@ -23273,7 +23273,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 51,
-                            AccountNumberSnapshot = "EDU-2026-00000000042",
+                            AccountNumberSnapshot = "EDU-2026-E73JAXD",
                             CitizenEmailSnapshot = "benjamin.rao.42@example.com",
                             CitizenFullNameSnapshot = "Benjamin Rao",
                             CitizenNricSnapshot = "S0000042F",
@@ -23290,7 +23290,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 52,
-                            AccountNumberSnapshot = "EDU-2026-00000000043",
+                            AccountNumberSnapshot = "EDU-2026-J46BKBU",
                             CitizenEmailSnapshot = "clara.sim.43@example.com",
                             CitizenFullNameSnapshot = "Clara Sim",
                             CitizenNricSnapshot = "S0000043D",
@@ -23307,7 +23307,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 53,
-                            AccountNumberSnapshot = "EDU-2026-00000000044",
+                            AccountNumberSnapshot = "EDU-2026-XF3YKPG",
                             CitizenEmailSnapshot = "darius.tan.44@example.com",
                             CitizenFullNameSnapshot = "Darius Tan",
                             CitizenNricSnapshot = "S0000044B",
@@ -23324,7 +23324,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 54,
-                            AccountNumberSnapshot = "EDU-2026-00000000045",
+                            AccountNumberSnapshot = "EDU-2026-AUEK59P",
                             CitizenEmailSnapshot = "elena.uddin.45@example.com",
                             CitizenFullNameSnapshot = "Elena Uddin",
                             CitizenNricSnapshot = "S0000045J",
@@ -23341,7 +23341,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 55,
-                            AccountNumberSnapshot = "EDU-2026-00000000046",
+                            AccountNumberSnapshot = "EDU-2026-WYCLW4C",
                             CitizenEmailSnapshot = "farhan.vasquez.46@example.com",
                             CitizenFullNameSnapshot = "Farhan Vasquez",
                             CitizenNricSnapshot = "S0000046I",
@@ -23358,7 +23358,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 56,
-                            AccountNumberSnapshot = "EDU-2026-00000000047",
+                            AccountNumberSnapshot = "EDU-2026-KSQL7E2",
                             CitizenEmailSnapshot = "grace.wong.47@example.com",
                             CitizenFullNameSnapshot = "Grace Wong",
                             CitizenNricSnapshot = "S0000047G",
@@ -23375,7 +23375,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 57,
-                            AccountNumberSnapshot = "EDU-2026-00000000048",
+                            AccountNumberSnapshot = "EDU-2026-J6SNTZ5",
                             CitizenEmailSnapshot = "haruto.xu.48@example.com",
                             CitizenFullNameSnapshot = "Haruto Xu",
                             CitizenNricSnapshot = "S0000048E",
@@ -23392,7 +23392,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 58,
-                            AccountNumberSnapshot = "EDU-2026-00000000049",
+                            AccountNumberSnapshot = "EDU-2026-GHVBXR3",
                             CitizenEmailSnapshot = "isabelle.yeo.49@example.com",
                             CitizenFullNameSnapshot = "Isabelle Yeo",
                             CitizenNricSnapshot = "S0000049C",
@@ -23409,7 +23409,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 59,
-                            AccountNumberSnapshot = "EDU-2026-00000000050",
+                            AccountNumberSnapshot = "EDU-2026-Z7YP3EW",
                             CitizenEmailSnapshot = "jasper.zainal.50@example.com",
                             CitizenFullNameSnapshot = "Jasper Zainal",
                             CitizenNricSnapshot = "S0000050G",
@@ -23426,7 +23426,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 60,
-                            AccountNumberSnapshot = "EDU-2026-00000000051",
+                            AccountNumberSnapshot = "EDU-2026-UZM23Y5",
                             CitizenEmailSnapshot = "keira.ang.51@example.com",
                             CitizenFullNameSnapshot = "Keira Ang",
                             CitizenNricSnapshot = "S0000051E",
@@ -23443,7 +23443,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 61,
-                            AccountNumberSnapshot = "EDU-2026-00000000052",
+                            AccountNumberSnapshot = "EDU-2026-4GS4RMU",
                             CitizenEmailSnapshot = "leon.bala.52@example.com",
                             CitizenFullNameSnapshot = "Leon Bala",
                             CitizenNricSnapshot = "S0000052C",
@@ -23460,7 +23460,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 62,
-                            AccountNumberSnapshot = "EDU-2026-00000000053",
+                            AccountNumberSnapshot = "EDU-2026-BY2YKCV",
                             CitizenEmailSnapshot = "mei.lin.chew.53@example.com",
                             CitizenFullNameSnapshot = "Mei Lin Chew",
                             CitizenNricSnapshot = "S0000053A",
@@ -23477,7 +23477,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 63,
-                            AccountNumberSnapshot = "EDU-2026-00000000054",
+                            AccountNumberSnapshot = "EDU-2026-2KUFS7K",
                             CitizenEmailSnapshot = "nathan.das.54@example.com",
                             CitizenFullNameSnapshot = "Nathan Das",
                             CitizenNricSnapshot = "S0000054Z",
@@ -23494,7 +23494,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 64,
-                            AccountNumberSnapshot = "EDU-2026-00000000055",
+                            AccountNumberSnapshot = "EDU-2026-XWNGZR4",
                             CitizenEmailSnapshot = "olivia.eng.55@example.com",
                             CitizenFullNameSnapshot = "Olivia Eng",
                             CitizenNricSnapshot = "S0000055H",
@@ -23511,7 +23511,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 65,
-                            AccountNumberSnapshot = "EDU-2026-00000000056",
+                            AccountNumberSnapshot = "EDU-2026-MG97NU4",
                             CitizenEmailSnapshot = "pranav.foo.56@example.com",
                             CitizenFullNameSnapshot = "Pranav Foo",
                             CitizenNricSnapshot = "S0000056F",
@@ -23528,7 +23528,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 66,
-                            AccountNumberSnapshot = "EDU-2026-00000000057",
+                            AccountNumberSnapshot = "EDU-2026-6BE7RJ7",
                             CitizenEmailSnapshot = "qistina.gan.57@example.com",
                             CitizenFullNameSnapshot = "Qistina Gan",
                             CitizenNricSnapshot = "S0000057D",
@@ -23545,7 +23545,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 67,
-                            AccountNumberSnapshot = "EDU-2026-00000000058",
+                            AccountNumberSnapshot = "EDU-2026-N34SNTV",
                             CitizenEmailSnapshot = "rafael.ho.58@example.com",
                             CitizenFullNameSnapshot = "Rafael Ho",
                             CitizenNricSnapshot = "S0000058B",
@@ -23562,7 +23562,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 68,
-                            AccountNumberSnapshot = "EDU-2026-00000000059",
+                            AccountNumberSnapshot = "EDU-2026-VX6V49Y",
                             CitizenEmailSnapshot = "selina.ismail.59@example.com",
                             CitizenFullNameSnapshot = "Selina Ismail",
                             CitizenNricSnapshot = "S0000059J",
@@ -23579,7 +23579,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 69,
-                            AccountNumberSnapshot = "EDU-2026-00000000060",
+                            AccountNumberSnapshot = "EDU-2026-CZXZH8L",
                             CitizenEmailSnapshot = "terence.jeyaratnam.60@example.com",
                             CitizenFullNameSnapshot = "Terence Jeyaratnam",
                             CitizenNricSnapshot = "S0000060D",
@@ -23596,7 +23596,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 70,
-                            AccountNumberSnapshot = "EDU-2026-00000000061",
+                            AccountNumberSnapshot = "EDU-2026-8E2DFRR",
                             CitizenEmailSnapshot = "umairah.kwek.61@example.com",
                             CitizenFullNameSnapshot = "Umairah Kwek",
                             CitizenNricSnapshot = "S0000061B",
@@ -23613,7 +23613,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 71,
-                            AccountNumberSnapshot = "EDU-2026-00000000062",
+                            AccountNumberSnapshot = "EDU-2026-WH6JUY3",
                             CitizenEmailSnapshot = "victor.lim.62@example.com",
                             CitizenFullNameSnapshot = "Victor Lim",
                             CitizenNricSnapshot = "S0000062J",
@@ -23630,7 +23630,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 72,
-                            AccountNumberSnapshot = "EDU-2026-00000000063",
+                            AccountNumberSnapshot = "EDU-2026-BTCG9WU",
                             CitizenEmailSnapshot = "wen.jie.mohamed.63@example.com",
                             CitizenFullNameSnapshot = "Wen Jie Mohamed",
                             CitizenNricSnapshot = "S0000063I",
@@ -23647,7 +23647,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 73,
-                            AccountNumberSnapshot = "EDU-2026-00000000064",
+                            AccountNumberSnapshot = "EDU-2026-G3RY59C",
                             CitizenEmailSnapshot = "xavier.ng.64@example.com",
                             CitizenFullNameSnapshot = "Xavier Ng",
                             CitizenNricSnapshot = "S0000064G",
@@ -23664,7 +23664,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 74,
-                            AccountNumberSnapshot = "EDU-2026-00000000065",
+                            AccountNumberSnapshot = "EDU-2026-WXSV77H",
                             CitizenEmailSnapshot = "yasmin.ong.65@example.com",
                             CitizenFullNameSnapshot = "Yasmin Ong",
                             CitizenNricSnapshot = "S0000065E",
@@ -23681,7 +23681,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 75,
-                            AccountNumberSnapshot = "EDU-2026-00000000066",
+                            AccountNumberSnapshot = "EDU-2026-NVPY2X8",
                             CitizenEmailSnapshot = "zachary.pillai.66@example.com",
                             CitizenFullNameSnapshot = "Zachary Pillai",
                             CitizenNricSnapshot = "S0000066C",
@@ -23698,7 +23698,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 76,
-                            AccountNumberSnapshot = "EDU-2026-00000000067",
+                            AccountNumberSnapshot = "EDU-2026-4LGHC4M",
                             CitizenEmailSnapshot = "adeline.quek.67@example.com",
                             CitizenFullNameSnapshot = "Adeline Quek",
                             CitizenNricSnapshot = "S0000067A",
@@ -23715,7 +23715,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 77,
-                            AccountNumberSnapshot = "EDU-2026-00000000068",
+                            AccountNumberSnapshot = "EDU-2026-CB759N3",
                             CitizenEmailSnapshot = "brandon.rao.68@example.com",
                             CitizenFullNameSnapshot = "Brandon Rao",
                             CitizenNricSnapshot = "S0000068Z",
@@ -23732,7 +23732,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 78,
-                            AccountNumberSnapshot = "EDU-2026-00000000069",
+                            AccountNumberSnapshot = "EDU-2026-AJEBPR6",
                             CitizenEmailSnapshot = "celeste.sim.69@example.com",
                             CitizenFullNameSnapshot = "Celeste Sim",
                             CitizenNricSnapshot = "S0000069H",
@@ -23749,7 +23749,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 79,
-                            AccountNumberSnapshot = "EDU-2026-00000000070",
+                            AccountNumberSnapshot = "EDU-2026-SSB2RJA",
                             CitizenEmailSnapshot = "damien.tan.70@example.com",
                             CitizenFullNameSnapshot = "Damien Tan",
                             CitizenNricSnapshot = "S0000070A",
@@ -23766,7 +23766,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 80,
-                            AccountNumberSnapshot = "EDU-2026-00000000071",
+                            AccountNumberSnapshot = "EDU-2026-BDJT3M6",
                             CitizenEmailSnapshot = "evelyn.uddin.71@example.com",
                             CitizenFullNameSnapshot = "Evelyn Uddin",
                             CitizenNricSnapshot = "S0000071Z",
@@ -23783,7 +23783,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 81,
-                            AccountNumberSnapshot = "EDU-2026-00000000072",
+                            AccountNumberSnapshot = "EDU-2026-UP4EBHA",
                             CitizenEmailSnapshot = "faris.vasquez.72@example.com",
                             CitizenFullNameSnapshot = "Faris Vasquez",
                             CitizenNricSnapshot = "S0000072H",
@@ -23800,7 +23800,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 82,
-                            AccountNumberSnapshot = "EDU-2026-00000000073",
+                            AccountNumberSnapshot = "EDU-2026-6FQKVDV",
                             CitizenEmailSnapshot = "giselle.wong.73@example.com",
                             CitizenFullNameSnapshot = "Giselle Wong",
                             CitizenNricSnapshot = "S0000073F",
@@ -23817,7 +23817,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 83,
-                            AccountNumberSnapshot = "EDU-2026-00000000074",
+                            AccountNumberSnapshot = "EDU-2026-QD3M8AQ",
                             CitizenEmailSnapshot = "haziq.xu.74@example.com",
                             CitizenFullNameSnapshot = "Haziq Xu",
                             CitizenNricSnapshot = "S0000074D",
@@ -23834,7 +23834,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 84,
-                            AccountNumberSnapshot = "EDU-2026-00000000075",
+                            AccountNumberSnapshot = "EDU-2026-WYT2BGP",
                             CitizenEmailSnapshot = "irene.yeo.75@example.com",
                             CitizenFullNameSnapshot = "Irene Yeo",
                             CitizenNricSnapshot = "S0000075B",
@@ -23851,7 +23851,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 85,
-                            AccountNumberSnapshot = "EDU-2026-00000000076",
+                            AccountNumberSnapshot = "EDU-2026-Q22WCNJ",
                             CitizenEmailSnapshot = "jonas.zainal.76@example.com",
                             CitizenFullNameSnapshot = "Jonas Zainal",
                             CitizenNricSnapshot = "S0000076J",
@@ -23868,7 +23868,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 86,
-                            AccountNumberSnapshot = "EDU-2026-00000000077",
+                            AccountNumberSnapshot = "EDU-2026-MQYB5BX",
                             CitizenEmailSnapshot = "kavya.ang.77@example.com",
                             CitizenFullNameSnapshot = "Kavya Ang",
                             CitizenNricSnapshot = "S0000077I",
@@ -23885,7 +23885,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 87,
-                            AccountNumberSnapshot = "EDU-2026-00000000078",
+                            AccountNumberSnapshot = "EDU-2026-ZQ373CC",
                             CitizenEmailSnapshot = "lydia.bala.78@example.com",
                             CitizenFullNameSnapshot = "Lydia Bala",
                             CitizenNricSnapshot = "S0000078G",
@@ -23902,7 +23902,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 88,
-                            AccountNumberSnapshot = "EDU-2026-00000000079",
+                            AccountNumberSnapshot = "EDU-2026-6X7Q9DZ",
                             CitizenEmailSnapshot = "malcolm.chew.79@example.com",
                             CitizenFullNameSnapshot = "Malcolm Chew",
                             CitizenNricSnapshot = "S0000079E",
@@ -23919,7 +23919,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 89,
-                            AccountNumberSnapshot = "EDU-2026-00000000080",
+                            AccountNumberSnapshot = "EDU-2026-WEW8V66",
                             CitizenEmailSnapshot = "nadia.das.80@example.com",
                             CitizenFullNameSnapshot = "Nadia Das",
                             CitizenNricSnapshot = "S0000080I",
@@ -23936,7 +23936,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 90,
-                            AccountNumberSnapshot = "EDU-2026-00000000081",
+                            AccountNumberSnapshot = "EDU-2026-N34HPDZ",
                             CitizenEmailSnapshot = "alina.foo.81@example.com",
                             CitizenFullNameSnapshot = "Alina Foo",
                             CitizenNricSnapshot = "S0000081G",
@@ -23953,7 +23953,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 91,
-                            AccountNumberSnapshot = "EDU-2026-00000000082",
+                            AccountNumberSnapshot = "EDU-2026-QF2TKBF",
                             CitizenEmailSnapshot = "benjamin.gan.82@example.com",
                             CitizenFullNameSnapshot = "Benjamin Gan",
                             CitizenNricSnapshot = "S0000082E",
@@ -23970,7 +23970,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 92,
-                            AccountNumberSnapshot = "EDU-2026-00000000083",
+                            AccountNumberSnapshot = "EDU-2026-FE6RU3R",
                             CitizenEmailSnapshot = "clara.ho.83@example.com",
                             CitizenFullNameSnapshot = "Clara Ho",
                             CitizenNricSnapshot = "S0000083C",
@@ -23987,7 +23987,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 93,
-                            AccountNumberSnapshot = "EDU-2026-00000000084",
+                            AccountNumberSnapshot = "EDU-2026-CD953YC",
                             CitizenEmailSnapshot = "darius.ismail.84@example.com",
                             CitizenFullNameSnapshot = "Darius Ismail",
                             CitizenNricSnapshot = "S0000084A",
@@ -24004,7 +24004,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 94,
-                            AccountNumberSnapshot = "EDU-2026-00000000085",
+                            AccountNumberSnapshot = "EDU-2026-9JV4TFW",
                             CitizenEmailSnapshot = "elena.jeyaratnam.85@example.com",
                             CitizenFullNameSnapshot = "Elena Jeyaratnam",
                             CitizenNricSnapshot = "S0000085Z",
@@ -24021,7 +24021,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 95,
-                            AccountNumberSnapshot = "EDU-2026-00000000086",
+                            AccountNumberSnapshot = "EDU-2026-ENSP529",
                             CitizenEmailSnapshot = "farhan.kwek.86@example.com",
                             CitizenFullNameSnapshot = "Farhan Kwek",
                             CitizenNricSnapshot = "S0000086H",
@@ -24038,7 +24038,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 96,
-                            AccountNumberSnapshot = "EDU-2026-00000000087",
+                            AccountNumberSnapshot = "EDU-2026-S7NM7KA",
                             CitizenEmailSnapshot = "grace.lim.87@example.com",
                             CitizenFullNameSnapshot = "Grace Lim",
                             CitizenNricSnapshot = "S0000087F",
@@ -24055,7 +24055,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 97,
-                            AccountNumberSnapshot = "EDU-2026-00000000088",
+                            AccountNumberSnapshot = "EDU-2026-3MEM9AJ",
                             CitizenEmailSnapshot = "haruto.mohamed.88@example.com",
                             CitizenFullNameSnapshot = "Haruto Mohamed",
                             CitizenNricSnapshot = "S0000088D",
@@ -24072,7 +24072,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 98,
-                            AccountNumberSnapshot = "EDU-2026-00000000089",
+                            AccountNumberSnapshot = "EDU-2026-T7YEYDB",
                             CitizenEmailSnapshot = "isabelle.ng.89@example.com",
                             CitizenFullNameSnapshot = "Isabelle Ng",
                             CitizenNricSnapshot = "S0000089B",
@@ -24089,7 +24089,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 99,
-                            AccountNumberSnapshot = "EDU-2026-00000000090",
+                            AccountNumberSnapshot = "EDU-2026-FZBQG3E",
                             CitizenEmailSnapshot = "jasper.ong.90@example.com",
                             CitizenFullNameSnapshot = "Jasper Ong",
                             CitizenNricSnapshot = "S0000090F",
@@ -24106,7 +24106,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 100,
-                            AccountNumberSnapshot = "EDU-2026-00000000091",
+                            AccountNumberSnapshot = "EDU-2026-6D5C325",
                             CitizenEmailSnapshot = "keira.pillai.91@example.com",
                             CitizenFullNameSnapshot = "Keira Pillai",
                             CitizenNricSnapshot = "S0000091D",
@@ -24123,7 +24123,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 101,
-                            AccountNumberSnapshot = "EDU-2026-00000000092",
+                            AccountNumberSnapshot = "EDU-2026-4YEJWG7",
                             CitizenEmailSnapshot = "leon.quek.92@example.com",
                             CitizenFullNameSnapshot = "Leon Quek",
                             CitizenNricSnapshot = "S0000092B",
@@ -24140,7 +24140,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 102,
-                            AccountNumberSnapshot = "EDU-2026-00000000093",
+                            AccountNumberSnapshot = "EDU-2026-YXHYTW2",
                             CitizenEmailSnapshot = "mei.lin.rao.93@example.com",
                             CitizenFullNameSnapshot = "Mei Lin Rao",
                             CitizenNricSnapshot = "S0000093J",
@@ -24157,7 +24157,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 103,
-                            AccountNumberSnapshot = "EDU-2026-00000000094",
+                            AccountNumberSnapshot = "EDU-2026-H8KJ3BT",
                             CitizenEmailSnapshot = "nathan.sim.94@example.com",
                             CitizenFullNameSnapshot = "Nathan Sim",
                             CitizenNricSnapshot = "S0000094I",
@@ -24174,7 +24174,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 104,
-                            AccountNumberSnapshot = "EDU-2026-00000000095",
+                            AccountNumberSnapshot = "EDU-2026-PNJT4Z9",
                             CitizenEmailSnapshot = "olivia.tan.95@example.com",
                             CitizenFullNameSnapshot = "Olivia Tan",
                             CitizenNricSnapshot = "S0000095G",
@@ -24191,7 +24191,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 105,
-                            AccountNumberSnapshot = "EDU-2026-00000000096",
+                            AccountNumberSnapshot = "EDU-2026-4QZV9PZ",
                             CitizenEmailSnapshot = "pranav.uddin.96@example.com",
                             CitizenFullNameSnapshot = "Pranav Uddin",
                             CitizenNricSnapshot = "S0000096E",
@@ -24208,7 +24208,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 106,
-                            AccountNumberSnapshot = "EDU-2026-00000000097",
+                            AccountNumberSnapshot = "EDU-2026-B3KAHLE",
                             CitizenEmailSnapshot = "qistina.vasquez.97@example.com",
                             CitizenFullNameSnapshot = "Qistina Vasquez",
                             CitizenNricSnapshot = "S0000097C",
@@ -24225,7 +24225,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 107,
-                            AccountNumberSnapshot = "EDU-2026-00000000098",
+                            AccountNumberSnapshot = "EDU-2026-JF27YLS",
                             CitizenEmailSnapshot = "rafael.wong.98@example.com",
                             CitizenFullNameSnapshot = "Rafael Wong",
                             CitizenNricSnapshot = "S0000098A",
@@ -24242,7 +24242,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 108,
-                            AccountNumberSnapshot = "EDU-2026-00000000099",
+                            AccountNumberSnapshot = "EDU-2026-TAAMX5Y",
                             CitizenEmailSnapshot = "selina.xu.99@example.com",
                             CitizenFullNameSnapshot = "Selina Xu",
                             CitizenNricSnapshot = "S0000099Z",
@@ -24259,7 +24259,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 109,
-                            AccountNumberSnapshot = "EDU-2026-00000000100",
+                            AccountNumberSnapshot = "EDU-2026-NCYRE83",
                             CitizenEmailSnapshot = "terence.yeo.100@example.com",
                             CitizenFullNameSnapshot = "Terence Yeo",
                             CitizenNricSnapshot = "S0000100G",
@@ -24276,7 +24276,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 110,
-                            AccountNumberSnapshot = "EDU-2026-00000000011",
+                            AccountNumberSnapshot = "EDU-2026-6W5A9YQ",
                             CitizenEmailSnapshot = "noah.teo.11@example.com",
                             CitizenFullNameSnapshot = "Noah Teo",
                             CitizenNricSnapshot = "S0000011F",
@@ -24293,7 +24293,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 111,
-                            AccountNumberSnapshot = "EDU-2026-00000000012",
+                            AccountNumberSnapshot = "EDU-2026-WR567FC",
                             CitizenEmailSnapshot = "aisha.fernandez.12@example.com",
                             CitizenFullNameSnapshot = "Aisha Fernandez",
                             CitizenNricSnapshot = "S0000012D",
@@ -24310,7 +24310,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 112,
-                            AccountNumberSnapshot = "EDU-2026-00000000013",
+                            AccountNumberSnapshot = "EDU-2026-8KMXW3A",
                             CitizenEmailSnapshot = "ryan.chua.13@example.com",
                             CitizenFullNameSnapshot = "Ryan Chua",
                             CitizenNricSnapshot = "S0000013B",
@@ -24327,7 +24327,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 113,
-                            AccountNumberSnapshot = "EDU-2026-00000000014",
+                            AccountNumberSnapshot = "EDU-2026-Y2AKLTP",
                             CitizenEmailSnapshot = "chloe.goh.14@example.com",
                             CitizenFullNameSnapshot = "Chloe Goh",
                             CitizenNricSnapshot = "S0000014J",
@@ -24344,7 +24344,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 114,
-                            AccountNumberSnapshot = "EDU-2026-00000000015",
+                            AccountNumberSnapshot = "EDU-2026-8B8F6EP",
                             CitizenEmailSnapshot = "irfan.hassan.15@example.com",
                             CitizenFullNameSnapshot = "Irfan Hassan",
                             CitizenNricSnapshot = "S0000015I",
@@ -24361,7 +24361,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 115,
-                            AccountNumberSnapshot = "EDU-2026-00000000016",
+                            AccountNumberSnapshot = "EDU-2026-PM4HP2L",
                             CitizenEmailSnapshot = "natalie.seah.16@example.com",
                             CitizenFullNameSnapshot = "Natalie Seah",
                             CitizenNricSnapshot = "S0000016G",
@@ -24378,7 +24378,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 116,
-                            AccountNumberSnapshot = "EDU-2026-00000000017",
+                            AccountNumberSnapshot = "EDU-2026-TJ5ZGWC",
                             CitizenEmailSnapshot = "qistina.rao.17@example.com",
                             CitizenFullNameSnapshot = "Qistina Rao",
                             CitizenNricSnapshot = "S0000017E",
@@ -24395,7 +24395,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 117,
-                            AccountNumberSnapshot = "EDU-2026-00000000018",
+                            AccountNumberSnapshot = "EDU-2026-BJ42M5A",
                             CitizenEmailSnapshot = "rafael.sim.18@example.com",
                             CitizenFullNameSnapshot = "Rafael Sim",
                             CitizenNricSnapshot = "S0000018C",
@@ -24412,7 +24412,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 118,
-                            AccountNumberSnapshot = "EDU-2026-00000000020",
+                            AccountNumberSnapshot = "EDU-2026-KE29NED",
                             CitizenEmailSnapshot = "terence.uddin.20@example.com",
                             CitizenFullNameSnapshot = "Terence Uddin",
                             CitizenNricSnapshot = "S0000020E",
@@ -24429,7 +24429,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 119,
-                            AccountNumberSnapshot = "EDU-2026-00000000021",
+                            AccountNumberSnapshot = "EDU-2026-ZCJZG6L",
                             CitizenEmailSnapshot = "umairah.vasquez.21@example.com",
                             CitizenFullNameSnapshot = "Umairah Vasquez",
                             CitizenNricSnapshot = "S0000021C",
@@ -24446,7 +24446,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 120,
-                            AccountNumberSnapshot = "EDU-2026-00000000022",
+                            AccountNumberSnapshot = "EDU-2026-GREA9E2",
                             CitizenEmailSnapshot = "victor.wong.22@example.com",
                             CitizenFullNameSnapshot = "Victor Wong",
                             CitizenNricSnapshot = "S0000022A",
@@ -24463,7 +24463,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 121,
-                            AccountNumberSnapshot = "EDU-2026-00000000023",
+                            AccountNumberSnapshot = "EDU-2026-ZL7C8X4",
                             CitizenEmailSnapshot = "wen.jie.xu.23@example.com",
                             CitizenFullNameSnapshot = "Wen Jie Xu",
                             CitizenNricSnapshot = "S0000023Z",
@@ -24480,7 +24480,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 122,
-                            AccountNumberSnapshot = "EDU-2026-00000000024",
+                            AccountNumberSnapshot = "EDU-2026-CCTRWL5",
                             CitizenEmailSnapshot = "xavier.yeo.24@example.com",
                             CitizenFullNameSnapshot = "Xavier Yeo",
                             CitizenNricSnapshot = "S0000024H",
@@ -24497,7 +24497,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 123,
-                            AccountNumberSnapshot = "EDU-2026-00000000025",
+                            AccountNumberSnapshot = "EDU-2026-6X2APTP",
                             CitizenEmailSnapshot = "yasmin.zainal.25@example.com",
                             CitizenFullNameSnapshot = "Yasmin Zainal",
                             CitizenNricSnapshot = "S0000025F",
@@ -24514,7 +24514,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 124,
-                            AccountNumberSnapshot = "EDU-2026-00000000026",
+                            AccountNumberSnapshot = "EDU-2026-FZD3UAP",
                             CitizenEmailSnapshot = "zachary.ang.26@example.com",
                             CitizenFullNameSnapshot = "Zachary Ang",
                             CitizenNricSnapshot = "S0000026D",
@@ -24531,7 +24531,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 125,
-                            AccountNumberSnapshot = "EDU-2026-00000000027",
+                            AccountNumberSnapshot = "EDU-2026-63UJ2UF",
                             CitizenEmailSnapshot = "adeline.bala.27@example.com",
                             CitizenFullNameSnapshot = "Adeline Bala",
                             CitizenNricSnapshot = "S0000027B",
@@ -24548,7 +24548,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 126,
-                            AccountNumberSnapshot = "EDU-2026-00000000029",
+                            AccountNumberSnapshot = "EDU-2026-2WFHAM9",
                             CitizenEmailSnapshot = "celeste.das.29@example.com",
                             CitizenFullNameSnapshot = "Celeste Das",
                             CitizenNricSnapshot = "S0000029I",
@@ -24565,7 +24565,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 127,
-                            AccountNumberSnapshot = "EDU-2026-00000000030",
+                            AccountNumberSnapshot = "EDU-2026-ZK6QLJP",
                             CitizenEmailSnapshot = "damien.eng.30@example.com",
                             CitizenFullNameSnapshot = "Damien Eng",
                             CitizenNricSnapshot = "S0000030B",
@@ -24582,7 +24582,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 128,
-                            AccountNumberSnapshot = "EDU-2026-00000000031",
+                            AccountNumberSnapshot = "EDU-2026-8TCLTDQ",
                             CitizenEmailSnapshot = "evelyn.foo.31@example.com",
                             CitizenFullNameSnapshot = "Evelyn Foo",
                             CitizenNricSnapshot = "S0000031J",
@@ -24599,7 +24599,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 129,
-                            AccountNumberSnapshot = "EDU-2026-00000000032",
+                            AccountNumberSnapshot = "EDU-2026-4MD2QV4",
                             CitizenEmailSnapshot = "faris.gan.32@example.com",
                             CitizenFullNameSnapshot = "Faris Gan",
                             CitizenNricSnapshot = "S0000032I",
@@ -24616,7 +24616,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 130,
-                            AccountNumberSnapshot = "EDU-2026-00000000033",
+                            AccountNumberSnapshot = "EDU-2026-P445GFR",
                             CitizenEmailSnapshot = "giselle.ho.33@example.com",
                             CitizenFullNameSnapshot = "Giselle Ho",
                             CitizenNricSnapshot = "S0000033G",
@@ -24633,7 +24633,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 131,
-                            AccountNumberSnapshot = "EDU-2026-00000000034",
+                            AccountNumberSnapshot = "EDU-2026-H5VK6UE",
                             CitizenEmailSnapshot = "haziq.ismail.34@example.com",
                             CitizenFullNameSnapshot = "Haziq Ismail",
                             CitizenNricSnapshot = "S0000034E",
@@ -24650,7 +24650,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 132,
-                            AccountNumberSnapshot = "EDU-2026-00000000035",
+                            AccountNumberSnapshot = "EDU-2026-K4GYB53",
                             CitizenEmailSnapshot = "irene.jeyaratnam.35@example.com",
                             CitizenFullNameSnapshot = "Irene Jeyaratnam",
                             CitizenNricSnapshot = "S0000035C",
@@ -24667,7 +24667,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 133,
-                            AccountNumberSnapshot = "EDU-2026-00000000036",
+                            AccountNumberSnapshot = "EDU-2026-NU32Y83",
                             CitizenEmailSnapshot = "jonas.kwek.36@example.com",
                             CitizenFullNameSnapshot = "Jonas Kwek",
                             CitizenNricSnapshot = "S0000036A",
@@ -24684,7 +24684,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 134,
-                            AccountNumberSnapshot = "EDU-2026-00000000038",
+                            AccountNumberSnapshot = "EDU-2026-HPFV4XV",
                             CitizenEmailSnapshot = "lydia.mohamed.38@example.com",
                             CitizenFullNameSnapshot = "Lydia Mohamed",
                             CitizenNricSnapshot = "S0000038H",
@@ -24701,7 +24701,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 135,
-                            AccountNumberSnapshot = "EDU-2026-00000000039",
+                            AccountNumberSnapshot = "EDU-2026-EDPW32Q",
                             CitizenEmailSnapshot = "malcolm.ng.39@example.com",
                             CitizenFullNameSnapshot = "Malcolm Ng",
                             CitizenNricSnapshot = "S0000039F",
@@ -24718,7 +24718,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 136,
-                            AccountNumberSnapshot = "EDU-2026-00000000040",
+                            AccountNumberSnapshot = "EDU-2026-YSZD75Q",
                             CitizenEmailSnapshot = "nadia.ong.40@example.com",
                             CitizenFullNameSnapshot = "Nadia Ong",
                             CitizenNricSnapshot = "S0000040Z",
@@ -24735,7 +24735,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 137,
-                            AccountNumberSnapshot = "EDU-2026-00000000041",
+                            AccountNumberSnapshot = "EDU-2026-X8YAX3G",
                             CitizenEmailSnapshot = "alina.quek.41@example.com",
                             CitizenFullNameSnapshot = "Alina Quek",
                             CitizenNricSnapshot = "S0000041H",
@@ -24752,7 +24752,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 138,
-                            AccountNumberSnapshot = "EDU-2026-00000000042",
+                            AccountNumberSnapshot = "EDU-2026-E73JAXD",
                             CitizenEmailSnapshot = "benjamin.rao.42@example.com",
                             CitizenFullNameSnapshot = "Benjamin Rao",
                             CitizenNricSnapshot = "S0000042F",
@@ -24769,7 +24769,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 139,
-                            AccountNumberSnapshot = "EDU-2026-00000000043",
+                            AccountNumberSnapshot = "EDU-2026-J46BKBU",
                             CitizenEmailSnapshot = "clara.sim.43@example.com",
                             CitizenFullNameSnapshot = "Clara Sim",
                             CitizenNricSnapshot = "S0000043D",
@@ -24786,7 +24786,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 140,
-                            AccountNumberSnapshot = "EDU-2026-00000000044",
+                            AccountNumberSnapshot = "EDU-2026-XF3YKPG",
                             CitizenEmailSnapshot = "darius.tan.44@example.com",
                             CitizenFullNameSnapshot = "Darius Tan",
                             CitizenNricSnapshot = "S0000044B",
@@ -24803,7 +24803,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 141,
-                            AccountNumberSnapshot = "EDU-2026-00000000045",
+                            AccountNumberSnapshot = "EDU-2026-AUEK59P",
                             CitizenEmailSnapshot = "elena.uddin.45@example.com",
                             CitizenFullNameSnapshot = "Elena Uddin",
                             CitizenNricSnapshot = "S0000045J",
@@ -24820,7 +24820,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 142,
-                            AccountNumberSnapshot = "EDU-2026-00000000047",
+                            AccountNumberSnapshot = "EDU-2026-KSQL7E2",
                             CitizenEmailSnapshot = "grace.wong.47@example.com",
                             CitizenFullNameSnapshot = "Grace Wong",
                             CitizenNricSnapshot = "S0000047G",
@@ -24837,7 +24837,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 143,
-                            AccountNumberSnapshot = "EDU-2026-00000000048",
+                            AccountNumberSnapshot = "EDU-2026-J6SNTZ5",
                             CitizenEmailSnapshot = "haruto.xu.48@example.com",
                             CitizenFullNameSnapshot = "Haruto Xu",
                             CitizenNricSnapshot = "S0000048E",
@@ -24854,7 +24854,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 144,
-                            AccountNumberSnapshot = "EDU-2026-00000000049",
+                            AccountNumberSnapshot = "EDU-2026-GHVBXR3",
                             CitizenEmailSnapshot = "isabelle.yeo.49@example.com",
                             CitizenFullNameSnapshot = "Isabelle Yeo",
                             CitizenNricSnapshot = "S0000049C",
@@ -24871,7 +24871,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 145,
-                            AccountNumberSnapshot = "EDU-2026-00000000050",
+                            AccountNumberSnapshot = "EDU-2026-Z7YP3EW",
                             CitizenEmailSnapshot = "jasper.zainal.50@example.com",
                             CitizenFullNameSnapshot = "Jasper Zainal",
                             CitizenNricSnapshot = "S0000050G",
@@ -24888,7 +24888,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 146,
-                            AccountNumberSnapshot = "EDU-2026-00000000051",
+                            AccountNumberSnapshot = "EDU-2026-UZM23Y5",
                             CitizenEmailSnapshot = "keira.ang.51@example.com",
                             CitizenFullNameSnapshot = "Keira Ang",
                             CitizenNricSnapshot = "S0000051E",
@@ -24905,7 +24905,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 147,
-                            AccountNumberSnapshot = "EDU-2026-00000000052",
+                            AccountNumberSnapshot = "EDU-2026-4GS4RMU",
                             CitizenEmailSnapshot = "leon.bala.52@example.com",
                             CitizenFullNameSnapshot = "Leon Bala",
                             CitizenNricSnapshot = "S0000052C",
@@ -24922,7 +24922,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 148,
-                            AccountNumberSnapshot = "EDU-2026-00000000053",
+                            AccountNumberSnapshot = "EDU-2026-BY2YKCV",
                             CitizenEmailSnapshot = "mei.lin.chew.53@example.com",
                             CitizenFullNameSnapshot = "Mei Lin Chew",
                             CitizenNricSnapshot = "S0000053A",
@@ -24939,7 +24939,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 149,
-                            AccountNumberSnapshot = "EDU-2026-00000000054",
+                            AccountNumberSnapshot = "EDU-2026-2KUFS7K",
                             CitizenEmailSnapshot = "nathan.das.54@example.com",
                             CitizenFullNameSnapshot = "Nathan Das",
                             CitizenNricSnapshot = "S0000054Z",
@@ -24956,7 +24956,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 150,
-                            AccountNumberSnapshot = "EDU-2026-00000000056",
+                            AccountNumberSnapshot = "EDU-2026-MG97NU4",
                             CitizenEmailSnapshot = "pranav.foo.56@example.com",
                             CitizenFullNameSnapshot = "Pranav Foo",
                             CitizenNricSnapshot = "S0000056F",
@@ -24973,7 +24973,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 151,
-                            AccountNumberSnapshot = "EDU-2026-00000000057",
+                            AccountNumberSnapshot = "EDU-2026-6BE7RJ7",
                             CitizenEmailSnapshot = "qistina.gan.57@example.com",
                             CitizenFullNameSnapshot = "Qistina Gan",
                             CitizenNricSnapshot = "S0000057D",
@@ -24990,7 +24990,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 152,
-                            AccountNumberSnapshot = "EDU-2026-00000000058",
+                            AccountNumberSnapshot = "EDU-2026-N34SNTV",
                             CitizenEmailSnapshot = "rafael.ho.58@example.com",
                             CitizenFullNameSnapshot = "Rafael Ho",
                             CitizenNricSnapshot = "S0000058B",
@@ -25007,7 +25007,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 153,
-                            AccountNumberSnapshot = "EDU-2026-00000000059",
+                            AccountNumberSnapshot = "EDU-2026-VX6V49Y",
                             CitizenEmailSnapshot = "selina.ismail.59@example.com",
                             CitizenFullNameSnapshot = "Selina Ismail",
                             CitizenNricSnapshot = "S0000059J",
@@ -25024,7 +25024,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 154,
-                            AccountNumberSnapshot = "EDU-2026-00000000060",
+                            AccountNumberSnapshot = "EDU-2026-CZXZH8L",
                             CitizenEmailSnapshot = "terence.jeyaratnam.60@example.com",
                             CitizenFullNameSnapshot = "Terence Jeyaratnam",
                             CitizenNricSnapshot = "S0000060D",
@@ -25041,7 +25041,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 155,
-                            AccountNumberSnapshot = "EDU-2026-00000000061",
+                            AccountNumberSnapshot = "EDU-2026-8E2DFRR",
                             CitizenEmailSnapshot = "umairah.kwek.61@example.com",
                             CitizenFullNameSnapshot = "Umairah Kwek",
                             CitizenNricSnapshot = "S0000061B",
@@ -25058,7 +25058,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 156,
-                            AccountNumberSnapshot = "EDU-2026-00000000062",
+                            AccountNumberSnapshot = "EDU-2026-WH6JUY3",
                             CitizenEmailSnapshot = "victor.lim.62@example.com",
                             CitizenFullNameSnapshot = "Victor Lim",
                             CitizenNricSnapshot = "S0000062J",
@@ -25075,7 +25075,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 157,
-                            AccountNumberSnapshot = "EDU-2026-00000000063",
+                            AccountNumberSnapshot = "EDU-2026-BTCG9WU",
                             CitizenEmailSnapshot = "wen.jie.mohamed.63@example.com",
                             CitizenFullNameSnapshot = "Wen Jie Mohamed",
                             CitizenNricSnapshot = "S0000063I",
@@ -25092,7 +25092,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 158,
-                            AccountNumberSnapshot = "EDU-2026-00000000065",
+                            AccountNumberSnapshot = "EDU-2026-WXSV77H",
                             CitizenEmailSnapshot = "yasmin.ong.65@example.com",
                             CitizenFullNameSnapshot = "Yasmin Ong",
                             CitizenNricSnapshot = "S0000065E",
@@ -25109,7 +25109,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 159,
-                            AccountNumberSnapshot = "EDU-2026-00000000066",
+                            AccountNumberSnapshot = "EDU-2026-NVPY2X8",
                             CitizenEmailSnapshot = "zachary.pillai.66@example.com",
                             CitizenFullNameSnapshot = "Zachary Pillai",
                             CitizenNricSnapshot = "S0000066C",
@@ -25126,7 +25126,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 160,
-                            AccountNumberSnapshot = "EDU-2026-00000000067",
+                            AccountNumberSnapshot = "EDU-2026-4LGHC4M",
                             CitizenEmailSnapshot = "adeline.quek.67@example.com",
                             CitizenFullNameSnapshot = "Adeline Quek",
                             CitizenNricSnapshot = "S0000067A",
@@ -25143,7 +25143,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 161,
-                            AccountNumberSnapshot = "EDU-2026-00000000068",
+                            AccountNumberSnapshot = "EDU-2026-CB759N3",
                             CitizenEmailSnapshot = "brandon.rao.68@example.com",
                             CitizenFullNameSnapshot = "Brandon Rao",
                             CitizenNricSnapshot = "S0000068Z",
@@ -25160,7 +25160,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 162,
-                            AccountNumberSnapshot = "EDU-2026-00000000069",
+                            AccountNumberSnapshot = "EDU-2026-AJEBPR6",
                             CitizenEmailSnapshot = "celeste.sim.69@example.com",
                             CitizenFullNameSnapshot = "Celeste Sim",
                             CitizenNricSnapshot = "S0000069H",
@@ -25177,7 +25177,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 163,
-                            AccountNumberSnapshot = "EDU-2026-00000000070",
+                            AccountNumberSnapshot = "EDU-2026-SSB2RJA",
                             CitizenEmailSnapshot = "damien.tan.70@example.com",
                             CitizenFullNameSnapshot = "Damien Tan",
                             CitizenNricSnapshot = "S0000070A",
@@ -25194,7 +25194,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 164,
-                            AccountNumberSnapshot = "EDU-2026-00000000071",
+                            AccountNumberSnapshot = "EDU-2026-BDJT3M6",
                             CitizenEmailSnapshot = "evelyn.uddin.71@example.com",
                             CitizenFullNameSnapshot = "Evelyn Uddin",
                             CitizenNricSnapshot = "S0000071Z",
@@ -25211,7 +25211,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 165,
-                            AccountNumberSnapshot = "EDU-2026-00000000072",
+                            AccountNumberSnapshot = "EDU-2026-UP4EBHA",
                             CitizenEmailSnapshot = "faris.vasquez.72@example.com",
                             CitizenFullNameSnapshot = "Faris Vasquez",
                             CitizenNricSnapshot = "S0000072H",
@@ -25228,7 +25228,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 166,
-                            AccountNumberSnapshot = "EDU-2026-00000000074",
+                            AccountNumberSnapshot = "EDU-2026-QD3M8AQ",
                             CitizenEmailSnapshot = "haziq.xu.74@example.com",
                             CitizenFullNameSnapshot = "Haziq Xu",
                             CitizenNricSnapshot = "S0000074D",
@@ -25245,7 +25245,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 167,
-                            AccountNumberSnapshot = "EDU-2026-00000000075",
+                            AccountNumberSnapshot = "EDU-2026-WYT2BGP",
                             CitizenEmailSnapshot = "irene.yeo.75@example.com",
                             CitizenFullNameSnapshot = "Irene Yeo",
                             CitizenNricSnapshot = "S0000075B",
@@ -25262,7 +25262,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 168,
-                            AccountNumberSnapshot = "EDU-2026-00000000076",
+                            AccountNumberSnapshot = "EDU-2026-Q22WCNJ",
                             CitizenEmailSnapshot = "jonas.zainal.76@example.com",
                             CitizenFullNameSnapshot = "Jonas Zainal",
                             CitizenNricSnapshot = "S0000076J",
@@ -25279,7 +25279,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 169,
-                            AccountNumberSnapshot = "EDU-2026-00000000077",
+                            AccountNumberSnapshot = "EDU-2026-MQYB5BX",
                             CitizenEmailSnapshot = "kavya.ang.77@example.com",
                             CitizenFullNameSnapshot = "Kavya Ang",
                             CitizenNricSnapshot = "S0000077I",
@@ -25296,7 +25296,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 170,
-                            AccountNumberSnapshot = "EDU-2026-00000000078",
+                            AccountNumberSnapshot = "EDU-2026-ZQ373CC",
                             CitizenEmailSnapshot = "lydia.bala.78@example.com",
                             CitizenFullNameSnapshot = "Lydia Bala",
                             CitizenNricSnapshot = "S0000078G",
@@ -25313,7 +25313,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 171,
-                            AccountNumberSnapshot = "EDU-2026-00000000079",
+                            AccountNumberSnapshot = "EDU-2026-6X7Q9DZ",
                             CitizenEmailSnapshot = "malcolm.chew.79@example.com",
                             CitizenFullNameSnapshot = "Malcolm Chew",
                             CitizenNricSnapshot = "S0000079E",
@@ -25330,7 +25330,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 172,
-                            AccountNumberSnapshot = "EDU-2026-00000000080",
+                            AccountNumberSnapshot = "EDU-2026-WEW8V66",
                             CitizenEmailSnapshot = "nadia.das.80@example.com",
                             CitizenFullNameSnapshot = "Nadia Das",
                             CitizenNricSnapshot = "S0000080I",
@@ -25347,7 +25347,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 173,
-                            AccountNumberSnapshot = "EDU-2026-00000000081",
+                            AccountNumberSnapshot = "EDU-2026-N34HPDZ",
                             CitizenEmailSnapshot = "alina.foo.81@example.com",
                             CitizenFullNameSnapshot = "Alina Foo",
                             CitizenNricSnapshot = "S0000081G",
@@ -25364,7 +25364,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 174,
-                            AccountNumberSnapshot = "EDU-2026-00000000083",
+                            AccountNumberSnapshot = "EDU-2026-FE6RU3R",
                             CitizenEmailSnapshot = "clara.ho.83@example.com",
                             CitizenFullNameSnapshot = "Clara Ho",
                             CitizenNricSnapshot = "S0000083C",
@@ -25381,7 +25381,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 175,
-                            AccountNumberSnapshot = "EDU-2026-00000000084",
+                            AccountNumberSnapshot = "EDU-2026-CD953YC",
                             CitizenEmailSnapshot = "darius.ismail.84@example.com",
                             CitizenFullNameSnapshot = "Darius Ismail",
                             CitizenNricSnapshot = "S0000084A",
@@ -25398,7 +25398,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 176,
-                            AccountNumberSnapshot = "EDU-2026-00000000085",
+                            AccountNumberSnapshot = "EDU-2026-9JV4TFW",
                             CitizenEmailSnapshot = "elena.jeyaratnam.85@example.com",
                             CitizenFullNameSnapshot = "Elena Jeyaratnam",
                             CitizenNricSnapshot = "S0000085Z",
@@ -25415,7 +25415,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 177,
-                            AccountNumberSnapshot = "EDU-2026-00000000086",
+                            AccountNumberSnapshot = "EDU-2026-ENSP529",
                             CitizenEmailSnapshot = "farhan.kwek.86@example.com",
                             CitizenFullNameSnapshot = "Farhan Kwek",
                             CitizenNricSnapshot = "S0000086H",
@@ -25432,7 +25432,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 178,
-                            AccountNumberSnapshot = "EDU-2026-00000000087",
+                            AccountNumberSnapshot = "EDU-2026-S7NM7KA",
                             CitizenEmailSnapshot = "grace.lim.87@example.com",
                             CitizenFullNameSnapshot = "Grace Lim",
                             CitizenNricSnapshot = "S0000087F",
@@ -25449,7 +25449,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 179,
-                            AccountNumberSnapshot = "EDU-2026-00000000088",
+                            AccountNumberSnapshot = "EDU-2026-3MEM9AJ",
                             CitizenEmailSnapshot = "haruto.mohamed.88@example.com",
                             CitizenFullNameSnapshot = "Haruto Mohamed",
                             CitizenNricSnapshot = "S0000088D",
@@ -25466,7 +25466,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 180,
-                            AccountNumberSnapshot = "EDU-2026-00000000089",
+                            AccountNumberSnapshot = "EDU-2026-T7YEYDB",
                             CitizenEmailSnapshot = "isabelle.ng.89@example.com",
                             CitizenFullNameSnapshot = "Isabelle Ng",
                             CitizenNricSnapshot = "S0000089B",
@@ -25483,7 +25483,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 181,
-                            AccountNumberSnapshot = "EDU-2026-00000000090",
+                            AccountNumberSnapshot = "EDU-2026-FZBQG3E",
                             CitizenEmailSnapshot = "jasper.ong.90@example.com",
                             CitizenFullNameSnapshot = "Jasper Ong",
                             CitizenNricSnapshot = "S0000090F",
@@ -25500,7 +25500,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 182,
-                            AccountNumberSnapshot = "EDU-2026-00000000091",
+                            AccountNumberSnapshot = "EDU-2026-6D5C325",
                             CitizenEmailSnapshot = "keira.pillai.91@example.com",
                             CitizenFullNameSnapshot = "Keira Pillai",
                             CitizenNricSnapshot = "S0000091D",
@@ -25517,7 +25517,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 183,
-                            AccountNumberSnapshot = "EDU-2026-00000000092",
+                            AccountNumberSnapshot = "EDU-2026-4YEJWG7",
                             CitizenEmailSnapshot = "leon.quek.92@example.com",
                             CitizenFullNameSnapshot = "Leon Quek",
                             CitizenNricSnapshot = "S0000092B",
@@ -25534,7 +25534,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 184,
-                            AccountNumberSnapshot = "EDU-2026-00000000093",
+                            AccountNumberSnapshot = "EDU-2026-YXHYTW2",
                             CitizenEmailSnapshot = "mei.lin.rao.93@example.com",
                             CitizenFullNameSnapshot = "Mei Lin Rao",
                             CitizenNricSnapshot = "S0000093J",
@@ -25551,7 +25551,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 185,
-                            AccountNumberSnapshot = "EDU-2026-00000000094",
+                            AccountNumberSnapshot = "EDU-2026-H8KJ3BT",
                             CitizenEmailSnapshot = "nathan.sim.94@example.com",
                             CitizenFullNameSnapshot = "Nathan Sim",
                             CitizenNricSnapshot = "S0000094I",
@@ -25568,7 +25568,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 186,
-                            AccountNumberSnapshot = "EDU-2026-00000000095",
+                            AccountNumberSnapshot = "EDU-2026-PNJT4Z9",
                             CitizenEmailSnapshot = "olivia.tan.95@example.com",
                             CitizenFullNameSnapshot = "Olivia Tan",
                             CitizenNricSnapshot = "S0000095G",
@@ -25585,7 +25585,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 187,
-                            AccountNumberSnapshot = "EDU-2026-00000000096",
+                            AccountNumberSnapshot = "EDU-2026-4QZV9PZ",
                             CitizenEmailSnapshot = "pranav.uddin.96@example.com",
                             CitizenFullNameSnapshot = "Pranav Uddin",
                             CitizenNricSnapshot = "S0000096E",
@@ -25602,7 +25602,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 188,
-                            AccountNumberSnapshot = "EDU-2026-00000000097",
+                            AccountNumberSnapshot = "EDU-2026-B3KAHLE",
                             CitizenEmailSnapshot = "qistina.vasquez.97@example.com",
                             CitizenFullNameSnapshot = "Qistina Vasquez",
                             CitizenNricSnapshot = "S0000097C",
@@ -25619,7 +25619,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 189,
-                            AccountNumberSnapshot = "EDU-2026-00000000098",
+                            AccountNumberSnapshot = "EDU-2026-JF27YLS",
                             CitizenEmailSnapshot = "rafael.wong.98@example.com",
                             CitizenFullNameSnapshot = "Rafael Wong",
                             CitizenNricSnapshot = "S0000098A",
@@ -25636,7 +25636,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 190,
-                            AccountNumberSnapshot = "EDU-2026-00000000099",
+                            AccountNumberSnapshot = "EDU-2026-TAAMX5Y",
                             CitizenEmailSnapshot = "selina.xu.99@example.com",
                             CitizenFullNameSnapshot = "Selina Xu",
                             CitizenNricSnapshot = "S0000099Z",
@@ -25653,7 +25653,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 191,
-                            AccountNumberSnapshot = "EDU-2026-00000000001",
+                            AccountNumberSnapshot = "EDU-2026-X9EUKF3",
                             CitizenEmailSnapshot = "sterling.quach.1@example.com",
                             CitizenFullNameSnapshot = "Sterling Quach",
                             CitizenNricSnapshot = "S0000001I",
@@ -25670,7 +25670,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 192,
-                            AccountNumberSnapshot = "EDU-2026-00000000012",
+                            AccountNumberSnapshot = "EDU-2026-WR567FC",
                             CitizenEmailSnapshot = "aisha.fernandez.12@example.com",
                             CitizenFullNameSnapshot = "Aisha Fernandez",
                             CitizenNricSnapshot = "S0000012D",
@@ -25687,7 +25687,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 193,
-                            AccountNumberSnapshot = "EDU-2026-00000000013",
+                            AccountNumberSnapshot = "EDU-2026-8KMXW3A",
                             CitizenEmailSnapshot = "ryan.chua.13@example.com",
                             CitizenFullNameSnapshot = "Ryan Chua",
                             CitizenNricSnapshot = "S0000013B",
@@ -25704,7 +25704,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 194,
-                            AccountNumberSnapshot = "EDU-2026-00000000014",
+                            AccountNumberSnapshot = "EDU-2026-Y2AKLTP",
                             CitizenEmailSnapshot = "chloe.goh.14@example.com",
                             CitizenFullNameSnapshot = "Chloe Goh",
                             CitizenNricSnapshot = "S0000014J",
@@ -25721,7 +25721,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 195,
-                            AccountNumberSnapshot = "EDU-2026-00000000015",
+                            AccountNumberSnapshot = "EDU-2026-8B8F6EP",
                             CitizenEmailSnapshot = "irfan.hassan.15@example.com",
                             CitizenFullNameSnapshot = "Irfan Hassan",
                             CitizenNricSnapshot = "S0000015I",
@@ -25738,7 +25738,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 196,
-                            AccountNumberSnapshot = "EDU-2026-00000000016",
+                            AccountNumberSnapshot = "EDU-2026-PM4HP2L",
                             CitizenEmailSnapshot = "natalie.seah.16@example.com",
                             CitizenFullNameSnapshot = "Natalie Seah",
                             CitizenNricSnapshot = "S0000016G",
@@ -25755,7 +25755,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 197,
-                            AccountNumberSnapshot = "EDU-2026-00000000017",
+                            AccountNumberSnapshot = "EDU-2026-TJ5ZGWC",
                             CitizenEmailSnapshot = "qistina.rao.17@example.com",
                             CitizenFullNameSnapshot = "Qistina Rao",
                             CitizenNricSnapshot = "S0000017E",
@@ -25772,7 +25772,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 198,
-                            AccountNumberSnapshot = "EDU-2026-00000000018",
+                            AccountNumberSnapshot = "EDU-2026-BJ42M5A",
                             CitizenEmailSnapshot = "rafael.sim.18@example.com",
                             CitizenFullNameSnapshot = "Rafael Sim",
                             CitizenNricSnapshot = "S0000018C",
@@ -25789,7 +25789,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 199,
-                            AccountNumberSnapshot = "EDU-2026-00000000019",
+                            AccountNumberSnapshot = "EDU-2026-4K3E2VM",
                             CitizenEmailSnapshot = "selina.tan.19@example.com",
                             CitizenFullNameSnapshot = "Selina Tan",
                             CitizenNricSnapshot = "S0000019A",
@@ -25806,7 +25806,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 200,
-                            AccountNumberSnapshot = "EDU-2026-00000000001",
+                            AccountNumberSnapshot = "EDU-2026-X9EUKF3",
                             CitizenEmailSnapshot = "sterling.quach.1@example.com",
                             CitizenFullNameSnapshot = "Sterling Quach",
                             CitizenNricSnapshot = "S0000001I",
@@ -25823,7 +25823,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 201,
-                            AccountNumberSnapshot = "EDU-2026-00000000011",
+                            AccountNumberSnapshot = "EDU-2026-6W5A9YQ",
                             CitizenEmailSnapshot = "noah.teo.11@example.com",
                             CitizenFullNameSnapshot = "Noah Teo",
                             CitizenNricSnapshot = "S0000011F",
@@ -25840,7 +25840,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 202,
-                            AccountNumberSnapshot = "EDU-2026-00000000013",
+                            AccountNumberSnapshot = "EDU-2026-8KMXW3A",
                             CitizenEmailSnapshot = "ryan.chua.13@example.com",
                             CitizenFullNameSnapshot = "Ryan Chua",
                             CitizenNricSnapshot = "S0000013B",
@@ -25857,7 +25857,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 203,
-                            AccountNumberSnapshot = "EDU-2026-00000000014",
+                            AccountNumberSnapshot = "EDU-2026-Y2AKLTP",
                             CitizenEmailSnapshot = "chloe.goh.14@example.com",
                             CitizenFullNameSnapshot = "Chloe Goh",
                             CitizenNricSnapshot = "S0000014J",
@@ -25874,7 +25874,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 204,
-                            AccountNumberSnapshot = "EDU-2026-00000000015",
+                            AccountNumberSnapshot = "EDU-2026-8B8F6EP",
                             CitizenEmailSnapshot = "irfan.hassan.15@example.com",
                             CitizenFullNameSnapshot = "Irfan Hassan",
                             CitizenNricSnapshot = "S0000015I",
@@ -25891,7 +25891,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 205,
-                            AccountNumberSnapshot = "EDU-2026-00000000016",
+                            AccountNumberSnapshot = "EDU-2026-PM4HP2L",
                             CitizenEmailSnapshot = "natalie.seah.16@example.com",
                             CitizenFullNameSnapshot = "Natalie Seah",
                             CitizenNricSnapshot = "S0000016G",
@@ -25908,7 +25908,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 206,
-                            AccountNumberSnapshot = "EDU-2026-00000000017",
+                            AccountNumberSnapshot = "EDU-2026-TJ5ZGWC",
                             CitizenEmailSnapshot = "qistina.rao.17@example.com",
                             CitizenFullNameSnapshot = "Qistina Rao",
                             CitizenNricSnapshot = "S0000017E",
@@ -25925,7 +25925,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 207,
-                            AccountNumberSnapshot = "EDU-2026-00000000018",
+                            AccountNumberSnapshot = "EDU-2026-BJ42M5A",
                             CitizenEmailSnapshot = "rafael.sim.18@example.com",
                             CitizenFullNameSnapshot = "Rafael Sim",
                             CitizenNricSnapshot = "S0000018C",
@@ -25942,7 +25942,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 208,
-                            AccountNumberSnapshot = "EDU-2026-00000000019",
+                            AccountNumberSnapshot = "EDU-2026-4K3E2VM",
                             CitizenEmailSnapshot = "selina.tan.19@example.com",
                             CitizenFullNameSnapshot = "Selina Tan",
                             CitizenNricSnapshot = "S0000019A",
@@ -25959,7 +25959,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 209,
-                            AccountNumberSnapshot = "EDU-2026-00000000001",
+                            AccountNumberSnapshot = "EDU-2026-X9EUKF3",
                             CitizenEmailSnapshot = "sterling.quach.1@example.com",
                             CitizenFullNameSnapshot = "Sterling Quach",
                             CitizenNricSnapshot = "S0000001I",
@@ -25976,7 +25976,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 210,
-                            AccountNumberSnapshot = "EDU-2026-00000000011",
+                            AccountNumberSnapshot = "EDU-2026-6W5A9YQ",
                             CitizenEmailSnapshot = "noah.teo.11@example.com",
                             CitizenFullNameSnapshot = "Noah Teo",
                             CitizenNricSnapshot = "S0000011F",
@@ -25993,7 +25993,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 211,
-                            AccountNumberSnapshot = "EDU-2026-00000000012",
+                            AccountNumberSnapshot = "EDU-2026-WR567FC",
                             CitizenEmailSnapshot = "aisha.fernandez.12@example.com",
                             CitizenFullNameSnapshot = "Aisha Fernandez",
                             CitizenNricSnapshot = "S0000012D",
@@ -26010,7 +26010,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 212,
-                            AccountNumberSnapshot = "EDU-2026-00000000014",
+                            AccountNumberSnapshot = "EDU-2026-Y2AKLTP",
                             CitizenEmailSnapshot = "chloe.goh.14@example.com",
                             CitizenFullNameSnapshot = "Chloe Goh",
                             CitizenNricSnapshot = "S0000014J",
@@ -26027,7 +26027,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 213,
-                            AccountNumberSnapshot = "EDU-2026-00000000015",
+                            AccountNumberSnapshot = "EDU-2026-8B8F6EP",
                             CitizenEmailSnapshot = "irfan.hassan.15@example.com",
                             CitizenFullNameSnapshot = "Irfan Hassan",
                             CitizenNricSnapshot = "S0000015I",
@@ -26044,7 +26044,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 214,
-                            AccountNumberSnapshot = "EDU-2026-00000000016",
+                            AccountNumberSnapshot = "EDU-2026-PM4HP2L",
                             CitizenEmailSnapshot = "natalie.seah.16@example.com",
                             CitizenFullNameSnapshot = "Natalie Seah",
                             CitizenNricSnapshot = "S0000016G",
@@ -26061,7 +26061,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 215,
-                            AccountNumberSnapshot = "EDU-2026-00000000017",
+                            AccountNumberSnapshot = "EDU-2026-TJ5ZGWC",
                             CitizenEmailSnapshot = "qistina.rao.17@example.com",
                             CitizenFullNameSnapshot = "Qistina Rao",
                             CitizenNricSnapshot = "S0000017E",
@@ -26078,7 +26078,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 216,
-                            AccountNumberSnapshot = "EDU-2026-00000000018",
+                            AccountNumberSnapshot = "EDU-2026-BJ42M5A",
                             CitizenEmailSnapshot = "rafael.sim.18@example.com",
                             CitizenFullNameSnapshot = "Rafael Sim",
                             CitizenNricSnapshot = "S0000018C",
@@ -26095,7 +26095,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 217,
-                            AccountNumberSnapshot = "EDU-2026-00000000019",
+                            AccountNumberSnapshot = "EDU-2026-4K3E2VM",
                             CitizenEmailSnapshot = "selina.tan.19@example.com",
                             CitizenFullNameSnapshot = "Selina Tan",
                             CitizenNricSnapshot = "S0000019A",
@@ -26112,7 +26112,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 218,
-                            AccountNumberSnapshot = "EDU-2026-00000000001",
+                            AccountNumberSnapshot = "EDU-2026-X9EUKF3",
                             CitizenEmailSnapshot = "sterling.quach.1@example.com",
                             CitizenFullNameSnapshot = "Sterling Quach",
                             CitizenNricSnapshot = "S0000001I",
@@ -26129,7 +26129,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 219,
-                            AccountNumberSnapshot = "EDU-2026-00000000011",
+                            AccountNumberSnapshot = "EDU-2026-6W5A9YQ",
                             CitizenEmailSnapshot = "noah.teo.11@example.com",
                             CitizenFullNameSnapshot = "Noah Teo",
                             CitizenNricSnapshot = "S0000011F",
@@ -26146,7 +26146,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 220,
-                            AccountNumberSnapshot = "EDU-2026-00000000012",
+                            AccountNumberSnapshot = "EDU-2026-WR567FC",
                             CitizenEmailSnapshot = "aisha.fernandez.12@example.com",
                             CitizenFullNameSnapshot = "Aisha Fernandez",
                             CitizenNricSnapshot = "S0000012D",
@@ -26163,7 +26163,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 221,
-                            AccountNumberSnapshot = "EDU-2026-00000000013",
+                            AccountNumberSnapshot = "EDU-2026-8KMXW3A",
                             CitizenEmailSnapshot = "ryan.chua.13@example.com",
                             CitizenFullNameSnapshot = "Ryan Chua",
                             CitizenNricSnapshot = "S0000013B",
@@ -26180,7 +26180,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 222,
-                            AccountNumberSnapshot = "EDU-2026-00000000015",
+                            AccountNumberSnapshot = "EDU-2026-8B8F6EP",
                             CitizenEmailSnapshot = "irfan.hassan.15@example.com",
                             CitizenFullNameSnapshot = "Irfan Hassan",
                             CitizenNricSnapshot = "S0000015I",
@@ -26197,7 +26197,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 223,
-                            AccountNumberSnapshot = "EDU-2026-00000000016",
+                            AccountNumberSnapshot = "EDU-2026-PM4HP2L",
                             CitizenEmailSnapshot = "natalie.seah.16@example.com",
                             CitizenFullNameSnapshot = "Natalie Seah",
                             CitizenNricSnapshot = "S0000016G",
@@ -26214,7 +26214,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 224,
-                            AccountNumberSnapshot = "EDU-2026-00000000017",
+                            AccountNumberSnapshot = "EDU-2026-TJ5ZGWC",
                             CitizenEmailSnapshot = "qistina.rao.17@example.com",
                             CitizenFullNameSnapshot = "Qistina Rao",
                             CitizenNricSnapshot = "S0000017E",
@@ -26231,7 +26231,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 225,
-                            AccountNumberSnapshot = "EDU-2026-00000000018",
+                            AccountNumberSnapshot = "EDU-2026-BJ42M5A",
                             CitizenEmailSnapshot = "rafael.sim.18@example.com",
                             CitizenFullNameSnapshot = "Rafael Sim",
                             CitizenNricSnapshot = "S0000018C",
@@ -26248,7 +26248,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 226,
-                            AccountNumberSnapshot = "EDU-2026-00000000019",
+                            AccountNumberSnapshot = "EDU-2026-4K3E2VM",
                             CitizenEmailSnapshot = "selina.tan.19@example.com",
                             CitizenFullNameSnapshot = "Selina Tan",
                             CitizenNricSnapshot = "S0000019A",
@@ -26265,7 +26265,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 227,
-                            AccountNumberSnapshot = "EDU-2026-00000000001",
+                            AccountNumberSnapshot = "EDU-2026-X9EUKF3",
                             CitizenEmailSnapshot = "sterling.quach.1@example.com",
                             CitizenFullNameSnapshot = "Sterling Quach",
                             CitizenNricSnapshot = "S0000001I",
@@ -26282,7 +26282,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 228,
-                            AccountNumberSnapshot = "EDU-2026-00000000011",
+                            AccountNumberSnapshot = "EDU-2026-6W5A9YQ",
                             CitizenEmailSnapshot = "noah.teo.11@example.com",
                             CitizenFullNameSnapshot = "Noah Teo",
                             CitizenNricSnapshot = "S0000011F",
@@ -26299,7 +26299,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 229,
-                            AccountNumberSnapshot = "EDU-2026-00000000012",
+                            AccountNumberSnapshot = "EDU-2026-WR567FC",
                             CitizenEmailSnapshot = "aisha.fernandez.12@example.com",
                             CitizenFullNameSnapshot = "Aisha Fernandez",
                             CitizenNricSnapshot = "S0000012D",
@@ -26316,7 +26316,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 230,
-                            AccountNumberSnapshot = "EDU-2026-00000000013",
+                            AccountNumberSnapshot = "EDU-2026-8KMXW3A",
                             CitizenEmailSnapshot = "ryan.chua.13@example.com",
                             CitizenFullNameSnapshot = "Ryan Chua",
                             CitizenNricSnapshot = "S0000013B",
@@ -26333,7 +26333,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 231,
-                            AccountNumberSnapshot = "EDU-2026-00000000014",
+                            AccountNumberSnapshot = "EDU-2026-Y2AKLTP",
                             CitizenEmailSnapshot = "chloe.goh.14@example.com",
                             CitizenFullNameSnapshot = "Chloe Goh",
                             CitizenNricSnapshot = "S0000014J",
@@ -26350,7 +26350,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 232,
-                            AccountNumberSnapshot = "EDU-2026-00000000016",
+                            AccountNumberSnapshot = "EDU-2026-PM4HP2L",
                             CitizenEmailSnapshot = "natalie.seah.16@example.com",
                             CitizenFullNameSnapshot = "Natalie Seah",
                             CitizenNricSnapshot = "S0000016G",
@@ -26367,7 +26367,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 233,
-                            AccountNumberSnapshot = "EDU-2026-00000000017",
+                            AccountNumberSnapshot = "EDU-2026-TJ5ZGWC",
                             CitizenEmailSnapshot = "qistina.rao.17@example.com",
                             CitizenFullNameSnapshot = "Qistina Rao",
                             CitizenNricSnapshot = "S0000017E",
@@ -26384,7 +26384,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 234,
-                            AccountNumberSnapshot = "EDU-2026-00000000018",
+                            AccountNumberSnapshot = "EDU-2026-BJ42M5A",
                             CitizenEmailSnapshot = "rafael.sim.18@example.com",
                             CitizenFullNameSnapshot = "Rafael Sim",
                             CitizenNricSnapshot = "S0000018C",
@@ -26401,7 +26401,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 235,
-                            AccountNumberSnapshot = "EDU-2026-00000000019",
+                            AccountNumberSnapshot = "EDU-2026-4K3E2VM",
                             CitizenEmailSnapshot = "selina.tan.19@example.com",
                             CitizenFullNameSnapshot = "Selina Tan",
                             CitizenNricSnapshot = "S0000019A",
@@ -26418,7 +26418,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 236,
-                            AccountNumberSnapshot = "EDU-2026-00000000001",
+                            AccountNumberSnapshot = "EDU-2026-X9EUKF3",
                             CitizenEmailSnapshot = "sterling.quach.1@example.com",
                             CitizenFullNameSnapshot = "Sterling Quach",
                             CitizenNricSnapshot = "S0000001I",
@@ -26435,7 +26435,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 237,
-                            AccountNumberSnapshot = "EDU-2026-00000000011",
+                            AccountNumberSnapshot = "EDU-2026-6W5A9YQ",
                             CitizenEmailSnapshot = "noah.teo.11@example.com",
                             CitizenFullNameSnapshot = "Noah Teo",
                             CitizenNricSnapshot = "S0000011F",
@@ -26452,7 +26452,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 238,
-                            AccountNumberSnapshot = "EDU-2026-00000000012",
+                            AccountNumberSnapshot = "EDU-2026-WR567FC",
                             CitizenEmailSnapshot = "aisha.fernandez.12@example.com",
                             CitizenFullNameSnapshot = "Aisha Fernandez",
                             CitizenNricSnapshot = "S0000012D",
@@ -26469,7 +26469,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 239,
-                            AccountNumberSnapshot = "EDU-2026-00000000013",
+                            AccountNumberSnapshot = "EDU-2026-8KMXW3A",
                             CitizenEmailSnapshot = "ryan.chua.13@example.com",
                             CitizenFullNameSnapshot = "Ryan Chua",
                             CitizenNricSnapshot = "S0000013B",
@@ -26486,7 +26486,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 240,
-                            AccountNumberSnapshot = "EDU-2026-00000000014",
+                            AccountNumberSnapshot = "EDU-2026-Y2AKLTP",
                             CitizenEmailSnapshot = "chloe.goh.14@example.com",
                             CitizenFullNameSnapshot = "Chloe Goh",
                             CitizenNricSnapshot = "S0000014J",
@@ -26503,7 +26503,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 241,
-                            AccountNumberSnapshot = "EDU-2026-00000000015",
+                            AccountNumberSnapshot = "EDU-2026-8B8F6EP",
                             CitizenEmailSnapshot = "irfan.hassan.15@example.com",
                             CitizenFullNameSnapshot = "Irfan Hassan",
                             CitizenNricSnapshot = "S0000015I",
@@ -26520,7 +26520,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 242,
-                            AccountNumberSnapshot = "EDU-2026-00000000017",
+                            AccountNumberSnapshot = "EDU-2026-TJ5ZGWC",
                             CitizenEmailSnapshot = "qistina.rao.17@example.com",
                             CitizenFullNameSnapshot = "Qistina Rao",
                             CitizenNricSnapshot = "S0000017E",
@@ -26537,7 +26537,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 243,
-                            AccountNumberSnapshot = "EDU-2026-00000000018",
+                            AccountNumberSnapshot = "EDU-2026-BJ42M5A",
                             CitizenEmailSnapshot = "rafael.sim.18@example.com",
                             CitizenFullNameSnapshot = "Rafael Sim",
                             CitizenNricSnapshot = "S0000018C",
@@ -26554,7 +26554,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 244,
-                            AccountNumberSnapshot = "EDU-2026-00000000019",
+                            AccountNumberSnapshot = "EDU-2026-4K3E2VM",
                             CitizenEmailSnapshot = "selina.tan.19@example.com",
                             CitizenFullNameSnapshot = "Selina Tan",
                             CitizenNricSnapshot = "S0000019A",
@@ -26571,7 +26571,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 245,
-                            AccountNumberSnapshot = "EDU-2026-00000000001",
+                            AccountNumberSnapshot = "EDU-2026-X9EUKF3",
                             CitizenEmailSnapshot = "sterling.quach.1@example.com",
                             CitizenFullNameSnapshot = "Sterling Quach",
                             CitizenNricSnapshot = "S0000001I",
@@ -26588,7 +26588,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 246,
-                            AccountNumberSnapshot = "EDU-2026-00000000011",
+                            AccountNumberSnapshot = "EDU-2026-6W5A9YQ",
                             CitizenEmailSnapshot = "noah.teo.11@example.com",
                             CitizenFullNameSnapshot = "Noah Teo",
                             CitizenNricSnapshot = "S0000011F",
@@ -26605,7 +26605,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 247,
-                            AccountNumberSnapshot = "EDU-2026-00000000012",
+                            AccountNumberSnapshot = "EDU-2026-WR567FC",
                             CitizenEmailSnapshot = "aisha.fernandez.12@example.com",
                             CitizenFullNameSnapshot = "Aisha Fernandez",
                             CitizenNricSnapshot = "S0000012D",
@@ -26622,7 +26622,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 248,
-                            AccountNumberSnapshot = "EDU-2026-00000000013",
+                            AccountNumberSnapshot = "EDU-2026-8KMXW3A",
                             CitizenEmailSnapshot = "ryan.chua.13@example.com",
                             CitizenFullNameSnapshot = "Ryan Chua",
                             CitizenNricSnapshot = "S0000013B",
@@ -26639,7 +26639,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 249,
-                            AccountNumberSnapshot = "EDU-2026-00000000014",
+                            AccountNumberSnapshot = "EDU-2026-Y2AKLTP",
                             CitizenEmailSnapshot = "chloe.goh.14@example.com",
                             CitizenFullNameSnapshot = "Chloe Goh",
                             CitizenNricSnapshot = "S0000014J",
@@ -26656,7 +26656,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 250,
-                            AccountNumberSnapshot = "EDU-2026-00000000015",
+                            AccountNumberSnapshot = "EDU-2026-8B8F6EP",
                             CitizenEmailSnapshot = "irfan.hassan.15@example.com",
                             CitizenFullNameSnapshot = "Irfan Hassan",
                             CitizenNricSnapshot = "S0000015I",
@@ -26673,7 +26673,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 251,
-                            AccountNumberSnapshot = "EDU-2026-00000000016",
+                            AccountNumberSnapshot = "EDU-2026-PM4HP2L",
                             CitizenEmailSnapshot = "natalie.seah.16@example.com",
                             CitizenFullNameSnapshot = "Natalie Seah",
                             CitizenNricSnapshot = "S0000016G",
@@ -26690,7 +26690,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 252,
-                            AccountNumberSnapshot = "EDU-2026-00000000018",
+                            AccountNumberSnapshot = "EDU-2026-BJ42M5A",
                             CitizenEmailSnapshot = "rafael.sim.18@example.com",
                             CitizenFullNameSnapshot = "Rafael Sim",
                             CitizenNricSnapshot = "S0000018C",
@@ -26707,7 +26707,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 253,
-                            AccountNumberSnapshot = "EDU-2026-00000000019",
+                            AccountNumberSnapshot = "EDU-2026-4K3E2VM",
                             CitizenEmailSnapshot = "selina.tan.19@example.com",
                             CitizenFullNameSnapshot = "Selina Tan",
                             CitizenNricSnapshot = "S0000019A",
@@ -26724,7 +26724,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 254,
-                            AccountNumberSnapshot = "EDU-2026-00000000001",
+                            AccountNumberSnapshot = "EDU-2026-X9EUKF3",
                             CitizenEmailSnapshot = "sterling.quach.1@example.com",
                             CitizenFullNameSnapshot = "Sterling Quach",
                             CitizenNricSnapshot = "S0000001I",
@@ -26741,7 +26741,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 255,
-                            AccountNumberSnapshot = "EDU-2026-00000000011",
+                            AccountNumberSnapshot = "EDU-2026-6W5A9YQ",
                             CitizenEmailSnapshot = "noah.teo.11@example.com",
                             CitizenFullNameSnapshot = "Noah Teo",
                             CitizenNricSnapshot = "S0000011F",
@@ -26758,7 +26758,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 256,
-                            AccountNumberSnapshot = "EDU-2026-00000000012",
+                            AccountNumberSnapshot = "EDU-2026-WR567FC",
                             CitizenEmailSnapshot = "aisha.fernandez.12@example.com",
                             CitizenFullNameSnapshot = "Aisha Fernandez",
                             CitizenNricSnapshot = "S0000012D",
@@ -26775,7 +26775,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 257,
-                            AccountNumberSnapshot = "EDU-2026-00000000013",
+                            AccountNumberSnapshot = "EDU-2026-8KMXW3A",
                             CitizenEmailSnapshot = "ryan.chua.13@example.com",
                             CitizenFullNameSnapshot = "Ryan Chua",
                             CitizenNricSnapshot = "S0000013B",
@@ -26792,7 +26792,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 258,
-                            AccountNumberSnapshot = "EDU-2026-00000000014",
+                            AccountNumberSnapshot = "EDU-2026-Y2AKLTP",
                             CitizenEmailSnapshot = "chloe.goh.14@example.com",
                             CitizenFullNameSnapshot = "Chloe Goh",
                             CitizenNricSnapshot = "S0000014J",
@@ -26809,7 +26809,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 259,
-                            AccountNumberSnapshot = "EDU-2026-00000000015",
+                            AccountNumberSnapshot = "EDU-2026-8B8F6EP",
                             CitizenEmailSnapshot = "irfan.hassan.15@example.com",
                             CitizenFullNameSnapshot = "Irfan Hassan",
                             CitizenNricSnapshot = "S0000015I",
@@ -26826,7 +26826,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 260,
-                            AccountNumberSnapshot = "EDU-2026-00000000016",
+                            AccountNumberSnapshot = "EDU-2026-PM4HP2L",
                             CitizenEmailSnapshot = "natalie.seah.16@example.com",
                             CitizenFullNameSnapshot = "Natalie Seah",
                             CitizenNricSnapshot = "S0000016G",
@@ -26843,7 +26843,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 261,
-                            AccountNumberSnapshot = "EDU-2026-00000000017",
+                            AccountNumberSnapshot = "EDU-2026-TJ5ZGWC",
                             CitizenEmailSnapshot = "qistina.rao.17@example.com",
                             CitizenFullNameSnapshot = "Qistina Rao",
                             CitizenNricSnapshot = "S0000017E",
@@ -26860,7 +26860,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 262,
-                            AccountNumberSnapshot = "EDU-2026-00000000019",
+                            AccountNumberSnapshot = "EDU-2026-4K3E2VM",
                             CitizenEmailSnapshot = "selina.tan.19@example.com",
                             CitizenFullNameSnapshot = "Selina Tan",
                             CitizenNricSnapshot = "S0000019A",
@@ -26877,7 +26877,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 263,
-                            AccountNumberSnapshot = "EDU-2026-00000000001",
+                            AccountNumberSnapshot = "EDU-2026-X9EUKF3",
                             CitizenEmailSnapshot = "sterling.quach.1@example.com",
                             CitizenFullNameSnapshot = "Sterling Quach",
                             CitizenNricSnapshot = "S0000001I",
@@ -26894,7 +26894,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 264,
-                            AccountNumberSnapshot = "EDU-2026-00000000011",
+                            AccountNumberSnapshot = "EDU-2026-6W5A9YQ",
                             CitizenEmailSnapshot = "noah.teo.11@example.com",
                             CitizenFullNameSnapshot = "Noah Teo",
                             CitizenNricSnapshot = "S0000011F",
@@ -26911,7 +26911,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 265,
-                            AccountNumberSnapshot = "EDU-2026-00000000012",
+                            AccountNumberSnapshot = "EDU-2026-WR567FC",
                             CitizenEmailSnapshot = "aisha.fernandez.12@example.com",
                             CitizenFullNameSnapshot = "Aisha Fernandez",
                             CitizenNricSnapshot = "S0000012D",
@@ -26928,7 +26928,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 266,
-                            AccountNumberSnapshot = "EDU-2026-00000000013",
+                            AccountNumberSnapshot = "EDU-2026-8KMXW3A",
                             CitizenEmailSnapshot = "ryan.chua.13@example.com",
                             CitizenFullNameSnapshot = "Ryan Chua",
                             CitizenNricSnapshot = "S0000013B",
@@ -26945,7 +26945,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 267,
-                            AccountNumberSnapshot = "EDU-2026-00000000014",
+                            AccountNumberSnapshot = "EDU-2026-Y2AKLTP",
                             CitizenEmailSnapshot = "chloe.goh.14@example.com",
                             CitizenFullNameSnapshot = "Chloe Goh",
                             CitizenNricSnapshot = "S0000014J",
@@ -26962,7 +26962,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 268,
-                            AccountNumberSnapshot = "EDU-2026-00000000015",
+                            AccountNumberSnapshot = "EDU-2026-8B8F6EP",
                             CitizenEmailSnapshot = "irfan.hassan.15@example.com",
                             CitizenFullNameSnapshot = "Irfan Hassan",
                             CitizenNricSnapshot = "S0000015I",
@@ -26979,7 +26979,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 269,
-                            AccountNumberSnapshot = "EDU-2026-00000000016",
+                            AccountNumberSnapshot = "EDU-2026-PM4HP2L",
                             CitizenEmailSnapshot = "natalie.seah.16@example.com",
                             CitizenFullNameSnapshot = "Natalie Seah",
                             CitizenNricSnapshot = "S0000016G",
@@ -26996,7 +26996,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 270,
-                            AccountNumberSnapshot = "EDU-2026-00000000017",
+                            AccountNumberSnapshot = "EDU-2026-TJ5ZGWC",
                             CitizenEmailSnapshot = "qistina.rao.17@example.com",
                             CitizenFullNameSnapshot = "Qistina Rao",
                             CitizenNricSnapshot = "S0000017E",
@@ -27013,7 +27013,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 271,
-                            AccountNumberSnapshot = "EDU-2026-00000000018",
+                            AccountNumberSnapshot = "EDU-2026-BJ42M5A",
                             CitizenEmailSnapshot = "rafael.sim.18@example.com",
                             CitizenFullNameSnapshot = "Rafael Sim",
                             CitizenNricSnapshot = "S0000018C",
@@ -27030,7 +27030,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 272,
-                            AccountNumberSnapshot = "EDU-2026-00000000002",
+                            AccountNumberSnapshot = "EDU-2026-3LGAWV9",
                             CitizenEmailSnapshot = "amelia.tan.2@example.com",
                             CitizenFullNameSnapshot = "Amelia Tan",
                             CitizenNricSnapshot = "S0000002G",
@@ -27047,7 +27047,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 273,
-                            AccountNumberSnapshot = "EDU-2026-00000000021",
+                            AccountNumberSnapshot = "EDU-2026-ZCJZG6L",
                             CitizenEmailSnapshot = "umairah.vasquez.21@example.com",
                             CitizenFullNameSnapshot = "Umairah Vasquez",
                             CitizenNricSnapshot = "S0000021C",
@@ -27064,7 +27064,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 274,
-                            AccountNumberSnapshot = "EDU-2026-00000000022",
+                            AccountNumberSnapshot = "EDU-2026-GREA9E2",
                             CitizenEmailSnapshot = "victor.wong.22@example.com",
                             CitizenFullNameSnapshot = "Victor Wong",
                             CitizenNricSnapshot = "S0000022A",
@@ -27081,7 +27081,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 275,
-                            AccountNumberSnapshot = "EDU-2026-00000000023",
+                            AccountNumberSnapshot = "EDU-2026-ZL7C8X4",
                             CitizenEmailSnapshot = "wen.jie.xu.23@example.com",
                             CitizenFullNameSnapshot = "Wen Jie Xu",
                             CitizenNricSnapshot = "S0000023Z",
@@ -27098,7 +27098,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 276,
-                            AccountNumberSnapshot = "EDU-2026-00000000024",
+                            AccountNumberSnapshot = "EDU-2026-CCTRWL5",
                             CitizenEmailSnapshot = "xavier.yeo.24@example.com",
                             CitizenFullNameSnapshot = "Xavier Yeo",
                             CitizenNricSnapshot = "S0000024H",
@@ -27115,7 +27115,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 277,
-                            AccountNumberSnapshot = "EDU-2026-00000000025",
+                            AccountNumberSnapshot = "EDU-2026-6X2APTP",
                             CitizenEmailSnapshot = "yasmin.zainal.25@example.com",
                             CitizenFullNameSnapshot = "Yasmin Zainal",
                             CitizenNricSnapshot = "S0000025F",
@@ -27132,7 +27132,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 278,
-                            AccountNumberSnapshot = "EDU-2026-00000000026",
+                            AccountNumberSnapshot = "EDU-2026-FZD3UAP",
                             CitizenEmailSnapshot = "zachary.ang.26@example.com",
                             CitizenFullNameSnapshot = "Zachary Ang",
                             CitizenNricSnapshot = "S0000026D",
@@ -27149,7 +27149,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 279,
-                            AccountNumberSnapshot = "EDU-2026-00000000027",
+                            AccountNumberSnapshot = "EDU-2026-63UJ2UF",
                             CitizenEmailSnapshot = "adeline.bala.27@example.com",
                             CitizenFullNameSnapshot = "Adeline Bala",
                             CitizenNricSnapshot = "S0000027B",
@@ -27166,7 +27166,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 280,
-                            AccountNumberSnapshot = "EDU-2026-00000000028",
+                            AccountNumberSnapshot = "EDU-2026-TR5Z5D3",
                             CitizenEmailSnapshot = "brandon.chew.28@example.com",
                             CitizenFullNameSnapshot = "Brandon Chew",
                             CitizenNricSnapshot = "S0000028J",
@@ -27183,7 +27183,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 281,
-                            AccountNumberSnapshot = "EDU-2026-00000000002",
+                            AccountNumberSnapshot = "EDU-2026-3LGAWV9",
                             CitizenEmailSnapshot = "amelia.tan.2@example.com",
                             CitizenFullNameSnapshot = "Amelia Tan",
                             CitizenNricSnapshot = "S0000002G",
@@ -27200,7 +27200,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 282,
-                            AccountNumberSnapshot = "EDU-2026-00000000020",
+                            AccountNumberSnapshot = "EDU-2026-KE29NED",
                             CitizenEmailSnapshot = "terence.uddin.20@example.com",
                             CitizenFullNameSnapshot = "Terence Uddin",
                             CitizenNricSnapshot = "S0000020E",
@@ -27217,7 +27217,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 283,
-                            AccountNumberSnapshot = "EDU-2026-00000000022",
+                            AccountNumberSnapshot = "EDU-2026-GREA9E2",
                             CitizenEmailSnapshot = "victor.wong.22@example.com",
                             CitizenFullNameSnapshot = "Victor Wong",
                             CitizenNricSnapshot = "S0000022A",
@@ -27234,7 +27234,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 284,
-                            AccountNumberSnapshot = "EDU-2026-00000000023",
+                            AccountNumberSnapshot = "EDU-2026-ZL7C8X4",
                             CitizenEmailSnapshot = "wen.jie.xu.23@example.com",
                             CitizenFullNameSnapshot = "Wen Jie Xu",
                             CitizenNricSnapshot = "S0000023Z",
@@ -27251,7 +27251,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 285,
-                            AccountNumberSnapshot = "EDU-2026-00000000024",
+                            AccountNumberSnapshot = "EDU-2026-CCTRWL5",
                             CitizenEmailSnapshot = "xavier.yeo.24@example.com",
                             CitizenFullNameSnapshot = "Xavier Yeo",
                             CitizenNricSnapshot = "S0000024H",
@@ -27268,7 +27268,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 286,
-                            AccountNumberSnapshot = "EDU-2026-00000000025",
+                            AccountNumberSnapshot = "EDU-2026-6X2APTP",
                             CitizenEmailSnapshot = "yasmin.zainal.25@example.com",
                             CitizenFullNameSnapshot = "Yasmin Zainal",
                             CitizenNricSnapshot = "S0000025F",
@@ -27285,7 +27285,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 287,
-                            AccountNumberSnapshot = "EDU-2026-00000000026",
+                            AccountNumberSnapshot = "EDU-2026-FZD3UAP",
                             CitizenEmailSnapshot = "zachary.ang.26@example.com",
                             CitizenFullNameSnapshot = "Zachary Ang",
                             CitizenNricSnapshot = "S0000026D",
@@ -27302,7 +27302,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 288,
-                            AccountNumberSnapshot = "EDU-2026-00000000027",
+                            AccountNumberSnapshot = "EDU-2026-63UJ2UF",
                             CitizenEmailSnapshot = "adeline.bala.27@example.com",
                             CitizenFullNameSnapshot = "Adeline Bala",
                             CitizenNricSnapshot = "S0000027B",
@@ -27319,7 +27319,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 289,
-                            AccountNumberSnapshot = "EDU-2026-00000000028",
+                            AccountNumberSnapshot = "EDU-2026-TR5Z5D3",
                             CitizenEmailSnapshot = "brandon.chew.28@example.com",
                             CitizenFullNameSnapshot = "Brandon Chew",
                             CitizenNricSnapshot = "S0000028J",
@@ -27336,7 +27336,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 290,
-                            AccountNumberSnapshot = "EDU-2026-00000000002",
+                            AccountNumberSnapshot = "EDU-2026-3LGAWV9",
                             CitizenEmailSnapshot = "amelia.tan.2@example.com",
                             CitizenFullNameSnapshot = "Amelia Tan",
                             CitizenNricSnapshot = "S0000002G",
@@ -27353,7 +27353,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 291,
-                            AccountNumberSnapshot = "EDU-2026-00000000020",
+                            AccountNumberSnapshot = "EDU-2026-KE29NED",
                             CitizenEmailSnapshot = "terence.uddin.20@example.com",
                             CitizenFullNameSnapshot = "Terence Uddin",
                             CitizenNricSnapshot = "S0000020E",
@@ -27370,7 +27370,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 292,
-                            AccountNumberSnapshot = "EDU-2026-00000000021",
+                            AccountNumberSnapshot = "EDU-2026-ZCJZG6L",
                             CitizenEmailSnapshot = "umairah.vasquez.21@example.com",
                             CitizenFullNameSnapshot = "Umairah Vasquez",
                             CitizenNricSnapshot = "S0000021C",
@@ -27387,7 +27387,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 293,
-                            AccountNumberSnapshot = "EDU-2026-00000000023",
+                            AccountNumberSnapshot = "EDU-2026-ZL7C8X4",
                             CitizenEmailSnapshot = "wen.jie.xu.23@example.com",
                             CitizenFullNameSnapshot = "Wen Jie Xu",
                             CitizenNricSnapshot = "S0000023Z",
@@ -27404,7 +27404,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 294,
-                            AccountNumberSnapshot = "EDU-2026-00000000024",
+                            AccountNumberSnapshot = "EDU-2026-CCTRWL5",
                             CitizenEmailSnapshot = "xavier.yeo.24@example.com",
                             CitizenFullNameSnapshot = "Xavier Yeo",
                             CitizenNricSnapshot = "S0000024H",
@@ -27421,7 +27421,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 295,
-                            AccountNumberSnapshot = "EDU-2026-00000000025",
+                            AccountNumberSnapshot = "EDU-2026-6X2APTP",
                             CitizenEmailSnapshot = "yasmin.zainal.25@example.com",
                             CitizenFullNameSnapshot = "Yasmin Zainal",
                             CitizenNricSnapshot = "S0000025F",
@@ -27438,7 +27438,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 296,
-                            AccountNumberSnapshot = "EDU-2026-00000000026",
+                            AccountNumberSnapshot = "EDU-2026-FZD3UAP",
                             CitizenEmailSnapshot = "zachary.ang.26@example.com",
                             CitizenFullNameSnapshot = "Zachary Ang",
                             CitizenNricSnapshot = "S0000026D",
@@ -27455,7 +27455,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 297,
-                            AccountNumberSnapshot = "EDU-2026-00000000027",
+                            AccountNumberSnapshot = "EDU-2026-63UJ2UF",
                             CitizenEmailSnapshot = "adeline.bala.27@example.com",
                             CitizenFullNameSnapshot = "Adeline Bala",
                             CitizenNricSnapshot = "S0000027B",
@@ -27472,7 +27472,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 298,
-                            AccountNumberSnapshot = "EDU-2026-00000000028",
+                            AccountNumberSnapshot = "EDU-2026-TR5Z5D3",
                             CitizenEmailSnapshot = "brandon.chew.28@example.com",
                             CitizenFullNameSnapshot = "Brandon Chew",
                             CitizenNricSnapshot = "S0000028J",
@@ -27489,7 +27489,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 299,
-                            AccountNumberSnapshot = "EDU-2026-00000000002",
+                            AccountNumberSnapshot = "EDU-2026-3LGAWV9",
                             CitizenEmailSnapshot = "amelia.tan.2@example.com",
                             CitizenFullNameSnapshot = "Amelia Tan",
                             CitizenNricSnapshot = "S0000002G",
@@ -27506,7 +27506,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 300,
-                            AccountNumberSnapshot = "EDU-2026-00000000020",
+                            AccountNumberSnapshot = "EDU-2026-KE29NED",
                             CitizenEmailSnapshot = "terence.uddin.20@example.com",
                             CitizenFullNameSnapshot = "Terence Uddin",
                             CitizenNricSnapshot = "S0000020E",
@@ -27523,7 +27523,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 301,
-                            AccountNumberSnapshot = "EDU-2026-00000000021",
+                            AccountNumberSnapshot = "EDU-2026-ZCJZG6L",
                             CitizenEmailSnapshot = "umairah.vasquez.21@example.com",
                             CitizenFullNameSnapshot = "Umairah Vasquez",
                             CitizenNricSnapshot = "S0000021C",
@@ -27540,7 +27540,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 302,
-                            AccountNumberSnapshot = "EDU-2026-00000000022",
+                            AccountNumberSnapshot = "EDU-2026-GREA9E2",
                             CitizenEmailSnapshot = "victor.wong.22@example.com",
                             CitizenFullNameSnapshot = "Victor Wong",
                             CitizenNricSnapshot = "S0000022A",
@@ -27557,7 +27557,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 303,
-                            AccountNumberSnapshot = "EDU-2026-00000000024",
+                            AccountNumberSnapshot = "EDU-2026-CCTRWL5",
                             CitizenEmailSnapshot = "xavier.yeo.24@example.com",
                             CitizenFullNameSnapshot = "Xavier Yeo",
                             CitizenNricSnapshot = "S0000024H",
@@ -27574,7 +27574,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 304,
-                            AccountNumberSnapshot = "EDU-2026-00000000025",
+                            AccountNumberSnapshot = "EDU-2026-6X2APTP",
                             CitizenEmailSnapshot = "yasmin.zainal.25@example.com",
                             CitizenFullNameSnapshot = "Yasmin Zainal",
                             CitizenNricSnapshot = "S0000025F",
@@ -27591,7 +27591,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 305,
-                            AccountNumberSnapshot = "EDU-2026-00000000026",
+                            AccountNumberSnapshot = "EDU-2026-FZD3UAP",
                             CitizenEmailSnapshot = "zachary.ang.26@example.com",
                             CitizenFullNameSnapshot = "Zachary Ang",
                             CitizenNricSnapshot = "S0000026D",
@@ -27608,7 +27608,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 306,
-                            AccountNumberSnapshot = "EDU-2026-00000000027",
+                            AccountNumberSnapshot = "EDU-2026-63UJ2UF",
                             CitizenEmailSnapshot = "adeline.bala.27@example.com",
                             CitizenFullNameSnapshot = "Adeline Bala",
                             CitizenNricSnapshot = "S0000027B",
@@ -27625,7 +27625,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 307,
-                            AccountNumberSnapshot = "EDU-2026-00000000028",
+                            AccountNumberSnapshot = "EDU-2026-TR5Z5D3",
                             CitizenEmailSnapshot = "brandon.chew.28@example.com",
                             CitizenFullNameSnapshot = "Brandon Chew",
                             CitizenNricSnapshot = "S0000028J",
@@ -27642,7 +27642,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 308,
-                            AccountNumberSnapshot = "EDU-2026-00000000002",
+                            AccountNumberSnapshot = "EDU-2026-3LGAWV9",
                             CitizenEmailSnapshot = "amelia.tan.2@example.com",
                             CitizenFullNameSnapshot = "Amelia Tan",
                             CitizenNricSnapshot = "S0000002G",
@@ -27659,7 +27659,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 309,
-                            AccountNumberSnapshot = "EDU-2026-00000000020",
+                            AccountNumberSnapshot = "EDU-2026-KE29NED",
                             CitizenEmailSnapshot = "terence.uddin.20@example.com",
                             CitizenFullNameSnapshot = "Terence Uddin",
                             CitizenNricSnapshot = "S0000020E",
@@ -27676,7 +27676,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 310,
-                            AccountNumberSnapshot = "EDU-2026-00000000021",
+                            AccountNumberSnapshot = "EDU-2026-ZCJZG6L",
                             CitizenEmailSnapshot = "umairah.vasquez.21@example.com",
                             CitizenFullNameSnapshot = "Umairah Vasquez",
                             CitizenNricSnapshot = "S0000021C",
@@ -27693,7 +27693,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 311,
-                            AccountNumberSnapshot = "EDU-2026-00000000022",
+                            AccountNumberSnapshot = "EDU-2026-GREA9E2",
                             CitizenEmailSnapshot = "victor.wong.22@example.com",
                             CitizenFullNameSnapshot = "Victor Wong",
                             CitizenNricSnapshot = "S0000022A",
@@ -27710,7 +27710,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 312,
-                            AccountNumberSnapshot = "EDU-2026-00000000023",
+                            AccountNumberSnapshot = "EDU-2026-ZL7C8X4",
                             CitizenEmailSnapshot = "wen.jie.xu.23@example.com",
                             CitizenFullNameSnapshot = "Wen Jie Xu",
                             CitizenNricSnapshot = "S0000023Z",
@@ -27727,7 +27727,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 313,
-                            AccountNumberSnapshot = "EDU-2026-00000000025",
+                            AccountNumberSnapshot = "EDU-2026-6X2APTP",
                             CitizenEmailSnapshot = "yasmin.zainal.25@example.com",
                             CitizenFullNameSnapshot = "Yasmin Zainal",
                             CitizenNricSnapshot = "S0000025F",
@@ -27744,7 +27744,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 314,
-                            AccountNumberSnapshot = "EDU-2026-00000000026",
+                            AccountNumberSnapshot = "EDU-2026-FZD3UAP",
                             CitizenEmailSnapshot = "zachary.ang.26@example.com",
                             CitizenFullNameSnapshot = "Zachary Ang",
                             CitizenNricSnapshot = "S0000026D",
@@ -27761,7 +27761,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 315,
-                            AccountNumberSnapshot = "EDU-2026-00000000027",
+                            AccountNumberSnapshot = "EDU-2026-63UJ2UF",
                             CitizenEmailSnapshot = "adeline.bala.27@example.com",
                             CitizenFullNameSnapshot = "Adeline Bala",
                             CitizenNricSnapshot = "S0000027B",
@@ -27778,7 +27778,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 316,
-                            AccountNumberSnapshot = "EDU-2026-00000000028",
+                            AccountNumberSnapshot = "EDU-2026-TR5Z5D3",
                             CitizenEmailSnapshot = "brandon.chew.28@example.com",
                             CitizenFullNameSnapshot = "Brandon Chew",
                             CitizenNricSnapshot = "S0000028J",
@@ -27795,7 +27795,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 317,
-                            AccountNumberSnapshot = "EDU-2026-00000000002",
+                            AccountNumberSnapshot = "EDU-2026-3LGAWV9",
                             CitizenEmailSnapshot = "amelia.tan.2@example.com",
                             CitizenFullNameSnapshot = "Amelia Tan",
                             CitizenNricSnapshot = "S0000002G",
@@ -27812,7 +27812,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 318,
-                            AccountNumberSnapshot = "EDU-2026-00000000020",
+                            AccountNumberSnapshot = "EDU-2026-KE29NED",
                             CitizenEmailSnapshot = "terence.uddin.20@example.com",
                             CitizenFullNameSnapshot = "Terence Uddin",
                             CitizenNricSnapshot = "S0000020E",
@@ -27829,7 +27829,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 319,
-                            AccountNumberSnapshot = "EDU-2026-00000000021",
+                            AccountNumberSnapshot = "EDU-2026-ZCJZG6L",
                             CitizenEmailSnapshot = "umairah.vasquez.21@example.com",
                             CitizenFullNameSnapshot = "Umairah Vasquez",
                             CitizenNricSnapshot = "S0000021C",
@@ -27846,7 +27846,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 320,
-                            AccountNumberSnapshot = "EDU-2026-00000000022",
+                            AccountNumberSnapshot = "EDU-2026-GREA9E2",
                             CitizenEmailSnapshot = "victor.wong.22@example.com",
                             CitizenFullNameSnapshot = "Victor Wong",
                             CitizenNricSnapshot = "S0000022A",
@@ -27863,7 +27863,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 321,
-                            AccountNumberSnapshot = "EDU-2026-00000000023",
+                            AccountNumberSnapshot = "EDU-2026-ZL7C8X4",
                             CitizenEmailSnapshot = "wen.jie.xu.23@example.com",
                             CitizenFullNameSnapshot = "Wen Jie Xu",
                             CitizenNricSnapshot = "S0000023Z",
@@ -27880,7 +27880,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 322,
-                            AccountNumberSnapshot = "EDU-2026-00000000024",
+                            AccountNumberSnapshot = "EDU-2026-CCTRWL5",
                             CitizenEmailSnapshot = "xavier.yeo.24@example.com",
                             CitizenFullNameSnapshot = "Xavier Yeo",
                             CitizenNricSnapshot = "S0000024H",
@@ -27897,7 +27897,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 323,
-                            AccountNumberSnapshot = "EDU-2026-00000000026",
+                            AccountNumberSnapshot = "EDU-2026-FZD3UAP",
                             CitizenEmailSnapshot = "zachary.ang.26@example.com",
                             CitizenFullNameSnapshot = "Zachary Ang",
                             CitizenNricSnapshot = "S0000026D",
@@ -27914,7 +27914,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 324,
-                            AccountNumberSnapshot = "EDU-2026-00000000027",
+                            AccountNumberSnapshot = "EDU-2026-63UJ2UF",
                             CitizenEmailSnapshot = "adeline.bala.27@example.com",
                             CitizenFullNameSnapshot = "Adeline Bala",
                             CitizenNricSnapshot = "S0000027B",
@@ -27931,7 +27931,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 325,
-                            AccountNumberSnapshot = "EDU-2026-00000000028",
+                            AccountNumberSnapshot = "EDU-2026-TR5Z5D3",
                             CitizenEmailSnapshot = "brandon.chew.28@example.com",
                             CitizenFullNameSnapshot = "Brandon Chew",
                             CitizenNricSnapshot = "S0000028J",
@@ -27948,7 +27948,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 326,
-                            AccountNumberSnapshot = "EDU-2026-00000000002",
+                            AccountNumberSnapshot = "EDU-2026-3LGAWV9",
                             CitizenEmailSnapshot = "amelia.tan.2@example.com",
                             CitizenFullNameSnapshot = "Amelia Tan",
                             CitizenNricSnapshot = "S0000002G",
@@ -27965,7 +27965,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 327,
-                            AccountNumberSnapshot = "EDU-2026-00000000020",
+                            AccountNumberSnapshot = "EDU-2026-KE29NED",
                             CitizenEmailSnapshot = "terence.uddin.20@example.com",
                             CitizenFullNameSnapshot = "Terence Uddin",
                             CitizenNricSnapshot = "S0000020E",
@@ -27982,7 +27982,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 328,
-                            AccountNumberSnapshot = "EDU-2026-00000000021",
+                            AccountNumberSnapshot = "EDU-2026-ZCJZG6L",
                             CitizenEmailSnapshot = "umairah.vasquez.21@example.com",
                             CitizenFullNameSnapshot = "Umairah Vasquez",
                             CitizenNricSnapshot = "S0000021C",
@@ -27999,7 +27999,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 329,
-                            AccountNumberSnapshot = "EDU-2026-00000000022",
+                            AccountNumberSnapshot = "EDU-2026-GREA9E2",
                             CitizenEmailSnapshot = "victor.wong.22@example.com",
                             CitizenFullNameSnapshot = "Victor Wong",
                             CitizenNricSnapshot = "S0000022A",
@@ -28016,7 +28016,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 330,
-                            AccountNumberSnapshot = "EDU-2026-00000000023",
+                            AccountNumberSnapshot = "EDU-2026-ZL7C8X4",
                             CitizenEmailSnapshot = "wen.jie.xu.23@example.com",
                             CitizenFullNameSnapshot = "Wen Jie Xu",
                             CitizenNricSnapshot = "S0000023Z",
@@ -28033,7 +28033,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 331,
-                            AccountNumberSnapshot = "EDU-2026-00000000024",
+                            AccountNumberSnapshot = "EDU-2026-CCTRWL5",
                             CitizenEmailSnapshot = "xavier.yeo.24@example.com",
                             CitizenFullNameSnapshot = "Xavier Yeo",
                             CitizenNricSnapshot = "S0000024H",
@@ -28050,7 +28050,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 332,
-                            AccountNumberSnapshot = "EDU-2026-00000000025",
+                            AccountNumberSnapshot = "EDU-2026-6X2APTP",
                             CitizenEmailSnapshot = "yasmin.zainal.25@example.com",
                             CitizenFullNameSnapshot = "Yasmin Zainal",
                             CitizenNricSnapshot = "S0000025F",
@@ -28067,7 +28067,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 333,
-                            AccountNumberSnapshot = "EDU-2026-00000000027",
+                            AccountNumberSnapshot = "EDU-2026-63UJ2UF",
                             CitizenEmailSnapshot = "adeline.bala.27@example.com",
                             CitizenFullNameSnapshot = "Adeline Bala",
                             CitizenNricSnapshot = "S0000027B",
@@ -28084,7 +28084,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 334,
-                            AccountNumberSnapshot = "EDU-2026-00000000028",
+                            AccountNumberSnapshot = "EDU-2026-TR5Z5D3",
                             CitizenEmailSnapshot = "brandon.chew.28@example.com",
                             CitizenFullNameSnapshot = "Brandon Chew",
                             CitizenNricSnapshot = "S0000028J",
@@ -28101,7 +28101,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 335,
-                            AccountNumberSnapshot = "EDU-2026-00000000002",
+                            AccountNumberSnapshot = "EDU-2026-3LGAWV9",
                             CitizenEmailSnapshot = "amelia.tan.2@example.com",
                             CitizenFullNameSnapshot = "Amelia Tan",
                             CitizenNricSnapshot = "S0000002G",
@@ -28118,7 +28118,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 336,
-                            AccountNumberSnapshot = "EDU-2026-00000000020",
+                            AccountNumberSnapshot = "EDU-2026-KE29NED",
                             CitizenEmailSnapshot = "terence.uddin.20@example.com",
                             CitizenFullNameSnapshot = "Terence Uddin",
                             CitizenNricSnapshot = "S0000020E",
@@ -28135,7 +28135,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 337,
-                            AccountNumberSnapshot = "EDU-2026-00000000021",
+                            AccountNumberSnapshot = "EDU-2026-ZCJZG6L",
                             CitizenEmailSnapshot = "umairah.vasquez.21@example.com",
                             CitizenFullNameSnapshot = "Umairah Vasquez",
                             CitizenNricSnapshot = "S0000021C",
@@ -28152,7 +28152,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 338,
-                            AccountNumberSnapshot = "EDU-2026-00000000022",
+                            AccountNumberSnapshot = "EDU-2026-GREA9E2",
                             CitizenEmailSnapshot = "victor.wong.22@example.com",
                             CitizenFullNameSnapshot = "Victor Wong",
                             CitizenNricSnapshot = "S0000022A",
@@ -28169,7 +28169,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 339,
-                            AccountNumberSnapshot = "EDU-2026-00000000023",
+                            AccountNumberSnapshot = "EDU-2026-ZL7C8X4",
                             CitizenEmailSnapshot = "wen.jie.xu.23@example.com",
                             CitizenFullNameSnapshot = "Wen Jie Xu",
                             CitizenNricSnapshot = "S0000023Z",
@@ -28186,7 +28186,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 340,
-                            AccountNumberSnapshot = "EDU-2026-00000000024",
+                            AccountNumberSnapshot = "EDU-2026-CCTRWL5",
                             CitizenEmailSnapshot = "xavier.yeo.24@example.com",
                             CitizenFullNameSnapshot = "Xavier Yeo",
                             CitizenNricSnapshot = "S0000024H",
@@ -28203,7 +28203,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 341,
-                            AccountNumberSnapshot = "EDU-2026-00000000025",
+                            AccountNumberSnapshot = "EDU-2026-6X2APTP",
                             CitizenEmailSnapshot = "yasmin.zainal.25@example.com",
                             CitizenFullNameSnapshot = "Yasmin Zainal",
                             CitizenNricSnapshot = "S0000025F",
@@ -28220,7 +28220,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 342,
-                            AccountNumberSnapshot = "EDU-2026-00000000026",
+                            AccountNumberSnapshot = "EDU-2026-FZD3UAP",
                             CitizenEmailSnapshot = "zachary.ang.26@example.com",
                             CitizenFullNameSnapshot = "Zachary Ang",
                             CitizenNricSnapshot = "S0000026D",
@@ -28237,7 +28237,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 343,
-                            AccountNumberSnapshot = "EDU-2026-00000000028",
+                            AccountNumberSnapshot = "EDU-2026-TR5Z5D3",
                             CitizenEmailSnapshot = "brandon.chew.28@example.com",
                             CitizenFullNameSnapshot = "Brandon Chew",
                             CitizenNricSnapshot = "S0000028J",
@@ -28254,7 +28254,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 344,
-                            AccountNumberSnapshot = "EDU-2026-00000000002",
+                            AccountNumberSnapshot = "EDU-2026-3LGAWV9",
                             CitizenEmailSnapshot = "amelia.tan.2@example.com",
                             CitizenFullNameSnapshot = "Amelia Tan",
                             CitizenNricSnapshot = "S0000002G",
@@ -28271,7 +28271,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 345,
-                            AccountNumberSnapshot = "EDU-2026-00000000020",
+                            AccountNumberSnapshot = "EDU-2026-KE29NED",
                             CitizenEmailSnapshot = "terence.uddin.20@example.com",
                             CitizenFullNameSnapshot = "Terence Uddin",
                             CitizenNricSnapshot = "S0000020E",
@@ -28288,7 +28288,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 346,
-                            AccountNumberSnapshot = "EDU-2026-00000000021",
+                            AccountNumberSnapshot = "EDU-2026-ZCJZG6L",
                             CitizenEmailSnapshot = "umairah.vasquez.21@example.com",
                             CitizenFullNameSnapshot = "Umairah Vasquez",
                             CitizenNricSnapshot = "S0000021C",
@@ -28305,7 +28305,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 347,
-                            AccountNumberSnapshot = "EDU-2026-00000000022",
+                            AccountNumberSnapshot = "EDU-2026-GREA9E2",
                             CitizenEmailSnapshot = "victor.wong.22@example.com",
                             CitizenFullNameSnapshot = "Victor Wong",
                             CitizenNricSnapshot = "S0000022A",
@@ -28322,7 +28322,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 348,
-                            AccountNumberSnapshot = "EDU-2026-00000000023",
+                            AccountNumberSnapshot = "EDU-2026-ZL7C8X4",
                             CitizenEmailSnapshot = "wen.jie.xu.23@example.com",
                             CitizenFullNameSnapshot = "Wen Jie Xu",
                             CitizenNricSnapshot = "S0000023Z",
@@ -28339,7 +28339,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 349,
-                            AccountNumberSnapshot = "EDU-2026-00000000024",
+                            AccountNumberSnapshot = "EDU-2026-CCTRWL5",
                             CitizenEmailSnapshot = "xavier.yeo.24@example.com",
                             CitizenFullNameSnapshot = "Xavier Yeo",
                             CitizenNricSnapshot = "S0000024H",
@@ -28356,7 +28356,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 350,
-                            AccountNumberSnapshot = "EDU-2026-00000000025",
+                            AccountNumberSnapshot = "EDU-2026-6X2APTP",
                             CitizenEmailSnapshot = "yasmin.zainal.25@example.com",
                             CitizenFullNameSnapshot = "Yasmin Zainal",
                             CitizenNricSnapshot = "S0000025F",
@@ -28373,7 +28373,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 351,
-                            AccountNumberSnapshot = "EDU-2026-00000000026",
+                            AccountNumberSnapshot = "EDU-2026-FZD3UAP",
                             CitizenEmailSnapshot = "zachary.ang.26@example.com",
                             CitizenFullNameSnapshot = "Zachary Ang",
                             CitizenNricSnapshot = "S0000026D",
@@ -28390,7 +28390,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 352,
-                            AccountNumberSnapshot = "EDU-2026-00000000027",
+                            AccountNumberSnapshot = "EDU-2026-63UJ2UF",
                             CitizenEmailSnapshot = "adeline.bala.27@example.com",
                             CitizenFullNameSnapshot = "Adeline Bala",
                             CitizenNricSnapshot = "S0000027B",
@@ -28407,7 +28407,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 353,
-                            AccountNumberSnapshot = "EDU-2026-00000000003",
+                            AccountNumberSnapshot = "EDU-2026-XAT7E9E",
                             CitizenEmailSnapshot = "marcus.lim.3@example.com",
                             CitizenFullNameSnapshot = "Marcus Lim",
                             CitizenNricSnapshot = "S0000003E",
@@ -28424,7 +28424,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 354,
-                            AccountNumberSnapshot = "EDU-2026-00000000030",
+                            AccountNumberSnapshot = "EDU-2026-ZK6QLJP",
                             CitizenEmailSnapshot = "damien.eng.30@example.com",
                             CitizenFullNameSnapshot = "Damien Eng",
                             CitizenNricSnapshot = "S0000030B",
@@ -28441,7 +28441,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 355,
-                            AccountNumberSnapshot = "EDU-2026-00000000031",
+                            AccountNumberSnapshot = "EDU-2026-8TCLTDQ",
                             CitizenEmailSnapshot = "evelyn.foo.31@example.com",
                             CitizenFullNameSnapshot = "Evelyn Foo",
                             CitizenNricSnapshot = "S0000031J",
@@ -28458,7 +28458,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 356,
-                            AccountNumberSnapshot = "EDU-2026-00000000032",
+                            AccountNumberSnapshot = "EDU-2026-4MD2QV4",
                             CitizenEmailSnapshot = "faris.gan.32@example.com",
                             CitizenFullNameSnapshot = "Faris Gan",
                             CitizenNricSnapshot = "S0000032I",
@@ -28475,7 +28475,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 357,
-                            AccountNumberSnapshot = "EDU-2026-00000000033",
+                            AccountNumberSnapshot = "EDU-2026-P445GFR",
                             CitizenEmailSnapshot = "giselle.ho.33@example.com",
                             CitizenFullNameSnapshot = "Giselle Ho",
                             CitizenNricSnapshot = "S0000033G",
@@ -28492,7 +28492,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 358,
-                            AccountNumberSnapshot = "EDU-2026-00000000034",
+                            AccountNumberSnapshot = "EDU-2026-H5VK6UE",
                             CitizenEmailSnapshot = "haziq.ismail.34@example.com",
                             CitizenFullNameSnapshot = "Haziq Ismail",
                             CitizenNricSnapshot = "S0000034E",
@@ -28509,7 +28509,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 359,
-                            AccountNumberSnapshot = "EDU-2026-00000000035",
+                            AccountNumberSnapshot = "EDU-2026-K4GYB53",
                             CitizenEmailSnapshot = "irene.jeyaratnam.35@example.com",
                             CitizenFullNameSnapshot = "Irene Jeyaratnam",
                             CitizenNricSnapshot = "S0000035C",
@@ -28526,7 +28526,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 360,
-                            AccountNumberSnapshot = "EDU-2026-00000000036",
+                            AccountNumberSnapshot = "EDU-2026-NU32Y83",
                             CitizenEmailSnapshot = "jonas.kwek.36@example.com",
                             CitizenFullNameSnapshot = "Jonas Kwek",
                             CitizenNricSnapshot = "S0000036A",
@@ -28543,7 +28543,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 361,
-                            AccountNumberSnapshot = "EDU-2026-00000000037",
+                            AccountNumberSnapshot = "EDU-2026-5KZTP8L",
                             CitizenEmailSnapshot = "kavya.lim.37@example.com",
                             CitizenFullNameSnapshot = "Kavya Lim",
                             CitizenNricSnapshot = "S0000037Z",
@@ -28560,7 +28560,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 362,
-                            AccountNumberSnapshot = "EDU-2026-00000000003",
+                            AccountNumberSnapshot = "EDU-2026-XAT7E9E",
                             CitizenEmailSnapshot = "marcus.lim.3@example.com",
                             CitizenFullNameSnapshot = "Marcus Lim",
                             CitizenNricSnapshot = "S0000003E",
@@ -28577,7 +28577,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 363,
-                            AccountNumberSnapshot = "EDU-2026-00000000029",
+                            AccountNumberSnapshot = "EDU-2026-2WFHAM9",
                             CitizenEmailSnapshot = "celeste.das.29@example.com",
                             CitizenFullNameSnapshot = "Celeste Das",
                             CitizenNricSnapshot = "S0000029I",
@@ -28594,7 +28594,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 364,
-                            AccountNumberSnapshot = "EDU-2026-00000000031",
+                            AccountNumberSnapshot = "EDU-2026-8TCLTDQ",
                             CitizenEmailSnapshot = "evelyn.foo.31@example.com",
                             CitizenFullNameSnapshot = "Evelyn Foo",
                             CitizenNricSnapshot = "S0000031J",
@@ -28611,7 +28611,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 365,
-                            AccountNumberSnapshot = "EDU-2026-00000000032",
+                            AccountNumberSnapshot = "EDU-2026-4MD2QV4",
                             CitizenEmailSnapshot = "faris.gan.32@example.com",
                             CitizenFullNameSnapshot = "Faris Gan",
                             CitizenNricSnapshot = "S0000032I",
@@ -28628,7 +28628,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 366,
-                            AccountNumberSnapshot = "EDU-2026-00000000033",
+                            AccountNumberSnapshot = "EDU-2026-P445GFR",
                             CitizenEmailSnapshot = "giselle.ho.33@example.com",
                             CitizenFullNameSnapshot = "Giselle Ho",
                             CitizenNricSnapshot = "S0000033G",
@@ -28645,7 +28645,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 367,
-                            AccountNumberSnapshot = "EDU-2026-00000000034",
+                            AccountNumberSnapshot = "EDU-2026-H5VK6UE",
                             CitizenEmailSnapshot = "haziq.ismail.34@example.com",
                             CitizenFullNameSnapshot = "Haziq Ismail",
                             CitizenNricSnapshot = "S0000034E",
@@ -28662,7 +28662,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 368,
-                            AccountNumberSnapshot = "EDU-2026-00000000035",
+                            AccountNumberSnapshot = "EDU-2026-K4GYB53",
                             CitizenEmailSnapshot = "irene.jeyaratnam.35@example.com",
                             CitizenFullNameSnapshot = "Irene Jeyaratnam",
                             CitizenNricSnapshot = "S0000035C",
@@ -28679,7 +28679,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 369,
-                            AccountNumberSnapshot = "EDU-2026-00000000036",
+                            AccountNumberSnapshot = "EDU-2026-NU32Y83",
                             CitizenEmailSnapshot = "jonas.kwek.36@example.com",
                             CitizenFullNameSnapshot = "Jonas Kwek",
                             CitizenNricSnapshot = "S0000036A",
@@ -28696,7 +28696,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 370,
-                            AccountNumberSnapshot = "EDU-2026-00000000037",
+                            AccountNumberSnapshot = "EDU-2026-5KZTP8L",
                             CitizenEmailSnapshot = "kavya.lim.37@example.com",
                             CitizenFullNameSnapshot = "Kavya Lim",
                             CitizenNricSnapshot = "S0000037Z",
@@ -28713,7 +28713,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 371,
-                            AccountNumberSnapshot = "EDU-2026-00000000003",
+                            AccountNumberSnapshot = "EDU-2026-XAT7E9E",
                             CitizenEmailSnapshot = "marcus.lim.3@example.com",
                             CitizenFullNameSnapshot = "Marcus Lim",
                             CitizenNricSnapshot = "S0000003E",
@@ -28730,7 +28730,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 372,
-                            AccountNumberSnapshot = "EDU-2026-00000000029",
+                            AccountNumberSnapshot = "EDU-2026-2WFHAM9",
                             CitizenEmailSnapshot = "celeste.das.29@example.com",
                             CitizenFullNameSnapshot = "Celeste Das",
                             CitizenNricSnapshot = "S0000029I",
@@ -28747,7 +28747,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 373,
-                            AccountNumberSnapshot = "EDU-2026-00000000030",
+                            AccountNumberSnapshot = "EDU-2026-ZK6QLJP",
                             CitizenEmailSnapshot = "damien.eng.30@example.com",
                             CitizenFullNameSnapshot = "Damien Eng",
                             CitizenNricSnapshot = "S0000030B",
@@ -28764,7 +28764,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 374,
-                            AccountNumberSnapshot = "EDU-2026-00000000032",
+                            AccountNumberSnapshot = "EDU-2026-4MD2QV4",
                             CitizenEmailSnapshot = "faris.gan.32@example.com",
                             CitizenFullNameSnapshot = "Faris Gan",
                             CitizenNricSnapshot = "S0000032I",
@@ -28781,7 +28781,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 375,
-                            AccountNumberSnapshot = "EDU-2026-00000000033",
+                            AccountNumberSnapshot = "EDU-2026-P445GFR",
                             CitizenEmailSnapshot = "giselle.ho.33@example.com",
                             CitizenFullNameSnapshot = "Giselle Ho",
                             CitizenNricSnapshot = "S0000033G",
@@ -28798,7 +28798,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 376,
-                            AccountNumberSnapshot = "EDU-2026-00000000034",
+                            AccountNumberSnapshot = "EDU-2026-H5VK6UE",
                             CitizenEmailSnapshot = "haziq.ismail.34@example.com",
                             CitizenFullNameSnapshot = "Haziq Ismail",
                             CitizenNricSnapshot = "S0000034E",
@@ -28815,7 +28815,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 377,
-                            AccountNumberSnapshot = "EDU-2026-00000000035",
+                            AccountNumberSnapshot = "EDU-2026-K4GYB53",
                             CitizenEmailSnapshot = "irene.jeyaratnam.35@example.com",
                             CitizenFullNameSnapshot = "Irene Jeyaratnam",
                             CitizenNricSnapshot = "S0000035C",
@@ -28832,7 +28832,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 378,
-                            AccountNumberSnapshot = "EDU-2026-00000000036",
+                            AccountNumberSnapshot = "EDU-2026-NU32Y83",
                             CitizenEmailSnapshot = "jonas.kwek.36@example.com",
                             CitizenFullNameSnapshot = "Jonas Kwek",
                             CitizenNricSnapshot = "S0000036A",
@@ -28849,7 +28849,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 379,
-                            AccountNumberSnapshot = "EDU-2026-00000000037",
+                            AccountNumberSnapshot = "EDU-2026-5KZTP8L",
                             CitizenEmailSnapshot = "kavya.lim.37@example.com",
                             CitizenFullNameSnapshot = "Kavya Lim",
                             CitizenNricSnapshot = "S0000037Z",
@@ -28866,7 +28866,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 380,
-                            AccountNumberSnapshot = "EDU-2026-00000000003",
+                            AccountNumberSnapshot = "EDU-2026-XAT7E9E",
                             CitizenEmailSnapshot = "marcus.lim.3@example.com",
                             CitizenFullNameSnapshot = "Marcus Lim",
                             CitizenNricSnapshot = "S0000003E",
@@ -28883,7 +28883,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 381,
-                            AccountNumberSnapshot = "EDU-2026-00000000029",
+                            AccountNumberSnapshot = "EDU-2026-2WFHAM9",
                             CitizenEmailSnapshot = "celeste.das.29@example.com",
                             CitizenFullNameSnapshot = "Celeste Das",
                             CitizenNricSnapshot = "S0000029I",
@@ -28900,7 +28900,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 382,
-                            AccountNumberSnapshot = "EDU-2026-00000000030",
+                            AccountNumberSnapshot = "EDU-2026-ZK6QLJP",
                             CitizenEmailSnapshot = "damien.eng.30@example.com",
                             CitizenFullNameSnapshot = "Damien Eng",
                             CitizenNricSnapshot = "S0000030B",
@@ -28917,7 +28917,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 383,
-                            AccountNumberSnapshot = "EDU-2026-00000000031",
+                            AccountNumberSnapshot = "EDU-2026-8TCLTDQ",
                             CitizenEmailSnapshot = "evelyn.foo.31@example.com",
                             CitizenFullNameSnapshot = "Evelyn Foo",
                             CitizenNricSnapshot = "S0000031J",
@@ -28934,7 +28934,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 384,
-                            AccountNumberSnapshot = "EDU-2026-00000000033",
+                            AccountNumberSnapshot = "EDU-2026-P445GFR",
                             CitizenEmailSnapshot = "giselle.ho.33@example.com",
                             CitizenFullNameSnapshot = "Giselle Ho",
                             CitizenNricSnapshot = "S0000033G",
@@ -28951,7 +28951,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 385,
-                            AccountNumberSnapshot = "EDU-2026-00000000034",
+                            AccountNumberSnapshot = "EDU-2026-H5VK6UE",
                             CitizenEmailSnapshot = "haziq.ismail.34@example.com",
                             CitizenFullNameSnapshot = "Haziq Ismail",
                             CitizenNricSnapshot = "S0000034E",
@@ -28968,7 +28968,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 386,
-                            AccountNumberSnapshot = "EDU-2026-00000000035",
+                            AccountNumberSnapshot = "EDU-2026-K4GYB53",
                             CitizenEmailSnapshot = "irene.jeyaratnam.35@example.com",
                             CitizenFullNameSnapshot = "Irene Jeyaratnam",
                             CitizenNricSnapshot = "S0000035C",
@@ -28985,7 +28985,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 387,
-                            AccountNumberSnapshot = "EDU-2026-00000000036",
+                            AccountNumberSnapshot = "EDU-2026-NU32Y83",
                             CitizenEmailSnapshot = "jonas.kwek.36@example.com",
                             CitizenFullNameSnapshot = "Jonas Kwek",
                             CitizenNricSnapshot = "S0000036A",
@@ -29002,7 +29002,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 388,
-                            AccountNumberSnapshot = "EDU-2026-00000000037",
+                            AccountNumberSnapshot = "EDU-2026-5KZTP8L",
                             CitizenEmailSnapshot = "kavya.lim.37@example.com",
                             CitizenFullNameSnapshot = "Kavya Lim",
                             CitizenNricSnapshot = "S0000037Z",
@@ -29019,7 +29019,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 389,
-                            AccountNumberSnapshot = "EDU-2026-00000000003",
+                            AccountNumberSnapshot = "EDU-2026-XAT7E9E",
                             CitizenEmailSnapshot = "marcus.lim.3@example.com",
                             CitizenFullNameSnapshot = "Marcus Lim",
                             CitizenNricSnapshot = "S0000003E",
@@ -29036,7 +29036,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 390,
-                            AccountNumberSnapshot = "EDU-2026-00000000029",
+                            AccountNumberSnapshot = "EDU-2026-2WFHAM9",
                             CitizenEmailSnapshot = "celeste.das.29@example.com",
                             CitizenFullNameSnapshot = "Celeste Das",
                             CitizenNricSnapshot = "S0000029I",
@@ -29053,7 +29053,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 391,
-                            AccountNumberSnapshot = "EDU-2026-00000000030",
+                            AccountNumberSnapshot = "EDU-2026-ZK6QLJP",
                             CitizenEmailSnapshot = "damien.eng.30@example.com",
                             CitizenFullNameSnapshot = "Damien Eng",
                             CitizenNricSnapshot = "S0000030B",
@@ -29070,7 +29070,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 392,
-                            AccountNumberSnapshot = "EDU-2026-00000000031",
+                            AccountNumberSnapshot = "EDU-2026-8TCLTDQ",
                             CitizenEmailSnapshot = "evelyn.foo.31@example.com",
                             CitizenFullNameSnapshot = "Evelyn Foo",
                             CitizenNricSnapshot = "S0000031J",
@@ -29087,7 +29087,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 393,
-                            AccountNumberSnapshot = "EDU-2026-00000000032",
+                            AccountNumberSnapshot = "EDU-2026-4MD2QV4",
                             CitizenEmailSnapshot = "faris.gan.32@example.com",
                             CitizenFullNameSnapshot = "Faris Gan",
                             CitizenNricSnapshot = "S0000032I",
@@ -29104,7 +29104,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 394,
-                            AccountNumberSnapshot = "EDU-2026-00000000034",
+                            AccountNumberSnapshot = "EDU-2026-H5VK6UE",
                             CitizenEmailSnapshot = "haziq.ismail.34@example.com",
                             CitizenFullNameSnapshot = "Haziq Ismail",
                             CitizenNricSnapshot = "S0000034E",
@@ -29121,7 +29121,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 395,
-                            AccountNumberSnapshot = "EDU-2026-00000000035",
+                            AccountNumberSnapshot = "EDU-2026-K4GYB53",
                             CitizenEmailSnapshot = "irene.jeyaratnam.35@example.com",
                             CitizenFullNameSnapshot = "Irene Jeyaratnam",
                             CitizenNricSnapshot = "S0000035C",
@@ -29138,7 +29138,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 396,
-                            AccountNumberSnapshot = "EDU-2026-00000000036",
+                            AccountNumberSnapshot = "EDU-2026-NU32Y83",
                             CitizenEmailSnapshot = "jonas.kwek.36@example.com",
                             CitizenFullNameSnapshot = "Jonas Kwek",
                             CitizenNricSnapshot = "S0000036A",
@@ -29155,7 +29155,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 397,
-                            AccountNumberSnapshot = "EDU-2026-00000000037",
+                            AccountNumberSnapshot = "EDU-2026-5KZTP8L",
                             CitizenEmailSnapshot = "kavya.lim.37@example.com",
                             CitizenFullNameSnapshot = "Kavya Lim",
                             CitizenNricSnapshot = "S0000037Z",
@@ -29172,7 +29172,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 398,
-                            AccountNumberSnapshot = "EDU-2026-00000000003",
+                            AccountNumberSnapshot = "EDU-2026-XAT7E9E",
                             CitizenEmailSnapshot = "marcus.lim.3@example.com",
                             CitizenFullNameSnapshot = "Marcus Lim",
                             CitizenNricSnapshot = "S0000003E",
@@ -29189,7 +29189,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 399,
-                            AccountNumberSnapshot = "EDU-2026-00000000029",
+                            AccountNumberSnapshot = "EDU-2026-2WFHAM9",
                             CitizenEmailSnapshot = "celeste.das.29@example.com",
                             CitizenFullNameSnapshot = "Celeste Das",
                             CitizenNricSnapshot = "S0000029I",
@@ -29206,7 +29206,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 400,
-                            AccountNumberSnapshot = "EDU-2026-00000000030",
+                            AccountNumberSnapshot = "EDU-2026-ZK6QLJP",
                             CitizenEmailSnapshot = "damien.eng.30@example.com",
                             CitizenFullNameSnapshot = "Damien Eng",
                             CitizenNricSnapshot = "S0000030B",
@@ -29223,7 +29223,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 401,
-                            AccountNumberSnapshot = "EDU-2026-00000000031",
+                            AccountNumberSnapshot = "EDU-2026-8TCLTDQ",
                             CitizenEmailSnapshot = "evelyn.foo.31@example.com",
                             CitizenFullNameSnapshot = "Evelyn Foo",
                             CitizenNricSnapshot = "S0000031J",
@@ -29240,7 +29240,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 402,
-                            AccountNumberSnapshot = "EDU-2026-00000000032",
+                            AccountNumberSnapshot = "EDU-2026-4MD2QV4",
                             CitizenEmailSnapshot = "faris.gan.32@example.com",
                             CitizenFullNameSnapshot = "Faris Gan",
                             CitizenNricSnapshot = "S0000032I",
@@ -29257,7 +29257,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 403,
-                            AccountNumberSnapshot = "EDU-2026-00000000033",
+                            AccountNumberSnapshot = "EDU-2026-P445GFR",
                             CitizenEmailSnapshot = "giselle.ho.33@example.com",
                             CitizenFullNameSnapshot = "Giselle Ho",
                             CitizenNricSnapshot = "S0000033G",
@@ -29274,7 +29274,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 404,
-                            AccountNumberSnapshot = "EDU-2026-00000000035",
+                            AccountNumberSnapshot = "EDU-2026-K4GYB53",
                             CitizenEmailSnapshot = "irene.jeyaratnam.35@example.com",
                             CitizenFullNameSnapshot = "Irene Jeyaratnam",
                             CitizenNricSnapshot = "S0000035C",
@@ -29291,7 +29291,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 405,
-                            AccountNumberSnapshot = "EDU-2026-00000000036",
+                            AccountNumberSnapshot = "EDU-2026-NU32Y83",
                             CitizenEmailSnapshot = "jonas.kwek.36@example.com",
                             CitizenFullNameSnapshot = "Jonas Kwek",
                             CitizenNricSnapshot = "S0000036A",
@@ -29308,7 +29308,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 406,
-                            AccountNumberSnapshot = "EDU-2026-00000000037",
+                            AccountNumberSnapshot = "EDU-2026-5KZTP8L",
                             CitizenEmailSnapshot = "kavya.lim.37@example.com",
                             CitizenFullNameSnapshot = "Kavya Lim",
                             CitizenNricSnapshot = "S0000037Z",
@@ -29325,7 +29325,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 407,
-                            AccountNumberSnapshot = "EDU-2026-00000000003",
+                            AccountNumberSnapshot = "EDU-2026-XAT7E9E",
                             CitizenEmailSnapshot = "marcus.lim.3@example.com",
                             CitizenFullNameSnapshot = "Marcus Lim",
                             CitizenNricSnapshot = "S0000003E",
@@ -29342,7 +29342,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 408,
-                            AccountNumberSnapshot = "EDU-2026-00000000029",
+                            AccountNumberSnapshot = "EDU-2026-2WFHAM9",
                             CitizenEmailSnapshot = "celeste.das.29@example.com",
                             CitizenFullNameSnapshot = "Celeste Das",
                             CitizenNricSnapshot = "S0000029I",
@@ -29359,7 +29359,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 409,
-                            AccountNumberSnapshot = "EDU-2026-00000000030",
+                            AccountNumberSnapshot = "EDU-2026-ZK6QLJP",
                             CitizenEmailSnapshot = "damien.eng.30@example.com",
                             CitizenFullNameSnapshot = "Damien Eng",
                             CitizenNricSnapshot = "S0000030B",
@@ -29376,7 +29376,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 410,
-                            AccountNumberSnapshot = "EDU-2026-00000000031",
+                            AccountNumberSnapshot = "EDU-2026-8TCLTDQ",
                             CitizenEmailSnapshot = "evelyn.foo.31@example.com",
                             CitizenFullNameSnapshot = "Evelyn Foo",
                             CitizenNricSnapshot = "S0000031J",
@@ -29393,7 +29393,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 411,
-                            AccountNumberSnapshot = "EDU-2026-00000000032",
+                            AccountNumberSnapshot = "EDU-2026-4MD2QV4",
                             CitizenEmailSnapshot = "faris.gan.32@example.com",
                             CitizenFullNameSnapshot = "Faris Gan",
                             CitizenNricSnapshot = "S0000032I",
@@ -29410,7 +29410,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 412,
-                            AccountNumberSnapshot = "EDU-2026-00000000033",
+                            AccountNumberSnapshot = "EDU-2026-P445GFR",
                             CitizenEmailSnapshot = "giselle.ho.33@example.com",
                             CitizenFullNameSnapshot = "Giselle Ho",
                             CitizenNricSnapshot = "S0000033G",
@@ -29427,7 +29427,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 413,
-                            AccountNumberSnapshot = "EDU-2026-00000000034",
+                            AccountNumberSnapshot = "EDU-2026-H5VK6UE",
                             CitizenEmailSnapshot = "haziq.ismail.34@example.com",
                             CitizenFullNameSnapshot = "Haziq Ismail",
                             CitizenNricSnapshot = "S0000034E",
@@ -29444,7 +29444,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 414,
-                            AccountNumberSnapshot = "EDU-2026-00000000036",
+                            AccountNumberSnapshot = "EDU-2026-NU32Y83",
                             CitizenEmailSnapshot = "jonas.kwek.36@example.com",
                             CitizenFullNameSnapshot = "Jonas Kwek",
                             CitizenNricSnapshot = "S0000036A",
@@ -29461,7 +29461,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 415,
-                            AccountNumberSnapshot = "EDU-2026-00000000037",
+                            AccountNumberSnapshot = "EDU-2026-5KZTP8L",
                             CitizenEmailSnapshot = "kavya.lim.37@example.com",
                             CitizenFullNameSnapshot = "Kavya Lim",
                             CitizenNricSnapshot = "S0000037Z",
@@ -29478,7 +29478,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 416,
-                            AccountNumberSnapshot = "EDU-2026-00000000003",
+                            AccountNumberSnapshot = "EDU-2026-XAT7E9E",
                             CitizenEmailSnapshot = "marcus.lim.3@example.com",
                             CitizenFullNameSnapshot = "Marcus Lim",
                             CitizenNricSnapshot = "S0000003E",
@@ -29495,7 +29495,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 417,
-                            AccountNumberSnapshot = "EDU-2026-00000000029",
+                            AccountNumberSnapshot = "EDU-2026-2WFHAM9",
                             CitizenEmailSnapshot = "celeste.das.29@example.com",
                             CitizenFullNameSnapshot = "Celeste Das",
                             CitizenNricSnapshot = "S0000029I",
@@ -29512,7 +29512,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 418,
-                            AccountNumberSnapshot = "EDU-2026-00000000030",
+                            AccountNumberSnapshot = "EDU-2026-ZK6QLJP",
                             CitizenEmailSnapshot = "damien.eng.30@example.com",
                             CitizenFullNameSnapshot = "Damien Eng",
                             CitizenNricSnapshot = "S0000030B",
@@ -29529,7 +29529,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 419,
-                            AccountNumberSnapshot = "EDU-2026-00000000031",
+                            AccountNumberSnapshot = "EDU-2026-8TCLTDQ",
                             CitizenEmailSnapshot = "evelyn.foo.31@example.com",
                             CitizenFullNameSnapshot = "Evelyn Foo",
                             CitizenNricSnapshot = "S0000031J",
@@ -29546,7 +29546,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 420,
-                            AccountNumberSnapshot = "EDU-2026-00000000032",
+                            AccountNumberSnapshot = "EDU-2026-4MD2QV4",
                             CitizenEmailSnapshot = "faris.gan.32@example.com",
                             CitizenFullNameSnapshot = "Faris Gan",
                             CitizenNricSnapshot = "S0000032I",
@@ -29563,7 +29563,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 421,
-                            AccountNumberSnapshot = "EDU-2026-00000000033",
+                            AccountNumberSnapshot = "EDU-2026-P445GFR",
                             CitizenEmailSnapshot = "giselle.ho.33@example.com",
                             CitizenFullNameSnapshot = "Giselle Ho",
                             CitizenNricSnapshot = "S0000033G",
@@ -29580,7 +29580,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 422,
-                            AccountNumberSnapshot = "EDU-2026-00000000034",
+                            AccountNumberSnapshot = "EDU-2026-H5VK6UE",
                             CitizenEmailSnapshot = "haziq.ismail.34@example.com",
                             CitizenFullNameSnapshot = "Haziq Ismail",
                             CitizenNricSnapshot = "S0000034E",
@@ -29597,7 +29597,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 423,
-                            AccountNumberSnapshot = "EDU-2026-00000000035",
+                            AccountNumberSnapshot = "EDU-2026-K4GYB53",
                             CitizenEmailSnapshot = "irene.jeyaratnam.35@example.com",
                             CitizenFullNameSnapshot = "Irene Jeyaratnam",
                             CitizenNricSnapshot = "S0000035C",
@@ -29614,7 +29614,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 424,
-                            AccountNumberSnapshot = "EDU-2026-00000000037",
+                            AccountNumberSnapshot = "EDU-2026-5KZTP8L",
                             CitizenEmailSnapshot = "kavya.lim.37@example.com",
                             CitizenFullNameSnapshot = "Kavya Lim",
                             CitizenNricSnapshot = "S0000037Z",
@@ -29631,7 +29631,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 425,
-                            AccountNumberSnapshot = "EDU-2026-00000000003",
+                            AccountNumberSnapshot = "EDU-2026-XAT7E9E",
                             CitizenEmailSnapshot = "marcus.lim.3@example.com",
                             CitizenFullNameSnapshot = "Marcus Lim",
                             CitizenNricSnapshot = "S0000003E",
@@ -29648,7 +29648,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 426,
-                            AccountNumberSnapshot = "EDU-2026-00000000029",
+                            AccountNumberSnapshot = "EDU-2026-2WFHAM9",
                             CitizenEmailSnapshot = "celeste.das.29@example.com",
                             CitizenFullNameSnapshot = "Celeste Das",
                             CitizenNricSnapshot = "S0000029I",
@@ -29665,7 +29665,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 427,
-                            AccountNumberSnapshot = "EDU-2026-00000000030",
+                            AccountNumberSnapshot = "EDU-2026-ZK6QLJP",
                             CitizenEmailSnapshot = "damien.eng.30@example.com",
                             CitizenFullNameSnapshot = "Damien Eng",
                             CitizenNricSnapshot = "S0000030B",
@@ -29682,7 +29682,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 428,
-                            AccountNumberSnapshot = "EDU-2026-00000000031",
+                            AccountNumberSnapshot = "EDU-2026-8TCLTDQ",
                             CitizenEmailSnapshot = "evelyn.foo.31@example.com",
                             CitizenFullNameSnapshot = "Evelyn Foo",
                             CitizenNricSnapshot = "S0000031J",
@@ -29699,7 +29699,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 429,
-                            AccountNumberSnapshot = "EDU-2026-00000000032",
+                            AccountNumberSnapshot = "EDU-2026-4MD2QV4",
                             CitizenEmailSnapshot = "faris.gan.32@example.com",
                             CitizenFullNameSnapshot = "Faris Gan",
                             CitizenNricSnapshot = "S0000032I",
@@ -29716,7 +29716,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 430,
-                            AccountNumberSnapshot = "EDU-2026-00000000033",
+                            AccountNumberSnapshot = "EDU-2026-P445GFR",
                             CitizenEmailSnapshot = "giselle.ho.33@example.com",
                             CitizenFullNameSnapshot = "Giselle Ho",
                             CitizenNricSnapshot = "S0000033G",
@@ -29733,7 +29733,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 431,
-                            AccountNumberSnapshot = "EDU-2026-00000000034",
+                            AccountNumberSnapshot = "EDU-2026-H5VK6UE",
                             CitizenEmailSnapshot = "haziq.ismail.34@example.com",
                             CitizenFullNameSnapshot = "Haziq Ismail",
                             CitizenNricSnapshot = "S0000034E",
@@ -29750,7 +29750,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 432,
-                            AccountNumberSnapshot = "EDU-2026-00000000035",
+                            AccountNumberSnapshot = "EDU-2026-K4GYB53",
                             CitizenEmailSnapshot = "irene.jeyaratnam.35@example.com",
                             CitizenFullNameSnapshot = "Irene Jeyaratnam",
                             CitizenNricSnapshot = "S0000035C",
@@ -29767,7 +29767,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 433,
-                            AccountNumberSnapshot = "EDU-2026-00000000036",
+                            AccountNumberSnapshot = "EDU-2026-NU32Y83",
                             CitizenEmailSnapshot = "jonas.kwek.36@example.com",
                             CitizenFullNameSnapshot = "Jonas Kwek",
                             CitizenNricSnapshot = "S0000036A",
@@ -29784,7 +29784,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 434,
-                            AccountNumberSnapshot = "EDU-2026-00000000004",
+                            AccountNumberSnapshot = "EDU-2026-3TS34HX",
                             CitizenEmailSnapshot = "priya.nair.4@example.com",
                             CitizenFullNameSnapshot = "Priya Nair",
                             CitizenNricSnapshot = "S0000004C",
@@ -29801,7 +29801,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 435,
-                            AccountNumberSnapshot = "EDU-2026-00000000039",
+                            AccountNumberSnapshot = "EDU-2026-EDPW32Q",
                             CitizenEmailSnapshot = "malcolm.ng.39@example.com",
                             CitizenFullNameSnapshot = "Malcolm Ng",
                             CitizenNricSnapshot = "S0000039F",
@@ -29818,7 +29818,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 436,
-                            AccountNumberSnapshot = "EDU-2026-00000000040",
+                            AccountNumberSnapshot = "EDU-2026-YSZD75Q",
                             CitizenEmailSnapshot = "nadia.ong.40@example.com",
                             CitizenFullNameSnapshot = "Nadia Ong",
                             CitizenNricSnapshot = "S0000040Z",
@@ -29835,7 +29835,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 437,
-                            AccountNumberSnapshot = "EDU-2026-00000000041",
+                            AccountNumberSnapshot = "EDU-2026-X8YAX3G",
                             CitizenEmailSnapshot = "alina.quek.41@example.com",
                             CitizenFullNameSnapshot = "Alina Quek",
                             CitizenNricSnapshot = "S0000041H",
@@ -29852,7 +29852,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 438,
-                            AccountNumberSnapshot = "EDU-2026-00000000042",
+                            AccountNumberSnapshot = "EDU-2026-E73JAXD",
                             CitizenEmailSnapshot = "benjamin.rao.42@example.com",
                             CitizenFullNameSnapshot = "Benjamin Rao",
                             CitizenNricSnapshot = "S0000042F",
@@ -29869,7 +29869,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 439,
-                            AccountNumberSnapshot = "EDU-2026-00000000043",
+                            AccountNumberSnapshot = "EDU-2026-J46BKBU",
                             CitizenEmailSnapshot = "clara.sim.43@example.com",
                             CitizenFullNameSnapshot = "Clara Sim",
                             CitizenNricSnapshot = "S0000043D",
@@ -29886,7 +29886,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 440,
-                            AccountNumberSnapshot = "EDU-2026-00000000044",
+                            AccountNumberSnapshot = "EDU-2026-XF3YKPG",
                             CitizenEmailSnapshot = "darius.tan.44@example.com",
                             CitizenFullNameSnapshot = "Darius Tan",
                             CitizenNricSnapshot = "S0000044B",
@@ -29903,7 +29903,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 441,
-                            AccountNumberSnapshot = "EDU-2026-00000000045",
+                            AccountNumberSnapshot = "EDU-2026-AUEK59P",
                             CitizenEmailSnapshot = "elena.uddin.45@example.com",
                             CitizenFullNameSnapshot = "Elena Uddin",
                             CitizenNricSnapshot = "S0000045J",
@@ -29920,7 +29920,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 442,
-                            AccountNumberSnapshot = "EDU-2026-00000000046",
+                            AccountNumberSnapshot = "EDU-2026-WYCLW4C",
                             CitizenEmailSnapshot = "farhan.vasquez.46@example.com",
                             CitizenFullNameSnapshot = "Farhan Vasquez",
                             CitizenNricSnapshot = "S0000046I",
@@ -29937,7 +29937,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 443,
-                            AccountNumberSnapshot = "EDU-2026-00000000004",
+                            AccountNumberSnapshot = "EDU-2026-3TS34HX",
                             CitizenEmailSnapshot = "priya.nair.4@example.com",
                             CitizenFullNameSnapshot = "Priya Nair",
                             CitizenNricSnapshot = "S0000004C",
@@ -29954,7 +29954,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 444,
-                            AccountNumberSnapshot = "EDU-2026-00000000038",
+                            AccountNumberSnapshot = "EDU-2026-HPFV4XV",
                             CitizenEmailSnapshot = "lydia.mohamed.38@example.com",
                             CitizenFullNameSnapshot = "Lydia Mohamed",
                             CitizenNricSnapshot = "S0000038H",
@@ -29971,7 +29971,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 445,
-                            AccountNumberSnapshot = "EDU-2026-00000000040",
+                            AccountNumberSnapshot = "EDU-2026-YSZD75Q",
                             CitizenEmailSnapshot = "nadia.ong.40@example.com",
                             CitizenFullNameSnapshot = "Nadia Ong",
                             CitizenNricSnapshot = "S0000040Z",
@@ -29988,7 +29988,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 446,
-                            AccountNumberSnapshot = "EDU-2026-00000000041",
+                            AccountNumberSnapshot = "EDU-2026-X8YAX3G",
                             CitizenEmailSnapshot = "alina.quek.41@example.com",
                             CitizenFullNameSnapshot = "Alina Quek",
                             CitizenNricSnapshot = "S0000041H",
@@ -30005,7 +30005,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 447,
-                            AccountNumberSnapshot = "EDU-2026-00000000042",
+                            AccountNumberSnapshot = "EDU-2026-E73JAXD",
                             CitizenEmailSnapshot = "benjamin.rao.42@example.com",
                             CitizenFullNameSnapshot = "Benjamin Rao",
                             CitizenNricSnapshot = "S0000042F",
@@ -30022,7 +30022,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 448,
-                            AccountNumberSnapshot = "EDU-2026-00000000043",
+                            AccountNumberSnapshot = "EDU-2026-J46BKBU",
                             CitizenEmailSnapshot = "clara.sim.43@example.com",
                             CitizenFullNameSnapshot = "Clara Sim",
                             CitizenNricSnapshot = "S0000043D",
@@ -30039,7 +30039,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 449,
-                            AccountNumberSnapshot = "EDU-2026-00000000044",
+                            AccountNumberSnapshot = "EDU-2026-XF3YKPG",
                             CitizenEmailSnapshot = "darius.tan.44@example.com",
                             CitizenFullNameSnapshot = "Darius Tan",
                             CitizenNricSnapshot = "S0000044B",
@@ -30056,7 +30056,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 450,
-                            AccountNumberSnapshot = "EDU-2026-00000000045",
+                            AccountNumberSnapshot = "EDU-2026-AUEK59P",
                             CitizenEmailSnapshot = "elena.uddin.45@example.com",
                             CitizenFullNameSnapshot = "Elena Uddin",
                             CitizenNricSnapshot = "S0000045J",
@@ -30073,7 +30073,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 451,
-                            AccountNumberSnapshot = "EDU-2026-00000000046",
+                            AccountNumberSnapshot = "EDU-2026-WYCLW4C",
                             CitizenEmailSnapshot = "farhan.vasquez.46@example.com",
                             CitizenFullNameSnapshot = "Farhan Vasquez",
                             CitizenNricSnapshot = "S0000046I",
@@ -30090,7 +30090,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 452,
-                            AccountNumberSnapshot = "EDU-2026-00000000004",
+                            AccountNumberSnapshot = "EDU-2026-3TS34HX",
                             CitizenEmailSnapshot = "priya.nair.4@example.com",
                             CitizenFullNameSnapshot = "Priya Nair",
                             CitizenNricSnapshot = "S0000004C",
@@ -30107,7 +30107,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 453,
-                            AccountNumberSnapshot = "EDU-2026-00000000038",
+                            AccountNumberSnapshot = "EDU-2026-HPFV4XV",
                             CitizenEmailSnapshot = "lydia.mohamed.38@example.com",
                             CitizenFullNameSnapshot = "Lydia Mohamed",
                             CitizenNricSnapshot = "S0000038H",
@@ -30124,7 +30124,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 454,
-                            AccountNumberSnapshot = "EDU-2026-00000000039",
+                            AccountNumberSnapshot = "EDU-2026-EDPW32Q",
                             CitizenEmailSnapshot = "malcolm.ng.39@example.com",
                             CitizenFullNameSnapshot = "Malcolm Ng",
                             CitizenNricSnapshot = "S0000039F",
@@ -30141,7 +30141,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 455,
-                            AccountNumberSnapshot = "EDU-2026-00000000041",
+                            AccountNumberSnapshot = "EDU-2026-X8YAX3G",
                             CitizenEmailSnapshot = "alina.quek.41@example.com",
                             CitizenFullNameSnapshot = "Alina Quek",
                             CitizenNricSnapshot = "S0000041H",
@@ -30158,7 +30158,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 456,
-                            AccountNumberSnapshot = "EDU-2026-00000000042",
+                            AccountNumberSnapshot = "EDU-2026-E73JAXD",
                             CitizenEmailSnapshot = "benjamin.rao.42@example.com",
                             CitizenFullNameSnapshot = "Benjamin Rao",
                             CitizenNricSnapshot = "S0000042F",
@@ -30175,7 +30175,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 457,
-                            AccountNumberSnapshot = "EDU-2026-00000000043",
+                            AccountNumberSnapshot = "EDU-2026-J46BKBU",
                             CitizenEmailSnapshot = "clara.sim.43@example.com",
                             CitizenFullNameSnapshot = "Clara Sim",
                             CitizenNricSnapshot = "S0000043D",
@@ -30192,7 +30192,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 458,
-                            AccountNumberSnapshot = "EDU-2026-00000000044",
+                            AccountNumberSnapshot = "EDU-2026-XF3YKPG",
                             CitizenEmailSnapshot = "darius.tan.44@example.com",
                             CitizenFullNameSnapshot = "Darius Tan",
                             CitizenNricSnapshot = "S0000044B",
@@ -30209,7 +30209,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 459,
-                            AccountNumberSnapshot = "EDU-2026-00000000045",
+                            AccountNumberSnapshot = "EDU-2026-AUEK59P",
                             CitizenEmailSnapshot = "elena.uddin.45@example.com",
                             CitizenFullNameSnapshot = "Elena Uddin",
                             CitizenNricSnapshot = "S0000045J",
@@ -30226,7 +30226,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 460,
-                            AccountNumberSnapshot = "EDU-2026-00000000046",
+                            AccountNumberSnapshot = "EDU-2026-WYCLW4C",
                             CitizenEmailSnapshot = "farhan.vasquez.46@example.com",
                             CitizenFullNameSnapshot = "Farhan Vasquez",
                             CitizenNricSnapshot = "S0000046I",
@@ -30243,7 +30243,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 461,
-                            AccountNumberSnapshot = "EDU-2026-00000000004",
+                            AccountNumberSnapshot = "EDU-2026-3TS34HX",
                             CitizenEmailSnapshot = "priya.nair.4@example.com",
                             CitizenFullNameSnapshot = "Priya Nair",
                             CitizenNricSnapshot = "S0000004C",
@@ -30260,7 +30260,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 462,
-                            AccountNumberSnapshot = "EDU-2026-00000000038",
+                            AccountNumberSnapshot = "EDU-2026-HPFV4XV",
                             CitizenEmailSnapshot = "lydia.mohamed.38@example.com",
                             CitizenFullNameSnapshot = "Lydia Mohamed",
                             CitizenNricSnapshot = "S0000038H",
@@ -30277,7 +30277,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 463,
-                            AccountNumberSnapshot = "EDU-2026-00000000039",
+                            AccountNumberSnapshot = "EDU-2026-EDPW32Q",
                             CitizenEmailSnapshot = "malcolm.ng.39@example.com",
                             CitizenFullNameSnapshot = "Malcolm Ng",
                             CitizenNricSnapshot = "S0000039F",
@@ -30294,7 +30294,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 464,
-                            AccountNumberSnapshot = "EDU-2026-00000000040",
+                            AccountNumberSnapshot = "EDU-2026-YSZD75Q",
                             CitizenEmailSnapshot = "nadia.ong.40@example.com",
                             CitizenFullNameSnapshot = "Nadia Ong",
                             CitizenNricSnapshot = "S0000040Z",
@@ -30311,7 +30311,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 465,
-                            AccountNumberSnapshot = "EDU-2026-00000000042",
+                            AccountNumberSnapshot = "EDU-2026-E73JAXD",
                             CitizenEmailSnapshot = "benjamin.rao.42@example.com",
                             CitizenFullNameSnapshot = "Benjamin Rao",
                             CitizenNricSnapshot = "S0000042F",
@@ -30328,7 +30328,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 466,
-                            AccountNumberSnapshot = "EDU-2026-00000000043",
+                            AccountNumberSnapshot = "EDU-2026-J46BKBU",
                             CitizenEmailSnapshot = "clara.sim.43@example.com",
                             CitizenFullNameSnapshot = "Clara Sim",
                             CitizenNricSnapshot = "S0000043D",
@@ -30345,7 +30345,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 467,
-                            AccountNumberSnapshot = "EDU-2026-00000000044",
+                            AccountNumberSnapshot = "EDU-2026-XF3YKPG",
                             CitizenEmailSnapshot = "darius.tan.44@example.com",
                             CitizenFullNameSnapshot = "Darius Tan",
                             CitizenNricSnapshot = "S0000044B",
@@ -30362,7 +30362,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 468,
-                            AccountNumberSnapshot = "EDU-2026-00000000045",
+                            AccountNumberSnapshot = "EDU-2026-AUEK59P",
                             CitizenEmailSnapshot = "elena.uddin.45@example.com",
                             CitizenFullNameSnapshot = "Elena Uddin",
                             CitizenNricSnapshot = "S0000045J",
@@ -30379,7 +30379,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 469,
-                            AccountNumberSnapshot = "EDU-2026-00000000046",
+                            AccountNumberSnapshot = "EDU-2026-WYCLW4C",
                             CitizenEmailSnapshot = "farhan.vasquez.46@example.com",
                             CitizenFullNameSnapshot = "Farhan Vasquez",
                             CitizenNricSnapshot = "S0000046I",
@@ -30396,7 +30396,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 470,
-                            AccountNumberSnapshot = "EDU-2026-00000000004",
+                            AccountNumberSnapshot = "EDU-2026-3TS34HX",
                             CitizenEmailSnapshot = "priya.nair.4@example.com",
                             CitizenFullNameSnapshot = "Priya Nair",
                             CitizenNricSnapshot = "S0000004C",
@@ -30413,7 +30413,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 471,
-                            AccountNumberSnapshot = "EDU-2026-00000000038",
+                            AccountNumberSnapshot = "EDU-2026-HPFV4XV",
                             CitizenEmailSnapshot = "lydia.mohamed.38@example.com",
                             CitizenFullNameSnapshot = "Lydia Mohamed",
                             CitizenNricSnapshot = "S0000038H",
@@ -30430,7 +30430,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 472,
-                            AccountNumberSnapshot = "EDU-2026-00000000039",
+                            AccountNumberSnapshot = "EDU-2026-EDPW32Q",
                             CitizenEmailSnapshot = "malcolm.ng.39@example.com",
                             CitizenFullNameSnapshot = "Malcolm Ng",
                             CitizenNricSnapshot = "S0000039F",
@@ -30447,7 +30447,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 473,
-                            AccountNumberSnapshot = "EDU-2026-00000000040",
+                            AccountNumberSnapshot = "EDU-2026-YSZD75Q",
                             CitizenEmailSnapshot = "nadia.ong.40@example.com",
                             CitizenFullNameSnapshot = "Nadia Ong",
                             CitizenNricSnapshot = "S0000040Z",
@@ -30464,7 +30464,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 474,
-                            AccountNumberSnapshot = "EDU-2026-00000000041",
+                            AccountNumberSnapshot = "EDU-2026-X8YAX3G",
                             CitizenEmailSnapshot = "alina.quek.41@example.com",
                             CitizenFullNameSnapshot = "Alina Quek",
                             CitizenNricSnapshot = "S0000041H",
@@ -30481,7 +30481,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 475,
-                            AccountNumberSnapshot = "EDU-2026-00000000043",
+                            AccountNumberSnapshot = "EDU-2026-J46BKBU",
                             CitizenEmailSnapshot = "clara.sim.43@example.com",
                             CitizenFullNameSnapshot = "Clara Sim",
                             CitizenNricSnapshot = "S0000043D",
@@ -30498,7 +30498,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 476,
-                            AccountNumberSnapshot = "EDU-2026-00000000044",
+                            AccountNumberSnapshot = "EDU-2026-XF3YKPG",
                             CitizenEmailSnapshot = "darius.tan.44@example.com",
                             CitizenFullNameSnapshot = "Darius Tan",
                             CitizenNricSnapshot = "S0000044B",
@@ -30515,7 +30515,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 477,
-                            AccountNumberSnapshot = "EDU-2026-00000000045",
+                            AccountNumberSnapshot = "EDU-2026-AUEK59P",
                             CitizenEmailSnapshot = "elena.uddin.45@example.com",
                             CitizenFullNameSnapshot = "Elena Uddin",
                             CitizenNricSnapshot = "S0000045J",
@@ -30532,7 +30532,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 478,
-                            AccountNumberSnapshot = "EDU-2026-00000000046",
+                            AccountNumberSnapshot = "EDU-2026-WYCLW4C",
                             CitizenEmailSnapshot = "farhan.vasquez.46@example.com",
                             CitizenFullNameSnapshot = "Farhan Vasquez",
                             CitizenNricSnapshot = "S0000046I",
@@ -30549,7 +30549,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 479,
-                            AccountNumberSnapshot = "EDU-2026-00000000004",
+                            AccountNumberSnapshot = "EDU-2026-3TS34HX",
                             CitizenEmailSnapshot = "priya.nair.4@example.com",
                             CitizenFullNameSnapshot = "Priya Nair",
                             CitizenNricSnapshot = "S0000004C",
@@ -30566,7 +30566,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 480,
-                            AccountNumberSnapshot = "EDU-2026-00000000038",
+                            AccountNumberSnapshot = "EDU-2026-HPFV4XV",
                             CitizenEmailSnapshot = "lydia.mohamed.38@example.com",
                             CitizenFullNameSnapshot = "Lydia Mohamed",
                             CitizenNricSnapshot = "S0000038H",
@@ -30583,7 +30583,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 481,
-                            AccountNumberSnapshot = "EDU-2026-00000000039",
+                            AccountNumberSnapshot = "EDU-2026-EDPW32Q",
                             CitizenEmailSnapshot = "malcolm.ng.39@example.com",
                             CitizenFullNameSnapshot = "Malcolm Ng",
                             CitizenNricSnapshot = "S0000039F",
@@ -30600,7 +30600,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 482,
-                            AccountNumberSnapshot = "EDU-2026-00000000040",
+                            AccountNumberSnapshot = "EDU-2026-YSZD75Q",
                             CitizenEmailSnapshot = "nadia.ong.40@example.com",
                             CitizenFullNameSnapshot = "Nadia Ong",
                             CitizenNricSnapshot = "S0000040Z",
@@ -30617,7 +30617,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 483,
-                            AccountNumberSnapshot = "EDU-2026-00000000041",
+                            AccountNumberSnapshot = "EDU-2026-X8YAX3G",
                             CitizenEmailSnapshot = "alina.quek.41@example.com",
                             CitizenFullNameSnapshot = "Alina Quek",
                             CitizenNricSnapshot = "S0000041H",
@@ -30634,7 +30634,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 484,
-                            AccountNumberSnapshot = "EDU-2026-00000000042",
+                            AccountNumberSnapshot = "EDU-2026-E73JAXD",
                             CitizenEmailSnapshot = "benjamin.rao.42@example.com",
                             CitizenFullNameSnapshot = "Benjamin Rao",
                             CitizenNricSnapshot = "S0000042F",
@@ -30651,7 +30651,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 485,
-                            AccountNumberSnapshot = "EDU-2026-00000000044",
+                            AccountNumberSnapshot = "EDU-2026-XF3YKPG",
                             CitizenEmailSnapshot = "darius.tan.44@example.com",
                             CitizenFullNameSnapshot = "Darius Tan",
                             CitizenNricSnapshot = "S0000044B",
@@ -30668,7 +30668,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 486,
-                            AccountNumberSnapshot = "EDU-2026-00000000045",
+                            AccountNumberSnapshot = "EDU-2026-AUEK59P",
                             CitizenEmailSnapshot = "elena.uddin.45@example.com",
                             CitizenFullNameSnapshot = "Elena Uddin",
                             CitizenNricSnapshot = "S0000045J",
@@ -30685,7 +30685,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 487,
-                            AccountNumberSnapshot = "EDU-2026-00000000046",
+                            AccountNumberSnapshot = "EDU-2026-WYCLW4C",
                             CitizenEmailSnapshot = "farhan.vasquez.46@example.com",
                             CitizenFullNameSnapshot = "Farhan Vasquez",
                             CitizenNricSnapshot = "S0000046I",
@@ -30702,7 +30702,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 488,
-                            AccountNumberSnapshot = "EDU-2026-00000000004",
+                            AccountNumberSnapshot = "EDU-2026-3TS34HX",
                             CitizenEmailSnapshot = "priya.nair.4@example.com",
                             CitizenFullNameSnapshot = "Priya Nair",
                             CitizenNricSnapshot = "S0000004C",
@@ -30719,7 +30719,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 489,
-                            AccountNumberSnapshot = "EDU-2026-00000000038",
+                            AccountNumberSnapshot = "EDU-2026-HPFV4XV",
                             CitizenEmailSnapshot = "lydia.mohamed.38@example.com",
                             CitizenFullNameSnapshot = "Lydia Mohamed",
                             CitizenNricSnapshot = "S0000038H",
@@ -30736,7 +30736,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 490,
-                            AccountNumberSnapshot = "EDU-2026-00000000039",
+                            AccountNumberSnapshot = "EDU-2026-EDPW32Q",
                             CitizenEmailSnapshot = "malcolm.ng.39@example.com",
                             CitizenFullNameSnapshot = "Malcolm Ng",
                             CitizenNricSnapshot = "S0000039F",
@@ -30753,7 +30753,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 491,
-                            AccountNumberSnapshot = "EDU-2026-00000000040",
+                            AccountNumberSnapshot = "EDU-2026-YSZD75Q",
                             CitizenEmailSnapshot = "nadia.ong.40@example.com",
                             CitizenFullNameSnapshot = "Nadia Ong",
                             CitizenNricSnapshot = "S0000040Z",
@@ -30770,7 +30770,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 492,
-                            AccountNumberSnapshot = "EDU-2026-00000000041",
+                            AccountNumberSnapshot = "EDU-2026-X8YAX3G",
                             CitizenEmailSnapshot = "alina.quek.41@example.com",
                             CitizenFullNameSnapshot = "Alina Quek",
                             CitizenNricSnapshot = "S0000041H",
@@ -30787,7 +30787,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 493,
-                            AccountNumberSnapshot = "EDU-2026-00000000042",
+                            AccountNumberSnapshot = "EDU-2026-E73JAXD",
                             CitizenEmailSnapshot = "benjamin.rao.42@example.com",
                             CitizenFullNameSnapshot = "Benjamin Rao",
                             CitizenNricSnapshot = "S0000042F",
@@ -30804,7 +30804,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 494,
-                            AccountNumberSnapshot = "EDU-2026-00000000043",
+                            AccountNumberSnapshot = "EDU-2026-J46BKBU",
                             CitizenEmailSnapshot = "clara.sim.43@example.com",
                             CitizenFullNameSnapshot = "Clara Sim",
                             CitizenNricSnapshot = "S0000043D",
@@ -30821,7 +30821,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 495,
-                            AccountNumberSnapshot = "EDU-2026-00000000045",
+                            AccountNumberSnapshot = "EDU-2026-AUEK59P",
                             CitizenEmailSnapshot = "elena.uddin.45@example.com",
                             CitizenFullNameSnapshot = "Elena Uddin",
                             CitizenNricSnapshot = "S0000045J",
@@ -30838,7 +30838,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 496,
-                            AccountNumberSnapshot = "EDU-2026-00000000046",
+                            AccountNumberSnapshot = "EDU-2026-WYCLW4C",
                             CitizenEmailSnapshot = "farhan.vasquez.46@example.com",
                             CitizenFullNameSnapshot = "Farhan Vasquez",
                             CitizenNricSnapshot = "S0000046I",
@@ -30855,7 +30855,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 497,
-                            AccountNumberSnapshot = "EDU-2026-00000000004",
+                            AccountNumberSnapshot = "EDU-2026-3TS34HX",
                             CitizenEmailSnapshot = "priya.nair.4@example.com",
                             CitizenFullNameSnapshot = "Priya Nair",
                             CitizenNricSnapshot = "S0000004C",
@@ -30872,7 +30872,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 498,
-                            AccountNumberSnapshot = "EDU-2026-00000000038",
+                            AccountNumberSnapshot = "EDU-2026-HPFV4XV",
                             CitizenEmailSnapshot = "lydia.mohamed.38@example.com",
                             CitizenFullNameSnapshot = "Lydia Mohamed",
                             CitizenNricSnapshot = "S0000038H",
@@ -30889,7 +30889,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 499,
-                            AccountNumberSnapshot = "EDU-2026-00000000039",
+                            AccountNumberSnapshot = "EDU-2026-EDPW32Q",
                             CitizenEmailSnapshot = "malcolm.ng.39@example.com",
                             CitizenFullNameSnapshot = "Malcolm Ng",
                             CitizenNricSnapshot = "S0000039F",
@@ -30906,7 +30906,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 500,
-                            AccountNumberSnapshot = "EDU-2026-00000000040",
+                            AccountNumberSnapshot = "EDU-2026-YSZD75Q",
                             CitizenEmailSnapshot = "nadia.ong.40@example.com",
                             CitizenFullNameSnapshot = "Nadia Ong",
                             CitizenNricSnapshot = "S0000040Z",
@@ -30923,7 +30923,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 501,
-                            AccountNumberSnapshot = "EDU-2026-00000000041",
+                            AccountNumberSnapshot = "EDU-2026-X8YAX3G",
                             CitizenEmailSnapshot = "alina.quek.41@example.com",
                             CitizenFullNameSnapshot = "Alina Quek",
                             CitizenNricSnapshot = "S0000041H",
@@ -30940,7 +30940,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 502,
-                            AccountNumberSnapshot = "EDU-2026-00000000042",
+                            AccountNumberSnapshot = "EDU-2026-E73JAXD",
                             CitizenEmailSnapshot = "benjamin.rao.42@example.com",
                             CitizenFullNameSnapshot = "Benjamin Rao",
                             CitizenNricSnapshot = "S0000042F",
@@ -30957,7 +30957,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 503,
-                            AccountNumberSnapshot = "EDU-2026-00000000043",
+                            AccountNumberSnapshot = "EDU-2026-J46BKBU",
                             CitizenEmailSnapshot = "clara.sim.43@example.com",
                             CitizenFullNameSnapshot = "Clara Sim",
                             CitizenNricSnapshot = "S0000043D",
@@ -30974,7 +30974,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 504,
-                            AccountNumberSnapshot = "EDU-2026-00000000044",
+                            AccountNumberSnapshot = "EDU-2026-XF3YKPG",
                             CitizenEmailSnapshot = "darius.tan.44@example.com",
                             CitizenFullNameSnapshot = "Darius Tan",
                             CitizenNricSnapshot = "S0000044B",
@@ -30991,7 +30991,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 505,
-                            AccountNumberSnapshot = "EDU-2026-00000000046",
+                            AccountNumberSnapshot = "EDU-2026-WYCLW4C",
                             CitizenEmailSnapshot = "farhan.vasquez.46@example.com",
                             CitizenFullNameSnapshot = "Farhan Vasquez",
                             CitizenNricSnapshot = "S0000046I",
@@ -31008,7 +31008,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 506,
-                            AccountNumberSnapshot = "EDU-2026-00000000004",
+                            AccountNumberSnapshot = "EDU-2026-3TS34HX",
                             CitizenEmailSnapshot = "priya.nair.4@example.com",
                             CitizenFullNameSnapshot = "Priya Nair",
                             CitizenNricSnapshot = "S0000004C",
@@ -31025,7 +31025,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 507,
-                            AccountNumberSnapshot = "EDU-2026-00000000038",
+                            AccountNumberSnapshot = "EDU-2026-HPFV4XV",
                             CitizenEmailSnapshot = "lydia.mohamed.38@example.com",
                             CitizenFullNameSnapshot = "Lydia Mohamed",
                             CitizenNricSnapshot = "S0000038H",
@@ -31042,7 +31042,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 508,
-                            AccountNumberSnapshot = "EDU-2026-00000000039",
+                            AccountNumberSnapshot = "EDU-2026-EDPW32Q",
                             CitizenEmailSnapshot = "malcolm.ng.39@example.com",
                             CitizenFullNameSnapshot = "Malcolm Ng",
                             CitizenNricSnapshot = "S0000039F",
@@ -31059,7 +31059,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 509,
-                            AccountNumberSnapshot = "EDU-2026-00000000040",
+                            AccountNumberSnapshot = "EDU-2026-YSZD75Q",
                             CitizenEmailSnapshot = "nadia.ong.40@example.com",
                             CitizenFullNameSnapshot = "Nadia Ong",
                             CitizenNricSnapshot = "S0000040Z",
@@ -31076,7 +31076,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 510,
-                            AccountNumberSnapshot = "EDU-2026-00000000041",
+                            AccountNumberSnapshot = "EDU-2026-X8YAX3G",
                             CitizenEmailSnapshot = "alina.quek.41@example.com",
                             CitizenFullNameSnapshot = "Alina Quek",
                             CitizenNricSnapshot = "S0000041H",
@@ -31093,7 +31093,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 511,
-                            AccountNumberSnapshot = "EDU-2026-00000000042",
+                            AccountNumberSnapshot = "EDU-2026-E73JAXD",
                             CitizenEmailSnapshot = "benjamin.rao.42@example.com",
                             CitizenFullNameSnapshot = "Benjamin Rao",
                             CitizenNricSnapshot = "S0000042F",
@@ -31110,7 +31110,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 512,
-                            AccountNumberSnapshot = "EDU-2026-00000000043",
+                            AccountNumberSnapshot = "EDU-2026-J46BKBU",
                             CitizenEmailSnapshot = "clara.sim.43@example.com",
                             CitizenFullNameSnapshot = "Clara Sim",
                             CitizenNricSnapshot = "S0000043D",
@@ -31127,7 +31127,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 513,
-                            AccountNumberSnapshot = "EDU-2026-00000000044",
+                            AccountNumberSnapshot = "EDU-2026-XF3YKPG",
                             CitizenEmailSnapshot = "darius.tan.44@example.com",
                             CitizenFullNameSnapshot = "Darius Tan",
                             CitizenNricSnapshot = "S0000044B",
@@ -31144,7 +31144,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 514,
-                            AccountNumberSnapshot = "EDU-2026-00000000045",
+                            AccountNumberSnapshot = "EDU-2026-AUEK59P",
                             CitizenEmailSnapshot = "elena.uddin.45@example.com",
                             CitizenFullNameSnapshot = "Elena Uddin",
                             CitizenNricSnapshot = "S0000045J",
@@ -31161,7 +31161,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 515,
-                            AccountNumberSnapshot = "EDU-2026-00000000005",
+                            AccountNumberSnapshot = "EDU-2026-CWDX5AJ",
                             CitizenEmailSnapshot = "ethan.koh.5@example.com",
                             CitizenFullNameSnapshot = "Ethan Koh",
                             CitizenNricSnapshot = "S0000005A",
@@ -31178,7 +31178,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 516,
-                            AccountNumberSnapshot = "EDU-2026-00000000048",
+                            AccountNumberSnapshot = "EDU-2026-J6SNTZ5",
                             CitizenEmailSnapshot = "haruto.xu.48@example.com",
                             CitizenFullNameSnapshot = "Haruto Xu",
                             CitizenNricSnapshot = "S0000048E",
@@ -31195,7 +31195,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 517,
-                            AccountNumberSnapshot = "EDU-2026-00000000049",
+                            AccountNumberSnapshot = "EDU-2026-GHVBXR3",
                             CitizenEmailSnapshot = "isabelle.yeo.49@example.com",
                             CitizenFullNameSnapshot = "Isabelle Yeo",
                             CitizenNricSnapshot = "S0000049C",
@@ -31212,7 +31212,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 518,
-                            AccountNumberSnapshot = "EDU-2026-00000000050",
+                            AccountNumberSnapshot = "EDU-2026-Z7YP3EW",
                             CitizenEmailSnapshot = "jasper.zainal.50@example.com",
                             CitizenFullNameSnapshot = "Jasper Zainal",
                             CitizenNricSnapshot = "S0000050G",
@@ -31229,7 +31229,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 519,
-                            AccountNumberSnapshot = "EDU-2026-00000000051",
+                            AccountNumberSnapshot = "EDU-2026-UZM23Y5",
                             CitizenEmailSnapshot = "keira.ang.51@example.com",
                             CitizenFullNameSnapshot = "Keira Ang",
                             CitizenNricSnapshot = "S0000051E",
@@ -31246,7 +31246,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 520,
-                            AccountNumberSnapshot = "EDU-2026-00000000052",
+                            AccountNumberSnapshot = "EDU-2026-4GS4RMU",
                             CitizenEmailSnapshot = "leon.bala.52@example.com",
                             CitizenFullNameSnapshot = "Leon Bala",
                             CitizenNricSnapshot = "S0000052C",
@@ -31263,7 +31263,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 521,
-                            AccountNumberSnapshot = "EDU-2026-00000000053",
+                            AccountNumberSnapshot = "EDU-2026-BY2YKCV",
                             CitizenEmailSnapshot = "mei.lin.chew.53@example.com",
                             CitizenFullNameSnapshot = "Mei Lin Chew",
                             CitizenNricSnapshot = "S0000053A",
@@ -31280,7 +31280,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 522,
-                            AccountNumberSnapshot = "EDU-2026-00000000054",
+                            AccountNumberSnapshot = "EDU-2026-2KUFS7K",
                             CitizenEmailSnapshot = "nathan.das.54@example.com",
                             CitizenFullNameSnapshot = "Nathan Das",
                             CitizenNricSnapshot = "S0000054Z",
@@ -31297,7 +31297,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 523,
-                            AccountNumberSnapshot = "EDU-2026-00000000055",
+                            AccountNumberSnapshot = "EDU-2026-XWNGZR4",
                             CitizenEmailSnapshot = "olivia.eng.55@example.com",
                             CitizenFullNameSnapshot = "Olivia Eng",
                             CitizenNricSnapshot = "S0000055H",
@@ -31314,7 +31314,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 524,
-                            AccountNumberSnapshot = "EDU-2026-00000000005",
+                            AccountNumberSnapshot = "EDU-2026-CWDX5AJ",
                             CitizenEmailSnapshot = "ethan.koh.5@example.com",
                             CitizenFullNameSnapshot = "Ethan Koh",
                             CitizenNricSnapshot = "S0000005A",
@@ -31331,7 +31331,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 525,
-                            AccountNumberSnapshot = "EDU-2026-00000000047",
+                            AccountNumberSnapshot = "EDU-2026-KSQL7E2",
                             CitizenEmailSnapshot = "grace.wong.47@example.com",
                             CitizenFullNameSnapshot = "Grace Wong",
                             CitizenNricSnapshot = "S0000047G",
@@ -31348,7 +31348,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 526,
-                            AccountNumberSnapshot = "EDU-2026-00000000049",
+                            AccountNumberSnapshot = "EDU-2026-GHVBXR3",
                             CitizenEmailSnapshot = "isabelle.yeo.49@example.com",
                             CitizenFullNameSnapshot = "Isabelle Yeo",
                             CitizenNricSnapshot = "S0000049C",
@@ -31365,7 +31365,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 527,
-                            AccountNumberSnapshot = "EDU-2026-00000000050",
+                            AccountNumberSnapshot = "EDU-2026-Z7YP3EW",
                             CitizenEmailSnapshot = "jasper.zainal.50@example.com",
                             CitizenFullNameSnapshot = "Jasper Zainal",
                             CitizenNricSnapshot = "S0000050G",
@@ -31382,7 +31382,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 528,
-                            AccountNumberSnapshot = "EDU-2026-00000000051",
+                            AccountNumberSnapshot = "EDU-2026-UZM23Y5",
                             CitizenEmailSnapshot = "keira.ang.51@example.com",
                             CitizenFullNameSnapshot = "Keira Ang",
                             CitizenNricSnapshot = "S0000051E",
@@ -31399,7 +31399,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 529,
-                            AccountNumberSnapshot = "EDU-2026-00000000052",
+                            AccountNumberSnapshot = "EDU-2026-4GS4RMU",
                             CitizenEmailSnapshot = "leon.bala.52@example.com",
                             CitizenFullNameSnapshot = "Leon Bala",
                             CitizenNricSnapshot = "S0000052C",
@@ -31416,7 +31416,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 530,
-                            AccountNumberSnapshot = "EDU-2026-00000000053",
+                            AccountNumberSnapshot = "EDU-2026-BY2YKCV",
                             CitizenEmailSnapshot = "mei.lin.chew.53@example.com",
                             CitizenFullNameSnapshot = "Mei Lin Chew",
                             CitizenNricSnapshot = "S0000053A",
@@ -31433,7 +31433,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 531,
-                            AccountNumberSnapshot = "EDU-2026-00000000054",
+                            AccountNumberSnapshot = "EDU-2026-2KUFS7K",
                             CitizenEmailSnapshot = "nathan.das.54@example.com",
                             CitizenFullNameSnapshot = "Nathan Das",
                             CitizenNricSnapshot = "S0000054Z",
@@ -31450,7 +31450,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 532,
-                            AccountNumberSnapshot = "EDU-2026-00000000055",
+                            AccountNumberSnapshot = "EDU-2026-XWNGZR4",
                             CitizenEmailSnapshot = "olivia.eng.55@example.com",
                             CitizenFullNameSnapshot = "Olivia Eng",
                             CitizenNricSnapshot = "S0000055H",
@@ -31467,7 +31467,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 533,
-                            AccountNumberSnapshot = "EDU-2026-00000000005",
+                            AccountNumberSnapshot = "EDU-2026-CWDX5AJ",
                             CitizenEmailSnapshot = "ethan.koh.5@example.com",
                             CitizenFullNameSnapshot = "Ethan Koh",
                             CitizenNricSnapshot = "S0000005A",
@@ -31484,7 +31484,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 534,
-                            AccountNumberSnapshot = "EDU-2026-00000000047",
+                            AccountNumberSnapshot = "EDU-2026-KSQL7E2",
                             CitizenEmailSnapshot = "grace.wong.47@example.com",
                             CitizenFullNameSnapshot = "Grace Wong",
                             CitizenNricSnapshot = "S0000047G",
@@ -31501,7 +31501,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 535,
-                            AccountNumberSnapshot = "EDU-2026-00000000048",
+                            AccountNumberSnapshot = "EDU-2026-J6SNTZ5",
                             CitizenEmailSnapshot = "haruto.xu.48@example.com",
                             CitizenFullNameSnapshot = "Haruto Xu",
                             CitizenNricSnapshot = "S0000048E",
@@ -31518,7 +31518,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 536,
-                            AccountNumberSnapshot = "EDU-2026-00000000050",
+                            AccountNumberSnapshot = "EDU-2026-Z7YP3EW",
                             CitizenEmailSnapshot = "jasper.zainal.50@example.com",
                             CitizenFullNameSnapshot = "Jasper Zainal",
                             CitizenNricSnapshot = "S0000050G",
@@ -31535,7 +31535,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 537,
-                            AccountNumberSnapshot = "EDU-2026-00000000051",
+                            AccountNumberSnapshot = "EDU-2026-UZM23Y5",
                             CitizenEmailSnapshot = "keira.ang.51@example.com",
                             CitizenFullNameSnapshot = "Keira Ang",
                             CitizenNricSnapshot = "S0000051E",
@@ -31552,7 +31552,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 538,
-                            AccountNumberSnapshot = "EDU-2026-00000000052",
+                            AccountNumberSnapshot = "EDU-2026-4GS4RMU",
                             CitizenEmailSnapshot = "leon.bala.52@example.com",
                             CitizenFullNameSnapshot = "Leon Bala",
                             CitizenNricSnapshot = "S0000052C",
@@ -31569,7 +31569,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 539,
-                            AccountNumberSnapshot = "EDU-2026-00000000053",
+                            AccountNumberSnapshot = "EDU-2026-BY2YKCV",
                             CitizenEmailSnapshot = "mei.lin.chew.53@example.com",
                             CitizenFullNameSnapshot = "Mei Lin Chew",
                             CitizenNricSnapshot = "S0000053A",
@@ -31586,7 +31586,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 540,
-                            AccountNumberSnapshot = "EDU-2026-00000000054",
+                            AccountNumberSnapshot = "EDU-2026-2KUFS7K",
                             CitizenEmailSnapshot = "nathan.das.54@example.com",
                             CitizenFullNameSnapshot = "Nathan Das",
                             CitizenNricSnapshot = "S0000054Z",
@@ -31603,7 +31603,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 541,
-                            AccountNumberSnapshot = "EDU-2026-00000000055",
+                            AccountNumberSnapshot = "EDU-2026-XWNGZR4",
                             CitizenEmailSnapshot = "olivia.eng.55@example.com",
                             CitizenFullNameSnapshot = "Olivia Eng",
                             CitizenNricSnapshot = "S0000055H",
@@ -31620,7 +31620,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 542,
-                            AccountNumberSnapshot = "EDU-2026-00000000005",
+                            AccountNumberSnapshot = "EDU-2026-CWDX5AJ",
                             CitizenEmailSnapshot = "ethan.koh.5@example.com",
                             CitizenFullNameSnapshot = "Ethan Koh",
                             CitizenNricSnapshot = "S0000005A",
@@ -31637,7 +31637,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 543,
-                            AccountNumberSnapshot = "EDU-2026-00000000047",
+                            AccountNumberSnapshot = "EDU-2026-KSQL7E2",
                             CitizenEmailSnapshot = "grace.wong.47@example.com",
                             CitizenFullNameSnapshot = "Grace Wong",
                             CitizenNricSnapshot = "S0000047G",
@@ -31654,7 +31654,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 544,
-                            AccountNumberSnapshot = "EDU-2026-00000000048",
+                            AccountNumberSnapshot = "EDU-2026-J6SNTZ5",
                             CitizenEmailSnapshot = "haruto.xu.48@example.com",
                             CitizenFullNameSnapshot = "Haruto Xu",
                             CitizenNricSnapshot = "S0000048E",
@@ -31671,7 +31671,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 545,
-                            AccountNumberSnapshot = "EDU-2026-00000000049",
+                            AccountNumberSnapshot = "EDU-2026-GHVBXR3",
                             CitizenEmailSnapshot = "isabelle.yeo.49@example.com",
                             CitizenFullNameSnapshot = "Isabelle Yeo",
                             CitizenNricSnapshot = "S0000049C",
@@ -31688,7 +31688,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 546,
-                            AccountNumberSnapshot = "EDU-2026-00000000051",
+                            AccountNumberSnapshot = "EDU-2026-UZM23Y5",
                             CitizenEmailSnapshot = "keira.ang.51@example.com",
                             CitizenFullNameSnapshot = "Keira Ang",
                             CitizenNricSnapshot = "S0000051E",
@@ -31705,7 +31705,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 547,
-                            AccountNumberSnapshot = "EDU-2026-00000000052",
+                            AccountNumberSnapshot = "EDU-2026-4GS4RMU",
                             CitizenEmailSnapshot = "leon.bala.52@example.com",
                             CitizenFullNameSnapshot = "Leon Bala",
                             CitizenNricSnapshot = "S0000052C",
@@ -31722,7 +31722,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 548,
-                            AccountNumberSnapshot = "EDU-2026-00000000053",
+                            AccountNumberSnapshot = "EDU-2026-BY2YKCV",
                             CitizenEmailSnapshot = "mei.lin.chew.53@example.com",
                             CitizenFullNameSnapshot = "Mei Lin Chew",
                             CitizenNricSnapshot = "S0000053A",
@@ -31739,7 +31739,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 549,
-                            AccountNumberSnapshot = "EDU-2026-00000000054",
+                            AccountNumberSnapshot = "EDU-2026-2KUFS7K",
                             CitizenEmailSnapshot = "nathan.das.54@example.com",
                             CitizenFullNameSnapshot = "Nathan Das",
                             CitizenNricSnapshot = "S0000054Z",
@@ -31756,7 +31756,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 550,
-                            AccountNumberSnapshot = "EDU-2026-00000000055",
+                            AccountNumberSnapshot = "EDU-2026-XWNGZR4",
                             CitizenEmailSnapshot = "olivia.eng.55@example.com",
                             CitizenFullNameSnapshot = "Olivia Eng",
                             CitizenNricSnapshot = "S0000055H",
@@ -31773,7 +31773,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 551,
-                            AccountNumberSnapshot = "EDU-2026-00000000005",
+                            AccountNumberSnapshot = "EDU-2026-CWDX5AJ",
                             CitizenEmailSnapshot = "ethan.koh.5@example.com",
                             CitizenFullNameSnapshot = "Ethan Koh",
                             CitizenNricSnapshot = "S0000005A",
@@ -31790,7 +31790,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 552,
-                            AccountNumberSnapshot = "EDU-2026-00000000047",
+                            AccountNumberSnapshot = "EDU-2026-KSQL7E2",
                             CitizenEmailSnapshot = "grace.wong.47@example.com",
                             CitizenFullNameSnapshot = "Grace Wong",
                             CitizenNricSnapshot = "S0000047G",
@@ -31807,7 +31807,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 553,
-                            AccountNumberSnapshot = "EDU-2026-00000000048",
+                            AccountNumberSnapshot = "EDU-2026-J6SNTZ5",
                             CitizenEmailSnapshot = "haruto.xu.48@example.com",
                             CitizenFullNameSnapshot = "Haruto Xu",
                             CitizenNricSnapshot = "S0000048E",
@@ -31824,7 +31824,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 554,
-                            AccountNumberSnapshot = "EDU-2026-00000000049",
+                            AccountNumberSnapshot = "EDU-2026-GHVBXR3",
                             CitizenEmailSnapshot = "isabelle.yeo.49@example.com",
                             CitizenFullNameSnapshot = "Isabelle Yeo",
                             CitizenNricSnapshot = "S0000049C",
@@ -31841,7 +31841,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 555,
-                            AccountNumberSnapshot = "EDU-2026-00000000050",
+                            AccountNumberSnapshot = "EDU-2026-Z7YP3EW",
                             CitizenEmailSnapshot = "jasper.zainal.50@example.com",
                             CitizenFullNameSnapshot = "Jasper Zainal",
                             CitizenNricSnapshot = "S0000050G",
@@ -31858,7 +31858,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 556,
-                            AccountNumberSnapshot = "EDU-2026-00000000052",
+                            AccountNumberSnapshot = "EDU-2026-4GS4RMU",
                             CitizenEmailSnapshot = "leon.bala.52@example.com",
                             CitizenFullNameSnapshot = "Leon Bala",
                             CitizenNricSnapshot = "S0000052C",
@@ -31875,7 +31875,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 557,
-                            AccountNumberSnapshot = "EDU-2026-00000000053",
+                            AccountNumberSnapshot = "EDU-2026-BY2YKCV",
                             CitizenEmailSnapshot = "mei.lin.chew.53@example.com",
                             CitizenFullNameSnapshot = "Mei Lin Chew",
                             CitizenNricSnapshot = "S0000053A",
@@ -31892,7 +31892,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 558,
-                            AccountNumberSnapshot = "EDU-2026-00000000054",
+                            AccountNumberSnapshot = "EDU-2026-2KUFS7K",
                             CitizenEmailSnapshot = "nathan.das.54@example.com",
                             CitizenFullNameSnapshot = "Nathan Das",
                             CitizenNricSnapshot = "S0000054Z",
@@ -31909,7 +31909,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 559,
-                            AccountNumberSnapshot = "EDU-2026-00000000055",
+                            AccountNumberSnapshot = "EDU-2026-XWNGZR4",
                             CitizenEmailSnapshot = "olivia.eng.55@example.com",
                             CitizenFullNameSnapshot = "Olivia Eng",
                             CitizenNricSnapshot = "S0000055H",
@@ -31926,7 +31926,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 560,
-                            AccountNumberSnapshot = "EDU-2026-00000000005",
+                            AccountNumberSnapshot = "EDU-2026-CWDX5AJ",
                             CitizenEmailSnapshot = "ethan.koh.5@example.com",
                             CitizenFullNameSnapshot = "Ethan Koh",
                             CitizenNricSnapshot = "S0000005A",
@@ -31943,7 +31943,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 561,
-                            AccountNumberSnapshot = "EDU-2026-00000000047",
+                            AccountNumberSnapshot = "EDU-2026-KSQL7E2",
                             CitizenEmailSnapshot = "grace.wong.47@example.com",
                             CitizenFullNameSnapshot = "Grace Wong",
                             CitizenNricSnapshot = "S0000047G",
@@ -31960,7 +31960,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 562,
-                            AccountNumberSnapshot = "EDU-2026-00000000048",
+                            AccountNumberSnapshot = "EDU-2026-J6SNTZ5",
                             CitizenEmailSnapshot = "haruto.xu.48@example.com",
                             CitizenFullNameSnapshot = "Haruto Xu",
                             CitizenNricSnapshot = "S0000048E",
@@ -31977,7 +31977,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 563,
-                            AccountNumberSnapshot = "EDU-2026-00000000049",
+                            AccountNumberSnapshot = "EDU-2026-GHVBXR3",
                             CitizenEmailSnapshot = "isabelle.yeo.49@example.com",
                             CitizenFullNameSnapshot = "Isabelle Yeo",
                             CitizenNricSnapshot = "S0000049C",
@@ -31994,7 +31994,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 564,
-                            AccountNumberSnapshot = "EDU-2026-00000000050",
+                            AccountNumberSnapshot = "EDU-2026-Z7YP3EW",
                             CitizenEmailSnapshot = "jasper.zainal.50@example.com",
                             CitizenFullNameSnapshot = "Jasper Zainal",
                             CitizenNricSnapshot = "S0000050G",
@@ -32011,7 +32011,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 565,
-                            AccountNumberSnapshot = "EDU-2026-00000000051",
+                            AccountNumberSnapshot = "EDU-2026-UZM23Y5",
                             CitizenEmailSnapshot = "keira.ang.51@example.com",
                             CitizenFullNameSnapshot = "Keira Ang",
                             CitizenNricSnapshot = "S0000051E",
@@ -32028,7 +32028,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 566,
-                            AccountNumberSnapshot = "EDU-2026-00000000053",
+                            AccountNumberSnapshot = "EDU-2026-BY2YKCV",
                             CitizenEmailSnapshot = "mei.lin.chew.53@example.com",
                             CitizenFullNameSnapshot = "Mei Lin Chew",
                             CitizenNricSnapshot = "S0000053A",
@@ -32045,7 +32045,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 567,
-                            AccountNumberSnapshot = "EDU-2026-00000000054",
+                            AccountNumberSnapshot = "EDU-2026-2KUFS7K",
                             CitizenEmailSnapshot = "nathan.das.54@example.com",
                             CitizenFullNameSnapshot = "Nathan Das",
                             CitizenNricSnapshot = "S0000054Z",
@@ -32062,7 +32062,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 568,
-                            AccountNumberSnapshot = "EDU-2026-00000000055",
+                            AccountNumberSnapshot = "EDU-2026-XWNGZR4",
                             CitizenEmailSnapshot = "olivia.eng.55@example.com",
                             CitizenFullNameSnapshot = "Olivia Eng",
                             CitizenNricSnapshot = "S0000055H",
@@ -32079,7 +32079,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 569,
-                            AccountNumberSnapshot = "EDU-2026-00000000005",
+                            AccountNumberSnapshot = "EDU-2026-CWDX5AJ",
                             CitizenEmailSnapshot = "ethan.koh.5@example.com",
                             CitizenFullNameSnapshot = "Ethan Koh",
                             CitizenNricSnapshot = "S0000005A",
@@ -32096,7 +32096,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 570,
-                            AccountNumberSnapshot = "EDU-2026-00000000047",
+                            AccountNumberSnapshot = "EDU-2026-KSQL7E2",
                             CitizenEmailSnapshot = "grace.wong.47@example.com",
                             CitizenFullNameSnapshot = "Grace Wong",
                             CitizenNricSnapshot = "S0000047G",
@@ -32113,7 +32113,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 571,
-                            AccountNumberSnapshot = "EDU-2026-00000000048",
+                            AccountNumberSnapshot = "EDU-2026-J6SNTZ5",
                             CitizenEmailSnapshot = "haruto.xu.48@example.com",
                             CitizenFullNameSnapshot = "Haruto Xu",
                             CitizenNricSnapshot = "S0000048E",
@@ -32130,7 +32130,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 572,
-                            AccountNumberSnapshot = "EDU-2026-00000000049",
+                            AccountNumberSnapshot = "EDU-2026-GHVBXR3",
                             CitizenEmailSnapshot = "isabelle.yeo.49@example.com",
                             CitizenFullNameSnapshot = "Isabelle Yeo",
                             CitizenNricSnapshot = "S0000049C",
@@ -32147,7 +32147,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 573,
-                            AccountNumberSnapshot = "EDU-2026-00000000050",
+                            AccountNumberSnapshot = "EDU-2026-Z7YP3EW",
                             CitizenEmailSnapshot = "jasper.zainal.50@example.com",
                             CitizenFullNameSnapshot = "Jasper Zainal",
                             CitizenNricSnapshot = "S0000050G",
@@ -32164,7 +32164,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 574,
-                            AccountNumberSnapshot = "EDU-2026-00000000051",
+                            AccountNumberSnapshot = "EDU-2026-UZM23Y5",
                             CitizenEmailSnapshot = "keira.ang.51@example.com",
                             CitizenFullNameSnapshot = "Keira Ang",
                             CitizenNricSnapshot = "S0000051E",
@@ -32181,7 +32181,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 575,
-                            AccountNumberSnapshot = "EDU-2026-00000000052",
+                            AccountNumberSnapshot = "EDU-2026-4GS4RMU",
                             CitizenEmailSnapshot = "leon.bala.52@example.com",
                             CitizenFullNameSnapshot = "Leon Bala",
                             CitizenNricSnapshot = "S0000052C",
@@ -32198,7 +32198,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 576,
-                            AccountNumberSnapshot = "EDU-2026-00000000054",
+                            AccountNumberSnapshot = "EDU-2026-2KUFS7K",
                             CitizenEmailSnapshot = "nathan.das.54@example.com",
                             CitizenFullNameSnapshot = "Nathan Das",
                             CitizenNricSnapshot = "S0000054Z",
@@ -32215,7 +32215,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 577,
-                            AccountNumberSnapshot = "EDU-2026-00000000055",
+                            AccountNumberSnapshot = "EDU-2026-XWNGZR4",
                             CitizenEmailSnapshot = "olivia.eng.55@example.com",
                             CitizenFullNameSnapshot = "Olivia Eng",
                             CitizenNricSnapshot = "S0000055H",
@@ -32232,7 +32232,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 578,
-                            AccountNumberSnapshot = "EDU-2026-00000000005",
+                            AccountNumberSnapshot = "EDU-2026-CWDX5AJ",
                             CitizenEmailSnapshot = "ethan.koh.5@example.com",
                             CitizenFullNameSnapshot = "Ethan Koh",
                             CitizenNricSnapshot = "S0000005A",
@@ -32249,7 +32249,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 579,
-                            AccountNumberSnapshot = "EDU-2026-00000000047",
+                            AccountNumberSnapshot = "EDU-2026-KSQL7E2",
                             CitizenEmailSnapshot = "grace.wong.47@example.com",
                             CitizenFullNameSnapshot = "Grace Wong",
                             CitizenNricSnapshot = "S0000047G",
@@ -32266,7 +32266,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 580,
-                            AccountNumberSnapshot = "EDU-2026-00000000048",
+                            AccountNumberSnapshot = "EDU-2026-J6SNTZ5",
                             CitizenEmailSnapshot = "haruto.xu.48@example.com",
                             CitizenFullNameSnapshot = "Haruto Xu",
                             CitizenNricSnapshot = "S0000048E",
@@ -32283,7 +32283,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 581,
-                            AccountNumberSnapshot = "EDU-2026-00000000049",
+                            AccountNumberSnapshot = "EDU-2026-GHVBXR3",
                             CitizenEmailSnapshot = "isabelle.yeo.49@example.com",
                             CitizenFullNameSnapshot = "Isabelle Yeo",
                             CitizenNricSnapshot = "S0000049C",
@@ -32300,7 +32300,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 582,
-                            AccountNumberSnapshot = "EDU-2026-00000000050",
+                            AccountNumberSnapshot = "EDU-2026-Z7YP3EW",
                             CitizenEmailSnapshot = "jasper.zainal.50@example.com",
                             CitizenFullNameSnapshot = "Jasper Zainal",
                             CitizenNricSnapshot = "S0000050G",
@@ -32317,7 +32317,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 583,
-                            AccountNumberSnapshot = "EDU-2026-00000000051",
+                            AccountNumberSnapshot = "EDU-2026-UZM23Y5",
                             CitizenEmailSnapshot = "keira.ang.51@example.com",
                             CitizenFullNameSnapshot = "Keira Ang",
                             CitizenNricSnapshot = "S0000051E",
@@ -32334,7 +32334,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 584,
-                            AccountNumberSnapshot = "EDU-2026-00000000052",
+                            AccountNumberSnapshot = "EDU-2026-4GS4RMU",
                             CitizenEmailSnapshot = "leon.bala.52@example.com",
                             CitizenFullNameSnapshot = "Leon Bala",
                             CitizenNricSnapshot = "S0000052C",
@@ -32351,7 +32351,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 585,
-                            AccountNumberSnapshot = "EDU-2026-00000000053",
+                            AccountNumberSnapshot = "EDU-2026-BY2YKCV",
                             CitizenEmailSnapshot = "mei.lin.chew.53@example.com",
                             CitizenFullNameSnapshot = "Mei Lin Chew",
                             CitizenNricSnapshot = "S0000053A",
@@ -32368,7 +32368,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 586,
-                            AccountNumberSnapshot = "EDU-2026-00000000055",
+                            AccountNumberSnapshot = "EDU-2026-XWNGZR4",
                             CitizenEmailSnapshot = "olivia.eng.55@example.com",
                             CitizenFullNameSnapshot = "Olivia Eng",
                             CitizenNricSnapshot = "S0000055H",
@@ -32385,7 +32385,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 587,
-                            AccountNumberSnapshot = "EDU-2026-00000000005",
+                            AccountNumberSnapshot = "EDU-2026-CWDX5AJ",
                             CitizenEmailSnapshot = "ethan.koh.5@example.com",
                             CitizenFullNameSnapshot = "Ethan Koh",
                             CitizenNricSnapshot = "S0000005A",
@@ -32402,7 +32402,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 588,
-                            AccountNumberSnapshot = "EDU-2026-00000000047",
+                            AccountNumberSnapshot = "EDU-2026-KSQL7E2",
                             CitizenEmailSnapshot = "grace.wong.47@example.com",
                             CitizenFullNameSnapshot = "Grace Wong",
                             CitizenNricSnapshot = "S0000047G",
@@ -32419,7 +32419,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 589,
-                            AccountNumberSnapshot = "EDU-2026-00000000048",
+                            AccountNumberSnapshot = "EDU-2026-J6SNTZ5",
                             CitizenEmailSnapshot = "haruto.xu.48@example.com",
                             CitizenFullNameSnapshot = "Haruto Xu",
                             CitizenNricSnapshot = "S0000048E",
@@ -32436,7 +32436,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 590,
-                            AccountNumberSnapshot = "EDU-2026-00000000049",
+                            AccountNumberSnapshot = "EDU-2026-GHVBXR3",
                             CitizenEmailSnapshot = "isabelle.yeo.49@example.com",
                             CitizenFullNameSnapshot = "Isabelle Yeo",
                             CitizenNricSnapshot = "S0000049C",
@@ -32453,7 +32453,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 591,
-                            AccountNumberSnapshot = "EDU-2026-00000000050",
+                            AccountNumberSnapshot = "EDU-2026-Z7YP3EW",
                             CitizenEmailSnapshot = "jasper.zainal.50@example.com",
                             CitizenFullNameSnapshot = "Jasper Zainal",
                             CitizenNricSnapshot = "S0000050G",
@@ -32470,7 +32470,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 592,
-                            AccountNumberSnapshot = "EDU-2026-00000000051",
+                            AccountNumberSnapshot = "EDU-2026-UZM23Y5",
                             CitizenEmailSnapshot = "keira.ang.51@example.com",
                             CitizenFullNameSnapshot = "Keira Ang",
                             CitizenNricSnapshot = "S0000051E",
@@ -32487,7 +32487,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 593,
-                            AccountNumberSnapshot = "EDU-2026-00000000052",
+                            AccountNumberSnapshot = "EDU-2026-4GS4RMU",
                             CitizenEmailSnapshot = "leon.bala.52@example.com",
                             CitizenFullNameSnapshot = "Leon Bala",
                             CitizenNricSnapshot = "S0000052C",
@@ -32504,7 +32504,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 594,
-                            AccountNumberSnapshot = "EDU-2026-00000000053",
+                            AccountNumberSnapshot = "EDU-2026-BY2YKCV",
                             CitizenEmailSnapshot = "mei.lin.chew.53@example.com",
                             CitizenFullNameSnapshot = "Mei Lin Chew",
                             CitizenNricSnapshot = "S0000053A",
@@ -32521,7 +32521,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 595,
-                            AccountNumberSnapshot = "EDU-2026-00000000054",
+                            AccountNumberSnapshot = "EDU-2026-2KUFS7K",
                             CitizenEmailSnapshot = "nathan.das.54@example.com",
                             CitizenFullNameSnapshot = "Nathan Das",
                             CitizenNricSnapshot = "S0000054Z",
@@ -32538,7 +32538,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 596,
-                            AccountNumberSnapshot = "EDU-2026-00000000006",
+                            AccountNumberSnapshot = "EDU-2026-XSKCN4U",
                             CitizenEmailSnapshot = "hannah.lee.6@example.com",
                             CitizenFullNameSnapshot = "Hannah Lee",
                             CitizenNricSnapshot = "S0000006Z",
@@ -32555,7 +32555,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 597,
-                            AccountNumberSnapshot = "EDU-2026-00000000057",
+                            AccountNumberSnapshot = "EDU-2026-6BE7RJ7",
                             CitizenEmailSnapshot = "qistina.gan.57@example.com",
                             CitizenFullNameSnapshot = "Qistina Gan",
                             CitizenNricSnapshot = "S0000057D",
@@ -32572,7 +32572,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 598,
-                            AccountNumberSnapshot = "EDU-2026-00000000058",
+                            AccountNumberSnapshot = "EDU-2026-N34SNTV",
                             CitizenEmailSnapshot = "rafael.ho.58@example.com",
                             CitizenFullNameSnapshot = "Rafael Ho",
                             CitizenNricSnapshot = "S0000058B",
@@ -32589,7 +32589,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 599,
-                            AccountNumberSnapshot = "EDU-2026-00000000059",
+                            AccountNumberSnapshot = "EDU-2026-VX6V49Y",
                             CitizenEmailSnapshot = "selina.ismail.59@example.com",
                             CitizenFullNameSnapshot = "Selina Ismail",
                             CitizenNricSnapshot = "S0000059J",
@@ -32606,7 +32606,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 600,
-                            AccountNumberSnapshot = "EDU-2026-00000000060",
+                            AccountNumberSnapshot = "EDU-2026-CZXZH8L",
                             CitizenEmailSnapshot = "terence.jeyaratnam.60@example.com",
                             CitizenFullNameSnapshot = "Terence Jeyaratnam",
                             CitizenNricSnapshot = "S0000060D",
@@ -32623,7 +32623,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 601,
-                            AccountNumberSnapshot = "EDU-2026-00000000061",
+                            AccountNumberSnapshot = "EDU-2026-8E2DFRR",
                             CitizenEmailSnapshot = "umairah.kwek.61@example.com",
                             CitizenFullNameSnapshot = "Umairah Kwek",
                             CitizenNricSnapshot = "S0000061B",
@@ -32640,7 +32640,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 602,
-                            AccountNumberSnapshot = "EDU-2026-00000000062",
+                            AccountNumberSnapshot = "EDU-2026-WH6JUY3",
                             CitizenEmailSnapshot = "victor.lim.62@example.com",
                             CitizenFullNameSnapshot = "Victor Lim",
                             CitizenNricSnapshot = "S0000062J",
@@ -32657,7 +32657,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 603,
-                            AccountNumberSnapshot = "EDU-2026-00000000063",
+                            AccountNumberSnapshot = "EDU-2026-BTCG9WU",
                             CitizenEmailSnapshot = "wen.jie.mohamed.63@example.com",
                             CitizenFullNameSnapshot = "Wen Jie Mohamed",
                             CitizenNricSnapshot = "S0000063I",
@@ -32674,7 +32674,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 604,
-                            AccountNumberSnapshot = "EDU-2026-00000000064",
+                            AccountNumberSnapshot = "EDU-2026-G3RY59C",
                             CitizenEmailSnapshot = "xavier.ng.64@example.com",
                             CitizenFullNameSnapshot = "Xavier Ng",
                             CitizenNricSnapshot = "S0000064G",
@@ -32691,7 +32691,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 605,
-                            AccountNumberSnapshot = "EDU-2026-00000000006",
+                            AccountNumberSnapshot = "EDU-2026-XSKCN4U",
                             CitizenEmailSnapshot = "hannah.lee.6@example.com",
                             CitizenFullNameSnapshot = "Hannah Lee",
                             CitizenNricSnapshot = "S0000006Z",
@@ -32708,7 +32708,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 606,
-                            AccountNumberSnapshot = "EDU-2026-00000000056",
+                            AccountNumberSnapshot = "EDU-2026-MG97NU4",
                             CitizenEmailSnapshot = "pranav.foo.56@example.com",
                             CitizenFullNameSnapshot = "Pranav Foo",
                             CitizenNricSnapshot = "S0000056F",
@@ -32725,7 +32725,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 607,
-                            AccountNumberSnapshot = "EDU-2026-00000000058",
+                            AccountNumberSnapshot = "EDU-2026-N34SNTV",
                             CitizenEmailSnapshot = "rafael.ho.58@example.com",
                             CitizenFullNameSnapshot = "Rafael Ho",
                             CitizenNricSnapshot = "S0000058B",
@@ -32742,7 +32742,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 608,
-                            AccountNumberSnapshot = "EDU-2026-00000000059",
+                            AccountNumberSnapshot = "EDU-2026-VX6V49Y",
                             CitizenEmailSnapshot = "selina.ismail.59@example.com",
                             CitizenFullNameSnapshot = "Selina Ismail",
                             CitizenNricSnapshot = "S0000059J",
@@ -32759,7 +32759,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 609,
-                            AccountNumberSnapshot = "EDU-2026-00000000060",
+                            AccountNumberSnapshot = "EDU-2026-CZXZH8L",
                             CitizenEmailSnapshot = "terence.jeyaratnam.60@example.com",
                             CitizenFullNameSnapshot = "Terence Jeyaratnam",
                             CitizenNricSnapshot = "S0000060D",
@@ -32776,7 +32776,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 610,
-                            AccountNumberSnapshot = "EDU-2026-00000000061",
+                            AccountNumberSnapshot = "EDU-2026-8E2DFRR",
                             CitizenEmailSnapshot = "umairah.kwek.61@example.com",
                             CitizenFullNameSnapshot = "Umairah Kwek",
                             CitizenNricSnapshot = "S0000061B",
@@ -32793,7 +32793,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 611,
-                            AccountNumberSnapshot = "EDU-2026-00000000062",
+                            AccountNumberSnapshot = "EDU-2026-WH6JUY3",
                             CitizenEmailSnapshot = "victor.lim.62@example.com",
                             CitizenFullNameSnapshot = "Victor Lim",
                             CitizenNricSnapshot = "S0000062J",
@@ -32810,7 +32810,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 612,
-                            AccountNumberSnapshot = "EDU-2026-00000000063",
+                            AccountNumberSnapshot = "EDU-2026-BTCG9WU",
                             CitizenEmailSnapshot = "wen.jie.mohamed.63@example.com",
                             CitizenFullNameSnapshot = "Wen Jie Mohamed",
                             CitizenNricSnapshot = "S0000063I",
@@ -32827,7 +32827,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 613,
-                            AccountNumberSnapshot = "EDU-2026-00000000064",
+                            AccountNumberSnapshot = "EDU-2026-G3RY59C",
                             CitizenEmailSnapshot = "xavier.ng.64@example.com",
                             CitizenFullNameSnapshot = "Xavier Ng",
                             CitizenNricSnapshot = "S0000064G",
@@ -32844,7 +32844,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 614,
-                            AccountNumberSnapshot = "EDU-2026-00000000006",
+                            AccountNumberSnapshot = "EDU-2026-XSKCN4U",
                             CitizenEmailSnapshot = "hannah.lee.6@example.com",
                             CitizenFullNameSnapshot = "Hannah Lee",
                             CitizenNricSnapshot = "S0000006Z",
@@ -32861,7 +32861,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 615,
-                            AccountNumberSnapshot = "EDU-2026-00000000056",
+                            AccountNumberSnapshot = "EDU-2026-MG97NU4",
                             CitizenEmailSnapshot = "pranav.foo.56@example.com",
                             CitizenFullNameSnapshot = "Pranav Foo",
                             CitizenNricSnapshot = "S0000056F",
@@ -32878,7 +32878,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 616,
-                            AccountNumberSnapshot = "EDU-2026-00000000057",
+                            AccountNumberSnapshot = "EDU-2026-6BE7RJ7",
                             CitizenEmailSnapshot = "qistina.gan.57@example.com",
                             CitizenFullNameSnapshot = "Qistina Gan",
                             CitizenNricSnapshot = "S0000057D",
@@ -32895,7 +32895,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 617,
-                            AccountNumberSnapshot = "EDU-2026-00000000059",
+                            AccountNumberSnapshot = "EDU-2026-VX6V49Y",
                             CitizenEmailSnapshot = "selina.ismail.59@example.com",
                             CitizenFullNameSnapshot = "Selina Ismail",
                             CitizenNricSnapshot = "S0000059J",
@@ -32912,7 +32912,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 618,
-                            AccountNumberSnapshot = "EDU-2026-00000000060",
+                            AccountNumberSnapshot = "EDU-2026-CZXZH8L",
                             CitizenEmailSnapshot = "terence.jeyaratnam.60@example.com",
                             CitizenFullNameSnapshot = "Terence Jeyaratnam",
                             CitizenNricSnapshot = "S0000060D",
@@ -32929,7 +32929,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 619,
-                            AccountNumberSnapshot = "EDU-2026-00000000061",
+                            AccountNumberSnapshot = "EDU-2026-8E2DFRR",
                             CitizenEmailSnapshot = "umairah.kwek.61@example.com",
                             CitizenFullNameSnapshot = "Umairah Kwek",
                             CitizenNricSnapshot = "S0000061B",
@@ -32946,7 +32946,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 620,
-                            AccountNumberSnapshot = "EDU-2026-00000000062",
+                            AccountNumberSnapshot = "EDU-2026-WH6JUY3",
                             CitizenEmailSnapshot = "victor.lim.62@example.com",
                             CitizenFullNameSnapshot = "Victor Lim",
                             CitizenNricSnapshot = "S0000062J",
@@ -32963,7 +32963,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 621,
-                            AccountNumberSnapshot = "EDU-2026-00000000063",
+                            AccountNumberSnapshot = "EDU-2026-BTCG9WU",
                             CitizenEmailSnapshot = "wen.jie.mohamed.63@example.com",
                             CitizenFullNameSnapshot = "Wen Jie Mohamed",
                             CitizenNricSnapshot = "S0000063I",
@@ -32980,7 +32980,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 622,
-                            AccountNumberSnapshot = "EDU-2026-00000000064",
+                            AccountNumberSnapshot = "EDU-2026-G3RY59C",
                             CitizenEmailSnapshot = "xavier.ng.64@example.com",
                             CitizenFullNameSnapshot = "Xavier Ng",
                             CitizenNricSnapshot = "S0000064G",
@@ -32997,7 +32997,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 623,
-                            AccountNumberSnapshot = "EDU-2026-00000000006",
+                            AccountNumberSnapshot = "EDU-2026-XSKCN4U",
                             CitizenEmailSnapshot = "hannah.lee.6@example.com",
                             CitizenFullNameSnapshot = "Hannah Lee",
                             CitizenNricSnapshot = "S0000006Z",
@@ -33014,7 +33014,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 624,
-                            AccountNumberSnapshot = "EDU-2026-00000000056",
+                            AccountNumberSnapshot = "EDU-2026-MG97NU4",
                             CitizenEmailSnapshot = "pranav.foo.56@example.com",
                             CitizenFullNameSnapshot = "Pranav Foo",
                             CitizenNricSnapshot = "S0000056F",
@@ -33031,7 +33031,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 625,
-                            AccountNumberSnapshot = "EDU-2026-00000000057",
+                            AccountNumberSnapshot = "EDU-2026-6BE7RJ7",
                             CitizenEmailSnapshot = "qistina.gan.57@example.com",
                             CitizenFullNameSnapshot = "Qistina Gan",
                             CitizenNricSnapshot = "S0000057D",
@@ -33048,7 +33048,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 626,
-                            AccountNumberSnapshot = "EDU-2026-00000000058",
+                            AccountNumberSnapshot = "EDU-2026-N34SNTV",
                             CitizenEmailSnapshot = "rafael.ho.58@example.com",
                             CitizenFullNameSnapshot = "Rafael Ho",
                             CitizenNricSnapshot = "S0000058B",
@@ -33065,7 +33065,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 627,
-                            AccountNumberSnapshot = "EDU-2026-00000000060",
+                            AccountNumberSnapshot = "EDU-2026-CZXZH8L",
                             CitizenEmailSnapshot = "terence.jeyaratnam.60@example.com",
                             CitizenFullNameSnapshot = "Terence Jeyaratnam",
                             CitizenNricSnapshot = "S0000060D",
@@ -33082,7 +33082,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 628,
-                            AccountNumberSnapshot = "EDU-2026-00000000061",
+                            AccountNumberSnapshot = "EDU-2026-8E2DFRR",
                             CitizenEmailSnapshot = "umairah.kwek.61@example.com",
                             CitizenFullNameSnapshot = "Umairah Kwek",
                             CitizenNricSnapshot = "S0000061B",
@@ -33099,7 +33099,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 629,
-                            AccountNumberSnapshot = "EDU-2026-00000000062",
+                            AccountNumberSnapshot = "EDU-2026-WH6JUY3",
                             CitizenEmailSnapshot = "victor.lim.62@example.com",
                             CitizenFullNameSnapshot = "Victor Lim",
                             CitizenNricSnapshot = "S0000062J",
@@ -33116,7 +33116,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 630,
-                            AccountNumberSnapshot = "EDU-2026-00000000063",
+                            AccountNumberSnapshot = "EDU-2026-BTCG9WU",
                             CitizenEmailSnapshot = "wen.jie.mohamed.63@example.com",
                             CitizenFullNameSnapshot = "Wen Jie Mohamed",
                             CitizenNricSnapshot = "S0000063I",
@@ -33133,7 +33133,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 631,
-                            AccountNumberSnapshot = "EDU-2026-00000000064",
+                            AccountNumberSnapshot = "EDU-2026-G3RY59C",
                             CitizenEmailSnapshot = "xavier.ng.64@example.com",
                             CitizenFullNameSnapshot = "Xavier Ng",
                             CitizenNricSnapshot = "S0000064G",
@@ -33150,7 +33150,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 632,
-                            AccountNumberSnapshot = "EDU-2026-00000000006",
+                            AccountNumberSnapshot = "EDU-2026-XSKCN4U",
                             CitizenEmailSnapshot = "hannah.lee.6@example.com",
                             CitizenFullNameSnapshot = "Hannah Lee",
                             CitizenNricSnapshot = "S0000006Z",
@@ -33167,7 +33167,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 633,
-                            AccountNumberSnapshot = "EDU-2026-00000000056",
+                            AccountNumberSnapshot = "EDU-2026-MG97NU4",
                             CitizenEmailSnapshot = "pranav.foo.56@example.com",
                             CitizenFullNameSnapshot = "Pranav Foo",
                             CitizenNricSnapshot = "S0000056F",
@@ -33184,7 +33184,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 634,
-                            AccountNumberSnapshot = "EDU-2026-00000000057",
+                            AccountNumberSnapshot = "EDU-2026-6BE7RJ7",
                             CitizenEmailSnapshot = "qistina.gan.57@example.com",
                             CitizenFullNameSnapshot = "Qistina Gan",
                             CitizenNricSnapshot = "S0000057D",
@@ -33201,7 +33201,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 635,
-                            AccountNumberSnapshot = "EDU-2026-00000000058",
+                            AccountNumberSnapshot = "EDU-2026-N34SNTV",
                             CitizenEmailSnapshot = "rafael.ho.58@example.com",
                             CitizenFullNameSnapshot = "Rafael Ho",
                             CitizenNricSnapshot = "S0000058B",
@@ -33218,7 +33218,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 636,
-                            AccountNumberSnapshot = "EDU-2026-00000000059",
+                            AccountNumberSnapshot = "EDU-2026-VX6V49Y",
                             CitizenEmailSnapshot = "selina.ismail.59@example.com",
                             CitizenFullNameSnapshot = "Selina Ismail",
                             CitizenNricSnapshot = "S0000059J",
@@ -33235,7 +33235,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 637,
-                            AccountNumberSnapshot = "EDU-2026-00000000061",
+                            AccountNumberSnapshot = "EDU-2026-8E2DFRR",
                             CitizenEmailSnapshot = "umairah.kwek.61@example.com",
                             CitizenFullNameSnapshot = "Umairah Kwek",
                             CitizenNricSnapshot = "S0000061B",
@@ -33252,7 +33252,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 638,
-                            AccountNumberSnapshot = "EDU-2026-00000000062",
+                            AccountNumberSnapshot = "EDU-2026-WH6JUY3",
                             CitizenEmailSnapshot = "victor.lim.62@example.com",
                             CitizenFullNameSnapshot = "Victor Lim",
                             CitizenNricSnapshot = "S0000062J",
@@ -33269,7 +33269,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 639,
-                            AccountNumberSnapshot = "EDU-2026-00000000063",
+                            AccountNumberSnapshot = "EDU-2026-BTCG9WU",
                             CitizenEmailSnapshot = "wen.jie.mohamed.63@example.com",
                             CitizenFullNameSnapshot = "Wen Jie Mohamed",
                             CitizenNricSnapshot = "S0000063I",
@@ -33286,7 +33286,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 640,
-                            AccountNumberSnapshot = "EDU-2026-00000000064",
+                            AccountNumberSnapshot = "EDU-2026-G3RY59C",
                             CitizenEmailSnapshot = "xavier.ng.64@example.com",
                             CitizenFullNameSnapshot = "Xavier Ng",
                             CitizenNricSnapshot = "S0000064G",
@@ -33303,7 +33303,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 641,
-                            AccountNumberSnapshot = "EDU-2026-00000000006",
+                            AccountNumberSnapshot = "EDU-2026-XSKCN4U",
                             CitizenEmailSnapshot = "hannah.lee.6@example.com",
                             CitizenFullNameSnapshot = "Hannah Lee",
                             CitizenNricSnapshot = "S0000006Z",
@@ -33320,7 +33320,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 642,
-                            AccountNumberSnapshot = "EDU-2026-00000000056",
+                            AccountNumberSnapshot = "EDU-2026-MG97NU4",
                             CitizenEmailSnapshot = "pranav.foo.56@example.com",
                             CitizenFullNameSnapshot = "Pranav Foo",
                             CitizenNricSnapshot = "S0000056F",
@@ -33337,7 +33337,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 643,
-                            AccountNumberSnapshot = "EDU-2026-00000000057",
+                            AccountNumberSnapshot = "EDU-2026-6BE7RJ7",
                             CitizenEmailSnapshot = "qistina.gan.57@example.com",
                             CitizenFullNameSnapshot = "Qistina Gan",
                             CitizenNricSnapshot = "S0000057D",
@@ -33354,7 +33354,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 644,
-                            AccountNumberSnapshot = "EDU-2026-00000000058",
+                            AccountNumberSnapshot = "EDU-2026-N34SNTV",
                             CitizenEmailSnapshot = "rafael.ho.58@example.com",
                             CitizenFullNameSnapshot = "Rafael Ho",
                             CitizenNricSnapshot = "S0000058B",
@@ -33371,7 +33371,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 645,
-                            AccountNumberSnapshot = "EDU-2026-00000000059",
+                            AccountNumberSnapshot = "EDU-2026-VX6V49Y",
                             CitizenEmailSnapshot = "selina.ismail.59@example.com",
                             CitizenFullNameSnapshot = "Selina Ismail",
                             CitizenNricSnapshot = "S0000059J",
@@ -33388,7 +33388,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 646,
-                            AccountNumberSnapshot = "EDU-2026-00000000060",
+                            AccountNumberSnapshot = "EDU-2026-CZXZH8L",
                             CitizenEmailSnapshot = "terence.jeyaratnam.60@example.com",
                             CitizenFullNameSnapshot = "Terence Jeyaratnam",
                             CitizenNricSnapshot = "S0000060D",
@@ -33405,7 +33405,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 647,
-                            AccountNumberSnapshot = "EDU-2026-00000000062",
+                            AccountNumberSnapshot = "EDU-2026-WH6JUY3",
                             CitizenEmailSnapshot = "victor.lim.62@example.com",
                             CitizenFullNameSnapshot = "Victor Lim",
                             CitizenNricSnapshot = "S0000062J",
@@ -33422,7 +33422,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 648,
-                            AccountNumberSnapshot = "EDU-2026-00000000063",
+                            AccountNumberSnapshot = "EDU-2026-BTCG9WU",
                             CitizenEmailSnapshot = "wen.jie.mohamed.63@example.com",
                             CitizenFullNameSnapshot = "Wen Jie Mohamed",
                             CitizenNricSnapshot = "S0000063I",
@@ -33439,7 +33439,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 649,
-                            AccountNumberSnapshot = "EDU-2026-00000000064",
+                            AccountNumberSnapshot = "EDU-2026-G3RY59C",
                             CitizenEmailSnapshot = "xavier.ng.64@example.com",
                             CitizenFullNameSnapshot = "Xavier Ng",
                             CitizenNricSnapshot = "S0000064G",
@@ -33456,7 +33456,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 650,
-                            AccountNumberSnapshot = "EDU-2026-00000000006",
+                            AccountNumberSnapshot = "EDU-2026-XSKCN4U",
                             CitizenEmailSnapshot = "hannah.lee.6@example.com",
                             CitizenFullNameSnapshot = "Hannah Lee",
                             CitizenNricSnapshot = "S0000006Z",
@@ -33473,7 +33473,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 651,
-                            AccountNumberSnapshot = "EDU-2026-00000000056",
+                            AccountNumberSnapshot = "EDU-2026-MG97NU4",
                             CitizenEmailSnapshot = "pranav.foo.56@example.com",
                             CitizenFullNameSnapshot = "Pranav Foo",
                             CitizenNricSnapshot = "S0000056F",
@@ -33490,7 +33490,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 652,
-                            AccountNumberSnapshot = "EDU-2026-00000000057",
+                            AccountNumberSnapshot = "EDU-2026-6BE7RJ7",
                             CitizenEmailSnapshot = "qistina.gan.57@example.com",
                             CitizenFullNameSnapshot = "Qistina Gan",
                             CitizenNricSnapshot = "S0000057D",
@@ -33507,7 +33507,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 653,
-                            AccountNumberSnapshot = "EDU-2026-00000000058",
+                            AccountNumberSnapshot = "EDU-2026-N34SNTV",
                             CitizenEmailSnapshot = "rafael.ho.58@example.com",
                             CitizenFullNameSnapshot = "Rafael Ho",
                             CitizenNricSnapshot = "S0000058B",
@@ -33524,7 +33524,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 654,
-                            AccountNumberSnapshot = "EDU-2026-00000000059",
+                            AccountNumberSnapshot = "EDU-2026-VX6V49Y",
                             CitizenEmailSnapshot = "selina.ismail.59@example.com",
                             CitizenFullNameSnapshot = "Selina Ismail",
                             CitizenNricSnapshot = "S0000059J",
@@ -33541,7 +33541,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 655,
-                            AccountNumberSnapshot = "EDU-2026-00000000060",
+                            AccountNumberSnapshot = "EDU-2026-CZXZH8L",
                             CitizenEmailSnapshot = "terence.jeyaratnam.60@example.com",
                             CitizenFullNameSnapshot = "Terence Jeyaratnam",
                             CitizenNricSnapshot = "S0000060D",
@@ -33558,7 +33558,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 656,
-                            AccountNumberSnapshot = "EDU-2026-00000000061",
+                            AccountNumberSnapshot = "EDU-2026-8E2DFRR",
                             CitizenEmailSnapshot = "umairah.kwek.61@example.com",
                             CitizenFullNameSnapshot = "Umairah Kwek",
                             CitizenNricSnapshot = "S0000061B",
@@ -33575,7 +33575,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 657,
-                            AccountNumberSnapshot = "EDU-2026-00000000063",
+                            AccountNumberSnapshot = "EDU-2026-BTCG9WU",
                             CitizenEmailSnapshot = "wen.jie.mohamed.63@example.com",
                             CitizenFullNameSnapshot = "Wen Jie Mohamed",
                             CitizenNricSnapshot = "S0000063I",
@@ -33592,7 +33592,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 658,
-                            AccountNumberSnapshot = "EDU-2026-00000000064",
+                            AccountNumberSnapshot = "EDU-2026-G3RY59C",
                             CitizenEmailSnapshot = "xavier.ng.64@example.com",
                             CitizenFullNameSnapshot = "Xavier Ng",
                             CitizenNricSnapshot = "S0000064G",
@@ -33609,7 +33609,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 659,
-                            AccountNumberSnapshot = "EDU-2026-00000000006",
+                            AccountNumberSnapshot = "EDU-2026-XSKCN4U",
                             CitizenEmailSnapshot = "hannah.lee.6@example.com",
                             CitizenFullNameSnapshot = "Hannah Lee",
                             CitizenNricSnapshot = "S0000006Z",
@@ -33626,7 +33626,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 660,
-                            AccountNumberSnapshot = "EDU-2026-00000000056",
+                            AccountNumberSnapshot = "EDU-2026-MG97NU4",
                             CitizenEmailSnapshot = "pranav.foo.56@example.com",
                             CitizenFullNameSnapshot = "Pranav Foo",
                             CitizenNricSnapshot = "S0000056F",
@@ -33643,7 +33643,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 661,
-                            AccountNumberSnapshot = "EDU-2026-00000000057",
+                            AccountNumberSnapshot = "EDU-2026-6BE7RJ7",
                             CitizenEmailSnapshot = "qistina.gan.57@example.com",
                             CitizenFullNameSnapshot = "Qistina Gan",
                             CitizenNricSnapshot = "S0000057D",
@@ -33660,7 +33660,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 662,
-                            AccountNumberSnapshot = "EDU-2026-00000000058",
+                            AccountNumberSnapshot = "EDU-2026-N34SNTV",
                             CitizenEmailSnapshot = "rafael.ho.58@example.com",
                             CitizenFullNameSnapshot = "Rafael Ho",
                             CitizenNricSnapshot = "S0000058B",
@@ -33677,7 +33677,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 663,
-                            AccountNumberSnapshot = "EDU-2026-00000000059",
+                            AccountNumberSnapshot = "EDU-2026-VX6V49Y",
                             CitizenEmailSnapshot = "selina.ismail.59@example.com",
                             CitizenFullNameSnapshot = "Selina Ismail",
                             CitizenNricSnapshot = "S0000059J",
@@ -33694,7 +33694,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 664,
-                            AccountNumberSnapshot = "EDU-2026-00000000060",
+                            AccountNumberSnapshot = "EDU-2026-CZXZH8L",
                             CitizenEmailSnapshot = "terence.jeyaratnam.60@example.com",
                             CitizenFullNameSnapshot = "Terence Jeyaratnam",
                             CitizenNricSnapshot = "S0000060D",
@@ -33711,7 +33711,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 665,
-                            AccountNumberSnapshot = "EDU-2026-00000000061",
+                            AccountNumberSnapshot = "EDU-2026-8E2DFRR",
                             CitizenEmailSnapshot = "umairah.kwek.61@example.com",
                             CitizenFullNameSnapshot = "Umairah Kwek",
                             CitizenNricSnapshot = "S0000061B",
@@ -33728,7 +33728,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 666,
-                            AccountNumberSnapshot = "EDU-2026-00000000062",
+                            AccountNumberSnapshot = "EDU-2026-WH6JUY3",
                             CitizenEmailSnapshot = "victor.lim.62@example.com",
                             CitizenFullNameSnapshot = "Victor Lim",
                             CitizenNricSnapshot = "S0000062J",
@@ -33745,7 +33745,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 667,
-                            AccountNumberSnapshot = "EDU-2026-00000000064",
+                            AccountNumberSnapshot = "EDU-2026-G3RY59C",
                             CitizenEmailSnapshot = "xavier.ng.64@example.com",
                             CitizenFullNameSnapshot = "Xavier Ng",
                             CitizenNricSnapshot = "S0000064G",
@@ -33762,7 +33762,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 668,
-                            AccountNumberSnapshot = "EDU-2026-00000000006",
+                            AccountNumberSnapshot = "EDU-2026-XSKCN4U",
                             CitizenEmailSnapshot = "hannah.lee.6@example.com",
                             CitizenFullNameSnapshot = "Hannah Lee",
                             CitizenNricSnapshot = "S0000006Z",
@@ -33779,7 +33779,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 669,
-                            AccountNumberSnapshot = "EDU-2026-00000000056",
+                            AccountNumberSnapshot = "EDU-2026-MG97NU4",
                             CitizenEmailSnapshot = "pranav.foo.56@example.com",
                             CitizenFullNameSnapshot = "Pranav Foo",
                             CitizenNricSnapshot = "S0000056F",
@@ -33796,7 +33796,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 670,
-                            AccountNumberSnapshot = "EDU-2026-00000000057",
+                            AccountNumberSnapshot = "EDU-2026-6BE7RJ7",
                             CitizenEmailSnapshot = "qistina.gan.57@example.com",
                             CitizenFullNameSnapshot = "Qistina Gan",
                             CitizenNricSnapshot = "S0000057D",
@@ -33813,7 +33813,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 671,
-                            AccountNumberSnapshot = "EDU-2026-00000000058",
+                            AccountNumberSnapshot = "EDU-2026-N34SNTV",
                             CitizenEmailSnapshot = "rafael.ho.58@example.com",
                             CitizenFullNameSnapshot = "Rafael Ho",
                             CitizenNricSnapshot = "S0000058B",
@@ -33830,7 +33830,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 672,
-                            AccountNumberSnapshot = "EDU-2026-00000000059",
+                            AccountNumberSnapshot = "EDU-2026-VX6V49Y",
                             CitizenEmailSnapshot = "selina.ismail.59@example.com",
                             CitizenFullNameSnapshot = "Selina Ismail",
                             CitizenNricSnapshot = "S0000059J",
@@ -33847,7 +33847,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 673,
-                            AccountNumberSnapshot = "EDU-2026-00000000060",
+                            AccountNumberSnapshot = "EDU-2026-CZXZH8L",
                             CitizenEmailSnapshot = "terence.jeyaratnam.60@example.com",
                             CitizenFullNameSnapshot = "Terence Jeyaratnam",
                             CitizenNricSnapshot = "S0000060D",
@@ -33864,7 +33864,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 674,
-                            AccountNumberSnapshot = "EDU-2026-00000000061",
+                            AccountNumberSnapshot = "EDU-2026-8E2DFRR",
                             CitizenEmailSnapshot = "umairah.kwek.61@example.com",
                             CitizenFullNameSnapshot = "Umairah Kwek",
                             CitizenNricSnapshot = "S0000061B",
@@ -33881,7 +33881,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 675,
-                            AccountNumberSnapshot = "EDU-2026-00000000062",
+                            AccountNumberSnapshot = "EDU-2026-WH6JUY3",
                             CitizenEmailSnapshot = "victor.lim.62@example.com",
                             CitizenFullNameSnapshot = "Victor Lim",
                             CitizenNricSnapshot = "S0000062J",
@@ -33898,7 +33898,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 676,
-                            AccountNumberSnapshot = "EDU-2026-00000000063",
+                            AccountNumberSnapshot = "EDU-2026-BTCG9WU",
                             CitizenEmailSnapshot = "wen.jie.mohamed.63@example.com",
                             CitizenFullNameSnapshot = "Wen Jie Mohamed",
                             CitizenNricSnapshot = "S0000063I",
@@ -33915,7 +33915,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 677,
-                            AccountNumberSnapshot = "EDU-2026-00000000007",
+                            AccountNumberSnapshot = "EDU-2026-ANKT5X5",
                             CitizenEmailSnapshot = "daniel.wong.7@example.com",
                             CitizenFullNameSnapshot = "Daniel Wong",
                             CitizenNricSnapshot = "S0000007H",
@@ -33932,7 +33932,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 678,
-                            AccountNumberSnapshot = "EDU-2026-00000000066",
+                            AccountNumberSnapshot = "EDU-2026-NVPY2X8",
                             CitizenEmailSnapshot = "zachary.pillai.66@example.com",
                             CitizenFullNameSnapshot = "Zachary Pillai",
                             CitizenNricSnapshot = "S0000066C",
@@ -33949,7 +33949,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 679,
-                            AccountNumberSnapshot = "EDU-2026-00000000067",
+                            AccountNumberSnapshot = "EDU-2026-4LGHC4M",
                             CitizenEmailSnapshot = "adeline.quek.67@example.com",
                             CitizenFullNameSnapshot = "Adeline Quek",
                             CitizenNricSnapshot = "S0000067A",
@@ -33966,7 +33966,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 680,
-                            AccountNumberSnapshot = "EDU-2026-00000000068",
+                            AccountNumberSnapshot = "EDU-2026-CB759N3",
                             CitizenEmailSnapshot = "brandon.rao.68@example.com",
                             CitizenFullNameSnapshot = "Brandon Rao",
                             CitizenNricSnapshot = "S0000068Z",
@@ -33983,7 +33983,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 681,
-                            AccountNumberSnapshot = "EDU-2026-00000000069",
+                            AccountNumberSnapshot = "EDU-2026-AJEBPR6",
                             CitizenEmailSnapshot = "celeste.sim.69@example.com",
                             CitizenFullNameSnapshot = "Celeste Sim",
                             CitizenNricSnapshot = "S0000069H",
@@ -34000,7 +34000,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 682,
-                            AccountNumberSnapshot = "EDU-2026-00000000070",
+                            AccountNumberSnapshot = "EDU-2026-SSB2RJA",
                             CitizenEmailSnapshot = "damien.tan.70@example.com",
                             CitizenFullNameSnapshot = "Damien Tan",
                             CitizenNricSnapshot = "S0000070A",
@@ -34017,7 +34017,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 683,
-                            AccountNumberSnapshot = "EDU-2026-00000000071",
+                            AccountNumberSnapshot = "EDU-2026-BDJT3M6",
                             CitizenEmailSnapshot = "evelyn.uddin.71@example.com",
                             CitizenFullNameSnapshot = "Evelyn Uddin",
                             CitizenNricSnapshot = "S0000071Z",
@@ -34034,7 +34034,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 684,
-                            AccountNumberSnapshot = "EDU-2026-00000000072",
+                            AccountNumberSnapshot = "EDU-2026-UP4EBHA",
                             CitizenEmailSnapshot = "faris.vasquez.72@example.com",
                             CitizenFullNameSnapshot = "Faris Vasquez",
                             CitizenNricSnapshot = "S0000072H",
@@ -34051,7 +34051,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 685,
-                            AccountNumberSnapshot = "EDU-2026-00000000073",
+                            AccountNumberSnapshot = "EDU-2026-6FQKVDV",
                             CitizenEmailSnapshot = "giselle.wong.73@example.com",
                             CitizenFullNameSnapshot = "Giselle Wong",
                             CitizenNricSnapshot = "S0000073F",
@@ -34068,7 +34068,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 686,
-                            AccountNumberSnapshot = "EDU-2026-00000000007",
+                            AccountNumberSnapshot = "EDU-2026-ANKT5X5",
                             CitizenEmailSnapshot = "daniel.wong.7@example.com",
                             CitizenFullNameSnapshot = "Daniel Wong",
                             CitizenNricSnapshot = "S0000007H",
@@ -34085,7 +34085,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 687,
-                            AccountNumberSnapshot = "EDU-2026-00000000065",
+                            AccountNumberSnapshot = "EDU-2026-WXSV77H",
                             CitizenEmailSnapshot = "yasmin.ong.65@example.com",
                             CitizenFullNameSnapshot = "Yasmin Ong",
                             CitizenNricSnapshot = "S0000065E",
@@ -34102,7 +34102,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 688,
-                            AccountNumberSnapshot = "EDU-2026-00000000067",
+                            AccountNumberSnapshot = "EDU-2026-4LGHC4M",
                             CitizenEmailSnapshot = "adeline.quek.67@example.com",
                             CitizenFullNameSnapshot = "Adeline Quek",
                             CitizenNricSnapshot = "S0000067A",
@@ -34119,7 +34119,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 689,
-                            AccountNumberSnapshot = "EDU-2026-00000000068",
+                            AccountNumberSnapshot = "EDU-2026-CB759N3",
                             CitizenEmailSnapshot = "brandon.rao.68@example.com",
                             CitizenFullNameSnapshot = "Brandon Rao",
                             CitizenNricSnapshot = "S0000068Z",
@@ -34136,7 +34136,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 690,
-                            AccountNumberSnapshot = "EDU-2026-00000000069",
+                            AccountNumberSnapshot = "EDU-2026-AJEBPR6",
                             CitizenEmailSnapshot = "celeste.sim.69@example.com",
                             CitizenFullNameSnapshot = "Celeste Sim",
                             CitizenNricSnapshot = "S0000069H",
@@ -34153,7 +34153,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 691,
-                            AccountNumberSnapshot = "EDU-2026-00000000070",
+                            AccountNumberSnapshot = "EDU-2026-SSB2RJA",
                             CitizenEmailSnapshot = "damien.tan.70@example.com",
                             CitizenFullNameSnapshot = "Damien Tan",
                             CitizenNricSnapshot = "S0000070A",
@@ -34170,7 +34170,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 692,
-                            AccountNumberSnapshot = "EDU-2026-00000000071",
+                            AccountNumberSnapshot = "EDU-2026-BDJT3M6",
                             CitizenEmailSnapshot = "evelyn.uddin.71@example.com",
                             CitizenFullNameSnapshot = "Evelyn Uddin",
                             CitizenNricSnapshot = "S0000071Z",
@@ -34187,7 +34187,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 693,
-                            AccountNumberSnapshot = "EDU-2026-00000000072",
+                            AccountNumberSnapshot = "EDU-2026-UP4EBHA",
                             CitizenEmailSnapshot = "faris.vasquez.72@example.com",
                             CitizenFullNameSnapshot = "Faris Vasquez",
                             CitizenNricSnapshot = "S0000072H",
@@ -34204,7 +34204,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 694,
-                            AccountNumberSnapshot = "EDU-2026-00000000073",
+                            AccountNumberSnapshot = "EDU-2026-6FQKVDV",
                             CitizenEmailSnapshot = "giselle.wong.73@example.com",
                             CitizenFullNameSnapshot = "Giselle Wong",
                             CitizenNricSnapshot = "S0000073F",
@@ -34221,7 +34221,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 695,
-                            AccountNumberSnapshot = "EDU-2026-00000000007",
+                            AccountNumberSnapshot = "EDU-2026-ANKT5X5",
                             CitizenEmailSnapshot = "daniel.wong.7@example.com",
                             CitizenFullNameSnapshot = "Daniel Wong",
                             CitizenNricSnapshot = "S0000007H",
@@ -34238,7 +34238,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 696,
-                            AccountNumberSnapshot = "EDU-2026-00000000065",
+                            AccountNumberSnapshot = "EDU-2026-WXSV77H",
                             CitizenEmailSnapshot = "yasmin.ong.65@example.com",
                             CitizenFullNameSnapshot = "Yasmin Ong",
                             CitizenNricSnapshot = "S0000065E",
@@ -34255,7 +34255,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 697,
-                            AccountNumberSnapshot = "EDU-2026-00000000066",
+                            AccountNumberSnapshot = "EDU-2026-NVPY2X8",
                             CitizenEmailSnapshot = "zachary.pillai.66@example.com",
                             CitizenFullNameSnapshot = "Zachary Pillai",
                             CitizenNricSnapshot = "S0000066C",
@@ -34272,7 +34272,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 698,
-                            AccountNumberSnapshot = "EDU-2026-00000000068",
+                            AccountNumberSnapshot = "EDU-2026-CB759N3",
                             CitizenEmailSnapshot = "brandon.rao.68@example.com",
                             CitizenFullNameSnapshot = "Brandon Rao",
                             CitizenNricSnapshot = "S0000068Z",
@@ -34289,7 +34289,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 699,
-                            AccountNumberSnapshot = "EDU-2026-00000000069",
+                            AccountNumberSnapshot = "EDU-2026-AJEBPR6",
                             CitizenEmailSnapshot = "celeste.sim.69@example.com",
                             CitizenFullNameSnapshot = "Celeste Sim",
                             CitizenNricSnapshot = "S0000069H",
@@ -34306,7 +34306,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 700,
-                            AccountNumberSnapshot = "EDU-2026-00000000070",
+                            AccountNumberSnapshot = "EDU-2026-SSB2RJA",
                             CitizenEmailSnapshot = "damien.tan.70@example.com",
                             CitizenFullNameSnapshot = "Damien Tan",
                             CitizenNricSnapshot = "S0000070A",
@@ -34323,7 +34323,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 701,
-                            AccountNumberSnapshot = "EDU-2026-00000000071",
+                            AccountNumberSnapshot = "EDU-2026-BDJT3M6",
                             CitizenEmailSnapshot = "evelyn.uddin.71@example.com",
                             CitizenFullNameSnapshot = "Evelyn Uddin",
                             CitizenNricSnapshot = "S0000071Z",
@@ -34340,7 +34340,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 702,
-                            AccountNumberSnapshot = "EDU-2026-00000000072",
+                            AccountNumberSnapshot = "EDU-2026-UP4EBHA",
                             CitizenEmailSnapshot = "faris.vasquez.72@example.com",
                             CitizenFullNameSnapshot = "Faris Vasquez",
                             CitizenNricSnapshot = "S0000072H",
@@ -34357,7 +34357,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 703,
-                            AccountNumberSnapshot = "EDU-2026-00000000073",
+                            AccountNumberSnapshot = "EDU-2026-6FQKVDV",
                             CitizenEmailSnapshot = "giselle.wong.73@example.com",
                             CitizenFullNameSnapshot = "Giselle Wong",
                             CitizenNricSnapshot = "S0000073F",
@@ -34374,7 +34374,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 704,
-                            AccountNumberSnapshot = "EDU-2026-00000000007",
+                            AccountNumberSnapshot = "EDU-2026-ANKT5X5",
                             CitizenEmailSnapshot = "daniel.wong.7@example.com",
                             CitizenFullNameSnapshot = "Daniel Wong",
                             CitizenNricSnapshot = "S0000007H",
@@ -34391,7 +34391,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 705,
-                            AccountNumberSnapshot = "EDU-2026-00000000065",
+                            AccountNumberSnapshot = "EDU-2026-WXSV77H",
                             CitizenEmailSnapshot = "yasmin.ong.65@example.com",
                             CitizenFullNameSnapshot = "Yasmin Ong",
                             CitizenNricSnapshot = "S0000065E",
@@ -34408,7 +34408,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 706,
-                            AccountNumberSnapshot = "EDU-2026-00000000066",
+                            AccountNumberSnapshot = "EDU-2026-NVPY2X8",
                             CitizenEmailSnapshot = "zachary.pillai.66@example.com",
                             CitizenFullNameSnapshot = "Zachary Pillai",
                             CitizenNricSnapshot = "S0000066C",
@@ -34425,7 +34425,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 707,
-                            AccountNumberSnapshot = "EDU-2026-00000000067",
+                            AccountNumberSnapshot = "EDU-2026-4LGHC4M",
                             CitizenEmailSnapshot = "adeline.quek.67@example.com",
                             CitizenFullNameSnapshot = "Adeline Quek",
                             CitizenNricSnapshot = "S0000067A",
@@ -34442,7 +34442,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 708,
-                            AccountNumberSnapshot = "EDU-2026-00000000069",
+                            AccountNumberSnapshot = "EDU-2026-AJEBPR6",
                             CitizenEmailSnapshot = "celeste.sim.69@example.com",
                             CitizenFullNameSnapshot = "Celeste Sim",
                             CitizenNricSnapshot = "S0000069H",
@@ -34459,7 +34459,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 709,
-                            AccountNumberSnapshot = "EDU-2026-00000000070",
+                            AccountNumberSnapshot = "EDU-2026-SSB2RJA",
                             CitizenEmailSnapshot = "damien.tan.70@example.com",
                             CitizenFullNameSnapshot = "Damien Tan",
                             CitizenNricSnapshot = "S0000070A",
@@ -34476,7 +34476,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 710,
-                            AccountNumberSnapshot = "EDU-2026-00000000071",
+                            AccountNumberSnapshot = "EDU-2026-BDJT3M6",
                             CitizenEmailSnapshot = "evelyn.uddin.71@example.com",
                             CitizenFullNameSnapshot = "Evelyn Uddin",
                             CitizenNricSnapshot = "S0000071Z",
@@ -34493,7 +34493,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 711,
-                            AccountNumberSnapshot = "EDU-2026-00000000072",
+                            AccountNumberSnapshot = "EDU-2026-UP4EBHA",
                             CitizenEmailSnapshot = "faris.vasquez.72@example.com",
                             CitizenFullNameSnapshot = "Faris Vasquez",
                             CitizenNricSnapshot = "S0000072H",
@@ -34510,7 +34510,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 712,
-                            AccountNumberSnapshot = "EDU-2026-00000000073",
+                            AccountNumberSnapshot = "EDU-2026-6FQKVDV",
                             CitizenEmailSnapshot = "giselle.wong.73@example.com",
                             CitizenFullNameSnapshot = "Giselle Wong",
                             CitizenNricSnapshot = "S0000073F",
@@ -34527,7 +34527,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 713,
-                            AccountNumberSnapshot = "EDU-2026-00000000007",
+                            AccountNumberSnapshot = "EDU-2026-ANKT5X5",
                             CitizenEmailSnapshot = "daniel.wong.7@example.com",
                             CitizenFullNameSnapshot = "Daniel Wong",
                             CitizenNricSnapshot = "S0000007H",
@@ -34544,7 +34544,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 714,
-                            AccountNumberSnapshot = "EDU-2026-00000000065",
+                            AccountNumberSnapshot = "EDU-2026-WXSV77H",
                             CitizenEmailSnapshot = "yasmin.ong.65@example.com",
                             CitizenFullNameSnapshot = "Yasmin Ong",
                             CitizenNricSnapshot = "S0000065E",
@@ -34561,7 +34561,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 715,
-                            AccountNumberSnapshot = "EDU-2026-00000000066",
+                            AccountNumberSnapshot = "EDU-2026-NVPY2X8",
                             CitizenEmailSnapshot = "zachary.pillai.66@example.com",
                             CitizenFullNameSnapshot = "Zachary Pillai",
                             CitizenNricSnapshot = "S0000066C",
@@ -34578,7 +34578,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 716,
-                            AccountNumberSnapshot = "EDU-2026-00000000067",
+                            AccountNumberSnapshot = "EDU-2026-4LGHC4M",
                             CitizenEmailSnapshot = "adeline.quek.67@example.com",
                             CitizenFullNameSnapshot = "Adeline Quek",
                             CitizenNricSnapshot = "S0000067A",
@@ -34595,7 +34595,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 717,
-                            AccountNumberSnapshot = "EDU-2026-00000000068",
+                            AccountNumberSnapshot = "EDU-2026-CB759N3",
                             CitizenEmailSnapshot = "brandon.rao.68@example.com",
                             CitizenFullNameSnapshot = "Brandon Rao",
                             CitizenNricSnapshot = "S0000068Z",
@@ -34612,7 +34612,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 718,
-                            AccountNumberSnapshot = "EDU-2026-00000000070",
+                            AccountNumberSnapshot = "EDU-2026-SSB2RJA",
                             CitizenEmailSnapshot = "damien.tan.70@example.com",
                             CitizenFullNameSnapshot = "Damien Tan",
                             CitizenNricSnapshot = "S0000070A",
@@ -34629,7 +34629,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 719,
-                            AccountNumberSnapshot = "EDU-2026-00000000071",
+                            AccountNumberSnapshot = "EDU-2026-BDJT3M6",
                             CitizenEmailSnapshot = "evelyn.uddin.71@example.com",
                             CitizenFullNameSnapshot = "Evelyn Uddin",
                             CitizenNricSnapshot = "S0000071Z",
@@ -34646,7 +34646,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 720,
-                            AccountNumberSnapshot = "EDU-2026-00000000072",
+                            AccountNumberSnapshot = "EDU-2026-UP4EBHA",
                             CitizenEmailSnapshot = "faris.vasquez.72@example.com",
                             CitizenFullNameSnapshot = "Faris Vasquez",
                             CitizenNricSnapshot = "S0000072H",
@@ -34663,7 +34663,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 721,
-                            AccountNumberSnapshot = "EDU-2026-00000000073",
+                            AccountNumberSnapshot = "EDU-2026-6FQKVDV",
                             CitizenEmailSnapshot = "giselle.wong.73@example.com",
                             CitizenFullNameSnapshot = "Giselle Wong",
                             CitizenNricSnapshot = "S0000073F",
@@ -34680,7 +34680,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 722,
-                            AccountNumberSnapshot = "EDU-2026-00000000007",
+                            AccountNumberSnapshot = "EDU-2026-ANKT5X5",
                             CitizenEmailSnapshot = "daniel.wong.7@example.com",
                             CitizenFullNameSnapshot = "Daniel Wong",
                             CitizenNricSnapshot = "S0000007H",
@@ -34697,7 +34697,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 723,
-                            AccountNumberSnapshot = "EDU-2026-00000000065",
+                            AccountNumberSnapshot = "EDU-2026-WXSV77H",
                             CitizenEmailSnapshot = "yasmin.ong.65@example.com",
                             CitizenFullNameSnapshot = "Yasmin Ong",
                             CitizenNricSnapshot = "S0000065E",
@@ -34714,7 +34714,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 724,
-                            AccountNumberSnapshot = "EDU-2026-00000000066",
+                            AccountNumberSnapshot = "EDU-2026-NVPY2X8",
                             CitizenEmailSnapshot = "zachary.pillai.66@example.com",
                             CitizenFullNameSnapshot = "Zachary Pillai",
                             CitizenNricSnapshot = "S0000066C",
@@ -34731,7 +34731,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 725,
-                            AccountNumberSnapshot = "EDU-2026-00000000067",
+                            AccountNumberSnapshot = "EDU-2026-4LGHC4M",
                             CitizenEmailSnapshot = "adeline.quek.67@example.com",
                             CitizenFullNameSnapshot = "Adeline Quek",
                             CitizenNricSnapshot = "S0000067A",
@@ -34748,7 +34748,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 726,
-                            AccountNumberSnapshot = "EDU-2026-00000000068",
+                            AccountNumberSnapshot = "EDU-2026-CB759N3",
                             CitizenEmailSnapshot = "brandon.rao.68@example.com",
                             CitizenFullNameSnapshot = "Brandon Rao",
                             CitizenNricSnapshot = "S0000068Z",
@@ -34765,7 +34765,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 727,
-                            AccountNumberSnapshot = "EDU-2026-00000000069",
+                            AccountNumberSnapshot = "EDU-2026-AJEBPR6",
                             CitizenEmailSnapshot = "celeste.sim.69@example.com",
                             CitizenFullNameSnapshot = "Celeste Sim",
                             CitizenNricSnapshot = "S0000069H",
@@ -34782,7 +34782,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 728,
-                            AccountNumberSnapshot = "EDU-2026-00000000071",
+                            AccountNumberSnapshot = "EDU-2026-BDJT3M6",
                             CitizenEmailSnapshot = "evelyn.uddin.71@example.com",
                             CitizenFullNameSnapshot = "Evelyn Uddin",
                             CitizenNricSnapshot = "S0000071Z",
@@ -34799,7 +34799,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 729,
-                            AccountNumberSnapshot = "EDU-2026-00000000072",
+                            AccountNumberSnapshot = "EDU-2026-UP4EBHA",
                             CitizenEmailSnapshot = "faris.vasquez.72@example.com",
                             CitizenFullNameSnapshot = "Faris Vasquez",
                             CitizenNricSnapshot = "S0000072H",
@@ -34816,7 +34816,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 730,
-                            AccountNumberSnapshot = "EDU-2026-00000000073",
+                            AccountNumberSnapshot = "EDU-2026-6FQKVDV",
                             CitizenEmailSnapshot = "giselle.wong.73@example.com",
                             CitizenFullNameSnapshot = "Giselle Wong",
                             CitizenNricSnapshot = "S0000073F",
@@ -34833,7 +34833,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 731,
-                            AccountNumberSnapshot = "EDU-2026-00000000007",
+                            AccountNumberSnapshot = "EDU-2026-ANKT5X5",
                             CitizenEmailSnapshot = "daniel.wong.7@example.com",
                             CitizenFullNameSnapshot = "Daniel Wong",
                             CitizenNricSnapshot = "S0000007H",
@@ -34850,7 +34850,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 732,
-                            AccountNumberSnapshot = "EDU-2026-00000000065",
+                            AccountNumberSnapshot = "EDU-2026-WXSV77H",
                             CitizenEmailSnapshot = "yasmin.ong.65@example.com",
                             CitizenFullNameSnapshot = "Yasmin Ong",
                             CitizenNricSnapshot = "S0000065E",
@@ -34867,7 +34867,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 733,
-                            AccountNumberSnapshot = "EDU-2026-00000000066",
+                            AccountNumberSnapshot = "EDU-2026-NVPY2X8",
                             CitizenEmailSnapshot = "zachary.pillai.66@example.com",
                             CitizenFullNameSnapshot = "Zachary Pillai",
                             CitizenNricSnapshot = "S0000066C",
@@ -34884,7 +34884,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 734,
-                            AccountNumberSnapshot = "EDU-2026-00000000067",
+                            AccountNumberSnapshot = "EDU-2026-4LGHC4M",
                             CitizenEmailSnapshot = "adeline.quek.67@example.com",
                             CitizenFullNameSnapshot = "Adeline Quek",
                             CitizenNricSnapshot = "S0000067A",
@@ -34901,7 +34901,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 735,
-                            AccountNumberSnapshot = "EDU-2026-00000000068",
+                            AccountNumberSnapshot = "EDU-2026-CB759N3",
                             CitizenEmailSnapshot = "brandon.rao.68@example.com",
                             CitizenFullNameSnapshot = "Brandon Rao",
                             CitizenNricSnapshot = "S0000068Z",
@@ -34918,7 +34918,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 736,
-                            AccountNumberSnapshot = "EDU-2026-00000000069",
+                            AccountNumberSnapshot = "EDU-2026-AJEBPR6",
                             CitizenEmailSnapshot = "celeste.sim.69@example.com",
                             CitizenFullNameSnapshot = "Celeste Sim",
                             CitizenNricSnapshot = "S0000069H",
@@ -34935,7 +34935,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 737,
-                            AccountNumberSnapshot = "EDU-2026-00000000070",
+                            AccountNumberSnapshot = "EDU-2026-SSB2RJA",
                             CitizenEmailSnapshot = "damien.tan.70@example.com",
                             CitizenFullNameSnapshot = "Damien Tan",
                             CitizenNricSnapshot = "S0000070A",
@@ -34952,7 +34952,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 738,
-                            AccountNumberSnapshot = "EDU-2026-00000000072",
+                            AccountNumberSnapshot = "EDU-2026-UP4EBHA",
                             CitizenEmailSnapshot = "faris.vasquez.72@example.com",
                             CitizenFullNameSnapshot = "Faris Vasquez",
                             CitizenNricSnapshot = "S0000072H",
@@ -34969,7 +34969,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 739,
-                            AccountNumberSnapshot = "EDU-2026-00000000073",
+                            AccountNumberSnapshot = "EDU-2026-6FQKVDV",
                             CitizenEmailSnapshot = "giselle.wong.73@example.com",
                             CitizenFullNameSnapshot = "Giselle Wong",
                             CitizenNricSnapshot = "S0000073F",
@@ -34986,7 +34986,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 740,
-                            AccountNumberSnapshot = "EDU-2026-00000000007",
+                            AccountNumberSnapshot = "EDU-2026-ANKT5X5",
                             CitizenEmailSnapshot = "daniel.wong.7@example.com",
                             CitizenFullNameSnapshot = "Daniel Wong",
                             CitizenNricSnapshot = "S0000007H",
@@ -35003,7 +35003,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 741,
-                            AccountNumberSnapshot = "EDU-2026-00000000065",
+                            AccountNumberSnapshot = "EDU-2026-WXSV77H",
                             CitizenEmailSnapshot = "yasmin.ong.65@example.com",
                             CitizenFullNameSnapshot = "Yasmin Ong",
                             CitizenNricSnapshot = "S0000065E",
@@ -35020,7 +35020,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 742,
-                            AccountNumberSnapshot = "EDU-2026-00000000066",
+                            AccountNumberSnapshot = "EDU-2026-NVPY2X8",
                             CitizenEmailSnapshot = "zachary.pillai.66@example.com",
                             CitizenFullNameSnapshot = "Zachary Pillai",
                             CitizenNricSnapshot = "S0000066C",
@@ -35037,7 +35037,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 743,
-                            AccountNumberSnapshot = "EDU-2026-00000000067",
+                            AccountNumberSnapshot = "EDU-2026-4LGHC4M",
                             CitizenEmailSnapshot = "adeline.quek.67@example.com",
                             CitizenFullNameSnapshot = "Adeline Quek",
                             CitizenNricSnapshot = "S0000067A",
@@ -35054,7 +35054,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 744,
-                            AccountNumberSnapshot = "EDU-2026-00000000068",
+                            AccountNumberSnapshot = "EDU-2026-CB759N3",
                             CitizenEmailSnapshot = "brandon.rao.68@example.com",
                             CitizenFullNameSnapshot = "Brandon Rao",
                             CitizenNricSnapshot = "S0000068Z",
@@ -35071,7 +35071,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 745,
-                            AccountNumberSnapshot = "EDU-2026-00000000069",
+                            AccountNumberSnapshot = "EDU-2026-AJEBPR6",
                             CitizenEmailSnapshot = "celeste.sim.69@example.com",
                             CitizenFullNameSnapshot = "Celeste Sim",
                             CitizenNricSnapshot = "S0000069H",
@@ -35088,7 +35088,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 746,
-                            AccountNumberSnapshot = "EDU-2026-00000000070",
+                            AccountNumberSnapshot = "EDU-2026-SSB2RJA",
                             CitizenEmailSnapshot = "damien.tan.70@example.com",
                             CitizenFullNameSnapshot = "Damien Tan",
                             CitizenNricSnapshot = "S0000070A",
@@ -35105,7 +35105,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 747,
-                            AccountNumberSnapshot = "EDU-2026-00000000071",
+                            AccountNumberSnapshot = "EDU-2026-BDJT3M6",
                             CitizenEmailSnapshot = "evelyn.uddin.71@example.com",
                             CitizenFullNameSnapshot = "Evelyn Uddin",
                             CitizenNricSnapshot = "S0000071Z",
@@ -35122,7 +35122,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 748,
-                            AccountNumberSnapshot = "EDU-2026-00000000073",
+                            AccountNumberSnapshot = "EDU-2026-6FQKVDV",
                             CitizenEmailSnapshot = "giselle.wong.73@example.com",
                             CitizenFullNameSnapshot = "Giselle Wong",
                             CitizenNricSnapshot = "S0000073F",
@@ -35139,7 +35139,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 749,
-                            AccountNumberSnapshot = "EDU-2026-00000000007",
+                            AccountNumberSnapshot = "EDU-2026-ANKT5X5",
                             CitizenEmailSnapshot = "daniel.wong.7@example.com",
                             CitizenFullNameSnapshot = "Daniel Wong",
                             CitizenNricSnapshot = "S0000007H",
@@ -35156,7 +35156,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 750,
-                            AccountNumberSnapshot = "EDU-2026-00000000065",
+                            AccountNumberSnapshot = "EDU-2026-WXSV77H",
                             CitizenEmailSnapshot = "yasmin.ong.65@example.com",
                             CitizenFullNameSnapshot = "Yasmin Ong",
                             CitizenNricSnapshot = "S0000065E",
@@ -35173,7 +35173,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 751,
-                            AccountNumberSnapshot = "EDU-2026-00000000066",
+                            AccountNumberSnapshot = "EDU-2026-NVPY2X8",
                             CitizenEmailSnapshot = "zachary.pillai.66@example.com",
                             CitizenFullNameSnapshot = "Zachary Pillai",
                             CitizenNricSnapshot = "S0000066C",
@@ -35190,7 +35190,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 752,
-                            AccountNumberSnapshot = "EDU-2026-00000000067",
+                            AccountNumberSnapshot = "EDU-2026-4LGHC4M",
                             CitizenEmailSnapshot = "adeline.quek.67@example.com",
                             CitizenFullNameSnapshot = "Adeline Quek",
                             CitizenNricSnapshot = "S0000067A",
@@ -35207,7 +35207,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 753,
-                            AccountNumberSnapshot = "EDU-2026-00000000068",
+                            AccountNumberSnapshot = "EDU-2026-CB759N3",
                             CitizenEmailSnapshot = "brandon.rao.68@example.com",
                             CitizenFullNameSnapshot = "Brandon Rao",
                             CitizenNricSnapshot = "S0000068Z",
@@ -35224,7 +35224,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 754,
-                            AccountNumberSnapshot = "EDU-2026-00000000069",
+                            AccountNumberSnapshot = "EDU-2026-AJEBPR6",
                             CitizenEmailSnapshot = "celeste.sim.69@example.com",
                             CitizenFullNameSnapshot = "Celeste Sim",
                             CitizenNricSnapshot = "S0000069H",
@@ -35241,7 +35241,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 755,
-                            AccountNumberSnapshot = "EDU-2026-00000000070",
+                            AccountNumberSnapshot = "EDU-2026-SSB2RJA",
                             CitizenEmailSnapshot = "damien.tan.70@example.com",
                             CitizenFullNameSnapshot = "Damien Tan",
                             CitizenNricSnapshot = "S0000070A",
@@ -35258,7 +35258,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 756,
-                            AccountNumberSnapshot = "EDU-2026-00000000071",
+                            AccountNumberSnapshot = "EDU-2026-BDJT3M6",
                             CitizenEmailSnapshot = "evelyn.uddin.71@example.com",
                             CitizenFullNameSnapshot = "Evelyn Uddin",
                             CitizenNricSnapshot = "S0000071Z",
@@ -35275,7 +35275,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 757,
-                            AccountNumberSnapshot = "EDU-2026-00000000072",
+                            AccountNumberSnapshot = "EDU-2026-UP4EBHA",
                             CitizenEmailSnapshot = "faris.vasquez.72@example.com",
                             CitizenFullNameSnapshot = "Faris Vasquez",
                             CitizenNricSnapshot = "S0000072H",
@@ -35292,7 +35292,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 758,
-                            AccountNumberSnapshot = "EDU-2026-00000000008",
+                            AccountNumberSnapshot = "EDU-2026-S553K8A",
                             CitizenEmailSnapshot = "sofia.chen.8@example.com",
                             CitizenFullNameSnapshot = "Sofia Chen",
                             CitizenNricSnapshot = "S0000008F",
@@ -35309,7 +35309,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 759,
-                            AccountNumberSnapshot = "EDU-2026-00000000075",
+                            AccountNumberSnapshot = "EDU-2026-WYT2BGP",
                             CitizenEmailSnapshot = "irene.yeo.75@example.com",
                             CitizenFullNameSnapshot = "Irene Yeo",
                             CitizenNricSnapshot = "S0000075B",
@@ -35326,7 +35326,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 760,
-                            AccountNumberSnapshot = "EDU-2026-00000000076",
+                            AccountNumberSnapshot = "EDU-2026-Q22WCNJ",
                             CitizenEmailSnapshot = "jonas.zainal.76@example.com",
                             CitizenFullNameSnapshot = "Jonas Zainal",
                             CitizenNricSnapshot = "S0000076J",
@@ -35343,7 +35343,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 761,
-                            AccountNumberSnapshot = "EDU-2026-00000000077",
+                            AccountNumberSnapshot = "EDU-2026-MQYB5BX",
                             CitizenEmailSnapshot = "kavya.ang.77@example.com",
                             CitizenFullNameSnapshot = "Kavya Ang",
                             CitizenNricSnapshot = "S0000077I",
@@ -35360,7 +35360,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 762,
-                            AccountNumberSnapshot = "EDU-2026-00000000078",
+                            AccountNumberSnapshot = "EDU-2026-ZQ373CC",
                             CitizenEmailSnapshot = "lydia.bala.78@example.com",
                             CitizenFullNameSnapshot = "Lydia Bala",
                             CitizenNricSnapshot = "S0000078G",
@@ -35377,7 +35377,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 763,
-                            AccountNumberSnapshot = "EDU-2026-00000000079",
+                            AccountNumberSnapshot = "EDU-2026-6X7Q9DZ",
                             CitizenEmailSnapshot = "malcolm.chew.79@example.com",
                             CitizenFullNameSnapshot = "Malcolm Chew",
                             CitizenNricSnapshot = "S0000079E",
@@ -35394,7 +35394,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 764,
-                            AccountNumberSnapshot = "EDU-2026-00000000080",
+                            AccountNumberSnapshot = "EDU-2026-WEW8V66",
                             CitizenEmailSnapshot = "nadia.das.80@example.com",
                             CitizenFullNameSnapshot = "Nadia Das",
                             CitizenNricSnapshot = "S0000080I",
@@ -35411,7 +35411,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 765,
-                            AccountNumberSnapshot = "EDU-2026-00000000081",
+                            AccountNumberSnapshot = "EDU-2026-N34HPDZ",
                             CitizenEmailSnapshot = "alina.foo.81@example.com",
                             CitizenFullNameSnapshot = "Alina Foo",
                             CitizenNricSnapshot = "S0000081G",
@@ -35428,7 +35428,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 766,
-                            AccountNumberSnapshot = "EDU-2026-00000000082",
+                            AccountNumberSnapshot = "EDU-2026-QF2TKBF",
                             CitizenEmailSnapshot = "benjamin.gan.82@example.com",
                             CitizenFullNameSnapshot = "Benjamin Gan",
                             CitizenNricSnapshot = "S0000082E",
@@ -35445,7 +35445,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 767,
-                            AccountNumberSnapshot = "EDU-2026-00000000008",
+                            AccountNumberSnapshot = "EDU-2026-S553K8A",
                             CitizenEmailSnapshot = "sofia.chen.8@example.com",
                             CitizenFullNameSnapshot = "Sofia Chen",
                             CitizenNricSnapshot = "S0000008F",
@@ -35462,7 +35462,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 768,
-                            AccountNumberSnapshot = "EDU-2026-00000000074",
+                            AccountNumberSnapshot = "EDU-2026-QD3M8AQ",
                             CitizenEmailSnapshot = "haziq.xu.74@example.com",
                             CitizenFullNameSnapshot = "Haziq Xu",
                             CitizenNricSnapshot = "S0000074D",
@@ -35479,7 +35479,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 769,
-                            AccountNumberSnapshot = "EDU-2026-00000000076",
+                            AccountNumberSnapshot = "EDU-2026-Q22WCNJ",
                             CitizenEmailSnapshot = "jonas.zainal.76@example.com",
                             CitizenFullNameSnapshot = "Jonas Zainal",
                             CitizenNricSnapshot = "S0000076J",
@@ -35496,7 +35496,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 770,
-                            AccountNumberSnapshot = "EDU-2026-00000000077",
+                            AccountNumberSnapshot = "EDU-2026-MQYB5BX",
                             CitizenEmailSnapshot = "kavya.ang.77@example.com",
                             CitizenFullNameSnapshot = "Kavya Ang",
                             CitizenNricSnapshot = "S0000077I",
@@ -35513,7 +35513,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 771,
-                            AccountNumberSnapshot = "EDU-2026-00000000078",
+                            AccountNumberSnapshot = "EDU-2026-ZQ373CC",
                             CitizenEmailSnapshot = "lydia.bala.78@example.com",
                             CitizenFullNameSnapshot = "Lydia Bala",
                             CitizenNricSnapshot = "S0000078G",
@@ -35530,7 +35530,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 772,
-                            AccountNumberSnapshot = "EDU-2026-00000000079",
+                            AccountNumberSnapshot = "EDU-2026-6X7Q9DZ",
                             CitizenEmailSnapshot = "malcolm.chew.79@example.com",
                             CitizenFullNameSnapshot = "Malcolm Chew",
                             CitizenNricSnapshot = "S0000079E",
@@ -35547,7 +35547,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 773,
-                            AccountNumberSnapshot = "EDU-2026-00000000080",
+                            AccountNumberSnapshot = "EDU-2026-WEW8V66",
                             CitizenEmailSnapshot = "nadia.das.80@example.com",
                             CitizenFullNameSnapshot = "Nadia Das",
                             CitizenNricSnapshot = "S0000080I",
@@ -35564,7 +35564,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 774,
-                            AccountNumberSnapshot = "EDU-2026-00000000081",
+                            AccountNumberSnapshot = "EDU-2026-N34HPDZ",
                             CitizenEmailSnapshot = "alina.foo.81@example.com",
                             CitizenFullNameSnapshot = "Alina Foo",
                             CitizenNricSnapshot = "S0000081G",
@@ -35581,7 +35581,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 775,
-                            AccountNumberSnapshot = "EDU-2026-00000000082",
+                            AccountNumberSnapshot = "EDU-2026-QF2TKBF",
                             CitizenEmailSnapshot = "benjamin.gan.82@example.com",
                             CitizenFullNameSnapshot = "Benjamin Gan",
                             CitizenNricSnapshot = "S0000082E",
@@ -35598,7 +35598,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 776,
-                            AccountNumberSnapshot = "EDU-2026-00000000008",
+                            AccountNumberSnapshot = "EDU-2026-S553K8A",
                             CitizenEmailSnapshot = "sofia.chen.8@example.com",
                             CitizenFullNameSnapshot = "Sofia Chen",
                             CitizenNricSnapshot = "S0000008F",
@@ -35615,7 +35615,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 777,
-                            AccountNumberSnapshot = "EDU-2026-00000000074",
+                            AccountNumberSnapshot = "EDU-2026-QD3M8AQ",
                             CitizenEmailSnapshot = "haziq.xu.74@example.com",
                             CitizenFullNameSnapshot = "Haziq Xu",
                             CitizenNricSnapshot = "S0000074D",
@@ -35632,7 +35632,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 778,
-                            AccountNumberSnapshot = "EDU-2026-00000000075",
+                            AccountNumberSnapshot = "EDU-2026-WYT2BGP",
                             CitizenEmailSnapshot = "irene.yeo.75@example.com",
                             CitizenFullNameSnapshot = "Irene Yeo",
                             CitizenNricSnapshot = "S0000075B",
@@ -35649,7 +35649,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 779,
-                            AccountNumberSnapshot = "EDU-2026-00000000077",
+                            AccountNumberSnapshot = "EDU-2026-MQYB5BX",
                             CitizenEmailSnapshot = "kavya.ang.77@example.com",
                             CitizenFullNameSnapshot = "Kavya Ang",
                             CitizenNricSnapshot = "S0000077I",
@@ -35666,7 +35666,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 780,
-                            AccountNumberSnapshot = "EDU-2026-00000000078",
+                            AccountNumberSnapshot = "EDU-2026-ZQ373CC",
                             CitizenEmailSnapshot = "lydia.bala.78@example.com",
                             CitizenFullNameSnapshot = "Lydia Bala",
                             CitizenNricSnapshot = "S0000078G",
@@ -35683,7 +35683,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 781,
-                            AccountNumberSnapshot = "EDU-2026-00000000079",
+                            AccountNumberSnapshot = "EDU-2026-6X7Q9DZ",
                             CitizenEmailSnapshot = "malcolm.chew.79@example.com",
                             CitizenFullNameSnapshot = "Malcolm Chew",
                             CitizenNricSnapshot = "S0000079E",
@@ -35700,7 +35700,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 782,
-                            AccountNumberSnapshot = "EDU-2026-00000000080",
+                            AccountNumberSnapshot = "EDU-2026-WEW8V66",
                             CitizenEmailSnapshot = "nadia.das.80@example.com",
                             CitizenFullNameSnapshot = "Nadia Das",
                             CitizenNricSnapshot = "S0000080I",
@@ -35717,7 +35717,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 783,
-                            AccountNumberSnapshot = "EDU-2026-00000000081",
+                            AccountNumberSnapshot = "EDU-2026-N34HPDZ",
                             CitizenEmailSnapshot = "alina.foo.81@example.com",
                             CitizenFullNameSnapshot = "Alina Foo",
                             CitizenNricSnapshot = "S0000081G",
@@ -35734,7 +35734,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 784,
-                            AccountNumberSnapshot = "EDU-2026-00000000082",
+                            AccountNumberSnapshot = "EDU-2026-QF2TKBF",
                             CitizenEmailSnapshot = "benjamin.gan.82@example.com",
                             CitizenFullNameSnapshot = "Benjamin Gan",
                             CitizenNricSnapshot = "S0000082E",
@@ -35751,7 +35751,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 785,
-                            AccountNumberSnapshot = "EDU-2026-00000000008",
+                            AccountNumberSnapshot = "EDU-2026-S553K8A",
                             CitizenEmailSnapshot = "sofia.chen.8@example.com",
                             CitizenFullNameSnapshot = "Sofia Chen",
                             CitizenNricSnapshot = "S0000008F",
@@ -35768,7 +35768,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 786,
-                            AccountNumberSnapshot = "EDU-2026-00000000074",
+                            AccountNumberSnapshot = "EDU-2026-QD3M8AQ",
                             CitizenEmailSnapshot = "haziq.xu.74@example.com",
                             CitizenFullNameSnapshot = "Haziq Xu",
                             CitizenNricSnapshot = "S0000074D",
@@ -35785,7 +35785,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 787,
-                            AccountNumberSnapshot = "EDU-2026-00000000075",
+                            AccountNumberSnapshot = "EDU-2026-WYT2BGP",
                             CitizenEmailSnapshot = "irene.yeo.75@example.com",
                             CitizenFullNameSnapshot = "Irene Yeo",
                             CitizenNricSnapshot = "S0000075B",
@@ -35802,7 +35802,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 788,
-                            AccountNumberSnapshot = "EDU-2026-00000000076",
+                            AccountNumberSnapshot = "EDU-2026-Q22WCNJ",
                             CitizenEmailSnapshot = "jonas.zainal.76@example.com",
                             CitizenFullNameSnapshot = "Jonas Zainal",
                             CitizenNricSnapshot = "S0000076J",
@@ -35819,7 +35819,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 789,
-                            AccountNumberSnapshot = "EDU-2026-00000000078",
+                            AccountNumberSnapshot = "EDU-2026-ZQ373CC",
                             CitizenEmailSnapshot = "lydia.bala.78@example.com",
                             CitizenFullNameSnapshot = "Lydia Bala",
                             CitizenNricSnapshot = "S0000078G",
@@ -35836,7 +35836,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 790,
-                            AccountNumberSnapshot = "EDU-2026-00000000079",
+                            AccountNumberSnapshot = "EDU-2026-6X7Q9DZ",
                             CitizenEmailSnapshot = "malcolm.chew.79@example.com",
                             CitizenFullNameSnapshot = "Malcolm Chew",
                             CitizenNricSnapshot = "S0000079E",
@@ -35853,7 +35853,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 791,
-                            AccountNumberSnapshot = "EDU-2026-00000000080",
+                            AccountNumberSnapshot = "EDU-2026-WEW8V66",
                             CitizenEmailSnapshot = "nadia.das.80@example.com",
                             CitizenFullNameSnapshot = "Nadia Das",
                             CitizenNricSnapshot = "S0000080I",
@@ -35870,7 +35870,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 792,
-                            AccountNumberSnapshot = "EDU-2026-00000000081",
+                            AccountNumberSnapshot = "EDU-2026-N34HPDZ",
                             CitizenEmailSnapshot = "alina.foo.81@example.com",
                             CitizenFullNameSnapshot = "Alina Foo",
                             CitizenNricSnapshot = "S0000081G",
@@ -35887,7 +35887,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 793,
-                            AccountNumberSnapshot = "EDU-2026-00000000082",
+                            AccountNumberSnapshot = "EDU-2026-QF2TKBF",
                             CitizenEmailSnapshot = "benjamin.gan.82@example.com",
                             CitizenFullNameSnapshot = "Benjamin Gan",
                             CitizenNricSnapshot = "S0000082E",
@@ -35904,7 +35904,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 794,
-                            AccountNumberSnapshot = "EDU-2026-00000000008",
+                            AccountNumberSnapshot = "EDU-2026-S553K8A",
                             CitizenEmailSnapshot = "sofia.chen.8@example.com",
                             CitizenFullNameSnapshot = "Sofia Chen",
                             CitizenNricSnapshot = "S0000008F",
@@ -35921,7 +35921,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 795,
-                            AccountNumberSnapshot = "EDU-2026-00000000074",
+                            AccountNumberSnapshot = "EDU-2026-QD3M8AQ",
                             CitizenEmailSnapshot = "haziq.xu.74@example.com",
                             CitizenFullNameSnapshot = "Haziq Xu",
                             CitizenNricSnapshot = "S0000074D",
@@ -35938,7 +35938,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 796,
-                            AccountNumberSnapshot = "EDU-2026-00000000075",
+                            AccountNumberSnapshot = "EDU-2026-WYT2BGP",
                             CitizenEmailSnapshot = "irene.yeo.75@example.com",
                             CitizenFullNameSnapshot = "Irene Yeo",
                             CitizenNricSnapshot = "S0000075B",
@@ -35955,7 +35955,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 797,
-                            AccountNumberSnapshot = "EDU-2026-00000000076",
+                            AccountNumberSnapshot = "EDU-2026-Q22WCNJ",
                             CitizenEmailSnapshot = "jonas.zainal.76@example.com",
                             CitizenFullNameSnapshot = "Jonas Zainal",
                             CitizenNricSnapshot = "S0000076J",
@@ -35972,7 +35972,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 798,
-                            AccountNumberSnapshot = "EDU-2026-00000000077",
+                            AccountNumberSnapshot = "EDU-2026-MQYB5BX",
                             CitizenEmailSnapshot = "kavya.ang.77@example.com",
                             CitizenFullNameSnapshot = "Kavya Ang",
                             CitizenNricSnapshot = "S0000077I",
@@ -35989,7 +35989,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 799,
-                            AccountNumberSnapshot = "EDU-2026-00000000079",
+                            AccountNumberSnapshot = "EDU-2026-6X7Q9DZ",
                             CitizenEmailSnapshot = "malcolm.chew.79@example.com",
                             CitizenFullNameSnapshot = "Malcolm Chew",
                             CitizenNricSnapshot = "S0000079E",
@@ -36006,7 +36006,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 800,
-                            AccountNumberSnapshot = "EDU-2026-00000000080",
+                            AccountNumberSnapshot = "EDU-2026-WEW8V66",
                             CitizenEmailSnapshot = "nadia.das.80@example.com",
                             CitizenFullNameSnapshot = "Nadia Das",
                             CitizenNricSnapshot = "S0000080I",
@@ -36023,7 +36023,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 801,
-                            AccountNumberSnapshot = "EDU-2026-00000000081",
+                            AccountNumberSnapshot = "EDU-2026-N34HPDZ",
                             CitizenEmailSnapshot = "alina.foo.81@example.com",
                             CitizenFullNameSnapshot = "Alina Foo",
                             CitizenNricSnapshot = "S0000081G",
@@ -36040,7 +36040,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 802,
-                            AccountNumberSnapshot = "EDU-2026-00000000082",
+                            AccountNumberSnapshot = "EDU-2026-QF2TKBF",
                             CitizenEmailSnapshot = "benjamin.gan.82@example.com",
                             CitizenFullNameSnapshot = "Benjamin Gan",
                             CitizenNricSnapshot = "S0000082E",
@@ -36057,7 +36057,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 803,
-                            AccountNumberSnapshot = "EDU-2026-00000000008",
+                            AccountNumberSnapshot = "EDU-2026-S553K8A",
                             CitizenEmailSnapshot = "sofia.chen.8@example.com",
                             CitizenFullNameSnapshot = "Sofia Chen",
                             CitizenNricSnapshot = "S0000008F",
@@ -36074,7 +36074,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 804,
-                            AccountNumberSnapshot = "EDU-2026-00000000074",
+                            AccountNumberSnapshot = "EDU-2026-QD3M8AQ",
                             CitizenEmailSnapshot = "haziq.xu.74@example.com",
                             CitizenFullNameSnapshot = "Haziq Xu",
                             CitizenNricSnapshot = "S0000074D",
@@ -36091,7 +36091,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 805,
-                            AccountNumberSnapshot = "EDU-2026-00000000075",
+                            AccountNumberSnapshot = "EDU-2026-WYT2BGP",
                             CitizenEmailSnapshot = "irene.yeo.75@example.com",
                             CitizenFullNameSnapshot = "Irene Yeo",
                             CitizenNricSnapshot = "S0000075B",
@@ -36108,7 +36108,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 806,
-                            AccountNumberSnapshot = "EDU-2026-00000000076",
+                            AccountNumberSnapshot = "EDU-2026-Q22WCNJ",
                             CitizenEmailSnapshot = "jonas.zainal.76@example.com",
                             CitizenFullNameSnapshot = "Jonas Zainal",
                             CitizenNricSnapshot = "S0000076J",
@@ -36125,7 +36125,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 807,
-                            AccountNumberSnapshot = "EDU-2026-00000000077",
+                            AccountNumberSnapshot = "EDU-2026-MQYB5BX",
                             CitizenEmailSnapshot = "kavya.ang.77@example.com",
                             CitizenFullNameSnapshot = "Kavya Ang",
                             CitizenNricSnapshot = "S0000077I",
@@ -36142,7 +36142,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 808,
-                            AccountNumberSnapshot = "EDU-2026-00000000078",
+                            AccountNumberSnapshot = "EDU-2026-ZQ373CC",
                             CitizenEmailSnapshot = "lydia.bala.78@example.com",
                             CitizenFullNameSnapshot = "Lydia Bala",
                             CitizenNricSnapshot = "S0000078G",
@@ -36159,7 +36159,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 809,
-                            AccountNumberSnapshot = "EDU-2026-00000000080",
+                            AccountNumberSnapshot = "EDU-2026-WEW8V66",
                             CitizenEmailSnapshot = "nadia.das.80@example.com",
                             CitizenFullNameSnapshot = "Nadia Das",
                             CitizenNricSnapshot = "S0000080I",
@@ -36176,7 +36176,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 810,
-                            AccountNumberSnapshot = "EDU-2026-00000000081",
+                            AccountNumberSnapshot = "EDU-2026-N34HPDZ",
                             CitizenEmailSnapshot = "alina.foo.81@example.com",
                             CitizenFullNameSnapshot = "Alina Foo",
                             CitizenNricSnapshot = "S0000081G",
@@ -36193,7 +36193,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 811,
-                            AccountNumberSnapshot = "EDU-2026-00000000082",
+                            AccountNumberSnapshot = "EDU-2026-QF2TKBF",
                             CitizenEmailSnapshot = "benjamin.gan.82@example.com",
                             CitizenFullNameSnapshot = "Benjamin Gan",
                             CitizenNricSnapshot = "S0000082E",
@@ -36210,7 +36210,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 812,
-                            AccountNumberSnapshot = "EDU-2026-00000000008",
+                            AccountNumberSnapshot = "EDU-2026-S553K8A",
                             CitizenEmailSnapshot = "sofia.chen.8@example.com",
                             CitizenFullNameSnapshot = "Sofia Chen",
                             CitizenNricSnapshot = "S0000008F",
@@ -36227,7 +36227,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 813,
-                            AccountNumberSnapshot = "EDU-2026-00000000074",
+                            AccountNumberSnapshot = "EDU-2026-QD3M8AQ",
                             CitizenEmailSnapshot = "haziq.xu.74@example.com",
                             CitizenFullNameSnapshot = "Haziq Xu",
                             CitizenNricSnapshot = "S0000074D",
@@ -36244,7 +36244,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 814,
-                            AccountNumberSnapshot = "EDU-2026-00000000075",
+                            AccountNumberSnapshot = "EDU-2026-WYT2BGP",
                             CitizenEmailSnapshot = "irene.yeo.75@example.com",
                             CitizenFullNameSnapshot = "Irene Yeo",
                             CitizenNricSnapshot = "S0000075B",
@@ -36261,7 +36261,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 815,
-                            AccountNumberSnapshot = "EDU-2026-00000000076",
+                            AccountNumberSnapshot = "EDU-2026-Q22WCNJ",
                             CitizenEmailSnapshot = "jonas.zainal.76@example.com",
                             CitizenFullNameSnapshot = "Jonas Zainal",
                             CitizenNricSnapshot = "S0000076J",
@@ -36278,7 +36278,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 816,
-                            AccountNumberSnapshot = "EDU-2026-00000000077",
+                            AccountNumberSnapshot = "EDU-2026-MQYB5BX",
                             CitizenEmailSnapshot = "kavya.ang.77@example.com",
                             CitizenFullNameSnapshot = "Kavya Ang",
                             CitizenNricSnapshot = "S0000077I",
@@ -36295,7 +36295,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 817,
-                            AccountNumberSnapshot = "EDU-2026-00000000078",
+                            AccountNumberSnapshot = "EDU-2026-ZQ373CC",
                             CitizenEmailSnapshot = "lydia.bala.78@example.com",
                             CitizenFullNameSnapshot = "Lydia Bala",
                             CitizenNricSnapshot = "S0000078G",
@@ -36312,7 +36312,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 818,
-                            AccountNumberSnapshot = "EDU-2026-00000000079",
+                            AccountNumberSnapshot = "EDU-2026-6X7Q9DZ",
                             CitizenEmailSnapshot = "malcolm.chew.79@example.com",
                             CitizenFullNameSnapshot = "Malcolm Chew",
                             CitizenNricSnapshot = "S0000079E",
@@ -36329,7 +36329,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 819,
-                            AccountNumberSnapshot = "EDU-2026-00000000081",
+                            AccountNumberSnapshot = "EDU-2026-N34HPDZ",
                             CitizenEmailSnapshot = "alina.foo.81@example.com",
                             CitizenFullNameSnapshot = "Alina Foo",
                             CitizenNricSnapshot = "S0000081G",
@@ -36346,7 +36346,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 820,
-                            AccountNumberSnapshot = "EDU-2026-00000000082",
+                            AccountNumberSnapshot = "EDU-2026-QF2TKBF",
                             CitizenEmailSnapshot = "benjamin.gan.82@example.com",
                             CitizenFullNameSnapshot = "Benjamin Gan",
                             CitizenNricSnapshot = "S0000082E",
@@ -36363,7 +36363,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 821,
-                            AccountNumberSnapshot = "EDU-2026-00000000008",
+                            AccountNumberSnapshot = "EDU-2026-S553K8A",
                             CitizenEmailSnapshot = "sofia.chen.8@example.com",
                             CitizenFullNameSnapshot = "Sofia Chen",
                             CitizenNricSnapshot = "S0000008F",
@@ -36380,7 +36380,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 822,
-                            AccountNumberSnapshot = "EDU-2026-00000000074",
+                            AccountNumberSnapshot = "EDU-2026-QD3M8AQ",
                             CitizenEmailSnapshot = "haziq.xu.74@example.com",
                             CitizenFullNameSnapshot = "Haziq Xu",
                             CitizenNricSnapshot = "S0000074D",
@@ -36397,7 +36397,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 823,
-                            AccountNumberSnapshot = "EDU-2026-00000000075",
+                            AccountNumberSnapshot = "EDU-2026-WYT2BGP",
                             CitizenEmailSnapshot = "irene.yeo.75@example.com",
                             CitizenFullNameSnapshot = "Irene Yeo",
                             CitizenNricSnapshot = "S0000075B",
@@ -36414,7 +36414,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 824,
-                            AccountNumberSnapshot = "EDU-2026-00000000076",
+                            AccountNumberSnapshot = "EDU-2026-Q22WCNJ",
                             CitizenEmailSnapshot = "jonas.zainal.76@example.com",
                             CitizenFullNameSnapshot = "Jonas Zainal",
                             CitizenNricSnapshot = "S0000076J",
@@ -36431,7 +36431,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 825,
-                            AccountNumberSnapshot = "EDU-2026-00000000077",
+                            AccountNumberSnapshot = "EDU-2026-MQYB5BX",
                             CitizenEmailSnapshot = "kavya.ang.77@example.com",
                             CitizenFullNameSnapshot = "Kavya Ang",
                             CitizenNricSnapshot = "S0000077I",
@@ -36448,7 +36448,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 826,
-                            AccountNumberSnapshot = "EDU-2026-00000000078",
+                            AccountNumberSnapshot = "EDU-2026-ZQ373CC",
                             CitizenEmailSnapshot = "lydia.bala.78@example.com",
                             CitizenFullNameSnapshot = "Lydia Bala",
                             CitizenNricSnapshot = "S0000078G",
@@ -36465,7 +36465,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 827,
-                            AccountNumberSnapshot = "EDU-2026-00000000079",
+                            AccountNumberSnapshot = "EDU-2026-6X7Q9DZ",
                             CitizenEmailSnapshot = "malcolm.chew.79@example.com",
                             CitizenFullNameSnapshot = "Malcolm Chew",
                             CitizenNricSnapshot = "S0000079E",
@@ -36482,7 +36482,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 828,
-                            AccountNumberSnapshot = "EDU-2026-00000000080",
+                            AccountNumberSnapshot = "EDU-2026-WEW8V66",
                             CitizenEmailSnapshot = "nadia.das.80@example.com",
                             CitizenFullNameSnapshot = "Nadia Das",
                             CitizenNricSnapshot = "S0000080I",
@@ -36499,7 +36499,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 829,
-                            AccountNumberSnapshot = "EDU-2026-00000000082",
+                            AccountNumberSnapshot = "EDU-2026-QF2TKBF",
                             CitizenEmailSnapshot = "benjamin.gan.82@example.com",
                             CitizenFullNameSnapshot = "Benjamin Gan",
                             CitizenNricSnapshot = "S0000082E",
@@ -36516,7 +36516,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 830,
-                            AccountNumberSnapshot = "EDU-2026-00000000008",
+                            AccountNumberSnapshot = "EDU-2026-S553K8A",
                             CitizenEmailSnapshot = "sofia.chen.8@example.com",
                             CitizenFullNameSnapshot = "Sofia Chen",
                             CitizenNricSnapshot = "S0000008F",
@@ -36533,7 +36533,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 831,
-                            AccountNumberSnapshot = "EDU-2026-00000000074",
+                            AccountNumberSnapshot = "EDU-2026-QD3M8AQ",
                             CitizenEmailSnapshot = "haziq.xu.74@example.com",
                             CitizenFullNameSnapshot = "Haziq Xu",
                             CitizenNricSnapshot = "S0000074D",
@@ -36550,7 +36550,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 832,
-                            AccountNumberSnapshot = "EDU-2026-00000000075",
+                            AccountNumberSnapshot = "EDU-2026-WYT2BGP",
                             CitizenEmailSnapshot = "irene.yeo.75@example.com",
                             CitizenFullNameSnapshot = "Irene Yeo",
                             CitizenNricSnapshot = "S0000075B",
@@ -36567,7 +36567,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 833,
-                            AccountNumberSnapshot = "EDU-2026-00000000076",
+                            AccountNumberSnapshot = "EDU-2026-Q22WCNJ",
                             CitizenEmailSnapshot = "jonas.zainal.76@example.com",
                             CitizenFullNameSnapshot = "Jonas Zainal",
                             CitizenNricSnapshot = "S0000076J",
@@ -36584,7 +36584,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 834,
-                            AccountNumberSnapshot = "EDU-2026-00000000077",
+                            AccountNumberSnapshot = "EDU-2026-MQYB5BX",
                             CitizenEmailSnapshot = "kavya.ang.77@example.com",
                             CitizenFullNameSnapshot = "Kavya Ang",
                             CitizenNricSnapshot = "S0000077I",
@@ -36601,7 +36601,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 835,
-                            AccountNumberSnapshot = "EDU-2026-00000000078",
+                            AccountNumberSnapshot = "EDU-2026-ZQ373CC",
                             CitizenEmailSnapshot = "lydia.bala.78@example.com",
                             CitizenFullNameSnapshot = "Lydia Bala",
                             CitizenNricSnapshot = "S0000078G",
@@ -36618,7 +36618,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 836,
-                            AccountNumberSnapshot = "EDU-2026-00000000079",
+                            AccountNumberSnapshot = "EDU-2026-6X7Q9DZ",
                             CitizenEmailSnapshot = "malcolm.chew.79@example.com",
                             CitizenFullNameSnapshot = "Malcolm Chew",
                             CitizenNricSnapshot = "S0000079E",
@@ -36635,7 +36635,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 837,
-                            AccountNumberSnapshot = "EDU-2026-00000000080",
+                            AccountNumberSnapshot = "EDU-2026-WEW8V66",
                             CitizenEmailSnapshot = "nadia.das.80@example.com",
                             CitizenFullNameSnapshot = "Nadia Das",
                             CitizenNricSnapshot = "S0000080I",
@@ -36652,7 +36652,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 838,
-                            AccountNumberSnapshot = "EDU-2026-00000000081",
+                            AccountNumberSnapshot = "EDU-2026-N34HPDZ",
                             CitizenEmailSnapshot = "alina.foo.81@example.com",
                             CitizenFullNameSnapshot = "Alina Foo",
                             CitizenNricSnapshot = "S0000081G",
@@ -36669,7 +36669,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 839,
-                            AccountNumberSnapshot = "EDU-2026-00000000009",
+                            AccountNumberSnapshot = "EDU-2026-G9R92UD",
                             CitizenEmailSnapshot = "lucas.nguyen.9@example.com",
                             CitizenFullNameSnapshot = "Lucas Nguyen",
                             CitizenNricSnapshot = "S0000009D",
@@ -36686,7 +36686,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 840,
-                            AccountNumberSnapshot = "EDU-2026-00000000084",
+                            AccountNumberSnapshot = "EDU-2026-CD953YC",
                             CitizenEmailSnapshot = "darius.ismail.84@example.com",
                             CitizenFullNameSnapshot = "Darius Ismail",
                             CitizenNricSnapshot = "S0000084A",
@@ -36703,7 +36703,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 841,
-                            AccountNumberSnapshot = "EDU-2026-00000000085",
+                            AccountNumberSnapshot = "EDU-2026-9JV4TFW",
                             CitizenEmailSnapshot = "elena.jeyaratnam.85@example.com",
                             CitizenFullNameSnapshot = "Elena Jeyaratnam",
                             CitizenNricSnapshot = "S0000085Z",
@@ -36720,7 +36720,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 842,
-                            AccountNumberSnapshot = "EDU-2026-00000000086",
+                            AccountNumberSnapshot = "EDU-2026-ENSP529",
                             CitizenEmailSnapshot = "farhan.kwek.86@example.com",
                             CitizenFullNameSnapshot = "Farhan Kwek",
                             CitizenNricSnapshot = "S0000086H",
@@ -36737,7 +36737,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 843,
-                            AccountNumberSnapshot = "EDU-2026-00000000087",
+                            AccountNumberSnapshot = "EDU-2026-S7NM7KA",
                             CitizenEmailSnapshot = "grace.lim.87@example.com",
                             CitizenFullNameSnapshot = "Grace Lim",
                             CitizenNricSnapshot = "S0000087F",
@@ -36754,7 +36754,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 844,
-                            AccountNumberSnapshot = "EDU-2026-00000000088",
+                            AccountNumberSnapshot = "EDU-2026-3MEM9AJ",
                             CitizenEmailSnapshot = "haruto.mohamed.88@example.com",
                             CitizenFullNameSnapshot = "Haruto Mohamed",
                             CitizenNricSnapshot = "S0000088D",
@@ -36771,7 +36771,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 845,
-                            AccountNumberSnapshot = "EDU-2026-00000000089",
+                            AccountNumberSnapshot = "EDU-2026-T7YEYDB",
                             CitizenEmailSnapshot = "isabelle.ng.89@example.com",
                             CitizenFullNameSnapshot = "Isabelle Ng",
                             CitizenNricSnapshot = "S0000089B",
@@ -36788,7 +36788,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 846,
-                            AccountNumberSnapshot = "EDU-2026-00000000090",
+                            AccountNumberSnapshot = "EDU-2026-FZBQG3E",
                             CitizenEmailSnapshot = "jasper.ong.90@example.com",
                             CitizenFullNameSnapshot = "Jasper Ong",
                             CitizenNricSnapshot = "S0000090F",
@@ -36805,7 +36805,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 847,
-                            AccountNumberSnapshot = "EDU-2026-00000000091",
+                            AccountNumberSnapshot = "EDU-2026-6D5C325",
                             CitizenEmailSnapshot = "keira.pillai.91@example.com",
                             CitizenFullNameSnapshot = "Keira Pillai",
                             CitizenNricSnapshot = "S0000091D",
@@ -36822,7 +36822,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 848,
-                            AccountNumberSnapshot = "EDU-2026-00000000009",
+                            AccountNumberSnapshot = "EDU-2026-G9R92UD",
                             CitizenEmailSnapshot = "lucas.nguyen.9@example.com",
                             CitizenFullNameSnapshot = "Lucas Nguyen",
                             CitizenNricSnapshot = "S0000009D",
@@ -36839,7 +36839,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 849,
-                            AccountNumberSnapshot = "EDU-2026-00000000083",
+                            AccountNumberSnapshot = "EDU-2026-FE6RU3R",
                             CitizenEmailSnapshot = "clara.ho.83@example.com",
                             CitizenFullNameSnapshot = "Clara Ho",
                             CitizenNricSnapshot = "S0000083C",
@@ -36856,7 +36856,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 850,
-                            AccountNumberSnapshot = "EDU-2026-00000000085",
+                            AccountNumberSnapshot = "EDU-2026-9JV4TFW",
                             CitizenEmailSnapshot = "elena.jeyaratnam.85@example.com",
                             CitizenFullNameSnapshot = "Elena Jeyaratnam",
                             CitizenNricSnapshot = "S0000085Z",
@@ -36873,7 +36873,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 851,
-                            AccountNumberSnapshot = "EDU-2026-00000000086",
+                            AccountNumberSnapshot = "EDU-2026-ENSP529",
                             CitizenEmailSnapshot = "farhan.kwek.86@example.com",
                             CitizenFullNameSnapshot = "Farhan Kwek",
                             CitizenNricSnapshot = "S0000086H",
@@ -36890,7 +36890,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 852,
-                            AccountNumberSnapshot = "EDU-2026-00000000087",
+                            AccountNumberSnapshot = "EDU-2026-S7NM7KA",
                             CitizenEmailSnapshot = "grace.lim.87@example.com",
                             CitizenFullNameSnapshot = "Grace Lim",
                             CitizenNricSnapshot = "S0000087F",
@@ -36907,7 +36907,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 853,
-                            AccountNumberSnapshot = "EDU-2026-00000000088",
+                            AccountNumberSnapshot = "EDU-2026-3MEM9AJ",
                             CitizenEmailSnapshot = "haruto.mohamed.88@example.com",
                             CitizenFullNameSnapshot = "Haruto Mohamed",
                             CitizenNricSnapshot = "S0000088D",
@@ -36924,7 +36924,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 854,
-                            AccountNumberSnapshot = "EDU-2026-00000000089",
+                            AccountNumberSnapshot = "EDU-2026-T7YEYDB",
                             CitizenEmailSnapshot = "isabelle.ng.89@example.com",
                             CitizenFullNameSnapshot = "Isabelle Ng",
                             CitizenNricSnapshot = "S0000089B",
@@ -36941,7 +36941,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 855,
-                            AccountNumberSnapshot = "EDU-2026-00000000090",
+                            AccountNumberSnapshot = "EDU-2026-FZBQG3E",
                             CitizenEmailSnapshot = "jasper.ong.90@example.com",
                             CitizenFullNameSnapshot = "Jasper Ong",
                             CitizenNricSnapshot = "S0000090F",
@@ -36958,7 +36958,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 856,
-                            AccountNumberSnapshot = "EDU-2026-00000000091",
+                            AccountNumberSnapshot = "EDU-2026-6D5C325",
                             CitizenEmailSnapshot = "keira.pillai.91@example.com",
                             CitizenFullNameSnapshot = "Keira Pillai",
                             CitizenNricSnapshot = "S0000091D",
@@ -36975,7 +36975,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 857,
-                            AccountNumberSnapshot = "EDU-2026-00000000009",
+                            AccountNumberSnapshot = "EDU-2026-G9R92UD",
                             CitizenEmailSnapshot = "lucas.nguyen.9@example.com",
                             CitizenFullNameSnapshot = "Lucas Nguyen",
                             CitizenNricSnapshot = "S0000009D",
@@ -36992,7 +36992,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 858,
-                            AccountNumberSnapshot = "EDU-2026-00000000083",
+                            AccountNumberSnapshot = "EDU-2026-FE6RU3R",
                             CitizenEmailSnapshot = "clara.ho.83@example.com",
                             CitizenFullNameSnapshot = "Clara Ho",
                             CitizenNricSnapshot = "S0000083C",
@@ -37009,7 +37009,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 859,
-                            AccountNumberSnapshot = "EDU-2026-00000000084",
+                            AccountNumberSnapshot = "EDU-2026-CD953YC",
                             CitizenEmailSnapshot = "darius.ismail.84@example.com",
                             CitizenFullNameSnapshot = "Darius Ismail",
                             CitizenNricSnapshot = "S0000084A",
@@ -37026,7 +37026,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 860,
-                            AccountNumberSnapshot = "EDU-2026-00000000086",
+                            AccountNumberSnapshot = "EDU-2026-ENSP529",
                             CitizenEmailSnapshot = "farhan.kwek.86@example.com",
                             CitizenFullNameSnapshot = "Farhan Kwek",
                             CitizenNricSnapshot = "S0000086H",
@@ -37043,7 +37043,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 861,
-                            AccountNumberSnapshot = "EDU-2026-00000000087",
+                            AccountNumberSnapshot = "EDU-2026-S7NM7KA",
                             CitizenEmailSnapshot = "grace.lim.87@example.com",
                             CitizenFullNameSnapshot = "Grace Lim",
                             CitizenNricSnapshot = "S0000087F",
@@ -37060,7 +37060,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 862,
-                            AccountNumberSnapshot = "EDU-2026-00000000088",
+                            AccountNumberSnapshot = "EDU-2026-3MEM9AJ",
                             CitizenEmailSnapshot = "haruto.mohamed.88@example.com",
                             CitizenFullNameSnapshot = "Haruto Mohamed",
                             CitizenNricSnapshot = "S0000088D",
@@ -37077,7 +37077,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 863,
-                            AccountNumberSnapshot = "EDU-2026-00000000089",
+                            AccountNumberSnapshot = "EDU-2026-T7YEYDB",
                             CitizenEmailSnapshot = "isabelle.ng.89@example.com",
                             CitizenFullNameSnapshot = "Isabelle Ng",
                             CitizenNricSnapshot = "S0000089B",
@@ -37094,7 +37094,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 864,
-                            AccountNumberSnapshot = "EDU-2026-00000000090",
+                            AccountNumberSnapshot = "EDU-2026-FZBQG3E",
                             CitizenEmailSnapshot = "jasper.ong.90@example.com",
                             CitizenFullNameSnapshot = "Jasper Ong",
                             CitizenNricSnapshot = "S0000090F",
@@ -37111,7 +37111,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 865,
-                            AccountNumberSnapshot = "EDU-2026-00000000091",
+                            AccountNumberSnapshot = "EDU-2026-6D5C325",
                             CitizenEmailSnapshot = "keira.pillai.91@example.com",
                             CitizenFullNameSnapshot = "Keira Pillai",
                             CitizenNricSnapshot = "S0000091D",
@@ -37128,7 +37128,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 866,
-                            AccountNumberSnapshot = "EDU-2026-00000000009",
+                            AccountNumberSnapshot = "EDU-2026-G9R92UD",
                             CitizenEmailSnapshot = "lucas.nguyen.9@example.com",
                             CitizenFullNameSnapshot = "Lucas Nguyen",
                             CitizenNricSnapshot = "S0000009D",
@@ -37145,7 +37145,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 867,
-                            AccountNumberSnapshot = "EDU-2026-00000000083",
+                            AccountNumberSnapshot = "EDU-2026-FE6RU3R",
                             CitizenEmailSnapshot = "clara.ho.83@example.com",
                             CitizenFullNameSnapshot = "Clara Ho",
                             CitizenNricSnapshot = "S0000083C",
@@ -37162,7 +37162,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 868,
-                            AccountNumberSnapshot = "EDU-2026-00000000084",
+                            AccountNumberSnapshot = "EDU-2026-CD953YC",
                             CitizenEmailSnapshot = "darius.ismail.84@example.com",
                             CitizenFullNameSnapshot = "Darius Ismail",
                             CitizenNricSnapshot = "S0000084A",
@@ -37179,7 +37179,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 869,
-                            AccountNumberSnapshot = "EDU-2026-00000000085",
+                            AccountNumberSnapshot = "EDU-2026-9JV4TFW",
                             CitizenEmailSnapshot = "elena.jeyaratnam.85@example.com",
                             CitizenFullNameSnapshot = "Elena Jeyaratnam",
                             CitizenNricSnapshot = "S0000085Z",
@@ -37196,7 +37196,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 870,
-                            AccountNumberSnapshot = "EDU-2026-00000000087",
+                            AccountNumberSnapshot = "EDU-2026-S7NM7KA",
                             CitizenEmailSnapshot = "grace.lim.87@example.com",
                             CitizenFullNameSnapshot = "Grace Lim",
                             CitizenNricSnapshot = "S0000087F",
@@ -37213,7 +37213,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 871,
-                            AccountNumberSnapshot = "EDU-2026-00000000088",
+                            AccountNumberSnapshot = "EDU-2026-3MEM9AJ",
                             CitizenEmailSnapshot = "haruto.mohamed.88@example.com",
                             CitizenFullNameSnapshot = "Haruto Mohamed",
                             CitizenNricSnapshot = "S0000088D",
@@ -37230,7 +37230,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 872,
-                            AccountNumberSnapshot = "EDU-2026-00000000089",
+                            AccountNumberSnapshot = "EDU-2026-T7YEYDB",
                             CitizenEmailSnapshot = "isabelle.ng.89@example.com",
                             CitizenFullNameSnapshot = "Isabelle Ng",
                             CitizenNricSnapshot = "S0000089B",
@@ -37247,7 +37247,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 873,
-                            AccountNumberSnapshot = "EDU-2026-00000000090",
+                            AccountNumberSnapshot = "EDU-2026-FZBQG3E",
                             CitizenEmailSnapshot = "jasper.ong.90@example.com",
                             CitizenFullNameSnapshot = "Jasper Ong",
                             CitizenNricSnapshot = "S0000090F",
@@ -37264,7 +37264,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 874,
-                            AccountNumberSnapshot = "EDU-2026-00000000091",
+                            AccountNumberSnapshot = "EDU-2026-6D5C325",
                             CitizenEmailSnapshot = "keira.pillai.91@example.com",
                             CitizenFullNameSnapshot = "Keira Pillai",
                             CitizenNricSnapshot = "S0000091D",
@@ -37281,7 +37281,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 875,
-                            AccountNumberSnapshot = "EDU-2026-00000000009",
+                            AccountNumberSnapshot = "EDU-2026-G9R92UD",
                             CitizenEmailSnapshot = "lucas.nguyen.9@example.com",
                             CitizenFullNameSnapshot = "Lucas Nguyen",
                             CitizenNricSnapshot = "S0000009D",
@@ -37298,7 +37298,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 876,
-                            AccountNumberSnapshot = "EDU-2026-00000000083",
+                            AccountNumberSnapshot = "EDU-2026-FE6RU3R",
                             CitizenEmailSnapshot = "clara.ho.83@example.com",
                             CitizenFullNameSnapshot = "Clara Ho",
                             CitizenNricSnapshot = "S0000083C",
@@ -37315,7 +37315,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 877,
-                            AccountNumberSnapshot = "EDU-2026-00000000084",
+                            AccountNumberSnapshot = "EDU-2026-CD953YC",
                             CitizenEmailSnapshot = "darius.ismail.84@example.com",
                             CitizenFullNameSnapshot = "Darius Ismail",
                             CitizenNricSnapshot = "S0000084A",
@@ -37332,7 +37332,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 878,
-                            AccountNumberSnapshot = "EDU-2026-00000000085",
+                            AccountNumberSnapshot = "EDU-2026-9JV4TFW",
                             CitizenEmailSnapshot = "elena.jeyaratnam.85@example.com",
                             CitizenFullNameSnapshot = "Elena Jeyaratnam",
                             CitizenNricSnapshot = "S0000085Z",
@@ -37349,7 +37349,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 879,
-                            AccountNumberSnapshot = "EDU-2026-00000000086",
+                            AccountNumberSnapshot = "EDU-2026-ENSP529",
                             CitizenEmailSnapshot = "farhan.kwek.86@example.com",
                             CitizenFullNameSnapshot = "Farhan Kwek",
                             CitizenNricSnapshot = "S0000086H",
@@ -37366,7 +37366,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 880,
-                            AccountNumberSnapshot = "EDU-2026-00000000088",
+                            AccountNumberSnapshot = "EDU-2026-3MEM9AJ",
                             CitizenEmailSnapshot = "haruto.mohamed.88@example.com",
                             CitizenFullNameSnapshot = "Haruto Mohamed",
                             CitizenNricSnapshot = "S0000088D",
@@ -37383,7 +37383,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 881,
-                            AccountNumberSnapshot = "EDU-2026-00000000089",
+                            AccountNumberSnapshot = "EDU-2026-T7YEYDB",
                             CitizenEmailSnapshot = "isabelle.ng.89@example.com",
                             CitizenFullNameSnapshot = "Isabelle Ng",
                             CitizenNricSnapshot = "S0000089B",
@@ -37400,7 +37400,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 882,
-                            AccountNumberSnapshot = "EDU-2026-00000000090",
+                            AccountNumberSnapshot = "EDU-2026-FZBQG3E",
                             CitizenEmailSnapshot = "jasper.ong.90@example.com",
                             CitizenFullNameSnapshot = "Jasper Ong",
                             CitizenNricSnapshot = "S0000090F",
@@ -37417,7 +37417,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 883,
-                            AccountNumberSnapshot = "EDU-2026-00000000091",
+                            AccountNumberSnapshot = "EDU-2026-6D5C325",
                             CitizenEmailSnapshot = "keira.pillai.91@example.com",
                             CitizenFullNameSnapshot = "Keira Pillai",
                             CitizenNricSnapshot = "S0000091D",
@@ -37434,7 +37434,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 884,
-                            AccountNumberSnapshot = "EDU-2026-00000000009",
+                            AccountNumberSnapshot = "EDU-2026-G9R92UD",
                             CitizenEmailSnapshot = "lucas.nguyen.9@example.com",
                             CitizenFullNameSnapshot = "Lucas Nguyen",
                             CitizenNricSnapshot = "S0000009D",
@@ -37451,7 +37451,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 885,
-                            AccountNumberSnapshot = "EDU-2026-00000000083",
+                            AccountNumberSnapshot = "EDU-2026-FE6RU3R",
                             CitizenEmailSnapshot = "clara.ho.83@example.com",
                             CitizenFullNameSnapshot = "Clara Ho",
                             CitizenNricSnapshot = "S0000083C",
@@ -37468,7 +37468,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 886,
-                            AccountNumberSnapshot = "EDU-2026-00000000084",
+                            AccountNumberSnapshot = "EDU-2026-CD953YC",
                             CitizenEmailSnapshot = "darius.ismail.84@example.com",
                             CitizenFullNameSnapshot = "Darius Ismail",
                             CitizenNricSnapshot = "S0000084A",
@@ -37485,7 +37485,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 887,
-                            AccountNumberSnapshot = "EDU-2026-00000000085",
+                            AccountNumberSnapshot = "EDU-2026-9JV4TFW",
                             CitizenEmailSnapshot = "elena.jeyaratnam.85@example.com",
                             CitizenFullNameSnapshot = "Elena Jeyaratnam",
                             CitizenNricSnapshot = "S0000085Z",
@@ -37502,7 +37502,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 888,
-                            AccountNumberSnapshot = "EDU-2026-00000000086",
+                            AccountNumberSnapshot = "EDU-2026-ENSP529",
                             CitizenEmailSnapshot = "farhan.kwek.86@example.com",
                             CitizenFullNameSnapshot = "Farhan Kwek",
                             CitizenNricSnapshot = "S0000086H",
@@ -37519,7 +37519,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 889,
-                            AccountNumberSnapshot = "EDU-2026-00000000087",
+                            AccountNumberSnapshot = "EDU-2026-S7NM7KA",
                             CitizenEmailSnapshot = "grace.lim.87@example.com",
                             CitizenFullNameSnapshot = "Grace Lim",
                             CitizenNricSnapshot = "S0000087F",
@@ -37536,7 +37536,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 890,
-                            AccountNumberSnapshot = "EDU-2026-00000000089",
+                            AccountNumberSnapshot = "EDU-2026-T7YEYDB",
                             CitizenEmailSnapshot = "isabelle.ng.89@example.com",
                             CitizenFullNameSnapshot = "Isabelle Ng",
                             CitizenNricSnapshot = "S0000089B",
@@ -37553,7 +37553,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 891,
-                            AccountNumberSnapshot = "EDU-2026-00000000090",
+                            AccountNumberSnapshot = "EDU-2026-FZBQG3E",
                             CitizenEmailSnapshot = "jasper.ong.90@example.com",
                             CitizenFullNameSnapshot = "Jasper Ong",
                             CitizenNricSnapshot = "S0000090F",
@@ -37570,7 +37570,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 892,
-                            AccountNumberSnapshot = "EDU-2026-00000000091",
+                            AccountNumberSnapshot = "EDU-2026-6D5C325",
                             CitizenEmailSnapshot = "keira.pillai.91@example.com",
                             CitizenFullNameSnapshot = "Keira Pillai",
                             CitizenNricSnapshot = "S0000091D",
@@ -37587,7 +37587,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 893,
-                            AccountNumberSnapshot = "EDU-2026-00000000009",
+                            AccountNumberSnapshot = "EDU-2026-G9R92UD",
                             CitizenEmailSnapshot = "lucas.nguyen.9@example.com",
                             CitizenFullNameSnapshot = "Lucas Nguyen",
                             CitizenNricSnapshot = "S0000009D",
@@ -37604,7 +37604,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 894,
-                            AccountNumberSnapshot = "EDU-2026-00000000083",
+                            AccountNumberSnapshot = "EDU-2026-FE6RU3R",
                             CitizenEmailSnapshot = "clara.ho.83@example.com",
                             CitizenFullNameSnapshot = "Clara Ho",
                             CitizenNricSnapshot = "S0000083C",
@@ -37621,7 +37621,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 895,
-                            AccountNumberSnapshot = "EDU-2026-00000000084",
+                            AccountNumberSnapshot = "EDU-2026-CD953YC",
                             CitizenEmailSnapshot = "darius.ismail.84@example.com",
                             CitizenFullNameSnapshot = "Darius Ismail",
                             CitizenNricSnapshot = "S0000084A",
@@ -37638,7 +37638,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 896,
-                            AccountNumberSnapshot = "EDU-2026-00000000085",
+                            AccountNumberSnapshot = "EDU-2026-9JV4TFW",
                             CitizenEmailSnapshot = "elena.jeyaratnam.85@example.com",
                             CitizenFullNameSnapshot = "Elena Jeyaratnam",
                             CitizenNricSnapshot = "S0000085Z",
@@ -37655,7 +37655,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 897,
-                            AccountNumberSnapshot = "EDU-2026-00000000086",
+                            AccountNumberSnapshot = "EDU-2026-ENSP529",
                             CitizenEmailSnapshot = "farhan.kwek.86@example.com",
                             CitizenFullNameSnapshot = "Farhan Kwek",
                             CitizenNricSnapshot = "S0000086H",
@@ -37672,7 +37672,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 898,
-                            AccountNumberSnapshot = "EDU-2026-00000000087",
+                            AccountNumberSnapshot = "EDU-2026-S7NM7KA",
                             CitizenEmailSnapshot = "grace.lim.87@example.com",
                             CitizenFullNameSnapshot = "Grace Lim",
                             CitizenNricSnapshot = "S0000087F",
@@ -37689,7 +37689,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 899,
-                            AccountNumberSnapshot = "EDU-2026-00000000088",
+                            AccountNumberSnapshot = "EDU-2026-3MEM9AJ",
                             CitizenEmailSnapshot = "haruto.mohamed.88@example.com",
                             CitizenFullNameSnapshot = "Haruto Mohamed",
                             CitizenNricSnapshot = "S0000088D",
@@ -37706,7 +37706,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 900,
-                            AccountNumberSnapshot = "EDU-2026-00000000090",
+                            AccountNumberSnapshot = "EDU-2026-FZBQG3E",
                             CitizenEmailSnapshot = "jasper.ong.90@example.com",
                             CitizenFullNameSnapshot = "Jasper Ong",
                             CitizenNricSnapshot = "S0000090F",
@@ -37723,7 +37723,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 901,
-                            AccountNumberSnapshot = "EDU-2026-00000000091",
+                            AccountNumberSnapshot = "EDU-2026-6D5C325",
                             CitizenEmailSnapshot = "keira.pillai.91@example.com",
                             CitizenFullNameSnapshot = "Keira Pillai",
                             CitizenNricSnapshot = "S0000091D",
@@ -37740,7 +37740,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 902,
-                            AccountNumberSnapshot = "EDU-2026-00000000009",
+                            AccountNumberSnapshot = "EDU-2026-G9R92UD",
                             CitizenEmailSnapshot = "lucas.nguyen.9@example.com",
                             CitizenFullNameSnapshot = "Lucas Nguyen",
                             CitizenNricSnapshot = "S0000009D",
@@ -37757,7 +37757,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 903,
-                            AccountNumberSnapshot = "EDU-2026-00000000083",
+                            AccountNumberSnapshot = "EDU-2026-FE6RU3R",
                             CitizenEmailSnapshot = "clara.ho.83@example.com",
                             CitizenFullNameSnapshot = "Clara Ho",
                             CitizenNricSnapshot = "S0000083C",
@@ -37774,7 +37774,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 904,
-                            AccountNumberSnapshot = "EDU-2026-00000000084",
+                            AccountNumberSnapshot = "EDU-2026-CD953YC",
                             CitizenEmailSnapshot = "darius.ismail.84@example.com",
                             CitizenFullNameSnapshot = "Darius Ismail",
                             CitizenNricSnapshot = "S0000084A",
@@ -37791,7 +37791,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 905,
-                            AccountNumberSnapshot = "EDU-2026-00000000085",
+                            AccountNumberSnapshot = "EDU-2026-9JV4TFW",
                             CitizenEmailSnapshot = "elena.jeyaratnam.85@example.com",
                             CitizenFullNameSnapshot = "Elena Jeyaratnam",
                             CitizenNricSnapshot = "S0000085Z",
@@ -37808,7 +37808,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 906,
-                            AccountNumberSnapshot = "EDU-2026-00000000086",
+                            AccountNumberSnapshot = "EDU-2026-ENSP529",
                             CitizenEmailSnapshot = "farhan.kwek.86@example.com",
                             CitizenFullNameSnapshot = "Farhan Kwek",
                             CitizenNricSnapshot = "S0000086H",
@@ -37825,7 +37825,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 907,
-                            AccountNumberSnapshot = "EDU-2026-00000000087",
+                            AccountNumberSnapshot = "EDU-2026-S7NM7KA",
                             CitizenEmailSnapshot = "grace.lim.87@example.com",
                             CitizenFullNameSnapshot = "Grace Lim",
                             CitizenNricSnapshot = "S0000087F",
@@ -37842,7 +37842,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 908,
-                            AccountNumberSnapshot = "EDU-2026-00000000088",
+                            AccountNumberSnapshot = "EDU-2026-3MEM9AJ",
                             CitizenEmailSnapshot = "haruto.mohamed.88@example.com",
                             CitizenFullNameSnapshot = "Haruto Mohamed",
                             CitizenNricSnapshot = "S0000088D",
@@ -37859,7 +37859,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 909,
-                            AccountNumberSnapshot = "EDU-2026-00000000089",
+                            AccountNumberSnapshot = "EDU-2026-T7YEYDB",
                             CitizenEmailSnapshot = "isabelle.ng.89@example.com",
                             CitizenFullNameSnapshot = "Isabelle Ng",
                             CitizenNricSnapshot = "S0000089B",
@@ -37876,7 +37876,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 910,
-                            AccountNumberSnapshot = "EDU-2026-00000000091",
+                            AccountNumberSnapshot = "EDU-2026-6D5C325",
                             CitizenEmailSnapshot = "keira.pillai.91@example.com",
                             CitizenFullNameSnapshot = "Keira Pillai",
                             CitizenNricSnapshot = "S0000091D",
@@ -37893,7 +37893,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 911,
-                            AccountNumberSnapshot = "EDU-2026-00000000009",
+                            AccountNumberSnapshot = "EDU-2026-G9R92UD",
                             CitizenEmailSnapshot = "lucas.nguyen.9@example.com",
                             CitizenFullNameSnapshot = "Lucas Nguyen",
                             CitizenNricSnapshot = "S0000009D",
@@ -37910,7 +37910,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 912,
-                            AccountNumberSnapshot = "EDU-2026-00000000083",
+                            AccountNumberSnapshot = "EDU-2026-FE6RU3R",
                             CitizenEmailSnapshot = "clara.ho.83@example.com",
                             CitizenFullNameSnapshot = "Clara Ho",
                             CitizenNricSnapshot = "S0000083C",
@@ -37927,7 +37927,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 913,
-                            AccountNumberSnapshot = "EDU-2026-00000000084",
+                            AccountNumberSnapshot = "EDU-2026-CD953YC",
                             CitizenEmailSnapshot = "darius.ismail.84@example.com",
                             CitizenFullNameSnapshot = "Darius Ismail",
                             CitizenNricSnapshot = "S0000084A",
@@ -37944,7 +37944,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 914,
-                            AccountNumberSnapshot = "EDU-2026-00000000085",
+                            AccountNumberSnapshot = "EDU-2026-9JV4TFW",
                             CitizenEmailSnapshot = "elena.jeyaratnam.85@example.com",
                             CitizenFullNameSnapshot = "Elena Jeyaratnam",
                             CitizenNricSnapshot = "S0000085Z",
@@ -37961,7 +37961,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 915,
-                            AccountNumberSnapshot = "EDU-2026-00000000086",
+                            AccountNumberSnapshot = "EDU-2026-ENSP529",
                             CitizenEmailSnapshot = "farhan.kwek.86@example.com",
                             CitizenFullNameSnapshot = "Farhan Kwek",
                             CitizenNricSnapshot = "S0000086H",
@@ -37978,7 +37978,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 916,
-                            AccountNumberSnapshot = "EDU-2026-00000000087",
+                            AccountNumberSnapshot = "EDU-2026-S7NM7KA",
                             CitizenEmailSnapshot = "grace.lim.87@example.com",
                             CitizenFullNameSnapshot = "Grace Lim",
                             CitizenNricSnapshot = "S0000087F",
@@ -37995,7 +37995,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 917,
-                            AccountNumberSnapshot = "EDU-2026-00000000088",
+                            AccountNumberSnapshot = "EDU-2026-3MEM9AJ",
                             CitizenEmailSnapshot = "haruto.mohamed.88@example.com",
                             CitizenFullNameSnapshot = "Haruto Mohamed",
                             CitizenNricSnapshot = "S0000088D",
@@ -38012,7 +38012,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 918,
-                            AccountNumberSnapshot = "EDU-2026-00000000089",
+                            AccountNumberSnapshot = "EDU-2026-T7YEYDB",
                             CitizenEmailSnapshot = "isabelle.ng.89@example.com",
                             CitizenFullNameSnapshot = "Isabelle Ng",
                             CitizenNricSnapshot = "S0000089B",
@@ -38029,7 +38029,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 919,
-                            AccountNumberSnapshot = "EDU-2026-00000000090",
+                            AccountNumberSnapshot = "EDU-2026-FZBQG3E",
                             CitizenEmailSnapshot = "jasper.ong.90@example.com",
                             CitizenFullNameSnapshot = "Jasper Ong",
                             CitizenNricSnapshot = "S0000090F",
@@ -38046,7 +38046,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 920,
-                            AccountNumberSnapshot = "EDU-2026-00000000010",
+                            AccountNumberSnapshot = "EDU-2026-MVQY23P",
                             CitizenEmailSnapshot = "maya.rahman.10@example.com",
                             CitizenFullNameSnapshot = "Maya Rahman",
                             CitizenNricSnapshot = "S0000010H",
@@ -38063,7 +38063,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 921,
-                            AccountNumberSnapshot = "EDU-2026-00000000093",
+                            AccountNumberSnapshot = "EDU-2026-YXHYTW2",
                             CitizenEmailSnapshot = "mei.lin.rao.93@example.com",
                             CitizenFullNameSnapshot = "Mei Lin Rao",
                             CitizenNricSnapshot = "S0000093J",
@@ -38080,7 +38080,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 922,
-                            AccountNumberSnapshot = "EDU-2026-00000000094",
+                            AccountNumberSnapshot = "EDU-2026-H8KJ3BT",
                             CitizenEmailSnapshot = "nathan.sim.94@example.com",
                             CitizenFullNameSnapshot = "Nathan Sim",
                             CitizenNricSnapshot = "S0000094I",
@@ -38097,7 +38097,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 923,
-                            AccountNumberSnapshot = "EDU-2026-00000000095",
+                            AccountNumberSnapshot = "EDU-2026-PNJT4Z9",
                             CitizenEmailSnapshot = "olivia.tan.95@example.com",
                             CitizenFullNameSnapshot = "Olivia Tan",
                             CitizenNricSnapshot = "S0000095G",
@@ -38114,7 +38114,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 924,
-                            AccountNumberSnapshot = "EDU-2026-00000000096",
+                            AccountNumberSnapshot = "EDU-2026-4QZV9PZ",
                             CitizenEmailSnapshot = "pranav.uddin.96@example.com",
                             CitizenFullNameSnapshot = "Pranav Uddin",
                             CitizenNricSnapshot = "S0000096E",
@@ -38131,7 +38131,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 925,
-                            AccountNumberSnapshot = "EDU-2026-00000000097",
+                            AccountNumberSnapshot = "EDU-2026-B3KAHLE",
                             CitizenEmailSnapshot = "qistina.vasquez.97@example.com",
                             CitizenFullNameSnapshot = "Qistina Vasquez",
                             CitizenNricSnapshot = "S0000097C",
@@ -38148,7 +38148,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 926,
-                            AccountNumberSnapshot = "EDU-2026-00000000098",
+                            AccountNumberSnapshot = "EDU-2026-JF27YLS",
                             CitizenEmailSnapshot = "rafael.wong.98@example.com",
                             CitizenFullNameSnapshot = "Rafael Wong",
                             CitizenNricSnapshot = "S0000098A",
@@ -38165,7 +38165,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 927,
-                            AccountNumberSnapshot = "EDU-2026-00000000099",
+                            AccountNumberSnapshot = "EDU-2026-TAAMX5Y",
                             CitizenEmailSnapshot = "selina.xu.99@example.com",
                             CitizenFullNameSnapshot = "Selina Xu",
                             CitizenNricSnapshot = "S0000099Z",
@@ -38182,7 +38182,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 928,
-                            AccountNumberSnapshot = "EDU-2026-00000000100",
+                            AccountNumberSnapshot = "EDU-2026-NCYRE83",
                             CitizenEmailSnapshot = "terence.yeo.100@example.com",
                             CitizenFullNameSnapshot = "Terence Yeo",
                             CitizenNricSnapshot = "S0000100G",
@@ -38199,7 +38199,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 929,
-                            AccountNumberSnapshot = "EDU-2026-00000000010",
+                            AccountNumberSnapshot = "EDU-2026-MVQY23P",
                             CitizenEmailSnapshot = "maya.rahman.10@example.com",
                             CitizenFullNameSnapshot = "Maya Rahman",
                             CitizenNricSnapshot = "S0000010H",
@@ -38216,7 +38216,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 930,
-                            AccountNumberSnapshot = "EDU-2026-00000000092",
+                            AccountNumberSnapshot = "EDU-2026-4YEJWG7",
                             CitizenEmailSnapshot = "leon.quek.92@example.com",
                             CitizenFullNameSnapshot = "Leon Quek",
                             CitizenNricSnapshot = "S0000092B",
@@ -38233,7 +38233,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 931,
-                            AccountNumberSnapshot = "EDU-2026-00000000094",
+                            AccountNumberSnapshot = "EDU-2026-H8KJ3BT",
                             CitizenEmailSnapshot = "nathan.sim.94@example.com",
                             CitizenFullNameSnapshot = "Nathan Sim",
                             CitizenNricSnapshot = "S0000094I",
@@ -38250,7 +38250,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 932,
-                            AccountNumberSnapshot = "EDU-2026-00000000095",
+                            AccountNumberSnapshot = "EDU-2026-PNJT4Z9",
                             CitizenEmailSnapshot = "olivia.tan.95@example.com",
                             CitizenFullNameSnapshot = "Olivia Tan",
                             CitizenNricSnapshot = "S0000095G",
@@ -38267,7 +38267,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 933,
-                            AccountNumberSnapshot = "EDU-2026-00000000096",
+                            AccountNumberSnapshot = "EDU-2026-4QZV9PZ",
                             CitizenEmailSnapshot = "pranav.uddin.96@example.com",
                             CitizenFullNameSnapshot = "Pranav Uddin",
                             CitizenNricSnapshot = "S0000096E",
@@ -38284,7 +38284,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 934,
-                            AccountNumberSnapshot = "EDU-2026-00000000097",
+                            AccountNumberSnapshot = "EDU-2026-B3KAHLE",
                             CitizenEmailSnapshot = "qistina.vasquez.97@example.com",
                             CitizenFullNameSnapshot = "Qistina Vasquez",
                             CitizenNricSnapshot = "S0000097C",
@@ -38301,7 +38301,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 935,
-                            AccountNumberSnapshot = "EDU-2026-00000000098",
+                            AccountNumberSnapshot = "EDU-2026-JF27YLS",
                             CitizenEmailSnapshot = "rafael.wong.98@example.com",
                             CitizenFullNameSnapshot = "Rafael Wong",
                             CitizenNricSnapshot = "S0000098A",
@@ -38318,7 +38318,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 936,
-                            AccountNumberSnapshot = "EDU-2026-00000000099",
+                            AccountNumberSnapshot = "EDU-2026-TAAMX5Y",
                             CitizenEmailSnapshot = "selina.xu.99@example.com",
                             CitizenFullNameSnapshot = "Selina Xu",
                             CitizenNricSnapshot = "S0000099Z",
@@ -38335,7 +38335,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 937,
-                            AccountNumberSnapshot = "EDU-2026-00000000100",
+                            AccountNumberSnapshot = "EDU-2026-NCYRE83",
                             CitizenEmailSnapshot = "terence.yeo.100@example.com",
                             CitizenFullNameSnapshot = "Terence Yeo",
                             CitizenNricSnapshot = "S0000100G",
@@ -38352,7 +38352,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 938,
-                            AccountNumberSnapshot = "EDU-2026-00000000010",
+                            AccountNumberSnapshot = "EDU-2026-MVQY23P",
                             CitizenEmailSnapshot = "maya.rahman.10@example.com",
                             CitizenFullNameSnapshot = "Maya Rahman",
                             CitizenNricSnapshot = "S0000010H",
@@ -38369,7 +38369,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 939,
-                            AccountNumberSnapshot = "EDU-2026-00000000092",
+                            AccountNumberSnapshot = "EDU-2026-4YEJWG7",
                             CitizenEmailSnapshot = "leon.quek.92@example.com",
                             CitizenFullNameSnapshot = "Leon Quek",
                             CitizenNricSnapshot = "S0000092B",
@@ -38386,7 +38386,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 940,
-                            AccountNumberSnapshot = "EDU-2026-00000000093",
+                            AccountNumberSnapshot = "EDU-2026-YXHYTW2",
                             CitizenEmailSnapshot = "mei.lin.rao.93@example.com",
                             CitizenFullNameSnapshot = "Mei Lin Rao",
                             CitizenNricSnapshot = "S0000093J",
@@ -38403,7 +38403,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 941,
-                            AccountNumberSnapshot = "EDU-2026-00000000095",
+                            AccountNumberSnapshot = "EDU-2026-PNJT4Z9",
                             CitizenEmailSnapshot = "olivia.tan.95@example.com",
                             CitizenFullNameSnapshot = "Olivia Tan",
                             CitizenNricSnapshot = "S0000095G",
@@ -38420,7 +38420,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 942,
-                            AccountNumberSnapshot = "EDU-2026-00000000096",
+                            AccountNumberSnapshot = "EDU-2026-4QZV9PZ",
                             CitizenEmailSnapshot = "pranav.uddin.96@example.com",
                             CitizenFullNameSnapshot = "Pranav Uddin",
                             CitizenNricSnapshot = "S0000096E",
@@ -38437,7 +38437,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 943,
-                            AccountNumberSnapshot = "EDU-2026-00000000097",
+                            AccountNumberSnapshot = "EDU-2026-B3KAHLE",
                             CitizenEmailSnapshot = "qistina.vasquez.97@example.com",
                             CitizenFullNameSnapshot = "Qistina Vasquez",
                             CitizenNricSnapshot = "S0000097C",
@@ -38454,7 +38454,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 944,
-                            AccountNumberSnapshot = "EDU-2026-00000000098",
+                            AccountNumberSnapshot = "EDU-2026-JF27YLS",
                             CitizenEmailSnapshot = "rafael.wong.98@example.com",
                             CitizenFullNameSnapshot = "Rafael Wong",
                             CitizenNricSnapshot = "S0000098A",
@@ -38471,7 +38471,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 945,
-                            AccountNumberSnapshot = "EDU-2026-00000000099",
+                            AccountNumberSnapshot = "EDU-2026-TAAMX5Y",
                             CitizenEmailSnapshot = "selina.xu.99@example.com",
                             CitizenFullNameSnapshot = "Selina Xu",
                             CitizenNricSnapshot = "S0000099Z",
@@ -38488,7 +38488,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 946,
-                            AccountNumberSnapshot = "EDU-2026-00000000100",
+                            AccountNumberSnapshot = "EDU-2026-NCYRE83",
                             CitizenEmailSnapshot = "terence.yeo.100@example.com",
                             CitizenFullNameSnapshot = "Terence Yeo",
                             CitizenNricSnapshot = "S0000100G",
@@ -38505,7 +38505,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 947,
-                            AccountNumberSnapshot = "EDU-2026-00000000010",
+                            AccountNumberSnapshot = "EDU-2026-MVQY23P",
                             CitizenEmailSnapshot = "maya.rahman.10@example.com",
                             CitizenFullNameSnapshot = "Maya Rahman",
                             CitizenNricSnapshot = "S0000010H",
@@ -38522,7 +38522,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 948,
-                            AccountNumberSnapshot = "EDU-2026-00000000092",
+                            AccountNumberSnapshot = "EDU-2026-4YEJWG7",
                             CitizenEmailSnapshot = "leon.quek.92@example.com",
                             CitizenFullNameSnapshot = "Leon Quek",
                             CitizenNricSnapshot = "S0000092B",
@@ -38539,7 +38539,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 949,
-                            AccountNumberSnapshot = "EDU-2026-00000000093",
+                            AccountNumberSnapshot = "EDU-2026-YXHYTW2",
                             CitizenEmailSnapshot = "mei.lin.rao.93@example.com",
                             CitizenFullNameSnapshot = "Mei Lin Rao",
                             CitizenNricSnapshot = "S0000093J",
@@ -38556,7 +38556,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 950,
-                            AccountNumberSnapshot = "EDU-2026-00000000094",
+                            AccountNumberSnapshot = "EDU-2026-H8KJ3BT",
                             CitizenEmailSnapshot = "nathan.sim.94@example.com",
                             CitizenFullNameSnapshot = "Nathan Sim",
                             CitizenNricSnapshot = "S0000094I",
@@ -38573,7 +38573,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 951,
-                            AccountNumberSnapshot = "EDU-2026-00000000096",
+                            AccountNumberSnapshot = "EDU-2026-4QZV9PZ",
                             CitizenEmailSnapshot = "pranav.uddin.96@example.com",
                             CitizenFullNameSnapshot = "Pranav Uddin",
                             CitizenNricSnapshot = "S0000096E",
@@ -38590,7 +38590,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 952,
-                            AccountNumberSnapshot = "EDU-2026-00000000097",
+                            AccountNumberSnapshot = "EDU-2026-B3KAHLE",
                             CitizenEmailSnapshot = "qistina.vasquez.97@example.com",
                             CitizenFullNameSnapshot = "Qistina Vasquez",
                             CitizenNricSnapshot = "S0000097C",
@@ -38607,7 +38607,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 953,
-                            AccountNumberSnapshot = "EDU-2026-00000000098",
+                            AccountNumberSnapshot = "EDU-2026-JF27YLS",
                             CitizenEmailSnapshot = "rafael.wong.98@example.com",
                             CitizenFullNameSnapshot = "Rafael Wong",
                             CitizenNricSnapshot = "S0000098A",
@@ -38624,7 +38624,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 954,
-                            AccountNumberSnapshot = "EDU-2026-00000000099",
+                            AccountNumberSnapshot = "EDU-2026-TAAMX5Y",
                             CitizenEmailSnapshot = "selina.xu.99@example.com",
                             CitizenFullNameSnapshot = "Selina Xu",
                             CitizenNricSnapshot = "S0000099Z",
@@ -38641,7 +38641,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 955,
-                            AccountNumberSnapshot = "EDU-2026-00000000100",
+                            AccountNumberSnapshot = "EDU-2026-NCYRE83",
                             CitizenEmailSnapshot = "terence.yeo.100@example.com",
                             CitizenFullNameSnapshot = "Terence Yeo",
                             CitizenNricSnapshot = "S0000100G",
@@ -38658,7 +38658,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 956,
-                            AccountNumberSnapshot = "EDU-2026-00000000010",
+                            AccountNumberSnapshot = "EDU-2026-MVQY23P",
                             CitizenEmailSnapshot = "maya.rahman.10@example.com",
                             CitizenFullNameSnapshot = "Maya Rahman",
                             CitizenNricSnapshot = "S0000010H",
@@ -38675,7 +38675,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 957,
-                            AccountNumberSnapshot = "EDU-2026-00000000092",
+                            AccountNumberSnapshot = "EDU-2026-4YEJWG7",
                             CitizenEmailSnapshot = "leon.quek.92@example.com",
                             CitizenFullNameSnapshot = "Leon Quek",
                             CitizenNricSnapshot = "S0000092B",
@@ -38692,7 +38692,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 958,
-                            AccountNumberSnapshot = "EDU-2026-00000000093",
+                            AccountNumberSnapshot = "EDU-2026-YXHYTW2",
                             CitizenEmailSnapshot = "mei.lin.rao.93@example.com",
                             CitizenFullNameSnapshot = "Mei Lin Rao",
                             CitizenNricSnapshot = "S0000093J",
@@ -38709,7 +38709,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 959,
-                            AccountNumberSnapshot = "EDU-2026-00000000094",
+                            AccountNumberSnapshot = "EDU-2026-H8KJ3BT",
                             CitizenEmailSnapshot = "nathan.sim.94@example.com",
                             CitizenFullNameSnapshot = "Nathan Sim",
                             CitizenNricSnapshot = "S0000094I",
@@ -38726,7 +38726,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 960,
-                            AccountNumberSnapshot = "EDU-2026-00000000095",
+                            AccountNumberSnapshot = "EDU-2026-PNJT4Z9",
                             CitizenEmailSnapshot = "olivia.tan.95@example.com",
                             CitizenFullNameSnapshot = "Olivia Tan",
                             CitizenNricSnapshot = "S0000095G",
@@ -38743,7 +38743,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 961,
-                            AccountNumberSnapshot = "EDU-2026-00000000097",
+                            AccountNumberSnapshot = "EDU-2026-B3KAHLE",
                             CitizenEmailSnapshot = "qistina.vasquez.97@example.com",
                             CitizenFullNameSnapshot = "Qistina Vasquez",
                             CitizenNricSnapshot = "S0000097C",
@@ -38760,7 +38760,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 962,
-                            AccountNumberSnapshot = "EDU-2026-00000000098",
+                            AccountNumberSnapshot = "EDU-2026-JF27YLS",
                             CitizenEmailSnapshot = "rafael.wong.98@example.com",
                             CitizenFullNameSnapshot = "Rafael Wong",
                             CitizenNricSnapshot = "S0000098A",
@@ -38777,7 +38777,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 963,
-                            AccountNumberSnapshot = "EDU-2026-00000000099",
+                            AccountNumberSnapshot = "EDU-2026-TAAMX5Y",
                             CitizenEmailSnapshot = "selina.xu.99@example.com",
                             CitizenFullNameSnapshot = "Selina Xu",
                             CitizenNricSnapshot = "S0000099Z",
@@ -38794,7 +38794,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 964,
-                            AccountNumberSnapshot = "EDU-2026-00000000100",
+                            AccountNumberSnapshot = "EDU-2026-NCYRE83",
                             CitizenEmailSnapshot = "terence.yeo.100@example.com",
                             CitizenFullNameSnapshot = "Terence Yeo",
                             CitizenNricSnapshot = "S0000100G",
@@ -38811,7 +38811,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 965,
-                            AccountNumberSnapshot = "EDU-2026-00000000010",
+                            AccountNumberSnapshot = "EDU-2026-MVQY23P",
                             CitizenEmailSnapshot = "maya.rahman.10@example.com",
                             CitizenFullNameSnapshot = "Maya Rahman",
                             CitizenNricSnapshot = "S0000010H",
@@ -38828,7 +38828,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 966,
-                            AccountNumberSnapshot = "EDU-2026-00000000092",
+                            AccountNumberSnapshot = "EDU-2026-4YEJWG7",
                             CitizenEmailSnapshot = "leon.quek.92@example.com",
                             CitizenFullNameSnapshot = "Leon Quek",
                             CitizenNricSnapshot = "S0000092B",
@@ -38845,7 +38845,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 967,
-                            AccountNumberSnapshot = "EDU-2026-00000000093",
+                            AccountNumberSnapshot = "EDU-2026-YXHYTW2",
                             CitizenEmailSnapshot = "mei.lin.rao.93@example.com",
                             CitizenFullNameSnapshot = "Mei Lin Rao",
                             CitizenNricSnapshot = "S0000093J",
@@ -38862,7 +38862,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 968,
-                            AccountNumberSnapshot = "EDU-2026-00000000094",
+                            AccountNumberSnapshot = "EDU-2026-H8KJ3BT",
                             CitizenEmailSnapshot = "nathan.sim.94@example.com",
                             CitizenFullNameSnapshot = "Nathan Sim",
                             CitizenNricSnapshot = "S0000094I",
@@ -38879,7 +38879,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 969,
-                            AccountNumberSnapshot = "EDU-2026-00000000095",
+                            AccountNumberSnapshot = "EDU-2026-PNJT4Z9",
                             CitizenEmailSnapshot = "olivia.tan.95@example.com",
                             CitizenFullNameSnapshot = "Olivia Tan",
                             CitizenNricSnapshot = "S0000095G",
@@ -38896,7 +38896,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 970,
-                            AccountNumberSnapshot = "EDU-2026-00000000096",
+                            AccountNumberSnapshot = "EDU-2026-4QZV9PZ",
                             CitizenEmailSnapshot = "pranav.uddin.96@example.com",
                             CitizenFullNameSnapshot = "Pranav Uddin",
                             CitizenNricSnapshot = "S0000096E",
@@ -38913,7 +38913,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 971,
-                            AccountNumberSnapshot = "EDU-2026-00000000098",
+                            AccountNumberSnapshot = "EDU-2026-JF27YLS",
                             CitizenEmailSnapshot = "rafael.wong.98@example.com",
                             CitizenFullNameSnapshot = "Rafael Wong",
                             CitizenNricSnapshot = "S0000098A",
@@ -38930,7 +38930,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 972,
-                            AccountNumberSnapshot = "EDU-2026-00000000099",
+                            AccountNumberSnapshot = "EDU-2026-TAAMX5Y",
                             CitizenEmailSnapshot = "selina.xu.99@example.com",
                             CitizenFullNameSnapshot = "Selina Xu",
                             CitizenNricSnapshot = "S0000099Z",
@@ -38947,7 +38947,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 973,
-                            AccountNumberSnapshot = "EDU-2026-00000000100",
+                            AccountNumberSnapshot = "EDU-2026-NCYRE83",
                             CitizenEmailSnapshot = "terence.yeo.100@example.com",
                             CitizenFullNameSnapshot = "Terence Yeo",
                             CitizenNricSnapshot = "S0000100G",
@@ -38964,7 +38964,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 974,
-                            AccountNumberSnapshot = "EDU-2026-00000000010",
+                            AccountNumberSnapshot = "EDU-2026-MVQY23P",
                             CitizenEmailSnapshot = "maya.rahman.10@example.com",
                             CitizenFullNameSnapshot = "Maya Rahman",
                             CitizenNricSnapshot = "S0000010H",
@@ -38981,7 +38981,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 975,
-                            AccountNumberSnapshot = "EDU-2026-00000000092",
+                            AccountNumberSnapshot = "EDU-2026-4YEJWG7",
                             CitizenEmailSnapshot = "leon.quek.92@example.com",
                             CitizenFullNameSnapshot = "Leon Quek",
                             CitizenNricSnapshot = "S0000092B",
@@ -38998,7 +38998,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 976,
-                            AccountNumberSnapshot = "EDU-2026-00000000093",
+                            AccountNumberSnapshot = "EDU-2026-YXHYTW2",
                             CitizenEmailSnapshot = "mei.lin.rao.93@example.com",
                             CitizenFullNameSnapshot = "Mei Lin Rao",
                             CitizenNricSnapshot = "S0000093J",
@@ -39015,7 +39015,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 977,
-                            AccountNumberSnapshot = "EDU-2026-00000000094",
+                            AccountNumberSnapshot = "EDU-2026-H8KJ3BT",
                             CitizenEmailSnapshot = "nathan.sim.94@example.com",
                             CitizenFullNameSnapshot = "Nathan Sim",
                             CitizenNricSnapshot = "S0000094I",
@@ -39032,7 +39032,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 978,
-                            AccountNumberSnapshot = "EDU-2026-00000000095",
+                            AccountNumberSnapshot = "EDU-2026-PNJT4Z9",
                             CitizenEmailSnapshot = "olivia.tan.95@example.com",
                             CitizenFullNameSnapshot = "Olivia Tan",
                             CitizenNricSnapshot = "S0000095G",
@@ -39049,7 +39049,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 979,
-                            AccountNumberSnapshot = "EDU-2026-00000000096",
+                            AccountNumberSnapshot = "EDU-2026-4QZV9PZ",
                             CitizenEmailSnapshot = "pranav.uddin.96@example.com",
                             CitizenFullNameSnapshot = "Pranav Uddin",
                             CitizenNricSnapshot = "S0000096E",
@@ -39066,7 +39066,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 980,
-                            AccountNumberSnapshot = "EDU-2026-00000000097",
+                            AccountNumberSnapshot = "EDU-2026-B3KAHLE",
                             CitizenEmailSnapshot = "qistina.vasquez.97@example.com",
                             CitizenFullNameSnapshot = "Qistina Vasquez",
                             CitizenNricSnapshot = "S0000097C",
@@ -39083,7 +39083,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 981,
-                            AccountNumberSnapshot = "EDU-2026-00000000099",
+                            AccountNumberSnapshot = "EDU-2026-TAAMX5Y",
                             CitizenEmailSnapshot = "selina.xu.99@example.com",
                             CitizenFullNameSnapshot = "Selina Xu",
                             CitizenNricSnapshot = "S0000099Z",
@@ -39100,7 +39100,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 982,
-                            AccountNumberSnapshot = "EDU-2026-00000000100",
+                            AccountNumberSnapshot = "EDU-2026-NCYRE83",
                             CitizenEmailSnapshot = "terence.yeo.100@example.com",
                             CitizenFullNameSnapshot = "Terence Yeo",
                             CitizenNricSnapshot = "S0000100G",
@@ -39117,7 +39117,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 983,
-                            AccountNumberSnapshot = "EDU-2026-00000000010",
+                            AccountNumberSnapshot = "EDU-2026-MVQY23P",
                             CitizenEmailSnapshot = "maya.rahman.10@example.com",
                             CitizenFullNameSnapshot = "Maya Rahman",
                             CitizenNricSnapshot = "S0000010H",
@@ -39134,7 +39134,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 984,
-                            AccountNumberSnapshot = "EDU-2026-00000000092",
+                            AccountNumberSnapshot = "EDU-2026-4YEJWG7",
                             CitizenEmailSnapshot = "leon.quek.92@example.com",
                             CitizenFullNameSnapshot = "Leon Quek",
                             CitizenNricSnapshot = "S0000092B",
@@ -39151,7 +39151,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 985,
-                            AccountNumberSnapshot = "EDU-2026-00000000093",
+                            AccountNumberSnapshot = "EDU-2026-YXHYTW2",
                             CitizenEmailSnapshot = "mei.lin.rao.93@example.com",
                             CitizenFullNameSnapshot = "Mei Lin Rao",
                             CitizenNricSnapshot = "S0000093J",
@@ -39168,7 +39168,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 986,
-                            AccountNumberSnapshot = "EDU-2026-00000000094",
+                            AccountNumberSnapshot = "EDU-2026-H8KJ3BT",
                             CitizenEmailSnapshot = "nathan.sim.94@example.com",
                             CitizenFullNameSnapshot = "Nathan Sim",
                             CitizenNricSnapshot = "S0000094I",
@@ -39185,7 +39185,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 987,
-                            AccountNumberSnapshot = "EDU-2026-00000000095",
+                            AccountNumberSnapshot = "EDU-2026-PNJT4Z9",
                             CitizenEmailSnapshot = "olivia.tan.95@example.com",
                             CitizenFullNameSnapshot = "Olivia Tan",
                             CitizenNricSnapshot = "S0000095G",
@@ -39202,7 +39202,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 988,
-                            AccountNumberSnapshot = "EDU-2026-00000000096",
+                            AccountNumberSnapshot = "EDU-2026-4QZV9PZ",
                             CitizenEmailSnapshot = "pranav.uddin.96@example.com",
                             CitizenFullNameSnapshot = "Pranav Uddin",
                             CitizenNricSnapshot = "S0000096E",
@@ -39219,7 +39219,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 989,
-                            AccountNumberSnapshot = "EDU-2026-00000000097",
+                            AccountNumberSnapshot = "EDU-2026-B3KAHLE",
                             CitizenEmailSnapshot = "qistina.vasquez.97@example.com",
                             CitizenFullNameSnapshot = "Qistina Vasquez",
                             CitizenNricSnapshot = "S0000097C",
@@ -39236,7 +39236,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 990,
-                            AccountNumberSnapshot = "EDU-2026-00000000098",
+                            AccountNumberSnapshot = "EDU-2026-JF27YLS",
                             CitizenEmailSnapshot = "rafael.wong.98@example.com",
                             CitizenFullNameSnapshot = "Rafael Wong",
                             CitizenNricSnapshot = "S0000098A",
@@ -39253,7 +39253,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 991,
-                            AccountNumberSnapshot = "EDU-2026-00000000100",
+                            AccountNumberSnapshot = "EDU-2026-NCYRE83",
                             CitizenEmailSnapshot = "terence.yeo.100@example.com",
                             CitizenFullNameSnapshot = "Terence Yeo",
                             CitizenNricSnapshot = "S0000100G",
@@ -39270,7 +39270,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 992,
-                            AccountNumberSnapshot = "EDU-2026-00000000010",
+                            AccountNumberSnapshot = "EDU-2026-MVQY23P",
                             CitizenEmailSnapshot = "maya.rahman.10@example.com",
                             CitizenFullNameSnapshot = "Maya Rahman",
                             CitizenNricSnapshot = "S0000010H",
@@ -39287,7 +39287,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 993,
-                            AccountNumberSnapshot = "EDU-2026-00000000092",
+                            AccountNumberSnapshot = "EDU-2026-4YEJWG7",
                             CitizenEmailSnapshot = "leon.quek.92@example.com",
                             CitizenFullNameSnapshot = "Leon Quek",
                             CitizenNricSnapshot = "S0000092B",
@@ -39304,7 +39304,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 994,
-                            AccountNumberSnapshot = "EDU-2026-00000000093",
+                            AccountNumberSnapshot = "EDU-2026-YXHYTW2",
                             CitizenEmailSnapshot = "mei.lin.rao.93@example.com",
                             CitizenFullNameSnapshot = "Mei Lin Rao",
                             CitizenNricSnapshot = "S0000093J",
@@ -39321,7 +39321,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 995,
-                            AccountNumberSnapshot = "EDU-2026-00000000094",
+                            AccountNumberSnapshot = "EDU-2026-H8KJ3BT",
                             CitizenEmailSnapshot = "nathan.sim.94@example.com",
                             CitizenFullNameSnapshot = "Nathan Sim",
                             CitizenNricSnapshot = "S0000094I",
@@ -39338,7 +39338,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 996,
-                            AccountNumberSnapshot = "EDU-2026-00000000095",
+                            AccountNumberSnapshot = "EDU-2026-PNJT4Z9",
                             CitizenEmailSnapshot = "olivia.tan.95@example.com",
                             CitizenFullNameSnapshot = "Olivia Tan",
                             CitizenNricSnapshot = "S0000095G",
@@ -39355,7 +39355,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 997,
-                            AccountNumberSnapshot = "EDU-2026-00000000096",
+                            AccountNumberSnapshot = "EDU-2026-4QZV9PZ",
                             CitizenEmailSnapshot = "pranav.uddin.96@example.com",
                             CitizenFullNameSnapshot = "Pranav Uddin",
                             CitizenNricSnapshot = "S0000096E",
@@ -39372,7 +39372,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 998,
-                            AccountNumberSnapshot = "EDU-2026-00000000097",
+                            AccountNumberSnapshot = "EDU-2026-B3KAHLE",
                             CitizenEmailSnapshot = "qistina.vasquez.97@example.com",
                             CitizenFullNameSnapshot = "Qistina Vasquez",
                             CitizenNricSnapshot = "S0000097C",
@@ -39389,7 +39389,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 999,
-                            AccountNumberSnapshot = "EDU-2026-00000000098",
+                            AccountNumberSnapshot = "EDU-2026-JF27YLS",
                             CitizenEmailSnapshot = "rafael.wong.98@example.com",
                             CitizenFullNameSnapshot = "Rafael Wong",
                             CitizenNricSnapshot = "S0000098A",
@@ -39406,7 +39406,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 1000,
-                            AccountNumberSnapshot = "EDU-2026-00000000099",
+                            AccountNumberSnapshot = "EDU-2026-TAAMX5Y",
                             CitizenEmailSnapshot = "selina.xu.99@example.com",
                             CitizenFullNameSnapshot = "Selina Xu",
                             CitizenNricSnapshot = "S0000099Z",
@@ -40774,6 +40774,1221 @@ namespace educationaccountmanagement.DAL.Migrations
                             SchoolId = 9,
                             Status = 2,
                             SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 101,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 2 for school 1.",
+                            DurationInMonths = 3,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 2, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-101",
+                            SchemeName = "School 1 Demo Scheme 2",
+                            SchoolId = 1,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 102,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 3 for school 1.",
+                            DurationInMonths = 6,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-102",
+                            SchemeName = "School 1 Demo Scheme 3",
+                            SchoolId = 1,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 103,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 4 for school 1.",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-103",
+                            SchemeName = "School 1 Demo Scheme 4",
+                            SchoolId = 1,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 104,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 5 for school 1.",
+                            DurationInMonths = 6,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-104",
+                            SchemeName = "School 1 Demo Scheme 5",
+                            SchoolId = 1,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 105,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 6 for school 1.",
+                            DurationInMonths = 3,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-105",
+                            SchemeName = "School 1 Demo Scheme 6",
+                            SchoolId = 1,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 106,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 7 for school 1.",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-106",
+                            SchemeName = "School 1 Demo Scheme 7",
+                            SchoolId = 1,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 107,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 8 for school 1.",
+                            DurationInMonths = 3,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-107",
+                            SchemeName = "School 1 Demo Scheme 8",
+                            SchoolId = 1,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 108,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 9 for school 1.",
+                            DurationInMonths = 6,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-108",
+                            SchemeName = "School 1 Demo Scheme 9",
+                            SchoolId = 1,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 109,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 10 for school 1.",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-109",
+                            SchemeName = "School 1 Demo Scheme 10",
+                            SchoolId = 1,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 110,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 2 for school 2.",
+                            DurationInMonths = 3,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 2, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-110",
+                            SchemeName = "School 2 Demo Scheme 2",
+                            SchoolId = 2,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 111,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 3 for school 2.",
+                            DurationInMonths = 6,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-111",
+                            SchemeName = "School 2 Demo Scheme 3",
+                            SchoolId = 2,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 112,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 4 for school 2.",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-112",
+                            SchemeName = "School 2 Demo Scheme 4",
+                            SchoolId = 2,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 113,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 5 for school 2.",
+                            DurationInMonths = 6,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-113",
+                            SchemeName = "School 2 Demo Scheme 5",
+                            SchoolId = 2,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 114,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 6 for school 2.",
+                            DurationInMonths = 3,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-114",
+                            SchemeName = "School 2 Demo Scheme 6",
+                            SchoolId = 2,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 115,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 7 for school 2.",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-115",
+                            SchemeName = "School 2 Demo Scheme 7",
+                            SchoolId = 2,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 116,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 8 for school 2.",
+                            DurationInMonths = 3,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-116",
+                            SchemeName = "School 2 Demo Scheme 8",
+                            SchoolId = 2,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 117,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 9 for school 2.",
+                            DurationInMonths = 6,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-117",
+                            SchemeName = "School 2 Demo Scheme 9",
+                            SchoolId = 2,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 118,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 10 for school 2.",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-118",
+                            SchemeName = "School 2 Demo Scheme 10",
+                            SchoolId = 2,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 119,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 2 for school 3.",
+                            DurationInMonths = 3,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 2, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-119",
+                            SchemeName = "School 3 Demo Scheme 2",
+                            SchoolId = 3,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 120,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 3 for school 3.",
+                            DurationInMonths = 6,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-120",
+                            SchemeName = "School 3 Demo Scheme 3",
+                            SchoolId = 3,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 121,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 4 for school 3.",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-121",
+                            SchemeName = "School 3 Demo Scheme 4",
+                            SchoolId = 3,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 122,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 5 for school 3.",
+                            DurationInMonths = 6,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-122",
+                            SchemeName = "School 3 Demo Scheme 5",
+                            SchoolId = 3,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 123,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 6 for school 3.",
+                            DurationInMonths = 3,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-123",
+                            SchemeName = "School 3 Demo Scheme 6",
+                            SchoolId = 3,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 124,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 7 for school 3.",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-124",
+                            SchemeName = "School 3 Demo Scheme 7",
+                            SchoolId = 3,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 125,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 8 for school 3.",
+                            DurationInMonths = 3,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-125",
+                            SchemeName = "School 3 Demo Scheme 8",
+                            SchoolId = 3,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 126,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 9 for school 3.",
+                            DurationInMonths = 6,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-126",
+                            SchemeName = "School 3 Demo Scheme 9",
+                            SchoolId = 3,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 127,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 10 for school 3.",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-127",
+                            SchemeName = "School 3 Demo Scheme 10",
+                            SchoolId = 3,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 128,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 2 for school 4.",
+                            DurationInMonths = 3,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 2, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-128",
+                            SchemeName = "School 4 Demo Scheme 2",
+                            SchoolId = 4,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 129,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 3 for school 4.",
+                            DurationInMonths = 6,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-129",
+                            SchemeName = "School 4 Demo Scheme 3",
+                            SchoolId = 4,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 130,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 4 for school 4.",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-130",
+                            SchemeName = "School 4 Demo Scheme 4",
+                            SchoolId = 4,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 131,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 5 for school 4.",
+                            DurationInMonths = 6,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-131",
+                            SchemeName = "School 4 Demo Scheme 5",
+                            SchoolId = 4,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 132,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 6 for school 4.",
+                            DurationInMonths = 3,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-132",
+                            SchemeName = "School 4 Demo Scheme 6",
+                            SchoolId = 4,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 133,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 7 for school 4.",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-133",
+                            SchemeName = "School 4 Demo Scheme 7",
+                            SchoolId = 4,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 134,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 8 for school 4.",
+                            DurationInMonths = 3,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-134",
+                            SchemeName = "School 4 Demo Scheme 8",
+                            SchoolId = 4,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 135,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 9 for school 4.",
+                            DurationInMonths = 6,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-135",
+                            SchemeName = "School 4 Demo Scheme 9",
+                            SchoolId = 4,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 136,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 10 for school 4.",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-136",
+                            SchemeName = "School 4 Demo Scheme 10",
+                            SchoolId = 4,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 137,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 2 for school 5.",
+                            DurationInMonths = 3,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 2, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-137",
+                            SchemeName = "School 5 Demo Scheme 2",
+                            SchoolId = 5,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 138,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 3 for school 5.",
+                            DurationInMonths = 6,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-138",
+                            SchemeName = "School 5 Demo Scheme 3",
+                            SchoolId = 5,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 139,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 4 for school 5.",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-139",
+                            SchemeName = "School 5 Demo Scheme 4",
+                            SchoolId = 5,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 140,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 5 for school 5.",
+                            DurationInMonths = 6,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-140",
+                            SchemeName = "School 5 Demo Scheme 5",
+                            SchoolId = 5,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 141,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 6 for school 5.",
+                            DurationInMonths = 3,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-141",
+                            SchemeName = "School 5 Demo Scheme 6",
+                            SchoolId = 5,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 142,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 7 for school 5.",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-142",
+                            SchemeName = "School 5 Demo Scheme 7",
+                            SchoolId = 5,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 143,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 8 for school 5.",
+                            DurationInMonths = 3,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-143",
+                            SchemeName = "School 5 Demo Scheme 8",
+                            SchoolId = 5,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 144,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 9 for school 5.",
+                            DurationInMonths = 6,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-144",
+                            SchemeName = "School 5 Demo Scheme 9",
+                            SchoolId = 5,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 145,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 10 for school 5.",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-145",
+                            SchemeName = "School 5 Demo Scheme 10",
+                            SchoolId = 5,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 146,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 2 for school 6.",
+                            DurationInMonths = 3,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 2, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-146",
+                            SchemeName = "School 6 Demo Scheme 2",
+                            SchoolId = 6,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 147,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 3 for school 6.",
+                            DurationInMonths = 6,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-147",
+                            SchemeName = "School 6 Demo Scheme 3",
+                            SchoolId = 6,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 148,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 4 for school 6.",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-148",
+                            SchemeName = "School 6 Demo Scheme 4",
+                            SchoolId = 6,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 149,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 5 for school 6.",
+                            DurationInMonths = 6,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-149",
+                            SchemeName = "School 6 Demo Scheme 5",
+                            SchoolId = 6,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 150,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 6 for school 6.",
+                            DurationInMonths = 3,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-150",
+                            SchemeName = "School 6 Demo Scheme 6",
+                            SchoolId = 6,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 151,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 7 for school 6.",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-151",
+                            SchemeName = "School 6 Demo Scheme 7",
+                            SchoolId = 6,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 152,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 8 for school 6.",
+                            DurationInMonths = 3,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-152",
+                            SchemeName = "School 6 Demo Scheme 8",
+                            SchoolId = 6,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 153,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 9 for school 6.",
+                            DurationInMonths = 6,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-153",
+                            SchemeName = "School 6 Demo Scheme 9",
+                            SchoolId = 6,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 154,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 10 for school 6.",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-154",
+                            SchemeName = "School 6 Demo Scheme 10",
+                            SchoolId = 6,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 155,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 2 for school 7.",
+                            DurationInMonths = 3,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 2, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-155",
+                            SchemeName = "School 7 Demo Scheme 2",
+                            SchoolId = 7,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 156,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 3 for school 7.",
+                            DurationInMonths = 6,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-156",
+                            SchemeName = "School 7 Demo Scheme 3",
+                            SchoolId = 7,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 157,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 4 for school 7.",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-157",
+                            SchemeName = "School 7 Demo Scheme 4",
+                            SchoolId = 7,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 158,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 5 for school 7.",
+                            DurationInMonths = 6,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-158",
+                            SchemeName = "School 7 Demo Scheme 5",
+                            SchoolId = 7,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 159,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 6 for school 7.",
+                            DurationInMonths = 3,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-159",
+                            SchemeName = "School 7 Demo Scheme 6",
+                            SchoolId = 7,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 160,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 7 for school 7.",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-160",
+                            SchemeName = "School 7 Demo Scheme 7",
+                            SchoolId = 7,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 161,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 8 for school 7.",
+                            DurationInMonths = 3,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-161",
+                            SchemeName = "School 7 Demo Scheme 8",
+                            SchoolId = 7,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 162,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 9 for school 7.",
+                            DurationInMonths = 6,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-162",
+                            SchemeName = "School 7 Demo Scheme 9",
+                            SchoolId = 7,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 163,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 10 for school 7.",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-163",
+                            SchemeName = "School 7 Demo Scheme 10",
+                            SchoolId = 7,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 164,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 2 for school 8.",
+                            DurationInMonths = 3,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 2, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-164",
+                            SchemeName = "School 8 Demo Scheme 2",
+                            SchoolId = 8,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 165,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 3 for school 8.",
+                            DurationInMonths = 6,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-165",
+                            SchemeName = "School 8 Demo Scheme 3",
+                            SchoolId = 8,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 166,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 4 for school 8.",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-166",
+                            SchemeName = "School 8 Demo Scheme 4",
+                            SchoolId = 8,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 167,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 5 for school 8.",
+                            DurationInMonths = 6,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-167",
+                            SchemeName = "School 8 Demo Scheme 5",
+                            SchoolId = 8,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 168,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 6 for school 8.",
+                            DurationInMonths = 3,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-168",
+                            SchemeName = "School 8 Demo Scheme 6",
+                            SchoolId = 8,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 169,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 7 for school 8.",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-169",
+                            SchemeName = "School 8 Demo Scheme 7",
+                            SchoolId = 8,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 170,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 8 for school 8.",
+                            DurationInMonths = 3,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-170",
+                            SchemeName = "School 8 Demo Scheme 8",
+                            SchoolId = 8,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 171,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 9 for school 8.",
+                            DurationInMonths = 6,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-171",
+                            SchemeName = "School 8 Demo Scheme 9",
+                            SchoolId = 8,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 172,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 10 for school 8.",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-172",
+                            SchemeName = "School 8 Demo Scheme 10",
+                            SchoolId = 8,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 182,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 2 for school 10.",
+                            DurationInMonths = 3,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 2, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-182",
+                            SchemeName = "School 10 Demo Scheme 2",
+                            SchoolId = 10,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 183,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 3 for school 10.",
+                            DurationInMonths = 6,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-183",
+                            SchemeName = "School 10 Demo Scheme 3",
+                            SchoolId = 10,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 184,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 4 for school 10.",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-184",
+                            SchemeName = "School 10 Demo Scheme 4",
+                            SchoolId = 10,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 185,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 5 for school 10.",
+                            DurationInMonths = 6,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-185",
+                            SchemeName = "School 10 Demo Scheme 5",
+                            SchoolId = 10,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 186,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 6 for school 10.",
+                            DurationInMonths = 3,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-186",
+                            SchemeName = "School 10 Demo Scheme 6",
+                            SchoolId = 10,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 187,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 7 for school 10.",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-187",
+                            SchemeName = "School 10 Demo Scheme 7",
+                            SchoolId = 10,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 188,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 8 for school 10.",
+                            DurationInMonths = 3,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-188",
+                            SchemeName = "School 10 Demo Scheme 8",
+                            SchoolId = 10,
+                            Status = 2,
+                            SubsidyType = 2
+                        },
+                        new
+                        {
+                            Id = 189,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 9 for school 10.",
+                            DurationInMonths = 6,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-189",
+                            SchemeName = "School 10 Demo Scheme 9",
+                            SchoolId = 10,
+                            Status = 2,
+                            SubsidyType = 1
+                        },
+                        new
+                        {
+                            Id = 190,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Additional demo FAS scheme 10 for school 10.",
+                            DurationInMonths = 12,
+                            IsDeleted = false,
+                            IsPerComponent = false,
+                            PublishedAt = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SchemeCode = "FAS-190",
+                            SchemeName = "School 10 Demo Scheme 10",
+                            SchoolId = 10,
+                            Status = 2,
+                            SubsidyType = 2
                         });
                 });
 
@@ -41059,6 +42274,897 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Operator = 4,
                             ValueNumber = 10000m
+                        },
+                        new
+                        {
+                            Id = 101,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 101,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 3500m
+                        },
+                        new
+                        {
+                            Id = 102,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 102,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1100m
+                        },
+                        new
+                        {
+                            Id = 103,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 103,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 4500m
+                        },
+                        new
+                        {
+                            Id = 104,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 104,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1300m
+                        },
+                        new
+                        {
+                            Id = 105,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 105,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 5500m
+                        },
+                        new
+                        {
+                            Id = 106,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 106,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1500m
+                        },
+                        new
+                        {
+                            Id = 107,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 107,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 6500m
+                        },
+                        new
+                        {
+                            Id = 108,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 108,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1700m
+                        },
+                        new
+                        {
+                            Id = 109,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 109,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 7500m
+                        },
+                        new
+                        {
+                            Id = 110,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 110,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 3500m
+                        },
+                        new
+                        {
+                            Id = 111,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 111,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1100m
+                        },
+                        new
+                        {
+                            Id = 112,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 112,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 4500m
+                        },
+                        new
+                        {
+                            Id = 113,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 113,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1300m
+                        },
+                        new
+                        {
+                            Id = 114,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 114,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 5500m
+                        },
+                        new
+                        {
+                            Id = 115,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 115,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1500m
+                        },
+                        new
+                        {
+                            Id = 116,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 116,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 6500m
+                        },
+                        new
+                        {
+                            Id = 117,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 117,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1700m
+                        },
+                        new
+                        {
+                            Id = 118,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 118,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 7500m
+                        },
+                        new
+                        {
+                            Id = 119,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 119,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 3500m
+                        },
+                        new
+                        {
+                            Id = 120,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 120,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1100m
+                        },
+                        new
+                        {
+                            Id = 121,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 121,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 4500m
+                        },
+                        new
+                        {
+                            Id = 122,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 122,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1300m
+                        },
+                        new
+                        {
+                            Id = 123,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 123,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 5500m
+                        },
+                        new
+                        {
+                            Id = 124,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 124,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1500m
+                        },
+                        new
+                        {
+                            Id = 125,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 125,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 6500m
+                        },
+                        new
+                        {
+                            Id = 126,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 126,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1700m
+                        },
+                        new
+                        {
+                            Id = 127,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 127,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 7500m
+                        },
+                        new
+                        {
+                            Id = 128,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 128,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 3500m
+                        },
+                        new
+                        {
+                            Id = 129,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 129,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1100m
+                        },
+                        new
+                        {
+                            Id = 130,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 130,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 4500m
+                        },
+                        new
+                        {
+                            Id = 131,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 131,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1300m
+                        },
+                        new
+                        {
+                            Id = 132,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 132,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 5500m
+                        },
+                        new
+                        {
+                            Id = 133,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 133,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1500m
+                        },
+                        new
+                        {
+                            Id = 134,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 134,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 6500m
+                        },
+                        new
+                        {
+                            Id = 135,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 135,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1700m
+                        },
+                        new
+                        {
+                            Id = 136,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 136,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 7500m
+                        },
+                        new
+                        {
+                            Id = 137,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 137,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 3500m
+                        },
+                        new
+                        {
+                            Id = 138,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 138,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1100m
+                        },
+                        new
+                        {
+                            Id = 139,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 139,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 4500m
+                        },
+                        new
+                        {
+                            Id = 140,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 140,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1300m
+                        },
+                        new
+                        {
+                            Id = 141,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 141,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 5500m
+                        },
+                        new
+                        {
+                            Id = 142,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 142,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1500m
+                        },
+                        new
+                        {
+                            Id = 143,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 143,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 6500m
+                        },
+                        new
+                        {
+                            Id = 144,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 144,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1700m
+                        },
+                        new
+                        {
+                            Id = 145,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 145,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 7500m
+                        },
+                        new
+                        {
+                            Id = 146,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 146,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 3500m
+                        },
+                        new
+                        {
+                            Id = 147,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 147,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1100m
+                        },
+                        new
+                        {
+                            Id = 148,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 148,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 4500m
+                        },
+                        new
+                        {
+                            Id = 149,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 149,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1300m
+                        },
+                        new
+                        {
+                            Id = 150,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 150,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 5500m
+                        },
+                        new
+                        {
+                            Id = 151,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 151,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1500m
+                        },
+                        new
+                        {
+                            Id = 152,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 152,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 6500m
+                        },
+                        new
+                        {
+                            Id = 153,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 153,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1700m
+                        },
+                        new
+                        {
+                            Id = 154,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 154,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 7500m
+                        },
+                        new
+                        {
+                            Id = 155,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 155,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 3500m
+                        },
+                        new
+                        {
+                            Id = 156,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 156,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1100m
+                        },
+                        new
+                        {
+                            Id = 157,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 157,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 4500m
+                        },
+                        new
+                        {
+                            Id = 158,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 158,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1300m
+                        },
+                        new
+                        {
+                            Id = 159,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 159,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 5500m
+                        },
+                        new
+                        {
+                            Id = 160,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 160,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1500m
+                        },
+                        new
+                        {
+                            Id = 161,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 161,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 6500m
+                        },
+                        new
+                        {
+                            Id = 162,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 162,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1700m
+                        },
+                        new
+                        {
+                            Id = 163,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 163,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 7500m
+                        },
+                        new
+                        {
+                            Id = 164,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 164,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 3500m
+                        },
+                        new
+                        {
+                            Id = 165,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 165,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1100m
+                        },
+                        new
+                        {
+                            Id = 166,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 166,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 4500m
+                        },
+                        new
+                        {
+                            Id = 167,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 167,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1300m
+                        },
+                        new
+                        {
+                            Id = 168,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 168,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 5500m
+                        },
+                        new
+                        {
+                            Id = 169,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 169,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1500m
+                        },
+                        new
+                        {
+                            Id = 170,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 170,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 6500m
+                        },
+                        new
+                        {
+                            Id = 171,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 171,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1700m
+                        },
+                        new
+                        {
+                            Id = 172,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 172,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 7500m
+                        },
+                        new
+                        {
+                            Id = 182,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 182,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 3500m
+                        },
+                        new
+                        {
+                            Id = 183,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 183,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1100m
+                        },
+                        new
+                        {
+                            Id = 184,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 184,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 4500m
+                        },
+                        new
+                        {
+                            Id = 185,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 185,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1300m
+                        },
+                        new
+                        {
+                            Id = 186,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 186,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 5500m
+                        },
+                        new
+                        {
+                            Id = 187,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 187,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1500m
+                        },
+                        new
+                        {
+                            Id = 188,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 188,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 6500m
+                        },
+                        new
+                        {
+                            Id = 189,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 6,
+                            GroupId = 189,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 1700m
+                        },
+                        new
+                        {
+                            Id = 190,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            Field = 5,
+                            GroupId = 190,
+                            IsDeleted = false,
+                            Operator = 4,
+                            ValueNumber = 7500m
                         });
                 });
 
@@ -41291,6 +43397,735 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DisplayOrder = 20,
                             FasSchemeId = 20,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 101,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 101,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 102,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
+                            FasSchemeId = 102,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 103,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 3,
+                            FasSchemeId = 103,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 104,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 4,
+                            FasSchemeId = 104,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 105,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 5,
+                            FasSchemeId = 105,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 106,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 6,
+                            FasSchemeId = 106,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 107,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 7,
+                            FasSchemeId = 107,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 108,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 8,
+                            FasSchemeId = 108,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 109,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 9,
+                            FasSchemeId = 109,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 110,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 110,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 111,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
+                            FasSchemeId = 111,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 112,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 3,
+                            FasSchemeId = 112,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 113,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 4,
+                            FasSchemeId = 113,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 114,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 5,
+                            FasSchemeId = 114,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 115,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 6,
+                            FasSchemeId = 115,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 116,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 7,
+                            FasSchemeId = 116,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 117,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 8,
+                            FasSchemeId = 117,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 118,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 9,
+                            FasSchemeId = 118,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 119,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 119,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 120,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
+                            FasSchemeId = 120,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 121,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 3,
+                            FasSchemeId = 121,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 122,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 4,
+                            FasSchemeId = 122,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 123,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 5,
+                            FasSchemeId = 123,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 124,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 6,
+                            FasSchemeId = 124,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 125,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 7,
+                            FasSchemeId = 125,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 126,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 8,
+                            FasSchemeId = 126,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 127,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 9,
+                            FasSchemeId = 127,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 128,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 128,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 129,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
+                            FasSchemeId = 129,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 130,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 3,
+                            FasSchemeId = 130,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 131,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 4,
+                            FasSchemeId = 131,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 132,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 5,
+                            FasSchemeId = 132,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 133,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 6,
+                            FasSchemeId = 133,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 134,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 7,
+                            FasSchemeId = 134,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 135,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 8,
+                            FasSchemeId = 135,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 136,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 9,
+                            FasSchemeId = 136,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 137,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 137,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 138,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
+                            FasSchemeId = 138,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 139,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 3,
+                            FasSchemeId = 139,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 140,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 4,
+                            FasSchemeId = 140,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 141,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 5,
+                            FasSchemeId = 141,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 142,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 6,
+                            FasSchemeId = 142,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 143,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 7,
+                            FasSchemeId = 143,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 144,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 8,
+                            FasSchemeId = 144,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 145,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 9,
+                            FasSchemeId = 145,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 146,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 146,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 147,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
+                            FasSchemeId = 147,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 148,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 3,
+                            FasSchemeId = 148,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 149,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 4,
+                            FasSchemeId = 149,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 150,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 5,
+                            FasSchemeId = 150,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 151,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 6,
+                            FasSchemeId = 151,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 152,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 7,
+                            FasSchemeId = 152,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 153,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 8,
+                            FasSchemeId = 153,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 154,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 9,
+                            FasSchemeId = 154,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 155,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 155,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 156,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
+                            FasSchemeId = 156,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 157,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 3,
+                            FasSchemeId = 157,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 158,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 4,
+                            FasSchemeId = 158,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 159,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 5,
+                            FasSchemeId = 159,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 160,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 6,
+                            FasSchemeId = 160,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 161,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 7,
+                            FasSchemeId = 161,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 162,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 8,
+                            FasSchemeId = 162,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 163,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 9,
+                            FasSchemeId = 163,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 164,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 164,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 165,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
+                            FasSchemeId = 165,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 166,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 3,
+                            FasSchemeId = 166,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 167,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 4,
+                            FasSchemeId = 167,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 168,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 5,
+                            FasSchemeId = 168,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 169,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 6,
+                            FasSchemeId = 169,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 170,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 7,
+                            FasSchemeId = 170,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 171,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 8,
+                            FasSchemeId = 171,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 172,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 9,
+                            FasSchemeId = 172,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 182,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 182,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 183,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
+                            FasSchemeId = 183,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 184,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 3,
+                            FasSchemeId = 184,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 185,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 4,
+                            FasSchemeId = 185,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 186,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 5,
+                            FasSchemeId = 186,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 187,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 6,
+                            FasSchemeId = 187,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 188,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 7,
+                            FasSchemeId = 188,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 189,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 8,
+                            FasSchemeId = 189,
+                            IsDeleted = false,
+                            LogicalOperator = 1
+                        },
+                        new
+                        {
+                            Id = 190,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 9,
+                            FasSchemeId = 190,
                             IsDeleted = false,
                             LogicalOperator = 1
                         });
@@ -42394,6 +45229,816 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 20,
                             IsDeleted = false,
                             TemplateFileKey = "fas/templates/document-20.pdf"
+                        },
+                        new
+                        {
+                            Id = 101,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 101,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-101.pdf"
+                        },
+                        new
+                        {
+                            Id = 102,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 102,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-102.pdf"
+                        },
+                        new
+                        {
+                            Id = 103,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 103,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-103.pdf"
+                        },
+                        new
+                        {
+                            Id = 104,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 104,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-104.pdf"
+                        },
+                        new
+                        {
+                            Id = 105,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 105,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-105.pdf"
+                        },
+                        new
+                        {
+                            Id = 106,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 106,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-106.pdf"
+                        },
+                        new
+                        {
+                            Id = 107,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 107,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-107.pdf"
+                        },
+                        new
+                        {
+                            Id = 108,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 108,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-108.pdf"
+                        },
+                        new
+                        {
+                            Id = 109,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 109,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-109.pdf"
+                        },
+                        new
+                        {
+                            Id = 110,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 110,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-110.pdf"
+                        },
+                        new
+                        {
+                            Id = 111,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 111,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-111.pdf"
+                        },
+                        new
+                        {
+                            Id = 112,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 112,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-112.pdf"
+                        },
+                        new
+                        {
+                            Id = 113,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 113,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-113.pdf"
+                        },
+                        new
+                        {
+                            Id = 114,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 114,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-114.pdf"
+                        },
+                        new
+                        {
+                            Id = 115,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 115,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-115.pdf"
+                        },
+                        new
+                        {
+                            Id = 116,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 116,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-116.pdf"
+                        },
+                        new
+                        {
+                            Id = 117,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 117,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-117.pdf"
+                        },
+                        new
+                        {
+                            Id = 118,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 118,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-118.pdf"
+                        },
+                        new
+                        {
+                            Id = 119,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 119,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-119.pdf"
+                        },
+                        new
+                        {
+                            Id = 120,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 120,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-120.pdf"
+                        },
+                        new
+                        {
+                            Id = 121,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 121,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-121.pdf"
+                        },
+                        new
+                        {
+                            Id = 122,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 122,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-122.pdf"
+                        },
+                        new
+                        {
+                            Id = 123,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 123,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-123.pdf"
+                        },
+                        new
+                        {
+                            Id = 124,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 124,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-124.pdf"
+                        },
+                        new
+                        {
+                            Id = 125,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 125,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-125.pdf"
+                        },
+                        new
+                        {
+                            Id = 126,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 126,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-126.pdf"
+                        },
+                        new
+                        {
+                            Id = 127,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 127,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-127.pdf"
+                        },
+                        new
+                        {
+                            Id = 128,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 128,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-128.pdf"
+                        },
+                        new
+                        {
+                            Id = 129,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 129,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-129.pdf"
+                        },
+                        new
+                        {
+                            Id = 130,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 130,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-130.pdf"
+                        },
+                        new
+                        {
+                            Id = 131,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 131,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-131.pdf"
+                        },
+                        new
+                        {
+                            Id = 132,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 132,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-132.pdf"
+                        },
+                        new
+                        {
+                            Id = 133,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 133,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-133.pdf"
+                        },
+                        new
+                        {
+                            Id = 134,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 134,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-134.pdf"
+                        },
+                        new
+                        {
+                            Id = 135,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 135,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-135.pdf"
+                        },
+                        new
+                        {
+                            Id = 136,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 136,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-136.pdf"
+                        },
+                        new
+                        {
+                            Id = 137,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 137,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-137.pdf"
+                        },
+                        new
+                        {
+                            Id = 138,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 138,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-138.pdf"
+                        },
+                        new
+                        {
+                            Id = 139,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 139,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-139.pdf"
+                        },
+                        new
+                        {
+                            Id = 140,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 140,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-140.pdf"
+                        },
+                        new
+                        {
+                            Id = 141,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 141,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-141.pdf"
+                        },
+                        new
+                        {
+                            Id = 142,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 142,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-142.pdf"
+                        },
+                        new
+                        {
+                            Id = 143,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 143,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-143.pdf"
+                        },
+                        new
+                        {
+                            Id = 144,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 144,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-144.pdf"
+                        },
+                        new
+                        {
+                            Id = 145,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 145,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-145.pdf"
+                        },
+                        new
+                        {
+                            Id = 146,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 146,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-146.pdf"
+                        },
+                        new
+                        {
+                            Id = 147,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 147,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-147.pdf"
+                        },
+                        new
+                        {
+                            Id = 148,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 148,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-148.pdf"
+                        },
+                        new
+                        {
+                            Id = 149,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 149,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-149.pdf"
+                        },
+                        new
+                        {
+                            Id = 150,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 150,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-150.pdf"
+                        },
+                        new
+                        {
+                            Id = 151,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 151,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-151.pdf"
+                        },
+                        new
+                        {
+                            Id = 152,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 152,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-152.pdf"
+                        },
+                        new
+                        {
+                            Id = 153,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 153,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-153.pdf"
+                        },
+                        new
+                        {
+                            Id = 154,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 154,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-154.pdf"
+                        },
+                        new
+                        {
+                            Id = 155,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 155,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-155.pdf"
+                        },
+                        new
+                        {
+                            Id = 156,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 156,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-156.pdf"
+                        },
+                        new
+                        {
+                            Id = 157,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 157,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-157.pdf"
+                        },
+                        new
+                        {
+                            Id = 158,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 158,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-158.pdf"
+                        },
+                        new
+                        {
+                            Id = 159,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 159,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-159.pdf"
+                        },
+                        new
+                        {
+                            Id = 160,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 160,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-160.pdf"
+                        },
+                        new
+                        {
+                            Id = 161,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 161,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-161.pdf"
+                        },
+                        new
+                        {
+                            Id = 162,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 162,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-162.pdf"
+                        },
+                        new
+                        {
+                            Id = 163,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 163,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-163.pdf"
+                        },
+                        new
+                        {
+                            Id = 164,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 164,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-164.pdf"
+                        },
+                        new
+                        {
+                            Id = 165,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 165,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-165.pdf"
+                        },
+                        new
+                        {
+                            Id = 166,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 166,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-166.pdf"
+                        },
+                        new
+                        {
+                            Id = 167,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 167,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-167.pdf"
+                        },
+                        new
+                        {
+                            Id = 168,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 168,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-168.pdf"
+                        },
+                        new
+                        {
+                            Id = 169,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 169,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-169.pdf"
+                        },
+                        new
+                        {
+                            Id = 170,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 170,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-170.pdf"
+                        },
+                        new
+                        {
+                            Id = 171,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 171,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-171.pdf"
+                        },
+                        new
+                        {
+                            Id = 172,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 172,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-172.pdf"
+                        },
+                        new
+                        {
+                            Id = 182,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 182,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-182.pdf"
+                        },
+                        new
+                        {
+                            Id = 183,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 183,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-183.pdf"
+                        },
+                        new
+                        {
+                            Id = 184,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 184,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-184.pdf"
+                        },
+                        new
+                        {
+                            Id = 185,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 185,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-185.pdf"
+                        },
+                        new
+                        {
+                            Id = 186,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 186,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-186.pdf"
+                        },
+                        new
+                        {
+                            Id = 187,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 187,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-187.pdf"
+                        },
+                        new
+                        {
+                            Id = 188,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 188,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-188.pdf"
+                        },
+                        new
+                        {
+                            Id = 189,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Income Statement",
+                            FasSchemeId = 189,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-189.pdf"
+                        },
+                        new
+                        {
+                            Id = 190,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            DocumentName = "Recent Payslip",
+                            FasSchemeId = 190,
+                            IsDeleted = false,
+                            TemplateFileKey = "fas/templates/document-190.pdf"
                         });
                 });
 
@@ -42790,6 +46435,897 @@ namespace educationaccountmanagement.DAL.Migrations
                             MaxPerCapitaIncome = 2000m,
                             SubsidyValue = 30m,
                             TierName = "Tier 2"
+                        },
+                        new
+                        {
+                            Id = 101,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 101,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1100m,
+                            SubsidyValue = 60m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 102,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 102,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1200m,
+                            SubsidyValue = 20m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 103,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 103,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1300m,
+                            SubsidyValue = 80m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 104,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 104,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1400m,
+                            SubsidyValue = 30m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 105,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 105,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1500m,
+                            SubsidyValue = 100m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 106,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 106,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1600m,
+                            SubsidyValue = 40m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 107,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 107,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1700m,
+                            SubsidyValue = 120m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 108,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 108,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1800m,
+                            SubsidyValue = 50m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 109,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 109,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1900m,
+                            SubsidyValue = 140m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 110,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 110,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1100m,
+                            SubsidyValue = 60m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 111,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 111,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1200m,
+                            SubsidyValue = 20m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 112,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 112,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1300m,
+                            SubsidyValue = 80m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 113,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 113,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1400m,
+                            SubsidyValue = 30m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 114,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 114,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1500m,
+                            SubsidyValue = 100m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 115,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 115,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1600m,
+                            SubsidyValue = 40m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 116,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 116,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1700m,
+                            SubsidyValue = 120m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 117,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 117,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1800m,
+                            SubsidyValue = 50m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 118,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 118,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1900m,
+                            SubsidyValue = 140m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 119,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 119,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1100m,
+                            SubsidyValue = 60m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 120,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 120,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1200m,
+                            SubsidyValue = 20m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 121,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 121,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1300m,
+                            SubsidyValue = 80m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 122,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 122,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1400m,
+                            SubsidyValue = 30m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 123,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 123,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1500m,
+                            SubsidyValue = 100m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 124,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 124,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1600m,
+                            SubsidyValue = 40m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 125,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 125,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1700m,
+                            SubsidyValue = 120m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 126,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 126,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1800m,
+                            SubsidyValue = 50m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 127,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 127,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1900m,
+                            SubsidyValue = 140m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 128,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 128,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1100m,
+                            SubsidyValue = 60m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 129,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 129,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1200m,
+                            SubsidyValue = 20m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 130,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 130,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1300m,
+                            SubsidyValue = 80m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 131,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 131,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1400m,
+                            SubsidyValue = 30m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 132,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 132,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1500m,
+                            SubsidyValue = 100m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 133,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 133,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1600m,
+                            SubsidyValue = 40m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 134,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 134,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1700m,
+                            SubsidyValue = 120m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 135,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 135,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1800m,
+                            SubsidyValue = 50m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 136,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 136,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1900m,
+                            SubsidyValue = 140m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 137,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 137,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1100m,
+                            SubsidyValue = 60m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 138,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 138,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1200m,
+                            SubsidyValue = 20m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 139,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 139,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1300m,
+                            SubsidyValue = 80m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 140,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 140,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1400m,
+                            SubsidyValue = 30m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 141,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 141,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1500m,
+                            SubsidyValue = 100m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 142,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 142,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1600m,
+                            SubsidyValue = 40m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 143,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 143,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1700m,
+                            SubsidyValue = 120m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 144,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 144,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1800m,
+                            SubsidyValue = 50m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 145,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 145,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1900m,
+                            SubsidyValue = 140m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 146,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 146,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1100m,
+                            SubsidyValue = 60m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 147,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 147,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1200m,
+                            SubsidyValue = 20m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 148,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 148,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1300m,
+                            SubsidyValue = 80m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 149,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 149,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1400m,
+                            SubsidyValue = 30m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 150,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 150,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1500m,
+                            SubsidyValue = 100m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 151,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 151,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1600m,
+                            SubsidyValue = 40m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 152,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 152,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1700m,
+                            SubsidyValue = 120m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 153,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 153,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1800m,
+                            SubsidyValue = 50m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 154,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 154,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1900m,
+                            SubsidyValue = 140m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 155,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 155,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1100m,
+                            SubsidyValue = 60m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 156,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 156,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1200m,
+                            SubsidyValue = 20m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 157,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 157,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1300m,
+                            SubsidyValue = 80m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 158,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 158,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1400m,
+                            SubsidyValue = 30m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 159,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 159,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1500m,
+                            SubsidyValue = 100m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 160,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 160,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1600m,
+                            SubsidyValue = 40m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 161,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 161,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1700m,
+                            SubsidyValue = 120m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 162,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 162,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1800m,
+                            SubsidyValue = 50m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 163,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 163,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1900m,
+                            SubsidyValue = 140m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 164,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 164,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1100m,
+                            SubsidyValue = 60m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 165,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 165,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1200m,
+                            SubsidyValue = 20m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 166,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 166,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1300m,
+                            SubsidyValue = 80m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 167,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 167,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1400m,
+                            SubsidyValue = 30m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 168,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 168,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1500m,
+                            SubsidyValue = 100m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 169,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 169,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1600m,
+                            SubsidyValue = 40m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 170,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 170,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1700m,
+                            SubsidyValue = 120m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 171,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 171,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1800m,
+                            SubsidyValue = 50m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 172,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 172,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1900m,
+                            SubsidyValue = 140m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 182,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 182,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1100m,
+                            SubsidyValue = 60m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 183,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 183,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1200m,
+                            SubsidyValue = 20m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 184,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 184,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1300m,
+                            SubsidyValue = 80m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 185,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 185,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1400m,
+                            SubsidyValue = 30m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 186,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 186,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1500m,
+                            SubsidyValue = 100m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 187,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 187,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1600m,
+                            SubsidyValue = 40m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 188,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 188,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1700m,
+                            SubsidyValue = 120m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 189,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 189,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1800m,
+                            SubsidyValue = 50m,
+                            TierName = "Tier 1"
+                        },
+                        new
+                        {
+                            Id = 190,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 1,
+                            FasSchemeId = 190,
+                            IsDeleted = false,
+                            MaxPerCapitaIncome = 1900m,
+                            SubsidyValue = 140m,
+                            TierName = "Tier 1"
                         });
                 });
 
@@ -43678,7 +48214,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            AccountNumberSnapshot = "EDU-2026-00000000002",
+                            AccountNumberSnapshot = "EDU-2026-3LGAWV9",
                             CitizenFullNameSnapshot = "Amelia Tan",
                             CitizenNricSnapshot = "S0000002G",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -43692,7 +48228,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            AccountNumberSnapshot = "EDU-2026-00000000003",
+                            AccountNumberSnapshot = "EDU-2026-XAT7E9E",
                             CitizenFullNameSnapshot = "Marcus Lim",
                             CitizenNricSnapshot = "S0000003E",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -43706,7 +48242,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            AccountNumberSnapshot = "EDU-2026-00000000004",
+                            AccountNumberSnapshot = "EDU-2026-3TS34HX",
                             CitizenFullNameSnapshot = "Priya Nair",
                             CitizenNricSnapshot = "S0000004C",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -43720,7 +48256,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 4,
-                            AccountNumberSnapshot = "EDU-2026-00000000005",
+                            AccountNumberSnapshot = "EDU-2026-CWDX5AJ",
                             CitizenFullNameSnapshot = "Ethan Koh",
                             CitizenNricSnapshot = "S0000005A",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -43734,7 +48270,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 5,
-                            AccountNumberSnapshot = "EDU-2026-00000000001",
+                            AccountNumberSnapshot = "EDU-2026-X9EUKF3",
                             CitizenFullNameSnapshot = "Sterling Quach",
                             CitizenNricSnapshot = "S0000001I",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -43748,7 +48284,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 6,
-                            AccountNumberSnapshot = "EDU-2026-00000000006",
+                            AccountNumberSnapshot = "EDU-2026-XSKCN4U",
                             CitizenFullNameSnapshot = "Hannah Lee",
                             CitizenNricSnapshot = "S0000006Z",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -43762,7 +48298,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 7,
-                            AccountNumberSnapshot = "EDU-2026-00000000007",
+                            AccountNumberSnapshot = "EDU-2026-ANKT5X5",
                             CitizenFullNameSnapshot = "Daniel Wong",
                             CitizenNricSnapshot = "S0000007H",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -43776,7 +48312,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 8,
-                            AccountNumberSnapshot = "EDU-2026-00000000008",
+                            AccountNumberSnapshot = "EDU-2026-S553K8A",
                             CitizenFullNameSnapshot = "Sofia Chen",
                             CitizenNricSnapshot = "S0000008F",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -43790,7 +48326,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 9,
-                            AccountNumberSnapshot = "EDU-2026-00000000006",
+                            AccountNumberSnapshot = "EDU-2026-XSKCN4U",
                             CitizenFullNameSnapshot = "Hannah Lee",
                             CitizenNricSnapshot = "S0000006Z",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -43804,7 +48340,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 10,
-                            AccountNumberSnapshot = "EDU-2026-00000000008",
+                            AccountNumberSnapshot = "EDU-2026-S553K8A",
                             CitizenFullNameSnapshot = "Sofia Chen",
                             CitizenNricSnapshot = "S0000008F",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -46873,7 +51409,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            AccountNumber = "EDU-2026-00000000001",
+                            AccountNumber = "EDU-2026-X9EUKF3",
                             Amount = 100m,
                             CreatedAt = new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedBy = 7,
@@ -46886,7 +51422,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            AccountNumber = "EDU-2026-00000000002",
+                            AccountNumber = "EDU-2026-3LGAWV9",
                             Amount = 100m,
                             CreatedAt = new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedBy = 7,
@@ -46899,7 +51435,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            AccountNumber = "EDU-2026-00000000003",
+                            AccountNumber = "EDU-2026-XAT7E9E",
                             Amount = 200m,
                             CreatedAt = new DateTime(2026, 1, 12, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationAccountId = 3,
