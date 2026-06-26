@@ -11,9 +11,10 @@ namespace Filters.Audit
             {
                 ["id"] = nameof(AuditLog.Id),
                 ["actorUserId"] = nameof(AuditLog.ActorUserId),
+                ["actorUserRole"] = $"{nameof(AuditLog.ActorUser)}.{nameof(User.Role)}",
                 ["category"] = nameof(AuditLog.Category),
                 ["action"] = nameof(AuditLog.Action),
-                ["nRic"] = nameof(AuditLog.Nric),
+                ["nric"] = nameof(AuditLog.Nric),
                 ["ipAddress"] = nameof(AuditLog.IpAddress),
                 ["occurredAt"] = nameof(AuditLog.OccurredAt)
             };

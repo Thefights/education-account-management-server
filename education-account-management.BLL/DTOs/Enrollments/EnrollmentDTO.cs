@@ -44,6 +44,8 @@
 
         public string AccountNumber { get; set; } = string.Empty;
 
+        public DateTime CreatedAt { get; set; }
+
         public DateTime EnrolledAt { get; set; }
 
         public string? ChargeStatus { get; set; }

@@ -26,6 +26,7 @@
             $"{nameof(SchoolStudent.Enrollments)}.Min({nameof(Enrollment.Course)}.{nameof(Course.CourseCode)})",
 
         ["status"] = nameof(SchoolStudent.Status),
+        ["createdAt"] = nameof(SchoolStudent.CreatedAt),
     };
 
         public override IReadOnlyDictionary<string, string> SortFields => AllowedSortFields;

@@ -494,6 +494,7 @@ namespace Services.Courses
             {
                 Id = course.Id,
                 SchoolId = course.SchoolId,
+                CreatedAt = course.CreatedAt,
                 SchoolName = course.School.SchoolName,
                 Status = course.Status.ToString(),
                 CourseCode = course.CourseCode,

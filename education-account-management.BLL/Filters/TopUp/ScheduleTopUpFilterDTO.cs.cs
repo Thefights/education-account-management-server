@@ -10,6 +10,7 @@
                 ["topupAmount"] = nameof(ScheduleTopUp.TopupAmount),
                 ["frequency"] = nameof(ScheduleTopUp.Frequency),
                 ["status"] = nameof(ScheduleTopUp.Status),
+                ["nextExecutionAt"] = nameof(ScheduleTopUp.NextExecutionAt),
                 ["createdAt"] = nameof(ScheduleTopUp.CreatedAt)
             };
 
