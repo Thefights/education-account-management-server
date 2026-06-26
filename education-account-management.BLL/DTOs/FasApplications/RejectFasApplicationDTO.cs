@@ -4,8 +4,8 @@ namespace DTOs.FasApplications
 {
     public class RejectFasApplicationDTO
     {
-        [Required]
-        [MaxLength(1000)]
+        [MessageRequired]
+        [MessageMaxLength(1000)]
         public string RejectionReason { get; set; } = string.Empty;
     }
 }
