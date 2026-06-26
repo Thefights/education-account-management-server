@@ -17,6 +17,8 @@ namespace Filters.Courses
 
         public StudentTuitionFilterStatus Status { get; set; } = StudentTuitionFilterStatus.All;
 
+        public List<int>? EnrollmentIds { get; set; }
+
         public override string Sort { get; set; } = "createdAt desc";
 
         public override IReadOnlyDictionary<string, string> SortFields => AllowedSortFields;
