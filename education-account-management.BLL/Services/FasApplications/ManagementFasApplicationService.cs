@@ -1,43 +1,41 @@
 using DTOs.FasApplications;
 using Enums;
-using Interfaces.FasApplications.Management;
+using Interfaces.FasApplications;
 using Mappers.FasApplications;
-using Microsoft.EntityFrameworkCore;
-using Models;
-using Repositories.Interfaces;
 using System.Linq.Expressions;
 using Exceptions;
 
 namespace Services.FasApplications
 {
-    public class ManagementFasApplicationService(IUnitOfWork unitOfWork, FasApplicationMapper mapper) : IManagementFasApplicationService
+    public class ManagementFasApplicationService(IUnitOfWork unitOfWork, ICurrentUserService currentUserService, FasApplicationMapper mapper) : IManagementFasApplicationService
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly FasApplicationMapper _mapper = mapper;
+        private readonly ICurrentUserService _currentUserService = currentUserService;
         private readonly IGenericRepository<FasApplication> _fasApplicationRepository = unitOfWork.Repository<FasApplication>();
 
         public async Task<FasApplicationQueueResponseDTO> GetApplicationQueueAsync(GetFasApplicationListRequestDTO request, int adminSchoolId, CancellationToken cancellationToken = default)
         {
             var now = DateTime.UtcNow.AddHours(8);
-            
+
             // 1. Build Base Filter for Admin's School
             Expression<Func<FasApplication, bool>> baseFilter = a => a.SchoolStudent.SchoolId == adminSchoolId;
 
             // 2. Count for each tab
             var pendingCount = await _fasApplicationRepository.CountAsync(
-                a => a.SchoolStudent.SchoolId == adminSchoolId && a.Status == FasApplicationStatus.Pending, 
+                a => a.SchoolStudent.SchoolId == adminSchoolId && a.Status == FasApplicationStatus.Pending,
                 cancellationToken);
-                
+
             var approvedCount = await _fasApplicationRepository.CountAsync(
-                a => a.SchoolStudent.SchoolId == adminSchoolId && a.Status == FasApplicationStatus.Approved && (a.ValidityEndDate == null || a.ValidityEndDate >= now), 
+                a => a.SchoolStudent.SchoolId == adminSchoolId && a.Status == FasApplicationStatus.Approved && (a.ValidityEndDate == null || a.ValidityEndDate >= now),
                 cancellationToken);
-                
+
             var expiredCount = await _fasApplicationRepository.CountAsync(
-                a => a.SchoolStudent.SchoolId == adminSchoolId && a.Status == FasApplicationStatus.Approved && a.ValidityEndDate < now, 
+                a => a.SchoolStudent.SchoolId == adminSchoolId && a.Status == FasApplicationStatus.Approved && a.ValidityEndDate < now,
                 cancellationToken);
-                
+
             var rejectedCount = await _fasApplicationRepository.CountAsync(
-                a => a.SchoolStudent.SchoolId == adminSchoolId && a.Status == FasApplicationStatus.Rejected, 
+                a => a.SchoolStudent.SchoolId == adminSchoolId && a.Status == FasApplicationStatus.Rejected,
                 cancellationToken);
 
             // 3. Status Filter based on Request
@@ -53,7 +51,7 @@ namespace Services.FasApplications
 
             // 4. Search Filter
             string[] searchFields = [nameof(FasApplication.ApplicationNumber), "SchoolStudent.EducationAccount.AccountNumber", "SchoolStudent.EducationAccount.Citizen.FullName", "FasScheme.SchemeName"];
-            
+
             // 5. Sort Order
             string order = string.IsNullOrWhiteSpace(request.Sort) ? "CreatedAt asc" : request.Sort;
 
@@ -102,7 +100,7 @@ namespace Services.FasApplications
         public async Task<FasApplicationDetailsDTO> GetApplicationDetailsAsync(int applicationId, int adminSchoolId, CancellationToken cancellationToken = default)
         {
             var repo = _unitOfWork.Repository<FasApplication>();
-            
+
             var application = await repo.Query()
                 .Include(a => a.SchoolStudent)
                 .Include(a => a.SchoolStudent.EducationAccount)
@@ -153,12 +151,12 @@ namespace Services.FasApplications
                         Id = t.Id,
                         TierName = t.TierName,
                         ConditionText = t.MaxPerCapitaIncome.HasValue ? $"PCI <= {t.MaxPerCapitaIncome.Value:0.00}" : "No limit",
-                        SubsidyDescription = application.FasScheme.IsPerComponent 
+                        SubsidyDescription = application.FasScheme.IsPerComponent
                             ? $"Course: {t.CourseFeeSubsidyValue:0.00}{symbol}, Misc: {t.MiscFeeSubsidyValue:0.00}{symbol}"
                             : $"{t.SubsidyValue:0.00}{symbol}",
                         MaxPerCapitaIncome = t.MaxPerCapitaIncome
                     }).ToList(),
-                    RequiredDocuments = application.FasScheme.RequiredDocuments.Select(rd => 
+                    RequiredDocuments = application.FasScheme.RequiredDocuments.Select(rd =>
                     {
                         var attachedDoc = application.Documents.FirstOrDefault(d => d.FasSchemeRequiredDocumentId == rd.Id);
                         return new ApplicationDocumentDTO
@@ -192,10 +190,9 @@ namespace Services.FasApplications
             return dto;
         }
 
-         public async Task ApproveAsync(int id, CancellationToken cancellationToken = default)
+        public async Task ApproveAsync(int schoolId, int id, CancellationToken cancellationToken = default)
         {
-            var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
-            
+
             var application = await _unitOfWork.Repository<FasApplication>()
                 .Query()
                 .Include(a => a.FasScheme)
@@ -226,8 +223,8 @@ namespace Services.FasApplications
             application.ApprovedTierId = application.RecommendedTierId;
             application.DurationInMonthsSnapshot = application.FasScheme.DurationInMonths;
             application.ValidityStartDate = now.Date;
-            application.ValidityEndDate = application.FasScheme.DurationInMonths > 0 
-                ? application.ValidityStartDate.Value.AddMonths(application.FasScheme.DurationInMonths) 
+            application.ValidityEndDate = application.FasScheme.DurationInMonths > 0
+                ? application.ValidityStartDate.Value.AddMonths(application.FasScheme.DurationInMonths)
                 : null;
 
             application.TryValidate();
@@ -236,9 +233,8 @@ namespace Services.FasApplications
             await _unitOfWork.SaveChangeAsync(cancellationToken);
         }
 
-        public async Task RejectAsync(int id, RejectFasApplicationDTO dto, CancellationToken cancellationToken = default)
+        public async Task RejectAsync(int schoolId, int id, RejectFasApplicationDTO dto, CancellationToken cancellationToken = default)
         {
-            var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
 
             var application = await _unitOfWork.Repository<FasApplication>()
                 .Query()
@@ -268,5 +264,5 @@ namespace Services.FasApplications
             _unitOfWork.Repository<FasApplication>().Update(application);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
         }
-        }
+    }
 }
