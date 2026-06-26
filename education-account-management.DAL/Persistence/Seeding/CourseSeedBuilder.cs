@@ -37,16 +37,30 @@ namespace Persistence.Seeding
                 for (var index = 0; index < 9; index++)
                 {
                     var topic = topics[index];
-                    var startDate = new DateTime(2026, 9, 1, 0, 0, 0, DateTimeKind.Utc)
-                        .AddDays((schoolId - 1) * 3 + index * 7);
-                    var enrollmentDeadline = startDate.AddDays(-21);
+                    var status = index switch
+                    {
+                        <= 1 => CourseStatus.Draft,
+                        <= 3 => CourseStatus.Enrolling,
+                        <= 5 => CourseStatus.Upcoming,
+                        <= 7 => CourseStatus.InProgress,
+                        _ => CourseStatus.Closed
+                    };
+                    var startDateBase = status switch
+                    {
+                        CourseStatus.Upcoming => new DateTime(2026, 8, 1, 0, 0, 0, DateTimeKind.Utc),
+                        CourseStatus.InProgress => new DateTime(2026, 5, 1, 0, 0, 0, DateTimeKind.Utc),
+                        CourseStatus.Closed => new DateTime(2026, 3, 1, 0, 0, 0, DateTimeKind.Utc),
+                        _ => new DateTime(2026, 9, 1, 0, 0, 0, DateTimeKind.Utc)
+                    };
+                    var startDate = startDateBase.AddDays((schoolId - 1) * 3 + index * 7);
+                    var enrollmentDeadline = startDate.AddDays(status is CourseStatus.Draft or CourseStatus.Enrolling ? -21 : -45);
                     var courseFee = 120m + schoolId * 10m + index * 15m;
                     var miscFee = 15m + index * 2m;
                     courses.Add(new Course
                     {
                         Id = courseId,
                         SchoolId = schoolId,
-                        Status = index < 3 ? CourseStatus.Draft : CourseStatus.Enrolling,
+                        Status = status,
                         CourseCode = $"CRS-2026-S{schoolId:00}{index + 1:00}X{(char)('A' + index)}",
                         CourseName = $"{topic} - School {schoolId} Cohort {index + 1}",
                         CourseFeeAmount = courseFee,
@@ -55,7 +69,7 @@ namespace Persistence.Seeding
                         EnrollmentDeadline = enrollmentDeadline,
                         FasApplicationDueDate = enrollmentDeadline,
                         StartDate = startDate,
-                        EndDate = startDate.AddMonths(2),
+                        EndDate = startDate.AddMonths(status == CourseStatus.InProgress ? 3 : 2),
                         CreatedAt = createdAt
                     });
                     courseId++;

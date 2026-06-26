@@ -515,21 +515,7 @@ namespace Services.Courses
                         SchemeName = item.FasScheme.SchemeName,
                         Status = item.FasScheme.Status.ToString(),
                         SubsidyType = item.FasScheme.SubsidyType.ToString(),
-                        IsPerComponent = item.FasScheme.IsPerComponent,
-                        DurationInMonths = item.FasScheme.DurationInMonths,
-                        Tiers = item.FasScheme.Tiers
-                            .OrderBy(tier => tier.DisplayOrder)
-                            .Select(tier => new GetCourseFasSchemeTierDTO
-                            {
-                                Id = tier.Id,
-                                TierName = tier.TierName,
-                                MaxPerCapitaIncome = tier.MaxPerCapitaIncome,
-                                SubsidyValue = tier.SubsidyValue,
-                                CourseFeeSubsidyValue = tier.CourseFeeSubsidyValue,
-                                MiscFeeSubsidyValue = tier.MiscFeeSubsidyValue,
-                                DisplayOrder = tier.DisplayOrder
-                            })
-                            .ToList()
+                        IsPerComponent = item.FasScheme.IsPerComponent
                     })
                     .ToList()
             });

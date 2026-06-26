@@ -3,7 +3,7 @@
     public class Charge : AuditEntity
     {
         [EnumDefined]
-        public ChargeStatus Status { get; set; } = ChargeStatus.Unpaid;
+        public ChargeStatus Status { get; set; } = ChargeStatus.PendingPayment;
 
         [Column(TypeName = "decimal(18,2)"), NumberPositive]
         public decimal GrossAmount { get; set; }

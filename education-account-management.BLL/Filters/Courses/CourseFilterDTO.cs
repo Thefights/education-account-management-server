@@ -13,6 +13,7 @@ namespace Filters.Courses
                 ["courseFeeAmount"] = nameof(Course.CourseFeeAmount),
                 ["miscFeeAmount"] = nameof(Course.MiscFeeAmount),
                 ["gstAmount"] = nameof(Course.GstAmount),
+                ["enrollmentCount"] = $"{nameof(Course.Enrollments)}.Count()",
                 ["enrollmentDeadline"] = nameof(Course.EnrollmentDeadline),
                 ["startDate"] = nameof(Course.StartDate),
                 ["endDate"] = nameof(Course.EndDate),

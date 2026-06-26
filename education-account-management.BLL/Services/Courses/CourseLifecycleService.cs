@@ -81,7 +81,7 @@ namespace Services.Courses
                 {
                     var installments = await _installmentRepository.Query(tracking: true)
                         .Include(installment => installment.Charge)
-                        .Where(installment => installment.Status == ChargeInstallmentStatus.Unpaid
+                        .Where(installment => installment.Status == ChargeInstallmentStatus.PendingPayment
                             && installment.DueDate < utcNow)
                         .ToListAsync(token);
 
@@ -196,7 +196,7 @@ namespace Services.Courses
                             .Select(enrollment => enrollment.Charge)
                             .Where(charge => charge != null
                                 && charge.RemainingAmount > 0
-                                && charge.Status == ChargeStatus.Unpaid)
+                                && charge.Status == ChargeStatus.PendingPayment)
                             .Cast<Charge>()
                             .ToList()
                         : [];
@@ -262,7 +262,7 @@ namespace Services.Courses
                 var charge = new Charge
                 {
                     EnrollmentId = enrollment.Id,
-                    Status = grossAmount == 0m ? ChargeStatus.Paid : ChargeStatus.Unpaid,
+                    Status = grossAmount == 0m ? ChargeStatus.Paid : ChargeStatus.PendingPayment,
                     SchoolNameSnapshot = course.School.SchoolName,
                     CourseCodeSnapshot = course.CourseCode,
                     CourseNameSnapshot = course.CourseName,
