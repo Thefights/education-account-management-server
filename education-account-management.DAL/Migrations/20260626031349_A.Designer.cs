@@ -12,7 +12,7 @@ using Persistence.SqlServer;
 namespace educationaccountmanagement.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260626030154_A")]
+    [Migration("20260626031349_A")]
     partial class A
     {
         /// <inheritdoc />
