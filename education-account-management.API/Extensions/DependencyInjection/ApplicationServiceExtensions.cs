@@ -86,6 +86,7 @@ namespace Extensions.DependencyInjection
             services.AddScoped<ITransactionHistoryService, TransactionHistoryService>();
             services.AddScoped<IAccountHolderFasSchemeService, AccountHolderFasSchemeService>();
             services.AddScoped<IAccountHolderFasApplicationService, AccountHolderFasApplicationService>();
+            services.AddScoped<IManagementFasApplicationService, ManagementFasApplicationService>();
 
             services.AddScoped<ISystemTopupService, SystemTopupService>();
             services.AddScoped<IScheduleTopUpService, ScheduleTopUpService>();

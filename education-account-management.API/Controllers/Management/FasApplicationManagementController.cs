@@ -2,9 +2,11 @@ using Authorization;
 using Common.HttpResults;
 using Controllers.Base;
 using DTOs.FasApplications;
-using Interfaces.FasApplications.Management;
 using Microsoft.AspNetCore.Mvc;
 using Utils;
+using Interfaces.FasApplications;
+using Microsoft.AspNetCore.Mvc;
+
 
 namespace Controllers.Management
 {
@@ -34,6 +36,20 @@ namespace Controllers.Management
             var adminSchoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
             var result = await _service.GetApplicationDetailsAsync(id, adminSchoolId, cancellationToken);
             return Result.SuccessData(result);
+}
+
+  [HttpPost("{id}/approve")]
+        public async Task<IActionResult> Approve(int id, CancellationToken cancellationToken)
+        {
+            await _service.ApproveAsync(id, cancellationToken);
+            return Result.SuccessAction("FAS application approved successfully.");
         }
-    }
+
+        [HttpPost("{id}/reject")]
+        public async Task<IActionResult> Reject(int id, RejectFasApplicationDTO dto, CancellationToken cancellationToken)
+        {
+            await _service.RejectAsync(id, dto, cancellationToken);
+            return Result.SuccessAction("FAS application rejected successfully.");
+        }
+}
 }
