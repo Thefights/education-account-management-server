@@ -50,7 +50,7 @@ namespace Services.Payments
             return new StudentTuitionSummaryDTO
             {
                 TotalOutstandingAmount = chargesInfo.Sum(),
-                UnpaidInvoicesCount = chargesInfo.Count,
+                PendingPaymentInvoicesCount = chargesInfo.Count,
                 EducationAccountBalance = account.EducationCreditBalance
             };
         }
@@ -101,13 +101,13 @@ namespace Services.Payments
                     filterExpr = e =>
                         e.SchoolStudent.EducationAccountId == accountId &&
                         (e.Charge!.Status == ChargeStatus.Overdue || 
-                         (e.Charge.Status == ChargeStatus.Unpaid && e.Course.FasApplicationDueDate < now));
+                         (e.Charge.Status == ChargeStatus.PendingPayment && e.Course.FasApplicationDueDate < now));
                 }
                 else if (filter.Status == StudentTuitionFilterStatus.Due)
                 {
                     filterExpr = e =>
                         e.SchoolStudent.EducationAccountId == accountId &&
-                        e.Charge!.Status == ChargeStatus.Unpaid &&
+                        e.Charge!.Status == ChargeStatus.PendingPayment &&
                         e.Course.FasApplicationDueDate >= now;
                 }
             }

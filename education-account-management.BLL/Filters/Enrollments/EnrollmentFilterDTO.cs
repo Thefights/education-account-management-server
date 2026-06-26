@@ -11,9 +11,15 @@
                 ["courseName"] = nameof(Enrollment.CourseNameSnapshot),
                 ["citizenNric"] = nameof(Enrollment.CitizenNricSnapshot),
                 ["citizenFullName"] = nameof(Enrollment.CitizenFullNameSnapshot),
+                ["citizenEmail"] = nameof(Enrollment.CitizenEmailSnapshot),
+                ["citizenPhoneNumber"] = nameof(Enrollment.CitizenPhoneNumberSnapshot),
                 ["accountNumber"] = nameof(Enrollment.AccountNumberSnapshot),
                 ["enrolledAt"] = nameof(Enrollment.CreatedAt),
-                ["chargeStatus"] = $"{nameof(Enrollment.Charge)}.{nameof(Charge.Status)}"
+                ["chargeStatus"] = $"{nameof(Enrollment.Charge)}.{nameof(Charge.Status)}",
+                ["grossAmount"] = $"{nameof(Enrollment.Charge)}.{nameof(Charge.GrossAmount)}",
+                ["subsidyAmount"] = $"{nameof(Enrollment.Charge)}.{nameof(Charge.SubsidyAmount)}",
+                ["paidAmount"] = $"{nameof(Enrollment.Charge)}.{nameof(Charge.PaidAmount)}",
+                ["remainingAmount"] = $"{nameof(Enrollment.Charge)}.{nameof(Charge.RemainingAmount)}"
             };
 
         public override IReadOnlyDictionary<string, string> SortFields => AllowedSortFields;

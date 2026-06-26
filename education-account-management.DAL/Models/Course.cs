@@ -17,9 +17,6 @@ namespace Models
         [MessageRequired, MessageMaxLength(150), Unique]
         public string CourseName { get; set; } = string.Empty;
 
-        [MessageMaxLength(1000)]
-        public string? Description { get; set; }
-
         [Column(TypeName = "decimal(18,2)"), NumberPositive]
         public decimal CourseFeeAmount { get; set; }
 

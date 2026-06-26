@@ -19,6 +19,7 @@ namespace Mappers.Enrollments
         [MapProperty(nameof(Enrollment.CreatedAt), nameof(GetEnrollmentDTO.EnrolledAt))]
         [MapProperty($"{nameof(Enrollment.Charge)}.{nameof(Charge.Status)}", nameof(GetEnrollmentDTO.ChargeStatus))]
         [MapProperty($"{nameof(Enrollment.Charge)}.{nameof(Charge.GrossAmount)}", nameof(GetEnrollmentDTO.GrossAmount))]
+        [MapProperty($"{nameof(Enrollment.Charge)}.{nameof(Charge.SubsidyAmount)}", nameof(GetEnrollmentDTO.SubsidyAmount))]
         [MapProperty($"{nameof(Enrollment.Charge)}.{nameof(Charge.PaidAmount)}", nameof(GetEnrollmentDTO.PaidAmount))]
         [MapProperty($"{nameof(Enrollment.Charge)}.{nameof(Charge.RemainingAmount)}", nameof(GetEnrollmentDTO.RemainingAmount))]
         public partial GetEnrollmentDTO MapToGetDTO(Enrollment model);

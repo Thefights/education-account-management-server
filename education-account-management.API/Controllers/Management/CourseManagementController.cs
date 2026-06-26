@@ -47,6 +47,25 @@ namespace Controllers.Management
             return Result.SuccessData(result, $"{result.Count} Course(s) published successfully");
         }
 
+        [HttpPost("{id}/duplicate")]
+        public async Task<IActionResult> Duplicate(
+            int id,
+            CancellationToken cancellationToken)
+        {
+            var result = await _service.DuplicateAsync(id, cancellationToken);
+            return Result.SuccessData(result, "Course duplicated successfully");
+        }
+
+        [HttpPut("{id}/fas-schemes")]
+        public async Task<IActionResult> AssignFasSchemes(
+            int id,
+            AssignCourseFasSchemesDTO assignDTO,
+            CancellationToken cancellationToken)
+        {
+            var result = await _service.AssignFasSchemesAsync(id, assignDTO, cancellationToken);
+            return Result.SuccessData(result, "Course FAS schemes updated successfully");
+        }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(
             int id,

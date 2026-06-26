@@ -50,6 +50,8 @@
 
         public decimal? GrossAmount { get; set; }
 
+        public decimal? SubsidyAmount { get; set; }
+
         public decimal? PaidAmount { get; set; }
 
         public decimal? RemainingAmount { get; set; }

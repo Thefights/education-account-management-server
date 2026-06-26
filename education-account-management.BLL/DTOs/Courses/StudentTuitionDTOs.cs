@@ -7,7 +7,7 @@ namespace DTOs.Courses
     public class StudentTuitionSummaryDTO
     {
         public decimal TotalOutstandingAmount { get; set; }
-        public int UnpaidInvoicesCount { get; set; }
+        public int PendingPaymentInvoicesCount { get; set; }
         public decimal EducationAccountBalance { get; set; }
     }
 
