@@ -18,6 +18,8 @@ namespace DTOs.FasApplications
         [NotDefaultValue]
         public int FasSchemeId { get; set; }
 
+        public int? ReapplySourceApplicationId { get; set; }
+
         [EnumDefined]
         public NationalityCategory GuardianNationality { get; set; }
 

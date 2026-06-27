@@ -60,16 +60,42 @@ namespace Services.FasApplications
 
             // 3. Kiểm tra xem học sinh đã có hồ sơ nào đang chờ duyệt hoặc đã được duyệt cho Scheme này chưa
             var today = DateTime.UtcNow.Date;
-            var existingApplication = await _unitOfWork.Repository<FasApplication>()
-                .Query()
-                .AnyAsync(a => a.SchoolStudentId == studentInfo.Id 
-                            && a.FasSchemeId == dto.FasSchemeId 
-                            && (a.Status == FasApplicationStatus.Pending || 
-                                (a.Status == FasApplicationStatus.Approved && (a.ValidityEndDate == null || a.ValidityEndDate >= today))), cancellationToken);
-            
-            if (existingApplication)
+            var existingApplications = await _unitOfWork.Repository<FasApplication>()
+                .Query(tracking: true)
+                .Include(a => a.Documents)
+                .Where(a => a.SchoolStudentId == studentInfo.Id
+                            && a.FasSchemeId == dto.FasSchemeId
+                            && (a.Status == FasApplicationStatus.Pending ||
+                                (a.Status == FasApplicationStatus.Approved && (a.ValidityEndDate == null || a.ValidityEndDate >= today))))
+                .ToListAsync(cancellationToken);
+
+            var pendingApplication = existingApplications.FirstOrDefault(a => a.Status == FasApplicationStatus.Pending);
+            var approvedApplication = existingApplications.FirstOrDefault(a =>
+                a.Status == FasApplicationStatus.Approved &&
+                (a.ValidityEndDate == null || a.ValidityEndDate >= today));
+            var reapplySourceApplication = dto.ReapplySourceApplicationId.HasValue
+                ? await _unitOfWork.Repository<FasApplication>()
+                    .Query(tracking: true)
+                    .Include(a => a.Documents)
+                    .FirstOrDefaultAsync(a => a.Id == dto.ReapplySourceApplicationId.Value
+                                             && a.SchoolStudentId == studentInfo.Id
+                                             && a.FasSchemeId == dto.FasSchemeId,
+                        cancellationToken)
+                : null;
+            var canReapplyFromSource = reapplySourceApplication != null &&
+                (reapplySourceApplication.Status == FasApplicationStatus.Rejected ||
+                 (reapplySourceApplication.Status == FasApplicationStatus.Approved &&
+                  reapplySourceApplication.ValidityEndDate.HasValue &&
+                  reapplySourceApplication.ValidityEndDate.Value.Date < today));
+
+            if (approvedApplication != null || (pendingApplication != null && !canReapplyFromSource))
             {
                 throw new DataConflictException("You already have a pending or approved application for this scheme.");
+            }
+
+            if (dto.ReapplySourceApplicationId.HasValue && !canReapplyFromSource)
+            {
+                throw new DataConflictException("The selected application cannot be used for reapply.");
             }
 
             // 4. Đánh giá các điều kiện cơ bản của Scheme
@@ -108,6 +134,77 @@ namespace Services.FasApplications
                 }
             }
 
+            List<FasApplicationDocument> BuildApplicationDocuments(int fasApplicationId)
+            {
+                var documents = dto.Documents.Select(d => new FasApplicationDocument
+                {
+                    FasApplicationId = fasApplicationId,
+                    FasSchemeRequiredDocumentId = d.RequiredDocumentId,
+                    FileKey = d.FileKey,
+                    FileName = d.FileName,
+                    DocumentNameSnapshot = d.FileName
+                }).ToList();
+
+                foreach (var doc in documents)
+                {
+                    var reqDoc = scheme.RequiredDocuments.FirstOrDefault(r => r.Id == doc.FasSchemeRequiredDocumentId);
+                    doc.DocumentNameSnapshot = reqDoc?.DocumentName ?? doc.FileName;
+                }
+
+                return documents;
+            }
+
+            void ResetApplicationAsPending(FasApplication application)
+            {
+                var previousDocuments = application.Documents.ToList();
+                if (previousDocuments.Count > 0)
+                {
+                    _unitOfWork.Repository<FasApplicationDocument>().RemoveRange(previousDocuments);
+                }
+
+                application.Status = FasApplicationStatus.Pending;
+                application.CreatedAt = DateTime.UtcNow;
+                application.StudentAgeSnapshot = studentAge;
+                application.StudentNationalitySnapshot = studentInfo.IsSingaporean ? NationalityCategory.SingaporeCitizen : NationalityCategory.Other;
+                application.GuardianNationalitySnapshot = dto.GuardianNationality;
+                application.GrossHouseholdIncomeSnapshot = dto.GrossHouseholdIncome;
+                application.HouseholdMemberCountSnapshot = dto.HouseholdMemberCount;
+                application.PerCapitaIncomeSnapshot = pci;
+                application.RecommendedTierId = recommendedTierId;
+                application.ApprovedTierId = null;
+                application.RecommendationReason = recommendationReason;
+                application.RejectionReason = null;
+                application.ApprovedAt = null;
+                application.ApprovedByUserId = null;
+                application.DurationInMonthsSnapshot = null;
+                application.ValidityStartDate = null;
+                application.ValidityEndDate = null;
+                application.WithdrawnAt = null;
+                application.Documents = BuildApplicationDocuments(application.Id);
+            }
+
+            if (canReapplyFromSource && reapplySourceApplication != null)
+            {
+                if (pendingApplication != null && pendingApplication.Id != reapplySourceApplication.Id)
+                {
+                    var pendingDocuments = pendingApplication.Documents.ToList();
+                    if (pendingDocuments.Count > 0)
+                    {
+                        _unitOfWork.Repository<FasApplicationDocument>().RemoveRange(pendingDocuments);
+                    }
+
+                    _unitOfWork.Repository<FasApplication>().Remove(pendingApplication);
+                }
+
+                ResetApplicationAsPending(reapplySourceApplication);
+                await _unitOfWork.Repository<FasApplicationDocument>()
+                    .AddRangeAsync(reapplySourceApplication.Documents.ToList(), cancellationToken);
+                reapplySourceApplication.TryValidate();
+                await _unitOfWork.SaveChangeAsync(cancellationToken);
+
+                return reapplySourceApplication.ApplicationNumber;
+            }
+
             // Tạo mã hồ sơ (Application Number) ngẫu nhiên
             var applicationNumber = $"FASAPP-{DateTime.UtcNow:yyyyMMdd}-{Guid.NewGuid().ToString("N")[..7].ToUpper()}";
 
@@ -126,21 +223,8 @@ namespace Services.FasApplications
                 PerCapitaIncomeSnapshot = pci,
                 RecommendedTierId = recommendedTierId,
                 RecommendationReason = recommendationReason,
-                Documents = dto.Documents.Select(d => new FasApplicationDocument
-                {
-                    FasSchemeRequiredDocumentId = d.RequiredDocumentId,
-                    FileKey = d.FileKey,
-                    FileName = d.FileName,
-                    DocumentNameSnapshot = d.FileName // Tạm gán bằng tên file, sẽ được cập nhật chính xác từ cấu hình Scheme ở bước sau.
-                }).ToList()
+                Documents = BuildApplicationDocuments(-1) // Dummy value to bypass [NotDefaultValue] validation before EF Core sets the real ID
             };
-
-            // Lấy tên tài liệu yêu cầu (DocumentName) từ cấu hình Scheme để lưu vào Snapshot cho chính xác.
-            foreach (var doc in application.Documents)
-            {
-                var reqDoc = scheme.RequiredDocuments.FirstOrDefault(r => r.Id == doc.FasSchemeRequiredDocumentId);
-                doc.DocumentNameSnapshot = reqDoc?.DocumentName ?? doc.FileName;
-            }
 
             application.TryValidate();
             
@@ -175,6 +259,7 @@ namespace Services.FasApplications
                 {
                     Id = a.Id,
                     ApplicationNumber = a.ApplicationNumber,
+                    SchemeId = a.FasSchemeId,
                     SchemeName = a.FasScheme.SchemeName,
                     Status = a.Status,
                     SubmittedAt = a.CreatedAt,
@@ -294,6 +379,7 @@ namespace Services.FasApplications
                 Documents = application.Documents.Select(d => new FasApplicationDocumentDetailDTO
                 {
                     Id = d.Id,
+                    RequiredDocumentId = d.FasSchemeRequiredDocumentId,
                     DocumentNameSnapshot = d.DocumentNameSnapshot,
                     FileName = d.FileName,
                     FileKey = d.FileKey
