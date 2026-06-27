@@ -12,7 +12,7 @@ using Persistence.SqlServer;
 namespace educationaccountmanagement.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260627094259_A")]
+    [Migration("20260627100116_A")]
     partial class A
     {
         /// <inheritdoc />
@@ -6188,7 +6188,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 1,
                             EducationAccountId = 1,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000001"),
+                            TransactionCode = new Guid("49594d61-4376-40b8-ac80-939fdcc75d03"),
                             Type = 1
                         },
                         new
@@ -6202,7 +6202,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 2,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000002"),
+                            TransactionCode = new Guid("e0318f15-fdda-4abf-9c6b-419497da2df5"),
                             Type = 2
                         },
                         new
@@ -6216,7 +6216,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 3,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000003"),
+                            TransactionCode = new Guid("3cc72b88-c9fe-4854-9f18-20216358e732"),
                             Type = 2
                         },
                         new
@@ -6230,7 +6230,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 4,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000004"),
+                            TransactionCode = new Guid("20a47861-e67b-4d7d-a411-fa77f197d86b"),
                             Type = 4
                         },
                         new
@@ -6244,7 +6244,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 1,
                             EducationAccountId = 5,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000005"),
+                            TransactionCode = new Guid("13a7d8f6-33b2-457f-83c9-013639995db0"),
                             Type = 1
                         },
                         new
@@ -6258,7 +6258,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 6,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000006"),
+                            TransactionCode = new Guid("b173acbb-c707-4e20-8d42-f73c61af31eb"),
                             Type = 2
                         },
                         new
@@ -6272,7 +6272,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 7,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000007"),
+                            TransactionCode = new Guid("b9b22a3a-e1ed-445e-830d-3f7900433702"),
                             Type = 2
                         },
                         new
@@ -6286,7 +6286,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 8,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000008"),
+                            TransactionCode = new Guid("9c034e05-2ad7-48f6-9d0e-1d75f3a9dc11"),
                             Type = 4
                         },
                         new
@@ -6300,7 +6300,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 1,
                             EducationAccountId = 9,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000009"),
+                            TransactionCode = new Guid("11b9710a-dc40-4940-8346-3426a0b08cc1"),
                             Type = 1
                         },
                         new
@@ -6314,7 +6314,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 10,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000010"),
+                            TransactionCode = new Guid("534f9ac0-3749-48bf-9830-9c3a494e0357"),
                             Type = 2
                         },
                         new
@@ -6328,7 +6328,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 11,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000011"),
+                            TransactionCode = new Guid("5a7565fa-724d-4ed7-a659-c55f2b82b148"),
                             Type = 2
                         },
                         new
@@ -6342,7 +6342,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 12,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000012"),
+                            TransactionCode = new Guid("dce18490-c9c0-47d1-8888-bbc96fbeaa8f"),
                             Type = 4
                         },
                         new
@@ -6356,7 +6356,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 1,
                             EducationAccountId = 13,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000013"),
+                            TransactionCode = new Guid("26410860-8d9c-4653-b8dc-737d522a260c"),
                             Type = 1
                         },
                         new
@@ -6370,7 +6370,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 14,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000014"),
+                            TransactionCode = new Guid("56c40714-1195-4170-ab78-fde7334aac85"),
                             Type = 2
                         },
                         new
@@ -6384,7 +6384,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 15,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000015"),
+                            TransactionCode = new Guid("60b17549-097b-4586-bcc9-b7adcdd28ab0"),
                             Type = 2
                         },
                         new
@@ -6398,7 +6398,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 16,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000016"),
+                            TransactionCode = new Guid("411d1141-302f-4164-a767-0427a915ca08"),
                             Type = 4
                         },
                         new
@@ -6412,7 +6412,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 1,
                             EducationAccountId = 17,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000017"),
+                            TransactionCode = new Guid("0bc2a282-c6de-47b7-98b0-fdac93855e55"),
                             Type = 1
                         },
                         new
@@ -6426,7 +6426,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 18,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000018"),
+                            TransactionCode = new Guid("3a8d08c2-da97-4c08-9195-9c6fd5486e4f"),
                             Type = 2
                         },
                         new
@@ -6440,7 +6440,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 19,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000019"),
+                            TransactionCode = new Guid("8f433ea5-cfc6-4449-9915-76fba85d7474"),
                             Type = 2
                         },
                         new
@@ -6454,7 +6454,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 20,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000020"),
+                            TransactionCode = new Guid("5a3b8e16-fa7f-4ae2-b395-4dd8e27c3c25"),
                             Type = 4
                         },
                         new
@@ -6468,7 +6468,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 1,
                             EducationAccountId = 21,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000021"),
+                            TransactionCode = new Guid("af161551-4185-4376-a70e-b0ad42e7d980"),
                             Type = 1
                         },
                         new
@@ -6482,7 +6482,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 22,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000022"),
+                            TransactionCode = new Guid("206fc099-fd74-4264-b317-04c0426e1be8"),
                             Type = 2
                         },
                         new
@@ -6496,7 +6496,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 23,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000023"),
+                            TransactionCode = new Guid("56b65cbf-d647-4447-90df-1b52a3f11fb6"),
                             Type = 2
                         },
                         new
@@ -6510,7 +6510,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 24,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000024"),
+                            TransactionCode = new Guid("7867f9b5-1d38-4781-b786-4daeb46ad46f"),
                             Type = 4
                         },
                         new
@@ -6524,7 +6524,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 1,
                             EducationAccountId = 25,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000025"),
+                            TransactionCode = new Guid("641eb577-86a7-48aa-855c-66b19f1bb194"),
                             Type = 1
                         },
                         new
@@ -6538,7 +6538,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 26,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000026"),
+                            TransactionCode = new Guid("16b8a137-6519-48ba-95f8-00561fc14186"),
                             Type = 2
                         },
                         new
@@ -6552,7 +6552,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 27,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000027"),
+                            TransactionCode = new Guid("302e2943-b197-498a-92a2-3b56ee17c5c8"),
                             Type = 2
                         },
                         new
@@ -6566,7 +6566,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 28,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000028"),
+                            TransactionCode = new Guid("0a68c2bf-fa68-482d-97df-5c7e8fe02e12"),
                             Type = 4
                         },
                         new
@@ -6580,7 +6580,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 1,
                             EducationAccountId = 29,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000029"),
+                            TransactionCode = new Guid("03ed2f50-9240-41d8-8ed5-d4d029e1f377"),
                             Type = 1
                         },
                         new
@@ -6594,7 +6594,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 30,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000030"),
+                            TransactionCode = new Guid("947ff9d0-5119-4ae2-91b8-3c2ed6763e0a"),
                             Type = 2
                         },
                         new
@@ -6608,7 +6608,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 31,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000031"),
+                            TransactionCode = new Guid("41c77e92-62c7-4e1b-9228-2a440f58347b"),
                             Type = 2
                         },
                         new
@@ -6622,7 +6622,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 32,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000032"),
+                            TransactionCode = new Guid("19e0145e-509e-495b-a780-2fbca86bb7f0"),
                             Type = 4
                         },
                         new
@@ -6636,7 +6636,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 1,
                             EducationAccountId = 33,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000033"),
+                            TransactionCode = new Guid("4818a12d-3778-476f-818f-93513e797f82"),
                             Type = 1
                         },
                         new
@@ -6650,7 +6650,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 34,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000034"),
+                            TransactionCode = new Guid("b866b87d-d793-495b-ba11-a8e4adb05302"),
                             Type = 2
                         },
                         new
@@ -6664,7 +6664,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 35,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000035"),
+                            TransactionCode = new Guid("84a02f3a-4080-4a44-bee4-4c6c57238abd"),
                             Type = 2
                         },
                         new
@@ -6678,7 +6678,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 36,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000036"),
+                            TransactionCode = new Guid("ef705496-e433-4e7d-a27b-2f283fd15f2d"),
                             Type = 4
                         },
                         new
@@ -6692,7 +6692,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 1,
                             EducationAccountId = 37,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000037"),
+                            TransactionCode = new Guid("a3a314a6-1a3c-4939-af36-3d1b4edcb340"),
                             Type = 1
                         },
                         new
@@ -6706,7 +6706,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 38,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000038"),
+                            TransactionCode = new Guid("f8033fe6-a6f8-4ee1-a7d6-d9d92638dd47"),
                             Type = 2
                         },
                         new
@@ -6720,7 +6720,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 39,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000039"),
+                            TransactionCode = new Guid("e83276cf-8a65-4d36-8f34-56b2aceed589"),
                             Type = 2
                         },
                         new
@@ -6734,7 +6734,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 40,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000040"),
+                            TransactionCode = new Guid("66360922-c48e-4a2e-a027-a250c090621b"),
                             Type = 4
                         },
                         new
@@ -6748,7 +6748,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 1,
                             EducationAccountId = 41,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000041"),
+                            TransactionCode = new Guid("b24cc55a-d9d6-4496-af44-3a66f7554f54"),
                             Type = 1
                         },
                         new
@@ -6762,7 +6762,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 42,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000042"),
+                            TransactionCode = new Guid("1ff96513-da7e-42f4-a069-3a2ca5d8683e"),
                             Type = 2
                         },
                         new
@@ -6776,7 +6776,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 43,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000043"),
+                            TransactionCode = new Guid("d63ba3cb-e4e2-43c9-ac55-44c8471a39ca"),
                             Type = 2
                         },
                         new
@@ -6790,7 +6790,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 44,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000044"),
+                            TransactionCode = new Guid("a4b0db24-dd9d-46ad-bd0e-06338a7f223d"),
                             Type = 4
                         },
                         new
@@ -6804,7 +6804,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 1,
                             EducationAccountId = 45,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000045"),
+                            TransactionCode = new Guid("fc22cb9e-b54e-4be1-8da5-4f6bc19f5872"),
                             Type = 1
                         },
                         new
@@ -6818,7 +6818,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 46,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000046"),
+                            TransactionCode = new Guid("b8281119-e152-4b4b-a305-12a6cdac0443"),
                             Type = 2
                         },
                         new
@@ -6832,7 +6832,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 47,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000047"),
+                            TransactionCode = new Guid("aa3b2e4c-4168-41e1-9e2d-e42027d45872"),
                             Type = 2
                         },
                         new
@@ -6846,7 +6846,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 48,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000048"),
+                            TransactionCode = new Guid("f2568b2f-b965-4d82-8bb2-0d344af9df0c"),
                             Type = 4
                         },
                         new
@@ -6860,7 +6860,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 1,
                             EducationAccountId = 49,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000049"),
+                            TransactionCode = new Guid("20489516-1121-469e-8d21-e46a93a2fffc"),
                             Type = 1
                         },
                         new
@@ -6874,7 +6874,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Direction = 2,
                             EducationAccountId = 50,
                             IsDeleted = false,
-                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000050"),
+                            TransactionCode = new Guid("ed9be019-597a-4217-9b0e-d0c47009c4ec"),
                             Type = 2
                         });
                 });

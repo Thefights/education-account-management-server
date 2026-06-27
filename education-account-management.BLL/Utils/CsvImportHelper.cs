@@ -1,14 +1,22 @@
-﻿using Common;
-using CsvHelper;
+﻿using CsvHelper;
 using CsvHelper.Configuration;
 using DTOs.Csv;
-using Exceptions;
 using System.Globalization;
 
 namespace Utils
 {
     public static class CsvImportHelper
     {
+        private const string ImportFailedMessage = "CSV import failed. Please check the failed records.";
+
+        public static void ThrowIfImportFailed(IReadOnlyCollection<BatchImportErrorDTO> errors)
+        {
+            if (errors.Count != 0)
+            {
+                throw new ValidationFailureException(ImportFailedMessage);
+            }
+        }
+
         public static List<BatchImportErrorDTO> ValidateFile(IFormFile file)
         {
             var errors = new List<BatchImportErrorDTO>();

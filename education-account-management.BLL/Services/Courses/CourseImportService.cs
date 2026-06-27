@@ -26,19 +26,18 @@ namespace Services.Courses
             var fileErrors = ValidateFile(file);
             if (fileErrors.Count != 0)
             {
-                return CsvImportHelper.BuildFailureResult(0, fileErrors);
+                CsvImportHelper.ThrowIfImportFailed(fileErrors);
             }
 
             var rows = ReadRows(file);
             if (rows.Errors.Count != 0)
             {
-                return CsvImportHelper.BuildFailureResult(rows.Total, rows.Errors);
+                CsvImportHelper.ThrowIfImportFailed(rows.Errors);
             }
 
             if (rows.Items.Count == 0)
             {
-                return CsvImportHelper.BuildFailureResult(
-                    0,
+                CsvImportHelper.ThrowIfImportFailed(
                     [BatchImportErrorDTO.Create(0, "File", "CSV file must contain at least one data row.")]);
             }
 
@@ -88,7 +87,7 @@ namespace Services.Courses
 
             if (errors.Count != 0)
             {
-                return CsvImportHelper.BuildFailureResult(rows.Total, errors);
+                CsvImportHelper.ThrowIfImportFailed(errors);
             }
 
             await UnitOfWork.ExecuteInTransactionAsync(
