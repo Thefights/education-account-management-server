@@ -19,239 +19,146 @@ namespace Services.FasApplications
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly ICurrentUserService _currentUserService = currentUserService;
 
+        private sealed record AccountHolderStudentInfo(int Id, int SchoolId, bool IsSingaporean, DateOnly DateOfBirth);
+
         public async Task<string> SubmitApplicationAsync(SubmitFasApplicationDTO dto, CancellationToken cancellationToken = default)
         {
-            var currentAccountHolderId = _currentUserService.UserId;
+            var studentInfo = await GetCurrentStudentInfoAsync(cancellationToken);
+            var scheme = await GetActiveSchemeAsync(dto.FasSchemeId, studentInfo.SchoolId, cancellationToken);
 
-            // 1. Lấy thông tin học sinh liên kết với người dùng (Account Holder) hiện tại
-            var studentInfo = await _unitOfWork.Repository<SchoolStudent>()
-                .Query()
-                .Where(student => student.EducationAccount.Citizen.User != null 
-                    && student.EducationAccount.Citizen.User.Id == currentAccountHolderId)
-                .Select(student => new {
-                    student.Id,
-                    student.SchoolId,
-                    student.EducationAccount.Citizen.IsSingaporean,
-                    student.EducationAccount.Citizen.DateOfBirth
-                })
-                .SingleOrDefaultAsync(cancellationToken);
+            await EnsureNoActiveApplicationAsync(studentInfo.Id, dto.FasSchemeId, null, cancellationToken);
 
-            if (studentInfo == null)
-            {
-                throw new DataNotFoundException("SchoolStudent for the current account holder was not found.");
-            }
-
-            // 2. Kiểm tra tính hợp lệ của Scheme (có tồn tại, đang hoạt động, và thuộc về trường của học sinh)
-            var scheme = await _unitOfWork.Repository<FasScheme>()
-                .Query()
-                .Include(s => s.Tiers)
-                .Include(s => s.RequiredDocuments)
-                .Include(s => s.ConditionGroups)
-                    .ThenInclude(cg => cg.Conditions)
-                .Include(s => s.ConditionGroups)
-                    .ThenInclude(cg => cg.ChildGroups)
-                        .ThenInclude(child => child.Conditions)
-                .FirstOrDefaultAsync(s => s.Id == dto.FasSchemeId && s.Status == FasSchemeStatus.Active && s.SchoolId == studentInfo.SchoolId, cancellationToken);
-
-            if (scheme == null)
-            {
-                throw new DataNotFoundException(typeof(FasScheme), dto.FasSchemeId);
-            }
-
-            // 3. Kiểm tra xem học sinh đã có hồ sơ nào đang chờ duyệt hoặc đã được duyệt cho Scheme này chưa
-            var today = DateTime.UtcNow.Date;
-            var existingApplications = await _unitOfWork.Repository<FasApplication>()
-                .Query(tracking: true)
-                .Include(a => a.Documents)
-                .Where(a => a.SchoolStudentId == studentInfo.Id
-                            && a.FasSchemeId == dto.FasSchemeId
-                            && (a.Status == FasApplicationStatus.Pending ||
-                                (a.Status == FasApplicationStatus.Approved && (a.ValidityEndDate == null || a.ValidityEndDate >= today))))
-                .ToListAsync(cancellationToken);
-
-            var pendingApplication = existingApplications.FirstOrDefault(a => a.Status == FasApplicationStatus.Pending);
-            var approvedApplication = existingApplications.FirstOrDefault(a =>
-                a.Status == FasApplicationStatus.Approved &&
-                (a.ValidityEndDate == null || a.ValidityEndDate >= today));
-            var reapplySourceApplication = dto.ReapplySourceApplicationId.HasValue
-                ? await _unitOfWork.Repository<FasApplication>()
-                    .Query(tracking: true)
-                    .Include(a => a.Documents)
-                    .FirstOrDefaultAsync(a => a.Id == dto.ReapplySourceApplicationId.Value
-                                             && a.SchoolStudentId == studentInfo.Id
-                                             && a.FasSchemeId == dto.FasSchemeId,
-                        cancellationToken)
-                : null;
-            var canReapplyFromSource = reapplySourceApplication != null &&
-                (reapplySourceApplication.Status == FasApplicationStatus.Rejected ||
-                 (reapplySourceApplication.Status == FasApplicationStatus.Approved &&
-                  reapplySourceApplication.ValidityEndDate.HasValue &&
-                  reapplySourceApplication.ValidityEndDate.Value.Date < today));
-
-            if (approvedApplication != null || (pendingApplication != null && !canReapplyFromSource))
-            {
-                throw new DataConflictException("You already have a pending or approved application for this scheme.");
-            }
-
-            if (dto.ReapplySourceApplicationId.HasValue && !canReapplyFromSource)
-            {
-                throw new DataConflictException("The selected application cannot be used for reapply.");
-            }
-
-            // 4. Đánh giá các điều kiện cơ bản của Scheme
-            int? recommendedTierId = null;
-            string recommendationReason = "Failed scheme baseline conditions";
-            int studentAge = DateTime.UtcNow.Year - studentInfo.DateOfBirth.Year;
-            if (studentInfo.DateOfBirth > DateOnly.FromDateTime(DateTime.UtcNow.AddYears(-studentAge))) studentAge--;
-
-            bool isEligible = FasConditionEvaluator.Evaluate(
-                scheme.ConditionGroups, 
-                studentAge, 
-                studentInfo.IsSingaporean,
-                dto.GuardianNationality, 
-                dto.GrossHouseholdIncome, 
-                dto.HouseholdMemberCount);
-
-            decimal pci = dto.HouseholdMemberCount > 0 ? dto.GrossHouseholdIncome / dto.HouseholdMemberCount : 0;
-
-            if (isEligible)
-            {
-                var eligibleTier = scheme.Tiers
-                    .Where(t => !t.MaxPerCapitaIncome.HasValue || pci <= t.MaxPerCapitaIncome)
-                    .OrderBy(t => t.MaxPerCapitaIncome ?? decimal.MaxValue)
-                    .FirstOrDefault();
-
-                if (eligibleTier != null)
-                {
-                    recommendedTierId = eligibleTier.Id;
-                    recommendationReason = eligibleTier.MaxPerCapitaIncome.HasValue 
-                        ? $"PCI <= {eligibleTier.MaxPerCapitaIncome}" 
-                        : "Matched tier with no PCI limit";
-                }
-                else
-                {
-                    recommendationReason = "Eligible for scheme but exceeded all tier PCI limits";
-                }
-            }
-
-            List<FasApplicationDocument> BuildApplicationDocuments(int fasApplicationId)
-            {
-                var documents = dto.Documents.Select(d => new FasApplicationDocument
-                {
-                    FasApplicationId = fasApplicationId,
-                    FasSchemeRequiredDocumentId = d.RequiredDocumentId,
-                    FileKey = d.FileKey,
-                    FileName = d.FileName,
-                    DocumentNameSnapshot = d.FileName
-                }).ToList();
-
-                foreach (var doc in documents)
-                {
-                    var reqDoc = scheme.RequiredDocuments.FirstOrDefault(r => r.Id == doc.FasSchemeRequiredDocumentId);
-                    doc.DocumentNameSnapshot = reqDoc?.DocumentName ?? doc.FileName;
-                }
-
-                return documents;
-            }
-
-            void ResetApplicationAsPending(FasApplication application)
-            {
-                var previousDocuments = application.Documents.ToList();
-                if (previousDocuments.Count > 0)
-                {
-                    _unitOfWork.Repository<FasApplicationDocument>().RemoveRange(previousDocuments);
-                }
-
-                application.Status = FasApplicationStatus.Pending;
-                application.CreatedAt = DateTime.UtcNow;
-                application.StudentAgeSnapshot = studentAge;
-                application.StudentNationalitySnapshot = studentInfo.IsSingaporean ? NationalityCategory.SingaporeCitizen : NationalityCategory.Other;
-                application.GuardianNationalitySnapshot = dto.GuardianNationality;
-                application.GrossHouseholdIncomeSnapshot = dto.GrossHouseholdIncome;
-                application.HouseholdMemberCountSnapshot = dto.HouseholdMemberCount;
-                application.PerCapitaIncomeSnapshot = pci;
-                application.RecommendedTierId = recommendedTierId;
-                application.ApprovedTierId = null;
-                application.RecommendationReason = recommendationReason;
-                application.RejectionReason = null;
-                application.ApprovedAt = null;
-                application.ApprovedByUserId = null;
-                application.DurationInMonthsSnapshot = null;
-                application.ValidityStartDate = null;
-                application.ValidityEndDate = null;
-                application.WithdrawnAt = null;
-                application.Documents = BuildApplicationDocuments(application.Id);
-            }
-
-            if (canReapplyFromSource && reapplySourceApplication != null)
-            {
-                if (pendingApplication != null && pendingApplication.Id != reapplySourceApplication.Id)
-                {
-                    var pendingDocuments = pendingApplication.Documents.ToList();
-                    if (pendingDocuments.Count > 0)
-                    {
-                        _unitOfWork.Repository<FasApplicationDocument>().RemoveRange(pendingDocuments);
-                    }
-
-                    _unitOfWork.Repository<FasApplication>().Remove(pendingApplication);
-                }
-
-                ResetApplicationAsPending(reapplySourceApplication);
-                await _unitOfWork.Repository<FasApplicationDocument>()
-                    .AddRangeAsync(reapplySourceApplication.Documents.ToList(), cancellationToken);
-                reapplySourceApplication.TryValidate();
-                await _unitOfWork.SaveChangeAsync(cancellationToken);
-
-                return reapplySourceApplication.ApplicationNumber;
-            }
-
-            // Tạo mã hồ sơ (Application Number) ngẫu nhiên
-            var applicationNumber = $"FASAPP-{DateTime.UtcNow:yyyyMMdd}-{Guid.NewGuid().ToString("N")[..7].ToUpper()}";
-
-            // 5. Khởi tạo đối tượng hồ sơ (Entity) và lưu các thông tin Snapshot tại thời điểm nộp
             var application = new FasApplication
             {
                 FasSchemeId = dto.FasSchemeId,
                 SchoolStudentId = studentInfo.Id,
-                ApplicationNumber = applicationNumber,
-                Status = FasApplicationStatus.Pending,
-                StudentAgeSnapshot = studentAge,
-                StudentNationalitySnapshot = studentInfo.IsSingaporean ? NationalityCategory.SingaporeCitizen : NationalityCategory.Other,
-                GuardianNationalitySnapshot = dto.GuardianNationality,
-                GrossHouseholdIncomeSnapshot = dto.GrossHouseholdIncome,
-                HouseholdMemberCountSnapshot = dto.HouseholdMemberCount,
-                PerCapitaIncomeSnapshot = pci,
-                RecommendedTierId = recommendedTierId,
-                RecommendationReason = recommendationReason,
-                Documents = BuildApplicationDocuments(-1) // Dummy value to bypass [NotDefaultValue] validation before EF Core sets the real ID
+                ApplicationNumber = GenerateApplicationNumber(),
+                Status = FasApplicationStatus.Pending
             };
 
+            ApplySubmission(application, dto, studentInfo, scheme, FasApplicationStatus.Pending);
             application.TryValidate();
-            
 
             await _unitOfWork.Repository<FasApplication>().AddAsync(application, cancellationToken);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
 
-            return applicationNumber;
+            return application.ApplicationNumber;
+        }
+
+        public async Task<int> CreateReapplyDraftAsync(int sourceApplicationId, CancellationToken cancellationToken = default)
+        {
+            var studentInfo = await GetCurrentStudentInfoAsync(cancellationToken);
+            var today = DateTime.UtcNow.Date;
+
+            var sourceApplication = await _unitOfWork.Repository<FasApplication>()
+                .Query()
+                .Include(a => a.Documents)
+                .FirstOrDefaultAsync(a => a.Id == sourceApplicationId && a.SchoolStudentId == studentInfo.Id, cancellationToken);
+
+            if (sourceApplication == null)
+            {
+                throw new DataNotFoundException(typeof(FasApplication), sourceApplicationId);
+            }
+
+            var canReapply =
+                sourceApplication.Status == FasApplicationStatus.Rejected ||
+                (sourceApplication.Status == FasApplicationStatus.Approved &&
+                 sourceApplication.ValidityEndDate.HasValue &&
+                 sourceApplication.ValidityEndDate.Value.Date < today);
+
+            if (!canReapply)
+            {
+                throw new DataConflictException("Only rejected or expired applications can be used for reapply.");
+            }
+
+            var existingDraft = await _unitOfWork.Repository<FasApplication>()
+                .Query()
+                .FirstOrDefaultAsync(a => a.SchoolStudentId == studentInfo.Id
+                                          && a.FasSchemeId == sourceApplication.FasSchemeId
+                                          && a.Status == FasApplicationStatus.Draft,
+                    cancellationToken);
+
+            if (existingDraft != null)
+            {
+                return existingDraft.Id;
+            }
+
+            await EnsureNoActiveApplicationAsync(studentInfo.Id, sourceApplication.FasSchemeId, null, cancellationToken);
+
+            var draft = new FasApplication
+            {
+                FasSchemeId = sourceApplication.FasSchemeId,
+                SchoolStudentId = studentInfo.Id,
+                ApplicationNumber = GenerateApplicationNumber(),
+                Status = FasApplicationStatus.Draft,
+                StudentAgeSnapshot = sourceApplication.StudentAgeSnapshot,
+                StudentNationalitySnapshot = sourceApplication.StudentNationalitySnapshot,
+                GuardianNationalitySnapshot = sourceApplication.GuardianNationalitySnapshot,
+                GrossHouseholdIncomeSnapshot = sourceApplication.GrossHouseholdIncomeSnapshot,
+                HouseholdMemberCountSnapshot = sourceApplication.HouseholdMemberCountSnapshot,
+                PerCapitaIncomeSnapshot = sourceApplication.PerCapitaIncomeSnapshot,
+                RecommendedTierId = sourceApplication.RecommendedTierId,
+                RecommendationReason = sourceApplication.RecommendationReason,
+                Documents = CloneDocuments(sourceApplication.Documents, -1)
+            };
+
+            draft.TryValidate();
+
+            await _unitOfWork.Repository<FasApplication>().AddAsync(draft, cancellationToken);
+            await _unitOfWork.SaveChangeAsync(cancellationToken);
+
+            return draft.Id;
+        }
+
+        public async Task<string> PublishDraftApplicationAsync(int id, SubmitFasApplicationDTO dto, CancellationToken cancellationToken = default)
+        {
+            var studentInfo = await GetCurrentStudentInfoAsync(cancellationToken);
+
+            var draft = await _unitOfWork.Repository<FasApplication>()
+                .Query(tracking: true)
+                .Include(a => a.Documents)
+                .Include(a => a.FasScheme)
+                    .ThenInclude(s => s.Tiers)
+                .Include(a => a.FasScheme)
+                    .ThenInclude(s => s.RequiredDocuments)
+                .Include(a => a.FasScheme)
+                    .ThenInclude(s => s.ConditionGroups)
+                        .ThenInclude(cg => cg.Conditions)
+                .Include(a => a.FasScheme)
+                    .ThenInclude(s => s.ConditionGroups)
+                        .ThenInclude(cg => cg.ChildGroups)
+                            .ThenInclude(child => child.Conditions)
+                .FirstOrDefaultAsync(a => a.Id == id && a.SchoolStudentId == studentInfo.Id, cancellationToken);
+
+            if (draft == null)
+            {
+                throw new DataNotFoundException(typeof(FasApplication), id);
+            }
+
+            if (draft.Status != FasApplicationStatus.Draft)
+            {
+                throw new DataConflictException("Only draft applications can be submitted.");
+            }
+
+            if (dto.FasSchemeId != draft.FasSchemeId)
+            {
+                throw new DataConflictException("Draft application scheme does not match the submitted scheme.");
+            }
+
+            await EnsureNoActiveApplicationAsync(studentInfo.Id, draft.FasSchemeId, draft.Id, cancellationToken);
+
+            ApplySubmission(draft, dto, studentInfo, draft.FasScheme, FasApplicationStatus.Pending);
+            draft.CreatedAt = DateTime.UtcNow;
+            draft.TryValidate();
+
+            await _unitOfWork.SaveChangeAsync(cancellationToken);
+
+            return draft.ApplicationNumber;
         }
 
         public async Task<PaginationResult<FasApplicationSummaryDTO>> GetMyApplicationsAsync(FasApplicationFilterDTO filter, CancellationToken cancellationToken = default)
         {
-            var currentAccountHolderId = _currentUserService.UserId;
-
-            // Lấy schoolStudentId của user hiện tại
-            var studentId = await _unitOfWork.Repository<SchoolStudent>()
-                .Query()
-                .Where(student => student.EducationAccount.Citizen.User != null 
-                    && student.EducationAccount.Citizen.User.Id == currentAccountHolderId)
-                .Select(student => student.Id)
-                .SingleOrDefaultAsync(cancellationToken);
-
-            if (studentId == 0)
-            {
-                throw new DataNotFoundException("SchoolStudent for the current account holder was not found.");
-            }
-
+            var studentInfo = await GetCurrentStudentInfoAsync(cancellationToken);
             var pageSize = Math.Clamp(filter.PageSize, 1, 100);
 
             var (total, items) = await _unitOfWork.Repository<FasApplication>().GetProjectedPaginatedAsync(
@@ -267,7 +174,7 @@ namespace Services.FasApplications
                     ValidityEndDate = a.ValidityEndDate,
                     RejectionReason = a.RejectionReason
                 }),
-                a => a.SchoolStudentId == studentId,
+                a => a.SchoolStudentId == studentInfo.Id && a.Status != FasApplicationStatus.Draft,
                 filter.Filter,
                 filter.Search,
                 filter.SearchFields,
@@ -279,26 +186,14 @@ namespace Services.FasApplications
 
             return new PaginationResult<FasApplicationSummaryDTO>(total, pageSize, items);
         }
+
         public async Task WithdrawApplicationAsync(int id, CancellationToken cancellationToken = default)
         {
-            var currentAccountHolderId = _currentUserService.UserId;
-
-            // Lấy schoolStudentId của user hiện tại
-            var studentId = await _unitOfWork.Repository<SchoolStudent>()
-                .Query()
-                .Where(student => student.EducationAccount.Citizen.User != null 
-                    && student.EducationAccount.Citizen.User.Id == currentAccountHolderId)
-                .Select(student => student.Id)
-                .SingleOrDefaultAsync(cancellationToken);
-
-            if (studentId == 0)
-            {
-                throw new DataNotFoundException("SchoolStudent for the current account holder was not found.");
-            }
+            var studentInfo = await GetCurrentStudentInfoAsync(cancellationToken);
 
             var application = await _unitOfWork.Repository<FasApplication>()
                 .Query(tracking: true)
-                .FirstOrDefaultAsync(a => a.Id == id && a.SchoolStudentId == studentId, cancellationToken);
+                .FirstOrDefaultAsync(a => a.Id == id && a.SchoolStudentId == studentInfo.Id, cancellationToken);
 
             if (application == null)
             {
@@ -318,27 +213,14 @@ namespace Services.FasApplications
 
         public async Task<FasApplicationDetailDTO> GetApplicationDetailAsync(int id, CancellationToken cancellationToken = default)
         {
-            var currentAccountHolderId = _currentUserService.UserId;
-
-            // Lấy schoolStudentId của user hiện tại
-            var studentId = await _unitOfWork.Repository<SchoolStudent>()
-                .Query()
-                .Where(student => student.EducationAccount.Citizen.User != null
-                    && student.EducationAccount.Citizen.User.Id == currentAccountHolderId)
-                .Select(student => student.Id)
-                .SingleOrDefaultAsync(cancellationToken);
-
-            if (studentId == 0)
-            {
-                throw new DataNotFoundException("SchoolStudent for the current account holder was not found.");
-            }
+            var studentInfo = await GetCurrentStudentInfoAsync(cancellationToken);
 
             var application = await _unitOfWork.Repository<FasApplication>()
                 .Query()
                 .Include(a => a.FasScheme)
                 .Include(a => a.ApprovedTier)
                 .Include(a => a.Documents)
-                .FirstOrDefaultAsync(a => a.Id == id && a.SchoolStudentId == studentId, cancellationToken);
+                .FirstOrDefaultAsync(a => a.Id == id && a.SchoolStudentId == studentInfo.Id, cancellationToken);
 
             if (application == null)
             {
@@ -388,5 +270,194 @@ namespace Services.FasApplications
 
             return result;
         }
+
+        private async Task<AccountHolderStudentInfo> GetCurrentStudentInfoAsync(CancellationToken cancellationToken)
+        {
+            var currentAccountHolderId = _currentUserService.UserId;
+
+            var studentInfo = await _unitOfWork.Repository<SchoolStudent>()
+                .Query()
+                .Where(student => student.EducationAccount.Citizen.User != null
+                    && student.EducationAccount.Citizen.User.Id == currentAccountHolderId)
+                .Select(student => new AccountHolderStudentInfo(
+                    student.Id,
+                    student.SchoolId,
+                    student.EducationAccount.Citizen.IsSingaporean,
+                    student.EducationAccount.Citizen.DateOfBirth))
+                .SingleOrDefaultAsync(cancellationToken);
+
+            return studentInfo ?? throw new DataNotFoundException("SchoolStudent for the current account holder was not found.");
+        }
+
+        private async Task<FasScheme> GetActiveSchemeAsync(int schemeId, int schoolId, CancellationToken cancellationToken)
+        {
+            var scheme = await _unitOfWork.Repository<FasScheme>()
+                .Query()
+                .Include(s => s.Tiers)
+                .Include(s => s.RequiredDocuments)
+                .Include(s => s.ConditionGroups)
+                    .ThenInclude(cg => cg.Conditions)
+                .Include(s => s.ConditionGroups)
+                    .ThenInclude(cg => cg.ChildGroups)
+                        .ThenInclude(child => child.Conditions)
+                .FirstOrDefaultAsync(s => s.Id == schemeId
+                    && s.Status == FasSchemeStatus.Active
+                    && s.SchoolId == schoolId,
+                    cancellationToken);
+
+            return scheme ?? throw new DataNotFoundException(typeof(FasScheme), schemeId);
+        }
+
+        private async Task EnsureNoActiveApplicationAsync(
+            int studentId,
+            int schemeId,
+            int? excludeApplicationId,
+            CancellationToken cancellationToken)
+        {
+            var today = DateTime.UtcNow.Date;
+            var exists = await _unitOfWork.Repository<FasApplication>()
+                .Query()
+                .AnyAsync(a => a.SchoolStudentId == studentId
+                    && a.FasSchemeId == schemeId
+                    && (!excludeApplicationId.HasValue || a.Id != excludeApplicationId.Value)
+                    && (a.Status == FasApplicationStatus.Pending
+                        || a.Status == FasApplicationStatus.Draft
+                        || (a.Status == FasApplicationStatus.Approved
+                            && (a.ValidityEndDate == null || a.ValidityEndDate >= today))),
+                    cancellationToken);
+
+            if (exists)
+            {
+                throw new DataConflictException("You already have a pending or approved application for this scheme.");
+            }
+        }
+
+        private void ApplySubmission(
+            FasApplication application,
+            SubmitFasApplicationDTO dto,
+            AccountHolderStudentInfo studentInfo,
+            FasScheme scheme,
+            FasApplicationStatus status)
+        {
+            var studentAge = GetStudentAge(studentInfo.DateOfBirth);
+            var pci = dto.HouseholdMemberCount > 0 ? dto.GrossHouseholdIncome / dto.HouseholdMemberCount : 0;
+            var (recommendedTierId, recommendationReason) = GetRecommendation(dto, studentInfo, scheme, studentAge, pci);
+
+            RemoveDocuments(application.Documents);
+
+            application.FasSchemeId = dto.FasSchemeId;
+            application.Status = status;
+            application.StudentAgeSnapshot = studentAge;
+            application.StudentNationalitySnapshot = studentInfo.IsSingaporean
+                ? NationalityCategory.SingaporeCitizen
+                : NationalityCategory.Other;
+            application.GuardianNationalitySnapshot = dto.GuardianNationality;
+            application.GrossHouseholdIncomeSnapshot = dto.GrossHouseholdIncome;
+            application.HouseholdMemberCountSnapshot = dto.HouseholdMemberCount;
+            application.PerCapitaIncomeSnapshot = pci;
+            application.RecommendedTierId = recommendedTierId;
+            application.ApprovedTierId = null;
+            application.RecommendationReason = recommendationReason;
+            application.RejectionReason = null;
+            application.ApprovedAt = null;
+            application.ApprovedByUserId = null;
+            application.DurationInMonthsSnapshot = null;
+            application.ValidityStartDate = null;
+            application.ValidityEndDate = null;
+            application.WithdrawnAt = null;
+            application.Documents = BuildDocuments(dto.Documents, scheme, application.Id == 0 ? -1 : application.Id);
+        }
+
+        private (int? RecommendedTierId, string RecommendationReason) GetRecommendation(
+            SubmitFasApplicationDTO dto,
+            AccountHolderStudentInfo studentInfo,
+            FasScheme scheme,
+            int studentAge,
+            decimal pci)
+        {
+            var recommendationReason = "Failed scheme baseline conditions";
+
+            var isEligible = FasConditionEvaluator.Evaluate(
+                scheme.ConditionGroups,
+                studentAge,
+                studentInfo.IsSingaporean,
+                dto.GuardianNationality,
+                dto.GrossHouseholdIncome,
+                dto.HouseholdMemberCount);
+
+            if (!isEligible)
+            {
+                return (null, recommendationReason);
+            }
+
+            var eligibleTier = scheme.Tiers
+                .Where(t => !t.MaxPerCapitaIncome.HasValue || pci <= t.MaxPerCapitaIncome)
+                .OrderBy(t => t.MaxPerCapitaIncome ?? decimal.MaxValue)
+                .FirstOrDefault();
+
+            if (eligibleTier == null)
+            {
+                return (null, "Eligible for scheme but exceeded all tier PCI limits");
+            }
+
+            recommendationReason = eligibleTier.MaxPerCapitaIncome.HasValue
+                ? $"PCI <= {eligibleTier.MaxPerCapitaIncome}"
+                : "Matched tier with no PCI limit";
+
+            return (eligibleTier.Id, recommendationReason);
+        }
+
+        private static int GetStudentAge(DateOnly dateOfBirth)
+        {
+            var today = DateTime.UtcNow;
+            var age = today.Year - dateOfBirth.Year;
+            if (dateOfBirth > DateOnly.FromDateTime(today.AddYears(-age))) age--;
+            return age;
+        }
+
+        private static List<FasApplicationDocument> BuildDocuments(
+            IEnumerable<SubmitFasApplicationDocumentDTO> documents,
+            FasScheme scheme,
+            int applicationId)
+        {
+            return documents.Select(document =>
+            {
+                var requiredDocument = scheme.RequiredDocuments.FirstOrDefault(r => r.Id == document.RequiredDocumentId);
+                return new FasApplicationDocument
+                {
+                    FasApplicationId = applicationId,
+                    FasSchemeRequiredDocumentId = document.RequiredDocumentId,
+                    FileKey = document.FileKey,
+                    FileName = document.FileName,
+                    DocumentNameSnapshot = requiredDocument?.DocumentName ?? document.FileName
+                };
+            }).ToList();
+        }
+
+        private static List<FasApplicationDocument> CloneDocuments(
+            IEnumerable<FasApplicationDocument> documents,
+            int applicationId)
+        {
+            return documents.Select(document => new FasApplicationDocument
+            {
+                FasApplicationId = applicationId,
+                FasSchemeRequiredDocumentId = document.FasSchemeRequiredDocumentId,
+                FileKey = document.FileKey,
+                FileName = document.FileName,
+                DocumentNameSnapshot = document.DocumentNameSnapshot
+            }).ToList();
+        }
+
+        private void RemoveDocuments(IEnumerable<FasApplicationDocument> documents)
+        {
+            var existingDocuments = documents.ToList();
+            if (existingDocuments.Count > 0)
+            {
+                _unitOfWork.Repository<FasApplicationDocument>().RemoveRange(existingDocuments);
+            }
+        }
+
+        private static string GenerateApplicationNumber() =>
+            $"FASAPP-{DateTime.UtcNow:yyyyMMdd}-{Guid.NewGuid().ToString("N")[..7].ToUpper()}";
     }
 }

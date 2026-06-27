@@ -33,6 +33,20 @@ namespace Controllers.AccountHolder
             return Result.SuccessAction($"FAS application successfully created with ID: {applicationNumber}");
         }
 
+        [HttpPost("fas-applications/{id}/reapply-draft")]
+        public async Task<IActionResult> CreateReapplyDraft([FromRoute] int id, CancellationToken cancellationToken)
+        {
+            var draftId = await _fasApplicationService.CreateReapplyDraftAsync(id, cancellationToken);
+            return Result.SuccessData(new { id = draftId });
+        }
+
+        [HttpPost("fas-applications/{id}/publish")]
+        public async Task<IActionResult> PublishDraftApplication([FromRoute] int id, [FromForm] SubmitFasApplicationDTO dto, CancellationToken cancellationToken)
+        {
+            var applicationNumber = await _fasApplicationService.PublishDraftApplicationAsync(id, dto, cancellationToken);
+            return Result.SuccessAction($"FAS application successfully submitted with ID: {applicationNumber}");
+        }
+
         [HttpGet("fas-applications")]
         public async Task<IActionResult> GetMyApplications([FromQuery] FasApplicationFilterDTO filter, CancellationToken cancellationToken)
         {
