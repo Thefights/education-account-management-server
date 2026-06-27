@@ -5,40 +5,31 @@ using Mappers.FasApplications;
 using System.Linq.Expressions;
 using Exceptions;
 
+using Utils;
+using Results;
+
 namespace Services.FasApplications
 {
-    public class ManagementFasApplicationService(IUnitOfWork unitOfWork, ICurrentUserService currentUserService, FasApplicationMapper mapper) : IManagementFasApplicationService
+    public class ManagementFasApplicationService(
+        IUnitOfWork unitOfWork,
+        ICurrentUserService currentUserService,
+        FasApplicationMapper mapper,
+        SchoolScopeResolver schoolScopeResolver) : IManagementFasApplicationService
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly FasApplicationMapper _mapper = mapper;
         private readonly ICurrentUserService _currentUserService = currentUserService;
+        private readonly SchoolScopeResolver _schoolScopeResolver = schoolScopeResolver;
         private readonly IGenericRepository<FasApplication> _fasApplicationRepository = unitOfWork.Repository<FasApplication>();
 
-        public async Task<FasApplicationQueueResponseDTO> GetApplicationQueueAsync(GetFasApplicationListRequestDTO request, int adminSchoolId, CancellationToken cancellationToken = default)
+        public async Task<PaginationResult<FasApplicationItemDTO>> GetApplicationQueueAsync(GetFasApplicationListRequestDTO request, int adminSchoolId, CancellationToken cancellationToken = default)
         {
             var now = DateTime.UtcNow.AddHours(8);
 
             // 1. Build Base Filter for Admin's School
             Expression<Func<FasApplication, bool>> baseFilter = a => a.SchoolStudent.SchoolId == adminSchoolId;
 
-            // 2. Count for each tab
-            var pendingCount = await _fasApplicationRepository.CountAsync(
-                a => a.SchoolStudent.SchoolId == adminSchoolId && a.Status == FasApplicationStatus.Pending,
-                cancellationToken);
-
-            var approvedCount = await _fasApplicationRepository.CountAsync(
-                a => a.SchoolStudent.SchoolId == adminSchoolId && a.Status == FasApplicationStatus.Approved && (a.ValidityEndDate == null || a.ValidityEndDate >= now),
-                cancellationToken);
-
-            var expiredCount = await _fasApplicationRepository.CountAsync(
-                a => a.SchoolStudent.SchoolId == adminSchoolId && a.Status == FasApplicationStatus.Approved && a.ValidityEndDate < now,
-                cancellationToken);
-
-            var rejectedCount = await _fasApplicationRepository.CountAsync(
-                a => a.SchoolStudent.SchoolId == adminSchoolId && a.Status == FasApplicationStatus.Rejected,
-                cancellationToken);
-
-            // 3. Status Filter based on Request
+            // 2. Status Filter based on Request
             var requestedStatus = request.Status?.ToLower();
             Expression<Func<FasApplication, bool>> dbFilter = requestedStatus switch
             {
@@ -49,13 +40,13 @@ namespace Services.FasApplications
                 _ => a => a.SchoolStudent.SchoolId == adminSchoolId
             };
 
-            // 4. Search Filter
+            // 3. Search Filter
             string[] searchFields = [nameof(FasApplication.ApplicationNumber), "SchoolStudent.EducationAccount.AccountNumber", "SchoolStudent.EducationAccount.Citizen.FullName", "FasScheme.SchemeName"];
 
-            // 5. Sort Order
+            // 4. Sort Order
             string order = string.IsNullOrWhiteSpace(request.Sort) ? "CreatedAt asc" : request.Sort;
 
-            // 6. Pagination & Projection
+            // 5. Pagination & Projection
             var result = await _fasApplicationRepository.GetProjectedPaginatedAsync(
                 _mapper.ProjectToListItemDTO,
                 dbFilter,
@@ -82,22 +73,10 @@ namespace Services.FasApplications
                 }
             }
 
-            return new FasApplicationQueueResponseDTO
-            {
-                Collection = result.Items,
-                Counts = new FasApplicationCountsDTO
-                {
-                    Pending = pendingCount,
-                    Approved = approvedCount,
-                    Expired = expiredCount,
-                    Rejected = rejectedCount
-                },
-                TotalCount = result.Count,
-                TotalPages = (int)Math.Ceiling(result.Count / (double)request.PageSize)
-            };
+            return new PaginationResult<FasApplicationItemDTO>(result.Count, request.PageSize, result.Items);
         }
 
-        public async Task<FasApplicationDetailsDTO> GetApplicationDetailsAsync(int applicationId, int adminSchoolId, CancellationToken cancellationToken = default)
+        public async Task<FasApplicationDetailDTO> GetApplicationDetailsAsync(int applicationId, int adminSchoolId, CancellationToken cancellationToken = default)
         {
             var repo = _unitOfWork.Repository<FasApplication>();
 
@@ -129,7 +108,7 @@ namespace Services.FasApplications
             var symbol = isPercent ? "%" : " S$";
 
             // Map DTO
-            var dto = new FasApplicationDetailsDTO
+            var dto = new FasApplicationDetailDTO
             {
                 ApplicationId = application.ApplicationNumber,
                 Status = statusStr,
@@ -263,6 +242,27 @@ namespace Services.FasApplications
 
             _unitOfWork.Repository<FasApplication>().Update(application);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
+        }
+
+        public async Task<FasApplicationDetailDTO> GetByIdAsync(int id, CancellationToken cancellationToken = default)
+        {
+            var adminSchoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
+            return await GetApplicationDetailsAsync(id, adminSchoolId, cancellationToken);
+        }
+
+        public Task<PaginationResult<FasApplicationDetailDTO>> GetAllPaginatedAsync(Filters.Base.FilterDTO filterDTO, CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<FasApplicationDetailDTO>> GetAllAsync(CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<FasApplicationDetailDTO>> GetAllByIdsAsync(List<int> ids, CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
         }
     }
 }

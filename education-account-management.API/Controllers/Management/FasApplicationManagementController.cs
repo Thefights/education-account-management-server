@@ -4,6 +4,7 @@ using Controllers.Base;
 using DTOs.FasApplications;
 using Utils;
 using Interfaces.FasApplications;
+using Filters.FasApplications;
 
 
 namespace Controllers.Management
@@ -11,13 +12,13 @@ namespace Controllers.Management
     [Authorize(Roles = RolePolicy.SchoolAdmin)]
     public class FasApplicationManagementController(
         IManagementFasApplicationService service,
-        SchoolScopeResolver schoolScopeResolver) : BaseController
+        SchoolScopeResolver schoolScopeResolver) : GetController<FasApplicationDetailDTO, FasApplicationFilterDTO>(service)
     {
         private readonly IManagementFasApplicationService _service = service;
         private readonly SchoolScopeResolver _schoolScopeResolver = schoolScopeResolver;
 
         [HttpGet]
-        public async Task<IActionResult> GetApplicationQueue(
+        public override async Task<IActionResult> GetAllPaginated(
             [FromQuery] GetFasApplicationListRequestDTO request,
             CancellationToken cancellationToken)
         {
@@ -27,7 +28,7 @@ namespace Controllers.Management
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetApplicationDetails(
+        public override async Task<IActionResult> GetById(
             int id,
             CancellationToken cancellationToken)
         {

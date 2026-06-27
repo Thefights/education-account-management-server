@@ -1,6 +1,22 @@
+
+
 namespace DTOs.FasApplications
 {
-    public class FasApplicationDetailsDTO
+    public class FasApplicationItemDTO
+    {
+        public string Id { get; set; } = string.Empty;
+        public string ApplicantNo { get; set; } = string.Empty;
+        public string AccountName { get; set; } = string.Empty;
+        public string AccountNo { get; set; } = string.Empty;
+        public string SchemeName { get; set; } = string.Empty;
+        public DateTime SubmittedAt { get; set; }
+        public string Status { get; set; } = string.Empty;
+
+        [System.Text.Json.Serialization.JsonIgnore]
+        public DateTime? ValidityEndDate { get; set; }
+    }
+
+     public class FasApplicationDetailDTO
     {
         public string ApplicationId { get; set; } = string.Empty;
         public string Status { get; set; } = string.Empty;
