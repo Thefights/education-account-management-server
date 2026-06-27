@@ -145,9 +145,9 @@ namespace Services.FasApplications
                 throw new DataConflictException("Draft application scheme does not match the submitted scheme.");
             }
 
-            await EnsureNoActiveApplicationAsync(studentInfo.Id, draft.FasSchemeId, draft.Id, cancellationToken);
-
-            ApplySubmission(draft, dto, studentInfo, draft.FasScheme, FasApplicationStatus.Pending);
+            await EnsureNoActiveApplicationAsync(studentInfo.Id, draft.FasSchemeId, draft.Id, cancellationToken); 
+            var scheme = await GetActiveSchemeAsync(draft.FasSchemeId, studentInfo.SchoolId, cancellationToken);
+            ApplySubmission(draft, dto, studentInfo, scheme, FasApplicationStatus.Pending);            
             draft.CreatedAt = DateTime.UtcNow;
             draft.TryValidate();
 
