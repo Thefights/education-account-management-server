@@ -26,6 +26,7 @@ namespace Services.FasSchemes
                     && student.EducationAccount.Citizen.User.Id == currentAccountHolderId)
                 .Select(student => new {
                     student.Id,
+                    student.SchoolId,
                     student.EducationAccount.Citizen.IsSingaporean,
                     student.EducationAccount.Citizen.DateOfBirth
                 })
@@ -42,7 +43,7 @@ namespace Services.FasSchemes
             // Bao gồm luôn cả việc load các bảng liên quan như Tiers, RequiredDocuments, ConditionGroups và Conditions
             var activeSchemesQuery = _unitOfWork.Repository<FasScheme>()
                 .Query()
-                .Where(s => s.Status == FasSchemeStatus.Active)
+                .Where(s => s.Status == FasSchemeStatus.Active && s.SchoolId == studentInfo.SchoolId)
                 .Include(s => s.Tiers)
                 .Include(s => s.RequiredDocuments)
                 .Include(s => s.ConditionGroups)
