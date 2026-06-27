@@ -86,38 +86,16 @@ namespace Services.Payments
 
             Expression<Func<Enrollment, bool>> filterExpr = e =>
                 e.SchoolStudent.EducationAccountId == accountId &&
-                e.Charge != null;
-
-            if (filter.EnrollmentIds != null && filter.EnrollmentIds.Count > 0)
-            {
-                filterExpr = e =>
-                    e.SchoolStudent.EducationAccountId == accountId &&
-                    e.Charge != null &&
-                    filter.EnrollmentIds.Contains(e.Id);
-            }
-            else if (filter.Status != StudentTuitionFilterStatus.All)
-            {
-                if (filter.Status == StudentTuitionFilterStatus.Paid)
-                {
-                    filterExpr = e =>
-                        e.SchoolStudent.EducationAccountId == accountId &&
-                        e.Charge!.Status == ChargeStatus.Paid;
-                }
-                else if (filter.Status == StudentTuitionFilterStatus.Overdue)
-                {
-                    filterExpr = e =>
-                        e.SchoolStudent.EducationAccountId == accountId &&
-                        (e.Charge!.Status == ChargeStatus.Overdue || 
-                         (e.Charge.Status == ChargeStatus.PendingPayment && e.Course.FasApplicationDueDate < now));
-                }
-                else if (filter.Status == StudentTuitionFilterStatus.Due)
-                {
-                    filterExpr = e =>
-                        e.SchoolStudent.EducationAccountId == accountId &&
-                        e.Charge!.Status == ChargeStatus.PendingPayment &&
-                        e.Course.FasApplicationDueDate >= now;
-                }
-            }
+                e.Charge != null &&
+                (filter.EnrollmentIds == null || filter.EnrollmentIds.Count == 0 || filter.EnrollmentIds.Contains(e.Id)) &&
+                (filter.Status == StudentTuitionFilterStatus.All ||
+                 (filter.Status == StudentTuitionFilterStatus.Paid && e.Charge.Status == ChargeStatus.Paid) ||
+                 (filter.Status == StudentTuitionFilterStatus.Overdue && 
+                     (e.Charge.Status == ChargeStatus.Overdue || 
+                      (e.Charge.Status == ChargeStatus.PendingPayment && e.Course.FasApplicationDueDate < now))) ||
+                 (filter.Status == StudentTuitionFilterStatus.Due && 
+                     e.Charge.Status == ChargeStatus.PendingPayment && 
+                     e.Course.FasApplicationDueDate >= now));
 
             var (total, charges) = await _enrollmentRepository.GetProjectedPaginatedAsync(
                 projection: q => q.Select(e => new StudentTuitionChargeDTO
@@ -129,8 +107,8 @@ namespace Services.Payments
                     CourseDescription = e.CourseDescriptionSnapshot,
                     PaymentDueDate = e.Course.FasApplicationDueDate,
                     PaymentStatus = e.Charge.Status == ChargeStatus.Paid ? "Paid" :
-                                    e.Charge.Installments.Count > 1 ? "Installment" :
                                     (e.Charge.Status == ChargeStatus.Overdue || e.Course.FasApplicationDueDate < now) ? "Overdue" :
+                                    e.Charge.Installments.Count > 1 ? "Installment" :
                                     "Due",
                     CourseFee = e.Charge.CourseFeeAmountSnapshot,
                     MiscFee = e.Charge.MiscFeeAmountSnapshot,
