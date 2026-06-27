@@ -45,6 +45,7 @@ namespace Services.FasApplications
             var scheme = await _unitOfWork.Repository<FasScheme>()
                 .Query()
                 .Include(s => s.Tiers)
+                .Include(s => s.RequiredDocuments)
                 .Include(s => s.ConditionGroups)
                     .ThenInclude(cg => cg.Conditions)
                 .Include(s => s.ConditionGroups)
@@ -62,7 +63,8 @@ namespace Services.FasApplications
                 .Query()
                 .AnyAsync(a => a.SchoolStudentId == studentInfo.Id 
                             && a.FasSchemeId == dto.FasSchemeId 
-                            && (a.Status == FasApplicationStatus.Pending || a.Status == FasApplicationStatus.Approved), cancellationToken);
+                            && (a.Status == FasApplicationStatus.Pending || 
+                               (a.Status == FasApplicationStatus.Approved && (a.ValidityEndDate == null || a.ValidityEndDate >= DateTime.UtcNow))), cancellationToken);
             
             if (existingApplication)
             {
@@ -140,10 +142,6 @@ namespace Services.FasApplications
             }
 
             application.TryValidate();
-            foreach (var doc in application.Documents)
-            {
-                doc.TryValidate();
-            }
 
             await _unitOfWork.Repository<FasApplication>().AddAsync(application, cancellationToken);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
@@ -212,7 +210,7 @@ namespace Services.FasApplications
             }
 
             var application = await _unitOfWork.Repository<FasApplication>()
-                .Query()
+                .Query(tracking: true)
                 .FirstOrDefaultAsync(a => a.Id == id && a.SchoolStudentId == studentId, cancellationToken);
 
             if (application == null)
