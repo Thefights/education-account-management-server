@@ -21,7 +21,7 @@ namespace Mappers.FasSchemes
                     Operator = condition.Operator,
                     ValueNumber = condition.ValueNumber,
                     ValueNumberTo = condition.ValueNumberTo,
-                    //CountryId = condition.CountryId,
+                    ValueText = MapCountryIdToValueText(condition.Field, condition.CountryId),
                     DisplayOrder = condition.DisplayOrder
                 }).ToList()
             };
@@ -58,7 +58,7 @@ namespace Mappers.FasSchemes
                     Operator = condition.Operator.ToString(),
                     ValueNumber = condition.ValueNumber,
                     ValueNumberTo = condition.ValueNumberTo,
-                    //CountryId = condition.CountryId,
+                    CountryId = MapValueTextToCountryId(condition.Field, condition.ValueText),
                     DisplayOrder = condition.DisplayOrder
                 }).ToList(),
                 Groups = children.GetValueOrDefault(group.Id, [])
@@ -66,6 +66,29 @@ namespace Mappers.FasSchemes
                     .Select(child => MapFasGroup(child, children))
                     .ToList()
             };
+        }
+
+
+        private static string? MapCountryIdToValueText(FasConditionField field, int? countryId)
+        {
+            if (field is not (FasConditionField.StudentNationality or FasConditionField.GuardianNationality))
+            {
+                return null;
+            }
+
+            return countryId == 1 ? "Singapore" : "Other";
+        }
+
+        private static int? MapValueTextToCountryId(FasConditionField field, string? valueText)
+        {
+            if (field is not (FasConditionField.StudentNationality or FasConditionField.GuardianNationality))
+            {
+                return null;
+            }
+
+            return string.Equals(valueText?.Trim(), "Singapore", StringComparison.OrdinalIgnoreCase)
+                ? 1
+                : 2;
         }
     }
 }
