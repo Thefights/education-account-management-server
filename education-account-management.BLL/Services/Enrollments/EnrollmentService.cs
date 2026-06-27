@@ -95,7 +95,6 @@ namespace Services.Enrollments
                             SchoolStudentId = student.Id,
                             SchoolNameSnapshot = course.School.SchoolName,
                             CourseNameSnapshot = course.CourseName,
-                            CourseDescriptionSnapshot = course.Description,
                             CitizenNricSnapshot = citizen.Nric,
                             CitizenFullNameSnapshot = citizen.FullName,
                             CitizenEmailSnapshot = citizen.Email,

@@ -7,13 +7,21 @@
             {
                 ["id"] = nameof(Enrollment.Id),
                 ["status"] = nameof(Enrollment.Status),
+                ["courseStatus"] = $"{nameof(Enrollment.Course)}.{nameof(Course.Status)}",
                 ["courseCode"] = $"{nameof(Enrollment.Course)}.{nameof(Course.CourseCode)}",
                 ["courseName"] = nameof(Enrollment.CourseNameSnapshot),
                 ["citizenNric"] = nameof(Enrollment.CitizenNricSnapshot),
                 ["citizenFullName"] = nameof(Enrollment.CitizenFullNameSnapshot),
+                ["citizenEmail"] = nameof(Enrollment.CitizenEmailSnapshot),
+                ["citizenPhoneNumber"] = nameof(Enrollment.CitizenPhoneNumberSnapshot),
                 ["accountNumber"] = nameof(Enrollment.AccountNumberSnapshot),
+                ["createdAt"] = nameof(Enrollment.CreatedAt),
                 ["enrolledAt"] = nameof(Enrollment.CreatedAt),
-                ["chargeStatus"] = $"{nameof(Enrollment.Charge)}.{nameof(Charge.Status)}"
+                ["chargeStatus"] = $"{nameof(Enrollment.Charge)}.{nameof(Charge.Status)}",
+                ["grossAmount"] = $"{nameof(Enrollment.Charge)}.{nameof(Charge.GrossAmount)}",
+                ["subsidyAmount"] = $"{nameof(Enrollment.Charge)}.{nameof(Charge.SubsidyAmount)}",
+                ["paidAmount"] = $"{nameof(Enrollment.Charge)}.{nameof(Charge.PaidAmount)}",
+                ["remainingAmount"] = $"{nameof(Enrollment.Charge)}.{nameof(Charge.RemainingAmount)}"
             };
 
         public override IReadOnlyDictionary<string, string> SortFields => AllowedSortFields;

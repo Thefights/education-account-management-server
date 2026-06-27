@@ -44,11 +44,15 @@
 
         public string AccountNumber { get; set; } = string.Empty;
 
+        public DateTime CreatedAt { get; set; }
+
         public DateTime EnrolledAt { get; set; }
 
         public string? ChargeStatus { get; set; }
 
         public decimal? GrossAmount { get; set; }
+
+        public decimal? SubsidyAmount { get; set; }
 
         public decimal? PaidAmount { get; set; }
 

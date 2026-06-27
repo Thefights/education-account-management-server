@@ -10,21 +10,266 @@ namespace Persistence.Seeding
         public ModelBuilder Seed(ModelBuilder modelBuilder)
         {
             var createdAt = SeedDataConstants.CreatedAt;
+            var schoolNames = new[]
+            {
+                "Northview Secondary School", "Eastbridge Secondary School", "Westhaven Secondary School",
+                "Southpoint Secondary School", "Central Heights School", "Riverside Learning Institute",
+                "Lakeside Technical School", "Greenfield Academy", "Harbourfront School",
+                "Hillcrest Education Centre"
+            };
+            var baseCourseNames = new[]
+            {
+                "Quantitative Problem Solving", "Software Foundations with C#", "Professional Communication Lab",
+                "Sustainability Science Workshop", "Digital Media Production", "Service Operations Practicum",
+                "Electrical Systems Fundamentals", "Creative Writing Studio", "Data Analytics Essentials",
+                "Office Productivity for Business"
+            };
+            var topics = new[]
+            {
+                "Academic Writing", "Business Numeracy", "Digital Literacy", "Career Readiness",
+                "Applied Science", "Financial Literacy", "Project Collaboration", "Data Skills",
+                "Workplace Communication"
+            };
+            var baseCodes = new[]
+            {
+                "CRS-2026-A1B2C3D", "CRS-2026-B2C3D4E", "CRS-2026-C3D4E5F", "CRS-2026-D4E5F6G",
+                "CRS-2026-E5F6G7H", "CRS-2026-F6G7H8J", "CRS-2026-G7H8J9K", "CRS-2026-H8J9K0L",
+                "CRS-2026-J9K0L1M", "CRS-2026-K0L1M2N"
+            };
+            var baseDescriptions = new[]
+            {
+                "Applied numeracy and structured problem-solving for academic pathways.",
+                "Core programming concepts, debugging, and application structure.",
+                "Practical writing, presentation, and workplace communication skills.",
+                "Environmental systems, resource planning, and sustainability practice.",
+                "Digital storytelling, layout, and media production workflows.",
+                "Customer operations, service standards, and scenario-based practice.",
+                "Foundational electrical theory, components, and safety practices.",
+                "Narrative craft, editing practice, and guided writing critique.",
+                "Data preparation, analysis, visualization, and reporting fundamentals.",
+                "Document, spreadsheet, and presentation workflows for business users."
+            };
 
-            modelBuilder.Entity<Charge>().HasData(
-                new Charge { Id = 1, EnrollmentId = 1, Status = ChargeStatus.Paid, SchoolNameSnapshot = "Northview Secondary School", CourseCodeSnapshot = "CRS-2026-A1B2C3D", CourseNameSnapshot = "Quantitative Problem Solving", CourseDescriptionSnapshot = "Applied numeracy and structured problem-solving for academic pathways.", CourseStartDateSnapshot = new DateTime(2026, 10, 1, 0, 0, 0, DateTimeKind.Utc), CourseEndDateSnapshot = new DateTime(2026, 12, 1, 0, 0, 0, DateTimeKind.Utc), CourseFeeAmountSnapshot = 100m, MiscFeeAmountSnapshot = 10m, GstAmountSnapshot = 10m, TaxRateSnapshot = 0.09m, GrossAmount = 120m, SubsidyAmount = 0m, NetAmount = 120m, PaidAmount = 120m, RemainingAmount = 0m, CreatedAt = createdAt },
-                new Charge { Id = 2, EnrollmentId = 2, Status = ChargeStatus.Unpaid, SchoolNameSnapshot = "Eastbridge Secondary School", CourseCodeSnapshot = "CRS-2026-B2C3D4E", CourseNameSnapshot = "Software Foundations with C#", CourseDescriptionSnapshot = "Core programming concepts, debugging, and application structure.", CourseStartDateSnapshot = new DateTime(2026, 10, 2, 0, 0, 0, DateTimeKind.Utc), CourseEndDateSnapshot = new DateTime(2026, 12, 2, 0, 0, 0, DateTimeKind.Utc), CourseFeeAmountSnapshot = 115m, MiscFeeAmountSnapshot = 12m, GstAmountSnapshot = 13m, TaxRateSnapshot = 0.09m, GrossAmount = 140m, SubsidyAmount = 0m, NetAmount = 140m, PaidAmount = 70m, RemainingAmount = 70m, CreatedAt = createdAt },
-                new Charge { Id = 3, EnrollmentId = 3, Status = ChargeStatus.Unpaid, SchoolNameSnapshot = "Westhaven Secondary School", CourseCodeSnapshot = "CRS-2026-C3D4E5F", CourseNameSnapshot = "Professional Communication Lab", CourseDescriptionSnapshot = "Practical writing, presentation, and workplace communication skills.", CourseStartDateSnapshot = new DateTime(2026, 8, 1, 0, 0, 0, DateTimeKind.Utc), CourseEndDateSnapshot = new DateTime(2026, 10, 1, 0, 0, 0, DateTimeKind.Utc), CourseFeeAmountSnapshot = 130m, MiscFeeAmountSnapshot = 15m, GstAmountSnapshot = 15m, TaxRateSnapshot = 0.09m, GrossAmount = 160m, SubsidyAmount = 0m, NetAmount = 160m, PaidAmount = 140m, RemainingAmount = 20m, CreatedAt = createdAt },
-                new Charge { Id = 4, EnrollmentId = 4, Status = ChargeStatus.Paid, SchoolNameSnapshot = "Southpoint Secondary School", CourseCodeSnapshot = "CRS-2026-D4E5F6G", CourseNameSnapshot = "Sustainability Science Workshop", CourseDescriptionSnapshot = "Environmental systems, resource planning, and sustainability practice.", CourseStartDateSnapshot = new DateTime(2026, 8, 2, 0, 0, 0, DateTimeKind.Utc), CourseEndDateSnapshot = new DateTime(2026, 10, 2, 0, 0, 0, DateTimeKind.Utc), CourseFeeAmountSnapshot = 145m, MiscFeeAmountSnapshot = 17m, GstAmountSnapshot = 18m, TaxRateSnapshot = 0.09m, GrossAmount = 180m, SubsidyAmount = 0m, NetAmount = 180m, PaidAmount = 180m, RemainingAmount = 0m, CreatedAt = createdAt },
-                new Charge { Id = 5, EnrollmentId = 5, Status = ChargeStatus.Unpaid, SchoolNameSnapshot = "Central Heights School", CourseCodeSnapshot = "CRS-2026-E5F6G7H", CourseNameSnapshot = "Digital Media Production", CourseDescriptionSnapshot = "Digital storytelling, layout, and media production workflows.", CourseStartDateSnapshot = new DateTime(2026, 7, 15, 0, 0, 0, DateTimeKind.Utc), CourseEndDateSnapshot = new DateTime(2026, 9, 15, 0, 0, 0, DateTimeKind.Utc), CourseFeeAmountSnapshot = 160m, MiscFeeAmountSnapshot = 20m, GstAmountSnapshot = 20m, TaxRateSnapshot = 0.09m, GrossAmount = 200m, SubsidyAmount = 0m, NetAmount = 200m, PaidAmount = 180m, RemainingAmount = 20m, CreatedAt = createdAt },
-                new Charge { Id = 6, EnrollmentId = 6, Status = ChargeStatus.Overdue, SchoolNameSnapshot = "Riverside Learning Institute", CourseCodeSnapshot = "CRS-2026-F6G7H8J", CourseNameSnapshot = "Service Operations Practicum", CourseDescriptionSnapshot = "Customer operations, service standards, and scenario-based practice.", CourseStartDateSnapshot = new DateTime(2026, 7, 16, 0, 0, 0, DateTimeKind.Utc), CourseEndDateSnapshot = new DateTime(2026, 9, 16, 0, 0, 0, DateTimeKind.Utc), CourseFeeAmountSnapshot = 175m, MiscFeeAmountSnapshot = 22m, GstAmountSnapshot = 23m, TaxRateSnapshot = 0.09m, GrossAmount = 220m, SubsidyAmount = 0m, NetAmount = 220m, PaidAmount = 150m, RemainingAmount = 70m, CreatedAt = createdAt },
-                new Charge { Id = 7, EnrollmentId = 7, Status = ChargeStatus.Unpaid, SchoolNameSnapshot = "Lakeside Technical School", CourseCodeSnapshot = "CRS-2026-G7H8J9K", CourseNameSnapshot = "Electrical Systems Fundamentals", CourseDescriptionSnapshot = "Foundational electrical theory, components, and safety practices.", CourseStartDateSnapshot = new DateTime(2026, 5, 1, 0, 0, 0, DateTimeKind.Utc), CourseEndDateSnapshot = new DateTime(2026, 8, 1, 0, 0, 0, DateTimeKind.Utc), CourseFeeAmountSnapshot = 190m, MiscFeeAmountSnapshot = 25m, GstAmountSnapshot = 25m, TaxRateSnapshot = 0.09m, GrossAmount = 240m, SubsidyAmount = 0m, NetAmount = 240m, PaidAmount = 200m, RemainingAmount = 40m, CreatedAt = createdAt },
-                new Charge { Id = 8, EnrollmentId = 8, Status = ChargeStatus.Overdue, SchoolNameSnapshot = "Greenfield Academy", CourseCodeSnapshot = "CRS-2026-H8J9K0L", CourseNameSnapshot = "Creative Writing Studio", CourseDescriptionSnapshot = "Narrative craft, editing practice, and guided writing critique.", CourseStartDateSnapshot = new DateTime(2026, 5, 2, 0, 0, 0, DateTimeKind.Utc), CourseEndDateSnapshot = new DateTime(2026, 8, 2, 0, 0, 0, DateTimeKind.Utc), CourseFeeAmountSnapshot = 205m, MiscFeeAmountSnapshot = 27m, GstAmountSnapshot = 28m, TaxRateSnapshot = 0.09m, GrossAmount = 260m, SubsidyAmount = 0m, NetAmount = 260m, PaidAmount = 200m, RemainingAmount = 60m, CreatedAt = createdAt },
-                new Charge { Id = 9, EnrollmentId = 9, Status = ChargeStatus.Overdue, SchoolNameSnapshot = "Harbourfront School", CourseCodeSnapshot = "CRS-2026-J9K0L1M", CourseNameSnapshot = "Data Analytics Essentials", CourseDescriptionSnapshot = "Data preparation, analysis, visualization, and reporting fundamentals.", CourseStartDateSnapshot = new DateTime(2026, 2, 9, 0, 0, 0, DateTimeKind.Utc), CourseEndDateSnapshot = new DateTime(2026, 5, 8, 0, 0, 0, DateTimeKind.Utc), CourseFeeAmountSnapshot = 220m, MiscFeeAmountSnapshot = 30m, GstAmountSnapshot = 30m, TaxRateSnapshot = 0.09m, GrossAmount = 280m, SubsidyAmount = 0m, NetAmount = 280m, PaidAmount = 0m, RemainingAmount = 280m, CreatedAt = createdAt },
-                new Charge { Id = 10, EnrollmentId = 10, Status = ChargeStatus.Overdue, SchoolNameSnapshot = "Hillcrest Education Centre", CourseCodeSnapshot = "CRS-2026-K0L1M2N", CourseNameSnapshot = "Office Productivity for Business", CourseDescriptionSnapshot = "Document, spreadsheet, and presentation workflows for business users.", CourseStartDateSnapshot = new DateTime(2026, 2, 10, 0, 0, 0, DateTimeKind.Utc), CourseEndDateSnapshot = new DateTime(2026, 5, 9, 0, 0, 0, DateTimeKind.Utc), CourseFeeAmountSnapshot = 235m, MiscFeeAmountSnapshot = 32m, GstAmountSnapshot = 33m, TaxRateSnapshot = 0.09m, GrossAmount = 300m, SubsidyAmount = 0m, NetAmount = 300m, PaidAmount = 0m, RemainingAmount = 300m, CreatedAt = createdAt });
+            static int GetCourseSchoolId(int courseId)
+            {
+                return courseId <= 10
+                    ? courseId
+                    : 1 + (courseId - 11) / 9;
+            }
+
+            static int[] GetSchoolStudentIds(int schoolId)
+            {
+                var ids = new int[10];
+                ids[0] = schoolId;
+                for (var index = 0; index < 9; index++)
+                {
+                    ids[index + 1] = 11 + (schoolId - 1) * 9 + index;
+                }
+
+                return ids;
+            }
+
+            static bool IsChargeGeneratedCourse(int courseId)
+            {
+                return courseId <= 10
+                    || (courseId > 10 && (courseId - 11) % 9 >= 4);
+            }
+
+            static CourseStatus GetCourseStatus(int courseId)
+            {
+                if (courseId <= 10)
+                {
+                    return courseId switch
+                    {
+                        <= 3 => CourseStatus.Upcoming,
+                        <= 6 => CourseStatus.InProgress,
+                        _ => CourseStatus.Closed
+                    };
+                }
+
+                return ((courseId - 11) % 9) switch
+                {
+                    <= 1 => CourseStatus.Draft,
+                    <= 3 => CourseStatus.Enrolling,
+                    <= 5 => CourseStatus.Upcoming,
+                    <= 7 => CourseStatus.InProgress,
+                    _ => CourseStatus.Closed
+                };
+            }
+
+            static (string Code, string Name, string Description, decimal CourseFee, decimal MiscFee, decimal Gst, DateTime StartDate, DateTime EndDate) GetCourseMeta(
+                int courseId,
+                string[] baseCodes,
+                string[] baseCourseNames,
+                string[] baseDescriptions,
+                string[] topics)
+            {
+                if (courseId <= 10)
+                {
+                    var courseFee = 85m + courseId * 15m;
+                    var miscFee = courseId % 2 == 0 ? 12m + (courseId / 2 - 1) * 5m : 10m + (courseId - 1) / 2 * 5m;
+                    var gst = decimal.Round((courseFee + miscFee) * 0.09m, 2);
+                    var startDate = courseId <= 3
+                        ? new DateTime(2026, 8, courseId, 0, 0, 0, DateTimeKind.Utc)
+                        : courseId <= 6
+                            ? new DateTime(2026, 5, courseId, 0, 0, 0, DateTimeKind.Utc)
+                            : new DateTime(2026, 3, courseId, 0, 0, 0, DateTimeKind.Utc);
+
+                    return (
+                        baseCodes[courseId - 1],
+                        baseCourseNames[courseId - 1],
+                        baseDescriptions[courseId - 1],
+                        courseFee,
+                        miscFee,
+                        gst,
+                        startDate,
+                        startDate.AddMonths(courseId <= 6 ? 3 : 2));
+                }
+
+                var offset = courseId - 11;
+                var schoolId = 1 + offset / 9;
+                var index = offset % 9;
+                var topic = topics[index];
+                var courseFeeAmount = 120m + schoolId * 10m + index * 15m;
+                var miscFeeAmount = 15m + index * 2m;
+                var startBase = index switch
+                {
+                    <= 3 => new DateTime(2026, 9, 1, 0, 0, 0, DateTimeKind.Utc),
+                    <= 5 => new DateTime(2026, 8, 1, 0, 0, 0, DateTimeKind.Utc),
+                    <= 7 => new DateTime(2026, 5, 1, 0, 0, 0, DateTimeKind.Utc),
+                    _ => new DateTime(2026, 3, 1, 0, 0, 0, DateTimeKind.Utc)
+                };
+                var start = startBase.AddDays((schoolId - 1) * 3 + index * 7);
+
+                return (
+                    $"CRS-2026-S{schoolId:00}{index + 1:00}X{(char)('A' + index)}",
+                    $"{topic} - School {schoolId} Cohort {index + 1}",
+                    "Structured lessons with guided practice and applied assessments.",
+                    courseFeeAmount,
+                    miscFeeAmount,
+                    decimal.Round((courseFeeAmount + miscFeeAmount) * 0.09m, 2),
+                    start,
+                    start.AddMonths(index is 6 or 7 ? 3 : 2));
+            }
+
+            var enrollmentRows = new List<(int Id, int CourseId, int SchoolStudentId)>
+            {
+                (1, 1, 1), (2, 2, 2), (3, 3, 3), (4, 4, 4), (5, 5, 5),
+                (6, 6, 6), (7, 7, 7), (8, 8, 8), (9, 9, 9), (10, 10, 10),
+                (11, 1, 9), (13, 2, 9), (14, 3, 9), (12, 4, 9), (15, 5, 9),
+                (16, 6, 9), (17, 7, 9), (18, 8, 9), (19, 10, 9)
+            };
+
+            var enrollmentId = 20;
+            for (var schoolId = 1; schoolId <= 10; schoolId++)
+            {
+                for (var index = 0; index < 9; index++)
+                {
+                    enrollmentRows.Add((enrollmentId++, 11 + (schoolId - 1) * 9 + index, 11 + (schoolId - 1) * 9 + index));
+                }
+            }
+
+            var existingPairs = enrollmentRows
+                .Select(enrollment => (enrollment.CourseId, enrollment.SchoolStudentId))
+                .ToHashSet();
+            var enrollmentCountsByCourse = enrollmentRows
+                .GroupBy(enrollment => enrollment.CourseId)
+                .ToDictionary(group => group.Key, group => group.Count());
+
+            for (var courseId = 1; courseId <= 100; courseId++)
+            {
+                enrollmentCountsByCourse.TryGetValue(courseId, out var enrollmentCount);
+                var schoolId = GetCourseSchoolId(courseId);
+
+                foreach (var schoolStudentId in GetSchoolStudentIds(schoolId))
+                {
+                    if (enrollmentCount >= 10)
+                    {
+                        break;
+                    }
+
+                    if (!existingPairs.Add((courseId, schoolStudentId)))
+                    {
+                        continue;
+                    }
+
+                    enrollmentRows.Add((enrollmentId++, courseId, schoolStudentId));
+                    enrollmentCount++;
+                }
+
+                enrollmentCountsByCourse[courseId] = enrollmentCount;
+            }
+
+            var tier1Amounts = new[] { 75m, 300m, 150m, 50m, 500m, 200m, 150m, 40m, 250m, 60m };
+            var tier2Amounts = new[] { 35m, 120m, 90m, 25m, 180m, 80m, 70m, 20m, 100m, 30m };
+
+            var charges = enrollmentRows
+                .Where(enrollment => IsChargeGeneratedCourse(enrollment.CourseId))
+                .OrderBy(enrollment => enrollment.Id)
+                .Select(enrollment =>
+                {
+                    var schoolId = GetCourseSchoolId(enrollment.CourseId);
+                    var meta = GetCourseMeta(enrollment.CourseId, baseCodes, baseCourseNames, baseDescriptions, topics);
+                    var grossAmount = meta.CourseFee + meta.MiscFee + meta.Gst;
+                    var primaryStudentId = schoolId;
+                    var tier2StudentId = 11 + (schoolId - 1) * 9;
+                    var subsidyAmount = 0m;
+                    int? fasApplicationId = null;
+                    string? tierName = null;
+                    decimal? subsidyValue = null;
+
+                    if (enrollment.SchoolStudentId == primaryStudentId)
+                    {
+                        subsidyAmount = Math.Min(grossAmount, tier1Amounts[schoolId - 1]);
+                        fasApplicationId = 20 + (schoolId - 1) * 2 + 1;
+                        tierName = "Tier 1";
+                        subsidyValue = tier1Amounts[schoolId - 1];
+                    }
+                    else if (enrollment.SchoolStudentId == tier2StudentId)
+                    {
+                        subsidyAmount = Math.Min(grossAmount, tier2Amounts[schoolId - 1]);
+                        fasApplicationId = 20 + (schoolId - 1) * 2 + 2;
+                        tierName = "Tier 2";
+                        subsidyValue = tier2Amounts[schoolId - 1];
+                    }
+
+                    var netAmount = grossAmount - subsidyAmount;
+                    var courseStatus = GetCourseStatus(enrollment.CourseId);
+
+                    return new Charge
+                    {
+                        Id = enrollment.Id,
+                        EnrollmentId = enrollment.Id,
+                        Status = courseStatus == CourseStatus.Closed ? ChargeStatus.Overdue : ChargeStatus.PendingPayment,
+                        SchoolNameSnapshot = schoolNames[schoolId - 1],
+                        CourseCodeSnapshot = meta.Code,
+                        CourseNameSnapshot = meta.Name,
+                        CourseDescriptionSnapshot = meta.Description,
+                        CourseStartDateSnapshot = meta.StartDate,
+                        CourseEndDateSnapshot = meta.EndDate,
+                        CourseFeeAmountSnapshot = meta.CourseFee,
+                        MiscFeeAmountSnapshot = meta.MiscFee,
+                        GstAmountSnapshot = meta.Gst,
+                        TaxRateSnapshot = 0.09m,
+                        GrossAmount = grossAmount,
+                        SubsidyAmount = subsidyAmount,
+                        NetAmount = netAmount,
+                        PaidAmount = 0m,
+                        RemainingAmount = netAmount,
+                        AppliedFasSchemeNameSnapshot = subsidyAmount > 0m ? $"School {schoolId} FAS Demo" : null,
+                        AppliedFasTierNameSnapshot = tierName,
+                        AppliedFasSubsidyTypeSnapshot = subsidyAmount > 0m ? FasSubsidyType.FixedAmount : null,
+                        AppliedFasIsPerComponentSnapshot = false,
+                        AppliedFasSubsidyValueSnapshot = subsidyValue,
+                        AppliedFasApplicationId = fasApplicationId,
+                        CreatedAt = createdAt
+                    };
+                })
+                .ToList();
+
+            modelBuilder.Entity<Charge>().HasData(charges);
 
             return modelBuilder;
         }
     }
 }
-

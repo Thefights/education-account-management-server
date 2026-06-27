@@ -8,15 +8,16 @@ namespace Filters.Courses
                 ["id"] = nameof(Course.Id),
                 ["courseName"] = nameof(Course.CourseName),
                 ["courseCode"] = nameof(Course.CourseCode),
-                ["description"] = nameof(Course.Description),
                 ["status"] = nameof(Course.Status),
                 ["schoolName"] = $"{nameof(Course.School)}.{nameof(School.SchoolName)}",
                 ["courseFeeAmount"] = nameof(Course.CourseFeeAmount),
                 ["miscFeeAmount"] = nameof(Course.MiscFeeAmount),
                 ["gstAmount"] = nameof(Course.GstAmount),
+                ["enrollmentCount"] = $"{nameof(Course.Enrollments)}.Count()",
                 ["enrollmentDeadline"] = nameof(Course.EnrollmentDeadline),
                 ["startDate"] = nameof(Course.StartDate),
                 ["endDate"] = nameof(Course.EndDate),
+                ["createdAt"] = nameof(Course.CreatedAt),
             };
 
         public override IReadOnlyDictionary<string, string> SortFields => AllowedSortFields;

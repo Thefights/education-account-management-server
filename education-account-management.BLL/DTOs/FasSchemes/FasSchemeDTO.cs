@@ -4,6 +4,7 @@ namespace DTOs.FasSchemes
     {
         public int Id { get; set; }
         public int SchoolId { get; set; }
+        public DateTime CreatedAt { get; set; }
         public string? Status { get; set; }
         public string SchemeCode { get; set; } = string.Empty;
         public string SchemeName { get; set; } = string.Empty;

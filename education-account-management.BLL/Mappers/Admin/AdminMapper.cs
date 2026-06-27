@@ -9,6 +9,7 @@ namespace Mappers.Admin
             return new GetAdminDTO
             {
                 UserId = model.Id,
+                CreatedAt = model.CreatedAt,
                 Role = model.Role.ToString(),
                 Status = model.Status.ToString(),
                 AzureObjectId = model.SsoIdentities
@@ -35,6 +36,7 @@ namespace Mappers.Admin
             return query.Select(model => new GetAdminDTO
             {
                 UserId = model.Id,
+                CreatedAt = model.CreatedAt,
                 Role = model.Role.ToString(),
                 Status = model.Status.ToString(),
                 AzureObjectId = model.SsoIdentities

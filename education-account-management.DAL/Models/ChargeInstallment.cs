@@ -10,7 +10,7 @@ namespace Models
         public int InstallmentNumber { get; set; }
 
         [EnumDefined]
-        public ChargeInstallmentStatus Status { get; set; } = ChargeInstallmentStatus.Unpaid;
+        public ChargeInstallmentStatus Status { get; set; } = ChargeInstallmentStatus.PendingPayment;
 
         [NotDefaultValue]
         public DateTime DueDate { get; set; }

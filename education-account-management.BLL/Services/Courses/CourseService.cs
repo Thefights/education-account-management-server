@@ -31,6 +31,10 @@ namespace Services.Courses
             unitOfWork.Repository<School>();
         private readonly IGenericRepository<Enrollment> _enrollmentRepository =
             unitOfWork.Repository<Enrollment>();
+        private readonly IGenericRepository<FasScheme> _fasSchemeRepository =
+            unitOfWork.Repository<FasScheme>();
+        private readonly IGenericRepository<FasSchemeCourse> _fasSchemeCourseRepository =
+            unitOfWork.Repository<FasSchemeCourse>();
 
         public override async Task<GetCourseDTO> CreateAsync(
             CreateCourseDTO createDTO,
@@ -65,6 +69,8 @@ namespace Services.Courses
                         cancellationToken: token);
 
                     await _repository.AddAsync(course, token);
+                    await _unitOfWork.SaveChangeAsync(token);
+                    await SyncFasSchemesAsync(course.Id, createDTO.FasSchemeIds, schoolId, token);
                     await _unitOfWork.SaveChangeAsync(token);
                     if (createDTO.SchoolStudentIds.Count > 0)
                     {
@@ -118,6 +124,7 @@ namespace Services.Courses
                         token);
 
                     _repository.Update(course);
+                    await SyncFasSchemesAsync(course.Id, updateDTO.FasSchemeIds, schoolId, token);
                     await _unitOfWork.SaveChangeAsync(token);
                 },
                 cancellationToken);
@@ -191,6 +198,84 @@ namespace Services.Courses
                 cancellationToken);
 
             return await GetAllByIdsAsync(ids, cancellationToken);
+        }
+
+        public async Task<GetCourseDTO> DuplicateAsync(
+            int id,
+            CancellationToken cancellationToken = default)
+        {
+            var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
+            var duplicateId = await _unitOfWork.ExecuteInTransactionAsync(
+                async (_, token) =>
+                {
+                    var source = await _repository.Query()
+                        .Include(course => course.FasSchemeCourses)
+                        .FirstOrDefaultAsync(
+                            course => course.Id == id && course.SchoolId == schoolId,
+                            token)
+                        ?? throw new DataNotFoundException(typeof(Course), id);
+
+                    var duplicate = new Course
+                    {
+                        SchoolId = schoolId,
+                        Status = CourseStatus.Draft,
+                        CourseCode = await CourseCodeGenerator.GenerateUniqueAsync(
+                            _repository,
+                            schoolId,
+                            _timeProvider.GetUtcNow().UtcDateTime,
+                            cancellationToken: token),
+                        CourseName = await GenerateDuplicateCourseNameAsync(
+                            source.CourseName,
+                            token),
+                        CourseFeeAmount = source.CourseFeeAmount,
+                        MiscFeeAmount = source.MiscFeeAmount,
+                        GstAmount = source.GstAmount,
+                        EnrollmentDeadline = source.EnrollmentDeadline,
+                        FasApplicationDueDate = source.EnrollmentDeadline,
+                        StartDate = source.StartDate,
+                        EndDate = source.EndDate
+                    };
+
+                    duplicate.TryValidate();
+                    await UniqueConstraintValidator.ValidateAsync(
+                        _repository,
+                        duplicate,
+                        cancellationToken: token);
+                    await _repository.AddAsync(duplicate, token);
+                    await _unitOfWork.SaveChangeAsync(token);
+                    await SyncFasSchemesAsync(
+                        duplicate.Id,
+                        source.FasSchemeCourses.Select(link => link.FasSchemeId).ToList(),
+                        schoolId,
+                        token);
+                    await _unitOfWork.SaveChangeAsync(token);
+
+                    return duplicate.Id;
+                },
+                cancellationToken);
+
+            return await GetByIdAsync(duplicateId, cancellationToken);
+        }
+
+        public async Task<GetCourseDTO> AssignFasSchemesAsync(
+            int id,
+            AssignCourseFasSchemesDTO assignDTO,
+            CancellationToken cancellationToken = default)
+        {
+            ArgumentNullException.ThrowIfNull(assignDTO);
+            var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
+
+            await _unitOfWork.ExecuteInTransactionAsync(
+                async (_, token) =>
+                {
+                    var course = await GetTrackedScopedCourseAsync(id, schoolId, token);
+                    ValidateCourseCanManageFas(course);
+                    await SyncFasSchemesAsync(id, assignDTO.FasSchemeIds, schoolId, token);
+                    await _unitOfWork.SaveChangeAsync(token);
+                },
+                cancellationToken);
+
+            return await GetByIdAsync(id, cancellationToken);
         }
 
         public async Task DeleteAsync(
@@ -409,11 +494,11 @@ namespace Services.Courses
             {
                 Id = course.Id,
                 SchoolId = course.SchoolId,
+                CreatedAt = course.CreatedAt,
                 SchoolName = course.School.SchoolName,
                 Status = course.Status.ToString(),
                 CourseCode = course.CourseCode,
                 CourseName = course.CourseName,
-                Description = course.Description,
                 CourseFeeAmount = course.CourseFeeAmount,
                 MiscFeeAmount = course.MiscFeeAmount,
                 GstAmount = course.GstAmount,
@@ -435,6 +520,77 @@ namespace Services.Courses
                     })
                     .ToList()
             });
+        }
+
+        private async Task SyncFasSchemesAsync(
+            int courseId,
+            List<int> fasSchemeIds,
+            int schoolId,
+            CancellationToken cancellationToken)
+        {
+            ValidateFasSchemeIds(fasSchemeIds);
+            var ids = fasSchemeIds.Distinct().ToList();
+
+            if (ids.Count > 0)
+            {
+                var existingSchemeIds = await _fasSchemeRepository.Query()
+                    .Where(scheme => ids.Contains(scheme.Id) && scheme.SchoolId == schoolId)
+                    .Select(scheme => scheme.Id)
+                    .ToListAsync(cancellationToken);
+
+                if (existingSchemeIds.Count != ids.Count)
+                {
+                    var foundIds = existingSchemeIds.ToHashSet();
+                    var firstNotFoundId = ids.First(id => !foundIds.Contains(id));
+                    throw new DataNotFoundException(typeof(FasScheme), firstNotFoundId);
+                }
+            }
+
+            var currentLinks = await _fasSchemeCourseRepository.Query(tracking: true)
+                .Where(link => link.CourseId == courseId)
+                .ToListAsync(cancellationToken);
+            if (currentLinks.Count > 0)
+            {
+                _fasSchemeCourseRepository.RemoveRange(currentLinks);
+            }
+
+            if (ids.Count == 0)
+            {
+                return;
+            }
+
+            var nextLinks = ids.Select(fasSchemeId => new FasSchemeCourse
+            {
+                CourseId = courseId,
+                FasSchemeId = fasSchemeId
+            }).ToList();
+            await _fasSchemeCourseRepository.AddRangeAsync(nextLinks, cancellationToken);
+        }
+
+        private static void ValidateFasSchemeIds(List<int> fasSchemeIds)
+        {
+            if (fasSchemeIds.Any(id => id <= 0))
+            {
+                throw new ValidationFailureException(
+                    nameof(AssignCourseFasSchemesDTO.FasSchemeIds),
+                    "FAS scheme IDs must be greater than zero.");
+            }
+
+            if (fasSchemeIds.Distinct().Count() != fasSchemeIds.Count)
+            {
+                throw new ValidationFailureException(
+                    nameof(AssignCourseFasSchemesDTO.FasSchemeIds),
+                    "Duplicate FAS scheme IDs are not allowed.");
+            }
+        }
+
+        private static void ValidateCourseCanManageFas(Course course)
+        {
+            if (course.Status is not CourseStatus.Draft and not CourseStatus.Enrolling)
+            {
+                throw new DataConflictException(
+                    "FAS schemes can only be changed while a course is Draft or Enrolling.");
+            }
         }
 
         private static void ValidateCreateStudentIds(List<int> schoolStudentIds)
@@ -497,7 +653,6 @@ namespace Services.Courses
                     SchoolStudentId = student.Id,
                     SchoolNameSnapshot = schoolName,
                     CourseNameSnapshot = course.CourseName,
-                    CourseDescriptionSnapshot = course.Description,
                     CitizenNricSnapshot = citizen.Nric,
                     CitizenFullNameSnapshot = citizen.FullName,
                     CitizenEmailSnapshot = citizen.Email,
@@ -510,6 +665,44 @@ namespace Services.Courses
 
             await _enrollmentRepository.AddRangeAsync(enrollments, cancellationToken);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
+        }
+
+        private async Task<string> GenerateDuplicateCourseNameAsync(
+            string sourceName,
+            CancellationToken cancellationToken)
+        {
+            const int maxLength = 150;
+            var baseName = $"Copy of {sourceName}";
+            if (baseName.Length > maxLength)
+            {
+                baseName = baseName[..maxLength];
+            }
+
+            if (!await CourseNameExistsAsync(baseName, cancellationToken))
+            {
+                return baseName;
+            }
+
+            for (var suffix = 2; ; suffix++)
+            {
+                var suffixText = $" ({suffix})";
+                var trimmedBaseName = baseName.Length + suffixText.Length > maxLength
+                    ? baseName[..(maxLength - suffixText.Length)]
+                    : baseName;
+                var candidate = $"{trimmedBaseName}{suffixText}";
+                if (!await CourseNameExistsAsync(candidate, cancellationToken))
+                {
+                    return candidate;
+                }
+            }
+        }
+
+        private async Task<bool> CourseNameExistsAsync(
+            string courseName,
+            CancellationToken cancellationToken)
+        {
+            return await _repository.Query()
+                .AnyAsync(course => course.CourseName == courseName, cancellationToken);
         }
 
     }

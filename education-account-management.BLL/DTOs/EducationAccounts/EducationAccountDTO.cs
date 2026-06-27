@@ -16,6 +16,8 @@ namespace DTOs.EducationAccounts
 
         public decimal Balance { get; set; }
 
+        public DateTime CreatedAt { get; set; }
+
         public DateTime CreatedDate { get; set; }
 
         public DateOnly ExpectedClosingDate => DateOfBirth.AddYears(31);

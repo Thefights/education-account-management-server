@@ -10,8 +10,10 @@ namespace Filters.Schools
                 ["id"] = nameof(School.Id),
                 ["schoolName"] = nameof(School.SchoolName),
                 ["status"] = nameof(School.Status),
+                ["createdAt"] = nameof(School.CreatedAt),
                 ["email"] = nameof(School.Email),
                 ["phoneNumber"] = nameof(School.PhoneNumber),
+                ["address"] = nameof(School.Address),
             };
 
         public override IReadOnlyDictionary<string, string> SortFields => AllowedSortFields;

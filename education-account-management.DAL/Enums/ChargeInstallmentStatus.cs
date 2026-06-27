@@ -2,7 +2,7 @@ namespace Enums
 {
     public enum ChargeInstallmentStatus
     {
-        Unpaid = 1,
+        PendingPayment = 1,
         Paid = 2,
         Overdue = 3
     }

@@ -4,8 +4,6 @@ namespace DTOs.Courses
     {
         public string CourseName { get; set; } = string.Empty;
 
-        public string? Description { get; set; }
-
         public decimal CourseFeeAmount { get; set; }
 
         public decimal MiscFeeAmount { get; set; }
@@ -17,13 +15,13 @@ namespace DTOs.Courses
         public DateTime EndDate { get; set; }
 
         public List<int> SchoolStudentIds { get; set; } = [];
+
+        public List<int> FasSchemeIds { get; set; } = [];
     }
 
     public class UpdateCourseDTO
     {
         public string CourseName { get; set; } = string.Empty;
-
-        public string? Description { get; set; }
 
         public decimal CourseFeeAmount { get; set; }
 
@@ -36,6 +34,8 @@ namespace DTOs.Courses
         public DateTime EndDate { get; set; }
 
         public byte[] RowVersion { get; set; } = [];
+
+        public List<int> FasSchemeIds { get; set; } = [];
     }
 
     public class GetCourseDTO
@@ -44,6 +44,8 @@ namespace DTOs.Courses
 
         public int SchoolId { get; set; }
 
+        public DateTime CreatedAt { get; set; }
+
         public string SchoolName { get; set; } = string.Empty;
 
         public string? Status { get; set; }
@@ -51,8 +53,6 @@ namespace DTOs.Courses
         public string CourseCode { get; set; } = string.Empty;
 
         public string CourseName { get; set; } = string.Empty;
-
-        public string? Description { get; set; }
 
         public decimal CourseFeeAmount { get; set; }
 
@@ -99,6 +99,11 @@ namespace DTOs.Courses
     public class PublishCourseDTO
     {
         public List<int> Ids { get; set; } = [];
+    }
+
+    public class AssignCourseFasSchemesDTO
+    {
+        public List<int> FasSchemeIds { get; set; } = [];
     }
 
     public class DeleteSelectedCoursesDTO
