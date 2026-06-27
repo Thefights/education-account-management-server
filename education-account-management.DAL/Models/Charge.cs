@@ -85,7 +85,5 @@
         [OnDelete(OnDeleteBehavior.Cascade)]
         public ICollection<ChargeInstallment> Installments { get; set; } = [];
 
-        [OnDelete(OnDeleteBehavior.Restrict)]
-        public ICollection<OutstandingDeductionTarget> OutstandingDeductionTargets { get; set; } = [];
     }
 }

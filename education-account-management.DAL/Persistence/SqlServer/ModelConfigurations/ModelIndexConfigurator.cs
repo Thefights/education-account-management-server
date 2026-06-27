@@ -9,7 +9,6 @@ namespace Persistence.SqlServer.ModelConfigurations
             modelBuilder.Entity<Citizen>(entity =>
             {
                 entity.HasIndex(citizen => citizen.DateOfBirth);
-                entity.HasIndex(citizen => citizen.CitizenshipStatus);
                 entity.HasIndex(citizen => citizen.Email);
             });
 
@@ -257,25 +256,6 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(transaction => transaction.Type);
                 entity.HasIndex(transaction => transaction.Direction);
                 entity.HasIndex(transaction => transaction.CreatedAt);
-            });
-
-            modelBuilder.Entity<OutstandingDeductionRun>(entity =>
-            {
-                entity.HasIndex(run => run.RunMonth).IsUnique();
-                entity.HasIndex(run => run.RunDate);
-                entity.HasIndex(run => run.Status);
-                entity.HasIndex(run => run.StartedAt);
-            });
-
-            modelBuilder.Entity<OutstandingDeductionTarget>(entity =>
-            {
-                entity.HasIndex(target => target.OutstandingDeductionRunId);
-                entity.HasIndex(target => target.ChargeId);
-                entity.HasIndex(target => target.EducationAccountId);
-                entity.HasIndex(target => target.Status);
-                entity.HasIndex(target => target.EducationCreditTransactionId).IsUnique();
-                entity.HasIndex(target => target.PaymentId).IsUnique();
-                entity.HasIndex(target => new { target.OutstandingDeductionRunId, target.ChargeId }).IsUnique();
             });
 
             modelBuilder.Entity<EducationAccountStatusHistory>(entity =>

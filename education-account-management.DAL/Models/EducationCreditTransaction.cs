@@ -33,6 +33,5 @@ namespace Models
         [OnDelete(OnDeleteBehavior.Restrict)]
         public Payment? Payment { get; set; }
 
-        public OutstandingDeductionTarget? OutstandingDeductionTarget { get; set; }
     }
 }

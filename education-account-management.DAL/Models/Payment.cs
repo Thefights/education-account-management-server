@@ -32,6 +32,5 @@
         [OnDelete(OnDeleteBehavior.Restrict)]
         public ICollection<PaymentAllocation> PaymentAllocations { get; set; } = [];
 
-        public OutstandingDeductionTarget? OutstandingDeductionTarget { get; set; }
     }
 }

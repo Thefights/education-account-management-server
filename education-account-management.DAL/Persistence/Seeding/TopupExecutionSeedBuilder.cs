@@ -5,46 +5,23 @@ namespace Persistence.Seeding
 {
     public sealed class TopupExecutionSeedBuilder : ISeedBuilder
     {
-        public int Priority => 140;
+        public int Priority => 200;
 
         public ModelBuilder Seed(ModelBuilder modelBuilder)
         {
-            var createdAt = SeedDataConstants.CreatedAt.AddDays(10);
+            var createdAt = SeedDataConstants.CreatedAt;
 
             modelBuilder.Entity<TopupExecution>().HasData(
-                new TopupExecution
-                {
-                    Id = 1,
-                    ExecutionCode = "TOPUP-SEED-MANUAL-001",
-                    SourceType = TopupExecutionSourceType.Manual,
-                    IdempotencyKey = "manual-emergency-education-credit-2026-01",
-                    ManualAmount = 100m,
-                    ManualReason = "Emergency education credit approved by finance team.",
-                    Status = TopupExecutionStatus.Completed,
-                    TotalTargetCount = 2,
-                    SuccessCount = 1,
-                    FailedCount = 1,
-                    TotalExecutedAmount = 100m,
-                    CreatedAt = createdAt,
-                    CreatedBy = 7
-                },
-                new TopupExecution
-                {
-                    Id = 2,
-                    ExecutionCode = "TOPUP-SEED-SYSTEM-001",
-                    SourceType = TopupExecutionSourceType.System,
-                    SystemTopupId = 21,
-                    IdempotencyKey = "post-secondary-study-support-2026-01",
-                    Status = TopupExecutionStatus.Completed,
-                    TotalTargetCount = 1,
-                    SuccessCount = 1,
-                    FailedCount = 0,
-                    TotalExecutedAmount = 200m,
-                    TopupNameSnapshot = "Post-Secondary Study Support",
-                    TopupAmountSnapshot = 200m,
-                    ConditionsSnapshot = "{\"logicalOperator\":\"And\",\"conditions\":[{\"field\":\"SchoolingStatus\",\"operator\":\"Equals\",\"valueText\":\"Enrolled\"},{\"field\":\"Age\",\"operator\":\"Between\",\"valueNumber\":16,\"valueNumberTo\":25}]}",
-                    CreatedAt = createdAt.AddDays(1)
-                });
+                new TopupExecution { Id = 1, ExecutionCode = "TOPUP-SEED-001", SourceType = TopupExecutionSourceType.System, SystemTopupId = 1, ScheduleTopUpId = null, IdempotencyKey = "topup-seed-001", ManualAmount = null, ManualReason = null, Status = TopupExecutionStatus.Pending, TotalTargetCount = 1, SuccessCount = 1, FailedCount = 0, TotalExecutedAmount = 85m, TopupNameSnapshot = "Seed Topup 01", TopupAmountSnapshot = 85m, ConditionsSnapshot = "Seed condition snapshot", CreatedAt = createdAt.AddDays(1), CreatedBy = 2 },
+                new TopupExecution { Id = 2, ExecutionCode = "TOPUP-SEED-002", SourceType = TopupExecutionSourceType.Schedule, SystemTopupId = null, ScheduleTopUpId = 2, IdempotencyKey = "topup-seed-002", ManualAmount = null, ManualReason = null, Status = TopupExecutionStatus.Executing, TotalTargetCount = 1, SuccessCount = 1, FailedCount = 0, TotalExecutedAmount = 95m, TopupNameSnapshot = "Seed Topup 02", TopupAmountSnapshot = 95m, ConditionsSnapshot = "Seed condition snapshot", CreatedAt = createdAt.AddDays(2), CreatedBy = 2 },
+                new TopupExecution { Id = 3, ExecutionCode = "TOPUP-SEED-003", SourceType = TopupExecutionSourceType.Manual, SystemTopupId = null, ScheduleTopUpId = null, IdempotencyKey = "topup-seed-003", ManualAmount = 105m, ManualReason = "Manual seed topup", Status = TopupExecutionStatus.Completed, TotalTargetCount = 1, SuccessCount = 1, FailedCount = 0, TotalExecutedAmount = 105m, TopupNameSnapshot = "Seed Topup 03", TopupAmountSnapshot = 105m, ConditionsSnapshot = "Seed condition snapshot", CreatedAt = createdAt.AddDays(3), CreatedBy = 2 },
+                new TopupExecution { Id = 4, ExecutionCode = "TOPUP-SEED-004", SourceType = TopupExecutionSourceType.System, SystemTopupId = 4, ScheduleTopUpId = null, IdempotencyKey = "topup-seed-004", ManualAmount = null, ManualReason = null, Status = TopupExecutionStatus.Pending, TotalTargetCount = 1, SuccessCount = 0, FailedCount = 1, TotalExecutedAmount = 0m, TopupNameSnapshot = "Seed Topup 04", TopupAmountSnapshot = 115m, ConditionsSnapshot = "Seed condition snapshot", CreatedAt = createdAt.AddDays(4), CreatedBy = 2 },
+                new TopupExecution { Id = 5, ExecutionCode = "TOPUP-SEED-005", SourceType = TopupExecutionSourceType.Schedule, SystemTopupId = null, ScheduleTopUpId = 5, IdempotencyKey = "topup-seed-005", ManualAmount = null, ManualReason = null, Status = TopupExecutionStatus.Executing, TotalTargetCount = 1, SuccessCount = 1, FailedCount = 0, TotalExecutedAmount = 125m, TopupNameSnapshot = "Seed Topup 05", TopupAmountSnapshot = 125m, ConditionsSnapshot = "Seed condition snapshot", CreatedAt = createdAt.AddDays(5), CreatedBy = 2 },
+                new TopupExecution { Id = 6, ExecutionCode = "TOPUP-SEED-006", SourceType = TopupExecutionSourceType.Manual, SystemTopupId = null, ScheduleTopUpId = null, IdempotencyKey = "topup-seed-006", ManualAmount = 135m, ManualReason = "Manual seed topup", Status = TopupExecutionStatus.Completed, TotalTargetCount = 1, SuccessCount = 1, FailedCount = 0, TotalExecutedAmount = 135m, TopupNameSnapshot = "Seed Topup 06", TopupAmountSnapshot = 135m, ConditionsSnapshot = "Seed condition snapshot", CreatedAt = createdAt.AddDays(6), CreatedBy = 2 },
+                new TopupExecution { Id = 7, ExecutionCode = "TOPUP-SEED-007", SourceType = TopupExecutionSourceType.System, SystemTopupId = 7, ScheduleTopUpId = null, IdempotencyKey = "topup-seed-007", ManualAmount = null, ManualReason = null, Status = TopupExecutionStatus.Pending, TotalTargetCount = 1, SuccessCount = 1, FailedCount = 0, TotalExecutedAmount = 145m, TopupNameSnapshot = "Seed Topup 07", TopupAmountSnapshot = 145m, ConditionsSnapshot = "Seed condition snapshot", CreatedAt = createdAt.AddDays(7), CreatedBy = 2 },
+                new TopupExecution { Id = 8, ExecutionCode = "TOPUP-SEED-008", SourceType = TopupExecutionSourceType.Schedule, SystemTopupId = null, ScheduleTopUpId = 8, IdempotencyKey = "topup-seed-008", ManualAmount = null, ManualReason = null, Status = TopupExecutionStatus.Executing, TotalTargetCount = 1, SuccessCount = 0, FailedCount = 1, TotalExecutedAmount = 0m, TopupNameSnapshot = "Seed Topup 08", TopupAmountSnapshot = 155m, ConditionsSnapshot = "Seed condition snapshot", CreatedAt = createdAt.AddDays(8), CreatedBy = 2 },
+                new TopupExecution { Id = 9, ExecutionCode = "TOPUP-SEED-009", SourceType = TopupExecutionSourceType.Manual, SystemTopupId = null, ScheduleTopUpId = null, IdempotencyKey = "topup-seed-009", ManualAmount = 165m, ManualReason = "Manual seed topup", Status = TopupExecutionStatus.Completed, TotalTargetCount = 1, SuccessCount = 1, FailedCount = 0, TotalExecutedAmount = 165m, TopupNameSnapshot = "Seed Topup 09", TopupAmountSnapshot = 165m, ConditionsSnapshot = "Seed condition snapshot", CreatedAt = createdAt.AddDays(9), CreatedBy = 2 },
+                new TopupExecution { Id = 10, ExecutionCode = "TOPUP-SEED-010", SourceType = TopupExecutionSourceType.System, SystemTopupId = 10, ScheduleTopUpId = null, IdempotencyKey = "topup-seed-010", ManualAmount = null, ManualReason = null, Status = TopupExecutionStatus.Pending, TotalTargetCount = 1, SuccessCount = 1, FailedCount = 0, TotalExecutedAmount = 175m, TopupNameSnapshot = "Seed Topup 10", TopupAmountSnapshot = 175m, ConditionsSnapshot = "Seed condition snapshot", CreatedAt = createdAt.AddDays(10), CreatedBy = 2 });
 
             return modelBuilder;
         }

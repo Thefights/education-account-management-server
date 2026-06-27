@@ -36,9 +36,6 @@ namespace Models
         [OnDelete(OnDeleteBehavior.Restrict)]
         public ICollection<EducationCreditTransaction> EducationCreditTransactions { get; set; } = [];
 
-        [OnDelete(OnDeleteBehavior.Restrict)]
-        public ICollection<OutstandingDeductionTarget> OutstandingDeductionTargets { get; set; } = [];
-
         [OnDelete(OnDeleteBehavior.Cascade)]
         public ICollection<EducationAccountStatusHistory> StatusHistories { get; set; } = [];
     }
