@@ -617,7 +617,7 @@ namespace Services.FasSchemes
                     Operator = c.Operator,
                     ValueNumber = c.ValueNumber,
                     ValueNumberTo = c.ValueNumberTo,
-                    //CountryId = c.CountryId,
+                    ValueText = c.ValueText,
                     DisplayOrder = c.DisplayOrder
                 }).ToList()
             };
