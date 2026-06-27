@@ -107,6 +107,7 @@ namespace Services.Payments
                     CourseDescription = e.CourseDescriptionSnapshot,
                     PaymentDueDate = e.Course.FasApplicationDueDate,
                     PaymentStatus = e.Charge.Status == ChargeStatus.Paid ? "Paid" :
+                                    e.Charge.Installments.Count > 1 ? "Installment" :
                                     (e.Charge.Status == ChargeStatus.Overdue || e.Course.FasApplicationDueDate < now) ? "Overdue" :
                                     e.Charge.Installments.Count > 1 ? "Installment" :
                                     "Due",
