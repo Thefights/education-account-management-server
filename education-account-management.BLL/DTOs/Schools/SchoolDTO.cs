@@ -26,6 +26,8 @@ namespace DTOs.Schools
     {
         public int Id { get; set; }
 
+        public DateTime CreatedAt { get; set; }
+
         public string? Status { get; set; }
 
         public string SchoolName { get; set; } = string.Empty;

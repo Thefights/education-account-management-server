@@ -17,6 +17,7 @@ namespace Filters.Courses
                 ["enrollmentDeadline"] = nameof(Course.EnrollmentDeadline),
                 ["startDate"] = nameof(Course.StartDate),
                 ["endDate"] = nameof(Course.EndDate),
+                ["createdAt"] = nameof(Course.CreatedAt),
             };
 
         public override IReadOnlyDictionary<string, string> SortFields => AllowedSortFields;

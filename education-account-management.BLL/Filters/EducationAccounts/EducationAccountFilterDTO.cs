@@ -11,6 +11,7 @@ namespace Filters.EducationAccounts
                 ["accountNumber"] = nameof(EducationAccount.AccountNumber),
                 ["balance"] = nameof(EducationAccount.EducationCreditBalance),
                 ["status"] = nameof(EducationAccount.Status),
+                ["createdAt"] = nameof(EducationAccount.CreatedAt),
                 ["createdDate"] = nameof(EducationAccount.OpenedAt),
                 ["nric"] = "Citizen.Nric",
                 ["name"] = "Citizen.FullName",
@@ -29,6 +30,5 @@ namespace Filters.EducationAccounts
         [FilterField(FilterOperationEnum.Contains, "Citizen.FullName")]
         [SearchField("Citizen.FullName")]
         public string? Name { get; set; }
-
     }
 }

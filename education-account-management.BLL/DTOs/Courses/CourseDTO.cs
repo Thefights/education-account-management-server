@@ -44,6 +44,8 @@ namespace DTOs.Courses
 
         public int SchoolId { get; set; }
 
+        public DateTime CreatedAt { get; set; }
+
         public string SchoolName { get; set; } = string.Empty;
 
         public string? Status { get; set; }
