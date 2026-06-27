@@ -44,7 +44,7 @@ namespace Controllers.AccountHolder
         public async Task<IActionResult> PublishDraftApplication([FromRoute] int id, [FromForm] SubmitFasApplicationDTO dto, CancellationToken cancellationToken)
         {
             var applicationNumber = await _fasApplicationService.PublishDraftApplicationAsync(id, dto, cancellationToken);
-            return Result.SuccessAction($"FAS application successfully submitted with ID: {applicationNumber}");
+            return Result.SuccessAction($"FAS application successfully submitted with application number: {applicationNumber}");
         }
 
         [HttpGet("fas-applications")]
