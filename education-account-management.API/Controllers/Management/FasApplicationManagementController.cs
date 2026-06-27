@@ -4,25 +4,23 @@ using Controllers.Base;
 using DTOs.FasApplications;
 using Utils;
 using Interfaces.FasApplications;
+using Filters.FasApplications;
 
 
 namespace Controllers.Management
 {
     [Authorize(Roles = RolePolicy.SchoolAdmin)]
     public class FasApplicationManagementController(
-        IManagementFasApplicationService service,
-        SchoolScopeResolver schoolScopeResolver) : BaseController
+        IManagementFasApplicationService service) : BaseController
     {
         private readonly IManagementFasApplicationService _service = service;
-        private readonly SchoolScopeResolver _schoolScopeResolver = schoolScopeResolver;
 
         [HttpGet]
-        public async Task<IActionResult> GetApplicationQueue(
-            [FromQuery] GetFasApplicationListRequestDTO request,
+        public async Task<IActionResult> GetApplicationPaginated(
+            [FromQuery] FasApplicationFilterDTO request,
             CancellationToken cancellationToken)
         {
-            var adminSchoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
-            var result = await _service.GetApplicationQueueAsync(request, adminSchoolId, cancellationToken);
+            var result = await _service.GetApplicationPaginatedAsync(request, cancellationToken);
             return Result.SuccessData(result);
         }
 
@@ -31,24 +29,21 @@ namespace Controllers.Management
             int id,
             CancellationToken cancellationToken)
         {
-            var adminSchoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
-            var result = await _service.GetApplicationDetailsAsync(id, adminSchoolId, cancellationToken);
+            var result = await _service.GetApplicationDetailsAsync(id, cancellationToken);
             return Result.SuccessData(result);
         }
 
         [HttpPost("{id}/approve")]
         public async Task<IActionResult> Approve(int id, CancellationToken cancellationToken)
         {
-            var adminSchoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
-            await _service.ApproveAsync(adminSchoolId, id, cancellationToken);
+            await _service.ApproveAsync(id, cancellationToken);
             return Result.SuccessAction("FAS application approved successfully.");
         }
 
         [HttpPost("{id}/reject")]
         public async Task<IActionResult> Reject(int id, RejectFasApplicationDTO dto, CancellationToken cancellationToken)
         {
-            var adminSchoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
-            await _service.RejectAsync(adminSchoolId, id, dto, cancellationToken);
+            await _service.RejectAsync( id, dto, cancellationToken);
             return Result.SuccessAction("FAS application rejected successfully.");
         }
     }

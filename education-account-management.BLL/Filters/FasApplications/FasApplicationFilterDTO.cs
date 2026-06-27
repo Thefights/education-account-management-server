@@ -1,4 +1,3 @@
-using Enums;
 using Filters.Base;
 using Models;
 
@@ -19,7 +18,6 @@ namespace Filters.FasApplications
 
         public override IReadOnlyDictionary<string, string> SortFields => AllowedSortFields;
 
-        [FilterField(TargetField: nameof(FasApplication.Status))]
-        public FasApplicationStatus? Status { get; set; }
+        public string? Status { get; set; }
     }
 }

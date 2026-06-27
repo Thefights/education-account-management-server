@@ -1,5 +1,4 @@
 using DTOs.FasApplications;
-using Models;
 using Riok.Mapperly.Abstractions;
 
 namespace Mappers.FasApplications
@@ -7,15 +6,25 @@ namespace Mappers.FasApplications
     [Mapper(RequiredMappingStrategy = RequiredMappingStrategy.None)]
     public partial class FasApplicationMapper
     {
-        [MapProperty(nameof(FasApplication.Id), nameof(FasApplicationListItemDTO.Id))]
-        [MapProperty($"{nameof(FasApplication.SchoolStudent)}.{nameof(SchoolStudent.EducationAccount)}.{nameof(EducationAccount.Citizen)}.{nameof(Citizen.FullName)}", nameof(FasApplicationListItemDTO.ApplicantName))]
-        [MapProperty($"{nameof(FasApplication.SchoolStudent)}.{nameof(SchoolStudent.EducationAccount)}.{nameof(EducationAccount.AccountNumber)}", nameof(FasApplicationListItemDTO.AccountNumber))]
-        [MapProperty($"{nameof(FasApplication.FasScheme)}.{nameof(FasScheme.SchemeName)}", nameof(FasApplicationListItemDTO.SchemeName))]
-        [MapProperty(nameof(FasApplication.CreatedAt), nameof(FasApplicationListItemDTO.SubmittedAt))]
-        [MapProperty(nameof(FasApplication.Status), nameof(FasApplicationListItemDTO.Status))]
-        [MapProperty(nameof(FasApplication.ValidityEndDate), nameof(FasApplicationListItemDTO.ValidityEndDate))]
-        public partial FasApplicationListItemDTO MapToListItemDTO(FasApplication model);
+        [MapProperty(nameof(FasApplication.Id), nameof(FasApplicationSchoolAdminDetailDTO.id))]
+        [MapProperty(nameof(FasApplication.StudentAgeSnapshot), $"{nameof(FasApplicationSchoolAdminDetailDTO.StudentProfile)}.{nameof(StudentProfileDTO.Age)}")]
+        [MapProperty(nameof(FasApplication.StudentNationalitySnapshot), $"{nameof(FasApplicationSchoolAdminDetailDTO.StudentProfile)}.{nameof(StudentProfileDTO.StudentNationality)}")]
+        [MapProperty(nameof(FasApplication.GuardianNationalitySnapshot), $"{nameof(FasApplicationSchoolAdminDetailDTO.StudentProfile)}.{nameof(StudentProfileDTO.GuardianNationality)}")]
+        [MapProperty(nameof(FasApplication.GrossHouseholdIncomeSnapshot), $"{nameof(FasApplicationSchoolAdminDetailDTO.StudentProfile)}.{nameof(StudentProfileDTO.GrossHouseholdIncome)}")]
+        [MapProperty(nameof(FasApplication.HouseholdMemberCountSnapshot), $"{nameof(FasApplicationSchoolAdminDetailDTO.StudentProfile)}.{nameof(StudentProfileDTO.HouseholdMembers)}")]
+        [MapProperty(nameof(FasApplication.PerCapitaIncomeSnapshot), $"{nameof(FasApplicationSchoolAdminDetailDTO.StudentProfile)}.{nameof(StudentProfileDTO.PerCapitaIncome)}")]
+        [MapProperty(nameof(FasApplication.FasSchemeId), $"{nameof(FasApplicationSchoolAdminDetailDTO.Scheme)}.{nameof(SchemeDetailsDTO.Id)}")]
+        [MapperIgnoreTarget(nameof(FasApplicationSchoolAdminDetailDTO.Status))]
+        [MapperIgnoreTarget(nameof(FasApplicationSchoolAdminDetailDTO.Scheme))]
+        [MapperIgnoreTarget(nameof(FasApplicationSchoolAdminDetailDTO.SystemSuggestedTier))]
+        public partial FasApplicationSchoolAdminDetailDTO MapToDetailDTO(FasApplication model);
 
-        public partial IQueryable<FasApplicationListItemDTO> ProjectToListItemDTO(IQueryable<FasApplication> query);
+        [MapProperty(nameof(FasSchemeTier.Id), nameof(TierDetailsDTO.Id))]
+        [MapProperty(nameof(FasSchemeTier.TierName), nameof(TierDetailsDTO.TierName))]
+        [MapProperty(nameof(FasSchemeTier.MaxPerCapitaIncome), nameof(TierDetailsDTO.MaxPerCapitaIncome))]
+        [MapperIgnoreSource(nameof(FasSchemeTier.FasScheme))]
+        [MapperIgnoreTarget(nameof(TierDetailsDTO.ConditionText))]
+        [MapperIgnoreTarget(nameof(TierDetailsDTO.SubsidyDescription))]
+        public partial TierDetailsDTO MapTierToDTO(FasSchemeTier tier);
     }
 }

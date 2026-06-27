@@ -27,7 +27,6 @@ using Mappers.Admin;
 using Mappers.Enrollments;
 using Mappers.SchoolStudents;
 using Mappers.TopUp;
-using Mappers.FasApplications;
 using Polly;
 using Polly.CircuitBreaker;
 using Polly.Retry;
@@ -54,6 +53,7 @@ using Services.FasSchemes;
 using StackExchange.Redis;
 using System.Threading.RateLimiting;
 using Utils;
+using Mappers.FasApplications;
 
 namespace Extensions.DependencyInjection
 {

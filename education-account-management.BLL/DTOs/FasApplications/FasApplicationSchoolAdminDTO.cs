@@ -1,8 +1,25 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace DTOs.FasApplications
 {
-    public class FasApplicationDetailsDTO
+
+    public class FasApplicationSchoolAdminDTO
     {
-        public string ApplicationId { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string ApplicationNumber { get; set; } = string.Empty;
+        public string AccountName {  get; set; } = string.Empty;
+        public string AccountNumber { get; set; } = string.Empty;
+        public string SchemeName { get; set; } = string.Empty;
+        public string FasAppliedFor { get; set; } = string.Empty;
+        public DateTime SubmittedAt { get; set; }
+        public string? Status { get; set; }
+
+    }
+
+    public class FasApplicationSchoolAdminDetailDTO
+    {
+        public int id { get; set; }
+        public string ApplicationNumber { get; set; } = string.Empty;
         public string Status { get; set; } = string.Empty;
         public StudentProfileDTO StudentProfile { get; set; } = new();
         public SchemeDetailsDTO Scheme { get; set; } = new();
