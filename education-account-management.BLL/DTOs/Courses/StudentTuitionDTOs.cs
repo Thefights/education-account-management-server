@@ -29,5 +29,12 @@ namespace DTOs.Courses
         public decimal NetPayable { get; set; }
         public decimal PaidAmount { get; set; }
         public decimal RemainingAmount { get; set; }
+        public decimal TaxRate { get; set; }
+        public bool IsInstallment { get; set; }
+        public int? CurrentInstallmentNumber { get; set; }
+        public int? TotalInstallments { get; set; }
+        public string? AppliedFasSchemeName { get; set; }
+        public string? AppliedFasTierName { get; set; }
+        public bool HasFasApplication { get; set; }
     }
 }
