@@ -76,8 +76,12 @@ namespace Mappers.FasSchemes
                 return null;
             }
 
-            return countryId == 1 ? "Singapore" : "Other";
-        }
+            return countryId switch
+            {
+                1 => "Singapore",
+                2 => "Other",
+                _ => null
+            };        }
 
         private static int? MapValueTextToCountryId(FasConditionField field, string? valueText)
         {
@@ -86,9 +90,24 @@ namespace Mappers.FasSchemes
                 return null;
             }
 
-            return string.Equals(valueText?.Trim(), "Singapore", StringComparison.OrdinalIgnoreCase)
-                ? 1
-                : 2;
+            var normalized = valueText?.Trim();
+            if (string.IsNullOrEmpty(normalized))
+            {
+                return null;
+            }
+
+            if (string.Equals(normalized, "Singapore", StringComparison.OrdinalIgnoreCase))
+            {
+                return 1;
+            }
+
+            if (string.Equals(normalized, "Other", StringComparison.OrdinalIgnoreCase))
+            {
+                return 2;
+            }
+
+            return null;
+
         }
     }
 }
