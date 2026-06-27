@@ -59,12 +59,13 @@ namespace Services.FasApplications
             }
 
             // 3. Kiểm tra xem học sinh đã có hồ sơ nào đang chờ duyệt hoặc đã được duyệt cho Scheme này chưa
+            var today = DateTime.UtcNow.Date;
             var existingApplication = await _unitOfWork.Repository<FasApplication>()
                 .Query()
                 .AnyAsync(a => a.SchoolStudentId == studentInfo.Id 
                             && a.FasSchemeId == dto.FasSchemeId 
                             && (a.Status == FasApplicationStatus.Pending || 
-                               (a.Status == FasApplicationStatus.Approved && (a.ValidityEndDate == null || a.ValidityEndDate >= DateTime.UtcNow))), cancellationToken);
+                                (a.Status == FasApplicationStatus.Approved && (a.ValidityEndDate == null || a.ValidityEndDate >= today))), cancellationToken);
             
             if (existingApplication)
             {
@@ -142,6 +143,7 @@ namespace Services.FasApplications
             }
 
             application.TryValidate();
+            
 
             await _unitOfWork.Repository<FasApplication>().AddAsync(application, cancellationToken);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
