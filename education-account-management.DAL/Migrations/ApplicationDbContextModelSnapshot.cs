@@ -114,7 +114,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000101E",
                             PhoneNumber = "+6580000001",
-                            StaffCode = "STAFF-00001",
+                            StaffCode = "STAFF-2026-XX2CU83",
                             UserId = 1
                         },
                         new
@@ -126,7 +126,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000102C",
                             PhoneNumber = "+6580000002",
-                            StaffCode = "STAFF-00002",
+                            StaffCode = "STAFF-2026-STL4YQH",
                             UserId = 2
                         },
                         new
@@ -139,7 +139,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000103A",
                             PhoneNumber = "+6580000003",
                             SchoolId = 1,
-                            StaffCode = "STAFF-00003",
+                            StaffCode = "STAFF-2026-MUWAHW6",
                             UserId = 3
                         },
                         new
@@ -151,7 +151,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000104Z",
                             PhoneNumber = "+6580000004",
-                            StaffCode = "STAFF-00004",
+                            StaffCode = "STAFF-2026-S4FZU83",
                             UserId = 5
                         },
                         new
@@ -163,7 +163,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000105H",
                             PhoneNumber = "+6580000005",
-                            StaffCode = "STAFF-00005",
+                            StaffCode = "STAFF-2026-AOAY3A4",
                             UserId = 6
                         },
                         new
@@ -176,7 +176,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000106F",
                             PhoneNumber = "+6580000006",
                             SchoolId = 7,
-                            StaffCode = "STAFF-00006",
+                            StaffCode = "STAFF-2026-KRNWMLK",
                             UserId = 7
                         },
                         new
@@ -188,7 +188,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000107D",
                             PhoneNumber = "+6580000007",
-                            StaffCode = "STAFF-00007",
+                            StaffCode = "STAFF-2026-UNJFZW7",
                             UserId = 8
                         },
                         new
@@ -200,7 +200,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000108B",
                             PhoneNumber = "+6580000008",
-                            StaffCode = "STAFF-00008",
+                            StaffCode = "STAFF-2026-SFXEF6F",
                             UserId = 9
                         },
                         new
@@ -213,7 +213,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000109J",
                             PhoneNumber = "+6580000009",
                             SchoolId = 10,
-                            StaffCode = "STAFF-00009",
+                            StaffCode = "STAFF-2026-O3408F1",
                             UserId = 10
                         },
                         new
@@ -225,7 +225,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000110D",
                             PhoneNumber = "+6580000010",
-                            StaffCode = "STAFF-00010",
+                            StaffCode = "STAFF-2026-7F0PDWW",
                             UserId = 11
                         },
                         new
@@ -237,7 +237,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000111B",
                             PhoneNumber = "+6580000011",
-                            StaffCode = "STAFF-00011",
+                            StaffCode = "STAFF-2026-8X4V13Q",
                             UserId = 12
                         },
                         new
@@ -250,7 +250,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000112J",
                             PhoneNumber = "+6580000012",
                             SchoolId = 13,
-                            StaffCode = "STAFF-00012",
+                            StaffCode = "STAFF-2026-U02ABWW",
                             UserId = 13
                         },
                         new
@@ -262,7 +262,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000113I",
                             PhoneNumber = "+6580000013",
-                            StaffCode = "STAFF-00013",
+                            StaffCode = "STAFF-2026-YAASVP4",
                             UserId = 14
                         },
                         new
@@ -274,7 +274,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000114G",
                             PhoneNumber = "+6580000014",
-                            StaffCode = "STAFF-00014",
+                            StaffCode = "STAFF-2026-MD7QFDN",
                             UserId = 15
                         },
                         new
@@ -287,7 +287,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000115E",
                             PhoneNumber = "+6580000015",
                             SchoolId = 16,
-                            StaffCode = "STAFF-00015",
+                            StaffCode = "STAFF-2026-YM3YL5X",
                             UserId = 16
                         },
                         new
@@ -299,7 +299,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000116C",
                             PhoneNumber = "+6580000016",
-                            StaffCode = "STAFF-00016",
+                            StaffCode = "STAFF-2026-KOWBPV1",
                             UserId = 17
                         },
                         new
@@ -311,7 +311,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000117A",
                             PhoneNumber = "+6580000017",
-                            StaffCode = "STAFF-00017",
+                            StaffCode = "STAFF-2026-D7G9W6U",
                             UserId = 18
                         },
                         new
@@ -324,7 +324,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000118Z",
                             PhoneNumber = "+6580000018",
                             SchoolId = 19,
-                            StaffCode = "STAFF-00018",
+                            StaffCode = "STAFF-2026-ZAQHZJY",
                             UserId = 19
                         },
                         new
@@ -336,7 +336,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000119H",
                             PhoneNumber = "+6580000019",
-                            StaffCode = "STAFF-00019",
+                            StaffCode = "STAFF-2026-NI8TCIU",
                             UserId = 20
                         },
                         new
@@ -348,7 +348,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000120A",
                             PhoneNumber = "+6580000020",
-                            StaffCode = "STAFF-00020",
+                            StaffCode = "STAFF-2026-BM63HUE",
                             UserId = 21
                         },
                         new
@@ -361,7 +361,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000121Z",
                             PhoneNumber = "+6580000021",
                             SchoolId = 22,
-                            StaffCode = "STAFF-00021",
+                            StaffCode = "STAFF-2026-OE318VW",
                             UserId = 22
                         },
                         new
@@ -373,7 +373,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000122H",
                             PhoneNumber = "+6580000022",
-                            StaffCode = "STAFF-00022",
+                            StaffCode = "STAFF-2026-LC8GF2Z",
                             UserId = 23
                         },
                         new
@@ -385,7 +385,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000123F",
                             PhoneNumber = "+6580000023",
-                            StaffCode = "STAFF-00023",
+                            StaffCode = "STAFF-2026-5TBCP3X",
                             UserId = 24
                         },
                         new
@@ -398,7 +398,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000124D",
                             PhoneNumber = "+6580000024",
                             SchoolId = 25,
-                            StaffCode = "STAFF-00024",
+                            StaffCode = "STAFF-2026-AJHDSIO",
                             UserId = 25
                         },
                         new
@@ -410,7 +410,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000125B",
                             PhoneNumber = "+6580000025",
-                            StaffCode = "STAFF-00025",
+                            StaffCode = "STAFF-2026-VV1BIL1",
                             UserId = 26
                         },
                         new
@@ -422,7 +422,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000126J",
                             PhoneNumber = "+6580000026",
-                            StaffCode = "STAFF-00026",
+                            StaffCode = "STAFF-2026-W7UIFU4",
                             UserId = 27
                         },
                         new
@@ -435,7 +435,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000127I",
                             PhoneNumber = "+6580000027",
                             SchoolId = 28,
-                            StaffCode = "STAFF-00027",
+                            StaffCode = "STAFF-2026-PZ60RTL",
                             UserId = 28
                         },
                         new
@@ -447,7 +447,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000128G",
                             PhoneNumber = "+6580000028",
-                            StaffCode = "STAFF-00028",
+                            StaffCode = "STAFF-2026-CIIW02U",
                             UserId = 29
                         },
                         new
@@ -459,7 +459,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000129E",
                             PhoneNumber = "+6580000029",
-                            StaffCode = "STAFF-00029",
+                            StaffCode = "STAFF-2026-Z53N6V0",
                             UserId = 30
                         },
                         new
@@ -472,7 +472,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000130I",
                             PhoneNumber = "+6580000030",
                             SchoolId = 31,
-                            StaffCode = "STAFF-00030",
+                            StaffCode = "STAFF-2026-53DUZ0B",
                             UserId = 31
                         },
                         new
@@ -484,7 +484,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000131G",
                             PhoneNumber = "+6580000031",
-                            StaffCode = "STAFF-00031",
+                            StaffCode = "STAFF-2026-UF5TOFH",
                             UserId = 32
                         },
                         new
@@ -496,7 +496,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000132E",
                             PhoneNumber = "+6580000032",
-                            StaffCode = "STAFF-00032",
+                            StaffCode = "STAFF-2026-BI0W84O",
                             UserId = 33
                         },
                         new
@@ -509,7 +509,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000133C",
                             PhoneNumber = "+6580000033",
                             SchoolId = 34,
-                            StaffCode = "STAFF-00033",
+                            StaffCode = "STAFF-2026-NQNU96E",
                             UserId = 34
                         },
                         new
@@ -521,7 +521,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000134A",
                             PhoneNumber = "+6580000034",
-                            StaffCode = "STAFF-00034",
+                            StaffCode = "STAFF-2026-IXYYHWY",
                             UserId = 35
                         },
                         new
@@ -533,7 +533,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000135Z",
                             PhoneNumber = "+6580000035",
-                            StaffCode = "STAFF-00035",
+                            StaffCode = "STAFF-2026-6F5BSF7",
                             UserId = 36
                         },
                         new
@@ -546,7 +546,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000136H",
                             PhoneNumber = "+6580000036",
                             SchoolId = 37,
-                            StaffCode = "STAFF-00036",
+                            StaffCode = "STAFF-2026-76F87EB",
                             UserId = 37
                         },
                         new
@@ -558,7 +558,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000137F",
                             PhoneNumber = "+6580000037",
-                            StaffCode = "STAFF-00037",
+                            StaffCode = "STAFF-2026-7QE6AWN",
                             UserId = 38
                         },
                         new
@@ -570,7 +570,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000138D",
                             PhoneNumber = "+6580000038",
-                            StaffCode = "STAFF-00038",
+                            StaffCode = "STAFF-2026-F5AF0MK",
                             UserId = 39
                         },
                         new
@@ -583,7 +583,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000139B",
                             PhoneNumber = "+6580000039",
                             SchoolId = 40,
-                            StaffCode = "STAFF-00039",
+                            StaffCode = "STAFF-2026-VN6QRJT",
                             UserId = 40
                         },
                         new
@@ -595,7 +595,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000140F",
                             PhoneNumber = "+6580000040",
-                            StaffCode = "STAFF-00040",
+                            StaffCode = "STAFF-2026-1702LWO",
                             UserId = 41
                         },
                         new
@@ -607,7 +607,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000141D",
                             PhoneNumber = "+6580000041",
-                            StaffCode = "STAFF-00041",
+                            StaffCode = "STAFF-2026-4NCICBA",
                             UserId = 42
                         },
                         new
@@ -620,7 +620,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000142B",
                             PhoneNumber = "+6580000042",
                             SchoolId = 43,
-                            StaffCode = "STAFF-00042",
+                            StaffCode = "STAFF-2026-IBPQ8VK",
                             UserId = 43
                         },
                         new
@@ -632,7 +632,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000143J",
                             PhoneNumber = "+6580000043",
-                            StaffCode = "STAFF-00043",
+                            StaffCode = "STAFF-2026-JTA16SN",
                             UserId = 44
                         },
                         new
@@ -644,7 +644,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000144I",
                             PhoneNumber = "+6580000044",
-                            StaffCode = "STAFF-00044",
+                            StaffCode = "STAFF-2026-1GN95ZX",
                             UserId = 45
                         },
                         new
@@ -657,7 +657,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000145G",
                             PhoneNumber = "+6580000045",
                             SchoolId = 46,
-                            StaffCode = "STAFF-00045",
+                            StaffCode = "STAFF-2026-I2D4PEW",
                             UserId = 46
                         },
                         new
@@ -669,7 +669,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000146E",
                             PhoneNumber = "+6580000046",
-                            StaffCode = "STAFF-00046",
+                            StaffCode = "STAFF-2026-Z6LSG0N",
                             UserId = 47
                         },
                         new
@@ -681,7 +681,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000147C",
                             PhoneNumber = "+6580000047",
-                            StaffCode = "STAFF-00047",
+                            StaffCode = "STAFF-2026-TNPXJ1D",
                             UserId = 48
                         },
                         new
@@ -694,7 +694,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000148A",
                             PhoneNumber = "+6580000048",
                             SchoolId = 49,
-                            StaffCode = "STAFF-00048",
+                            StaffCode = "STAFF-2026-MJO4T2S",
                             UserId = 49
                         },
                         new
@@ -706,7 +706,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000149Z",
                             PhoneNumber = "+6580000049",
-                            StaffCode = "STAFF-00049",
+                            StaffCode = "STAFF-2026-D65QQRF",
                             UserId = 50
                         },
                         new
@@ -718,7 +718,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000150C",
                             PhoneNumber = "+6580000050",
-                            StaffCode = "STAFF-00050",
+                            StaffCode = "STAFF-2026-KT2E8MC",
                             UserId = 51
                         });
                 });
@@ -1411,7 +1411,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000001",
+                            CourseCodeSnapshot = "CRS-2026-SAGH611",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 125m,
@@ -1436,7 +1436,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 2,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000002",
+                            CourseCodeSnapshot = "CRS-2026-A9CFJRZ",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 130m,
@@ -1461,7 +1461,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 3,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000003",
+                            CourseCodeSnapshot = "CRS-2026-1QOTM9Q",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 3, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 135m,
@@ -1491,7 +1491,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasSubsidyTypeSnapshot = 2,
                             AppliedFasSubsidyValueSnapshot = 30m,
                             AppliedFasTierNameSnapshot = "Tier 1",
-                            CourseCodeSnapshot = "CRS-2026-0000004",
+                            CourseCodeSnapshot = "CRS-2026-EJ1A67A",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 4, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 140m,
@@ -1516,7 +1516,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 5,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000005",
+                            CourseCodeSnapshot = "CRS-2026-HPS3B9I",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 5, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 145m,
@@ -1541,7 +1541,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 6,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000006",
+                            CourseCodeSnapshot = "CRS-2026-UPUZSA3",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 6, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 150m,
@@ -1566,7 +1566,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 7,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000007",
+                            CourseCodeSnapshot = "CRS-2026-SMDS48L",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 7, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 155m,
@@ -1596,7 +1596,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasSubsidyTypeSnapshot = 2,
                             AppliedFasSubsidyValueSnapshot = 30m,
                             AppliedFasTierNameSnapshot = "Tier 1",
-                            CourseCodeSnapshot = "CRS-2026-0000008",
+                            CourseCodeSnapshot = "CRS-2026-DTVK2L0",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 8, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 160m,
@@ -1621,7 +1621,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 9,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000009",
+                            CourseCodeSnapshot = "CRS-2026-5HA3NN0",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 9, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 165m,
@@ -1646,7 +1646,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 10,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000010",
+                            CourseCodeSnapshot = "CRS-2026-PG7MVO8",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 10, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 170m,
@@ -1671,7 +1671,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 11,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000011",
+                            CourseCodeSnapshot = "CRS-2026-7HGGL06",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 11, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 175m,
@@ -1701,7 +1701,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasSubsidyTypeSnapshot = 2,
                             AppliedFasSubsidyValueSnapshot = 30m,
                             AppliedFasTierNameSnapshot = "Tier 1",
-                            CourseCodeSnapshot = "CRS-2026-0000012",
+                            CourseCodeSnapshot = "CRS-2026-8QVCFIJ",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 12, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 180m,
@@ -1726,7 +1726,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 13,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000013",
+                            CourseCodeSnapshot = "CRS-2026-LTXWODC",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 13, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 185m,
@@ -1751,7 +1751,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 14,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000014",
+                            CourseCodeSnapshot = "CRS-2026-9O0PVAP",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 14, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 190m,
@@ -1776,7 +1776,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 15,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000015",
+                            CourseCodeSnapshot = "CRS-2026-WEJ9TUS",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 195m,
@@ -1806,7 +1806,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasSubsidyTypeSnapshot = 2,
                             AppliedFasSubsidyValueSnapshot = 30m,
                             AppliedFasTierNameSnapshot = "Tier 1",
-                            CourseCodeSnapshot = "CRS-2026-0000016",
+                            CourseCodeSnapshot = "CRS-2026-DW55O4J",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 16, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 200m,
@@ -1831,7 +1831,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 17,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000017",
+                            CourseCodeSnapshot = "CRS-2026-BEOMA7Q",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 17, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 205m,
@@ -1856,7 +1856,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 18,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000018",
+                            CourseCodeSnapshot = "CRS-2026-E5YXUWF",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 18, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 210m,
@@ -1881,7 +1881,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 19,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000019",
+                            CourseCodeSnapshot = "CRS-2026-5TQ32YK",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 19, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 215m,
@@ -1911,7 +1911,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasSubsidyTypeSnapshot = 2,
                             AppliedFasSubsidyValueSnapshot = 30m,
                             AppliedFasTierNameSnapshot = "Tier 1",
-                            CourseCodeSnapshot = "CRS-2026-0000020",
+                            CourseCodeSnapshot = "CRS-2026-QHA65C0",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 20, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 220m,
@@ -1936,7 +1936,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 21,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000021",
+                            CourseCodeSnapshot = "CRS-2026-IF4LTDN",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 21, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 225m,
@@ -1961,7 +1961,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 22,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000022",
+                            CourseCodeSnapshot = "CRS-2026-EOWJ7RI",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 22, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 230m,
@@ -1986,7 +1986,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 23,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000023",
+                            CourseCodeSnapshot = "CRS-2026-JTOV8NE",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 23, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 235m,
@@ -2016,7 +2016,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasSubsidyTypeSnapshot = 2,
                             AppliedFasSubsidyValueSnapshot = 30m,
                             AppliedFasTierNameSnapshot = "Tier 1",
-                            CourseCodeSnapshot = "CRS-2026-0000024",
+                            CourseCodeSnapshot = "CRS-2026-D6C5MU1",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 24, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 240m,
@@ -2041,7 +2041,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 25,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000025",
+                            CourseCodeSnapshot = "CRS-2026-CWWS3U3",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 25, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 245m,
@@ -2066,7 +2066,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 26,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000026",
+                            CourseCodeSnapshot = "CRS-2026-SPJ7E30",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 26, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 250m,
@@ -2091,7 +2091,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 27,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000027",
+                            CourseCodeSnapshot = "CRS-2026-HHV04Y9",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 27, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 255m,
@@ -2121,7 +2121,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasSubsidyTypeSnapshot = 2,
                             AppliedFasSubsidyValueSnapshot = 30m,
                             AppliedFasTierNameSnapshot = "Tier 1",
-                            CourseCodeSnapshot = "CRS-2026-0000028",
+                            CourseCodeSnapshot = "CRS-2026-LUJ9RT4",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 28, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 260m,
@@ -2146,7 +2146,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 29,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000029",
+                            CourseCodeSnapshot = "CRS-2026-MATA5OE",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 265m,
@@ -2171,7 +2171,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 30,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000030",
+                            CourseCodeSnapshot = "CRS-2026-TBP3E3W",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 270m,
@@ -2196,7 +2196,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 31,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000031",
+                            CourseCodeSnapshot = "CRS-2026-NMXIH0W",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 3, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 275m,
@@ -2226,7 +2226,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasSubsidyTypeSnapshot = 2,
                             AppliedFasSubsidyValueSnapshot = 30m,
                             AppliedFasTierNameSnapshot = "Tier 1",
-                            CourseCodeSnapshot = "CRS-2026-0000032",
+                            CourseCodeSnapshot = "CRS-2026-M2C29EQ",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 4, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 280m,
@@ -2251,7 +2251,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 33,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000033",
+                            CourseCodeSnapshot = "CRS-2026-YXZ452K",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 5, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 285m,
@@ -2276,7 +2276,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 34,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000034",
+                            CourseCodeSnapshot = "CRS-2026-OJZT05F",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 6, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 290m,
@@ -2301,7 +2301,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 35,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000035",
+                            CourseCodeSnapshot = "CRS-2026-FBV0QY7",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 7, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 295m,
@@ -2331,7 +2331,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasSubsidyTypeSnapshot = 2,
                             AppliedFasSubsidyValueSnapshot = 30m,
                             AppliedFasTierNameSnapshot = "Tier 1",
-                            CourseCodeSnapshot = "CRS-2026-0000036",
+                            CourseCodeSnapshot = "CRS-2026-R46A00W",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 8, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 300m,
@@ -2356,7 +2356,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 37,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000037",
+                            CourseCodeSnapshot = "CRS-2026-JMAO1QA",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 9, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 305m,
@@ -2381,7 +2381,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 38,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000038",
+                            CourseCodeSnapshot = "CRS-2026-VA3LGE0",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 10, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 310m,
@@ -2406,7 +2406,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 39,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000039",
+                            CourseCodeSnapshot = "CRS-2026-C2L9WG4",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 11, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 315m,
@@ -2436,7 +2436,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasSubsidyTypeSnapshot = 2,
                             AppliedFasSubsidyValueSnapshot = 30m,
                             AppliedFasTierNameSnapshot = "Tier 1",
-                            CourseCodeSnapshot = "CRS-2026-0000040",
+                            CourseCodeSnapshot = "CRS-2026-L6UUQYK",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 12, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 320m,
@@ -2461,7 +2461,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 41,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000041",
+                            CourseCodeSnapshot = "CRS-2026-79UQVDL",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 13, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 325m,
@@ -2486,7 +2486,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 42,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000042",
+                            CourseCodeSnapshot = "CRS-2026-SDLMCO9",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 14, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 330m,
@@ -2511,7 +2511,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 43,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000043",
+                            CourseCodeSnapshot = "CRS-2026-LUEVJLD",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 335m,
@@ -2541,7 +2541,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasSubsidyTypeSnapshot = 2,
                             AppliedFasSubsidyValueSnapshot = 30m,
                             AppliedFasTierNameSnapshot = "Tier 1",
-                            CourseCodeSnapshot = "CRS-2026-0000044",
+                            CourseCodeSnapshot = "CRS-2026-GO9AJL4",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 16, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 340m,
@@ -2566,7 +2566,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 45,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000045",
+                            CourseCodeSnapshot = "CRS-2026-B29KV62",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 17, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 345m,
@@ -2591,7 +2591,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 46,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000046",
+                            CourseCodeSnapshot = "CRS-2026-2ME55AE",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 18, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 350m,
@@ -2616,7 +2616,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 47,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000047",
+                            CourseCodeSnapshot = "CRS-2026-X7JQUEV",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 19, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 355m,
@@ -2646,7 +2646,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasSubsidyTypeSnapshot = 2,
                             AppliedFasSubsidyValueSnapshot = 30m,
                             AppliedFasTierNameSnapshot = "Tier 1",
-                            CourseCodeSnapshot = "CRS-2026-0000048",
+                            CourseCodeSnapshot = "CRS-2026-Y8VG30C",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 20, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 360m,
@@ -2671,7 +2671,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 49,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000049",
+                            CourseCodeSnapshot = "CRS-2026-8A1B6PI",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 21, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 365m,
@@ -2696,7 +2696,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 50,
                             AppliedFasIsPerComponentSnapshot = false,
-                            CourseCodeSnapshot = "CRS-2026-0000050",
+                            CourseCodeSnapshot = "CRS-2026-2H98HR4",
                             CourseDescriptionSnapshot = "Seeded tuition charge.",
                             CourseEndDateSnapshot = new DateTime(2026, 10, 22, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 370m,
@@ -4284,7 +4284,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            CourseCode = "CRS-2026-0000001",
+                            CourseCode = "CRS-2026-SAGH611",
                             CourseFeeAmount = 125m,
                             CourseName = "Academic Writing Cohort 01",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4302,7 +4302,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            CourseCode = "CRS-2026-0000002",
+                            CourseCode = "CRS-2026-A9CFJRZ",
                             CourseFeeAmount = 130m,
                             CourseName = "Business Numeracy Cohort 02",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4320,7 +4320,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            CourseCode = "CRS-2026-0000003",
+                            CourseCode = "CRS-2026-1QOTM9Q",
                             CourseFeeAmount = 135m,
                             CourseName = "Digital Literacy Cohort 03",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4338,7 +4338,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 4,
-                            CourseCode = "CRS-2026-0000004",
+                            CourseCode = "CRS-2026-EJ1A67A",
                             CourseFeeAmount = 140m,
                             CourseName = "Career Readiness Cohort 04",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4356,7 +4356,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 5,
-                            CourseCode = "CRS-2026-0000005",
+                            CourseCode = "CRS-2026-HPS3B9I",
                             CourseFeeAmount = 145m,
                             CourseName = "Applied Science Cohort 05",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4374,7 +4374,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 6,
-                            CourseCode = "CRS-2026-0000006",
+                            CourseCode = "CRS-2026-UPUZSA3",
                             CourseFeeAmount = 150m,
                             CourseName = "Financial Literacy Cohort 06",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4392,7 +4392,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 7,
-                            CourseCode = "CRS-2026-0000007",
+                            CourseCode = "CRS-2026-SMDS48L",
                             CourseFeeAmount = 155m,
                             CourseName = "Project Collaboration Cohort 07",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4410,7 +4410,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 8,
-                            CourseCode = "CRS-2026-0000008",
+                            CourseCode = "CRS-2026-DTVK2L0",
                             CourseFeeAmount = 160m,
                             CourseName = "Data Skills Cohort 08",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4428,7 +4428,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 9,
-                            CourseCode = "CRS-2026-0000009",
+                            CourseCode = "CRS-2026-5HA3NN0",
                             CourseFeeAmount = 165m,
                             CourseName = "Workplace Communication Cohort 09",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4446,7 +4446,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 10,
-                            CourseCode = "CRS-2026-0000010",
+                            CourseCode = "CRS-2026-PG7MVO8",
                             CourseFeeAmount = 170m,
                             CourseName = "Software Foundations Cohort 10",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4464,7 +4464,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 11,
-                            CourseCode = "CRS-2026-0000011",
+                            CourseCode = "CRS-2026-7HGGL06",
                             CourseFeeAmount = 175m,
                             CourseName = "Academic Writing Cohort 11",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4482,7 +4482,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 12,
-                            CourseCode = "CRS-2026-0000012",
+                            CourseCode = "CRS-2026-8QVCFIJ",
                             CourseFeeAmount = 180m,
                             CourseName = "Business Numeracy Cohort 12",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4500,7 +4500,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 13,
-                            CourseCode = "CRS-2026-0000013",
+                            CourseCode = "CRS-2026-LTXWODC",
                             CourseFeeAmount = 185m,
                             CourseName = "Digital Literacy Cohort 13",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4518,7 +4518,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 14,
-                            CourseCode = "CRS-2026-0000014",
+                            CourseCode = "CRS-2026-9O0PVAP",
                             CourseFeeAmount = 190m,
                             CourseName = "Career Readiness Cohort 14",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4536,7 +4536,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 15,
-                            CourseCode = "CRS-2026-0000015",
+                            CourseCode = "CRS-2026-WEJ9TUS",
                             CourseFeeAmount = 195m,
                             CourseName = "Applied Science Cohort 15",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4554,7 +4554,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 16,
-                            CourseCode = "CRS-2026-0000016",
+                            CourseCode = "CRS-2026-DW55O4J",
                             CourseFeeAmount = 200m,
                             CourseName = "Financial Literacy Cohort 16",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4572,7 +4572,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 17,
-                            CourseCode = "CRS-2026-0000017",
+                            CourseCode = "CRS-2026-BEOMA7Q",
                             CourseFeeAmount = 205m,
                             CourseName = "Project Collaboration Cohort 17",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4590,7 +4590,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 18,
-                            CourseCode = "CRS-2026-0000018",
+                            CourseCode = "CRS-2026-E5YXUWF",
                             CourseFeeAmount = 210m,
                             CourseName = "Data Skills Cohort 18",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4608,7 +4608,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 19,
-                            CourseCode = "CRS-2026-0000019",
+                            CourseCode = "CRS-2026-5TQ32YK",
                             CourseFeeAmount = 215m,
                             CourseName = "Workplace Communication Cohort 19",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4626,7 +4626,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 20,
-                            CourseCode = "CRS-2026-0000020",
+                            CourseCode = "CRS-2026-QHA65C0",
                             CourseFeeAmount = 220m,
                             CourseName = "Software Foundations Cohort 20",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4644,7 +4644,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 21,
-                            CourseCode = "CRS-2026-0000021",
+                            CourseCode = "CRS-2026-IF4LTDN",
                             CourseFeeAmount = 225m,
                             CourseName = "Academic Writing Cohort 21",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4662,7 +4662,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 22,
-                            CourseCode = "CRS-2026-0000022",
+                            CourseCode = "CRS-2026-EOWJ7RI",
                             CourseFeeAmount = 230m,
                             CourseName = "Business Numeracy Cohort 22",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4680,7 +4680,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 23,
-                            CourseCode = "CRS-2026-0000023",
+                            CourseCode = "CRS-2026-JTOV8NE",
                             CourseFeeAmount = 235m,
                             CourseName = "Digital Literacy Cohort 23",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4698,7 +4698,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 24,
-                            CourseCode = "CRS-2026-0000024",
+                            CourseCode = "CRS-2026-D6C5MU1",
                             CourseFeeAmount = 240m,
                             CourseName = "Career Readiness Cohort 24",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4716,7 +4716,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 25,
-                            CourseCode = "CRS-2026-0000025",
+                            CourseCode = "CRS-2026-CWWS3U3",
                             CourseFeeAmount = 245m,
                             CourseName = "Applied Science Cohort 25",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4734,7 +4734,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 26,
-                            CourseCode = "CRS-2026-0000026",
+                            CourseCode = "CRS-2026-SPJ7E30",
                             CourseFeeAmount = 250m,
                             CourseName = "Financial Literacy Cohort 26",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4752,7 +4752,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 27,
-                            CourseCode = "CRS-2026-0000027",
+                            CourseCode = "CRS-2026-HHV04Y9",
                             CourseFeeAmount = 255m,
                             CourseName = "Project Collaboration Cohort 27",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4770,7 +4770,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 28,
-                            CourseCode = "CRS-2026-0000028",
+                            CourseCode = "CRS-2026-LUJ9RT4",
                             CourseFeeAmount = 260m,
                             CourseName = "Data Skills Cohort 28",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4788,7 +4788,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 29,
-                            CourseCode = "CRS-2026-0000029",
+                            CourseCode = "CRS-2026-MATA5OE",
                             CourseFeeAmount = 265m,
                             CourseName = "Workplace Communication Cohort 29",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4806,7 +4806,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 30,
-                            CourseCode = "CRS-2026-0000030",
+                            CourseCode = "CRS-2026-TBP3E3W",
                             CourseFeeAmount = 270m,
                             CourseName = "Software Foundations Cohort 30",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4824,7 +4824,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 31,
-                            CourseCode = "CRS-2026-0000031",
+                            CourseCode = "CRS-2026-NMXIH0W",
                             CourseFeeAmount = 275m,
                             CourseName = "Academic Writing Cohort 31",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4842,7 +4842,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 32,
-                            CourseCode = "CRS-2026-0000032",
+                            CourseCode = "CRS-2026-M2C29EQ",
                             CourseFeeAmount = 280m,
                             CourseName = "Business Numeracy Cohort 32",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4860,7 +4860,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 33,
-                            CourseCode = "CRS-2026-0000033",
+                            CourseCode = "CRS-2026-YXZ452K",
                             CourseFeeAmount = 285m,
                             CourseName = "Digital Literacy Cohort 33",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4878,7 +4878,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 34,
-                            CourseCode = "CRS-2026-0000034",
+                            CourseCode = "CRS-2026-OJZT05F",
                             CourseFeeAmount = 290m,
                             CourseName = "Career Readiness Cohort 34",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4896,7 +4896,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 35,
-                            CourseCode = "CRS-2026-0000035",
+                            CourseCode = "CRS-2026-FBV0QY7",
                             CourseFeeAmount = 295m,
                             CourseName = "Applied Science Cohort 35",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4914,7 +4914,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 36,
-                            CourseCode = "CRS-2026-0000036",
+                            CourseCode = "CRS-2026-R46A00W",
                             CourseFeeAmount = 300m,
                             CourseName = "Financial Literacy Cohort 36",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4932,7 +4932,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 37,
-                            CourseCode = "CRS-2026-0000037",
+                            CourseCode = "CRS-2026-JMAO1QA",
                             CourseFeeAmount = 305m,
                             CourseName = "Project Collaboration Cohort 37",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4950,7 +4950,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 38,
-                            CourseCode = "CRS-2026-0000038",
+                            CourseCode = "CRS-2026-VA3LGE0",
                             CourseFeeAmount = 310m,
                             CourseName = "Data Skills Cohort 38",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4968,7 +4968,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 39,
-                            CourseCode = "CRS-2026-0000039",
+                            CourseCode = "CRS-2026-C2L9WG4",
                             CourseFeeAmount = 315m,
                             CourseName = "Workplace Communication Cohort 39",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -4986,7 +4986,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 40,
-                            CourseCode = "CRS-2026-0000040",
+                            CourseCode = "CRS-2026-L6UUQYK",
                             CourseFeeAmount = 320m,
                             CourseName = "Software Foundations Cohort 40",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -5004,7 +5004,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 41,
-                            CourseCode = "CRS-2026-0000041",
+                            CourseCode = "CRS-2026-79UQVDL",
                             CourseFeeAmount = 325m,
                             CourseName = "Academic Writing Cohort 41",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -5022,7 +5022,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 42,
-                            CourseCode = "CRS-2026-0000042",
+                            CourseCode = "CRS-2026-SDLMCO9",
                             CourseFeeAmount = 330m,
                             CourseName = "Business Numeracy Cohort 42",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -5040,7 +5040,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 43,
-                            CourseCode = "CRS-2026-0000043",
+                            CourseCode = "CRS-2026-LUEVJLD",
                             CourseFeeAmount = 335m,
                             CourseName = "Digital Literacy Cohort 43",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -5058,7 +5058,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 44,
-                            CourseCode = "CRS-2026-0000044",
+                            CourseCode = "CRS-2026-GO9AJL4",
                             CourseFeeAmount = 340m,
                             CourseName = "Career Readiness Cohort 44",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -5076,7 +5076,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 45,
-                            CourseCode = "CRS-2026-0000045",
+                            CourseCode = "CRS-2026-B29KV62",
                             CourseFeeAmount = 345m,
                             CourseName = "Applied Science Cohort 45",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -5094,7 +5094,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 46,
-                            CourseCode = "CRS-2026-0000046",
+                            CourseCode = "CRS-2026-2ME55AE",
                             CourseFeeAmount = 350m,
                             CourseName = "Financial Literacy Cohort 46",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -5112,7 +5112,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 47,
-                            CourseCode = "CRS-2026-0000047",
+                            CourseCode = "CRS-2026-X7JQUEV",
                             CourseFeeAmount = 355m,
                             CourseName = "Project Collaboration Cohort 47",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -5130,7 +5130,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 48,
-                            CourseCode = "CRS-2026-0000048",
+                            CourseCode = "CRS-2026-Y8VG30C",
                             CourseFeeAmount = 360m,
                             CourseName = "Data Skills Cohort 48",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -5148,7 +5148,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 49,
-                            CourseCode = "CRS-2026-0000049",
+                            CourseCode = "CRS-2026-8A1B6PI",
                             CourseFeeAmount = 365m,
                             CourseName = "Workplace Communication Cohort 49",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -5166,7 +5166,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 50,
-                            CourseCode = "CRS-2026-0000050",
+                            CourseCode = "CRS-2026-2H98HR4",
                             CourseFeeAmount = 370m,
                             CourseName = "Software Foundations Cohort 50",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -5260,7 +5260,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            AccountNumber = "EDU-2026-0000001",
+                            AccountNumber = "EDU-2026-M7QVS7X",
                             CitizenId = 1,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1025m,
@@ -5272,7 +5272,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            AccountNumber = "EDU-2026-0000002",
+                            AccountNumber = "EDU-2026-H4W9JYQ",
                             CitizenId = 2,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1050m,
@@ -5284,7 +5284,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            AccountNumber = "EDU-2026-0000003",
+                            AccountNumber = "EDU-2026-5BHC84W",
                             CitizenId = 3,
                             ClosedAt = new DateTime(2026, 6, 3, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -5297,7 +5297,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 4,
-                            AccountNumber = "EDU-2026-0000004",
+                            AccountNumber = "EDU-2026-K6CAJET",
                             CitizenId = 4,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1100m,
@@ -5309,7 +5309,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 5,
-                            AccountNumber = "EDU-2026-0000005",
+                            AccountNumber = "EDU-2026-C865DQ8",
                             CitizenId = 5,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1125m,
@@ -5321,7 +5321,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 6,
-                            AccountNumber = "EDU-2026-0000006",
+                            AccountNumber = "EDU-2026-J3PD5GI",
                             CitizenId = 6,
                             ClosedAt = new DateTime(2026, 6, 6, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -5334,7 +5334,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 7,
-                            AccountNumber = "EDU-2026-0000007",
+                            AccountNumber = "EDU-2026-RHEGIE7",
                             CitizenId = 7,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1175m,
@@ -5346,7 +5346,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 8,
-                            AccountNumber = "EDU-2026-0000008",
+                            AccountNumber = "EDU-2026-ERZPP9D",
                             CitizenId = 8,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1200m,
@@ -5358,7 +5358,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 9,
-                            AccountNumber = "EDU-2026-0000009",
+                            AccountNumber = "EDU-2026-3WTXQL2",
                             CitizenId = 9,
                             ClosedAt = new DateTime(2026, 6, 9, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -5371,7 +5371,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 10,
-                            AccountNumber = "EDU-2026-0000010",
+                            AccountNumber = "EDU-2026-5A2BWXE",
                             CitizenId = 10,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1250m,
@@ -5383,7 +5383,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 11,
-                            AccountNumber = "EDU-2026-0000011",
+                            AccountNumber = "EDU-2026-YKWELYD",
                             CitizenId = 11,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1275m,
@@ -5395,7 +5395,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 12,
-                            AccountNumber = "EDU-2026-0000012",
+                            AccountNumber = "EDU-2026-XW95AJ5",
                             CitizenId = 12,
                             ClosedAt = new DateTime(2026, 6, 12, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -5408,7 +5408,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 13,
-                            AccountNumber = "EDU-2026-0000013",
+                            AccountNumber = "EDU-2026-OOROKGZ",
                             CitizenId = 13,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1325m,
@@ -5420,7 +5420,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 14,
-                            AccountNumber = "EDU-2026-0000014",
+                            AccountNumber = "EDU-2026-EC0POYJ",
                             CitizenId = 14,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1350m,
@@ -5432,7 +5432,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 15,
-                            AccountNumber = "EDU-2026-0000015",
+                            AccountNumber = "EDU-2026-1ZHBQ2S",
                             CitizenId = 15,
                             ClosedAt = new DateTime(2026, 6, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -5445,7 +5445,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 16,
-                            AccountNumber = "EDU-2026-0000016",
+                            AccountNumber = "EDU-2026-A5L21GT",
                             CitizenId = 16,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1400m,
@@ -5457,7 +5457,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 17,
-                            AccountNumber = "EDU-2026-0000017",
+                            AccountNumber = "EDU-2026-R9VEYR0",
                             CitizenId = 17,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1425m,
@@ -5469,7 +5469,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 18,
-                            AccountNumber = "EDU-2026-0000018",
+                            AccountNumber = "EDU-2026-JLH113O",
                             CitizenId = 18,
                             ClosedAt = new DateTime(2026, 6, 18, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -5482,7 +5482,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 19,
-                            AccountNumber = "EDU-2026-0000019",
+                            AccountNumber = "EDU-2026-S7OK05W",
                             CitizenId = 19,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1475m,
@@ -5494,7 +5494,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 20,
-                            AccountNumber = "EDU-2026-0000020",
+                            AccountNumber = "EDU-2026-2MYNLK1",
                             CitizenId = 20,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1500m,
@@ -5506,7 +5506,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 21,
-                            AccountNumber = "EDU-2026-0000021",
+                            AccountNumber = "EDU-2026-7M9PDGH",
                             CitizenId = 21,
                             ClosedAt = new DateTime(2026, 6, 21, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -5519,7 +5519,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 22,
-                            AccountNumber = "EDU-2026-0000022",
+                            AccountNumber = "EDU-2026-TIXLNIB",
                             CitizenId = 22,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1550m,
@@ -5531,7 +5531,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 23,
-                            AccountNumber = "EDU-2026-0000023",
+                            AccountNumber = "EDU-2026-T5N58HB",
                             CitizenId = 23,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1575m,
@@ -5543,7 +5543,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 24,
-                            AccountNumber = "EDU-2026-0000024",
+                            AccountNumber = "EDU-2026-7MH1FBP",
                             CitizenId = 24,
                             ClosedAt = new DateTime(2026, 6, 24, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -5556,7 +5556,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 25,
-                            AccountNumber = "EDU-2026-0000025",
+                            AccountNumber = "EDU-2026-GDE8Q6P",
                             CitizenId = 25,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1625m,
@@ -5568,7 +5568,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 26,
-                            AccountNumber = "EDU-2026-0000026",
+                            AccountNumber = "EDU-2026-SNYKN82",
                             CitizenId = 26,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1650m,
@@ -5580,7 +5580,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 27,
-                            AccountNumber = "EDU-2026-0000027",
+                            AccountNumber = "EDU-2026-QJZM8YL",
                             CitizenId = 27,
                             ClosedAt = new DateTime(2026, 6, 27, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -5593,7 +5593,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 28,
-                            AccountNumber = "EDU-2026-0000028",
+                            AccountNumber = "EDU-2026-G0N8QXW",
                             CitizenId = 28,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1700m,
@@ -5605,7 +5605,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 29,
-                            AccountNumber = "EDU-2026-0000029",
+                            AccountNumber = "EDU-2026-A3B8IRY",
                             CitizenId = 29,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1725m,
@@ -5617,7 +5617,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 30,
-                            AccountNumber = "EDU-2026-0000030",
+                            AccountNumber = "EDU-2026-CYOBPQU",
                             CitizenId = 30,
                             ClosedAt = new DateTime(2026, 6, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -5630,7 +5630,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 31,
-                            AccountNumber = "EDU-2026-0000031",
+                            AccountNumber = "EDU-2026-20G2H3L",
                             CitizenId = 31,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1775m,
@@ -5642,7 +5642,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 32,
-                            AccountNumber = "EDU-2026-0000032",
+                            AccountNumber = "EDU-2026-9RY98UG",
                             CitizenId = 32,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1800m,
@@ -5654,7 +5654,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 33,
-                            AccountNumber = "EDU-2026-0000033",
+                            AccountNumber = "EDU-2026-LBUTZEW",
                             CitizenId = 33,
                             ClosedAt = new DateTime(2026, 6, 5, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -5667,7 +5667,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 34,
-                            AccountNumber = "EDU-2026-0000034",
+                            AccountNumber = "EDU-2026-CVJPW51",
                             CitizenId = 34,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1850m,
@@ -5679,7 +5679,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 35,
-                            AccountNumber = "EDU-2026-0000035",
+                            AccountNumber = "EDU-2026-GL31H3K",
                             CitizenId = 35,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1875m,
@@ -5691,7 +5691,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 36,
-                            AccountNumber = "EDU-2026-0000036",
+                            AccountNumber = "EDU-2026-L1OX9Y0",
                             CitizenId = 36,
                             ClosedAt = new DateTime(2026, 6, 8, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -5704,7 +5704,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 37,
-                            AccountNumber = "EDU-2026-0000037",
+                            AccountNumber = "EDU-2026-3V9Y2I0",
                             CitizenId = 37,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1925m,
@@ -5716,7 +5716,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 38,
-                            AccountNumber = "EDU-2026-0000038",
+                            AccountNumber = "EDU-2026-UIX61F4",
                             CitizenId = 38,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 1950m,
@@ -5728,7 +5728,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 39,
-                            AccountNumber = "EDU-2026-0000039",
+                            AccountNumber = "EDU-2026-NQZL2LT",
                             CitizenId = 39,
                             ClosedAt = new DateTime(2026, 6, 11, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -5741,7 +5741,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 40,
-                            AccountNumber = "EDU-2026-0000040",
+                            AccountNumber = "EDU-2026-2A9X7HT",
                             CitizenId = 40,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 2000m,
@@ -5753,7 +5753,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 41,
-                            AccountNumber = "EDU-2026-0000041",
+                            AccountNumber = "EDU-2026-HIZFYQR",
                             CitizenId = 41,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 2025m,
@@ -5765,7 +5765,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 42,
-                            AccountNumber = "EDU-2026-0000042",
+                            AccountNumber = "EDU-2026-5FO1ERB",
                             CitizenId = 42,
                             ClosedAt = new DateTime(2026, 6, 14, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -5778,7 +5778,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 43,
-                            AccountNumber = "EDU-2026-0000043",
+                            AccountNumber = "EDU-2026-C6GLP5G",
                             CitizenId = 43,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 2075m,
@@ -5790,7 +5790,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 44,
-                            AccountNumber = "EDU-2026-0000044",
+                            AccountNumber = "EDU-2026-VBGBHB4",
                             CitizenId = 44,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 2100m,
@@ -5802,7 +5802,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 45,
-                            AccountNumber = "EDU-2026-0000045",
+                            AccountNumber = "EDU-2026-PMQT1K5",
                             CitizenId = 45,
                             ClosedAt = new DateTime(2026, 6, 17, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -5815,7 +5815,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 46,
-                            AccountNumber = "EDU-2026-0000046",
+                            AccountNumber = "EDU-2026-Z2MR7S3",
                             CitizenId = 46,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 2150m,
@@ -5827,7 +5827,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 47,
-                            AccountNumber = "EDU-2026-0000047",
+                            AccountNumber = "EDU-2026-2OK04RQ",
                             CitizenId = 47,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 2175m,
@@ -5839,7 +5839,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 48,
-                            AccountNumber = "EDU-2026-0000048",
+                            AccountNumber = "EDU-2026-5L2W56M",
                             CitizenId = 48,
                             ClosedAt = new DateTime(2026, 6, 20, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -5852,7 +5852,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 49,
-                            AccountNumber = "EDU-2026-0000049",
+                            AccountNumber = "EDU-2026-7UZZHKN",
                             CitizenId = 49,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 2225m,
@@ -5864,7 +5864,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 50,
-                            AccountNumber = "EDU-2026-0000050",
+                            AccountNumber = "EDU-2026-9DG3ZSZ",
                             CitizenId = 50,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditBalance = 2250m,
@@ -6971,7 +6971,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            AccountNumberSnapshot = "EDU-2026-0000001",
+                            AccountNumberSnapshot = "EDU-2026-M7QVS7X",
                             CitizenEmailSnapshot = "sterling.quach@example.com",
                             CitizenFullNameSnapshot = "Sterling Quach",
                             CitizenNricSnapshot = "S0000001I",
@@ -6988,7 +6988,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            AccountNumberSnapshot = "EDU-2026-0000002",
+                            AccountNumberSnapshot = "EDU-2026-H4W9JYQ",
                             CitizenEmailSnapshot = "amelia.tan@example.com",
                             CitizenFullNameSnapshot = "Amelia Tan",
                             CitizenNricSnapshot = "S0000002G",
@@ -7005,7 +7005,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            AccountNumberSnapshot = "EDU-2026-0000003",
+                            AccountNumberSnapshot = "EDU-2026-5BHC84W",
                             CitizenEmailSnapshot = "marcus.lim@example.com",
                             CitizenFullNameSnapshot = "Marcus Lim",
                             CitizenNricSnapshot = "S0000003E",
@@ -7022,7 +7022,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 4,
-                            AccountNumberSnapshot = "EDU-2026-0000004",
+                            AccountNumberSnapshot = "EDU-2026-K6CAJET",
                             CitizenEmailSnapshot = "priya.nair@example.com",
                             CitizenFullNameSnapshot = "Priya Nair",
                             CitizenNricSnapshot = "S0000004C",
@@ -7039,7 +7039,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 5,
-                            AccountNumberSnapshot = "EDU-2026-0000005",
+                            AccountNumberSnapshot = "EDU-2026-C865DQ8",
                             CitizenEmailSnapshot = "ethan.koh@example.com",
                             CitizenFullNameSnapshot = "Ethan Koh",
                             CitizenNricSnapshot = "S0000005A",
@@ -7056,7 +7056,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 6,
-                            AccountNumberSnapshot = "EDU-2026-0000006",
+                            AccountNumberSnapshot = "EDU-2026-J3PD5GI",
                             CitizenEmailSnapshot = "hannah.lee@example.com",
                             CitizenFullNameSnapshot = "Hannah Lee",
                             CitizenNricSnapshot = "S0000006Z",
@@ -7073,7 +7073,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 7,
-                            AccountNumberSnapshot = "EDU-2026-0000007",
+                            AccountNumberSnapshot = "EDU-2026-RHEGIE7",
                             CitizenEmailSnapshot = "daniel.wong@example.com",
                             CitizenFullNameSnapshot = "Daniel Wong",
                             CitizenNricSnapshot = "S0000007H",
@@ -7090,7 +7090,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 8,
-                            AccountNumberSnapshot = "EDU-2026-0000008",
+                            AccountNumberSnapshot = "EDU-2026-ERZPP9D",
                             CitizenEmailSnapshot = "sofia.chen@example.com",
                             CitizenFullNameSnapshot = "Sofia Chen",
                             CitizenNricSnapshot = "S0000008F",
@@ -7107,7 +7107,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 9,
-                            AccountNumberSnapshot = "EDU-2026-0000009",
+                            AccountNumberSnapshot = "EDU-2026-3WTXQL2",
                             CitizenEmailSnapshot = "lucas.nguyen@example.com",
                             CitizenFullNameSnapshot = "Lucas Nguyen",
                             CitizenNricSnapshot = "S0000009D",
@@ -7124,7 +7124,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 10,
-                            AccountNumberSnapshot = "EDU-2026-0000010",
+                            AccountNumberSnapshot = "EDU-2026-5A2BWXE",
                             CitizenEmailSnapshot = "maya.rahman@example.com",
                             CitizenFullNameSnapshot = "Maya Rahman",
                             CitizenNricSnapshot = "S0000010H",
@@ -7141,7 +7141,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 11,
-                            AccountNumberSnapshot = "EDU-2026-0000011",
+                            AccountNumberSnapshot = "EDU-2026-YKWELYD",
                             CitizenEmailSnapshot = "noah.teo@example.com",
                             CitizenFullNameSnapshot = "Noah Teo",
                             CitizenNricSnapshot = "S0000011F",
@@ -7158,7 +7158,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 12,
-                            AccountNumberSnapshot = "EDU-2026-0000012",
+                            AccountNumberSnapshot = "EDU-2026-XW95AJ5",
                             CitizenEmailSnapshot = "aisha.fernandez@example.com",
                             CitizenFullNameSnapshot = "Aisha Fernandez",
                             CitizenNricSnapshot = "S0000012D",
@@ -7175,7 +7175,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 13,
-                            AccountNumberSnapshot = "EDU-2026-0000013",
+                            AccountNumberSnapshot = "EDU-2026-OOROKGZ",
                             CitizenEmailSnapshot = "ryan.chua@example.com",
                             CitizenFullNameSnapshot = "Ryan Chua",
                             CitizenNricSnapshot = "S0000013B",
@@ -7192,7 +7192,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 14,
-                            AccountNumberSnapshot = "EDU-2026-0000014",
+                            AccountNumberSnapshot = "EDU-2026-EC0POYJ",
                             CitizenEmailSnapshot = "chloe.goh@example.com",
                             CitizenFullNameSnapshot = "Chloe Goh",
                             CitizenNricSnapshot = "S0000014J",
@@ -7209,7 +7209,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 15,
-                            AccountNumberSnapshot = "EDU-2026-0000015",
+                            AccountNumberSnapshot = "EDU-2026-1ZHBQ2S",
                             CitizenEmailSnapshot = "irfan.hassan@example.com",
                             CitizenFullNameSnapshot = "Irfan Hassan",
                             CitizenNricSnapshot = "S0000015I",
@@ -7226,7 +7226,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 16,
-                            AccountNumberSnapshot = "EDU-2026-0000016",
+                            AccountNumberSnapshot = "EDU-2026-A5L21GT",
                             CitizenEmailSnapshot = "natalie.seah@example.com",
                             CitizenFullNameSnapshot = "Natalie Seah",
                             CitizenNricSnapshot = "S0000016G",
@@ -7243,7 +7243,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 17,
-                            AccountNumberSnapshot = "EDU-2026-0000017",
+                            AccountNumberSnapshot = "EDU-2026-R9VEYR0",
                             CitizenEmailSnapshot = "alina.ang@example.com",
                             CitizenFullNameSnapshot = "Alina Ang",
                             CitizenNricSnapshot = "S0000017E",
@@ -7260,7 +7260,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 18,
-                            AccountNumberSnapshot = "EDU-2026-0000018",
+                            AccountNumberSnapshot = "EDU-2026-JLH113O",
                             CitizenEmailSnapshot = "benjamin.bala@example.com",
                             CitizenFullNameSnapshot = "Benjamin Bala",
                             CitizenNricSnapshot = "S0000018C",
@@ -7277,7 +7277,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 19,
-                            AccountNumberSnapshot = "EDU-2026-0000019",
+                            AccountNumberSnapshot = "EDU-2026-S7OK05W",
                             CitizenEmailSnapshot = "clara.chew@example.com",
                             CitizenFullNameSnapshot = "Clara Chew",
                             CitizenNricSnapshot = "S0000019A",
@@ -7294,7 +7294,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 20,
-                            AccountNumberSnapshot = "EDU-2026-0000020",
+                            AccountNumberSnapshot = "EDU-2026-2MYNLK1",
                             CitizenEmailSnapshot = "darius.das@example.com",
                             CitizenFullNameSnapshot = "Darius Das",
                             CitizenNricSnapshot = "S0000020E",
@@ -7311,7 +7311,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 21,
-                            AccountNumberSnapshot = "EDU-2026-0000021",
+                            AccountNumberSnapshot = "EDU-2026-7M9PDGH",
                             CitizenEmailSnapshot = "elena.eng@example.com",
                             CitizenFullNameSnapshot = "Elena Eng",
                             CitizenNricSnapshot = "S0000021C",
@@ -7328,7 +7328,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 22,
-                            AccountNumberSnapshot = "EDU-2026-0000022",
+                            AccountNumberSnapshot = "EDU-2026-TIXLNIB",
                             CitizenEmailSnapshot = "farhan.foo@example.com",
                             CitizenFullNameSnapshot = "Farhan Foo",
                             CitizenNricSnapshot = "S0000022A",
@@ -7345,7 +7345,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 23,
-                            AccountNumberSnapshot = "EDU-2026-0000023",
+                            AccountNumberSnapshot = "EDU-2026-T5N58HB",
                             CitizenEmailSnapshot = "grace.gan@example.com",
                             CitizenFullNameSnapshot = "Grace Gan",
                             CitizenNricSnapshot = "S0000023Z",
@@ -7362,7 +7362,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 24,
-                            AccountNumberSnapshot = "EDU-2026-0000024",
+                            AccountNumberSnapshot = "EDU-2026-7MH1FBP",
                             CitizenEmailSnapshot = "haruto.ho@example.com",
                             CitizenFullNameSnapshot = "Haruto Ho",
                             CitizenNricSnapshot = "S0000024H",
@@ -7379,7 +7379,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 25,
-                            AccountNumberSnapshot = "EDU-2026-0000025",
+                            AccountNumberSnapshot = "EDU-2026-GDE8Q6P",
                             CitizenEmailSnapshot = "isabelle.ismail@example.com",
                             CitizenFullNameSnapshot = "Isabelle Ismail",
                             CitizenNricSnapshot = "S0000025F",
@@ -7396,7 +7396,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 26,
-                            AccountNumberSnapshot = "EDU-2026-0000026",
+                            AccountNumberSnapshot = "EDU-2026-SNYKN82",
                             CitizenEmailSnapshot = "jasper.jeyaratnam@example.com",
                             CitizenFullNameSnapshot = "Jasper Jeyaratnam",
                             CitizenNricSnapshot = "S0000026D",
@@ -7413,7 +7413,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 27,
-                            AccountNumberSnapshot = "EDU-2026-0000027",
+                            AccountNumberSnapshot = "EDU-2026-QJZM8YL",
                             CitizenEmailSnapshot = "keira.kwek@example.com",
                             CitizenFullNameSnapshot = "Keira Kwek",
                             CitizenNricSnapshot = "S0000027B",
@@ -7430,7 +7430,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 28,
-                            AccountNumberSnapshot = "EDU-2026-0000028",
+                            AccountNumberSnapshot = "EDU-2026-G0N8QXW",
                             CitizenEmailSnapshot = "leon.lim@example.com",
                             CitizenFullNameSnapshot = "Leon Lim",
                             CitizenNricSnapshot = "S0000028J",
@@ -7447,7 +7447,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 29,
-                            AccountNumberSnapshot = "EDU-2026-0000029",
+                            AccountNumberSnapshot = "EDU-2026-A3B8IRY",
                             CitizenEmailSnapshot = "mei.lin.mohamed@example.com",
                             CitizenFullNameSnapshot = "Mei Lin Mohamed",
                             CitizenNricSnapshot = "S0000029I",
@@ -7464,7 +7464,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 30,
-                            AccountNumberSnapshot = "EDU-2026-0000030",
+                            AccountNumberSnapshot = "EDU-2026-CYOBPQU",
                             CitizenEmailSnapshot = "nathan.ng@example.com",
                             CitizenFullNameSnapshot = "Nathan Ng",
                             CitizenNricSnapshot = "S0000030B",
@@ -7481,7 +7481,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 31,
-                            AccountNumberSnapshot = "EDU-2026-0000031",
+                            AccountNumberSnapshot = "EDU-2026-20G2H3L",
                             CitizenEmailSnapshot = "olivia.ong@example.com",
                             CitizenFullNameSnapshot = "Olivia Ong",
                             CitizenNricSnapshot = "S0000031J",
@@ -7498,7 +7498,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 32,
-                            AccountNumberSnapshot = "EDU-2026-0000032",
+                            AccountNumberSnapshot = "EDU-2026-9RY98UG",
                             CitizenEmailSnapshot = "pranav.pillai@example.com",
                             CitizenFullNameSnapshot = "Pranav Pillai",
                             CitizenNricSnapshot = "S0000032I",
@@ -7515,7 +7515,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 33,
-                            AccountNumberSnapshot = "EDU-2026-0000033",
+                            AccountNumberSnapshot = "EDU-2026-LBUTZEW",
                             CitizenEmailSnapshot = "qistina.quek@example.com",
                             CitizenFullNameSnapshot = "Qistina Quek",
                             CitizenNricSnapshot = "S0000033G",
@@ -7532,7 +7532,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 34,
-                            AccountNumberSnapshot = "EDU-2026-0000034",
+                            AccountNumberSnapshot = "EDU-2026-CVJPW51",
                             CitizenEmailSnapshot = "rafael.rao@example.com",
                             CitizenFullNameSnapshot = "Rafael Rao",
                             CitizenNricSnapshot = "S0000034E",
@@ -7549,7 +7549,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 35,
-                            AccountNumberSnapshot = "EDU-2026-0000035",
+                            AccountNumberSnapshot = "EDU-2026-GL31H3K",
                             CitizenEmailSnapshot = "selina.sim@example.com",
                             CitizenFullNameSnapshot = "Selina Sim",
                             CitizenNricSnapshot = "S0000035C",
@@ -7566,7 +7566,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 36,
-                            AccountNumberSnapshot = "EDU-2026-0000036",
+                            AccountNumberSnapshot = "EDU-2026-L1OX9Y0",
                             CitizenEmailSnapshot = "terence.tan@example.com",
                             CitizenFullNameSnapshot = "Terence Tan",
                             CitizenNricSnapshot = "S0000036A",
@@ -7583,7 +7583,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 37,
-                            AccountNumberSnapshot = "EDU-2026-0000037",
+                            AccountNumberSnapshot = "EDU-2026-3V9Y2I0",
                             CitizenEmailSnapshot = "umairah.uddin@example.com",
                             CitizenFullNameSnapshot = "Umairah Uddin",
                             CitizenNricSnapshot = "S0000037Z",
@@ -7600,7 +7600,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 38,
-                            AccountNumberSnapshot = "EDU-2026-0000038",
+                            AccountNumberSnapshot = "EDU-2026-UIX61F4",
                             CitizenEmailSnapshot = "victor.vasquez@example.com",
                             CitizenFullNameSnapshot = "Victor Vasquez",
                             CitizenNricSnapshot = "S0000038H",
@@ -7617,7 +7617,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 39,
-                            AccountNumberSnapshot = "EDU-2026-0000039",
+                            AccountNumberSnapshot = "EDU-2026-NQZL2LT",
                             CitizenEmailSnapshot = "wen.jie.wong@example.com",
                             CitizenFullNameSnapshot = "Wen Jie Wong",
                             CitizenNricSnapshot = "S0000039F",
@@ -7634,7 +7634,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 40,
-                            AccountNumberSnapshot = "EDU-2026-0000040",
+                            AccountNumberSnapshot = "EDU-2026-2A9X7HT",
                             CitizenEmailSnapshot = "xavier.xu@example.com",
                             CitizenFullNameSnapshot = "Xavier Xu",
                             CitizenNricSnapshot = "S0000040Z",
@@ -7651,7 +7651,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 41,
-                            AccountNumberSnapshot = "EDU-2026-0000041",
+                            AccountNumberSnapshot = "EDU-2026-HIZFYQR",
                             CitizenEmailSnapshot = "yasmin.yeo@example.com",
                             CitizenFullNameSnapshot = "Yasmin Yeo",
                             CitizenNricSnapshot = "S0000041H",
@@ -7668,7 +7668,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 42,
-                            AccountNumberSnapshot = "EDU-2026-0000042",
+                            AccountNumberSnapshot = "EDU-2026-5FO1ERB",
                             CitizenEmailSnapshot = "zachary.zainal@example.com",
                             CitizenFullNameSnapshot = "Zachary Zainal",
                             CitizenNricSnapshot = "S0000042F",
@@ -7685,7 +7685,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 43,
-                            AccountNumberSnapshot = "EDU-2026-0000043",
+                            AccountNumberSnapshot = "EDU-2026-C6GLP5G",
                             CitizenEmailSnapshot = "adeline.ang@example.com",
                             CitizenFullNameSnapshot = "Adeline Ang",
                             CitizenNricSnapshot = "S0000043D",
@@ -7702,7 +7702,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 44,
-                            AccountNumberSnapshot = "EDU-2026-0000044",
+                            AccountNumberSnapshot = "EDU-2026-VBGBHB4",
                             CitizenEmailSnapshot = "brandon.bala@example.com",
                             CitizenFullNameSnapshot = "Brandon Bala",
                             CitizenNricSnapshot = "S0000044B",
@@ -7719,7 +7719,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 45,
-                            AccountNumberSnapshot = "EDU-2026-0000045",
+                            AccountNumberSnapshot = "EDU-2026-PMQT1K5",
                             CitizenEmailSnapshot = "celeste.chew@example.com",
                             CitizenFullNameSnapshot = "Celeste Chew",
                             CitizenNricSnapshot = "S0000045J",
@@ -7736,7 +7736,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 46,
-                            AccountNumberSnapshot = "EDU-2026-0000046",
+                            AccountNumberSnapshot = "EDU-2026-Z2MR7S3",
                             CitizenEmailSnapshot = "damien.das@example.com",
                             CitizenFullNameSnapshot = "Damien Das",
                             CitizenNricSnapshot = "S0000046I",
@@ -7753,7 +7753,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 47,
-                            AccountNumberSnapshot = "EDU-2026-0000047",
+                            AccountNumberSnapshot = "EDU-2026-2OK04RQ",
                             CitizenEmailSnapshot = "evelyn.eng@example.com",
                             CitizenFullNameSnapshot = "Evelyn Eng",
                             CitizenNricSnapshot = "S0000047G",
@@ -7770,7 +7770,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 48,
-                            AccountNumberSnapshot = "EDU-2026-0000048",
+                            AccountNumberSnapshot = "EDU-2026-5L2W56M",
                             CitizenEmailSnapshot = "faris.foo@example.com",
                             CitizenFullNameSnapshot = "Faris Foo",
                             CitizenNricSnapshot = "S0000048E",
@@ -7787,7 +7787,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 49,
-                            AccountNumberSnapshot = "EDU-2026-0000049",
+                            AccountNumberSnapshot = "EDU-2026-7UZZHKN",
                             CitizenEmailSnapshot = "giselle.gan@example.com",
                             CitizenFullNameSnapshot = "Giselle Gan",
                             CitizenNricSnapshot = "S0000049C",
@@ -7804,7 +7804,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 50,
-                            AccountNumberSnapshot = "EDU-2026-0000050",
+                            AccountNumberSnapshot = "EDU-2026-9DG3ZSZ",
                             CitizenEmailSnapshot = "haziq.ho@example.com",
                             CitizenFullNameSnapshot = "Haziq Ho",
                             CitizenNricSnapshot = "S0000050G",
@@ -7936,204 +7936,726 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            ApplicationNumber = "FASAPP-2026-00001",
+                            ApplicationNumber = "FASAPP-20260101-A1B2C3D",
+                            ApprovedAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApprovedByUserId = 1,
+                            ApprovedTierId = 1,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DurationInMonthsSnapshot = 6,
                             FasSchemeId = 1,
-                            GrossHouseholdIncomeSnapshot = 2620m,
+                            GrossHouseholdIncomeSnapshot = 2500m,
                             GuardianNationalitySnapshot = 1,
                             HouseholdMemberCountSnapshot = 4,
                             IsDeleted = false,
-                            PerCapitaIncomeSnapshot = 655m,
-                            RecommendationReason = "Seed PCI rule matched",
+                            PerCapitaIncomeSnapshot = 625m,
+                            RecommendationReason = "PCI <= 750",
                             RecommendedTierId = 1,
                             SchoolStudentId = 1,
-                            Status = 1,
+                            Status = 2,
                             StudentAgeSnapshot = 18,
-                            StudentNationalitySnapshot = 1
+                            StudentNationalitySnapshot = 1,
+                            ValidityEndDate = new DateTime(2026, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 2,
-                            ApplicationNumber = "FASAPP-2026-00002",
+                            ApplicationNumber = "FASAPP-20260102-E4F5G6H",
                             ApprovedAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ApprovedByUserId = 1,
                             ApprovedTierId = 2,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DurationInMonthsSnapshot = 6,
+                            DurationInMonthsSnapshot = 3,
                             FasSchemeId = 2,
-                            GrossHouseholdIncomeSnapshot = 2740m,
-                            GuardianNationalitySnapshot = 1,
-                            HouseholdMemberCountSnapshot = 5,
+                            GrossHouseholdIncomeSnapshot = 3000m,
+                            GuardianNationalitySnapshot = 2,
+                            HouseholdMemberCountSnapshot = 4,
                             IsDeleted = false,
-                            PerCapitaIncomeSnapshot = 548m,
-                            RecommendationReason = "Seed PCI rule matched",
+                            PerCapitaIncomeSnapshot = 750m,
+                            RecommendationReason = "GHI <= 3500",
                             RecommendedTierId = 2,
                             SchoolStudentId = 2,
                             Status = 2,
-                            StudentAgeSnapshot = 19,
+                            StudentAgeSnapshot = 17,
                             StudentNationalitySnapshot = 1,
-                            ValidityEndDate = new DateTime(2026, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ValidityEndDate = new DateTime(2026, 9, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 3,
-                            ApplicationNumber = "FASAPP-2026-00003",
+                            ApplicationNumber = "FASAPP-20260103-I7J8K9L",
+                            ApprovedAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApprovedByUserId = 1,
+                            ApprovedTierId = 3,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DurationInMonthsSnapshot = 12,
                             FasSchemeId = 3,
-                            GrossHouseholdIncomeSnapshot = 2860m,
-                            GuardianNationalitySnapshot = 2,
-                            HouseholdMemberCountSnapshot = 6,
+                            GrossHouseholdIncomeSnapshot = 2200m,
+                            GuardianNationalitySnapshot = 1,
+                            HouseholdMemberCountSnapshot = 5,
                             IsDeleted = false,
-                            PerCapitaIncomeSnapshot = 476.67m,
-                            RecommendationReason = "Seed PCI rule matched",
+                            PerCapitaIncomeSnapshot = 440m,
+                            RecommendationReason = "Singapore citizen and PCI <= 690",
                             RecommendedTierId = 3,
-                            RejectionReason = "Seed rejection reason",
                             SchoolStudentId = 3,
-                            Status = 3,
+                            Status = 2,
+                            StudentAgeSnapshot = 19,
+                            StudentNationalitySnapshot = 1,
+                            ValidityEndDate = new DateTime(2027, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ApplicationNumber = "FASAPP-20260104-M1N2P3Q",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 4,
+                            GrossHouseholdIncomeSnapshot = 3600m,
+                            GuardianNationalitySnapshot = 2,
+                            HouseholdMemberCountSnapshot = 4,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 900m,
+                            RecommendationReason = "Draft state",
+                            RecommendedTierId = 4,
+                            SchoolStudentId = 4,
+                            Status = 5,
                             StudentAgeSnapshot = 20,
                             StudentNationalitySnapshot = 1
                         },
                         new
                         {
-                            Id = 4,
-                            ApplicationNumber = "FASAPP-2026-00004",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasSchemeId = 4,
-                            GrossHouseholdIncomeSnapshot = 2980m,
-                            GuardianNationalitySnapshot = 1,
-                            HouseholdMemberCountSnapshot = 3,
-                            IsDeleted = false,
-                            PerCapitaIncomeSnapshot = 993.33m,
-                            RecommendationReason = "Seed PCI rule matched",
-                            RecommendedTierId = 4,
-                            SchoolStudentId = 4,
-                            Status = 4,
-                            StudentAgeSnapshot = 21,
-                            StudentNationalitySnapshot = 1,
-                            WithdrawnAt = new DateTime(2026, 6, 4, 0, 0, 0, 0, DateTimeKind.Utc)
-                        },
-                        new
-                        {
                             Id = 5,
-                            ApplicationNumber = "FASAPP-2026-00005",
+                            ApplicationNumber = "FASAPP-20260105-R4S5T6U",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasSchemeId = 5,
-                            GrossHouseholdIncomeSnapshot = 3100m,
-                            GuardianNationalitySnapshot = 1,
+                            GrossHouseholdIncomeSnapshot = 7000m,
+                            GuardianNationalitySnapshot = 2,
                             HouseholdMemberCountSnapshot = 4,
                             IsDeleted = false,
-                            PerCapitaIncomeSnapshot = 775m,
-                            RecommendationReason = "Seed PCI rule matched",
+                            PerCapitaIncomeSnapshot = 1750m,
+                            RecommendationReason = "No tier matched",
                             RecommendedTierId = 5,
+                            RejectionReason = "Income exceeds supported threshold.",
                             SchoolStudentId = 5,
-                            Status = 1,
-                            StudentAgeSnapshot = 22,
+                            Status = 3,
+                            StudentAgeSnapshot = 21,
                             StudentNationalitySnapshot = 1
                         },
                         new
                         {
                             Id = 6,
-                            ApplicationNumber = "FASAPP-2026-00006",
-                            ApprovedAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ApprovedByUserId = 1,
-                            ApprovedTierId = 6,
+                            ApplicationNumber = "FASAPP-20260106-V7W8X9Y",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DurationInMonthsSnapshot = 6,
                             FasSchemeId = 6,
-                            GrossHouseholdIncomeSnapshot = 3220m,
-                            GuardianNationalitySnapshot = 2,
+                            GrossHouseholdIncomeSnapshot = 2800m,
+                            GuardianNationalitySnapshot = 1,
                             HouseholdMemberCountSnapshot = 5,
                             IsDeleted = false,
-                            PerCapitaIncomeSnapshot = 644m,
-                            RecommendationReason = "Seed PCI rule matched",
+                            PerCapitaIncomeSnapshot = 560m,
+                            RecommendationReason = "Student withdrew before review",
                             RecommendedTierId = 6,
                             SchoolStudentId = 6,
-                            Status = 2,
-                            StudentAgeSnapshot = 23,
+                            Status = 4,
+                            StudentAgeSnapshot = 18,
                             StudentNationalitySnapshot = 1,
-                            ValidityEndDate = new DateTime(2026, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                            WithdrawnAt = new DateTime(2026, 6, 3, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 7,
-                            ApplicationNumber = "FASAPP-2026-00007",
+                            ApplicationNumber = "FASAPP-20260107-Z1A2B3C",
+                            ApprovedAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApprovedByUserId = 1,
+                            ApprovedTierId = 7,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DurationInMonthsSnapshot = 12,
                             FasSchemeId = 7,
-                            GrossHouseholdIncomeSnapshot = 3340m,
+                            GrossHouseholdIncomeSnapshot = 4800m,
                             GuardianNationalitySnapshot = 1,
-                            HouseholdMemberCountSnapshot = 6,
+                            HouseholdMemberCountSnapshot = 4,
                             IsDeleted = false,
-                            PerCapitaIncomeSnapshot = 556.67m,
-                            RecommendationReason = "Seed PCI rule matched",
+                            PerCapitaIncomeSnapshot = 1200m,
+                            RecommendationReason = "Special needs support threshold matched",
                             RecommendedTierId = 7,
-                            RejectionReason = "Seed rejection reason",
                             SchoolStudentId = 7,
-                            Status = 3,
-                            StudentAgeSnapshot = 24,
-                            StudentNationalitySnapshot = 1
+                            Status = 2,
+                            StudentAgeSnapshot = 16,
+                            StudentNationalitySnapshot = 1,
+                            ValidityEndDate = new DateTime(2027, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 8,
-                            ApplicationNumber = "FASAPP-2026-00008",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApplicationNumber = "FASAPP-20260108-D4E5F6G",
+                            ApprovedAt = new DateTime(2025, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApprovedByUserId = 1,
+                            ApprovedTierId = 8,
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DurationInMonthsSnapshot = 6,
                             FasSchemeId = 8,
-                            GrossHouseholdIncomeSnapshot = 3460m,
-                            GuardianNationalitySnapshot = 1,
-                            HouseholdMemberCountSnapshot = 3,
+                            GrossHouseholdIncomeSnapshot = 3200m,
+                            GuardianNationalitySnapshot = 2,
+                            HouseholdMemberCountSnapshot = 5,
                             IsDeleted = false,
-                            PerCapitaIncomeSnapshot = 1153.33m,
-                            RecommendationReason = "Seed PCI rule matched",
+                            PerCapitaIncomeSnapshot = 640m,
+                            RecommendationReason = "PCI <= 850",
                             RecommendedTierId = 8,
                             SchoolStudentId = 8,
-                            Status = 4,
-                            StudentAgeSnapshot = 25,
+                            Status = 6,
+                            StudentAgeSnapshot = 22,
                             StudentNationalitySnapshot = 1,
-                            WithdrawnAt = new DateTime(2026, 6, 8, 0, 0, 0, 0, DateTimeKind.Utc)
+                            ValidityEndDate = new DateTime(2025, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ValidityStartDate = new DateTime(2025, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 9,
-                            ApplicationNumber = "FASAPP-2026-00009",
+                            ApplicationNumber = "FASAPP-20260109-H7J8K9L",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasSchemeId = 9,
-                            GrossHouseholdIncomeSnapshot = 3580m,
+                            GrossHouseholdIncomeSnapshot = 2600m,
                             GuardianNationalitySnapshot = 2,
-                            HouseholdMemberCountSnapshot = 4,
+                            HouseholdMemberCountSnapshot = 3,
                             IsDeleted = false,
-                            PerCapitaIncomeSnapshot = 895m,
-                            RecommendationReason = "Seed PCI rule matched",
+                            PerCapitaIncomeSnapshot = 866.67m,
+                            RecommendationReason = "Emergency aid review required",
                             RecommendedTierId = 9,
                             SchoolStudentId = 9,
                             Status = 1,
-                            StudentAgeSnapshot = 26,
+                            StudentAgeSnapshot = 17,
                             StudentNationalitySnapshot = 1
                         },
                         new
                         {
                             Id = 10,
-                            ApplicationNumber = "FASAPP-2026-00010",
+                            ApplicationNumber = "FASAPP-20260110-M1N2P3Q",
                             ApprovedAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ApprovedByUserId = 1,
                             ApprovedTierId = 10,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DurationInMonthsSnapshot = 6,
+                            DurationInMonthsSnapshot = 12,
                             FasSchemeId = 10,
-                            GrossHouseholdIncomeSnapshot = 3700m,
+                            GrossHouseholdIncomeSnapshot = 3900m,
                             GuardianNationalitySnapshot = 1,
                             HouseholdMemberCountSnapshot = 5,
                             IsDeleted = false,
-                            PerCapitaIncomeSnapshot = 740m,
-                            RecommendationReason = "Seed PCI rule matched",
+                            PerCapitaIncomeSnapshot = 780m,
+                            RecommendationReason = "PCI <= 1000",
                             RecommendedTierId = 10,
                             SchoolStudentId = 10,
                             Status = 2,
+                            StudentAgeSnapshot = 18,
+                            StudentNationalitySnapshot = 1,
+                            ValidityEndDate = new DateTime(2027, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ApplicationNumber = "FASAPP-GEN-0000",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 1,
+                            GrossHouseholdIncomeSnapshot = 2000m,
+                            GuardianNationalitySnapshot = 1,
+                            HouseholdMemberCountSnapshot = 3,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 666.67m,
+                            RecommendationReason = "Auto generated reason 0",
+                            RecommendedTierId = 1,
+                            SchoolStudentId = 1,
+                            Status = 1,
+                            StudentAgeSnapshot = 16,
+                            StudentNationalitySnapshot = 2
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ApplicationNumber = "FASAPP-GEN-0001",
+                            ApprovedAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApprovedByUserId = 1,
+                            ApprovedTierId = 2,
+                            CreatedAt = new DateTime(2025, 12, 31, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DurationInMonthsSnapshot = 12,
+                            FasSchemeId = 2,
+                            GrossHouseholdIncomeSnapshot = 2100m,
+                            GuardianNationalitySnapshot = 1,
+                            HouseholdMemberCountSnapshot = 4,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 525m,
+                            RecommendationReason = "Auto generated reason 1",
+                            RecommendedTierId = 2,
+                            SchoolStudentId = 1,
+                            Status = 2,
                             StudentAgeSnapshot = 17,
                             StudentNationalitySnapshot = 1,
-                            ValidityEndDate = new DateTime(2026, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ValidityEndDate = new DateTime(2027, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 13,
+                            ApplicationNumber = "FASAPP-GEN-0002",
+                            CreatedAt = new DateTime(2025, 12, 30, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 3,
+                            GrossHouseholdIncomeSnapshot = 2200m,
+                            GuardianNationalitySnapshot = 1,
+                            HouseholdMemberCountSnapshot = 5,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 440m,
+                            RecommendationReason = "Auto generated reason 2",
+                            RecommendedTierId = 3,
+                            RejectionReason = "Does not meet requirements.",
+                            SchoolStudentId = 1,
+                            Status = 3,
+                            StudentAgeSnapshot = 18,
+                            StudentNationalitySnapshot = 1
+                        },
+                        new
+                        {
+                            Id = 14,
+                            ApplicationNumber = "FASAPP-GEN-0003",
+                            CreatedAt = new DateTime(2025, 12, 29, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 4,
+                            GrossHouseholdIncomeSnapshot = 2300m,
+                            GuardianNationalitySnapshot = 1,
+                            HouseholdMemberCountSnapshot = 6,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 383.33m,
+                            RecommendationReason = "Auto generated reason 3",
+                            RecommendedTierId = 4,
+                            SchoolStudentId = 1,
+                            Status = 4,
+                            StudentAgeSnapshot = 19,
+                            StudentNationalitySnapshot = 2,
+                            WithdrawnAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 15,
+                            ApplicationNumber = "FASAPP-GEN-0004",
+                            CreatedAt = new DateTime(2025, 12, 28, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 5,
+                            GrossHouseholdIncomeSnapshot = 2400m,
+                            GuardianNationalitySnapshot = 1,
+                            HouseholdMemberCountSnapshot = 3,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 800m,
+                            RecommendationReason = "Auto generated reason 4",
+                            RecommendedTierId = 5,
+                            SchoolStudentId = 1,
+                            Status = 5,
+                            StudentAgeSnapshot = 20,
+                            StudentNationalitySnapshot = 1
+                        },
+                        new
+                        {
+                            Id = 16,
+                            ApplicationNumber = "FASAPP-GEN-0005",
+                            ApprovedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApprovedByUserId = 1,
+                            ApprovedTierId = 6,
+                            CreatedAt = new DateTime(2024, 11, 26, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DurationInMonthsSnapshot = 12,
+                            FasSchemeId = 6,
+                            GrossHouseholdIncomeSnapshot = 2500m,
+                            GuardianNationalitySnapshot = 1,
+                            HouseholdMemberCountSnapshot = 4,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 625m,
+                            RecommendationReason = "Auto generated reason 5",
+                            RecommendedTierId = 6,
+                            SchoolStudentId = 1,
+                            Status = 6,
+                            StudentAgeSnapshot = 21,
+                            StudentNationalitySnapshot = 1,
+                            ValidityEndDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ValidityStartDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 17,
+                            ApplicationNumber = "FASAPP-GEN-0006",
+                            CreatedAt = new DateTime(2025, 12, 26, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 7,
+                            GrossHouseholdIncomeSnapshot = 2600m,
+                            GuardianNationalitySnapshot = 1,
+                            HouseholdMemberCountSnapshot = 5,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 520m,
+                            RecommendationReason = "Auto generated reason 6",
+                            RecommendedTierId = 7,
+                            SchoolStudentId = 1,
+                            Status = 1,
+                            StudentAgeSnapshot = 16,
+                            StudentNationalitySnapshot = 2
+                        },
+                        new
+                        {
+                            Id = 18,
+                            ApplicationNumber = "FASAPP-GEN-0007",
+                            ApprovedAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApprovedByUserId = 1,
+                            ApprovedTierId = 8,
+                            CreatedAt = new DateTime(2025, 12, 25, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DurationInMonthsSnapshot = 12,
+                            FasSchemeId = 8,
+                            GrossHouseholdIncomeSnapshot = 2700m,
+                            GuardianNationalitySnapshot = 1,
+                            HouseholdMemberCountSnapshot = 6,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 450m,
+                            RecommendationReason = "Auto generated reason 7",
+                            RecommendedTierId = 8,
+                            SchoolStudentId = 1,
+                            Status = 2,
+                            StudentAgeSnapshot = 17,
+                            StudentNationalitySnapshot = 1,
+                            ValidityEndDate = new DateTime(2027, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 19,
+                            ApplicationNumber = "FASAPP-GEN-0008",
+                            CreatedAt = new DateTime(2025, 12, 24, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 9,
+                            GrossHouseholdIncomeSnapshot = 2800m,
+                            GuardianNationalitySnapshot = 1,
+                            HouseholdMemberCountSnapshot = 3,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 933.33m,
+                            RecommendationReason = "Auto generated reason 8",
+                            RecommendedTierId = 9,
+                            RejectionReason = "Does not meet requirements.",
+                            SchoolStudentId = 1,
+                            Status = 3,
+                            StudentAgeSnapshot = 18,
+                            StudentNationalitySnapshot = 1
+                        },
+                        new
+                        {
+                            Id = 20,
+                            ApplicationNumber = "FASAPP-GEN-0009",
+                            CreatedAt = new DateTime(2025, 12, 23, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 10,
+                            GrossHouseholdIncomeSnapshot = 2900m,
+                            GuardianNationalitySnapshot = 1,
+                            HouseholdMemberCountSnapshot = 4,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 725m,
+                            RecommendationReason = "Auto generated reason 9",
+                            RecommendedTierId = 10,
+                            SchoolStudentId = 1,
+                            Status = 4,
+                            StudentAgeSnapshot = 19,
+                            StudentNationalitySnapshot = 2,
+                            WithdrawnAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 21,
+                            ApplicationNumber = "FASAPP-GEN-0010",
+                            CreatedAt = new DateTime(2025, 12, 22, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 1,
+                            GrossHouseholdIncomeSnapshot = 3000m,
+                            GuardianNationalitySnapshot = 1,
+                            HouseholdMemberCountSnapshot = 5,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 600m,
+                            RecommendationReason = "Auto generated reason 10",
+                            RecommendedTierId = 1,
+                            SchoolStudentId = 1,
+                            Status = 5,
+                            StudentAgeSnapshot = 20,
+                            StudentNationalitySnapshot = 1
+                        },
+                        new
+                        {
+                            Id = 22,
+                            ApplicationNumber = "FASAPP-GEN-0011",
+                            ApprovedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApprovedByUserId = 1,
+                            ApprovedTierId = 2,
+                            CreatedAt = new DateTime(2024, 11, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DurationInMonthsSnapshot = 12,
+                            FasSchemeId = 2,
+                            GrossHouseholdIncomeSnapshot = 3100m,
+                            GuardianNationalitySnapshot = 1,
+                            HouseholdMemberCountSnapshot = 6,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 516.67m,
+                            RecommendationReason = "Auto generated reason 11",
+                            RecommendedTierId = 2,
+                            SchoolStudentId = 1,
+                            Status = 6,
+                            StudentAgeSnapshot = 21,
+                            StudentNationalitySnapshot = 1,
+                            ValidityEndDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ValidityStartDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 23,
+                            ApplicationNumber = "FASAPP-GEN-0012",
+                            CreatedAt = new DateTime(2025, 12, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 3,
+                            GrossHouseholdIncomeSnapshot = 3200m,
+                            GuardianNationalitySnapshot = 1,
+                            HouseholdMemberCountSnapshot = 3,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 1066.67m,
+                            RecommendationReason = "Auto generated reason 12",
+                            RecommendedTierId = 3,
+                            SchoolStudentId = 1,
+                            Status = 1,
+                            StudentAgeSnapshot = 16,
+                            StudentNationalitySnapshot = 2
+                        },
+                        new
+                        {
+                            Id = 24,
+                            ApplicationNumber = "FASAPP-GEN-0013",
+                            ApprovedAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApprovedByUserId = 1,
+                            ApprovedTierId = 4,
+                            CreatedAt = new DateTime(2025, 12, 19, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DurationInMonthsSnapshot = 12,
+                            FasSchemeId = 4,
+                            GrossHouseholdIncomeSnapshot = 3300m,
+                            GuardianNationalitySnapshot = 1,
+                            HouseholdMemberCountSnapshot = 4,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 825m,
+                            RecommendationReason = "Auto generated reason 13",
+                            RecommendedTierId = 4,
+                            SchoolStudentId = 1,
+                            Status = 2,
+                            StudentAgeSnapshot = 17,
+                            StudentNationalitySnapshot = 1,
+                            ValidityEndDate = new DateTime(2027, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 25,
+                            ApplicationNumber = "FASAPP-GEN-0014",
+                            CreatedAt = new DateTime(2025, 12, 18, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 5,
+                            GrossHouseholdIncomeSnapshot = 3400m,
+                            GuardianNationalitySnapshot = 1,
+                            HouseholdMemberCountSnapshot = 5,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 680m,
+                            RecommendationReason = "Auto generated reason 14",
+                            RecommendedTierId = 5,
+                            RejectionReason = "Does not meet requirements.",
+                            SchoolStudentId = 1,
+                            Status = 3,
+                            StudentAgeSnapshot = 18,
+                            StudentNationalitySnapshot = 1
+                        },
+                        new
+                        {
+                            Id = 26,
+                            ApplicationNumber = "FASAPP-GEN-0015",
+                            CreatedAt = new DateTime(2025, 12, 17, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 6,
+                            GrossHouseholdIncomeSnapshot = 3500m,
+                            GuardianNationalitySnapshot = 1,
+                            HouseholdMemberCountSnapshot = 6,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 583.33m,
+                            RecommendationReason = "Auto generated reason 15",
+                            RecommendedTierId = 6,
+                            SchoolStudentId = 1,
+                            Status = 4,
+                            StudentAgeSnapshot = 19,
+                            StudentNationalitySnapshot = 2,
+                            WithdrawnAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 27,
+                            ApplicationNumber = "FASAPP-GEN-0016",
+                            CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 7,
+                            GrossHouseholdIncomeSnapshot = 3600m,
+                            GuardianNationalitySnapshot = 1,
+                            HouseholdMemberCountSnapshot = 3,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 1200m,
+                            RecommendationReason = "Auto generated reason 16",
+                            RecommendedTierId = 7,
+                            SchoolStudentId = 1,
+                            Status = 5,
+                            StudentAgeSnapshot = 20,
+                            StudentNationalitySnapshot = 1
+                        },
+                        new
+                        {
+                            Id = 28,
+                            ApplicationNumber = "FASAPP-GEN-0017",
+                            ApprovedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApprovedByUserId = 1,
+                            ApprovedTierId = 8,
+                            CreatedAt = new DateTime(2024, 11, 14, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DurationInMonthsSnapshot = 12,
+                            FasSchemeId = 8,
+                            GrossHouseholdIncomeSnapshot = 3700m,
+                            GuardianNationalitySnapshot = 1,
+                            HouseholdMemberCountSnapshot = 4,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 925m,
+                            RecommendationReason = "Auto generated reason 17",
+                            RecommendedTierId = 8,
+                            SchoolStudentId = 1,
+                            Status = 6,
+                            StudentAgeSnapshot = 21,
+                            StudentNationalitySnapshot = 1,
+                            ValidityEndDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ValidityStartDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 29,
+                            ApplicationNumber = "FASAPP-GEN-0018",
+                            CreatedAt = new DateTime(2025, 12, 14, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 9,
+                            GrossHouseholdIncomeSnapshot = 3800m,
+                            GuardianNationalitySnapshot = 1,
+                            HouseholdMemberCountSnapshot = 5,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 760m,
+                            RecommendationReason = "Auto generated reason 18",
+                            RecommendedTierId = 9,
+                            SchoolStudentId = 1,
+                            Status = 1,
+                            StudentAgeSnapshot = 16,
+                            StudentNationalitySnapshot = 2
+                        },
+                        new
+                        {
+                            Id = 30,
+                            ApplicationNumber = "FASAPP-GEN-0019",
+                            ApprovedAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApprovedByUserId = 1,
+                            ApprovedTierId = 10,
+                            CreatedAt = new DateTime(2025, 12, 13, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DurationInMonthsSnapshot = 12,
+                            FasSchemeId = 10,
+                            GrossHouseholdIncomeSnapshot = 3900m,
+                            GuardianNationalitySnapshot = 1,
+                            HouseholdMemberCountSnapshot = 6,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 650m,
+                            RecommendationReason = "Auto generated reason 19",
+                            RecommendedTierId = 10,
+                            SchoolStudentId = 1,
+                            Status = 2,
+                            StudentAgeSnapshot = 17,
+                            StudentNationalitySnapshot = 1,
+                            ValidityEndDate = new DateTime(2027, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 31,
+                            ApplicationNumber = "FASAPP-GEN-0020",
+                            CreatedAt = new DateTime(2025, 12, 12, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 1,
+                            GrossHouseholdIncomeSnapshot = 4000m,
+                            GuardianNationalitySnapshot = 1,
+                            HouseholdMemberCountSnapshot = 3,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 1333.33m,
+                            RecommendationReason = "Auto generated reason 20",
+                            RecommendedTierId = 1,
+                            RejectionReason = "Does not meet requirements.",
+                            SchoolStudentId = 1,
+                            Status = 3,
+                            StudentAgeSnapshot = 18,
+                            StudentNationalitySnapshot = 1
+                        },
+                        new
+                        {
+                            Id = 32,
+                            ApplicationNumber = "FASAPP-GEN-0021",
+                            CreatedAt = new DateTime(2025, 12, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 2,
+                            GrossHouseholdIncomeSnapshot = 4100m,
+                            GuardianNationalitySnapshot = 1,
+                            HouseholdMemberCountSnapshot = 4,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 1025m,
+                            RecommendationReason = "Auto generated reason 21",
+                            RecommendedTierId = 2,
+                            SchoolStudentId = 1,
+                            Status = 4,
+                            StudentAgeSnapshot = 19,
+                            StudentNationalitySnapshot = 2,
+                            WithdrawnAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 33,
+                            ApplicationNumber = "FASAPP-GEN-0022",
+                            CreatedAt = new DateTime(2025, 12, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 3,
+                            GrossHouseholdIncomeSnapshot = 4200m,
+                            GuardianNationalitySnapshot = 1,
+                            HouseholdMemberCountSnapshot = 5,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 840m,
+                            RecommendationReason = "Auto generated reason 22",
+                            RecommendedTierId = 3,
+                            SchoolStudentId = 1,
+                            Status = 5,
+                            StudentAgeSnapshot = 20,
+                            StudentNationalitySnapshot = 1
+                        },
+                        new
+                        {
+                            Id = 34,
+                            ApplicationNumber = "FASAPP-GEN-0023",
+                            ApprovedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApprovedByUserId = 1,
+                            ApprovedTierId = 4,
+                            CreatedAt = new DateTime(2024, 11, 8, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DurationInMonthsSnapshot = 12,
+                            FasSchemeId = 4,
+                            GrossHouseholdIncomeSnapshot = 4300m,
+                            GuardianNationalitySnapshot = 1,
+                            HouseholdMemberCountSnapshot = 6,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 716.67m,
+                            RecommendationReason = "Auto generated reason 23",
+                            RecommendedTierId = 4,
+                            SchoolStudentId = 1,
+                            Status = 6,
+                            StudentAgeSnapshot = 21,
+                            StudentNationalitySnapshot = 1,
+                            ValidityEndDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ValidityStartDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        },
+                        new
+                        {
+                            Id = 35,
+                            ApplicationNumber = "FASAPP-GEN-0024",
+                            CreatedAt = new DateTime(2025, 12, 8, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasSchemeId = 5,
+                            GrossHouseholdIncomeSnapshot = 4400m,
+                            GuardianNationalitySnapshot = 1,
+                            HouseholdMemberCountSnapshot = 3,
+                            IsDeleted = false,
+                            PerCapitaIncomeSnapshot = 1466.67m,
+                            RecommendationReason = "Auto generated reason 24",
+                            RecommendedTierId = 5,
+                            SchoolStudentId = 1,
+                            Status = 1,
+                            StudentAgeSnapshot = 16,
+                            StudentNationalitySnapshot = 2
                         });
                 });
 
@@ -8258,6 +8780,325 @@ namespace educationaccountmanagement.DAL.Migrations
                             FileKey = "fas/applications/6/document.pdf",
                             FileName = "fas-application-06.pdf",
                             IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Recent Payslip",
+                            FasApplicationId = 7,
+                            FasSchemeRequiredDocumentId = 7,
+                            FileKey = "fas/applications/7/document.pdf",
+                            FileName = "fas-application-07.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Income Statement",
+                            FasApplicationId = 8,
+                            FasSchemeRequiredDocumentId = 8,
+                            FileKey = "fas/applications/8/document.pdf",
+                            FileName = "fas-application-08.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Recent Payslip",
+                            FasApplicationId = 9,
+                            FasSchemeRequiredDocumentId = 9,
+                            FileKey = "fas/applications/9/document.pdf",
+                            FileName = "fas-application-09.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Income Statement",
+                            FasApplicationId = 10,
+                            FasSchemeRequiredDocumentId = 10,
+                            FileKey = "fas/applications/10/document.pdf",
+                            FileName = "fas-application-10.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Recent Payslip",
+                            FasApplicationId = 11,
+                            FasSchemeRequiredDocumentId = 1,
+                            FileKey = "fas/applications/11/document.pdf",
+                            FileName = "fas-application-11.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Income Statement",
+                            FasApplicationId = 12,
+                            FasSchemeRequiredDocumentId = 2,
+                            FileKey = "fas/applications/12/document.pdf",
+                            FileName = "fas-application-12.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Recent Payslip",
+                            FasApplicationId = 13,
+                            FasSchemeRequiredDocumentId = 3,
+                            FileKey = "fas/applications/13/document.pdf",
+                            FileName = "fas-application-13.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Income Statement",
+                            FasApplicationId = 14,
+                            FasSchemeRequiredDocumentId = 4,
+                            FileKey = "fas/applications/14/document.pdf",
+                            FileName = "fas-application-14.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Recent Payslip",
+                            FasApplicationId = 15,
+                            FasSchemeRequiredDocumentId = 5,
+                            FileKey = "fas/applications/15/document.pdf",
+                            FileName = "fas-application-15.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Income Statement",
+                            FasApplicationId = 16,
+                            FasSchemeRequiredDocumentId = 6,
+                            FileKey = "fas/applications/16/document.pdf",
+                            FileName = "fas-application-16.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Recent Payslip",
+                            FasApplicationId = 17,
+                            FasSchemeRequiredDocumentId = 7,
+                            FileKey = "fas/applications/17/document.pdf",
+                            FileName = "fas-application-17.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Income Statement",
+                            FasApplicationId = 18,
+                            FasSchemeRequiredDocumentId = 8,
+                            FileKey = "fas/applications/18/document.pdf",
+                            FileName = "fas-application-18.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Recent Payslip",
+                            FasApplicationId = 19,
+                            FasSchemeRequiredDocumentId = 9,
+                            FileKey = "fas/applications/19/document.pdf",
+                            FileName = "fas-application-19.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Income Statement",
+                            FasApplicationId = 20,
+                            FasSchemeRequiredDocumentId = 10,
+                            FileKey = "fas/applications/20/document.pdf",
+                            FileName = "fas-application-20.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Recent Payslip",
+                            FasApplicationId = 21,
+                            FasSchemeRequiredDocumentId = 1,
+                            FileKey = "fas/applications/21/document.pdf",
+                            FileName = "fas-application-21.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Income Statement",
+                            FasApplicationId = 22,
+                            FasSchemeRequiredDocumentId = 2,
+                            FileKey = "fas/applications/22/document.pdf",
+                            FileName = "fas-application-22.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 23,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Recent Payslip",
+                            FasApplicationId = 23,
+                            FasSchemeRequiredDocumentId = 3,
+                            FileKey = "fas/applications/23/document.pdf",
+                            FileName = "fas-application-23.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 24,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Income Statement",
+                            FasApplicationId = 24,
+                            FasSchemeRequiredDocumentId = 4,
+                            FileKey = "fas/applications/24/document.pdf",
+                            FileName = "fas-application-24.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 25,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Recent Payslip",
+                            FasApplicationId = 25,
+                            FasSchemeRequiredDocumentId = 5,
+                            FileKey = "fas/applications/25/document.pdf",
+                            FileName = "fas-application-25.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 26,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Income Statement",
+                            FasApplicationId = 26,
+                            FasSchemeRequiredDocumentId = 6,
+                            FileKey = "fas/applications/26/document.pdf",
+                            FileName = "fas-application-26.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 27,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Recent Payslip",
+                            FasApplicationId = 27,
+                            FasSchemeRequiredDocumentId = 7,
+                            FileKey = "fas/applications/27/document.pdf",
+                            FileName = "fas-application-27.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 28,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Income Statement",
+                            FasApplicationId = 28,
+                            FasSchemeRequiredDocumentId = 8,
+                            FileKey = "fas/applications/28/document.pdf",
+                            FileName = "fas-application-28.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 29,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Recent Payslip",
+                            FasApplicationId = 29,
+                            FasSchemeRequiredDocumentId = 9,
+                            FileKey = "fas/applications/29/document.pdf",
+                            FileName = "fas-application-29.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 30,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Income Statement",
+                            FasApplicationId = 30,
+                            FasSchemeRequiredDocumentId = 10,
+                            FileKey = "fas/applications/30/document.pdf",
+                            FileName = "fas-application-30.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 31,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Recent Payslip",
+                            FasApplicationId = 31,
+                            FasSchemeRequiredDocumentId = 1,
+                            FileKey = "fas/applications/31/document.pdf",
+                            FileName = "fas-application-31.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 32,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Income Statement",
+                            FasApplicationId = 32,
+                            FasSchemeRequiredDocumentId = 2,
+                            FileKey = "fas/applications/32/document.pdf",
+                            FileName = "fas-application-32.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 33,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Recent Payslip",
+                            FasApplicationId = 33,
+                            FasSchemeRequiredDocumentId = 3,
+                            FileKey = "fas/applications/33/document.pdf",
+                            FileName = "fas-application-33.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 34,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Income Statement",
+                            FasApplicationId = 34,
+                            FasSchemeRequiredDocumentId = 4,
+                            FileKey = "fas/applications/34/document.pdf",
+                            FileName = "fas-application-34.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 35,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Recent Payslip",
+                            FasApplicationId = 35,
+                            FasSchemeRequiredDocumentId = 5,
+                            FileKey = "fas/applications/35/document.pdf",
+                            FileName = "fas-application-35.pdf",
+                            IsDeleted = false
                         });
                 });
 
@@ -8342,7 +9183,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             DurationInMonths = 3,
                             IsDeleted = false,
                             IsPerComponent = true,
-                            SchemeCode = "FAS-2026-001",
+                            SchemeCode = "FAS-2026-99JIVES",
                             SchemeName = "Seed FAS Scheme 01",
                             SchoolId = 1,
                             Status = 1,
@@ -8357,7 +9198,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 1, 2, 0, 0, 0, 0, DateTimeKind.Utc),
-                            SchemeCode = "FAS-2026-002",
+                            SchemeCode = "FAS-2026-ETESJRO",
                             SchemeName = "Seed FAS Scheme 02",
                             SchoolId = 1,
                             Status = 2,
@@ -8372,7 +9213,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             IsPerComponent = true,
                             PublishedAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
-                            SchemeCode = "FAS-2026-003",
+                            SchemeCode = "FAS-2026-BCKWR0F",
                             SchemeName = "Seed FAS Scheme 03",
                             SchoolId = 1,
                             Status = 3,
@@ -8386,7 +9227,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             DurationInMonths = 12,
                             IsDeleted = false,
                             IsPerComponent = false,
-                            SchemeCode = "FAS-2026-004",
+                            SchemeCode = "FAS-2026-XY25JRK",
                             SchemeName = "Seed FAS Scheme 04",
                             SchoolId = 1,
                             Status = 1,
@@ -8401,7 +9242,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             IsPerComponent = true,
                             PublishedAt = new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc),
-                            SchemeCode = "FAS-2026-005",
+                            SchemeCode = "FAS-2026-14PI50K",
                             SchemeName = "Seed FAS Scheme 05",
                             SchoolId = 1,
                             Status = 2,
@@ -8416,7 +9257,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc),
-                            SchemeCode = "FAS-2026-006",
+                            SchemeCode = "FAS-2026-94EERHM",
                             SchemeName = "Seed FAS Scheme 06",
                             SchoolId = 1,
                             Status = 3,
@@ -8430,7 +9271,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             DurationInMonths = 9,
                             IsDeleted = false,
                             IsPerComponent = true,
-                            SchemeCode = "FAS-2026-007",
+                            SchemeCode = "FAS-2026-Z2RKIYE",
                             SchemeName = "Seed FAS Scheme 07",
                             SchoolId = 1,
                             Status = 1,
@@ -8445,7 +9286,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc),
-                            SchemeCode = "FAS-2026-008",
+                            SchemeCode = "FAS-2026-3ZNQSMN",
                             SchemeName = "Seed FAS Scheme 08",
                             SchoolId = 1,
                             Status = 2,
@@ -8460,7 +9301,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             IsPerComponent = true,
                             PublishedAt = new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc),
-                            SchemeCode = "FAS-2026-009",
+                            SchemeCode = "FAS-2026-T3E6QO3",
                             SchemeName = "Seed FAS Scheme 09",
                             SchoolId = 1,
                             Status = 3,
@@ -8474,7 +9315,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             DurationInMonths = 6,
                             IsDeleted = false,
                             IsPerComponent = false,
-                            SchemeCode = "FAS-2026-010",
+                            SchemeCode = "FAS-2026-5AED0DC",
                             SchemeName = "Seed FAS Scheme 10",
                             SchoolId = 1,
                             Status = 1,
@@ -9488,7 +10329,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            AccountNumberSnapshot = "EDU-2026-0000001",
+                            AccountNumberSnapshot = "EDU-2026-M7QVS7X",
                             CitizenFullNameSnapshot = "Sterling Quach",
                             CitizenNricSnapshot = "S0000001I",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9501,7 +10342,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            AccountNumberSnapshot = "EDU-2026-0000002",
+                            AccountNumberSnapshot = "EDU-2026-H4W9JYQ",
                             CitizenFullNameSnapshot = "Amelia Tan",
                             CitizenNricSnapshot = "S0000002G",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9516,7 +10357,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            AccountNumberSnapshot = "EDU-2026-0000003",
+                            AccountNumberSnapshot = "EDU-2026-5BHC84W",
                             CitizenFullNameSnapshot = "Marcus Lim",
                             CitizenNricSnapshot = "S0000003E",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9529,7 +10370,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 4,
-                            AccountNumberSnapshot = "EDU-2026-0000004",
+                            AccountNumberSnapshot = "EDU-2026-K6CAJET",
                             CitizenFullNameSnapshot = "Priya Nair",
                             CitizenNricSnapshot = "S0000004C",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9543,7 +10384,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 5,
-                            AccountNumberSnapshot = "EDU-2026-0000005",
+                            AccountNumberSnapshot = "EDU-2026-C865DQ8",
                             CitizenFullNameSnapshot = "Ethan Koh",
                             CitizenNricSnapshot = "S0000005A",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9557,7 +10398,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 6,
-                            AccountNumberSnapshot = "EDU-2026-0000006",
+                            AccountNumberSnapshot = "EDU-2026-J3PD5GI",
                             CitizenFullNameSnapshot = "Hannah Lee",
                             CitizenNricSnapshot = "S0000006Z",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9571,7 +10412,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 7,
-                            AccountNumberSnapshot = "EDU-2026-0000007",
+                            AccountNumberSnapshot = "EDU-2026-RHEGIE7",
                             CitizenFullNameSnapshot = "Daniel Wong",
                             CitizenNricSnapshot = "S0000007H",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9584,7 +10425,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 8,
-                            AccountNumberSnapshot = "EDU-2026-0000008",
+                            AccountNumberSnapshot = "EDU-2026-ERZPP9D",
                             CitizenFullNameSnapshot = "Sofia Chen",
                             CitizenNricSnapshot = "S0000008F",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9599,7 +10440,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 9,
-                            AccountNumberSnapshot = "EDU-2026-0000009",
+                            AccountNumberSnapshot = "EDU-2026-3WTXQL2",
                             CitizenFullNameSnapshot = "Lucas Nguyen",
                             CitizenNricSnapshot = "S0000009D",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9612,7 +10453,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 10,
-                            AccountNumberSnapshot = "EDU-2026-0000010",
+                            AccountNumberSnapshot = "EDU-2026-5A2BWXE",
                             CitizenFullNameSnapshot = "Maya Rahman",
                             CitizenNricSnapshot = "S0000010H",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9626,7 +10467,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 11,
-                            AccountNumberSnapshot = "EDU-2026-0000011",
+                            AccountNumberSnapshot = "EDU-2026-YKWELYD",
                             CitizenFullNameSnapshot = "Noah Teo",
                             CitizenNricSnapshot = "S0000011F",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9640,7 +10481,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 12,
-                            AccountNumberSnapshot = "EDU-2026-0000012",
+                            AccountNumberSnapshot = "EDU-2026-XW95AJ5",
                             CitizenFullNameSnapshot = "Aisha Fernandez",
                             CitizenNricSnapshot = "S0000012D",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9654,7 +10495,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 13,
-                            AccountNumberSnapshot = "EDU-2026-0000013",
+                            AccountNumberSnapshot = "EDU-2026-OOROKGZ",
                             CitizenFullNameSnapshot = "Ryan Chua",
                             CitizenNricSnapshot = "S0000013B",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9667,7 +10508,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 14,
-                            AccountNumberSnapshot = "EDU-2026-0000014",
+                            AccountNumberSnapshot = "EDU-2026-EC0POYJ",
                             CitizenFullNameSnapshot = "Chloe Goh",
                             CitizenNricSnapshot = "S0000014J",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9682,7 +10523,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 15,
-                            AccountNumberSnapshot = "EDU-2026-0000015",
+                            AccountNumberSnapshot = "EDU-2026-1ZHBQ2S",
                             CitizenFullNameSnapshot = "Irfan Hassan",
                             CitizenNricSnapshot = "S0000015I",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9695,7 +10536,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 16,
-                            AccountNumberSnapshot = "EDU-2026-0000016",
+                            AccountNumberSnapshot = "EDU-2026-A5L21GT",
                             CitizenFullNameSnapshot = "Natalie Seah",
                             CitizenNricSnapshot = "S0000016G",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9709,7 +10550,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 17,
-                            AccountNumberSnapshot = "EDU-2026-0000017",
+                            AccountNumberSnapshot = "EDU-2026-R9VEYR0",
                             CitizenFullNameSnapshot = "Alina Ang",
                             CitizenNricSnapshot = "S0000017E",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9723,7 +10564,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 18,
-                            AccountNumberSnapshot = "EDU-2026-0000018",
+                            AccountNumberSnapshot = "EDU-2026-JLH113O",
                             CitizenFullNameSnapshot = "Benjamin Bala",
                             CitizenNricSnapshot = "S0000018C",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9737,7 +10578,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 19,
-                            AccountNumberSnapshot = "EDU-2026-0000019",
+                            AccountNumberSnapshot = "EDU-2026-S7OK05W",
                             CitizenFullNameSnapshot = "Clara Chew",
                             CitizenNricSnapshot = "S0000019A",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9750,7 +10591,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 20,
-                            AccountNumberSnapshot = "EDU-2026-0000020",
+                            AccountNumberSnapshot = "EDU-2026-2MYNLK1",
                             CitizenFullNameSnapshot = "Darius Das",
                             CitizenNricSnapshot = "S0000020E",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9765,7 +10606,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 21,
-                            AccountNumberSnapshot = "EDU-2026-0000021",
+                            AccountNumberSnapshot = "EDU-2026-7M9PDGH",
                             CitizenFullNameSnapshot = "Elena Eng",
                             CitizenNricSnapshot = "S0000021C",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9778,7 +10619,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 22,
-                            AccountNumberSnapshot = "EDU-2026-0000022",
+                            AccountNumberSnapshot = "EDU-2026-TIXLNIB",
                             CitizenFullNameSnapshot = "Farhan Foo",
                             CitizenNricSnapshot = "S0000022A",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9792,7 +10633,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 23,
-                            AccountNumberSnapshot = "EDU-2026-0000023",
+                            AccountNumberSnapshot = "EDU-2026-T5N58HB",
                             CitizenFullNameSnapshot = "Grace Gan",
                             CitizenNricSnapshot = "S0000023Z",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9806,7 +10647,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 24,
-                            AccountNumberSnapshot = "EDU-2026-0000024",
+                            AccountNumberSnapshot = "EDU-2026-7MH1FBP",
                             CitizenFullNameSnapshot = "Haruto Ho",
                             CitizenNricSnapshot = "S0000024H",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9820,7 +10661,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 25,
-                            AccountNumberSnapshot = "EDU-2026-0000025",
+                            AccountNumberSnapshot = "EDU-2026-GDE8Q6P",
                             CitizenFullNameSnapshot = "Isabelle Ismail",
                             CitizenNricSnapshot = "S0000025F",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9833,7 +10674,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 26,
-                            AccountNumberSnapshot = "EDU-2026-0000026",
+                            AccountNumberSnapshot = "EDU-2026-SNYKN82",
                             CitizenFullNameSnapshot = "Jasper Jeyaratnam",
                             CitizenNricSnapshot = "S0000026D",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9848,7 +10689,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 27,
-                            AccountNumberSnapshot = "EDU-2026-0000027",
+                            AccountNumberSnapshot = "EDU-2026-QJZM8YL",
                             CitizenFullNameSnapshot = "Keira Kwek",
                             CitizenNricSnapshot = "S0000027B",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9861,7 +10702,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 28,
-                            AccountNumberSnapshot = "EDU-2026-0000028",
+                            AccountNumberSnapshot = "EDU-2026-G0N8QXW",
                             CitizenFullNameSnapshot = "Leon Lim",
                             CitizenNricSnapshot = "S0000028J",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9875,7 +10716,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 29,
-                            AccountNumberSnapshot = "EDU-2026-0000029",
+                            AccountNumberSnapshot = "EDU-2026-A3B8IRY",
                             CitizenFullNameSnapshot = "Mei Lin Mohamed",
                             CitizenNricSnapshot = "S0000029I",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9889,7 +10730,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 30,
-                            AccountNumberSnapshot = "EDU-2026-0000030",
+                            AccountNumberSnapshot = "EDU-2026-CYOBPQU",
                             CitizenFullNameSnapshot = "Nathan Ng",
                             CitizenNricSnapshot = "S0000030B",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9903,7 +10744,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 31,
-                            AccountNumberSnapshot = "EDU-2026-0000031",
+                            AccountNumberSnapshot = "EDU-2026-20G2H3L",
                             CitizenFullNameSnapshot = "Olivia Ong",
                             CitizenNricSnapshot = "S0000031J",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9916,7 +10757,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 32,
-                            AccountNumberSnapshot = "EDU-2026-0000032",
+                            AccountNumberSnapshot = "EDU-2026-9RY98UG",
                             CitizenFullNameSnapshot = "Pranav Pillai",
                             CitizenNricSnapshot = "S0000032I",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9931,7 +10772,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 33,
-                            AccountNumberSnapshot = "EDU-2026-0000033",
+                            AccountNumberSnapshot = "EDU-2026-LBUTZEW",
                             CitizenFullNameSnapshot = "Qistina Quek",
                             CitizenNricSnapshot = "S0000033G",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9944,7 +10785,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 34,
-                            AccountNumberSnapshot = "EDU-2026-0000034",
+                            AccountNumberSnapshot = "EDU-2026-CVJPW51",
                             CitizenFullNameSnapshot = "Rafael Rao",
                             CitizenNricSnapshot = "S0000034E",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9958,7 +10799,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 35,
-                            AccountNumberSnapshot = "EDU-2026-0000035",
+                            AccountNumberSnapshot = "EDU-2026-GL31H3K",
                             CitizenFullNameSnapshot = "Selina Sim",
                             CitizenNricSnapshot = "S0000035C",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9972,7 +10813,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 36,
-                            AccountNumberSnapshot = "EDU-2026-0000036",
+                            AccountNumberSnapshot = "EDU-2026-L1OX9Y0",
                             CitizenFullNameSnapshot = "Terence Tan",
                             CitizenNricSnapshot = "S0000036A",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9986,7 +10827,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 37,
-                            AccountNumberSnapshot = "EDU-2026-0000037",
+                            AccountNumberSnapshot = "EDU-2026-3V9Y2I0",
                             CitizenFullNameSnapshot = "Umairah Uddin",
                             CitizenNricSnapshot = "S0000037Z",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9999,7 +10840,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 38,
-                            AccountNumberSnapshot = "EDU-2026-0000038",
+                            AccountNumberSnapshot = "EDU-2026-UIX61F4",
                             CitizenFullNameSnapshot = "Victor Vasquez",
                             CitizenNricSnapshot = "S0000038H",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -10014,7 +10855,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 39,
-                            AccountNumberSnapshot = "EDU-2026-0000039",
+                            AccountNumberSnapshot = "EDU-2026-NQZL2LT",
                             CitizenFullNameSnapshot = "Wen Jie Wong",
                             CitizenNricSnapshot = "S0000039F",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -10027,7 +10868,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 40,
-                            AccountNumberSnapshot = "EDU-2026-0000040",
+                            AccountNumberSnapshot = "EDU-2026-2A9X7HT",
                             CitizenFullNameSnapshot = "Xavier Xu",
                             CitizenNricSnapshot = "S0000040Z",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -10041,7 +10882,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 41,
-                            AccountNumberSnapshot = "EDU-2026-0000041",
+                            AccountNumberSnapshot = "EDU-2026-HIZFYQR",
                             CitizenFullNameSnapshot = "Yasmin Yeo",
                             CitizenNricSnapshot = "S0000041H",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -10055,7 +10896,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 42,
-                            AccountNumberSnapshot = "EDU-2026-0000042",
+                            AccountNumberSnapshot = "EDU-2026-5FO1ERB",
                             CitizenFullNameSnapshot = "Zachary Zainal",
                             CitizenNricSnapshot = "S0000042F",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -10069,7 +10910,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 43,
-                            AccountNumberSnapshot = "EDU-2026-0000043",
+                            AccountNumberSnapshot = "EDU-2026-C6GLP5G",
                             CitizenFullNameSnapshot = "Adeline Ang",
                             CitizenNricSnapshot = "S0000043D",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -10082,7 +10923,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 44,
-                            AccountNumberSnapshot = "EDU-2026-0000044",
+                            AccountNumberSnapshot = "EDU-2026-VBGBHB4",
                             CitizenFullNameSnapshot = "Brandon Bala",
                             CitizenNricSnapshot = "S0000044B",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -10097,7 +10938,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 45,
-                            AccountNumberSnapshot = "EDU-2026-0000045",
+                            AccountNumberSnapshot = "EDU-2026-PMQT1K5",
                             CitizenFullNameSnapshot = "Celeste Chew",
                             CitizenNricSnapshot = "S0000045J",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -10110,7 +10951,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 46,
-                            AccountNumberSnapshot = "EDU-2026-0000046",
+                            AccountNumberSnapshot = "EDU-2026-Z2MR7S3",
                             CitizenFullNameSnapshot = "Damien Das",
                             CitizenNricSnapshot = "S0000046I",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -10124,7 +10965,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 47,
-                            AccountNumberSnapshot = "EDU-2026-0000047",
+                            AccountNumberSnapshot = "EDU-2026-2OK04RQ",
                             CitizenFullNameSnapshot = "Evelyn Eng",
                             CitizenNricSnapshot = "S0000047G",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -10138,7 +10979,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 48,
-                            AccountNumberSnapshot = "EDU-2026-0000048",
+                            AccountNumberSnapshot = "EDU-2026-5L2W56M",
                             CitizenFullNameSnapshot = "Faris Foo",
                             CitizenNricSnapshot = "S0000048E",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -10152,7 +10993,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 49,
-                            AccountNumberSnapshot = "EDU-2026-0000049",
+                            AccountNumberSnapshot = "EDU-2026-7UZZHKN",
                             CitizenFullNameSnapshot = "Giselle Gan",
                             CitizenNricSnapshot = "S0000049C",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -10165,7 +11006,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 50,
-                            AccountNumberSnapshot = "EDU-2026-0000050",
+                            AccountNumberSnapshot = "EDU-2026-9DG3ZSZ",
                             CitizenFullNameSnapshot = "Haziq Ho",
                             CitizenNricSnapshot = "S0000050G",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -12987,7 +13828,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            AccountNumber = "EDU-2026-0000001",
+                            AccountNumber = "EDU-2026-M7QVS7X",
                             Amount = 85m,
                             CreatedAt = new DateTime(2026, 1, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedBy = 2,
@@ -13000,7 +13841,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            AccountNumber = "EDU-2026-0000002",
+                            AccountNumber = "EDU-2026-H4W9JYQ",
                             Amount = 95m,
                             CreatedAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedBy = 2,
@@ -13013,7 +13854,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            AccountNumber = "EDU-2026-0000003",
+                            AccountNumber = "EDU-2026-5BHC84W",
                             Amount = 105m,
                             CreatedAt = new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedBy = 2,
@@ -13027,7 +13868,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 4,
-                            AccountNumber = "EDU-2026-0000004",
+                            AccountNumber = "EDU-2026-K6CAJET",
                             Amount = 115m,
                             CreatedAt = new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedBy = 2,
@@ -13041,7 +13882,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 5,
-                            AccountNumber = "EDU-2026-0000005",
+                            AccountNumber = "EDU-2026-C865DQ8",
                             Amount = 125m,
                             CreatedAt = new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedBy = 2,
@@ -13054,7 +13895,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 6,
-                            AccountNumber = "EDU-2026-0000006",
+                            AccountNumber = "EDU-2026-J3PD5GI",
                             Amount = 135m,
                             CreatedAt = new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedBy = 2,
@@ -13067,7 +13908,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 7,
-                            AccountNumber = "EDU-2026-0000007",
+                            AccountNumber = "EDU-2026-RHEGIE7",
                             Amount = 145m,
                             CreatedAt = new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedBy = 2,
@@ -13081,7 +13922,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 8,
-                            AccountNumber = "EDU-2026-0000008",
+                            AccountNumber = "EDU-2026-ERZPP9D",
                             Amount = 155m,
                             CreatedAt = new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedBy = 2,
@@ -13095,7 +13936,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 9,
-                            AccountNumber = "EDU-2026-0000009",
+                            AccountNumber = "EDU-2026-3WTXQL2",
                             Amount = 165m,
                             CreatedAt = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedBy = 2,
@@ -13108,7 +13949,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 10,
-                            AccountNumber = "EDU-2026-0000010",
+                            AccountNumber = "EDU-2026-5A2BWXE",
                             Amount = 175m,
                             CreatedAt = new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedBy = 2,

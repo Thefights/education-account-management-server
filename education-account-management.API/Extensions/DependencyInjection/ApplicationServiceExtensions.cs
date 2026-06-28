@@ -86,6 +86,7 @@ namespace Extensions.DependencyInjection
             services.AddScoped<IAccountHolderFasSchemeService, AccountHolderFasSchemeService>();
             services.AddScoped<IAccountHolderFasApplicationService, AccountHolderFasApplicationService>();
             services.AddScoped<IFasApplicationManagementService, FasApplicationManagementService>();
+            services.AddScoped<IFasBackgroundService, FasBackgroundService>();
 
             services.AddScoped<ISystemTopupService, SystemTopupService>();
             services.AddScoped<IScheduleTopUpService, ScheduleTopUpService>();
@@ -114,6 +115,7 @@ namespace Extensions.DependencyInjection
             services.AddHostedService<DataCleanupWorker>();
             services.AddHostedService<EducationAccountSweepWorker>();
             services.AddHostedService<TopupDailyWorker>();
+            services.AddHostedService<FasDailyWorker>();
             services.AddHostedService<CourseLifecycleWorker>();
 
             services.AddScoped<AuditLogMapper>();

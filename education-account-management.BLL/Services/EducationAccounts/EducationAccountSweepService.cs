@@ -60,13 +60,23 @@ namespace Services.EducationAccounts
 
             await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
             {
+                var reservedAccountNumbers = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 foreach (var citizen in citizensToCreate)
                 {
                     try
                     {
+                        var accountNumber = await BusinessCodeGenerator.GenerateUniqueAsync(
+                            BusinessCodeGenerator.EducationAccountPrefix,
+                            (candidate, innerToken) => _repository.AnyAsync(
+                                account => account.AccountNumber == candidate,
+                                innerToken),
+                            reservedCodes: reservedAccountNumbers,
+                            conflictMessage: "Unable to generate a unique education account number.",
+                            cancellationToken: token);
+
                         var account = new EducationAccount
                         {
-                            AccountNumber = EducationAccountHelper.GenerateNextAccountNumber(),
+                            AccountNumber = accountNumber,
                             CitizenId = citizen.Id
                         };
                         account.TryValidate();

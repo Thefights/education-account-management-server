@@ -154,8 +154,6 @@ namespace Services.FasSchemes
                 filter.HouseholdMemberCount.Value);
         }
 
-
-
         private List<string> GenerateConditionsSummary(ICollection<FasSchemeConditionGroup> conditionGroups)
         {
             var summaryList = new List<string>();

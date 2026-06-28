@@ -5,6 +5,7 @@ namespace DTOs.FasApplications
     public class FasApplicationDocumentDetailDTO
     {
         public int Id { get; set; }
+        public int? RequiredDocumentId { get; set; }
         public string DocumentNameSnapshot { get; set; } = string.Empty;
         public string FileName { get; set; } = string.Empty;
         public string FileKey { get; set; } = string.Empty;
