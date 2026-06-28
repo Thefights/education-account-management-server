@@ -5,229 +5,63 @@ namespace Persistence.Seeding
 {
     public sealed class EnrollmentSeedBuilder : ISeedBuilder
     {
-        public int Priority => 120;
+        public int Priority => 90;
 
         public ModelBuilder Seed(ModelBuilder modelBuilder)
         {
             var createdAt = SeedDataConstants.CreatedAt;
-            var primaryNames = new[]
-            {
-                "Sterling Quach", "Amelia Tan", "Marcus Lim", "Priya Nair", "Ethan Koh",
-                "Hannah Lee", "Daniel Wong", "Sofia Chen", "Lucas Nguyen", "Maya Rahman",
-                "Noah Teo", "Aisha Fernandez", "Ryan Chua", "Chloe Goh", "Irfan Hassan"
-            };
-            var givenNames = new[]
-            {
-                "Alina", "Benjamin", "Clara", "Darius", "Elena", "Farhan", "Grace", "Haruto",
-                "Isabelle", "Jasper", "Keira", "Leon", "Mei Lin", "Nathan", "Olivia", "Pranav",
-                "Qistina", "Rafael", "Selina", "Terence", "Umairah", "Victor", "Wen Jie", "Xavier",
-                "Yasmin", "Zachary", "Adeline", "Brandon", "Celeste", "Damien", "Evelyn", "Faris",
-                "Giselle", "Haziq", "Irene", "Jonas", "Kavya", "Lydia", "Malcolm", "Nadia"
-            };
-            var familyNames = new[]
-            {
-                "Ang", "Bala", "Chew", "Das", "Eng", "Foo", "Gan", "Ho", "Ismail", "Jeyaratnam",
-                "Kwek", "Lim", "Mohamed", "Ng", "Ong", "Pillai", "Quek", "Rao", "Sim", "Tan",
-                "Uddin", "Vasquez", "Wong", "Xu", "Yeo", "Zainal"
-            };
-            var schoolNames = new[]
-            {
-                "Northview Secondary School", "Eastbridge Secondary School", "Westhaven Secondary School",
-                "Southpoint Secondary School", "Central Heights School", "Riverside Learning Institute",
-                "Lakeside Technical School", "Greenfield Academy", "Harbourfront School",
-                "Hillcrest Education Centre"
-            };
-            static string GetCitizenName(int id, string[] primaryNames, string[] givenNames, string[] familyNames)
-            {
-                if (id <= primaryNames.Length) return primaryNames[id - 1];
-                if (id == 16) return "Natalie Seah";
-                var givenName = givenNames[(id - 1) % givenNames.Length];
-                var familyName = familyNames[((id - 1) / givenNames.Length + id) % familyNames.Length];
-                return $"{givenName} {familyName}";
-            }
 
-            var enrollments = new List<Enrollment>
-            {
-                new() { Id = 1, CourseId = 1, SchoolStudentId = 1, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Quantitative Problem Solving", CourseDescriptionSnapshot = "Applied numeracy and structured problem-solving for academic pathways.", CitizenNricSnapshot = SingaporeNricUtil.Generate(1), CitizenFullNameSnapshot = "Sterling Quach", CitizenEmailSnapshot = "sterling.quach@example.com", CitizenPhoneNumberSnapshot = "+6590000001", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(1), CreatedAt = createdAt },
-                new() { Id = 2, CourseId = 2, SchoolStudentId = 2, SchoolNameSnapshot = "Eastbridge Secondary School", CourseNameSnapshot = "Software Foundations with C#", CourseDescriptionSnapshot = "Core programming concepts, debugging, and application structure.", CitizenNricSnapshot = SingaporeNricUtil.Generate(2), CitizenFullNameSnapshot = "Amelia Tan", CitizenEmailSnapshot = "amelia.tan@example.com", CitizenPhoneNumberSnapshot = "+6590000002", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(2), CreatedAt = createdAt },
-                new() { Id = 3, CourseId = 3, SchoolStudentId = 3, SchoolNameSnapshot = "Westhaven Secondary School", CourseNameSnapshot = "Professional Communication Lab", CourseDescriptionSnapshot = "Practical writing, presentation, and workplace communication skills.", CitizenNricSnapshot = SingaporeNricUtil.Generate(3), CitizenFullNameSnapshot = "Marcus Lim", CitizenEmailSnapshot = "marcus.lim@example.com", CitizenPhoneNumberSnapshot = "+6590000003", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(3), CreatedAt = createdAt },
-                new() { Id = 4, CourseId = 4, SchoolStudentId = 4, SchoolNameSnapshot = "Southpoint Secondary School", CourseNameSnapshot = "Sustainability Science Workshop", CourseDescriptionSnapshot = "Environmental systems, resource planning, and sustainability practice.", CitizenNricSnapshot = SingaporeNricUtil.Generate(4), CitizenFullNameSnapshot = "Priya Nair", CitizenEmailSnapshot = "priya.nair@example.com", CitizenPhoneNumberSnapshot = "+6590000004", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(4), CreatedAt = createdAt },
-                new() { Id = 5, CourseId = 5, SchoolStudentId = 5, SchoolNameSnapshot = "Central Heights School", CourseNameSnapshot = "Digital Media Production", CourseDescriptionSnapshot = "Digital storytelling, layout, and media production workflows.", CitizenNricSnapshot = SingaporeNricUtil.Generate(5), CitizenFullNameSnapshot = "Ethan Koh", CitizenEmailSnapshot = "ethan.koh@example.com", CitizenPhoneNumberSnapshot = "+6590000005", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(5), CreatedAt = createdAt },
-                new() { Id = 6, CourseId = 6, SchoolStudentId = 6, SchoolNameSnapshot = "Riverside Learning Institute", CourseNameSnapshot = "Service Operations Practicum", CourseDescriptionSnapshot = "Customer operations, service standards, and scenario-based practice.", CitizenNricSnapshot = SingaporeNricUtil.Generate(6), CitizenFullNameSnapshot = "Hannah Lee", CitizenEmailSnapshot = "hannah.lee@example.com", CitizenPhoneNumberSnapshot = "+6590000006", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(6), CreatedAt = createdAt },
-                new() { Id = 7, CourseId = 7, SchoolStudentId = 7, SchoolNameSnapshot = "Lakeside Technical School", CourseNameSnapshot = "Electrical Systems Fundamentals", CourseDescriptionSnapshot = "Foundational electrical theory, components, and safety practices.", CitizenNricSnapshot = SingaporeNricUtil.Generate(7), CitizenFullNameSnapshot = "Daniel Wong", CitizenEmailSnapshot = "daniel.wong@example.com", CitizenPhoneNumberSnapshot = "+6590000007", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(7), CreatedAt = createdAt },
-                new() { Id = 8, CourseId = 8, SchoolStudentId = 8, SchoolNameSnapshot = "Greenfield Academy", CourseNameSnapshot = "Creative Writing Studio", CourseDescriptionSnapshot = "Narrative craft, editing practice, and guided writing critique.", CitizenNricSnapshot = SingaporeNricUtil.Generate(8), CitizenFullNameSnapshot = "Sofia Chen", CitizenEmailSnapshot = "sofia.chen@example.com", CitizenPhoneNumberSnapshot = "+6590000008", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(8), CreatedAt = createdAt },
-                new() { Id = 9, CourseId = 9, SchoolStudentId = 9, SchoolNameSnapshot = "Harbourfront School", CourseNameSnapshot = "Data Analytics Essentials", CourseDescriptionSnapshot = "Data preparation, analysis, visualization, and reporting fundamentals.", CitizenNricSnapshot = SingaporeNricUtil.Generate(9), CitizenFullNameSnapshot = "Lucas Nguyen", CitizenEmailSnapshot = "lucas.nguyen@example.com", CitizenPhoneNumberSnapshot = "+6590000009", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(9), CreatedAt = createdAt },
-                new() { Id = 10, CourseId = 10, SchoolStudentId = 10, SchoolNameSnapshot = "Hillcrest Education Centre", CourseNameSnapshot = "Office Productivity for Business", CourseDescriptionSnapshot = "Document, spreadsheet, and presentation workflows for business users.", CitizenNricSnapshot = SingaporeNricUtil.Generate(10), CitizenFullNameSnapshot = "Maya Rahman", CitizenEmailSnapshot = "maya.rahman@example.com", CitizenPhoneNumberSnapshot = "+6590000010", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(10), CreatedAt = createdAt },
-            
-                // Upcoming courses (CourseId: 1, 2, 3)
-                new() { Id = 11, CourseId = 1, SchoolStudentId = 9, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Quantitative Problem Solving", CourseDescriptionSnapshot = "Applied numeracy and structured problem-solving for academic pathways.", CitizenNricSnapshot = SingaporeNricUtil.Generate(9), CitizenFullNameSnapshot = "Lucas Nguyen", CitizenEmailSnapshot = "lucas.nguyen@example.com", CitizenPhoneNumberSnapshot = "+6590000009", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(9), CreatedAt = createdAt },
-                new() { Id = 13, CourseId = 2, SchoolStudentId = 9, SchoolNameSnapshot = "Eastbridge Secondary School", CourseNameSnapshot = "Software Foundations with C#", CourseDescriptionSnapshot = "Core programming concepts, debugging, and application structure.", CitizenNricSnapshot = SingaporeNricUtil.Generate(9), CitizenFullNameSnapshot = "Lucas Nguyen", CitizenEmailSnapshot = "lucas.nguyen@example.com", CitizenPhoneNumberSnapshot = "+6590000009", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(9), CreatedAt = createdAt },
-                new() { Id = 14, CourseId = 3, SchoolStudentId = 9, SchoolNameSnapshot = "Westhaven Secondary School", CourseNameSnapshot = "Professional Communication Lab", CourseDescriptionSnapshot = "Practical writing, presentation, and workplace communication skills.", CitizenNricSnapshot = SingaporeNricUtil.Generate(9), CitizenFullNameSnapshot = "Lucas Nguyen", CitizenEmailSnapshot = "lucas.nguyen@example.com", CitizenPhoneNumberSnapshot = "+6590000009", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(9), CreatedAt = createdAt },
-            
-                // InProgress courses (CourseId: 4, 5, 6)
-                new() { Id = 12, CourseId = 4, SchoolStudentId = 9, SchoolNameSnapshot = "Southpoint Secondary School", CourseNameSnapshot = "Sustainability Science Workshop", CourseDescriptionSnapshot = "Environmental systems, resource planning, and sustainability practice.", CitizenNricSnapshot = SingaporeNricUtil.Generate(9), CitizenFullNameSnapshot = "Lucas Nguyen", CitizenEmailSnapshot = "lucas.nguyen@example.com", CitizenPhoneNumberSnapshot = "+6590000009", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(9), CreatedAt = createdAt },
-                new() { Id = 15, CourseId = 5, SchoolStudentId = 9, SchoolNameSnapshot = "Central Heights School", CourseNameSnapshot = "Digital Media Production", CourseDescriptionSnapshot = "Digital storytelling, layout, and media production workflows.", CitizenNricSnapshot = SingaporeNricUtil.Generate(9), CitizenFullNameSnapshot = "Lucas Nguyen", CitizenEmailSnapshot = "lucas.nguyen@example.com", CitizenPhoneNumberSnapshot = "+6590000009", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(9), CreatedAt = createdAt },
-                new() { Id = 16, CourseId = 6, SchoolStudentId = 9, SchoolNameSnapshot = "Riverside Learning Institute", CourseNameSnapshot = "Service Operations Practicum", CourseDescriptionSnapshot = "Customer operations, service standards, and scenario-based practice.", CitizenNricSnapshot = SingaporeNricUtil.Generate(9), CitizenFullNameSnapshot = "Lucas Nguyen", CitizenEmailSnapshot = "lucas.nguyen@example.com", CitizenPhoneNumberSnapshot = "+6590000009", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(9), CreatedAt = createdAt },
-            
-                // Closed courses (CourseId: 7, 8, 9, 10) - 9 is already above, adding 7, 8, 10
-                new() { Id = 17, CourseId = 7, SchoolStudentId = 9, SchoolNameSnapshot = "Lakeside Technical School", CourseNameSnapshot = "Electrical Systems Fundamentals", CourseDescriptionSnapshot = "Foundational electrical theory, components, and safety practices.", CitizenNricSnapshot = SingaporeNricUtil.Generate(9), CitizenFullNameSnapshot = "Lucas Nguyen", CitizenEmailSnapshot = "lucas.nguyen@example.com", CitizenPhoneNumberSnapshot = "+6590000009", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(9), CreatedAt = createdAt },
-                new() { Id = 18, CourseId = 8, SchoolStudentId = 9, SchoolNameSnapshot = "Greenfield Academy", CourseNameSnapshot = "Creative Writing Studio", CourseDescriptionSnapshot = "Narrative craft, editing practice, and guided writing critique.", CitizenNricSnapshot = SingaporeNricUtil.Generate(9), CitizenFullNameSnapshot = "Lucas Nguyen", CitizenEmailSnapshot = "lucas.nguyen@example.com", CitizenPhoneNumberSnapshot = "+6590000009", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(9), CreatedAt = createdAt },
-                new() { Id = 19, CourseId = 10, SchoolStudentId = 9, SchoolNameSnapshot = "Hillcrest Education Centre", CourseNameSnapshot = "Office Productivity for Business", CourseDescriptionSnapshot = "Document, spreadsheet, and presentation workflows for business users.", CitizenNricSnapshot = SingaporeNricUtil.Generate(9), CitizenFullNameSnapshot = "Lucas Nguyen", CitizenEmailSnapshot = "lucas.nguyen@example.com", CitizenPhoneNumberSnapshot = "+6590000009", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(9), CreatedAt = createdAt }
-            };
-
-            var topics = new[]
-            {
-                "Academic Writing", "Business Numeracy", "Digital Literacy", "Career Readiness",
-                "Applied Science", "Financial Literacy", "Project Collaboration", "Data Skills",
-                "Workplace Communication"
-            };
-            var enrollmentId = 20;
-            for (var schoolId = 1; schoolId <= 10; schoolId++)
-            {
-                for (var index = 0; index < 9; index++)
-                {
-                    var schoolStudentId = 11 + (schoolId - 1) * 9 + index;
-                    var courseId = 11 + (schoolId - 1) * 9 + index;
-                    var citizenName = GetCitizenName(
-                        schoolStudentId,
-                        primaryNames,
-                        givenNames,
-                        familyNames);
-                    enrollments.Add(new Enrollment
-                    {
-                        Id = enrollmentId++,
-                        CourseId = courseId,
-                        SchoolStudentId = schoolStudentId,
-                        SchoolNameSnapshot = schoolNames[schoolId - 1],
-                        CourseNameSnapshot = $"{topics[index]} - School {schoolId} Cohort {index + 1}",
-                        CourseDescriptionSnapshot = "Structured lessons with guided practice and applied assessments.",
-                        CitizenNricSnapshot = SingaporeNricUtil.Generate(schoolStudentId),
-                        CitizenFullNameSnapshot = citizenName,
-                        CitizenEmailSnapshot = $"{citizenName.ToLowerInvariant().Replace(" ", ".")}.{schoolStudentId}@example.com",
-                        CitizenPhoneNumberSnapshot = $"+659{schoolStudentId:0000000}",
-                        AccountNumberSnapshot = SeedAccountNumberUtil.Generate(schoolStudentId),
-                        CreatedAt = createdAt
-                    });
-                }
-            }
-
-            var baseCourseNames = new[]
-            {
-                "Quantitative Problem Solving", "Software Foundations with C#", "Professional Communication Lab",
-                "Sustainability Science Workshop", "Digital Media Production", "Service Operations Practicum",
-                "Electrical Systems Fundamentals", "Creative Writing Studio", "Data Analytics Essentials",
-                "Office Productivity for Business"
-            };
-            var baseCourseDescriptions = new[]
-            {
-                "Applied numeracy and structured problem-solving for academic pathways.",
-                "Core programming concepts, debugging, and application structure.",
-                "Practical writing, presentation, and workplace communication skills.",
-                "Environmental systems, resource planning, and sustainability practice.",
-                "Digital storytelling, layout, and media production workflows.",
-                "Customer operations, service standards, and scenario-based practice.",
-                "Foundational electrical theory, components, and safety practices.",
-                "Narrative craft, editing practice, and guided writing critique.",
-                "Data preparation, analysis, visualization, and reporting fundamentals.",
-                "Document, spreadsheet, and presentation workflows for business users."
-            };
-
-            static int GetCourseSchoolId(int courseId)
-            {
-                return courseId <= 10
-                    ? courseId
-                    : 1 + (courseId - 11) / 9;
-            }
-
-            static int[] GetSchoolStudentIds(int schoolId)
-            {
-                var ids = new int[10];
-                ids[0] = schoolId;
-                for (var index = 0; index < 9; index++)
-                {
-                    ids[index + 1] = 11 + (schoolId - 1) * 9 + index;
-                }
-
-                return ids;
-            }
-
-            static string GetCourseName(int courseId, string[] baseCourseNames, string[] topics)
-            {
-                if (courseId <= baseCourseNames.Length)
-                {
-                    return baseCourseNames[courseId - 1];
-                }
-
-                var offset = courseId - 11;
-                var schoolId = 1 + offset / 9;
-                var index = offset % 9;
-                return $"{topics[index]} - School {schoolId} Cohort {index + 1}";
-            }
-
-            static string GetCourseDescription(int courseId, string[] baseCourseDescriptions)
-            {
-                if (courseId <= baseCourseDescriptions.Length)
-                {
-                    return baseCourseDescriptions[courseId - 1];
-                }
-
-                return "Structured lessons with guided practice and applied assessments.";
-            }
-
-            var existingPairs = enrollments
-                .Select(enrollment => (enrollment.CourseId, enrollment.SchoolStudentId))
-                .ToHashSet();
-            var enrollmentCountsByCourse = enrollments
-                .GroupBy(enrollment => enrollment.CourseId)
-                .ToDictionary(group => group.Key, group => group.Count());
-
-            for (var courseId = 1; courseId <= 100; courseId++)
-            {
-                enrollmentCountsByCourse.TryGetValue(courseId, out var enrollmentCount);
-                var schoolId = GetCourseSchoolId(courseId);
-                var courseName = GetCourseName(courseId, baseCourseNames, topics);
-                var courseDescription = GetCourseDescription(courseId, baseCourseDescriptions);
-
-                foreach (var schoolStudentId in GetSchoolStudentIds(schoolId))
-                {
-                    if (enrollmentCount >= 10)
-                    {
-                        break;
-                    }
-
-                    if (!existingPairs.Add((courseId, schoolStudentId)))
-                    {
-                        continue;
-                    }
-
-                    var citizenName = GetCitizenName(
-                        schoolStudentId,
-                        primaryNames,
-                        givenNames,
-                        familyNames);
-                    enrollments.Add(new Enrollment
-                    {
-                        Id = enrollmentId++,
-                        CourseId = courseId,
-                        SchoolStudentId = schoolStudentId,
-                        SchoolNameSnapshot = schoolNames[schoolId - 1],
-                        CourseNameSnapshot = courseName,
-                        CourseDescriptionSnapshot = courseDescription,
-                        CitizenNricSnapshot = SingaporeNricUtil.Generate(schoolStudentId),
-                        CitizenFullNameSnapshot = citizenName,
-                        CitizenEmailSnapshot = $"{citizenName.ToLowerInvariant().Replace(" ", ".")}.{schoolStudentId}@example.com",
-                        CitizenPhoneNumberSnapshot = $"+659{schoolStudentId:0000000}",
-                        AccountNumberSnapshot = SeedAccountNumberUtil.Generate(schoolStudentId),
-                        CreatedAt = createdAt
-                    });
-
-                    enrollmentCount++;
-                }
-
-                enrollmentCountsByCourse[courseId] = enrollmentCount;
-            }
-
-            modelBuilder.Entity<Enrollment>().HasData(enrollments);
+            modelBuilder.Entity<Enrollment>().HasData(
+                new Enrollment { Id = 1, CourseId = 1, SchoolStudentId = 1, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Academic Writing Cohort 01", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(1), CitizenFullNameSnapshot = "Sterling Quach", CitizenEmailSnapshot = "sterling.quach@example.com", CitizenPhoneNumberSnapshot = "+6590000001", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(1), CreatedAt = createdAt },
+                new Enrollment { Id = 2, CourseId = 2, SchoolStudentId = 2, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Business Numeracy Cohort 02", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(2), CitizenFullNameSnapshot = "Amelia Tan", CitizenEmailSnapshot = "amelia.tan@example.com", CitizenPhoneNumberSnapshot = "+6590000002", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(2), CreatedAt = createdAt },
+                new Enrollment { Id = 3, CourseId = 3, SchoolStudentId = 3, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Digital Literacy Cohort 03", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(3), CitizenFullNameSnapshot = "Marcus Lim", CitizenEmailSnapshot = "marcus.lim@example.com", CitizenPhoneNumberSnapshot = "+6590000003", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(3), CreatedAt = createdAt },
+                new Enrollment { Id = 4, CourseId = 4, SchoolStudentId = 4, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Career Readiness Cohort 04", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(4), CitizenFullNameSnapshot = "Priya Nair", CitizenEmailSnapshot = "priya.nair@example.com", CitizenPhoneNumberSnapshot = "+6590000004", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(4), CreatedAt = createdAt },
+                new Enrollment { Id = 5, CourseId = 5, SchoolStudentId = 5, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Applied Science Cohort 05", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(5), CitizenFullNameSnapshot = "Ethan Koh", CitizenEmailSnapshot = "ethan.koh@example.com", CitizenPhoneNumberSnapshot = "+6590000005", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(5), CreatedAt = createdAt },
+                new Enrollment { Id = 6, CourseId = 6, SchoolStudentId = 6, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Financial Literacy Cohort 06", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(6), CitizenFullNameSnapshot = "Hannah Lee", CitizenEmailSnapshot = "hannah.lee@example.com", CitizenPhoneNumberSnapshot = "+6590000006", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(6), CreatedAt = createdAt },
+                new Enrollment { Id = 7, CourseId = 7, SchoolStudentId = 7, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Project Collaboration Cohort 07", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(7), CitizenFullNameSnapshot = "Daniel Wong", CitizenEmailSnapshot = "daniel.wong@example.com", CitizenPhoneNumberSnapshot = "+6590000007", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(7), CreatedAt = createdAt },
+                new Enrollment { Id = 8, CourseId = 8, SchoolStudentId = 8, Status = EnrollmentStatus.Withdrawn, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Data Skills Cohort 08", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(8), CitizenFullNameSnapshot = "Sofia Chen", CitizenEmailSnapshot = "sofia.chen@example.com", CitizenPhoneNumberSnapshot = "+6590000008", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(8), CreatedAt = createdAt },
+                new Enrollment { Id = 9, CourseId = 9, SchoolStudentId = 9, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Workplace Communication Cohort 09", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(9), CitizenFullNameSnapshot = "Lucas Nguyen", CitizenEmailSnapshot = "lucas.nguyen@example.com", CitizenPhoneNumberSnapshot = "+6590000009", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(9), CreatedAt = createdAt },
+                new Enrollment { Id = 10, CourseId = 10, SchoolStudentId = 10, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Software Foundations Cohort 10", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(10), CitizenFullNameSnapshot = "Maya Rahman", CitizenEmailSnapshot = "maya.rahman@example.com", CitizenPhoneNumberSnapshot = "+6590000010", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(10), CreatedAt = createdAt },
+                new Enrollment { Id = 11, CourseId = 11, SchoolStudentId = 11, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Academic Writing Cohort 11", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(11), CitizenFullNameSnapshot = "Noah Teo", CitizenEmailSnapshot = "noah.teo@example.com", CitizenPhoneNumberSnapshot = "+6590000011", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(11), CreatedAt = createdAt },
+                new Enrollment { Id = 12, CourseId = 12, SchoolStudentId = 12, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Business Numeracy Cohort 12", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(12), CitizenFullNameSnapshot = "Aisha Fernandez", CitizenEmailSnapshot = "aisha.fernandez@example.com", CitizenPhoneNumberSnapshot = "+6590000012", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(12), CreatedAt = createdAt },
+                new Enrollment { Id = 13, CourseId = 13, SchoolStudentId = 13, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Digital Literacy Cohort 13", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(13), CitizenFullNameSnapshot = "Ryan Chua", CitizenEmailSnapshot = "ryan.chua@example.com", CitizenPhoneNumberSnapshot = "+6590000013", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(13), CreatedAt = createdAt },
+                new Enrollment { Id = 14, CourseId = 14, SchoolStudentId = 14, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Career Readiness Cohort 14", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(14), CitizenFullNameSnapshot = "Chloe Goh", CitizenEmailSnapshot = "chloe.goh@example.com", CitizenPhoneNumberSnapshot = "+6590000014", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(14), CreatedAt = createdAt },
+                new Enrollment { Id = 15, CourseId = 15, SchoolStudentId = 15, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Applied Science Cohort 15", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(15), CitizenFullNameSnapshot = "Irfan Hassan", CitizenEmailSnapshot = "irfan.hassan@example.com", CitizenPhoneNumberSnapshot = "+6590000015", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(15), CreatedAt = createdAt },
+                new Enrollment { Id = 16, CourseId = 16, SchoolStudentId = 16, Status = EnrollmentStatus.Withdrawn, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Financial Literacy Cohort 16", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(16), CitizenFullNameSnapshot = "Natalie Seah", CitizenEmailSnapshot = "natalie.seah@example.com", CitizenPhoneNumberSnapshot = "+6590000016", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(16), CreatedAt = createdAt },
+                new Enrollment { Id = 17, CourseId = 17, SchoolStudentId = 17, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Project Collaboration Cohort 17", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(17), CitizenFullNameSnapshot = "Alina Ang", CitizenEmailSnapshot = "alina.ang@example.com", CitizenPhoneNumberSnapshot = "+6590000017", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(17), CreatedAt = createdAt },
+                new Enrollment { Id = 18, CourseId = 18, SchoolStudentId = 18, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Data Skills Cohort 18", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(18), CitizenFullNameSnapshot = "Benjamin Bala", CitizenEmailSnapshot = "benjamin.bala@example.com", CitizenPhoneNumberSnapshot = "+6590000018", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(18), CreatedAt = createdAt },
+                new Enrollment { Id = 19, CourseId = 19, SchoolStudentId = 19, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Workplace Communication Cohort 19", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(19), CitizenFullNameSnapshot = "Clara Chew", CitizenEmailSnapshot = "clara.chew@example.com", CitizenPhoneNumberSnapshot = "+6590000019", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(19), CreatedAt = createdAt },
+                new Enrollment { Id = 20, CourseId = 20, SchoolStudentId = 20, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Software Foundations Cohort 20", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(20), CitizenFullNameSnapshot = "Darius Das", CitizenEmailSnapshot = "darius.das@example.com", CitizenPhoneNumberSnapshot = "+6590000020", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(20), CreatedAt = createdAt },
+                new Enrollment { Id = 21, CourseId = 21, SchoolStudentId = 21, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Academic Writing Cohort 21", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(21), CitizenFullNameSnapshot = "Elena Eng", CitizenEmailSnapshot = "elena.eng@example.com", CitizenPhoneNumberSnapshot = "+6590000021", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(21), CreatedAt = createdAt },
+                new Enrollment { Id = 22, CourseId = 22, SchoolStudentId = 22, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Business Numeracy Cohort 22", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(22), CitizenFullNameSnapshot = "Farhan Foo", CitizenEmailSnapshot = "farhan.foo@example.com", CitizenPhoneNumberSnapshot = "+6590000022", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(22), CreatedAt = createdAt },
+                new Enrollment { Id = 23, CourseId = 23, SchoolStudentId = 23, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Digital Literacy Cohort 23", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(23), CitizenFullNameSnapshot = "Grace Gan", CitizenEmailSnapshot = "grace.gan@example.com", CitizenPhoneNumberSnapshot = "+6590000023", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(23), CreatedAt = createdAt },
+                new Enrollment { Id = 24, CourseId = 24, SchoolStudentId = 24, Status = EnrollmentStatus.Withdrawn, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Career Readiness Cohort 24", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(24), CitizenFullNameSnapshot = "Haruto Ho", CitizenEmailSnapshot = "haruto.ho@example.com", CitizenPhoneNumberSnapshot = "+6590000024", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(24), CreatedAt = createdAt },
+                new Enrollment { Id = 25, CourseId = 25, SchoolStudentId = 25, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Applied Science Cohort 25", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(25), CitizenFullNameSnapshot = "Isabelle Ismail", CitizenEmailSnapshot = "isabelle.ismail@example.com", CitizenPhoneNumberSnapshot = "+6590000025", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(25), CreatedAt = createdAt },
+                new Enrollment { Id = 26, CourseId = 26, SchoolStudentId = 26, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Financial Literacy Cohort 26", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(26), CitizenFullNameSnapshot = "Jasper Jeyaratnam", CitizenEmailSnapshot = "jasper.jeyaratnam@example.com", CitizenPhoneNumberSnapshot = "+6590000026", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(26), CreatedAt = createdAt },
+                new Enrollment { Id = 27, CourseId = 27, SchoolStudentId = 27, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Project Collaboration Cohort 27", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(27), CitizenFullNameSnapshot = "Keira Kwek", CitizenEmailSnapshot = "keira.kwek@example.com", CitizenPhoneNumberSnapshot = "+6590000027", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(27), CreatedAt = createdAt },
+                new Enrollment { Id = 28, CourseId = 28, SchoolStudentId = 28, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Data Skills Cohort 28", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(28), CitizenFullNameSnapshot = "Leon Lim", CitizenEmailSnapshot = "leon.lim@example.com", CitizenPhoneNumberSnapshot = "+6590000028", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(28), CreatedAt = createdAt },
+                new Enrollment { Id = 29, CourseId = 29, SchoolStudentId = 29, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Workplace Communication Cohort 29", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(29), CitizenFullNameSnapshot = "Mei Lin Mohamed", CitizenEmailSnapshot = "mei.lin.mohamed@example.com", CitizenPhoneNumberSnapshot = "+6590000029", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(29), CreatedAt = createdAt },
+                new Enrollment { Id = 30, CourseId = 30, SchoolStudentId = 30, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Software Foundations Cohort 30", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(30), CitizenFullNameSnapshot = "Nathan Ng", CitizenEmailSnapshot = "nathan.ng@example.com", CitizenPhoneNumberSnapshot = "+6590000030", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(30), CreatedAt = createdAt },
+                new Enrollment { Id = 31, CourseId = 31, SchoolStudentId = 31, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Academic Writing Cohort 31", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(31), CitizenFullNameSnapshot = "Olivia Ong", CitizenEmailSnapshot = "olivia.ong@example.com", CitizenPhoneNumberSnapshot = "+6590000031", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(31), CreatedAt = createdAt },
+                new Enrollment { Id = 32, CourseId = 32, SchoolStudentId = 32, Status = EnrollmentStatus.Withdrawn, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Business Numeracy Cohort 32", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(32), CitizenFullNameSnapshot = "Pranav Pillai", CitizenEmailSnapshot = "pranav.pillai@example.com", CitizenPhoneNumberSnapshot = "+6590000032", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(32), CreatedAt = createdAt },
+                new Enrollment { Id = 33, CourseId = 33, SchoolStudentId = 33, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Digital Literacy Cohort 33", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(33), CitizenFullNameSnapshot = "Qistina Quek", CitizenEmailSnapshot = "qistina.quek@example.com", CitizenPhoneNumberSnapshot = "+6590000033", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(33), CreatedAt = createdAt },
+                new Enrollment { Id = 34, CourseId = 34, SchoolStudentId = 34, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Career Readiness Cohort 34", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(34), CitizenFullNameSnapshot = "Rafael Rao", CitizenEmailSnapshot = "rafael.rao@example.com", CitizenPhoneNumberSnapshot = "+6590000034", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(34), CreatedAt = createdAt },
+                new Enrollment { Id = 35, CourseId = 35, SchoolStudentId = 35, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Applied Science Cohort 35", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(35), CitizenFullNameSnapshot = "Selina Sim", CitizenEmailSnapshot = "selina.sim@example.com", CitizenPhoneNumberSnapshot = "+6590000035", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(35), CreatedAt = createdAt },
+                new Enrollment { Id = 36, CourseId = 36, SchoolStudentId = 36, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Financial Literacy Cohort 36", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(36), CitizenFullNameSnapshot = "Terence Tan", CitizenEmailSnapshot = "terence.tan@example.com", CitizenPhoneNumberSnapshot = "+6590000036", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(36), CreatedAt = createdAt },
+                new Enrollment { Id = 37, CourseId = 37, SchoolStudentId = 37, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Project Collaboration Cohort 37", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(37), CitizenFullNameSnapshot = "Umairah Uddin", CitizenEmailSnapshot = "umairah.uddin@example.com", CitizenPhoneNumberSnapshot = "+6590000037", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(37), CreatedAt = createdAt },
+                new Enrollment { Id = 38, CourseId = 38, SchoolStudentId = 38, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Data Skills Cohort 38", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(38), CitizenFullNameSnapshot = "Victor Vasquez", CitizenEmailSnapshot = "victor.vasquez@example.com", CitizenPhoneNumberSnapshot = "+6590000038", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(38), CreatedAt = createdAt },
+                new Enrollment { Id = 39, CourseId = 39, SchoolStudentId = 39, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Workplace Communication Cohort 39", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(39), CitizenFullNameSnapshot = "Wen Jie Wong", CitizenEmailSnapshot = "wen.jie.wong@example.com", CitizenPhoneNumberSnapshot = "+6590000039", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(39), CreatedAt = createdAt },
+                new Enrollment { Id = 40, CourseId = 40, SchoolStudentId = 40, Status = EnrollmentStatus.Withdrawn, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Software Foundations Cohort 40", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(40), CitizenFullNameSnapshot = "Xavier Xu", CitizenEmailSnapshot = "xavier.xu@example.com", CitizenPhoneNumberSnapshot = "+6590000040", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(40), CreatedAt = createdAt },
+                new Enrollment { Id = 41, CourseId = 41, SchoolStudentId = 41, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Academic Writing Cohort 41", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(41), CitizenFullNameSnapshot = "Yasmin Yeo", CitizenEmailSnapshot = "yasmin.yeo@example.com", CitizenPhoneNumberSnapshot = "+6590000041", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(41), CreatedAt = createdAt },
+                new Enrollment { Id = 42, CourseId = 42, SchoolStudentId = 42, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Business Numeracy Cohort 42", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(42), CitizenFullNameSnapshot = "Zachary Zainal", CitizenEmailSnapshot = "zachary.zainal@example.com", CitizenPhoneNumberSnapshot = "+6590000042", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(42), CreatedAt = createdAt },
+                new Enrollment { Id = 43, CourseId = 43, SchoolStudentId = 43, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Digital Literacy Cohort 43", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(43), CitizenFullNameSnapshot = "Adeline Ang", CitizenEmailSnapshot = "adeline.ang@example.com", CitizenPhoneNumberSnapshot = "+6590000043", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(43), CreatedAt = createdAt },
+                new Enrollment { Id = 44, CourseId = 44, SchoolStudentId = 44, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Career Readiness Cohort 44", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(44), CitizenFullNameSnapshot = "Brandon Bala", CitizenEmailSnapshot = "brandon.bala@example.com", CitizenPhoneNumberSnapshot = "+6590000044", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(44), CreatedAt = createdAt },
+                new Enrollment { Id = 45, CourseId = 45, SchoolStudentId = 45, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Applied Science Cohort 45", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(45), CitizenFullNameSnapshot = "Celeste Chew", CitizenEmailSnapshot = "celeste.chew@example.com", CitizenPhoneNumberSnapshot = "+6590000045", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(45), CreatedAt = createdAt },
+                new Enrollment { Id = 46, CourseId = 46, SchoolStudentId = 46, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Financial Literacy Cohort 46", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(46), CitizenFullNameSnapshot = "Damien Das", CitizenEmailSnapshot = "damien.das@example.com", CitizenPhoneNumberSnapshot = "+6590000046", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(46), CreatedAt = createdAt },
+                new Enrollment { Id = 47, CourseId = 47, SchoolStudentId = 47, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Project Collaboration Cohort 47", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(47), CitizenFullNameSnapshot = "Evelyn Eng", CitizenEmailSnapshot = "evelyn.eng@example.com", CitizenPhoneNumberSnapshot = "+6590000047", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(47), CreatedAt = createdAt },
+                new Enrollment { Id = 48, CourseId = 48, SchoolStudentId = 48, Status = EnrollmentStatus.Withdrawn, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Data Skills Cohort 48", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(48), CitizenFullNameSnapshot = "Faris Foo", CitizenEmailSnapshot = "faris.foo@example.com", CitizenPhoneNumberSnapshot = "+6590000048", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(48), CreatedAt = createdAt },
+                new Enrollment { Id = 49, CourseId = 49, SchoolStudentId = 49, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Workplace Communication Cohort 49", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(49), CitizenFullNameSnapshot = "Giselle Gan", CitizenEmailSnapshot = "giselle.gan@example.com", CitizenPhoneNumberSnapshot = "+6590000049", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(49), CreatedAt = createdAt },
+                new Enrollment { Id = 50, CourseId = 50, SchoolStudentId = 50, Status = EnrollmentStatus.Active, SchoolNameSnapshot = "Northview Secondary School", CourseNameSnapshot = "Software Foundations Cohort 50", CourseDescriptionSnapshot = "Seeded course enrollment for scoped school-admin data.", CitizenNricSnapshot = SingaporeNricUtil.Generate(50), CitizenFullNameSnapshot = "Haziq Ho", CitizenEmailSnapshot = "haziq.ho@example.com", CitizenPhoneNumberSnapshot = "+6590000050", AccountNumberSnapshot = SeedAccountNumberUtil.Generate(50), CreatedAt = createdAt });
 
             return modelBuilder;
         }

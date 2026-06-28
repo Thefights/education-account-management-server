@@ -40,7 +40,6 @@ namespace Services.EducationAccounts
             var firstEligibleBirthDate = batchDate.AddYears(-16);
             var closingBirthDate = batchDate.AddYears(-31);
             var citizensToCreate = await _citizenRepository.Query()
-                .Where(citizen => citizen.CitizenshipStatus == CitizenshipStatus.Active)
                 .Where(citizen => citizen.DateOfBirth <= firstEligibleBirthDate
                     && citizen.DateOfBirth > closingBirthDate)
                 .Where(citizen => citizen.EducationAccount == null)

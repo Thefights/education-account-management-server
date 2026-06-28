@@ -1,27 +1,28 @@
-﻿using Models;
+using Models;
 using Persistence.Seeding.Constants;
 
 namespace Persistence.Seeding
 {
     public sealed class ScheduleTopUpSeedBuilder : ISeedBuilder
     {
-        public int Priority => 90;
+        public int Priority => 180;
 
         public ModelBuilder Seed(ModelBuilder modelBuilder)
         {
             var createdAt = SeedDataConstants.CreatedAt;
 
             modelBuilder.Entity<ScheduleTopUp>().HasData(
-                new ScheduleTopUp { Id = 1, Name = "Monthly Transport Allowance", TopupAmount = 60m, Frequency = ScheduleTopUpFrequency.Monthly, ExecutionTime = new TimeOnly(8, 0), ExecuteAtDay = 1, NextExecutionAt = new DateTime(2027, 1, 1, 8, 0, 0), Status = ScheduleTopUpStatus.Active, CreatedAt = createdAt },
-                new ScheduleTopUp { Id = 2, Name = "Monthly Meal Support Credit", TopupAmount = 90m, Frequency = ScheduleTopUpFrequency.Monthly, ExecutionTime = new TimeOnly(8, 30), ExecuteAtDay = 3, NextExecutionAt = new DateTime(2027, 1, 3, 8, 30, 0), Status = ScheduleTopUpStatus.Active, CreatedAt = createdAt },
-                new ScheduleTopUp { Id = 3, Name = "Semester Materials Allowance", TopupAmount = 180m, Frequency = ScheduleTopUpFrequency.OneTime, ExecutionTime = new TimeOnly(9, 0), OneTimeExecutionAt = new DateTime(2027, 1, 5, 9, 0, 0), NextExecutionAt = new DateTime(2027, 1, 5, 9, 0, 0), Status = ScheduleTopUpStatus.Active, CreatedAt = createdAt },
-                new ScheduleTopUp { Id = 4, Name = "Annual Study Resource Credit", TopupAmount = 240m, Frequency = ScheduleTopUpFrequency.Yearly, ExecutionTime = new TimeOnly(9, 30), ExecuteAtDay = 10, ExecuteAtMonth = 1, NextExecutionAt = new DateTime(2027, 1, 10, 9, 30, 0), Status = ScheduleTopUpStatus.Active, CreatedAt = createdAt },
-                new ScheduleTopUp { Id = 5, Name = "Monthly Low-Balance Booster", TopupAmount = 75m, Frequency = ScheduleTopUpFrequency.Monthly, ExecutionTime = new TimeOnly(10, 0), ExecuteAtDay = 5, NextExecutionAt = new DateTime(2027, 1, 5, 10, 0, 0), Status = ScheduleTopUpStatus.Active, CreatedAt = createdAt },
-                new ScheduleTopUp { Id = 6, Name = "Course Start Support Credit", TopupAmount = 150m, Frequency = ScheduleTopUpFrequency.OneTime, ExecutionTime = new TimeOnly(10, 30), OneTimeExecutionAt = new DateTime(2027, 1, 12, 10, 30, 0), NextExecutionAt = new DateTime(2027, 1, 12, 10, 30, 0), Status = ScheduleTopUpStatus.Active, CreatedAt = createdAt },
-                new ScheduleTopUp { Id = 7, Name = "Annual Technology Allowance", TopupAmount = 300m, Frequency = ScheduleTopUpFrequency.Yearly, ExecutionTime = new TimeOnly(11, 0), ExecuteAtDay = 15, ExecuteAtMonth = 2, NextExecutionAt = new DateTime(2027, 2, 15, 11, 0, 0), Status = ScheduleTopUpStatus.Active, CreatedAt = createdAt },
-                new ScheduleTopUp { Id = 8, Name = "Monthly Campus Essentials Credit", TopupAmount = 50m, Frequency = ScheduleTopUpFrequency.Monthly, ExecutionTime = new TimeOnly(11, 30), ExecuteAtDay = 8, NextExecutionAt = new DateTime(2027, 1, 8, 11, 30, 0), Status = ScheduleTopUpStatus.Active, CreatedAt = createdAt },
-                new ScheduleTopUp { Id = 9, Name = "Exam Period Support Credit", TopupAmount = 120m, Frequency = ScheduleTopUpFrequency.OneTime, ExecutionTime = new TimeOnly(12, 0), OneTimeExecutionAt = new DateTime(2027, 2, 1, 12, 0, 0), NextExecutionAt = new DateTime(2027, 2, 1, 12, 0, 0), Status = ScheduleTopUpStatus.Active, CreatedAt = createdAt },
-                new ScheduleTopUp { Id = 10, Name = "Annual Enrichment Credit", TopupAmount = 220m, Frequency = ScheduleTopUpFrequency.Yearly, ExecutionTime = new TimeOnly(12, 30), ExecuteAtDay = 20, ExecuteAtMonth = 3, NextExecutionAt = new DateTime(2027, 3, 20, 12, 30, 0), Status = ScheduleTopUpStatus.Active, CreatedAt = createdAt });
+                new ScheduleTopUp { Id = 1, Name = "Seed Schedule Topup 01", TopupAmount = 65m, Frequency = ScheduleTopUpFrequency.OneTime, OneTimeExecutionAt = new DateTime(2026, 7, 1, 0, 0, 0, DateTimeKind.Utc), ExecuteAtDay = null, ExecuteAtMonth = null, ExecutionTime = new TimeOnly(10, 0), NextExecutionAt = new DateTime(2026, 7, 1, 0, 0, 0, DateTimeKind.Utc), Status = ScheduleTopUpStatus.Active, CreatedAt = createdAt },
+                new ScheduleTopUp { Id = 2, Name = "Seed Schedule Topup 02", TopupAmount = 80m, Frequency = ScheduleTopUpFrequency.Monthly, OneTimeExecutionAt = null, ExecuteAtDay = 15, ExecuteAtMonth = null, ExecutionTime = new TimeOnly(11, 0), NextExecutionAt = new DateTime(2026, 7, 2, 0, 0, 0, DateTimeKind.Utc), Status = ScheduleTopUpStatus.Inactive, CreatedAt = createdAt },
+                new ScheduleTopUp { Id = 3, Name = "Seed Schedule Topup 03", TopupAmount = 95m, Frequency = ScheduleTopUpFrequency.Yearly, OneTimeExecutionAt = null, ExecuteAtDay = null, ExecuteAtMonth = 6, ExecutionTime = new TimeOnly(12, 0), NextExecutionAt = null, Status = ScheduleTopUpStatus.Completed, CreatedAt = createdAt },
+                new ScheduleTopUp { Id = 4, Name = "Seed Schedule Topup 04", TopupAmount = 110m, Frequency = ScheduleTopUpFrequency.OneTime, OneTimeExecutionAt = new DateTime(2026, 7, 4, 0, 0, 0, DateTimeKind.Utc), ExecuteAtDay = null, ExecuteAtMonth = null, ExecutionTime = new TimeOnly(13, 0), NextExecutionAt = new DateTime(2026, 7, 4, 0, 0, 0, DateTimeKind.Utc), Status = ScheduleTopUpStatus.Active, CreatedAt = createdAt },
+                new ScheduleTopUp { Id = 5, Name = "Seed Schedule Topup 05", TopupAmount = 125m, Frequency = ScheduleTopUpFrequency.Monthly, OneTimeExecutionAt = null, ExecuteAtDay = 15, ExecuteAtMonth = null, ExecutionTime = new TimeOnly(14, 0), NextExecutionAt = new DateTime(2026, 7, 5, 0, 0, 0, DateTimeKind.Utc), Status = ScheduleTopUpStatus.Inactive, CreatedAt = createdAt },
+                new ScheduleTopUp { Id = 6, Name = "Seed Schedule Topup 06", TopupAmount = 140m, Frequency = ScheduleTopUpFrequency.Yearly, OneTimeExecutionAt = null, ExecuteAtDay = null, ExecuteAtMonth = 6, ExecutionTime = new TimeOnly(9, 0), NextExecutionAt = null, Status = ScheduleTopUpStatus.Completed, CreatedAt = createdAt },
+                new ScheduleTopUp { Id = 7, Name = "Seed Schedule Topup 07", TopupAmount = 155m, Frequency = ScheduleTopUpFrequency.OneTime, OneTimeExecutionAt = new DateTime(2026, 7, 7, 0, 0, 0, DateTimeKind.Utc), ExecuteAtDay = null, ExecuteAtMonth = null, ExecutionTime = new TimeOnly(10, 0), NextExecutionAt = new DateTime(2026, 7, 7, 0, 0, 0, DateTimeKind.Utc), Status = ScheduleTopUpStatus.Active, CreatedAt = createdAt },
+                new ScheduleTopUp { Id = 8, Name = "Seed Schedule Topup 08", TopupAmount = 170m, Frequency = ScheduleTopUpFrequency.Monthly, OneTimeExecutionAt = null, ExecuteAtDay = 15, ExecuteAtMonth = null, ExecutionTime = new TimeOnly(11, 0), NextExecutionAt = new DateTime(2026, 7, 8, 0, 0, 0, DateTimeKind.Utc), Status = ScheduleTopUpStatus.Inactive, CreatedAt = createdAt },
+                new ScheduleTopUp { Id = 9, Name = "Seed Schedule Topup 09", TopupAmount = 185m, Frequency = ScheduleTopUpFrequency.Yearly, OneTimeExecutionAt = null, ExecuteAtDay = null, ExecuteAtMonth = 6, ExecutionTime = new TimeOnly(12, 0), NextExecutionAt = null, Status = ScheduleTopUpStatus.Completed, CreatedAt = createdAt },
+                new ScheduleTopUp { Id = 10, Name = "Seed Schedule Topup 10", TopupAmount = 200m, Frequency = ScheduleTopUpFrequency.OneTime, OneTimeExecutionAt = new DateTime(2026, 7, 10, 0, 0, 0, DateTimeKind.Utc), ExecuteAtDay = null, ExecuteAtMonth = null, ExecutionTime = new TimeOnly(13, 0), NextExecutionAt = new DateTime(2026, 7, 10, 0, 0, 0, DateTimeKind.Utc), Status = ScheduleTopUpStatus.Active, CreatedAt = createdAt });
+
             return modelBuilder;
         }
     }
