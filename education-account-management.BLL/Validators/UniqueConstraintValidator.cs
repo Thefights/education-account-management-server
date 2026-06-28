@@ -1,7 +1,4 @@
-﻿using Common;
-using EntityAnnotations;
-using Repositories.Interfaces;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 using System.Reflection;
 
 namespace Validators
@@ -31,7 +28,7 @@ namespace Validators
                 var filter = BuildFilter<TModel>(property, value, excludedId);
                 if (await repository.AnyAsync(filter, cancellationToken))
                 {
-                    throw new DataConflictException($"{typeof(TModel).Name} {property.Name} already exists.");
+                    throw new DataConflictException($"{property.Name} already exists.");
                 }
             }
         }

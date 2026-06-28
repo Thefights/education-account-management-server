@@ -1,4 +1,4 @@
-﻿using DTOs.Courses;
+using DTOs.Courses;
 using DTOs.Csv;
 using Interfaces.Csv;
 using Services.Base;
@@ -16,8 +16,8 @@ namespace Services.Courses
         private readonly ICsvImportProfile<Course, CreateCourseDTO> _profile = profile;
         private readonly SchoolScopeResolver _schoolScopeResolver = schoolScopeResolver;
         private readonly TimeProvider _timeProvider = timeProvider;
-        private readonly IGenericRepository<AiAssistantSetting> _settingRepository =
-            unitOfWork.Repository<AiAssistantSetting>();
+        private readonly IGenericRepository<ApplicationSetting> _settingRepository =
+            unitOfWork.Repository<ApplicationSetting>();
 
         public override async Task<BatchImportResultDTO> ImportAsync(
             IFormFile file,

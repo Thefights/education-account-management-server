@@ -1,8 +1,8 @@
-﻿namespace Models
+namespace Models
 {
-    public class AiAssistantSetting : AuditEntity
+    public class ApplicationSetting : AuditEntity
     {
-        public bool IsEnabled { get; set; }
+        public bool IsAiFeatureEnabled { get; set; }
 
         [Column(TypeName = "decimal(5,4)"), NumberPositive]
         public decimal TaxRate { get; set; } = 0.09m;

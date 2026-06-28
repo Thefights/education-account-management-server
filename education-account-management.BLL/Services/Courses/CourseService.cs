@@ -1,4 +1,4 @@
-﻿using DTOs.Courses;
+using DTOs.Courses;
 using Interfaces.Audit;
 using Interfaces.Courses;
 using Results;
@@ -23,8 +23,8 @@ namespace Services.Courses
         private readonly SchoolScopeResolver _schoolScopeResolver = schoolScopeResolver;
         private readonly IAuditLogWriter _auditLogWriter = auditLogWriter;
         private readonly TimeProvider _timeProvider = timeProvider;
-        private readonly IGenericRepository<AiAssistantSetting> _settingRepository =
-            unitOfWork.Repository<AiAssistantSetting>();
+        private readonly IGenericRepository<ApplicationSetting> _settingRepository =
+            unitOfWork.Repository<ApplicationSetting>();
         private readonly IGenericRepository<SchoolStudent> _schoolStudentRepository =
             unitOfWork.Repository<SchoolStudent>();
         private readonly IGenericRepository<School> _schoolRepository =

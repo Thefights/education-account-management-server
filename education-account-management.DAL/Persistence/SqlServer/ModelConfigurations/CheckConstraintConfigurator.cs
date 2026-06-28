@@ -6,10 +6,10 @@ namespace Persistence.SqlServer.ModelConfigurations
     {
         public static void ConfigureCheckConstraints(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<AiAssistantSetting>().ToTable(table =>
+            modelBuilder.Entity<ApplicationSetting>().ToTable(table =>
             {
-                table.HasCheckConstraint("CK_AiAssistantSetting_Singleton", "[Id] = 1");
-                table.HasCheckConstraint("CK_AiAssistantSetting_TaxRate", "[TaxRate] >= 0");
+                table.HasCheckConstraint("CK_ApplicationSetting_Singleton", "[Id] = 1");
+                table.HasCheckConstraint("CK_ApplicationSetting_TaxRate", "[TaxRate] >= 0");
             });
 
             modelBuilder.Entity<EducationAccount>().ToTable(table =>

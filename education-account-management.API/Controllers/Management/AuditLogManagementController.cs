@@ -14,7 +14,7 @@ namespace Controllers.Management
 
         [HttpPost("export")]
         public async Task<IActionResult> Export(
-            ExportAuditLogRequestDTO request,
+            [FromBody] ExportAuditLogRequestDTO request,
             CancellationToken cancellationToken)
         {
             var content = await _auditLogService.ExportCsvAsync(request, cancellationToken);
