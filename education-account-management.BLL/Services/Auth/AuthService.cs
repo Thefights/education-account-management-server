@@ -16,12 +16,10 @@ namespace Services.Auth
         ICurrentUserService currentUserService,
         ITokenBlacklistService tokenBlacklistService,
         AppConfiguration configuration,
-        IAuditLogWriter auditLogWriter,
-    ILogger<AuthService> logger)
+        IAuditLogWriter auditLogWriter)
         : IAuthService
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
-        private readonly ILogger<AuthService> _logger = logger;
         private readonly AppConfiguration _configuration = configuration;
         private readonly ICurrentUserService _currentUserService = currentUserService;
         private readonly ITokenBlacklistService _tokenBlacklistService = tokenBlacklistService;
@@ -32,13 +30,14 @@ namespace Services.Auth
         private readonly IGenericRepository<UserStatusHistory> _userStatusHistoryRepository = unitOfWork.Repository<UserStatusHistory>();
         private readonly IGenericRepository<SsoIdentity> _ssoIdentityRepository = unitOfWork.Repository<SsoIdentity>();
         private readonly IGenericRepository<Models.EducationAccount> _educationAccountRepository = unitOfWork.Repository<Models.EducationAccount>();
+
         public async Task<AuthLoginResponseDTO> LoginWithMockSingpassAsync(
             CancellationToken cancellationToken = default)
         {
             var user = await ResolveUserFromSsoAsync(
                 SsoProvider.Singpass,
                 cancellationToken,
-                "singpass-subject-009");
+                "singpass-subject-004");
 
             if (user.Role != UserRole.AccountHolder)
             {
@@ -135,25 +134,14 @@ namespace Services.Auth
         {
             ArgumentNullException.ThrowIfNull(request);
 
-            _logger.LogInformation(
-                "AZURE_LOGIN_STEP_01_REQUEST_RECEIVED IdTokenEmpty={IdTokenEmpty} IdTokenLength={IdTokenLength}",
-                string.IsNullOrWhiteSpace(request.IdToken),
-                request.IdToken?.Length ?? 0);
-
             if (string.IsNullOrWhiteSpace(request.IdToken))
             {
-                _logger.LogWarning("AZURE_LOGIN_FAIL_01_EMPTY_ID_TOKEN");
                 throw new UnauthorizedAccessException("Invalid login credentials");
             }
 
             var tenantId = string.IsNullOrWhiteSpace(_configuration.Microsoft365Config.TenantId)
                 ? "common"
                 : _configuration.Microsoft365Config.TenantId.Trim();
-
-            _logger.LogInformation(
-                "AZURE_LOGIN_STEP_02_CONFIG TenantId={TenantId} ClientId={ClientId}",
-                tenantId,
-                _configuration.Microsoft365Config.ClientId);
 
             var metadataAddress =
                 $"https://login.microsoftonline.com/{tenantId}/v2.0/.well-known/openid-configuration";
@@ -166,14 +154,9 @@ namespace Services.Auth
                     new OpenIdConnectConfigurationRetriever());
 
                 openIdConfig = await configurationManager.GetConfigurationAsync(cancellationToken);
-
-                _logger.LogInformation(
-                    "AZURE_LOGIN_STEP_03_METADATA_LOADED SigningKeyCount={SigningKeyCount}",
-                    openIdConfig.SigningKeys?.Count ?? 0);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                _logger.LogError(ex, "AZURE_LOGIN_FAIL_02_METADATA_LOAD_FAILED MetadataAddress={MetadataAddress}", metadataAddress);
                 throw;
             }
 
@@ -182,24 +165,16 @@ namespace Services.Auth
                 ValidateIssuer = true,
                 IssuerValidator = (issuer, _, _) =>
                 {
-                    _logger.LogInformation("AZURE_LOGIN_STEP_04_ISSUER_VALIDATING Issuer={Issuer}", issuer);
-
                     if (!Uri.TryCreate(issuer, UriKind.Absolute, out var issuerUri)
                         || issuerUri.Host != "login.microsoftonline.com"
                         || !issuerUri.AbsolutePath.EndsWith("/v2.0", StringComparison.OrdinalIgnoreCase))
                     {
-                        _logger.LogWarning("AZURE_LOGIN_FAIL_03_INVALID_ISSUER Issuer={Issuer}", issuer);
                         throw new SecurityTokenInvalidIssuerException("Invalid Microsoft 365 issuer.");
                     }
 
                     if (!string.Equals(tenantId, "common", StringComparison.OrdinalIgnoreCase)
                         && !issuerUri.AbsolutePath.Contains($"/{tenantId}/", StringComparison.OrdinalIgnoreCase))
                     {
-                        _logger.LogWarning(
-                            "AZURE_LOGIN_FAIL_04_INVALID_TENANT Issuer={Issuer} ExpectedTenantId={TenantId}",
-                            issuer,
-                            tenantId);
-
                         throw new SecurityTokenInvalidIssuerException("Invalid Microsoft 365 tenant.");
                     }
 
@@ -220,19 +195,9 @@ namespace Services.Auth
                 {
                     MapInboundClaims = false
                 }.ValidateToken(request.IdToken, validationParameters, out var validatedToken);
-
-                _logger.LogInformation(
-                    "AZURE_LOGIN_STEP_05_TOKEN_VALIDATED TokenType={TokenType}",
-                    validatedToken?.GetType().Name);
             }
             catch (Exception ex) when (ex is SecurityTokenException or ArgumentException)
             {
-                _logger.LogWarning(
-                    ex,
-                    "AZURE_LOGIN_FAIL_05_TOKEN_VALIDATION_FAILED ClientId={ClientId} TenantId={TenantId}",
-                    _configuration.Microsoft365Config.ClientId,
-                    tenantId);
-
                 throw new UnauthorizedAccessException("Invalid login credentials", ex);
             }
 
@@ -242,31 +207,12 @@ namespace Services.Auth
             var issuer = principal.FindFirst("iss")?.Value;
             var username = principal.FindFirst("preferred_username")?.Value;
 
-            _logger.LogInformation(
-                "AZURE_LOGIN_STEP_06_CLAIMS tid={Tid} oid={Oid} aud={Aud} iss={Iss} username={Username}",
-                tokenTenantId,
-                objectId,
-                audience,
-                issuer,
-                username);
-
             if (string.IsNullOrWhiteSpace(tokenTenantId) || string.IsNullOrWhiteSpace(objectId))
             {
-                _logger.LogWarning(
-                    "AZURE_LOGIN_FAIL_06_MISSING_CLAIMS tidEmpty={TidEmpty} oidEmpty={OidEmpty}",
-                    string.IsNullOrWhiteSpace(tokenTenantId),
-                    string.IsNullOrWhiteSpace(objectId));
-
                 throw new UnauthorizedAccessException("Invalid login credentials");
             }
 
             var compositeProviderUserId = $"{tokenTenantId}:{objectId}";
-
-            _logger.LogInformation(
-                "AZURE_LOGIN_STEP_07_RESOLVE_USER Provider={Provider} CompositeProviderUserId={CompositeProviderUserId} ObjectId={ObjectId}",
-                SsoProvider.AzureAD,
-                compositeProviderUserId,
-                objectId);
 
             var user = await ResolveUserFromSsoAsync(
                 SsoProvider.AzureAD,
@@ -274,25 +220,12 @@ namespace Services.Auth
                 compositeProviderUserId,
                 objectId);
 
-            _logger.LogInformation(
-                "AZURE_LOGIN_STEP_08_USER_RESOLVED UserId={UserId} Role={Role} Status={Status}",
-                user.Id,
-                user.Role,
-                user.Status);
-
             if (user.Role is not (UserRole.SystemAdmin
                 or UserRole.FinanceAdmin
                 or UserRole.SchoolAdmin))
             {
-                _logger.LogWarning(
-                    "AZURE_LOGIN_FAIL_07_ROLE_NOT_ALLOWED UserId={UserId} Role={Role}",
-                    user.Id,
-                    user.Role);
-
                 throw new UnauthorizedAccessException("Invalid login credentials");
             }
-
-            _logger.LogInformation("AZURE_LOGIN_STEP_09_ISSUE_LOGIN_RESULT UserId={UserId}", user.Id);
 
             return await IssueLoginResultAsync(user, cancellationToken);
         }

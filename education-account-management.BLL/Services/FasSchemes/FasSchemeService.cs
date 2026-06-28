@@ -57,7 +57,11 @@ namespace Services.FasSchemes
                 var scheme = _mapper.MapFromCreateDTO(createDTO);
                 scheme.SchoolId = schoolId;
                 scheme.Status = FasSchemeStatus.Draft;
-                scheme.SchemeCode = await GenerateUniqueSchemeCodeAsync(schoolId, token);
+                scheme.SchemeCode = await BusinessCodeGenerator.GenerateUniqueAsync(
+                    BusinessCodeGenerator.FasSchemePrefix,
+                    (code, innerToken) => _repository.AnyAsync(s => s.SchemeCode == code, innerToken),
+                    conflictMessage: "Unable to generate a unique FAS scheme code.",
+                    cancellationToken: token);
                 scheme.TryValidate();
 
                 await UniqueConstraintValidator.ValidateAsync(_repository, scheme, cancellationToken: token);
@@ -285,7 +289,11 @@ namespace Services.FasSchemes
                 {
                     SchoolId = schoolId,
                     Status = FasSchemeStatus.Draft,
-                    SchemeCode = await GenerateUniqueSchemeCodeAsync(schoolId, token),
+                    SchemeCode = await BusinessCodeGenerator.GenerateUniqueAsync(
+                        BusinessCodeGenerator.FasSchemePrefix,
+                        (code, innerToken) => _repository.AnyAsync(s => s.SchemeCode == code, innerToken),
+                        conflictMessage: "Unable to generate a unique FAS scheme code.",
+                        cancellationToken: token),
                     SchemeName = nameCopy,
                     Description = source.Description,
                     DurationInMonths = source.DurationInMonths,
@@ -512,19 +520,6 @@ namespace Services.FasSchemes
                 if (groupsByOwner.TryGetValue(item.Id, out var ownedGroups) && ownedGroups.Count != 0)
                     item.RootConditionGroup = FasConditionTreeMapper.MapFasTree(ownedGroups);
             }
-        }
-
-        private async Task<string> GenerateUniqueSchemeCodeAsync(int schoolId, CancellationToken cancellationToken)
-        {
-            string code;
-            bool exists;
-            do
-            {
-                var randomSuffix = Random.Shared.Next(100000, 999999);
-                code = $"FAS-{schoolId}-{randomSuffix}";
-                exists = await _repository.AnyAsync(s => s.SchemeCode == code, cancellationToken);
-            } while (exists);
-            return code;
         }
 
         private static void ValidateInput(string name, int tiersCount, FasConditionGroupRequestDTO rootConditionGroup)
