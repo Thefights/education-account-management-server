@@ -89,11 +89,11 @@ namespace Persistence.Seeding
                 new FasApplication { Id = 1, FasSchemeId = 1, SchoolStudentId = 1, RecommendedTierId = 1, ApprovedTierId = 1, ApplicationNumber = "FASAPP-20260101-A1B2C3D", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 18, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 2500m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 625m, RecommendationReason = "PCI <= 750", ApprovedAt = approvedAt, ApprovedByUserId = 1, DurationInMonthsSnapshot = 6, ValidityStartDate = approvedAt, ValidityEndDate = approvedAt.AddMonths(6), CreatedAt = createdAt },
                 new FasApplication { Id = 2, FasSchemeId = 2, SchoolStudentId = 2, RecommendedTierId = 2, ApprovedTierId = 2, ApplicationNumber = "FASAPP-20260102-E4F5G6H", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 17, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.Other, GrossHouseholdIncomeSnapshot = 3000m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 750m, RecommendationReason = "GHI <= 3500", ApprovedAt = approvedAt, ApprovedByUserId = 1, DurationInMonthsSnapshot = 3, ValidityStartDate = approvedAt, ValidityEndDate = approvedAt.AddMonths(3), CreatedAt = createdAt },
                 new FasApplication { Id = 3, FasSchemeId = 3, SchoolStudentId = 3, RecommendedTierId = 3, ApprovedTierId = 3, ApplicationNumber = "FASAPP-20260103-I7J8K9L", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 19, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 2200m, HouseholdMemberCountSnapshot = 5, PerCapitaIncomeSnapshot = 440m, RecommendationReason = "Singapore citizen and PCI <= 690", ApprovedAt = approvedAt, ApprovedByUserId = 1, DurationInMonthsSnapshot = 12, ValidityStartDate = approvedAt, ValidityEndDate = approvedAt.AddMonths(12), CreatedAt = createdAt },
-                new FasApplication { Id = 4, FasSchemeId = 4, SchoolStudentId = 4, RecommendedTierId = 4, ApplicationNumber = "FASAPP-20260104-M1N2P3Q", Status = FasApplicationStatus.Pending, StudentAgeSnapshot = 20, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.Other, GrossHouseholdIncomeSnapshot = 3600m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 900m, RecommendationReason = "Pending admin review", CreatedAt = createdAt },
+                new FasApplication { Id = 4, FasSchemeId = 4, SchoolStudentId = 4, RecommendedTierId = 4, ApplicationNumber = "FASAPP-20260104-M1N2P3Q", Status = FasApplicationStatus.Draft, StudentAgeSnapshot = 20, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.Other, GrossHouseholdIncomeSnapshot = 3600m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 900m, RecommendationReason = "Draft state", CreatedAt = createdAt },
                 new FasApplication { Id = 5, FasSchemeId = 5, SchoolStudentId = 5, RecommendedTierId = 5, ApplicationNumber = "FASAPP-20260105-R4S5T6U", Status = FasApplicationStatus.Rejected, StudentAgeSnapshot = 21, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.Other, GrossHouseholdIncomeSnapshot = 7000m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 1750m, RecommendationReason = "No tier matched", RejectionReason = "Income exceeds supported threshold.", CreatedAt = createdAt },
                 new FasApplication { Id = 6, FasSchemeId = 6, SchoolStudentId = 6, RecommendedTierId = 6, ApplicationNumber = "FASAPP-20260106-V7W8X9Y", Status = FasApplicationStatus.Withdrawn, StudentAgeSnapshot = 18, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 2800m, HouseholdMemberCountSnapshot = 5, PerCapitaIncomeSnapshot = 560m, RecommendationReason = "Student withdrew before review", WithdrawnAt = new DateTime(2026, 6, 3, 0, 0, 0, DateTimeKind.Utc), CreatedAt = createdAt },
                 new FasApplication { Id = 7, FasSchemeId = 7, SchoolStudentId = 7, RecommendedTierId = 7, ApprovedTierId = 7, ApplicationNumber = "FASAPP-20260107-Z1A2B3C", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 16, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 4800m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 1200m, RecommendationReason = "Special needs support threshold matched", ApprovedAt = approvedAt, ApprovedByUserId = 1, DurationInMonthsSnapshot = 12, ValidityStartDate = approvedAt, ValidityEndDate = approvedAt.AddMonths(12), CreatedAt = createdAt },
-                new FasApplication { Id = 8, FasSchemeId = 8, SchoolStudentId = 8, RecommendedTierId = 8, ApprovedTierId = 8, ApplicationNumber = "FASAPP-20260108-D4E5F6G", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 22, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.Other, GrossHouseholdIncomeSnapshot = 3200m, HouseholdMemberCountSnapshot = 5, PerCapitaIncomeSnapshot = 640m, RecommendationReason = "PCI <= 850", ApprovedAt = new DateTime(2025, 6, 1, 0, 0, 0, DateTimeKind.Utc), ApprovedByUserId = 1, DurationInMonthsSnapshot = 6, ValidityStartDate = new DateTime(2025, 6, 1, 0, 0, 0, DateTimeKind.Utc), ValidityEndDate = new DateTime(2025, 12, 1, 0, 0, 0, DateTimeKind.Utc), CreatedAt = createdAt },
+                new FasApplication { Id = 8, FasSchemeId = 8, SchoolStudentId = 8, RecommendedTierId = 8, ApprovedTierId = 8, ApplicationNumber = "FASAPP-20260108-D4E5F6G", Status = FasApplicationStatus.Expired, StudentAgeSnapshot = 22, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.Other, GrossHouseholdIncomeSnapshot = 3200m, HouseholdMemberCountSnapshot = 5, PerCapitaIncomeSnapshot = 640m, RecommendationReason = "PCI <= 850", ApprovedAt = new DateTime(2025, 6, 1, 0, 0, 0, DateTimeKind.Utc), ApprovedByUserId = 1, DurationInMonthsSnapshot = 6, ValidityStartDate = new DateTime(2025, 6, 1, 0, 0, 0, DateTimeKind.Utc), ValidityEndDate = new DateTime(2025, 12, 1, 0, 0, 0, DateTimeKind.Utc), CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
                 new FasApplication { Id = 9, FasSchemeId = 9, SchoolStudentId = 9, RecommendedTierId = 9, ApplicationNumber = "FASAPP-20260109-H7J8K9L", Status = FasApplicationStatus.Pending, StudentAgeSnapshot = 17, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.Other, GrossHouseholdIncomeSnapshot = 2600m, HouseholdMemberCountSnapshot = 3, PerCapitaIncomeSnapshot = 866.67m, RecommendationReason = "Emergency aid review required", CreatedAt = createdAt },
                 new FasApplication { Id = 10, FasSchemeId = 10, SchoolStudentId = 10, RecommendedTierId = 10, ApprovedTierId = 10, ApplicationNumber = "FASAPP-20260110-M1N2P3Q", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 18, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 3900m, HouseholdMemberCountSnapshot = 5, PerCapitaIncomeSnapshot = 780m, RecommendationReason = "PCI <= 1000", ApprovedAt = approvedAt, ApprovedByUserId = 1, DurationInMonthsSnapshot = 12, ValidityStartDate = approvedAt, ValidityEndDate = approvedAt.AddMonths(12), CreatedAt = createdAt }
             };
@@ -103,22 +103,27 @@ namespace Persistence.Seeding
             {
                 var schemeId = (i % 10) + 1; // 1 to 10
                 var studentId = 1; // Assigned to the mock singpass user's child for FE testing
-                var categoryIndex = i % 5; 
-                // 0: Pending, 1: Approved, 2: Rejected, 3: Withdrawn, 4: Expired (Approved but old dates)
+                var categoryIndex = i % 6; 
+                // 0: Pending, 1: Approved, 2: Rejected, 3: Withdrawn, 4: Draft, 5: Expired
 
                 var status = categoryIndex == 0 ? FasApplicationStatus.Pending :
                              categoryIndex == 1 ? FasApplicationStatus.Approved :
                              categoryIndex == 2 ? FasApplicationStatus.Rejected :
                              categoryIndex == 3 ? FasApplicationStatus.Withdrawn :
-                             FasApplicationStatus.Approved;
+                             categoryIndex == 4 ? FasApplicationStatus.Draft :
+                             FasApplicationStatus.Expired;
 
-                var isApproved = status == FasApplicationStatus.Approved;
+                var isApproved = status == FasApplicationStatus.Approved || status == FasApplicationStatus.Expired;
                 var isRejected = status == FasApplicationStatus.Rejected;
                 var isWithdrawn = status == FasApplicationStatus.Withdrawn;
-                var isExpired = categoryIndex == 4;
+                var isExpired = status == FasApplicationStatus.Expired;
 
                 var currentApprovedAt = isExpired ? new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) : approvedAt;
                 var duration = i % 2 == 0 ? 6 : 12;
+
+                var baseCreatedAt = createdAt.AddDays(-(i % 30));
+                // Guarantee CreatedAt is always earlier than any approval/validity dates for both active and expired records
+                var safeCreatedAt = isExpired ? new DateTime(2024, 12, 1, 0, 0, 0, DateTimeKind.Utc).AddDays(-(i % 30)) : baseCreatedAt;
 
                 applications.Add(new FasApplication
                 {
@@ -134,7 +139,7 @@ namespace Persistence.Seeding
                     GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen,
                     GrossHouseholdIncomeSnapshot = 2000m + (i * 100 % 4000),
                     HouseholdMemberCountSnapshot = 3 + (i % 4),
-                    PerCapitaIncomeSnapshot = (2000m + (i * 100 % 4000)) / (3 + (i % 4)),
+                    PerCapitaIncomeSnapshot = Math.Round((2000m + (i * 100 % 4000)) / (3 + (i % 4)), 2),
                     RecommendationReason = $"Auto generated reason {i}",
                     RejectionReason = isRejected ? "Does not meet requirements." : null,
                     ApprovedAt = isApproved ? currentApprovedAt : null,
@@ -143,7 +148,7 @@ namespace Persistence.Seeding
                     ValidityStartDate = isApproved ? currentApprovedAt : null,
                     ValidityEndDate = isApproved ? currentApprovedAt.AddMonths(duration) : null,
                     WithdrawnAt = isWithdrawn ? approvedAt : null,
-                    CreatedAt = createdAt.AddDays(-(i % 30))
+                    CreatedAt = safeCreatedAt
                 });
             }
 
@@ -156,10 +161,14 @@ namespace Persistence.Seeding
                 new FasApplicationDocument { Id = 3, FasApplicationId = 3, FasSchemeRequiredDocumentId = 3, DocumentNameSnapshot = "Recent Payslip", FileKey = "fas/applications/3/document.pdf", FileName = "fas-application-03.pdf", CreatedAt = createdAt },
                 new FasApplicationDocument { Id = 4, FasApplicationId = 4, FasSchemeRequiredDocumentId = 4, DocumentNameSnapshot = "Income Statement", FileKey = "fas/applications/4/document.pdf", FileName = "fas-application-04.pdf", CreatedAt = createdAt },
                 new FasApplicationDocument { Id = 5, FasApplicationId = 5, FasSchemeRequiredDocumentId = 5, DocumentNameSnapshot = "Recent Payslip", FileKey = "fas/applications/5/document.pdf", FileName = "fas-application-05.pdf", CreatedAt = createdAt },
-                new FasApplicationDocument { Id = 6, FasApplicationId = 6, FasSchemeRequiredDocumentId = 6, DocumentNameSnapshot = "Income Statement", FileKey = "fas/applications/6/document.pdf", FileName = "fas-application-06.pdf", CreatedAt = createdAt }
+                new FasApplicationDocument { Id = 6, FasApplicationId = 6, FasSchemeRequiredDocumentId = 6, DocumentNameSnapshot = "Income Statement", FileKey = "fas/applications/6/document.pdf", FileName = "fas-application-06.pdf", CreatedAt = createdAt },
+                new FasApplicationDocument { Id = 7, FasApplicationId = 7, FasSchemeRequiredDocumentId = 7, DocumentNameSnapshot = "Recent Payslip", FileKey = "fas/applications/7/document.pdf", FileName = "fas-application-07.pdf", CreatedAt = createdAt },
+                new FasApplicationDocument { Id = 8, FasApplicationId = 8, FasSchemeRequiredDocumentId = 8, DocumentNameSnapshot = "Income Statement", FileKey = "fas/applications/8/document.pdf", FileName = "fas-application-08.pdf", CreatedAt = createdAt },
+                new FasApplicationDocument { Id = 9, FasApplicationId = 9, FasSchemeRequiredDocumentId = 9, DocumentNameSnapshot = "Recent Payslip", FileKey = "fas/applications/9/document.pdf", FileName = "fas-application-09.pdf", CreatedAt = createdAt },
+                new FasApplicationDocument { Id = 10, FasApplicationId = 10, FasSchemeRequiredDocumentId = 10, DocumentNameSnapshot = "Income Statement", FileKey = "fas/applications/10/document.pdf", FileName = "fas-application-10.pdf", CreatedAt = createdAt }
             };
 
-            int docId = 7;
+            int docId = 11;
             foreach (var app in applications.Skip(10)) // Skip the first 10 manually seeded applications
             {
                 documents.Add(new FasApplicationDocument

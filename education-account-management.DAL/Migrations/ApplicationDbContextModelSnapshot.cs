@@ -8016,10 +8016,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             HouseholdMemberCountSnapshot = 4,
                             IsDeleted = false,
                             PerCapitaIncomeSnapshot = 900m,
-                            RecommendationReason = "Pending admin review",
+                            RecommendationReason = "Draft state",
                             RecommendedTierId = 4,
                             SchoolStudentId = 4,
-                            Status = 1,
+                            Status = 5,
                             StudentAgeSnapshot = 20,
                             StudentNationalitySnapshot = 1
                         },
@@ -8092,7 +8092,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             ApprovedAt = new DateTime(2025, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ApprovedByUserId = 1,
                             ApprovedTierId = 8,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DurationInMonthsSnapshot = 6,
                             FasSchemeId = 8,
                             GrossHouseholdIncomeSnapshot = 3200m,
@@ -8103,7 +8103,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RecommendationReason = "PCI <= 850",
                             RecommendedTierId = 8,
                             SchoolStudentId = 8,
-                            Status = 2,
+                            Status = 6,
                             StudentAgeSnapshot = 22,
                             StudentNationalitySnapshot = 1,
                             ValidityEndDate = new DateTime(2025, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -8161,7 +8161,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             GuardianNationalitySnapshot = 1,
                             HouseholdMemberCountSnapshot = 3,
                             IsDeleted = false,
-                            PerCapitaIncomeSnapshot = 666.66666666666666666666666667m,
+                            PerCapitaIncomeSnapshot = 666.67m,
                             RecommendationReason = "Auto generated reason 0",
                             RecommendedTierId = 1,
                             SchoolStudentId = 1,
@@ -8222,7 +8222,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             GuardianNationalitySnapshot = 1,
                             HouseholdMemberCountSnapshot = 6,
                             IsDeleted = false,
-                            PerCapitaIncomeSnapshot = 383.33333333333333333333333333m,
+                            PerCapitaIncomeSnapshot = 383.33m,
                             RecommendationReason = "Auto generated reason 3",
                             RecommendedTierId = 4,
                             SchoolStudentId = 1,
@@ -8235,11 +8235,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 15,
                             ApplicationNumber = "FASAPP-GEN-0004",
-                            ApprovedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ApprovedByUserId = 1,
-                            ApprovedTierId = 5,
                             CreatedAt = new DateTime(2025, 12, 28, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DurationInMonthsSnapshot = 6,
                             FasSchemeId = 5,
                             GrossHouseholdIncomeSnapshot = 2400m,
                             GuardianNationalitySnapshot = 1,
@@ -8249,17 +8245,19 @@ namespace educationaccountmanagement.DAL.Migrations
                             RecommendationReason = "Auto generated reason 4",
                             RecommendedTierId = 5,
                             SchoolStudentId = 1,
-                            Status = 2,
+                            Status = 5,
                             StudentAgeSnapshot = 20,
-                            StudentNationalitySnapshot = 1,
-                            ValidityEndDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ValidityStartDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                            StudentNationalitySnapshot = 1
                         },
                         new
                         {
                             Id = 16,
                             ApplicationNumber = "FASAPP-GEN-0005",
-                            CreatedAt = new DateTime(2025, 12, 27, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApprovedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApprovedByUserId = 1,
+                            ApprovedTierId = 6,
+                            CreatedAt = new DateTime(2024, 11, 26, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DurationInMonthsSnapshot = 12,
                             FasSchemeId = 6,
                             GrossHouseholdIncomeSnapshot = 2500m,
                             GuardianNationalitySnapshot = 1,
@@ -8269,19 +8267,17 @@ namespace educationaccountmanagement.DAL.Migrations
                             RecommendationReason = "Auto generated reason 5",
                             RecommendedTierId = 6,
                             SchoolStudentId = 1,
-                            Status = 1,
+                            Status = 6,
                             StudentAgeSnapshot = 21,
-                            StudentNationalitySnapshot = 1
+                            StudentNationalitySnapshot = 1,
+                            ValidityEndDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ValidityStartDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 17,
                             ApplicationNumber = "FASAPP-GEN-0006",
-                            ApprovedAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ApprovedByUserId = 1,
-                            ApprovedTierId = 7,
                             CreatedAt = new DateTime(2025, 12, 26, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DurationInMonthsSnapshot = 6,
                             FasSchemeId = 7,
                             GrossHouseholdIncomeSnapshot = 2600m,
                             GuardianNationalitySnapshot = 1,
@@ -8291,17 +8287,19 @@ namespace educationaccountmanagement.DAL.Migrations
                             RecommendationReason = "Auto generated reason 6",
                             RecommendedTierId = 7,
                             SchoolStudentId = 1,
-                            Status = 2,
+                            Status = 1,
                             StudentAgeSnapshot = 16,
-                            StudentNationalitySnapshot = 2,
-                            ValidityEndDate = new DateTime(2026, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                            StudentNationalitySnapshot = 2
                         },
                         new
                         {
                             Id = 18,
                             ApplicationNumber = "FASAPP-GEN-0007",
+                            ApprovedAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApprovedByUserId = 1,
+                            ApprovedTierId = 8,
                             CreatedAt = new DateTime(2025, 12, 25, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DurationInMonthsSnapshot = 12,
                             FasSchemeId = 8,
                             GrossHouseholdIncomeSnapshot = 2700m,
                             GuardianNationalitySnapshot = 1,
@@ -8310,11 +8308,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             PerCapitaIncomeSnapshot = 450m,
                             RecommendationReason = "Auto generated reason 7",
                             RecommendedTierId = 8,
-                            RejectionReason = "Does not meet requirements.",
                             SchoolStudentId = 1,
-                            Status = 3,
+                            Status = 2,
                             StudentAgeSnapshot = 17,
-                            StudentNationalitySnapshot = 1
+                            StudentNationalitySnapshot = 1,
+                            ValidityEndDate = new DateTime(2027, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -8326,24 +8325,20 @@ namespace educationaccountmanagement.DAL.Migrations
                             GuardianNationalitySnapshot = 1,
                             HouseholdMemberCountSnapshot = 3,
                             IsDeleted = false,
-                            PerCapitaIncomeSnapshot = 933.3333333333333333333333333m,
+                            PerCapitaIncomeSnapshot = 933.33m,
                             RecommendationReason = "Auto generated reason 8",
                             RecommendedTierId = 9,
+                            RejectionReason = "Does not meet requirements.",
                             SchoolStudentId = 1,
-                            Status = 4,
+                            Status = 3,
                             StudentAgeSnapshot = 18,
-                            StudentNationalitySnapshot = 1,
-                            WithdrawnAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                            StudentNationalitySnapshot = 1
                         },
                         new
                         {
                             Id = 20,
                             ApplicationNumber = "FASAPP-GEN-0009",
-                            ApprovedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ApprovedByUserId = 1,
-                            ApprovedTierId = 10,
                             CreatedAt = new DateTime(2025, 12, 23, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DurationInMonthsSnapshot = 12,
                             FasSchemeId = 10,
                             GrossHouseholdIncomeSnapshot = 2900m,
                             GuardianNationalitySnapshot = 1,
@@ -8353,11 +8348,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             RecommendationReason = "Auto generated reason 9",
                             RecommendedTierId = 10,
                             SchoolStudentId = 1,
-                            Status = 2,
+                            Status = 4,
                             StudentAgeSnapshot = 19,
                             StudentNationalitySnapshot = 2,
-                            ValidityEndDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ValidityStartDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                            WithdrawnAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -8373,7 +8367,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RecommendationReason = "Auto generated reason 10",
                             RecommendedTierId = 1,
                             SchoolStudentId = 1,
-                            Status = 1,
+                            Status = 5,
                             StudentAgeSnapshot = 20,
                             StudentNationalitySnapshot = 1
                         },
@@ -8381,25 +8375,25 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 22,
                             ApplicationNumber = "FASAPP-GEN-0011",
-                            ApprovedAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApprovedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ApprovedByUserId = 1,
                             ApprovedTierId = 2,
-                            CreatedAt = new DateTime(2025, 12, 21, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2024, 11, 20, 0, 0, 0, 0, DateTimeKind.Utc),
                             DurationInMonthsSnapshot = 12,
                             FasSchemeId = 2,
                             GrossHouseholdIncomeSnapshot = 3100m,
                             GuardianNationalitySnapshot = 1,
                             HouseholdMemberCountSnapshot = 6,
                             IsDeleted = false,
-                            PerCapitaIncomeSnapshot = 516.66666666666666666666666667m,
+                            PerCapitaIncomeSnapshot = 516.67m,
                             RecommendationReason = "Auto generated reason 11",
                             RecommendedTierId = 2,
                             SchoolStudentId = 1,
-                            Status = 2,
+                            Status = 6,
                             StudentAgeSnapshot = 21,
                             StudentNationalitySnapshot = 1,
-                            ValidityEndDate = new DateTime(2027, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                            ValidityEndDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ValidityStartDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -8411,12 +8405,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             GuardianNationalitySnapshot = 1,
                             HouseholdMemberCountSnapshot = 3,
                             IsDeleted = false,
-                            PerCapitaIncomeSnapshot = 1066.6666666666666666666666667m,
+                            PerCapitaIncomeSnapshot = 1066.67m,
                             RecommendationReason = "Auto generated reason 12",
                             RecommendedTierId = 3,
-                            RejectionReason = "Does not meet requirements.",
                             SchoolStudentId = 1,
-                            Status = 3,
+                            Status = 1,
                             StudentAgeSnapshot = 16,
                             StudentNationalitySnapshot = 2
                         },
@@ -8424,7 +8417,11 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 24,
                             ApplicationNumber = "FASAPP-GEN-0013",
+                            ApprovedAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApprovedByUserId = 1,
+                            ApprovedTierId = 4,
                             CreatedAt = new DateTime(2025, 12, 19, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DurationInMonthsSnapshot = 12,
                             FasSchemeId = 4,
                             GrossHouseholdIncomeSnapshot = 3300m,
                             GuardianNationalitySnapshot = 1,
@@ -8434,20 +8431,17 @@ namespace educationaccountmanagement.DAL.Migrations
                             RecommendationReason = "Auto generated reason 13",
                             RecommendedTierId = 4,
                             SchoolStudentId = 1,
-                            Status = 4,
+                            Status = 2,
                             StudentAgeSnapshot = 17,
                             StudentNationalitySnapshot = 1,
-                            WithdrawnAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                            ValidityEndDate = new DateTime(2027, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 25,
                             ApplicationNumber = "FASAPP-GEN-0014",
-                            ApprovedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ApprovedByUserId = 1,
-                            ApprovedTierId = 5,
                             CreatedAt = new DateTime(2025, 12, 18, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DurationInMonthsSnapshot = 6,
                             FasSchemeId = 5,
                             GrossHouseholdIncomeSnapshot = 3400m,
                             GuardianNationalitySnapshot = 1,
@@ -8456,12 +8450,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             PerCapitaIncomeSnapshot = 680m,
                             RecommendationReason = "Auto generated reason 14",
                             RecommendedTierId = 5,
+                            RejectionReason = "Does not meet requirements.",
                             SchoolStudentId = 1,
-                            Status = 2,
+                            Status = 3,
                             StudentAgeSnapshot = 18,
-                            StudentNationalitySnapshot = 1,
-                            ValidityEndDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ValidityStartDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                            StudentNationalitySnapshot = 1
                         },
                         new
                         {
@@ -8473,23 +8466,20 @@ namespace educationaccountmanagement.DAL.Migrations
                             GuardianNationalitySnapshot = 1,
                             HouseholdMemberCountSnapshot = 6,
                             IsDeleted = false,
-                            PerCapitaIncomeSnapshot = 583.33333333333333333333333333m,
+                            PerCapitaIncomeSnapshot = 583.33m,
                             RecommendationReason = "Auto generated reason 15",
                             RecommendedTierId = 6,
                             SchoolStudentId = 1,
-                            Status = 1,
+                            Status = 4,
                             StudentAgeSnapshot = 19,
-                            StudentNationalitySnapshot = 2
+                            StudentNationalitySnapshot = 2,
+                            WithdrawnAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 27,
                             ApplicationNumber = "FASAPP-GEN-0016",
-                            ApprovedAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ApprovedByUserId = 1,
-                            ApprovedTierId = 7,
                             CreatedAt = new DateTime(2025, 12, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DurationInMonthsSnapshot = 6,
                             FasSchemeId = 7,
                             GrossHouseholdIncomeSnapshot = 3600m,
                             GuardianNationalitySnapshot = 1,
@@ -8499,17 +8489,19 @@ namespace educationaccountmanagement.DAL.Migrations
                             RecommendationReason = "Auto generated reason 16",
                             RecommendedTierId = 7,
                             SchoolStudentId = 1,
-                            Status = 2,
+                            Status = 5,
                             StudentAgeSnapshot = 20,
-                            StudentNationalitySnapshot = 1,
-                            ValidityEndDate = new DateTime(2026, 12, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                            StudentNationalitySnapshot = 1
                         },
                         new
                         {
                             Id = 28,
                             ApplicationNumber = "FASAPP-GEN-0017",
-                            CreatedAt = new DateTime(2025, 12, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApprovedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApprovedByUserId = 1,
+                            ApprovedTierId = 8,
+                            CreatedAt = new DateTime(2024, 11, 14, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DurationInMonthsSnapshot = 12,
                             FasSchemeId = 8,
                             GrossHouseholdIncomeSnapshot = 3700m,
                             GuardianNationalitySnapshot = 1,
@@ -8518,11 +8510,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             PerCapitaIncomeSnapshot = 925m,
                             RecommendationReason = "Auto generated reason 17",
                             RecommendedTierId = 8,
-                            RejectionReason = "Does not meet requirements.",
                             SchoolStudentId = 1,
-                            Status = 3,
+                            Status = 6,
                             StudentAgeSnapshot = 21,
-                            StudentNationalitySnapshot = 1
+                            StudentNationalitySnapshot = 1,
+                            ValidityEndDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ValidityStartDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -8538,16 +8531,15 @@ namespace educationaccountmanagement.DAL.Migrations
                             RecommendationReason = "Auto generated reason 18",
                             RecommendedTierId = 9,
                             SchoolStudentId = 1,
-                            Status = 4,
+                            Status = 1,
                             StudentAgeSnapshot = 16,
-                            StudentNationalitySnapshot = 2,
-                            WithdrawnAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                            StudentNationalitySnapshot = 2
                         },
                         new
                         {
                             Id = 30,
                             ApplicationNumber = "FASAPP-GEN-0019",
-                            ApprovedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApprovedAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             ApprovedByUserId = 1,
                             ApprovedTierId = 10,
                             CreatedAt = new DateTime(2025, 12, 13, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -8564,8 +8556,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             Status = 2,
                             StudentAgeSnapshot = 17,
                             StudentNationalitySnapshot = 1,
-                            ValidityEndDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ValidityStartDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                            ValidityEndDate = new DateTime(2027, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -8577,11 +8569,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             GuardianNationalitySnapshot = 1,
                             HouseholdMemberCountSnapshot = 3,
                             IsDeleted = false,
-                            PerCapitaIncomeSnapshot = 1333.3333333333333333333333333m,
+                            PerCapitaIncomeSnapshot = 1333.33m,
                             RecommendationReason = "Auto generated reason 20",
                             RecommendedTierId = 1,
+                            RejectionReason = "Does not meet requirements.",
                             SchoolStudentId = 1,
-                            Status = 1,
+                            Status = 3,
                             StudentAgeSnapshot = 18,
                             StudentNationalitySnapshot = 1
                         },
@@ -8589,11 +8582,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 32,
                             ApplicationNumber = "FASAPP-GEN-0021",
-                            ApprovedAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ApprovedByUserId = 1,
-                            ApprovedTierId = 2,
                             CreatedAt = new DateTime(2025, 12, 11, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DurationInMonthsSnapshot = 12,
                             FasSchemeId = 2,
                             GrossHouseholdIncomeSnapshot = 4100m,
                             GuardianNationalitySnapshot = 1,
@@ -8603,11 +8592,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             RecommendationReason = "Auto generated reason 21",
                             RecommendedTierId = 2,
                             SchoolStudentId = 1,
-                            Status = 2,
+                            Status = 4,
                             StudentAgeSnapshot = 19,
                             StudentNationalitySnapshot = 2,
-                            ValidityEndDate = new DateTime(2027, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ValidityStartDate = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                            WithdrawnAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
@@ -8622,9 +8610,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             PerCapitaIncomeSnapshot = 840m,
                             RecommendationReason = "Auto generated reason 22",
                             RecommendedTierId = 3,
-                            RejectionReason = "Does not meet requirements.",
                             SchoolStudentId = 1,
-                            Status = 3,
+                            Status = 5,
                             StudentAgeSnapshot = 20,
                             StudentNationalitySnapshot = 1
                         },
@@ -8632,44 +8619,43 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 34,
                             ApplicationNumber = "FASAPP-GEN-0023",
-                            CreatedAt = new DateTime(2025, 12, 9, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApprovedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ApprovedByUserId = 1,
+                            ApprovedTierId = 4,
+                            CreatedAt = new DateTime(2024, 11, 8, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DurationInMonthsSnapshot = 12,
                             FasSchemeId = 4,
                             GrossHouseholdIncomeSnapshot = 4300m,
                             GuardianNationalitySnapshot = 1,
                             HouseholdMemberCountSnapshot = 6,
                             IsDeleted = false,
-                            PerCapitaIncomeSnapshot = 716.66666666666666666666666667m,
+                            PerCapitaIncomeSnapshot = 716.67m,
                             RecommendationReason = "Auto generated reason 23",
                             RecommendedTierId = 4,
                             SchoolStudentId = 1,
-                            Status = 4,
+                            Status = 6,
                             StudentAgeSnapshot = 21,
                             StudentNationalitySnapshot = 1,
-                            WithdrawnAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                            ValidityEndDate = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ValidityStartDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
                         },
                         new
                         {
                             Id = 35,
                             ApplicationNumber = "FASAPP-GEN-0024",
-                            ApprovedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ApprovedByUserId = 1,
-                            ApprovedTierId = 5,
                             CreatedAt = new DateTime(2025, 12, 8, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DurationInMonthsSnapshot = 6,
                             FasSchemeId = 5,
                             GrossHouseholdIncomeSnapshot = 4400m,
                             GuardianNationalitySnapshot = 1,
                             HouseholdMemberCountSnapshot = 3,
                             IsDeleted = false,
-                            PerCapitaIncomeSnapshot = 1466.6666666666666666666666667m,
+                            PerCapitaIncomeSnapshot = 1466.67m,
                             RecommendationReason = "Auto generated reason 24",
                             RecommendedTierId = 5,
                             SchoolStudentId = 1,
-                            Status = 2,
+                            Status = 1,
                             StudentAgeSnapshot = 16,
-                            StudentNationalitySnapshot = 2,
-                            ValidityEndDate = new DateTime(2025, 7, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ValidityStartDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                            StudentNationalitySnapshot = 2
                         });
                 });
 
@@ -8800,6 +8786,50 @@ namespace educationaccountmanagement.DAL.Migrations
                             Id = 7,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DocumentNameSnapshot = "Recent Payslip",
+                            FasApplicationId = 7,
+                            FasSchemeRequiredDocumentId = 7,
+                            FileKey = "fas/applications/7/document.pdf",
+                            FileName = "fas-application-07.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Income Statement",
+                            FasApplicationId = 8,
+                            FasSchemeRequiredDocumentId = 8,
+                            FileKey = "fas/applications/8/document.pdf",
+                            FileName = "fas-application-08.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Recent Payslip",
+                            FasApplicationId = 9,
+                            FasSchemeRequiredDocumentId = 9,
+                            FileKey = "fas/applications/9/document.pdf",
+                            FileName = "fas-application-09.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Income Statement",
+                            FasApplicationId = 10,
+                            FasSchemeRequiredDocumentId = 10,
+                            FileKey = "fas/applications/10/document.pdf",
+                            FileName = "fas-application-10.pdf",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DocumentNameSnapshot = "Recent Payslip",
                             FasApplicationId = 11,
                             FasSchemeRequiredDocumentId = 1,
                             FileKey = "fas/applications/11/document.pdf",
@@ -8808,7 +8838,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 8,
+                            Id = 12,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DocumentNameSnapshot = "Income Statement",
                             FasApplicationId = 12,
@@ -8819,7 +8849,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 9,
+                            Id = 13,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DocumentNameSnapshot = "Recent Payslip",
                             FasApplicationId = 13,
@@ -8830,7 +8860,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 10,
+                            Id = 14,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DocumentNameSnapshot = "Income Statement",
                             FasApplicationId = 14,
@@ -8841,7 +8871,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 11,
+                            Id = 15,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DocumentNameSnapshot = "Recent Payslip",
                             FasApplicationId = 15,
@@ -8852,7 +8882,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 12,
+                            Id = 16,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DocumentNameSnapshot = "Income Statement",
                             FasApplicationId = 16,
@@ -8863,7 +8893,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 13,
+                            Id = 17,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DocumentNameSnapshot = "Recent Payslip",
                             FasApplicationId = 17,
@@ -8874,7 +8904,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 14,
+                            Id = 18,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DocumentNameSnapshot = "Income Statement",
                             FasApplicationId = 18,
@@ -8885,7 +8915,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 15,
+                            Id = 19,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DocumentNameSnapshot = "Recent Payslip",
                             FasApplicationId = 19,
@@ -8896,7 +8926,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 16,
+                            Id = 20,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DocumentNameSnapshot = "Income Statement",
                             FasApplicationId = 20,
@@ -8907,7 +8937,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 17,
+                            Id = 21,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DocumentNameSnapshot = "Recent Payslip",
                             FasApplicationId = 21,
@@ -8918,7 +8948,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 18,
+                            Id = 22,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DocumentNameSnapshot = "Income Statement",
                             FasApplicationId = 22,
@@ -8929,7 +8959,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 19,
+                            Id = 23,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DocumentNameSnapshot = "Recent Payslip",
                             FasApplicationId = 23,
@@ -8940,7 +8970,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 20,
+                            Id = 24,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DocumentNameSnapshot = "Income Statement",
                             FasApplicationId = 24,
@@ -8951,7 +8981,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 21,
+                            Id = 25,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DocumentNameSnapshot = "Recent Payslip",
                             FasApplicationId = 25,
@@ -8962,7 +8992,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 22,
+                            Id = 26,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DocumentNameSnapshot = "Income Statement",
                             FasApplicationId = 26,
@@ -8973,7 +9003,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 23,
+                            Id = 27,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DocumentNameSnapshot = "Recent Payslip",
                             FasApplicationId = 27,
@@ -8984,7 +9014,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 24,
+                            Id = 28,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DocumentNameSnapshot = "Income Statement",
                             FasApplicationId = 28,
@@ -8995,7 +9025,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 25,
+                            Id = 29,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DocumentNameSnapshot = "Recent Payslip",
                             FasApplicationId = 29,
@@ -9006,7 +9036,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 26,
+                            Id = 30,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DocumentNameSnapshot = "Income Statement",
                             FasApplicationId = 30,
@@ -9017,7 +9047,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 27,
+                            Id = 31,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DocumentNameSnapshot = "Recent Payslip",
                             FasApplicationId = 31,
@@ -9028,7 +9058,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 28,
+                            Id = 32,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DocumentNameSnapshot = "Income Statement",
                             FasApplicationId = 32,
@@ -9039,7 +9069,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 29,
+                            Id = 33,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DocumentNameSnapshot = "Recent Payslip",
                             FasApplicationId = 33,
@@ -9050,7 +9080,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 30,
+                            Id = 34,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DocumentNameSnapshot = "Income Statement",
                             FasApplicationId = 34,
@@ -9061,7 +9091,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 31,
+                            Id = 35,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DocumentNameSnapshot = "Recent Payslip",
                             FasApplicationId = 35,

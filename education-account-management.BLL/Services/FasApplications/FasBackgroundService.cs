@@ -29,8 +29,8 @@ namespace Services.FasApplications
             foreach (var application in expiredApplications)
             {
                 application.Status = FasApplicationStatus.Expired;
-                _unitOfWork.Repository<FasApplication>().Update(application);
             }
+            _unitOfWork.Repository<FasApplication>().UpdateRange(expiredApplications);
 
             // UoW.SaveChangeAsync sẽ được gọi ở tầng Worker để đảm bảo tính đồng bộ với Audit Log.
 

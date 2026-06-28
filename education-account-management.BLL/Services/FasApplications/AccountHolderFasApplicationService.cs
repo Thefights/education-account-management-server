@@ -52,6 +52,8 @@ namespace Services.FasApplications
             var studentInfo = await GetCurrentStudentInfoAsync(cancellationToken);
             var scheme = await GetActiveSchemeAsync(dto.FasSchemeId, studentInfo.SchoolId, cancellationToken);
 
+            await EnsureNoActiveApplicationAsync(studentInfo.Id, dto.FasSchemeId, null, cancellationToken);
+
             var applicationNumber = await GenerateApplicationNumberAsync(cancellationToken);
 
             var application = new FasApplication
@@ -143,6 +145,7 @@ namespace Services.FasApplications
 
             var canReapply =
                 sourceApplication.Status == FasApplicationStatus.Rejected ||
+                sourceApplication.Status == FasApplicationStatus.Expired ||
                 (sourceApplication.Status == FasApplicationStatus.Approved &&
                  sourceApplication.ValidityEndDate.HasValue &&
                  sourceApplication.ValidityEndDate.Value.Date < today);
@@ -504,18 +507,23 @@ namespace Services.FasApplications
             FasScheme scheme,
             int applicationId)
         {
-            return documents.Select(document =>
+            var result = new List<FasApplicationDocument>();
+            foreach (var document in documents)
             {
                 var requiredDocument = scheme.RequiredDocuments.FirstOrDefault(r => r.Id == document.RequiredDocumentId);
-                return new FasApplicationDocument
+                if (requiredDocument != null)
                 {
-                    FasApplicationId = applicationId,
-                    FasSchemeRequiredDocumentId = document.RequiredDocumentId,
-                    FileKey = document.FileKey,
-                    FileName = document.FileName,
-                    DocumentNameSnapshot = requiredDocument?.DocumentName ?? document.FileName
-                };
-            }).ToList();
+                    result.Add(new FasApplicationDocument
+                    {
+                        FasApplicationId = applicationId,
+                        FasSchemeRequiredDocumentId = document.RequiredDocumentId,
+                        FileKey = document.FileKey,
+                        FileName = document.FileName,
+                        DocumentNameSnapshot = requiredDocument.DocumentName
+                    });
+                }
+            }
+            return result;
         }
 
         private static List<FasApplicationDocument> CloneDocuments(
