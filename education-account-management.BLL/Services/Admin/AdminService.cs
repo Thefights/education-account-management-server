@@ -309,14 +309,14 @@ namespace Services.Admin
         {
             var fileErrors = CsvImportHelper.ValidateFile(file);
             if (fileErrors.Count != 0)
-                CsvImportHelper.ThrowIfImportFailed(fileErrors);
+                CsvImportHelper.ThrowIfImportFailed(0, fileErrors);
 
             var rows = CsvImportHelper.ReadRows<CreateAdminDTO>(file);
             if (rows.Errors.Count != 0)
-                CsvImportHelper.ThrowIfImportFailed(rows.Errors);
+                CsvImportHelper.ThrowIfImportFailed(rows.Total, rows.Errors);
 
             if (rows.Items.Count == 0)
-                CsvImportHelper.ThrowIfImportFailed([DTOs.Csv.BatchImportErrorDTO.Create(0, "File", "CSV file must contain at least one data row.")]);
+                CsvImportHelper.ThrowIfImportFailed(0, [DTOs.Csv.BatchImportErrorDTO.Create(0, "File", "CSV file must contain at least one data row.")]);
 
             var errors = new List<DTOs.Csv.BatchImportErrorDTO>();
             var successCount = 0;
@@ -336,7 +336,7 @@ namespace Services.Admin
 
             if (errors.Count != 0)
             {
-                CsvImportHelper.ThrowIfImportFailed(errors);
+                CsvImportHelper.ThrowIfImportFailed(rows.Total, errors, successCount);
             }
 
             return new BatchImportResultDTO

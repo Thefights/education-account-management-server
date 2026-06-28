@@ -9,11 +9,14 @@ namespace Utils
     {
         private const string ImportFailedMessage = "CSV import failed. Please check the failed records.";
 
-        public static void ThrowIfImportFailed(IReadOnlyCollection<BatchImportErrorDTO> errors)
+        public static void ThrowIfImportFailed(
+            int total,
+            List<BatchImportErrorDTO> errors,
+            int succeeded = 0)
         {
             if (errors.Count != 0)
             {
-                throw new ValidationFailureException(ImportFailedMessage);
+                throw new CsvImportFailedException(BuildFailureResult(total, errors, succeeded));
             }
         }
 
@@ -98,12 +101,13 @@ namespace Utils
 
         public static BatchImportResultDTO BuildFailureResult(
             int total,
-            List<BatchImportErrorDTO> errors)
+            List<BatchImportErrorDTO> errors,
+            int succeeded = 0)
         {
             return new BatchImportResultDTO
             {
                 Total = total,
-                Succeeded = 0,
+                Succeeded = succeeded,
                 Failed = errors
                     .Where(error => error.RowNumber > 0)
                     .Select(error => error.RowNumber)

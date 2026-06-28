@@ -1,4 +1,5 @@
 using Common.HttpResults;
+using Contracts.Responses;
 using Enums;
 using Exceptions;
 using Interfaces.Audit;
@@ -34,6 +35,14 @@ namespace Middlewares
                     CreateErrorResult("Request was canceled", StatusCodes.Status499ClientClosedRequest),
                     logAsInternal: false);
             }
+            catch (CsvImportFailedException ex)
+            {
+                await ExecuteMappedExceptionAsync(
+                    context,
+                    ex,
+                    CreateImportFailedResult(ex),
+                    logAsInternal: false);
+            }
             catch (ValidationFailureException ex)
             {
                 IActionResult result = ex.FieldErrors.Any()
@@ -57,7 +66,7 @@ namespace Middlewares
             }
             catch (DbUpdateException ex)
             {
-                var result = TryCreateSqlErrorResult(ex, out var logAsInternal)
+                var result = TryCreateSqlErrorResult(context, ex, out var logAsInternal)
                     ?? CreateErrorResult(InternalServerErrorMessage, StatusCodes.Status500InternalServerError);
 
                 await ExecuteMappedExceptionAsync(context, ex, result, logAsInternal);
@@ -101,6 +110,7 @@ namespace Middlewares
         }
 
         private static IActionResult? TryCreateSqlErrorResult(
+            HttpContext context,
             DbUpdateException exception,
             out bool logAsInternal)
         {
@@ -123,8 +133,12 @@ namespace Middlewares
                     "A record with the same value already exists.",
                     StatusCodes.Status409Conflict),
                 547 => CreateErrorResult(
-                    "The request references related data that does not exist or cannot be changed.",
-                    StatusCodes.Status400BadRequest),
+                    HttpMethods.IsDelete(context.Request.Method)
+                        ? "This record cannot be deleted because related records are still using it. Remove the related records first, then try again."
+                        : "The request references related data that does not exist or cannot be changed.",
+                    HttpMethods.IsDelete(context.Request.Method)
+                        ? StatusCodes.Status409Conflict
+                        : StatusCodes.Status400BadRequest),
                 515 => CreateErrorResult(
                     "Required data is missing.",
                     StatusCodes.Status400BadRequest),
@@ -140,6 +154,17 @@ namespace Middlewares
         private static IActionResult CreateErrorResult(string message, int statusCode)
         {
             return Result.FailErrors([message], message, statusCode);
+        }
+
+        private static IActionResult CreateImportFailedResult(CsvImportFailedException exception)
+        {
+            return new ObjectResult(new BaseResponse<object?, IList<string>>
+            {
+                Data = exception.Result,
+                Error = [exception.Message],
+                Message = exception.Message
+            })
+            { StatusCode = StatusCodes.Status400BadRequest };
         }
 
         private async Task ExecuteMappedExceptionAsync(

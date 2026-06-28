@@ -52,6 +52,9 @@ namespace Persistence.SqlServer.ModelConfigurations
                     "[NetAmount] = [GrossAmount] - [SubsidyAmount] AND " +
                     "[PaidAmount] <= [NetAmount] AND " +
                     "[RemainingAmount] = [NetAmount] - [PaidAmount]");
+                table.HasCheckConstraint(
+                    "CK_Charge_PaymentPlanMonths",
+                    "[PaymentPlanMonths] IS NULL OR [PaymentPlanMonths] IN (3, 6, 9, 12)");
             });
 
             modelBuilder.Entity<Payment>().ToTable(table =>

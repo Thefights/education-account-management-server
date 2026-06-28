@@ -25,13 +25,14 @@ namespace Services.SchoolStudents
 
             var fileErrors = ValidateFile(file);
             if (fileErrors.Count != 0)
-                CsvImportHelper.ThrowIfImportFailed(fileErrors);
+                CsvImportHelper.ThrowIfImportFailed(0, fileErrors);
 
             var rows = ReadRows(file);
             if (rows.Errors.Count != 0)
-                CsvImportHelper.ThrowIfImportFailed(rows.Errors);
+                CsvImportHelper.ThrowIfImportFailed(rows.Total, rows.Errors);
             if (rows.Items.Count == 0)
                 CsvImportHelper.ThrowIfImportFailed(
+                    0,
                     [BatchImportErrorDTO.Create(0, "File", "CSV file must contain at least one data row.")]);
 
             var rowsWithNumbers = rows.Items
@@ -119,7 +120,7 @@ namespace Services.SchoolStudents
 
             if (errors.Count != 0)
             {
-                CsvImportHelper.ThrowIfImportFailed(errors);
+                CsvImportHelper.ThrowIfImportFailed(rows.Count, errors);
             }
 
             if (validSchoolStudents.Count > 0)

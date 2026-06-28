@@ -88,6 +88,10 @@ namespace educationaccountmanagement.DAL.Migrations
                         .IsUnique()
                         .HasFilter("\"IsDeleted\" = 0 AND \"Nric\" IS NOT NULL");
 
+                    b.HasIndex("PhoneNumber")
+                        .IsUnique()
+                        .HasFilter("\"IsDeleted\" = 0 AND \"PhoneNumber\" IS NOT NULL");
+
                     b.HasIndex("SchoolId");
 
                     b.HasIndex("StaffCode")
@@ -1291,8 +1295,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("AppliedFasSchemeNameSnapshot")
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("AppliedFasSubsidyTypeSnapshot")
                         .HasColumnType("int");
@@ -1301,17 +1304,14 @@ namespace educationaccountmanagement.DAL.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("AppliedFasTierNameSnapshot")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CourseCodeSnapshot")
                         .IsRequired()
-                        .HasMaxLength(16)
-                        .HasColumnType("nvarchar(16)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CourseDescriptionSnapshot")
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CourseEndDateSnapshot")
                         .HasColumnType("datetime2");
@@ -1321,8 +1321,7 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.Property<string>("CourseNameSnapshot")
                         .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CourseStartDateSnapshot")
                         .HasColumnType("datetime2");
@@ -1357,6 +1356,9 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<decimal>("PaidAmount")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int?>("PaymentPlanMonths")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("RemainingAmount")
                         .HasColumnType("decimal(18,2)");
 
@@ -1368,8 +1370,7 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.Property<string>("SchoolNameSnapshot")
                         .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -1378,7 +1379,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("TaxRateSnapshot")
-                        .HasColumnType("decimal(5,4)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -1401,6 +1402,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             t.HasCheckConstraint("CK_Charge_AmountEquations", "[SubsidyAmount] <= [GrossAmount] AND [NetAmount] = [GrossAmount] - [SubsidyAmount] AND [PaidAmount] <= [NetAmount] AND [RemainingAmount] = [NetAmount] - [PaidAmount]");
 
                             t.HasCheckConstraint("CK_Charge_Amounts_NonNegative", "[CourseFeeAmountSnapshot] >= 0 AND [MiscFeeAmountSnapshot] >= 0 AND [GstAmountSnapshot] >= 0 AND [GrossAmount] >= 0 AND [SubsidyAmount] >= 0 AND [NetAmount] >= 0 AND [PaidAmount] >= 0 AND [RemainingAmount] >= 0");
+
+                            t.HasCheckConstraint("CK_Charge_PaymentPlanMonths", "[PaymentPlanMonths] IS NULL OR [PaymentPlanMonths] IN (3, 6, 9, 12)");
                         });
 
                     b.HasData(
@@ -3428,7 +3431,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Id = 1,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DateOfBirth = new DateOnly(1995, 1, 2),
-                            Email = "sterling.quach@example.com",
+                            Email = "phuckhang1088@gmail.com",
                             FullName = "Sterling Quach",
                             IsDeleted = false,
                             IsSingaporean = true,
@@ -11056,9 +11059,17 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Email");
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasFilter("\"IsDeleted\" = 0 AND \"Email\" IS NOT NULL");
 
-                    b.HasIndex("SchoolName");
+                    b.HasIndex("PhoneNumber")
+                        .IsUnique()
+                        .HasFilter("\"IsDeleted\" = 0 AND \"PhoneNumber\" IS NOT NULL");
+
+                    b.HasIndex("SchoolName")
+                        .IsUnique()
+                        .HasFilter("\"IsDeleted\" = 0 AND \"SchoolName\" IS NOT NULL");
 
                     b.HasIndex("Status");
 
@@ -13133,7 +13144,8 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasIndex("SystemTopupId");
 
                     b.HasIndex("TopupExecutionTargetId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("\"TopupExecutionTargetId\" IS NOT NULL");
 
                     b.HasIndex("SystemTopupId", "EducationAccountId")
                         .IsUnique();

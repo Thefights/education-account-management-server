@@ -26,7 +26,7 @@
 
         public DateTime? PaidAt { get; set; }
 
-        [MessageMaxLength(200)]
+        [MessageMaxLength(200), Unique]
         public string? ExternalReference { get; set; }
 
         [OnDelete(OnDeleteBehavior.Restrict)]
