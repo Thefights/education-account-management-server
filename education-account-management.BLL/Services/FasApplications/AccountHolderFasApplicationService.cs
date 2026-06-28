@@ -108,8 +108,14 @@ namespace Services.FasApplications
                 }
             }
 
-            // Tạo mã hồ sơ (Application Number) ngẫu nhiên
-            var applicationNumber = $"FASAPP-{DateTime.UtcNow:yyyyMMdd}-{Guid.NewGuid().ToString("N")[..7].ToUpper()}";
+            var applicationRepository = _unitOfWork.Repository<FasApplication>();
+            var applicationNumber = await BusinessCodeGenerator.GenerateUniqueAsync(
+                BusinessCodeGenerator.FasApplicationPrefix,
+                (candidate, token) => applicationRepository.AnyAsync(
+                    application => application.ApplicationNumber == candidate,
+                    token),
+                conflictMessage: "Unable to generate a unique FAS application number.",
+                cancellationToken: cancellationToken);
 
             // 5. Khởi tạo đối tượng hồ sơ (Entity) và lưu các thông tin Snapshot tại thời điểm nộp
             var application = new FasApplication
@@ -302,5 +308,6 @@ namespace Services.FasApplications
 
             return result;
         }
+
     }
 }

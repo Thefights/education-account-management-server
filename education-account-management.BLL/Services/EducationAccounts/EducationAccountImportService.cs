@@ -5,7 +5,6 @@ using Interfaces.EducationAccounts;
 using Repositories.Interfaces;
 using Services.Base;
 using Services.EducationAccounts.Utils;
-using System.Security.Cryptography;
 using Validators;
 
 namespace Services.EducationAccounts
@@ -92,16 +91,27 @@ namespace Services.EducationAccounts
                 CsvImportHelper.ThrowIfImportFailed(rows.Count, errors);
             }
 
-            var accounts = validRows.Select(entry =>
+            var reservedAccountNumbers = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            var accounts = new List<(int RowNumber, string Nric, EducationAccount Account)>();
+            foreach (var entry in validRows)
             {
+                var accountNumber = await BusinessCodeGenerator.GenerateUniqueAsync(
+                    BusinessCodeGenerator.EducationAccountPrefix,
+                    (candidate, token) => _repository.AnyAsync(
+                        account => account.AccountNumber == candidate,
+                        token),
+                    reservedCodes: reservedAccountNumbers,
+                    conflictMessage: "Unable to generate a unique education account number.",
+                    cancellationToken: cancellationToken);
+
                 var account = new EducationAccount
                 {
-                    AccountNumber = EducationAccountHelper.GenerateNextAccountNumber(),
+                    AccountNumber = accountNumber,
                     CitizenId = entry.Citizen.Id
                 };
                 account.TryValidate();
-                return (entry.RowNumber, entry.Row.Nric, Account: account);
-            }).ToList();
+                accounts.Add((entry.RowNumber, entry.Row.Nric, account));
+            }
 
             var rowErrors = new List<BatchImportErrorDTO>();
             var validAccounts = new List<EducationAccount>();
