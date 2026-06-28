@@ -1,4 +1,3 @@
-using Enums;
 using Models;
 using Persistence.Seeding.Constants;
 
@@ -6,21 +5,13 @@ namespace Persistence.Seeding
 {
     public sealed class UserStatusHistorySeedBuilder : ISeedBuilder
     {
-        public int Priority => 108;
+        public int Priority => 280;
 
         public ModelBuilder Seed(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UserStatusHistory>().HasData(
-                new UserStatusHistory
-                {
-                    Id = 1,
-                    UserId = 5,
-                    PreviousStatus = UserStatus.Active,
-                    NewStatus = UserStatus.Inactive,
-                    Reason = "Account paused after repeated failed sign-in verification.",
-                    ChangedAt = SeedDataConstants.CreatedAt.AddDays(30),
-                    ChangedByUserId = 1
-                });
+            var createdAt = SeedDataConstants.CreatedAt;
+
+            // UserStatusHistory seed intentionally disabled for lean demo data.
 
             return modelBuilder;
         }

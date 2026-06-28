@@ -52,6 +52,9 @@ namespace Persistence.SqlServer.ModelConfigurations
                     "[NetAmount] = [GrossAmount] - [SubsidyAmount] AND " +
                     "[PaidAmount] <= [NetAmount] AND " +
                     "[RemainingAmount] = [NetAmount] - [PaidAmount]");
+                table.HasCheckConstraint(
+                    "CK_Charge_PaymentPlanMonths",
+                    "[PaymentPlanMonths] IS NULL OR [PaymentPlanMonths] IN (3, 6, 9, 12)");
             });
 
             modelBuilder.Entity<Payment>().ToTable(table =>
@@ -70,19 +73,6 @@ namespace Persistence.SqlServer.ModelConfigurations
                     "[Amount] > 0");
                 table.HasCheckConstraint("CK_ChargeInstallment_Number_Positive", "[InstallmentNumber] > 0");
             });
-
-            modelBuilder.Entity<OutstandingDeductionRun>().ToTable(table =>
-                table.HasCheckConstraint(
-                    "CK_OutstandingDeductionRun_Totals_NonNegative",
-                    "[TotalScannedCharges] >= 0 AND [TotalDeductedAmount] >= 0 " +
-                    "AND [SuccessCount] >= 0 AND [FailedCount] >= 0 " +
-                    "AND [SuccessCount] + [FailedCount] <= [TotalScannedCharges]"));
-
-            modelBuilder.Entity<OutstandingDeductionTarget>().ToTable(table =>
-                table.HasCheckConstraint(
-                    "CK_OutstandingDeductionTarget_Amounts_NonNegative",
-                    "[BalanceBefore] >= 0 AND [RemainingBefore] >= 0 AND [DeductedAmount] >= 0 " +
-                    "AND [BalanceAfter] >= 0 AND [RemainingAfter] >= 0"));
 
             modelBuilder.Entity<SystemTopup>().ToTable(table =>
                 table.HasCheckConstraint(

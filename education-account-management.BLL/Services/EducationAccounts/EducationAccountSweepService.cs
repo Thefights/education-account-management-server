@@ -40,7 +40,6 @@ namespace Services.EducationAccounts
             var firstEligibleBirthDate = batchDate.AddYears(-16);
             var closingBirthDate = batchDate.AddYears(-31);
             var citizensToCreate = await _citizenRepository.Query()
-                .Where(citizen => citizen.CitizenshipStatus == CitizenshipStatus.Active)
                 .Where(citizen => citizen.DateOfBirth <= firstEligibleBirthDate
                     && citizen.DateOfBirth > closingBirthDate)
                 .Where(citizen => citizen.EducationAccount == null)
@@ -61,13 +60,23 @@ namespace Services.EducationAccounts
 
             await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
             {
+                var reservedAccountNumbers = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 foreach (var citizen in citizensToCreate)
                 {
                     try
                     {
+                        var accountNumber = await BusinessCodeGenerator.GenerateUniqueAsync(
+                            BusinessCodeGenerator.EducationAccountPrefix,
+                            (candidate, innerToken) => _repository.AnyAsync(
+                                account => account.AccountNumber == candidate,
+                                innerToken),
+                            reservedCodes: reservedAccountNumbers,
+                            conflictMessage: "Unable to generate a unique education account number.",
+                            cancellationToken: token);
+
                         var account = new EducationAccount
                         {
-                            AccountNumber = EducationAccountHelper.GenerateNextAccountNumber(),
+                            AccountNumber = accountNumber,
                             CitizenId = citizen.Id
                         };
                         account.TryValidate();

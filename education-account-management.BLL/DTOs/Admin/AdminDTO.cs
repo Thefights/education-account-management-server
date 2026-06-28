@@ -38,6 +38,8 @@ namespace DTOs.Admin
     {
         public int UserId { get; set; }
 
+        public DateTime CreatedAt { get; set; }
+
         public string? Role { get; set; }
 
         public string? Status { get; set; }

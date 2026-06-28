@@ -40,7 +40,13 @@ namespace Services.EducationAccounts
             var accountId = await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
             {
                 createDTO.ResolvedCitizenId = citizen.Id;
-                createDTO.GeneratedAccountNumber = EducationAccountHelper.GenerateNextAccountNumber();
+                createDTO.GeneratedAccountNumber = await BusinessCodeGenerator.GenerateUniqueAsync(
+                    BusinessCodeGenerator.EducationAccountPrefix,
+                    (accountNumber, token) => _repository.AnyAsync(
+                        account => account.AccountNumber == accountNumber,
+                        token),
+                    conflictMessage: "Unable to generate a unique education account number.",
+                    cancellationToken: token);
 
                 var account = _mapper.MapFromCreateDTO(createDTO);
                 account.TryValidate();

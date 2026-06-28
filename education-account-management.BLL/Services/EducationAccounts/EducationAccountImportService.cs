@@ -5,7 +5,6 @@ using Interfaces.EducationAccounts;
 using Repositories.Interfaces;
 using Services.Base;
 using Services.EducationAccounts.Utils;
-using System.Security.Cryptography;
 using Validators;
 
 namespace Services.EducationAccounts
@@ -27,13 +26,14 @@ namespace Services.EducationAccounts
         {
             var fileErrors = ValidateFile(file);
             if (fileErrors.Count != 0)
-                return CsvImportHelper.BuildFailureResult(0, fileErrors);
+                CsvImportHelper.ThrowIfImportFailed(0, fileErrors);
 
             var rows = ReadRows(file);
             if (rows.Errors.Count != 0)
-                return CsvImportHelper.BuildFailureResult(rows.Total, rows.Errors);
+                CsvImportHelper.ThrowIfImportFailed(rows.Total, rows.Errors);
             if (rows.Items.Count == 0)
-                return CsvImportHelper.BuildFailureResult(0,
+                CsvImportHelper.ThrowIfImportFailed(
+                    0,
                     [BatchImportErrorDTO.Create(0, "File", "CSV file must contain at least one data row.")]);
 
             var rowsWithNumbers = rows.Items
@@ -88,25 +88,30 @@ namespace Services.EducationAccounts
 
             if (validRows.Count == 0)
             {
-                return new BatchImportResultDTO
-                {
-                    Total = rows.Count,
-                    Succeeded = 0,
-                    Failed = rows.Count,
-                    Errors = errors
-                };
+                CsvImportHelper.ThrowIfImportFailed(rows.Count, errors);
             }
 
-            var accounts = validRows.Select(entry =>
+            var reservedAccountNumbers = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            var accounts = new List<(int RowNumber, string Nric, EducationAccount Account)>();
+            foreach (var entry in validRows)
             {
+                var accountNumber = await BusinessCodeGenerator.GenerateUniqueAsync(
+                    BusinessCodeGenerator.EducationAccountPrefix,
+                    (candidate, token) => _repository.AnyAsync(
+                        account => account.AccountNumber == candidate,
+                        token),
+                    reservedCodes: reservedAccountNumbers,
+                    conflictMessage: "Unable to generate a unique education account number.",
+                    cancellationToken: cancellationToken);
+
                 var account = new EducationAccount
                 {
-                    AccountNumber = EducationAccountHelper.GenerateNextAccountNumber(),
+                    AccountNumber = accountNumber,
                     CitizenId = entry.Citizen.Id
                 };
                 account.TryValidate();
-                return (entry.RowNumber, entry.Row.Nric, Account: account);
-            }).ToList();
+                accounts.Add((entry.RowNumber, entry.Row.Nric, account));
+            }
 
             var rowErrors = new List<BatchImportErrorDTO>();
             var validAccounts = new List<EducationAccount>();
@@ -127,6 +132,11 @@ namespace Services.EducationAccounts
             }
 
             errors.AddRange(rowErrors);
+
+            if (errors.Count != 0)
+            {
+                CsvImportHelper.ThrowIfImportFailed(rows.Count, errors);
+            }
 
             if (validAccounts.Count > 0)
             {

@@ -7,6 +7,7 @@
             {
                 ["id"] = nameof(Enrollment.Id),
                 ["status"] = nameof(Enrollment.Status),
+                ["courseStatus"] = $"{nameof(Enrollment.Course)}.{nameof(Course.Status)}",
                 ["courseCode"] = $"{nameof(Enrollment.Course)}.{nameof(Course.CourseCode)}",
                 ["courseName"] = nameof(Enrollment.CourseNameSnapshot),
                 ["citizenNric"] = nameof(Enrollment.CitizenNricSnapshot),
@@ -14,6 +15,7 @@
                 ["citizenEmail"] = nameof(Enrollment.CitizenEmailSnapshot),
                 ["citizenPhoneNumber"] = nameof(Enrollment.CitizenPhoneNumberSnapshot),
                 ["accountNumber"] = nameof(Enrollment.AccountNumberSnapshot),
+                ["createdAt"] = nameof(Enrollment.CreatedAt),
                 ["enrolledAt"] = nameof(Enrollment.CreatedAt),
                 ["chargeStatus"] = $"{nameof(Enrollment.Charge)}.{nameof(Charge.Status)}",
                 ["grossAmount"] = $"{nameof(Enrollment.Charge)}.{nameof(Charge.GrossAmount)}",

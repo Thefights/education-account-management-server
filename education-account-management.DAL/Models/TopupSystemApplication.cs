@@ -12,7 +12,7 @@ namespace Models
         [OnDelete(OnDeleteBehavior.NoAction)]
         public EducationAccount EducationAccount { get; set; } = null!;
 
-        [NotDefaultValue]
+        [NotDefaultValue, Unique]
         public int TopupExecutionTargetId { get; set; }
         [OnDelete(OnDeleteBehavior.NoAction)]
         public TopupExecutionTarget TopupExecutionTarget { get; set; } = null!;

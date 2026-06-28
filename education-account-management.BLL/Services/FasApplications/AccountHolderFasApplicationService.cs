@@ -28,11 +28,13 @@ namespace Services.FasApplications
 
             await EnsureNoActiveApplicationAsync(studentInfo.Id, dto.FasSchemeId, null, cancellationToken);
 
+            var applicationNumber = await GenerateApplicationNumberAsync(cancellationToken);
+
             var application = new FasApplication
             {
                 FasSchemeId = dto.FasSchemeId,
                 SchoolStudentId = studentInfo.Id,
-                ApplicationNumber = GenerateApplicationNumber(),
+                ApplicationNumber = applicationNumber,
                 Status = FasApplicationStatus.Pending
             };
 
@@ -85,11 +87,13 @@ namespace Services.FasApplications
 
             await EnsureNoActiveApplicationAsync(studentInfo.Id, sourceApplication.FasSchemeId, null, cancellationToken);
 
+            var applicationNumber = await GenerateApplicationNumberAsync(cancellationToken);
+
             var draft = new FasApplication
             {
                 FasSchemeId = sourceApplication.FasSchemeId,
                 SchoolStudentId = studentInfo.Id,
-                ApplicationNumber = GenerateApplicationNumber(),
+                ApplicationNumber = applicationNumber,
                 Status = FasApplicationStatus.Draft,
                 StudentAgeSnapshot = sourceApplication.StudentAgeSnapshot,
                 StudentNationalitySnapshot = sourceApplication.StudentNationalitySnapshot,
@@ -270,6 +274,7 @@ namespace Services.FasApplications
 
             return result;
         }
+
 
         private async Task<AccountHolderStudentInfo> GetCurrentStudentInfoAsync(CancellationToken cancellationToken)
         {
@@ -457,7 +462,16 @@ namespace Services.FasApplications
             }
         }
 
-        private static string GenerateApplicationNumber() =>
-            $"FASAPP-{DateTime.UtcNow:yyyyMMdd}-{Guid.NewGuid().ToString("N")[..7].ToUpper()}";
+        private Task<string> GenerateApplicationNumberAsync(CancellationToken cancellationToken)
+        {
+            var applicationRepository = _unitOfWork.Repository<FasApplication>();
+            return BusinessCodeGenerator.GenerateUniqueAsync(
+                BusinessCodeGenerator.FasApplicationPrefix,
+                (candidate, token) => applicationRepository.AnyAsync(
+                    application => application.ApplicationNumber == candidate,
+                    token),
+                conflictMessage: "Unable to generate a unique FAS application number.",
+                cancellationToken: cancellationToken);
+        }
     }
 }
