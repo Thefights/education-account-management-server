@@ -3,24 +3,23 @@ using System.ComponentModel.DataAnnotations;
 namespace DTOs.FasApplications
 {
 
-    public class FasApplicationSchoolAdminDTO
+    public class GetFasApplicationSchoolAdminDTO
     {
         public int Id { get; set; }
         public string ApplicationNumber { get; set; } = string.Empty;
         public string AccountName {  get; set; } = string.Empty;
         public string AccountNumber { get; set; } = string.Empty;
         public string SchemeName { get; set; } = string.Empty;
-        public string FasAppliedFor { get; set; } = string.Empty;
         public DateTime SubmittedAt { get; set; }
-        public string? Status { get; set; }
+        public Enums.FasApplicationStatus Status { get; set; }
 
     }
 
-    public class FasApplicationSchoolAdminDetailDTO
+    public class GetFasApplicationSchoolAdminDetailDTO
     {
         public int id { get; set; }
         public string ApplicationNumber { get; set; } = string.Empty;
-        public string Status { get; set; } = string.Empty;
+        public Enums.FasApplicationStatus Status { get; set; }
         public StudentProfileDTO StudentProfile { get; set; } = new();
         public SchemeDetailsDTO Scheme { get; set; } = new();
         public SystemSuggestedTierDTO? SystemSuggestedTier { get; set; }

@@ -18,6 +18,6 @@ namespace Filters.FasApplications
 
         public override IReadOnlyDictionary<string, string> SortFields => AllowedSortFields;
 
-        public string? Status { get; set; }
+        public Enums.FasApplicationStatus? Status { get; set; }
     }
 }

@@ -11,9 +11,9 @@ namespace Controllers.Management
 {
     [Authorize(Roles = RolePolicy.SchoolAdmin)]
     public class FasApplicationManagementController(
-        IManagementFasApplicationService service) : BaseController
+        IFasApplicationManagementService service) : BaseController
     {
-        private readonly IManagementFasApplicationService _service = service;
+        private readonly IFasApplicationManagementService _service = service;
 
         [HttpGet]
         public async Task<IActionResult> GetApplicationPaginated(

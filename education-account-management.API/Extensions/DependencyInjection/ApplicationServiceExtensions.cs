@@ -85,13 +85,15 @@ namespace Extensions.DependencyInjection
             services.AddScoped<ITransactionHistoryService, TransactionHistoryService>();
             services.AddScoped<IAccountHolderFasSchemeService, AccountHolderFasSchemeService>();
             services.AddScoped<IAccountHolderFasApplicationService, AccountHolderFasApplicationService>();
-            services.AddScoped<IManagementFasApplicationService, ManagementFasApplicationService>();
+            services.AddScoped<IFasApplicationManagementService, FasApplicationManagementService>();
 
             services.AddScoped<ISystemTopupService, SystemTopupService>();
             services.AddScoped<IScheduleTopUpService, ScheduleTopUpService>();
             services.AddScoped<ITopupService, TopupService>();
             services.AddScoped<ITopupManagementQueryService, TopupManagementQueryService>();
             services.AddScoped<ITopupBackgroundService, TopupBackgroundService>();
+
+
 
             services.AddScoped<IEducationAccountSweepReportService, EducationAccountSweepReportService>();
             services.AddScoped<IAiAssistantSettingService, AiAssistantSettingService>();
@@ -105,8 +107,8 @@ namespace Extensions.DependencyInjection
             services.AddScoped<ISchoolService, SchoolService>();
             services.AddScoped<ISchoolStudentService, SchoolStudentService>();
             services.AddScoped<ISchoolStudentImportService, SchoolStudentImportService>();
-            services.AddScoped<IManagementFasApplicationService, ManagementFasApplicationService>();
             services.AddScoped<IFasSchemeService, FasSchemeService>();
+
 
             services.AddScoped<IDataCleanupService, DataCleanupService>();
             services.AddHostedService<DataCleanupWorker>();

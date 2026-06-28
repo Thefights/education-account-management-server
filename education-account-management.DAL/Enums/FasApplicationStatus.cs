@@ -5,6 +5,7 @@ namespace Enums
         Pending = 1,
         Approved = 2,
         Rejected = 3,
-        Withdrawn = 4
+        Withdrawn = 4,
+        Expired = 5
     }
 }
