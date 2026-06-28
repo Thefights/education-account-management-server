@@ -11,7 +11,7 @@ namespace DTOs.FasApplications
         public string AccountNumber { get; set; } = string.Empty;
         public string SchemeName { get; set; } = string.Empty;
         public DateTime SubmittedAt { get; set; }
-        public Enums.FasApplicationStatus Status { get; set; }
+        public string Status { get; set; } = string.Empty;
 
     }
 
@@ -19,7 +19,7 @@ namespace DTOs.FasApplications
     {
         public int id { get; set; }
         public string ApplicationNumber { get; set; } = string.Empty;
-        public Enums.FasApplicationStatus Status { get; set; }
+        public string Status { get; set; } = string.Empty;
         public StudentProfileDTO StudentProfile { get; set; } = new();
         public SchemeDetailsDTO Scheme { get; set; } = new();
         public SystemSuggestedTierDTO? SystemSuggestedTier { get; set; }
@@ -47,8 +47,9 @@ namespace DTOs.FasApplications
     {
         public int Id { get; set; }
         public string TierName { get; set; } = string.Empty;
-        public string ConditionText { get; set; } = string.Empty;
-        public string SubsidyDescription { get; set; } = string.Empty;
+        public decimal? SubsidyValue { get; set; }
+        public decimal? CourseFeeSubsidyValue { get; set; }
+        public decimal? MiscFeeSubsidyValue { get; set; }
         public decimal? MaxPerCapitaIncome { get; set; }
     }
 

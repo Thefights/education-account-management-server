@@ -18,14 +18,10 @@ namespace Filters.FasApplications
 
         public override IReadOnlyDictionary<string, string> SortFields => AllowedSortFields;
 
+        [SearchField(nameof(FasApplication.ApplicationNumber))]
+        [SearchField("SchoolStudent.EducationAccount.AccountNumber")]
+        [SearchField("SchoolStudent.EducationAccount.Citizen.FullName")]
+        [SearchField("FasScheme.SchemeName")]
         public Enums.FasApplicationStatus? Status { get; set; }
-
-        public override string[] SearchFields =>
-        [
-            nameof(FasApplication.ApplicationNumber),
-            "SchoolStudent.EducationAccount.AccountNumber",
-            "SchoolStudent.EducationAccount.Citizen.FullName",
-            "FasScheme.SchemeName"
-        ];
     }
 }

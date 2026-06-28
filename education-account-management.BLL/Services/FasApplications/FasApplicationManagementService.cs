@@ -27,49 +27,20 @@ namespace Services.FasApplications
         public override async Task<PaginationResult<GetFasApplicationSchoolAdminDTO>> GetAllPaginatedAsync(Filters.Base.FilterDTO filterDTO, CancellationToken cancellationToken = default)
         {
             var request = (FasApplicationFilterDTO)filterDTO;
-            var now = DateTime.UtcNow;
             var adminSchoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
 
-            var statusFilter = BuildStatusFilter(request.Status, now);
+            Expression<Func<FasApplication, bool>> combinedFilter = a => a.SchoolStudent.SchoolId == adminSchoolId;
 
-            Expression<Func<FasApplication, bool>> combinedFilter = CombineFilters(
-                a => a.SchoolStudent.SchoolId == adminSchoolId,
-                statusFilter);
+            if (request.Status.HasValue)
+            {
+                var statusValue = request.Status.Value;
+                combinedFilter = CombineFilters(combinedFilter, a => a.Status == statusValue);
+            }
 
             return await base.GetAllPaginatedAsync(request, combinedFilter, cancellationToken);
         }
 
-        private static Expression<Func<FasApplication, bool>> BuildStatusFilter(Enums.FasApplicationStatus? status, DateTime now)
-        {
-            if (!status.HasValue)
-            {
-                return a => true;
-            }
 
-            if (status.Value == Enums.FasApplicationStatus.Pending)
-            {
-                return a => a.Status == Enums.FasApplicationStatus.Pending;
-            }
-
-            if (status.Value == Enums.FasApplicationStatus.Approved)
-            {
-                return a => a.Status == Enums.FasApplicationStatus.Approved
-                            && (a.ValidityEndDate == null || a.ValidityEndDate >= now);
-            }
-
-            if (status.Value == Enums.FasApplicationStatus.Expired)
-            {
-                return a => a.Status == Enums.FasApplicationStatus.Approved
-                            && a.ValidityEndDate != null && a.ValidityEndDate < now;
-            }
-
-            if (status.Value == Enums.FasApplicationStatus.Rejected)
-            {
-                return a => a.Status == Enums.FasApplicationStatus.Rejected;
-            }
-
-            return a => a.Status == Enums.FasApplicationStatus.Withdrawn;
-        }
 
         private static Expression<Func<FasApplication, bool>> CombineFilters(
             Expression<Func<FasApplication, bool>> first,
@@ -106,35 +77,14 @@ namespace Services.FasApplications
                 throw new DataNotFoundException($"Application {applicationId} not found.");
             }
 
-            var now = DateTime.UtcNow;
-            var finalStatus = application.Status;
-            if (application.Status == Enums.FasApplicationStatus.Approved && application.ValidityEndDate < now)
-            {
-                finalStatus = Enums.FasApplicationStatus.Expired;
-            }
-
-            var isPercent = application.FasScheme.SubsidyType == Enums.FasSubsidyType.Percent;
-            var symbol = isPercent ? "%" : " S$";
-
             var dto = _mapper.MapToDetailDTO(application);
-            dto.Status = finalStatus;
+            dto.Status = application.Status.ToString();
             dto.Scheme = new SchemeDetailsDTO
             {
                 Id = application.FasSchemeId,
                 SchemeName = application.FasScheme.SchemeName,
                 Tiers = application.FasScheme.Tiers.Select(_mapper.MapTierToDTO).ToList()
             };
-
-            for (int i = 0; i < application.FasScheme.Tiers.Count; i++)
-            {
-                var t = application.FasScheme.Tiers.ElementAt(i);
-                var tierDto = dto.Scheme.Tiers[i];
-
-                tierDto.ConditionText = t.MaxPerCapitaIncome.HasValue ? $"PCI <= {t.MaxPerCapitaIncome.Value:0.00}" : "No limit";
-                tierDto.SubsidyDescription = application.FasScheme.IsPerComponent
-                    ? $"Course: {t.CourseFeeSubsidyValue:0.00}{symbol}, Misc: {t.MiscFeeSubsidyValue:0.00}{symbol}"
-                    : $"{t.SubsidyValue:0.00}{symbol}";
-            }
 
             dto.Scheme.RequiredDocuments = application.FasScheme.RequiredDocuments.Select(rd =>
             {
@@ -178,11 +128,6 @@ namespace Services.FasApplications
             if (application.Status != Enums.FasApplicationStatus.Pending)
             {
                 throw new DataConflictException("Only pending applications can be rejected.");
-            }
-
-            if (string.IsNullOrWhiteSpace(dto.RejectionReason))
-            {
-                throw new DataConflictException("Rejection reason is required.");
             }
 
             application.Status = Enums.FasApplicationStatus.Rejected;

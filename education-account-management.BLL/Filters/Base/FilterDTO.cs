@@ -24,7 +24,7 @@ namespace Filters.Base
 
         public string? Filter => BuildFilter();
 
-        public virtual string[] SearchFields => BuildSearchFields();
+        public string[] SearchFields => BuildSearchFields();
 
         public string SortExpression => BuildSortExpression();
 
