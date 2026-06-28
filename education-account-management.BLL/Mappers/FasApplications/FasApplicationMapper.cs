@@ -1,10 +1,12 @@
 using DTOs.FasApplications;
 using Riok.Mapperly.Abstractions;
 
+using Mappers.Base;
+
 namespace Mappers.FasApplications
 {
     [Mapper(RequiredMappingStrategy = RequiredMappingStrategy.None)]
-    public partial class FasApplicationMapper
+    public partial class FasApplicationMapper : IReadMapper<FasApplication, GetFasApplicationSchoolAdminDTO>
     {
         [MapProperty(nameof(FasApplication.Id), nameof(GetFasApplicationSchoolAdminDetailDTO.id))]
         [MapProperty(nameof(FasApplication.StudentAgeSnapshot), $"{nameof(GetFasApplicationSchoolAdminDetailDTO.StudentProfile)}.{nameof(StudentProfileDTO.Age)}")]
@@ -26,5 +28,25 @@ namespace Mappers.FasApplications
         [MapperIgnoreTarget(nameof(TierDetailsDTO.ConditionText))]
         [MapperIgnoreTarget(nameof(TierDetailsDTO.SubsidyDescription))]
         public partial TierDetailsDTO MapTierToDTO(FasSchemeTier tier);
+
+        public partial GetFasApplicationSchoolAdminDTO MapToGetDTO(FasApplication model);
+        public partial List<GetFasApplicationSchoolAdminDTO> MapToGetDTOList(List<FasApplication> models);
+        public IQueryable<GetFasApplicationSchoolAdminDTO> ProjectToGetDTO(IQueryable<FasApplication> query)
+        {
+            var now = DateTime.UtcNow;
+            return query.Select(a => new GetFasApplicationSchoolAdminDTO
+            {
+                Id = a.Id,
+                ApplicationNumber = a.ApplicationNumber,
+                AccountName = a.SchoolStudent.EducationAccount.Citizen.FullName,
+                AccountNumber = a.SchoolStudent.EducationAccount.AccountNumber,
+                SchemeName = a.FasScheme.SchemeName,
+                SubmittedAt = a.CreatedAt,
+                Status = a.Status == FasApplicationStatus.Approved
+                         && a.ValidityEndDate != null && a.ValidityEndDate < now
+                    ? FasApplicationStatus.Expired
+                    : a.Status
+            });
+        }
     }
 }

@@ -5,24 +5,15 @@ using DTOs.FasApplications;
 using Utils;
 using Interfaces.FasApplications;
 using Filters.FasApplications;
-
+using Microsoft.AspNetCore.Mvc;
 
 namespace Controllers.Management
 {
     [Authorize(Roles = RolePolicy.SchoolAdmin)]
     public class FasApplicationManagementController(
-        IFasApplicationManagementService service) : BaseController
+        IFasApplicationManagementService service) : GetController<GetFasApplicationSchoolAdminDTO, FasApplicationFilterDTO>(service)
     {
         private readonly IFasApplicationManagementService _service = service;
-
-        [HttpGet]
-        public async Task<IActionResult> GetApplicationPaginated(
-            [FromQuery] FasApplicationFilterDTO request,
-            CancellationToken cancellationToken)
-        {
-            var result = await _service.GetApplicationPaginatedAsync(request, cancellationToken);
-            return Result.SuccessData(result);
-        }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetApplicationDetails(
@@ -45,6 +36,24 @@ namespace Controllers.Management
         {
             await _service.RejectAsync( id, dto, cancellationToken);
             return Result.SuccessAction("FAS application rejected successfully.");
+        }
+
+        // ==========================================
+        // UNUSED API IMPLEMENTATIONS FROM BASE CLASS
+        // ==========================================
+
+        [ApiExplorerSettings(IgnoreApi = true)]
+        [NonAction]
+        public override Task<IActionResult> GetById(int id, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        [ApiExplorerSettings(IgnoreApi = true)]
+        [NonAction]
+        public override Task<IActionResult> GetAll(CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
         }
     }
 }

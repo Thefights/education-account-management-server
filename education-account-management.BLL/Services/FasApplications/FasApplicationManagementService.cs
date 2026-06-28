@@ -4,6 +4,12 @@ using Interfaces.FasApplications;
 using Mappers.FasApplications;
 using Results;
 using System.Linq.Expressions;
+using Models;
+using Exceptions;
+using Interfaces.Auth;
+using Microsoft.EntityFrameworkCore;
+using Services.Auth;
+using Services.Base;
 
 namespace Services.FasApplications
 {
@@ -11,110 +17,60 @@ namespace Services.FasApplications
         IUnitOfWork unitOfWork,
         ICurrentUserService currentUserService,
         SchoolScopeResolver schoolScopeResolver,
-        FasApplicationMapper mapper) : IFasApplicationManagementService
+        FasApplicationMapper mapper) : BaseGetService<FasApplication, GetFasApplicationSchoolAdminDTO>(unitOfWork, mapper), IFasApplicationManagementService
     {
-        private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly ICurrentUserService _currentUserService = currentUserService;
         private readonly SchoolScopeResolver _schoolScopeResolver = schoolScopeResolver;
         private readonly FasApplicationMapper _mapper = mapper;
         private readonly IGenericRepository<FasApplication> _fasApplicationRepository = unitOfWork.Repository<FasApplication>();
 
-        public async Task<PaginationResult<GetFasApplicationSchoolAdminDTO>> GetApplicationPaginatedAsync(FasApplicationFilterDTO request, CancellationToken cancellationToken = default)
+        public override async Task<PaginationResult<GetFasApplicationSchoolAdminDTO>> GetAllPaginatedAsync(Filters.Base.FilterDTO filterDTO, CancellationToken cancellationToken = default)
         {
+            var request = (FasApplicationFilterDTO)filterDTO;
             var now = DateTime.UtcNow;
             var adminSchoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
 
-            // 1. Build combined security + status expression filter
             var statusFilter = BuildStatusFilter(request.Status, now);
 
-            Expression<Func<FasApplication, bool>> combinedFilter = a =>
-                a.SchoolStudent.SchoolId == adminSchoolId && statusFilter.Compile().Invoke(a);
-
-            // Use a composable approach for EF translation
-            combinedFilter = CombineFilters(
+            Expression<Func<FasApplication, bool>> combinedFilter = CombineFilters(
                 a => a.SchoolStudent.SchoolId == adminSchoolId,
                 statusFilter);
 
-            // 3. Define search fields
-            string[] searchFields = [
-                nameof(FasApplication.ApplicationNumber),
-                "SchoolStudent.EducationAccount.AccountNumber",
-                "SchoolStudent.EducationAccount.Citizen.FullName",
-                "FasScheme.SchemeName"
-            ];
-
-            // 4. Handle sorting
-            string order = string.IsNullOrWhiteSpace(request.SortExpression) ? "CreatedAt asc" : request.SortExpression;
-
-            // 5. Build projection
-            var pageSize = Math.Clamp(request.PageSize, 1, 100);
-            Func<IQueryable<FasApplication>, IQueryable<GetFasApplicationSchoolAdminDTO>> projectionFunc = query => query.Select(a => new GetFasApplicationSchoolAdminDTO
-            {
-                Id = a.Id,
-                ApplicationNumber = a.ApplicationNumber,
-                AccountName = a.SchoolStudent.EducationAccount.Citizen.FullName,
-                AccountNumber = a.SchoolStudent.EducationAccount.AccountNumber,
-                SchemeName = a.FasScheme.SchemeName,
-                SubmittedAt = a.CreatedAt,
-                Status = a.Status == FasApplicationStatus.Approved
-                         && a.ValidityEndDate != null && a.ValidityEndDate < now
-                    ? FasApplicationStatus.Expired
-                    : a.Status
-            });
-
-            // 6. Execute query using Overload 4 (filterExpr + filterStr + search + searchFields)
-            var result = await _fasApplicationRepository.GetProjectedPaginatedAsync<GetFasApplicationSchoolAdminDTO>(
-                projection: projectionFunc,
-                filterExpr: combinedFilter,
-                filterStr: request.Filter,
-                search: request.Search,
-                searchFields: searchFields,
-                order: order,
-                page: request.Page,
-                pageSize: pageSize,
-                includes: null,
-                cancellationToken: cancellationToken
-            );
-
-            return new PaginationResult<GetFasApplicationSchoolAdminDTO>(result.Count, pageSize, result.Items);
+            return await base.GetAllPaginatedAsync(request, combinedFilter, cancellationToken);
         }
 
-        private static Expression<Func<FasApplication, bool>> BuildStatusFilter(FasApplicationStatus? status, DateTime now)
+        private static Expression<Func<FasApplication, bool>> BuildStatusFilter(Enums.FasApplicationStatus? status, DateTime now)
         {
             if (!status.HasValue)
             {
                 return a => true;
             }
 
-            if (status.Value == FasApplicationStatus.Pending)
+            if (status.Value == Enums.FasApplicationStatus.Pending)
             {
-                return a => a.Status == FasApplicationStatus.Pending;
+                return a => a.Status == Enums.FasApplicationStatus.Pending;
             }
 
-            if (status.Value == FasApplicationStatus.Approved)
+            if (status.Value == Enums.FasApplicationStatus.Approved)
             {
-                return a => a.Status == FasApplicationStatus.Approved
+                return a => a.Status == Enums.FasApplicationStatus.Approved
                             && (a.ValidityEndDate == null || a.ValidityEndDate >= now);
             }
 
-            if (status.Value == FasApplicationStatus.Expired)
+            if (status.Value == Enums.FasApplicationStatus.Expired)
             {
-                return a => a.Status == FasApplicationStatus.Approved
+                return a => a.Status == Enums.FasApplicationStatus.Approved
                             && a.ValidityEndDate != null && a.ValidityEndDate < now;
             }
 
-            if (status.Value == FasApplicationStatus.Rejected)
+            if (status.Value == Enums.FasApplicationStatus.Rejected)
             {
-                return a => a.Status == FasApplicationStatus.Rejected;
+                return a => a.Status == Enums.FasApplicationStatus.Rejected;
             }
 
-            // Withdrawn
-            return a => a.Status == FasApplicationStatus.Withdrawn;
+            return a => a.Status == Enums.FasApplicationStatus.Withdrawn;
         }
 
-        /// <summary>
-        /// Combines two expression filters with AND logic in a way that EF Core can translate to SQL.
-        /// </summary>
         private static Expression<Func<FasApplication, bool>> CombineFilters(
             Expression<Func<FasApplication, bool>> first,
             Expression<Func<FasApplication, bool>> second)
@@ -128,7 +84,6 @@ namespace Services.FasApplications
 
             return Expression.Lambda<Func<FasApplication, bool>>(combined, parameter);
         }
-
 
         public async Task<GetFasApplicationSchoolAdminDetailDTO> GetApplicationDetailsAsync(int applicationId, CancellationToken cancellationToken = default)
         {
@@ -151,18 +106,16 @@ namespace Services.FasApplications
                 throw new DataNotFoundException($"Application {applicationId} not found.");
             }
 
-            // Determine enum status (including Expired)
             var now = DateTime.UtcNow;
             var finalStatus = application.Status;
-            if (application.Status == FasApplicationStatus.Approved && application.ValidityEndDate < now)
+            if (application.Status == Enums.FasApplicationStatus.Approved && application.ValidityEndDate < now)
             {
-                finalStatus = FasApplicationStatus.Expired;
+                finalStatus = Enums.FasApplicationStatus.Expired;
             }
 
-            var isPercent = application.FasScheme.SubsidyType == FasSubsidyType.Percent;
+            var isPercent = application.FasScheme.SubsidyType == Enums.FasSubsidyType.Percent;
             var symbol = isPercent ? "%" : " S$";
 
-            // Map DTO with Mapperly
             var dto = _mapper.MapToDetailDTO(application);
             dto.Status = finalStatus;
             dto.Scheme = new SchemeDetailsDTO
@@ -172,7 +125,6 @@ namespace Services.FasApplications
                 Tiers = application.FasScheme.Tiers.Select(_mapper.MapTierToDTO).ToList()
             };
 
-            // Map dynamic/computed fields for Scheme Tiers
             for (int i = 0; i < application.FasScheme.Tiers.Count; i++)
             {
                 var t = application.FasScheme.Tiers.ElementAt(i);
@@ -184,7 +136,6 @@ namespace Services.FasApplications
                     : $"{t.SubsidyValue:0.00}{symbol}";
             }
 
-            // Map documents list
             dto.Scheme.RequiredDocuments = application.FasScheme.RequiredDocuments.Select(rd =>
             {
                 var attachedDoc = application.Documents.FirstOrDefault(d => d.FasSchemeRequiredDocumentId == rd.Id);
@@ -193,11 +144,10 @@ namespace Services.FasApplications
                     Id = rd.Id,
                     DocumentName = rd.DocumentName,
                     Status = attachedDoc != null ? "attached" : "missing",
-                    FileUrl = attachedDoc?.FileKey // returning FileKey as FileUrl
+                    FileUrl = attachedDoc?.FileKey 
                 };
             }).ToList();
 
-            // Set SystemSuggestedTier from RecommendedTier
             if (application.RecommendedTier != null)
             {
                 dto.SystemSuggestedTier = new SystemSuggestedTierDTO
@@ -213,7 +163,6 @@ namespace Services.FasApplications
 
         public async Task RejectAsync(int id, RejectFasApplicationDTO dto, CancellationToken cancellationToken = default)
         {
-
             var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
 
             var application = await _unitOfWork.Repository<FasApplication>()
@@ -226,7 +175,7 @@ namespace Services.FasApplications
                 throw new DataNotFoundException(typeof(FasApplication), id);
             }
 
-            if (application.Status != FasApplicationStatus.Pending)
+            if (application.Status != Enums.FasApplicationStatus.Pending)
             {
                 throw new DataConflictException("Only pending applications can be rejected.");
             }
@@ -236,14 +185,13 @@ namespace Services.FasApplications
                 throw new DataConflictException("Rejection reason is required.");
             }
 
-            application.Status = FasApplicationStatus.Rejected;
+            application.Status = Enums.FasApplicationStatus.Rejected;
             application.RejectionReason = dto.RejectionReason;
 
             application.TryValidate();
 
             _unitOfWork.Repository<FasApplication>().Update(application);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
-
         }
 
         public async Task ApproveAsync(int id, CancellationToken cancellationToken = default)
@@ -261,7 +209,7 @@ namespace Services.FasApplications
                 throw new DataNotFoundException(typeof(FasApplication), id);
             }
 
-            if (application.Status != FasApplicationStatus.Pending)
+            if (application.Status != Enums.FasApplicationStatus.Pending)
             {
                 throw new DataConflictException("Only pending applications can be approved.");
             }
@@ -274,7 +222,7 @@ namespace Services.FasApplications
             var currentUserId = _currentUserService.UserId;
             var now = DateTime.UtcNow;
 
-            application.Status = FasApplicationStatus.Approved;
+            application.Status = Enums.FasApplicationStatus.Approved;
             application.ApprovedAt = now;
             application.ApprovedByUserId = currentUserId;
             application.ApprovedTierId = application.RecommendedTierId;
@@ -288,9 +236,25 @@ namespace Services.FasApplications
 
             _unitOfWork.Repository<FasApplication>().Update(application);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
-
         }
 
+        // ==========================================
+        // UNUSED API IMPLEMENTATIONS FROM BASE CLASS
+        // ==========================================
 
+        public override Task<List<GetFasApplicationSchoolAdminDTO>> GetAllAsync(CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override Task<List<GetFasApplicationSchoolAdminDTO>> GetAllByIdsAsync(List<int> ids, CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override Task<GetFasApplicationSchoolAdminDTO> GetByIdAsync(int id, CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

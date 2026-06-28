@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Reflection;
 using Utils;
 
@@ -24,7 +24,7 @@ namespace Filters.Base
 
         public string? Filter => BuildFilter();
 
-        public string[] SearchFields => BuildSearchFields();
+        public virtual string[] SearchFields => BuildSearchFields();
 
         public string SortExpression => BuildSortExpression();
 
