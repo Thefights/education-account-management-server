@@ -57,8 +57,7 @@ namespace DTOs.FasApplications
     {
         public int Id { get; set; }
         public string DocumentName { get; set; } = string.Empty;
-        public string Status { get; set; } = string.Empty;
-        public string? FileUrl { get; set; }
+        public string? FileKey { get; set; }
     }
 
     public class SystemSuggestedTierDTO

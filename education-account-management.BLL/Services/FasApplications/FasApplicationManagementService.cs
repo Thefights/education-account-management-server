@@ -29,31 +29,18 @@ namespace Services.FasApplications
             var request = (FasApplicationFilterDTO)filterDTO;
             var adminSchoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
 
-            Expression<Func<FasApplication, bool>> combinedFilter = a => a.SchoolStudent.SchoolId == adminSchoolId;
-
-            if (request.Status.HasValue)
+            if (request.Status is { } status)
             {
-                var statusValue = request.Status.Value;
-                combinedFilter = CombineFilters(combinedFilter, a => a.Status == statusValue);
+                return await base.GetAllPaginatedAsync(
+                    request,
+                    a => a.SchoolStudent.SchoolId == adminSchoolId && a.Status == status,
+                    cancellationToken);
             }
 
-            return await base.GetAllPaginatedAsync(request, combinedFilter, cancellationToken);
-        }
-
-
-
-        private static Expression<Func<FasApplication, bool>> CombineFilters(
-            Expression<Func<FasApplication, bool>> first,
-            Expression<Func<FasApplication, bool>> second)
-        {
-            var parameter = Expression.Parameter(typeof(FasApplication), "a");
-
-            var firstBody = Expression.Invoke(first, parameter);
-            var secondBody = Expression.Invoke(second, parameter);
-
-            var combined = Expression.AndAlso(firstBody, secondBody);
-
-            return Expression.Lambda<Func<FasApplication, bool>>(combined, parameter);
+            return await base.GetAllPaginatedAsync(
+                request,
+                a => a.SchoolStudent.SchoolId == adminSchoolId,
+                cancellationToken);
         }
 
         public async Task<GetFasApplicationSchoolAdminDetailDTO> GetApplicationDetailsAsync(int applicationId, CancellationToken cancellationToken = default)
@@ -77,38 +64,7 @@ namespace Services.FasApplications
                 throw new DataNotFoundException($"Application {applicationId} not found.");
             }
 
-            var dto = _mapper.MapToDetailDTO(application);
-            dto.Status = application.Status.ToString();
-            dto.Scheme = new SchemeDetailsDTO
-            {
-                Id = application.FasSchemeId,
-                SchemeName = application.FasScheme.SchemeName,
-                Tiers = application.FasScheme.Tiers.Select(_mapper.MapTierToDTO).ToList()
-            };
-
-            dto.Scheme.RequiredDocuments = application.FasScheme.RequiredDocuments.Select(rd =>
-            {
-                var attachedDoc = application.Documents.FirstOrDefault(d => d.FasSchemeRequiredDocumentId == rd.Id);
-                return new ApplicationDocumentDTO
-                {
-                    Id = rd.Id,
-                    DocumentName = rd.DocumentName,
-                    Status = attachedDoc != null ? "attached" : "missing",
-                    FileUrl = attachedDoc?.FileKey 
-                };
-            }).ToList();
-
-            if (application.RecommendedTier != null)
-            {
-                dto.SystemSuggestedTier = new SystemSuggestedTierDTO
-                {
-                    Id = application.RecommendedTier.Id,
-                    TierName = application.RecommendedTier.TierName,
-                    Reason = application.RecommendationReason ?? $"Matches {application.RecommendedTier.TierName} bracket."
-                };
-            }
-
-            return dto;
+            return _mapper.MapToDetailDTO(application);
         }
 
         public async Task RejectAsync(int id, RejectFasApplicationDTO dto, CancellationToken cancellationToken = default)

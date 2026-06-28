@@ -15,10 +15,45 @@ namespace Mappers.FasApplications
         [MapProperty(nameof(FasApplication.GrossHouseholdIncomeSnapshot), $"{nameof(GetFasApplicationSchoolAdminDetailDTO.StudentProfile)}.{nameof(StudentProfileDTO.GrossHouseholdIncome)}")]
         [MapProperty(nameof(FasApplication.HouseholdMemberCountSnapshot), $"{nameof(GetFasApplicationSchoolAdminDetailDTO.StudentProfile)}.{nameof(StudentProfileDTO.HouseholdMembers)}")]
         [MapProperty(nameof(FasApplication.PerCapitaIncomeSnapshot), $"{nameof(GetFasApplicationSchoolAdminDetailDTO.StudentProfile)}.{nameof(StudentProfileDTO.PerCapitaIncome)}")]
-        [MapProperty(nameof(FasApplication.FasSchemeId), $"{nameof(GetFasApplicationSchoolAdminDetailDTO.Scheme)}.{nameof(SchemeDetailsDTO.Id)}")]
         [MapperIgnoreTarget(nameof(GetFasApplicationSchoolAdminDetailDTO.Scheme))]
         [MapperIgnoreTarget(nameof(GetFasApplicationSchoolAdminDetailDTO.SystemSuggestedTier))]
-        public partial GetFasApplicationSchoolAdminDetailDTO MapToDetailDTO(FasApplication model);
+        [MapperIgnoreTarget(nameof(GetFasApplicationSchoolAdminDetailDTO.Status))]
+        private partial GetFasApplicationSchoolAdminDetailDTO MapToDetailDTOInternal(FasApplication model);
+
+        public GetFasApplicationSchoolAdminDetailDTO MapToDetailDTO(FasApplication model)
+        {
+            var target = MapToDetailDTOInternal(model);
+            
+            target.Status = model.Status.ToString();
+            target.Scheme = new SchemeDetailsDTO
+            {
+                Id = model.FasSchemeId,
+                SchemeName = model.FasScheme.SchemeName,
+                Tiers = model.FasScheme.Tiers.Select(MapTierToDTO).ToList(),
+                RequiredDocuments = model.FasScheme.RequiredDocuments.Select(rd =>
+                {
+                    var attachedDoc = model.Documents.FirstOrDefault(d => d.FasSchemeRequiredDocumentId == rd.Id);
+                    return new ApplicationDocumentDTO
+                    {
+                        Id = rd.Id,
+                        DocumentName = rd.DocumentName,
+                        FileKey = attachedDoc?.FileKey
+                    };
+                }).ToList()
+            };
+
+            if (model.RecommendedTier != null)
+            {
+                target.SystemSuggestedTier = new SystemSuggestedTierDTO
+                {
+                    Id = model.RecommendedTier.Id,
+                    TierName = model.RecommendedTier.TierName,
+                    Reason = model.RecommendationReason ?? $"Matches {model.RecommendedTier.TierName} bracket."
+                };
+            }
+
+            return target;
+        }
 
         [MapProperty(nameof(FasSchemeTier.Id), nameof(TierDetailsDTO.Id))]
         [MapProperty(nameof(FasSchemeTier.TierName), nameof(TierDetailsDTO.TierName))]
