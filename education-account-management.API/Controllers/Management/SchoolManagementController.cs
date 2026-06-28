@@ -4,9 +4,7 @@ using Controllers.Base;
 using DTOs.Schools;
 using Filters.Schools;
 using Interfaces.Schools;
-using Microsoft.AspNetCore.Mvc;
 using Services.Base;
-using Models;
 
 namespace Controllers.Management
 {

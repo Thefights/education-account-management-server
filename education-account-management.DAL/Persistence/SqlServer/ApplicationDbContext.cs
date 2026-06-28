@@ -56,10 +56,6 @@ namespace Persistence.SqlServer
 
         public DbSet<FasTierOverrideHistory> FasTierOverrideHistory { get; set; }
 
-        public DbSet<OutstandingDeductionRun> OutstandingDeductionRun { get; set; }
-
-        public DbSet<OutstandingDeductionTarget> OutstandingDeductionTarget { get; set; }
-
         public DbSet<SystemTopup> SystemTopup { get; set; }
 
         public DbSet<SystemTopupConditionGroup> SystemTopupConditionGroup { get; set; }

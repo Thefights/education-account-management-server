@@ -90,16 +90,6 @@ namespace Persistence.SqlServer.ModelConfigurations
                 .HasForeignKey(group => group.ParentGroupId)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            modelBuilder.Entity<OutstandingDeductionTarget>()
-                .HasOne(target => target.EducationCreditTransaction)
-                .WithOne(transaction => transaction.OutstandingDeductionTarget)
-                .HasForeignKey<OutstandingDeductionTarget>(target => target.EducationCreditTransactionId);
-
-            modelBuilder.Entity<OutstandingDeductionTarget>()
-                .HasOne(target => target.Payment)
-                .WithOne(payment => payment.OutstandingDeductionTarget)
-                .HasForeignKey<OutstandingDeductionTarget>(target => target.PaymentId);
-
             modelBuilder.Entity<EducationAccountStatusHistory>()
                 .HasOne(history => history.ChangedByUser)
                 .WithMany()

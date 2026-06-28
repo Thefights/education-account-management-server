@@ -18,7 +18,7 @@ namespace Models
         [DateValidator(NotBefore = nameof(OpenedAt))]
         public DateTime? ClosedAt { get; set; }
 
-        [NotDefaultValue]
+        [NotDefaultValue, Unique]
         public int CitizenId { get; set; }
         public Citizen Citizen { get; set; } = null!;
 
@@ -35,9 +35,6 @@ namespace Models
 
         [OnDelete(OnDeleteBehavior.Restrict)]
         public ICollection<EducationCreditTransaction> EducationCreditTransactions { get; set; } = [];
-
-        [OnDelete(OnDeleteBehavior.Restrict)]
-        public ICollection<OutstandingDeductionTarget> OutstandingDeductionTargets { get; set; } = [];
 
         [OnDelete(OnDeleteBehavior.Cascade)]
         public ICollection<EducationAccountStatusHistory> StatusHistories { get; set; } = [];
