@@ -6,6 +6,7 @@ namespace Enums
         Approved = 2,
         Rejected = 3,
         Withdrawn = 4,
-        Draft = 5
+        Draft = 5,
+        Expired = 6
     }
 }

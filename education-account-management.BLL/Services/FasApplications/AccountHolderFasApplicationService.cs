@@ -47,6 +47,85 @@ namespace Services.FasApplications
             return application.ApplicationNumber;
         }
 
+        public async Task<int> SaveDraftApplicationAsync(SubmitFasApplicationDTO dto, CancellationToken cancellationToken = default)
+        {
+            var studentInfo = await GetCurrentStudentInfoAsync(cancellationToken);
+            var scheme = await GetActiveSchemeAsync(dto.FasSchemeId, studentInfo.SchoolId, cancellationToken);
+
+            var applicationNumber = await GenerateApplicationNumberAsync(cancellationToken);
+
+            var application = new FasApplication
+            {
+                FasSchemeId = dto.FasSchemeId,
+                SchoolStudentId = studentInfo.Id,
+                ApplicationNumber = applicationNumber,
+                Status = FasApplicationStatus.Draft
+            };
+
+            ApplySubmission(application, dto, studentInfo, scheme, FasApplicationStatus.Draft);
+            application.TryValidate();
+
+            await _unitOfWork.Repository<FasApplication>().AddAsync(application, cancellationToken);
+            await _unitOfWork.SaveChangeAsync(cancellationToken);
+
+            return application.Id;
+        }
+
+        public async Task UpdateDraftApplicationAsync(int id, SubmitFasApplicationDTO dto, CancellationToken cancellationToken = default)
+        {
+            var studentInfo = await GetCurrentStudentInfoAsync(cancellationToken);
+
+            var draft = await _unitOfWork.Repository<FasApplication>()
+                .Query(tracking: true)
+                .Include(a => a.Documents)
+                .FirstOrDefaultAsync(a => a.Id == id && a.SchoolStudentId == studentInfo.Id, cancellationToken);
+
+            if (draft == null)
+            {
+                throw new DataNotFoundException(typeof(FasApplication), id);
+            }
+
+            if (draft.Status != FasApplicationStatus.Draft)
+            {
+                throw new DataConflictException("Only draft applications can be updated.");
+            }
+
+            if (dto.FasSchemeId != draft.FasSchemeId)
+            {
+                throw new DataConflictException("Draft application scheme does not match the submitted scheme.");
+            }
+
+            var scheme = await GetActiveSchemeAsync(dto.FasSchemeId, studentInfo.SchoolId, cancellationToken);
+
+            ApplySubmission(draft, dto, studentInfo, scheme, FasApplicationStatus.Draft);
+            draft.TryValidate();
+
+            await _unitOfWork.SaveChangeAsync(cancellationToken);
+        }
+
+        public async Task DeleteDraftApplicationAsync(int id, CancellationToken cancellationToken = default)
+        {
+            var studentInfo = await GetCurrentStudentInfoAsync(cancellationToken);
+
+            var draft = await _unitOfWork.Repository<FasApplication>()
+                .Query(tracking: true)
+                .Include(a => a.Documents)
+                .FirstOrDefaultAsync(a => a.Id == id && a.SchoolStudentId == studentInfo.Id, cancellationToken);
+
+            if (draft == null)
+            {
+                throw new DataNotFoundException(typeof(FasApplication), id);
+            }
+
+            if (draft.Status != FasApplicationStatus.Draft)
+            {
+                throw new DataConflictException("Only draft applications can be deleted.");
+            }
+
+            _unitOfWork.Repository<FasApplication>().Remove(draft);
+            await _unitOfWork.SaveChangeAsync(cancellationToken);
+        }
+
         public async Task<int> CreateReapplyDraftAsync(int sourceApplicationId, CancellationToken cancellationToken = default)
         {
             var studentInfo = await GetCurrentStudentInfoAsync(cancellationToken);
@@ -178,7 +257,7 @@ namespace Services.FasApplications
                     ValidityEndDate = a.ValidityEndDate,
                     RejectionReason = a.RejectionReason
                 }),
-                a => a.SchoolStudentId == studentInfo.Id && a.Status != FasApplicationStatus.Draft,
+                a => a.SchoolStudentId == studentInfo.Id && (filter.Status.HasValue || a.Status != FasApplicationStatus.Draft),
                 filter.Filter,
                 filter.Search,
                 filter.SearchFields,

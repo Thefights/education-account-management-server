@@ -8,6 +8,9 @@ namespace Interfaces.FasApplications
     public interface IAccountHolderFasApplicationService
     {
         Task<string> SubmitApplicationAsync(SubmitFasApplicationDTO dto, CancellationToken cancellationToken = default);
+        Task<int> SaveDraftApplicationAsync(SubmitFasApplicationDTO dto, CancellationToken cancellationToken = default);
+        Task UpdateDraftApplicationAsync(int id, SubmitFasApplicationDTO dto, CancellationToken cancellationToken = default);
+        Task DeleteDraftApplicationAsync(int id, CancellationToken cancellationToken = default);
         Task<int> CreateReapplyDraftAsync(int sourceApplicationId, CancellationToken cancellationToken = default);
         Task<string> PublishDraftApplicationAsync(int id, SubmitFasApplicationDTO dto, CancellationToken cancellationToken = default);
         Task<PaginationResult<FasApplicationSummaryDTO>> GetMyApplicationsAsync(FasApplicationFilterDTO filter, CancellationToken cancellationToken = default);
