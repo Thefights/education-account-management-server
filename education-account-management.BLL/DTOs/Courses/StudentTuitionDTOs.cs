@@ -33,6 +33,7 @@ namespace DTOs.Courses
         public bool IsInstallment { get; set; }
         public int? CurrentInstallmentNumber { get; set; }
         public int? TotalInstallments { get; set; }
+        public ICollection<ChargeInstallment> Installments { get; set; } = [];
         public string? AppliedFasSchemeName { get; set; }
         public string? AppliedFasTierName { get; set; }
         public bool HasFasApplication { get; set; }

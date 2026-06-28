@@ -56,7 +56,7 @@ namespace Services.Payments
         }
 
         public async Task<PaginationResult<StudentTuitionChargeDTO>> GetTuitionChargesPaginatedAsync(
-            StudentTuitionFilterDTO filter, 
+            StudentTuitionFilterDTO filter,
             CancellationToken cancellationToken = default)
         {
             ArgumentNullException.ThrowIfNull(filter);
@@ -87,14 +87,15 @@ namespace Services.Payments
             Expression<Func<Enrollment, bool>> filterExpr = e =>
                 e.SchoolStudent.EducationAccountId == accountId &&
                 e.Charge != null &&
+                (filter.isInstallation ? e.Charge.Installments.Count > 1 : e.Charge.Installments.Count <= 1) &&
                 (filter.EnrollmentIds == null || filter.EnrollmentIds.Count == 0 || filter.EnrollmentIds.Contains(e.Id)) &&
                 (filter.Status == StudentTuitionFilterStatus.All ||
                  (filter.Status == StudentTuitionFilterStatus.Paid && e.Charge.Status == ChargeStatus.Paid) ||
-                 (filter.Status == StudentTuitionFilterStatus.Overdue && 
-                     (e.Charge.Status == ChargeStatus.Overdue || 
+                 (filter.Status == StudentTuitionFilterStatus.Overdue &&
+                     (e.Charge.Status == ChargeStatus.Overdue ||
                       (e.Charge.Status == ChargeStatus.PendingPayment && e.Course.FasApplicationDueDate < now))) ||
-                 (filter.Status == StudentTuitionFilterStatus.Due && 
-                     e.Charge.Status == ChargeStatus.PendingPayment && 
+                 (filter.Status == StudentTuitionFilterStatus.Due &&
+                     e.Charge.Status == ChargeStatus.PendingPayment &&
                      e.Course.FasApplicationDueDate >= now));
 
             var (total, charges) = await _enrollmentRepository.GetProjectedPaginatedAsync(
@@ -119,9 +120,10 @@ namespace Services.Payments
                     PaidAmount = e.Charge.PaidAmount,
                     RemainingAmount = e.Charge.RemainingAmount,
                     TaxRate = e.Charge.TaxRateSnapshot,
-                    IsInstallment = e.Charge.Installments.Count > 1,
-                    CurrentInstallmentNumber = e.Charge.Installments.Count > 1 ? e.Charge.Installments.Where(i => i.Status != ChargeInstallmentStatus.Paid).OrderBy(i => i.InstallmentNumber).Select(i => (int?)i.InstallmentNumber).FirstOrDefault() : null,
-                    TotalInstallments = e.Charge.Installments.Count > 1 ? (int?)e.Charge.Installments.Count : null,
+                    IsInstallment = e.Charge.Installments.Count >= 1,
+                    CurrentInstallmentNumber = e.Charge.Installments.Count >= 1 ? e.Charge.Installments.Where(i => i.Status != ChargeInstallmentStatus.Paid).OrderBy(i => i.InstallmentNumber).Select(i => (int?)i.InstallmentNumber).FirstOrDefault() : null,
+                    TotalInstallments = e.Charge.Installments.Count >= 1 ? (int?)e.Charge.Installments.Count : null,
+                    Installments = e.Charge.Installments,
                     AppliedFasSchemeName = e.Charge.AppliedFasSchemeNameSnapshot,
                     AppliedFasTierName = e.Charge.AppliedFasTierNameSnapshot,
                     HasFasApplication = e.Charge.AppliedFasApplicationId.HasValue
