@@ -6,6 +6,7 @@ namespace DTOs.FasApplications
     {
         public int Id { get; set; }
         public string ApplicationNumber { get; set; } = string.Empty;
+        public int SchemeId { get; set; }
         public string SchemeName { get; set; } = string.Empty;
         public FasApplicationStatus Status { get; set; }
         public DateTimeOffset SubmittedAt { get; set; }

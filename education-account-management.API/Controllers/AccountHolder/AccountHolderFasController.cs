@@ -33,6 +33,41 @@ namespace Controllers.AccountHolder
             return Result.SuccessAction($"FAS application successfully created with ID: {applicationNumber}");
         }
 
+        [HttpPost("fas-applications/draft")]
+        public async Task<IActionResult> SaveDraftApplication([FromForm] SubmitFasApplicationDTO dto, CancellationToken cancellationToken)
+        {
+            var draftId = await _fasApplicationService.SaveDraftApplicationAsync(dto, cancellationToken);
+            return Result.SuccessData(new { id = draftId }, "Draft application successfully saved.");
+        }
+
+        [HttpPut("fas-applications/draft/{id}")]
+        public async Task<IActionResult> UpdateDraftApplication([FromRoute] int id, [FromForm] SubmitFasApplicationDTO dto, CancellationToken cancellationToken)
+        {
+            await _fasApplicationService.UpdateDraftApplicationAsync(id, dto, cancellationToken);
+            return Result.SuccessAction("Draft application successfully updated.");
+        }
+
+        [HttpDelete("fas-applications/draft/{id}")]
+        public async Task<IActionResult> DeleteDraftApplication([FromRoute] int id, CancellationToken cancellationToken)
+        {
+            await _fasApplicationService.DeleteDraftApplicationAsync(id, cancellationToken);
+            return Result.SuccessAction("Draft application successfully deleted.");
+        }
+
+        [HttpPost("fas-applications/{id}/reapply-draft")]
+        public async Task<IActionResult> CreateReapplyDraft([FromRoute] int id, CancellationToken cancellationToken)
+        {
+            var draftId = await _fasApplicationService.CreateReapplyDraftAsync(id, cancellationToken);
+            return Result.SuccessData(new { id = draftId });
+        }
+
+        [HttpPost("fas-applications/{id}/publish")]
+        public async Task<IActionResult> PublishDraftApplication([FromRoute] int id, [FromForm] SubmitFasApplicationDTO dto, CancellationToken cancellationToken)
+        {
+            var applicationNumber = await _fasApplicationService.PublishDraftApplicationAsync(id, dto, cancellationToken);
+            return Result.SuccessAction($"FAS application successfully submitted with application number: {applicationNumber}");
+        }
+
         [HttpGet("fas-applications")]
         public async Task<IActionResult> GetMyApplications([FromQuery] FasApplicationFilterDTO filter, CancellationToken cancellationToken)
         {
