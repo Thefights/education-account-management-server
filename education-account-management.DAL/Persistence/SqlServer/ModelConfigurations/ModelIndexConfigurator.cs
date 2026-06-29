@@ -153,6 +153,12 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(document => new { document.FasSchemeId, document.DocumentName }).IsUnique();
             });
 
+            modelBuilder.Entity<FasSchemeAdditionalQuestion>(entity =>
+            {
+                entity.HasIndex(question => question.FasSchemeId);
+                entity.HasIndex(question => new { question.FasSchemeId, question.QuestionText }).IsUnique();
+            });
+
             modelBuilder.Entity<FasSchemeCourse>(entity =>
             {
                 entity.HasIndex(schemeCourse => schemeCourse.FasSchemeId);
@@ -173,6 +179,12 @@ namespace Persistence.SqlServer.ModelConfigurations
             {
                 entity.HasIndex(document => document.FasApplicationId);
                 entity.HasIndex(document => document.FasSchemeRequiredDocumentId);
+            });
+
+            modelBuilder.Entity<FasApplicationAdditionalQuestionAnswer>(entity =>
+            {
+                entity.HasIndex(answer => answer.FasApplicationId);
+                entity.HasIndex(answer => answer.FasSchemeAdditionalQuestionId);
             });
 
             modelBuilder.Entity<FasTierOverrideHistory>(entity =>

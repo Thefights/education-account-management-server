@@ -9029,6 +9029,59 @@ namespace educationaccountmanagement.DAL.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Models.FasApplicationAdditionalQuestionAnswer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AnswerText")
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FasApplicationId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("FasSchemeAdditionalQuestionId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsRequiredSnapshot")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("QuestionTextSnapshot")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FasApplicationId");
+
+                    b.HasIndex("FasSchemeAdditionalQuestionId");
+
+                    b.ToTable("FasApplicationAdditionalQuestionAnswer");
+                });
+
             modelBuilder.Entity("Models.FasApplicationDocument", b =>
                 {
                     b.Property<int>("Id")
@@ -9691,6 +9744,54 @@ namespace educationaccountmanagement.DAL.Migrations
                             Status = 1,
                             SubsidyType = 2
                         });
+                });
+
+            modelBuilder.Entity("Models.FasSchemeAdditionalQuestion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FasSchemeId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsRequired")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("QuestionText")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FasSchemeId");
+
+                    b.HasIndex("FasSchemeId", "QuestionText")
+                        .IsUnique()
+                        .HasFilter("\"IsDeleted\" = 0 AND \"FasSchemeId\" IS NOT NULL AND \"QuestionText\" IS NOT NULL");
+
+                    b.ToTable("FasSchemeAdditionalQuestion");
                 });
 
             modelBuilder.Entity("Models.FasSchemeCondition", b =>
@@ -15233,6 +15334,24 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Navigation("SchoolStudent");
                 });
 
+            modelBuilder.Entity("Models.FasApplicationAdditionalQuestionAnswer", b =>
+                {
+                    b.HasOne("Models.FasApplication", "FasApplication")
+                        .WithMany("AdditionalQuestionAnswers")
+                        .HasForeignKey("FasApplicationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Models.FasSchemeAdditionalQuestion", "FasSchemeAdditionalQuestion")
+                        .WithMany("ApplicationAnswers")
+                        .HasForeignKey("FasSchemeAdditionalQuestionId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("FasApplication");
+
+                    b.Navigation("FasSchemeAdditionalQuestion");
+                });
+
             modelBuilder.Entity("Models.FasApplicationDocument", b =>
                 {
                     b.HasOne("Models.FasApplication", "FasApplication")
@@ -15260,6 +15379,17 @@ namespace educationaccountmanagement.DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("School");
+                });
+
+            modelBuilder.Entity("Models.FasSchemeAdditionalQuestion", b =>
+                {
+                    b.HasOne("Models.FasScheme", "FasScheme")
+                        .WithMany("AdditionalQuestions")
+                        .HasForeignKey("FasSchemeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FasScheme");
                 });
 
             modelBuilder.Entity("Models.FasSchemeCondition", b =>
@@ -15666,6 +15796,8 @@ namespace educationaccountmanagement.DAL.Migrations
 
             modelBuilder.Entity("Models.FasApplication", b =>
                 {
+                    b.Navigation("AdditionalQuestionAnswers");
+
                     b.Navigation("AppliedCharges");
 
                     b.Navigation("Documents");
@@ -15675,6 +15807,8 @@ namespace educationaccountmanagement.DAL.Migrations
 
             modelBuilder.Entity("Models.FasScheme", b =>
                 {
+                    b.Navigation("AdditionalQuestions");
+
                     b.Navigation("Applications");
 
                     b.Navigation("ConditionGroups");
@@ -15684,6 +15818,11 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Navigation("SchemeCourses");
 
                     b.Navigation("Tiers");
+                });
+
+            modelBuilder.Entity("Models.FasSchemeAdditionalQuestion", b =>
+                {
+                    b.Navigation("ApplicationAnswers");
                 });
 
             modelBuilder.Entity("Models.FasSchemeConditionGroup", b =>

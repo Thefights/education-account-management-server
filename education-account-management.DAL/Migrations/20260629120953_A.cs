@@ -725,6 +725,33 @@ namespace educationaccountmanagement.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "FasSchemeAdditionalQuestion",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FasSchemeId = table.Column<int>(type: "int", nullable: false),
+                    QuestionText = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    IsRequired = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FasSchemeAdditionalQuestion", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FasSchemeAdditionalQuestion_FasScheme_FasSchemeId",
+                        column: x => x.FasSchemeId,
+                        principalTable: "FasScheme",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "FasSchemeConditionGroup",
                 columns: table => new
                 {
@@ -1182,6 +1209,41 @@ namespace educationaccountmanagement.DAL.Migrations
                         name: "FK_Charge_FasApplication_AppliedFasApplicationId",
                         column: x => x.AppliedFasApplicationId,
                         principalTable: "FasApplication",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FasApplicationAdditionalQuestionAnswer",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FasApplicationId = table.Column<int>(type: "int", nullable: false),
+                    FasSchemeAdditionalQuestionId = table.Column<int>(type: "int", nullable: true),
+                    QuestionTextSnapshot = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    IsRequiredSnapshot = table.Column<bool>(type: "bit", nullable: false),
+                    AnswerText = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FasApplicationAdditionalQuestionAnswer", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FasApplicationAdditionalQuestionAnswer_FasApplication_FasApplicationId",
+                        column: x => x.FasApplicationId,
+                        principalTable: "FasApplication",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FasApplicationAdditionalQuestionAnswer_FasSchemeAdditionalQuestion_FasSchemeAdditionalQuestionId",
+                        column: x => x.FasSchemeAdditionalQuestionId,
+                        principalTable: "FasSchemeAdditionalQuestion",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -2877,6 +2939,16 @@ namespace educationaccountmanagement.DAL.Migrations
                 column: "ValidityEndDate");
 
             migrationBuilder.CreateIndex(
+                name: "IX_FasApplicationAdditionalQuestionAnswer_FasApplicationId",
+                table: "FasApplicationAdditionalQuestionAnswer",
+                column: "FasApplicationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasApplicationAdditionalQuestionAnswer_FasSchemeAdditionalQuestionId",
+                table: "FasApplicationAdditionalQuestionAnswer",
+                column: "FasSchemeAdditionalQuestionId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_FasApplicationDocument_FasApplicationId",
                 table: "FasApplicationDocument",
                 column: "FasApplicationId");
@@ -2907,6 +2979,18 @@ namespace educationaccountmanagement.DAL.Migrations
                 name: "IX_FasScheme_Status",
                 table: "FasScheme",
                 column: "Status");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasSchemeAdditionalQuestion_FasSchemeId",
+                table: "FasSchemeAdditionalQuestion",
+                column: "FasSchemeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasSchemeAdditionalQuestion_FasSchemeId_QuestionText",
+                table: "FasSchemeAdditionalQuestion",
+                columns: new[] { "FasSchemeId", "QuestionText" },
+                unique: true,
+                filter: "\"IsDeleted\" = 0 AND \"FasSchemeId\" IS NOT NULL AND \"QuestionText\" IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FasSchemeCondition_Field",
@@ -3407,6 +3491,9 @@ namespace educationaccountmanagement.DAL.Migrations
                 name: "EducationAccountSweepTargets");
 
             migrationBuilder.DropTable(
+                name: "FasApplicationAdditionalQuestionAnswer");
+
+            migrationBuilder.DropTable(
                 name: "FasApplicationDocument");
 
             migrationBuilder.DropTable(
@@ -3447,6 +3534,9 @@ namespace educationaccountmanagement.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "EducationAccountSweepReports");
+
+            migrationBuilder.DropTable(
+                name: "FasSchemeAdditionalQuestion");
 
             migrationBuilder.DropTable(
                 name: "FasSchemeRequiredDocument");
