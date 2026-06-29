@@ -586,6 +586,33 @@ namespace educationaccountmanagement.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ManagementActionLog",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BatchId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    EntityType = table.Column<int>(type: "int", nullable: false),
+                    EntityId = table.Column<int>(type: "int", nullable: false),
+                    Action = table.Column<int>(type: "int", nullable: false),
+                    PreviousStatus = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: true),
+                    NewStatus = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: true),
+                    Reason = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    ActorUserId = table.Column<int>(type: "int", nullable: true),
+                    OccurredAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IpAddress = table.Column<string>(type: "nvarchar(45)", maxLength: 45, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ManagementActionLog", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ManagementActionLog_User_ActorUserId",
+                        column: x => x.ActorUserId,
+                        principalTable: "User",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "RefreshToken",
                 columns: table => new
                 {
@@ -692,6 +719,33 @@ namespace educationaccountmanagement.DAL.Migrations
                         name: "FK_ScheduleTopUpCondition_ScheduleTopUpConditionGroup_GroupId",
                         column: x => x.GroupId,
                         principalTable: "ScheduleTopUpConditionGroup",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FasSchemeAdditionalQuestion",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FasSchemeId = table.Column<int>(type: "int", nullable: false),
+                    QuestionText = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    IsRequired = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FasSchemeAdditionalQuestion", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FasSchemeAdditionalQuestion_FasScheme_FasSchemeId",
+                        column: x => x.FasSchemeId,
+                        principalTable: "FasScheme",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -1154,6 +1208,41 @@ namespace educationaccountmanagement.DAL.Migrations
                         name: "FK_Charge_FasApplication_AppliedFasApplicationId",
                         column: x => x.AppliedFasApplicationId,
                         principalTable: "FasApplication",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FasApplicationAdditionalQuestionAnswer",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FasApplicationId = table.Column<int>(type: "int", nullable: false),
+                    FasSchemeAdditionalQuestionId = table.Column<int>(type: "int", nullable: true),
+                    QuestionTextSnapshot = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    IsRequiredSnapshot = table.Column<bool>(type: "bit", nullable: false),
+                    AnswerText = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FasApplicationAdditionalQuestionAnswer", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FasApplicationAdditionalQuestionAnswer_FasApplication_FasApplicationId",
+                        column: x => x.FasApplicationId,
+                        principalTable: "FasApplication",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FasApplicationAdditionalQuestionAnswer_FasSchemeAdditionalQuestion_FasSchemeAdditionalQuestionId",
+                        column: x => x.FasSchemeAdditionalQuestionId,
+                        principalTable: "FasSchemeAdditionalQuestion",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -1701,7 +1790,12 @@ namespace educationaccountmanagement.DAL.Migrations
                     { 47, "CRS-2026-X7JQUEV", 355m, "Project Collaboration Cohort 47", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 10, 19, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 19, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 19, 0, 0, 0, 0, DateTimeKind.Utc), 34.29m, false, 26m, 1, new DateTime(2026, 8, 19, 0, 0, 0, 0, DateTimeKind.Utc), 2, null, null },
                     { 48, "CRS-2026-Y8VG30C", 360m, "Data Skills Cohort 48", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 10, 20, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 20, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 20, 0, 0, 0, 0, DateTimeKind.Utc), 35.01m, false, 29m, 1, new DateTime(2026, 8, 20, 0, 0, 0, 0, DateTimeKind.Utc), 3, null, null },
                     { 49, "CRS-2026-8A1B6PI", 365m, "Workplace Communication Cohort 49", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 9, 21, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 21, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 21, 0, 0, 0, 0, DateTimeKind.Utc), 35.73m, false, 32m, 1, new DateTime(2026, 5, 21, 0, 0, 0, 0, DateTimeKind.Utc), 4, null, null },
-                    { 50, "CRS-2026-2H98HR4", 370m, "Software Foundations Cohort 50", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 5, 22, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 22, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 22, 0, 0, 0, 0, DateTimeKind.Utc), 35.10m, false, 20m, 1, new DateTime(2026, 3, 22, 0, 0, 0, 0, DateTimeKind.Utc), 5, null, null }
+                    { 50, "CRS-2026-2H98HR4", 370m, "Software Foundations Cohort 50", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 5, 22, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 22, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 22, 0, 0, 0, 0, DateTimeKind.Utc), 35.10m, false, 20m, 1, new DateTime(2026, 3, 22, 0, 0, 0, 0, DateTimeKind.Utc), 5, null, null },
+                    { 51, "CRS-2026-W2MTY4B", 150m, "Creative Thinking Cohort 51", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 5, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 1, 0, 0, 0, 0, DateTimeKind.Utc), 15.30m, false, 20m, 1, new DateTime(2026, 3, 1, 0, 0, 0, 0, DateTimeKind.Utc), 5, null, null },
+                    { 52, "CRS-2026-6YV5VO9", 160m, "Critical Analysis Cohort 52", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 9, 5, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 5, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 2, 5, 0, 0, 0, 0, DateTimeKind.Utc), 16.65m, false, 25m, 1, new DateTime(2026, 4, 5, 0, 0, 0, 0, DateTimeKind.Utc), 4, null, null },
+                    { 53, "CRS-2026-HR6FMHH", 140m, "Public Speaking Cohort 53", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 5, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 5, 1, 0, 0, 0, 0, DateTimeKind.Utc), 14.22m, false, 18m, 1, new DateTime(2026, 8, 1, 0, 0, 0, 0, DateTimeKind.Utc), 2, null, null },
+                    { 54, "CRS-2026-SGK2RR1", 170m, "Data Literacy Cohort 54", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 4, 10, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc), 17.28m, false, 22m, 1, new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc), 5, null, null },
+                    { 55, "CRS-2026-NVVEGXE", 155m, "Problem Solving Cohort 55", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 9, 15, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 3, 15, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 3, 15, 0, 0, 0, 0, DateTimeKind.Utc), 15.75m, false, 20m, 1, new DateTime(2026, 5, 15, 0, 0, 0, 0, DateTimeKind.Utc), 4, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -1938,7 +2032,8 @@ namespace educationaccountmanagement.DAL.Migrations
                     { 47, 120m, 1820m, 1940m, new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Scheduled meal allowance", 2, 47, false, new Guid("aa3b2e4c-4168-41e1-9e2d-e42027d45872"), 2, null, null },
                     { 48, 130m, 1830m, 1960m, new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Learning materials credit", 2, 48, false, new Guid("f2568b2f-b965-4d82-8bb2-0d344af9df0c"), 4, null, null },
                     { 49, 140m, 2120m, 1980m, new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Account balance correction", 1, 49, false, new Guid("20489516-1121-469e-8d21-e46a93a2fffc"), 1, null, null },
-                    { 50, 50m, 1950m, 2000m, new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Tuition payment debit", 2, 50, false, new Guid("ed9be019-597a-4217-9b0e-d0c47009c4ec"), 2, null, null }
+                    { 50, 50m, 1950m, 2000m, new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Tuition payment debit", 2, 50, false, new Guid("ed9be019-597a-4217-9b0e-d0c47009c4ec"), 2, null, null },
+                    { 51, 185m, 840m, 1025m, new DateTime(2026, 1, 31, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "Course fee payment for Creative Thinking Cohort 51", 2, 1, false, new Guid("c2a4b6d8-e0f2-4a6c-8e0a-2c4b6d8e0f2a"), 2, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -2174,7 +2269,12 @@ namespace educationaccountmanagement.DAL.Migrations
                     { 47, "EDU-2026-2OK04RQ", "evelyn.eng@example.com", "Evelyn Eng", "S0000047G", "+6590000047", "Course enrollment created for school-admin review.", 47, "Project Collaboration Cohort 47", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Northview Secondary School", 47, 1, null, null },
                     { 48, "EDU-2026-5L2W56M", "faris.foo@example.com", "Faris Foo", "S0000048E", "+6590000048", "Course enrollment created for school-admin review.", 48, "Data Skills Cohort 48", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Northview Secondary School", 48, 2, null, null },
                     { 49, "EDU-2026-7UZZHKN", "giselle.gan@example.com", "Giselle Gan", "S0000049C", "+6590000049", "Course enrollment created for school-admin review.", 49, "Workplace Communication Cohort 49", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Northview Secondary School", 49, 1, null, null },
-                    { 50, "EDU-2026-9DG3ZSZ", "haziq.ho@example.com", "Haziq Ho", "S0000050G", "+6590000050", "Course enrollment created for school-admin review.", 50, "Software Foundations Cohort 50", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Northview Secondary School", 50, 1, null, null }
+                    { 50, "EDU-2026-9DG3ZSZ", "haziq.ho@example.com", "Haziq Ho", "S0000050G", "+6590000050", "Course enrollment created for school-admin review.", 50, "Software Foundations Cohort 50", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Northview Secondary School", 50, 1, null, null },
+                    { 51, "EDU-2026-M7QVS7X", "phuckhang1088@gmail.com", "Sterling Quach", "S0000001I", "+6590000001", "Course enrollment created for school-admin review.", 51, "Creative Thinking Cohort 51", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Northview Secondary School", 1, 1, null, null },
+                    { 52, "EDU-2026-M7QVS7X", "phuckhang1088@gmail.com", "Sterling Quach", "S0000001I", "+6590000001", "Course enrollment created for school-admin review.", 52, "Critical Analysis Cohort 52", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Northview Secondary School", 1, 1, null, null },
+                    { 53, "EDU-2026-M7QVS7X", "phuckhang1088@gmail.com", "Sterling Quach", "S0000001I", "+6590000001", "Course enrollment created for school-admin review.", 53, "Public Speaking Cohort 53", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Northview Secondary School", 1, 1, null, null },
+                    { 54, "EDU-2026-M7QVS7X", "phuckhang1088@gmail.com", "Sterling Quach", "S0000001I", "+6590000001", "Course enrollment created for school-admin review.", 54, "Data Literacy Cohort 54", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Northview Secondary School", 1, 1, null, null },
+                    { 55, "EDU-2026-M7QVS7X", "phuckhang1088@gmail.com", "Sterling Quach", "S0000001I", "+6590000001", "Course enrollment created for school-admin review.", 55, "Problem Solving Cohort 55", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, "Northview Secondary School", 1, 1, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -2290,7 +2390,8 @@ namespace educationaccountmanagement.DAL.Migrations
                     { 47, "EDU-2026-2OK04RQ", "Evelyn Eng", "S0000047G", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 47, null, false, new DateTime(2026, 6, 19, 0, 0, 0, 0, DateTimeKind.Utc), 1, 2, 308m, null, null },
                     { 48, "EDU-2026-5L2W56M", "Faris Foo", "S0000048E", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 48, "PAY-EXT-00048", false, null, 2, 3, 312m, null, null },
                     { 49, "EDU-2026-7UZZHKN", "Giselle Gan", "S0000049C", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 49, null, false, null, 1, 1, 316m, null, null },
-                    { 50, "EDU-2026-9DG3ZSZ", "Haziq Ho", "S0000050G", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 50, "PAY-EXT-00050", false, new DateTime(2026, 6, 22, 0, 0, 0, 0, DateTimeKind.Utc), 2, 2, 320m, null, null }
+                    { 50, "EDU-2026-9DG3ZSZ", "Haziq Ho", "S0000050G", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 50, "PAY-EXT-00050", false, new DateTime(2026, 6, 22, 0, 0, 0, 0, DateTimeKind.Utc), 2, 2, 320m, null, null },
+                    { 51, "EDU-2026-M7QVS7X", "Sterling Quach", "S0000001I", new DateTime(2026, 1, 31, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 51, null, false, new DateTime(2026, 1, 31, 0, 0, 0, 0, DateTimeKind.Utc), 1, 2, 185m, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -2365,7 +2466,12 @@ namespace educationaccountmanagement.DAL.Migrations
                     { 47, null, null, false, null, null, null, null, null, "CRS-2026-X7JQUEV", "Tuition charge generated from enrollment.", new DateTime(2026, 10, 19, 0, 0, 0, 0, DateTimeKind.Utc), 355m, "Project Collaboration Cohort 47", new DateTime(2026, 8, 19, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 47, 432m, 34.29m, false, 26m, 432m, 432m, null, 0m, "Northview Secondary School", 2, 0m, 0.09m, null, null },
                     { 48, 8, null, false, null, "Low Income Course Fee Support", 2, 30m, "Tier 1", "CRS-2026-Y8VG30C", "Tuition charge generated from enrollment.", new DateTime(2026, 10, 20, 0, 0, 0, 0, DateTimeKind.Utc), 360m, "Data Skills Cohort 48", new DateTime(2026, 8, 20, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 48, 438m, 35.01m, false, 29m, 408m, 0m, null, 408m, "Northview Secondary School", 3, 30m, 0.09m, null, null },
                     { 49, null, null, false, null, null, null, null, null, "CRS-2026-8A1B6PI", "Tuition charge generated from enrollment.", new DateTime(2026, 10, 21, 0, 0, 0, 0, DateTimeKind.Utc), 365m, "Workplace Communication Cohort 49", new DateTime(2026, 8, 21, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 49, 444m, 35.73m, false, 32m, 444m, 0m, null, 444m, "Northview Secondary School", 1, 0m, 0.09m, null, null },
-                    { 50, null, null, false, null, null, null, null, null, "CRS-2026-2H98HR4", "Tuition charge generated from enrollment.", new DateTime(2026, 10, 22, 0, 0, 0, 0, DateTimeKind.Utc), 370m, "Software Foundations Cohort 50", new DateTime(2026, 8, 22, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 50, 450m, 35.10m, false, 20m, 450m, 450m, null, 0m, "Northview Secondary School", 2, 0m, 0.09m, null, null }
+                    { 50, null, null, false, null, null, null, null, null, "CRS-2026-2H98HR4", "Tuition charge generated from enrollment.", new DateTime(2026, 10, 22, 0, 0, 0, 0, DateTimeKind.Utc), 370m, "Software Foundations Cohort 50", new DateTime(2026, 8, 22, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 50, 450m, 35.10m, false, 20m, 450m, 450m, null, 0m, "Northview Secondary School", 2, 0m, 0.09m, null, null },
+                    { 51, null, null, false, null, null, null, null, null, "CRS-2026-W2MTY4B", "Tuition charge generated from enrollment.", new DateTime(2026, 5, 1, 0, 0, 0, 0, DateTimeKind.Utc), 150m, "Creative Thinking Cohort 51", new DateTime(2026, 3, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 51, 185m, 15.30m, false, 20m, 185m, 185m, null, 0m, "Northview Secondary School", 2, 0m, 0.09m, null, null },
+                    { 52, null, null, false, null, null, null, null, null, "CRS-2026-6YV5VO9", "Tuition charge generated from enrollment.", new DateTime(2026, 9, 5, 0, 0, 0, 0, DateTimeKind.Utc), 160m, "Critical Analysis Cohort 52", new DateTime(2026, 4, 5, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 52, 201m, 16.65m, false, 25m, 201m, 0m, null, 201m, "Northview Secondary School", 3, 0m, 0.09m, null, null },
+                    { 53, null, null, false, null, null, null, null, null, "CRS-2026-HR6FMHH", "Tuition charge generated from enrollment.", new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Utc), 140m, "Public Speaking Cohort 53", new DateTime(2026, 8, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 53, 172m, 14.22m, false, 18m, 172m, 0m, null, 172m, "Northview Secondary School", 1, 0m, 0.09m, null, null },
+                    { 54, null, null, false, null, null, null, null, null, "CRS-2026-SGK2RR1", "Tuition charge generated from enrollment.", new DateTime(2026, 4, 10, 0, 0, 0, 0, DateTimeKind.Utc), 170m, "Data Literacy Cohort 54", new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 54, 209m, 17.28m, false, 22m, 209m, 0m, null, 209m, "Northview Secondary School", 1, 0m, 0.09m, null, null },
+                    { 55, null, null, false, null, null, null, null, null, "CRS-2026-NVVEGXE", "Tuition charge generated from enrollment.", new DateTime(2026, 9, 15, 0, 0, 0, 0, DateTimeKind.Utc), 155m, "Problem Solving Cohort 55", new DateTime(2026, 5, 15, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 55, 190m, 15.75m, false, 20m, 190m, 0m, null, 190m, "Northview Secondary School", 1, 0m, 0.09m, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -2479,7 +2585,12 @@ namespace educationaccountmanagement.DAL.Migrations
                     { 47, 432m, null, 47, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 5, 19, 0, 0, 0, 0, DateTimeKind.Utc), 1, false, 2, null, null },
                     { 48, 438m, new DateTime(2026, 6, 20, 0, 0, 0, 0, DateTimeKind.Utc), 48, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 5, 20, 0, 0, 0, 0, DateTimeKind.Utc), 1, false, 3, null, null },
                     { 49, 444m, null, 49, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 5, 21, 0, 0, 0, 0, DateTimeKind.Utc), 1, false, 1, null, null },
-                    { 50, 450m, null, 50, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 5, 22, 0, 0, 0, 0, DateTimeKind.Utc), 1, false, 2, null, null }
+                    { 50, 450m, null, 50, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 5, 22, 0, 0, 0, 0, DateTimeKind.Utc), 1, false, 2, null, null },
+                    { 51, 185m, null, 51, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 4, 1, 0, 0, 0, 0, DateTimeKind.Utc), 1, false, 2, null, null },
+                    { 52, 201m, new DateTime(2026, 6, 5, 0, 0, 0, 0, DateTimeKind.Utc), 52, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 5, 5, 0, 0, 0, 0, DateTimeKind.Utc), 1, false, 3, null, null },
+                    { 53, 172m, null, 53, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 9, 1, 0, 0, 0, 0, DateTimeKind.Utc), 1, false, 1, null, null },
+                    { 54, 209m, null, 54, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 3, 10, 0, 0, 0, 0, DateTimeKind.Utc), 1, false, 1, null, null },
+                    { 55, 190m, null, 55, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(2026, 6, 15, 0, 0, 0, 0, DateTimeKind.Utc), 1, false, 1, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -2503,7 +2614,8 @@ namespace educationaccountmanagement.DAL.Migrations
                     { 14, 284m, 396m, 41, 41, 396m, 396m, "Career Readiness Cohort 41", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 41, "Northview Secondary School", null, null },
                     { 15, 296m, 414m, 44, 44, 414m, 414m, "Applied Science Cohort 44", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 44, "Northview Secondary School", null, null },
                     { 16, 308m, 432m, 47, 47, 432m, 432m, "Financial Literacy Cohort 47", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 47, "Northview Secondary School", null, null },
-                    { 17, 320m, 450m, 50, 50, 450m, 450m, "Project Collaboration Cohort 50", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 50, "Northview Secondary School", null, null }
+                    { 17, 320m, 450m, 50, 50, 450m, 450m, "Project Collaboration Cohort 50", new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 50, "Northview Secondary School", null, null },
+                    { 18, 185m, 185m, 51, 51, 185m, 185m, "Creative Thinking Cohort 51", new DateTime(2026, 1, 31, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 51, "Northview Secondary School", null, null }
                 });
 
             migrationBuilder.CreateIndex(
@@ -2826,6 +2938,16 @@ namespace educationaccountmanagement.DAL.Migrations
                 column: "ValidityEndDate");
 
             migrationBuilder.CreateIndex(
+                name: "IX_FasApplicationAdditionalQuestionAnswer_FasApplicationId",
+                table: "FasApplicationAdditionalQuestionAnswer",
+                column: "FasApplicationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasApplicationAdditionalQuestionAnswer_FasSchemeAdditionalQuestionId",
+                table: "FasApplicationAdditionalQuestionAnswer",
+                column: "FasSchemeAdditionalQuestionId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_FasApplicationDocument_FasApplicationId",
                 table: "FasApplicationDocument",
                 column: "FasApplicationId");
@@ -2856,6 +2978,18 @@ namespace educationaccountmanagement.DAL.Migrations
                 name: "IX_FasScheme_Status",
                 table: "FasScheme",
                 column: "Status");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasSchemeAdditionalQuestion_FasSchemeId",
+                table: "FasSchemeAdditionalQuestion",
+                column: "FasSchemeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FasSchemeAdditionalQuestion_FasSchemeId_QuestionText",
+                table: "FasSchemeAdditionalQuestion",
+                columns: new[] { "FasSchemeId", "QuestionText" },
+                unique: true,
+                filter: "\"IsDeleted\" = 0 AND \"FasSchemeId\" IS NOT NULL AND \"QuestionText\" IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FasSchemeCondition_Field",
@@ -2944,6 +3078,36 @@ namespace educationaccountmanagement.DAL.Migrations
                 name: "IX_FasTierOverrideHistory_OldTierId",
                 table: "FasTierOverrideHistory",
                 column: "OldTierId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ManagementActionLog_Action",
+                table: "ManagementActionLog",
+                column: "Action");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ManagementActionLog_ActorUserId",
+                table: "ManagementActionLog",
+                column: "ActorUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ManagementActionLog_BatchId",
+                table: "ManagementActionLog",
+                column: "BatchId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ManagementActionLog_EntityId",
+                table: "ManagementActionLog",
+                column: "EntityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ManagementActionLog_EntityType",
+                table: "ManagementActionLog",
+                column: "EntityType");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ManagementActionLog_OccurredAt",
+                table: "ManagementActionLog",
+                column: "OccurredAt");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OutboxMessage_OccurredAt",
@@ -3326,6 +3490,9 @@ namespace educationaccountmanagement.DAL.Migrations
                 name: "EducationAccountSweepTargets");
 
             migrationBuilder.DropTable(
+                name: "FasApplicationAdditionalQuestionAnswer");
+
+            migrationBuilder.DropTable(
                 name: "FasApplicationDocument");
 
             migrationBuilder.DropTable(
@@ -3336,6 +3503,9 @@ namespace educationaccountmanagement.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "FasTierOverrideHistory");
+
+            migrationBuilder.DropTable(
+                name: "ManagementActionLog");
 
             migrationBuilder.DropTable(
                 name: "OutboxMessage");
@@ -3363,6 +3533,9 @@ namespace educationaccountmanagement.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "EducationAccountSweepReports");
+
+            migrationBuilder.DropTable(
+                name: "FasSchemeAdditionalQuestion");
 
             migrationBuilder.DropTable(
                 name: "FasSchemeRequiredDocument");

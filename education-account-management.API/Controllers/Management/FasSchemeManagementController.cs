@@ -13,7 +13,7 @@ namespace Controllers.Management
     {
         private readonly IFasSchemeService _fasSchemeService = service;
 
-        protected override string? EntityName => "FasScheme";
+        protected override string? EntityName => nameof(FasScheme);
 
         [HttpPut("status")]
         public async Task<IActionResult> UpdateStatus(

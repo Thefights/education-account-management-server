@@ -136,11 +136,17 @@ namespace Services.FasApplications
             var sourceApplication = await _unitOfWork.Repository<FasApplication>()
                 .Query()
                 .Include(a => a.Documents)
+                .Include(a => a.FasScheme)
                 .FirstOrDefaultAsync(a => a.Id == sourceApplicationId && a.SchoolStudentId == studentInfo.Id, cancellationToken);
 
             if (sourceApplication == null)
             {
                 throw new DataNotFoundException(typeof(FasApplication), sourceApplicationId);
+            }
+
+            if (sourceApplication.FasScheme.Status != FasSchemeStatus.Active)
+            {
+                throw new DataConflictException("The selected FAS Scheme is no longer active.");
             }
 
             var canReapply =
@@ -235,7 +241,7 @@ namespace Services.FasApplications
 
             if (draft.FasScheme.Status != FasSchemeStatus.Active)
             {
-                throw new DataConflictException("The selected scheme is no longer active. You cannot submit an application for it.");
+                throw new DataConflictException("The selected FAS Scheme is no longer active.");
             }
 
             await EnsureNoActiveApplicationAsync(studentInfo.Id, draft.FasSchemeId, draft.Id, cancellationToken);
@@ -395,11 +401,20 @@ namespace Services.FasApplications
                     .ThenInclude(cg => cg.ChildGroups)
                         .ThenInclude(child => child.Conditions)
                 .FirstOrDefaultAsync(s => s.Id == schemeId
-                    && s.Status == FasSchemeStatus.Active
                     && s.SchoolId == schoolId,
                     cancellationToken);
 
-            return scheme ?? throw new DataNotFoundException(typeof(FasScheme), schemeId);
+            if (scheme == null)
+            {
+                throw new DataNotFoundException(typeof(FasScheme), schemeId);
+            }
+
+            if (scheme.Status != FasSchemeStatus.Active)
+            {
+                throw new DataConflictException("The selected FAS Scheme is no longer active.");
+            }
+
+            return scheme;
         }
 
         private async Task EnsureNoActiveApplicationAsync(

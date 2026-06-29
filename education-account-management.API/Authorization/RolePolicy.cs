@@ -9,5 +9,6 @@ namespace Authorization
         public const string FinanceAdmin = nameof(UserRole.FinanceAdmin);
         public const string SchoolAdmin = nameof(UserRole.SchoolAdmin);
 
+        public const string FullAdmin = nameof(UserRole.SystemAdmin) + "," + nameof(UserRole.FinanceAdmin) + "," + nameof(UserRole.SchoolAdmin);
     }
 }

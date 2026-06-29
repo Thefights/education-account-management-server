@@ -13,7 +13,8 @@ namespace Services.Courses
         CourseMapper mapper,
         SchoolScopeResolver schoolScopeResolver,
         IAuditLogWriter auditLogWriter,
-        TimeProvider timeProvider)
+        TimeProvider timeProvider,
+        IManagementActionLogService managementActionLogService)
         : BaseService<Course, CreateCourseDTO, GetCourseDTO, UpdateCourseDTO>(
             unitOfWork,
             mapper,
@@ -23,6 +24,7 @@ namespace Services.Courses
         private readonly SchoolScopeResolver _schoolScopeResolver = schoolScopeResolver;
         private readonly IAuditLogWriter _auditLogWriter = auditLogWriter;
         private readonly TimeProvider _timeProvider = timeProvider;
+        private readonly IManagementActionLogService _managementActionLogService = managementActionLogService;
         private readonly IGenericRepository<ApplicationSetting> _settingRepository =
             unitOfWork.Repository<ApplicationSetting>();
         private readonly IGenericRepository<SchoolStudent> _schoolStudentRepository =
@@ -137,6 +139,7 @@ namespace Services.Courses
             CancellationToken cancellationToken = default)
         {
             ArgumentNullException.ThrowIfNull(publishDTO);
+            var batchId = Guid.NewGuid();
             var ids = publishDTO.Ids;
             if (ids.Count == 0 || ids.Any(id => id <= 0))
             {
@@ -171,6 +174,7 @@ namespace Services.Courses
 
                     foreach (var course in courses)
                     {
+                        var oldStatus = course.Status;
                         if (course.Status != CourseStatus.Draft)
                         {
                             throw new DataConflictException(
@@ -186,6 +190,15 @@ namespace Services.Courses
 
                         course.TryValidate();
                         course.Status = CourseStatus.Enrolling;
+                        await _managementActionLogService.LogAsync(
+                            batchId,
+                            ManagementActionEntityType.Course,
+                            course.Id,
+                            ManagementAction.Publish,
+                            publishDTO.Reason,
+                            oldStatus.ToString(),
+                            course.Status.ToString(),
+                            cancellationToken: token);
                         await _auditLogWriter.LogAsync(
                             AuditLogCategory.StatusChange,
                             $"Course {course.CourseCode} published: Draft to Enrolling.",
@@ -303,6 +316,8 @@ namespace Services.Courses
             CancellationToken cancellationToken = default)
         {
             ArgumentNullException.ThrowIfNull(deleteDTO);
+            var reason = deleteDTO.Reason;
+            var batchId = Guid.NewGuid();
             if (deleteDTO.Items.Count == 0)
             {
                 throw new ValidationFailureException(
@@ -347,6 +362,15 @@ namespace Services.Courses
                     {
                         CourseConcurrencyHelper.Validate(rowVersions[course.Id], course.RowVersion);
                         ValidateCanDelete(course);
+                        await _managementActionLogService.LogAsync(
+                            batchId,
+                            ManagementActionEntityType.Course,
+                            course.Id,
+                            ManagementAction.Delete,
+                            reason,
+                            course.Status.ToString(),
+                            null,
+                            token);
                     }
 
                     _repository.RemoveRange(courses);

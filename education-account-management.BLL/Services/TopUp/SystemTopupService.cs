@@ -1,4 +1,5 @@
-﻿using DTOs.TopUp;
+using DTOs.Base;
+using DTOs.TopUp;
 using Interfaces.Audit;
 using Interfaces.TopUp;
 using Mappers.TopUp;
@@ -11,11 +12,13 @@ namespace Services.TopUp
     public class SystemTopupService(
         IUnitOfWork unitOfWork,
         SystemTopupMapper mapper,
-        IAuditLogWriter auditLogWriter)
+        IAuditLogWriter auditLogWriter,
+        IManagementActionLogService managementActionLogService)
         : BaseService<SystemTopup, CreateSystemTopupDTO, GetSystemTopupDTO, UpdateSystemTopupDTO>(unitOfWork, mapper),
           ISystemTopupService
     {
         private readonly IAuditLogWriter _auditLogWriter = auditLogWriter;
+        private readonly IManagementActionLogService _managementActionLogService = managementActionLogService;
         private readonly IGenericRepository<SystemTopupConditionGroup> _groupRepository =
             unitOfWork.Repository<SystemTopupConditionGroup>();
         private readonly IGenericRepository<SystemTopupCondition> _conditionRepository =
@@ -92,6 +95,7 @@ namespace Services.TopUp
         {
             ArgumentNullException.ThrowIfNull(dto);
             if (dto.Ids.Count == 0) return;
+            var batchId = Guid.NewGuid();
             var topups = await _repository.GetByIdsAsync(dto.Ids, cancellationToken: cancellationToken);
             if (topups.Count != dto.Ids.Distinct().Count())
                 throw new ValidationFailureException(nameof(dto.Ids), "One or more System top-ups do not exist.");
@@ -106,8 +110,18 @@ namespace Services.TopUp
             {
                 foreach (var topup in topups)
                 {
+                    var oldStatus = topup.Status;
                     topup.Status = dto.Status;
                     topup.TryValidate();
+                    await _managementActionLogService.LogAsync(
+                        batchId,
+                        ManagementActionEntityType.SystemTopup,
+                        topup.Id,
+                        dto.Status == SystemTopupStatus.Active ? ManagementAction.Activate : ManagementAction.Deactivate,
+                        dto.Reason,
+                        oldStatus.ToString(),
+                        topup.Status.ToString(),
+                        cancellationToken: token);
                 }
                 _repository.UpdateRange(topups);
                 await _auditLogWriter.LogAsync(
@@ -121,6 +135,35 @@ namespace Services.TopUp
         {
             await base.DeleteAsync(id, cancellationToken);
             await LogAsync("DeleteSystemTopup", cancellationToken);
+        }
+
+        public override async Task DeleteSelectedIdsAsync(DeleteSelectedIdsDTO dto, CancellationToken cancellationToken = default)
+        {
+            ArgumentNullException.ThrowIfNull(dto);
+
+            var batchId = Guid.NewGuid();
+            await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
+            {
+                var topups = await _repository.GetTrackedByIdsAsync(dto.Ids, cancellationToken: token);
+                if (topups.Count != dto.Ids.Distinct().Count())
+                    throw new ValidationFailureException(nameof(dto.Ids), "One or more System top-ups do not exist.");
+
+                foreach (var topup in topups)
+                {
+                    await _managementActionLogService.LogAsync(
+                        batchId,
+                        ManagementActionEntityType.SystemTopup,
+                        topup.Id,
+                        ManagementAction.Delete,
+                        dto.Reason,
+                        topup.Status.ToString(),
+                        null,
+                        cancellationToken: token);
+                }
+
+                _repository.RemoveRange(topups);
+                await _auditLogWriter.LogAsync(AuditLogCategory.Topup, "DeleteSelectedSystemTopup", cancellationToken: token);
+            }, cancellationToken);
         }
 
         public override async Task<GetSystemTopupDTO> GetByIdAsync(int id, CancellationToken cancellationToken = default)

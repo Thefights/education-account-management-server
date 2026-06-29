@@ -1,3 +1,4 @@
+using DTOs.Base;
 using DTOs.FasSchemes;
 using Interfaces.Audit;
 using Interfaces.Base;
@@ -15,7 +16,8 @@ namespace Services.FasSchemes
         SchoolScopeResolver schoolScopeResolver,
         IAuditLogWriter auditLogWriter,
         TimeProvider timeProvider,
-        IFileValidator fileValidator)
+        IFileValidator fileValidator,
+        IManagementActionLogService managementActionLogService)
         : BaseService<FasScheme, CreateFasSchemeDTO, GetFasSchemeDTO, UpdateFasSchemeDTO>(
             unitOfWork,
             mapper,
@@ -26,6 +28,7 @@ namespace Services.FasSchemes
         private readonly IAuditLogWriter _auditLogWriter = auditLogWriter;
         private readonly TimeProvider _timeProvider = timeProvider;
         private readonly IFileValidator _fileValidator = fileValidator;
+        private readonly IManagementActionLogService _managementActionLogService = managementActionLogService;
 
         private readonly IGenericRepository<FasSchemeConditionGroup> _groupRepository =
             unitOfWork.Repository<FasSchemeConditionGroup>();
@@ -214,6 +217,7 @@ namespace Services.FasSchemes
         {
             ArgumentNullException.ThrowIfNull(dto);
             if (dto.Ids.Count == 0) return;
+            var batchId = Guid.NewGuid();
             var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
 
             await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
@@ -247,6 +251,15 @@ namespace Services.FasSchemes
 
                     scheme.TryValidate();
                     _repository.Update(scheme);
+                    await _managementActionLogService.LogAsync(
+                        batchId,
+                        ManagementActionEntityType.FasScheme,
+                        scheme.Id,
+                        dto.Status == FasSchemeStatus.Active ? ManagementAction.Activate : ManagementAction.Deactivate,
+                        dto.Reason,
+                        oldStatus.ToString(),
+                        scheme.Status.ToString(),
+                        cancellationToken: token);
 
                     // Audit Log
                     string auditAction = dto.Status switch
@@ -442,17 +455,20 @@ namespace Services.FasSchemes
             }, cancellationToken);
         }
 
-        public override async Task DeleteSelectedIdsAsync(List<int> ids, CancellationToken cancellationToken = default)
+        public override async Task DeleteSelectedIdsAsync(DeleteSelectedIdsDTO dto, CancellationToken cancellationToken = default)
         {
-            ArgumentNullException.ThrowIfNull(ids);
-            if (ids.Count == 0) return;
+            ArgumentNullException.ThrowIfNull(dto);
+            if (dto.Ids.Count == 0) return;
+            var batchId = Guid.NewGuid();
             var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
 
             await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
             {
                 var schemes = await _repository.Query(tracking: true)
-                    .Where(s => ids.Contains(s.Id) && s.SchoolId == schoolId)
+                    .Where(s => dto.Ids.Contains(s.Id) && s.SchoolId == schoolId)
                     .ToListAsync(token);
+                if (schemes.Count != dto.Ids.Distinct().Count())
+                    throw new ValidationFailureException(nameof(dto.Ids), "One or more FAS schemes do not exist or you do not have permission.");
 
                 if (schemes.Any(s => s.Status != FasSchemeStatus.Draft))
                 {
@@ -483,6 +499,15 @@ namespace Services.FasSchemes
                         .ToListAsync(token);
                     _courseLinkRepository.RemoveRange(links);
 
+                    await _managementActionLogService.LogAsync(
+                        batchId,
+                        ManagementActionEntityType.FasScheme,
+                        scheme.Id,
+                        ManagementAction.Delete,
+                        dto.Reason,
+                        scheme.Status.ToString(),
+                        null,
+                        cancellationToken: token);
                     _repository.Remove(scheme);
                 }
                 await _unitOfWork.SaveChangeAsync(token);

@@ -12,7 +12,7 @@ using Persistence.SqlServer;
 namespace educationaccountmanagement.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260629063327_A")]
+    [Migration("20260629130030_A")]
     partial class A
     {
         /// <inheritdoc />
@@ -2719,6 +2719,131 @@ namespace educationaccountmanagement.DAL.Migrations
                             Status = 2,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
+                        },
+                        new
+                        {
+                            Id = 51,
+                            AppliedFasIsPerComponentSnapshot = false,
+                            CourseCodeSnapshot = "CRS-2026-W2MTY4B",
+                            CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
+                            CourseEndDateSnapshot = new DateTime(2026, 5, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 150m,
+                            CourseNameSnapshot = "Creative Thinking Cohort 51",
+                            CourseStartDateSnapshot = new DateTime(2026, 3, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentId = 51,
+                            GrossAmount = 185m,
+                            GstAmountSnapshot = 15.30m,
+                            IsDeleted = false,
+                            MiscFeeAmountSnapshot = 20m,
+                            NetAmount = 185m,
+                            PaidAmount = 185m,
+                            RemainingAmount = 0m,
+                            RowVersion = new byte[0],
+                            SchoolNameSnapshot = "Northview Secondary School",
+                            Status = 2,
+                            SubsidyAmount = 0m,
+                            TaxRateSnapshot = 0.09m
+                        },
+                        new
+                        {
+                            Id = 52,
+                            AppliedFasIsPerComponentSnapshot = false,
+                            CourseCodeSnapshot = "CRS-2026-6YV5VO9",
+                            CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
+                            CourseEndDateSnapshot = new DateTime(2026, 9, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 160m,
+                            CourseNameSnapshot = "Critical Analysis Cohort 52",
+                            CourseStartDateSnapshot = new DateTime(2026, 4, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentId = 52,
+                            GrossAmount = 201m,
+                            GstAmountSnapshot = 16.65m,
+                            IsDeleted = false,
+                            MiscFeeAmountSnapshot = 25m,
+                            NetAmount = 201m,
+                            PaidAmount = 0m,
+                            RemainingAmount = 201m,
+                            RowVersion = new byte[0],
+                            SchoolNameSnapshot = "Northview Secondary School",
+                            Status = 3,
+                            SubsidyAmount = 0m,
+                            TaxRateSnapshot = 0.09m
+                        },
+                        new
+                        {
+                            Id = 53,
+                            AppliedFasIsPerComponentSnapshot = false,
+                            CourseCodeSnapshot = "CRS-2026-HR6FMHH",
+                            CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 140m,
+                            CourseNameSnapshot = "Public Speaking Cohort 53",
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentId = 53,
+                            GrossAmount = 172m,
+                            GstAmountSnapshot = 14.22m,
+                            IsDeleted = false,
+                            MiscFeeAmountSnapshot = 18m,
+                            NetAmount = 172m,
+                            PaidAmount = 0m,
+                            RemainingAmount = 172m,
+                            RowVersion = new byte[0],
+                            SchoolNameSnapshot = "Northview Secondary School",
+                            Status = 1,
+                            SubsidyAmount = 0m,
+                            TaxRateSnapshot = 0.09m
+                        },
+                        new
+                        {
+                            Id = 54,
+                            AppliedFasIsPerComponentSnapshot = false,
+                            CourseCodeSnapshot = "CRS-2026-SGK2RR1",
+                            CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
+                            CourseEndDateSnapshot = new DateTime(2026, 4, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 170m,
+                            CourseNameSnapshot = "Data Literacy Cohort 54",
+                            CourseStartDateSnapshot = new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentId = 54,
+                            GrossAmount = 209m,
+                            GstAmountSnapshot = 17.28m,
+                            IsDeleted = false,
+                            MiscFeeAmountSnapshot = 22m,
+                            NetAmount = 209m,
+                            PaidAmount = 0m,
+                            RemainingAmount = 209m,
+                            RowVersion = new byte[0],
+                            SchoolNameSnapshot = "Northview Secondary School",
+                            Status = 1,
+                            SubsidyAmount = 0m,
+                            TaxRateSnapshot = 0.09m
+                        },
+                        new
+                        {
+                            Id = 55,
+                            AppliedFasIsPerComponentSnapshot = false,
+                            CourseCodeSnapshot = "CRS-2026-NVVEGXE",
+                            CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
+                            CourseEndDateSnapshot = new DateTime(2026, 9, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 155m,
+                            CourseNameSnapshot = "Problem Solving Cohort 55",
+                            CourseStartDateSnapshot = new DateTime(2026, 5, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentId = 55,
+                            GrossAmount = 190m,
+                            GstAmountSnapshot = 15.75m,
+                            IsDeleted = false,
+                            MiscFeeAmountSnapshot = 20m,
+                            NetAmount = 190m,
+                            PaidAmount = 0m,
+                            RemainingAmount = 190m,
+                            RowVersion = new byte[0],
+                            SchoolNameSnapshot = "Northview Secondary School",
+                            Status = 1,
+                            SubsidyAmount = 0m,
+                            TaxRateSnapshot = 0.09m
                         });
                 });
 
@@ -3351,6 +3476,62 @@ namespace educationaccountmanagement.DAL.Migrations
                             InstallmentNumber = 1,
                             IsDeleted = false,
                             Status = 2
+                        },
+                        new
+                        {
+                            Id = 51,
+                            Amount = 185m,
+                            ChargeId = 51,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 4, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
+                            IsDeleted = false,
+                            Status = 2
+                        },
+                        new
+                        {
+                            Id = 52,
+                            Amount = 201m,
+                            BecameOverdueAt = new DateTime(2026, 6, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ChargeId = 52,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 5, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
+                            IsDeleted = false,
+                            Status = 3
+                        },
+                        new
+                        {
+                            Id = 53,
+                            Amount = 172m,
+                            ChargeId = 53,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 9, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
+                            IsDeleted = false,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 54,
+                            Amount = 209m,
+                            ChargeId = 54,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 3, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
+                            IsDeleted = false,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 55,
+                            Amount = 190m,
+                            ChargeId = 55,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 6, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
+                            IsDeleted = false,
+                            Status = 1
                         });
                 });
 
@@ -5183,6 +5364,96 @@ namespace educationaccountmanagement.DAL.Migrations
                             SchoolId = 1,
                             StartDate = new DateTime(2026, 3, 22, 0, 0, 0, 0, DateTimeKind.Utc),
                             Status = 5
+                        },
+                        new
+                        {
+                            Id = 51,
+                            CourseCode = "CRS-2026-W2MTY4B",
+                            CourseFeeAmount = 150m,
+                            CourseName = "Creative Thinking Cohort 51",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EndDate = new DateTime(2026, 5, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentDeadline = new DateTime(2026, 2, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationDueDate = new DateTime(2026, 2, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            GstAmount = 15.30m,
+                            IsDeleted = false,
+                            MiscFeeAmount = 20m,
+                            RowVersion = new byte[0],
+                            SchoolId = 1,
+                            StartDate = new DateTime(2026, 3, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Status = 5
+                        },
+                        new
+                        {
+                            Id = 52,
+                            CourseCode = "CRS-2026-6YV5VO9",
+                            CourseFeeAmount = 160m,
+                            CourseName = "Critical Analysis Cohort 52",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EndDate = new DateTime(2026, 9, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentDeadline = new DateTime(2026, 2, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationDueDate = new DateTime(2026, 2, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            GstAmount = 16.65m,
+                            IsDeleted = false,
+                            MiscFeeAmount = 25m,
+                            RowVersion = new byte[0],
+                            SchoolId = 1,
+                            StartDate = new DateTime(2026, 4, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Status = 4
+                        },
+                        new
+                        {
+                            Id = 53,
+                            CourseCode = "CRS-2026-HR6FMHH",
+                            CourseFeeAmount = 140m,
+                            CourseName = "Public Speaking Cohort 53",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EndDate = new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentDeadline = new DateTime(2026, 5, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationDueDate = new DateTime(2026, 5, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            GstAmount = 14.22m,
+                            IsDeleted = false,
+                            MiscFeeAmount = 18m,
+                            RowVersion = new byte[0],
+                            SchoolId = 1,
+                            StartDate = new DateTime(2026, 8, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Status = 2
+                        },
+                        new
+                        {
+                            Id = 54,
+                            CourseCode = "CRS-2026-SGK2RR1",
+                            CourseFeeAmount = 170m,
+                            CourseName = "Data Literacy Cohort 54",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EndDate = new DateTime(2026, 4, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentDeadline = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationDueDate = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            GstAmount = 17.28m,
+                            IsDeleted = false,
+                            MiscFeeAmount = 22m,
+                            RowVersion = new byte[0],
+                            SchoolId = 1,
+                            StartDate = new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Status = 5
+                        },
+                        new
+                        {
+                            Id = 55,
+                            CourseCode = "CRS-2026-NVVEGXE",
+                            CourseFeeAmount = 155m,
+                            CourseName = "Problem Solving Cohort 55",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EndDate = new DateTime(2026, 9, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentDeadline = new DateTime(2026, 3, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationDueDate = new DateTime(2026, 3, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            GstAmount = 15.75m,
+                            IsDeleted = false,
+                            MiscFeeAmount = 20m,
+                            RowVersion = new byte[0],
+                            SchoolId = 1,
+                            StartDate = new DateTime(2026, 5, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Status = 4
                         });
                 });
 
@@ -6879,6 +7150,20 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             TransactionCode = new Guid("ed9be019-597a-4217-9b0e-d0c47009c4ec"),
                             Type = 2
+                        },
+                        new
+                        {
+                            Id = 51,
+                            Amount = 185m,
+                            BalanceAfter = 840m,
+                            BalanceBefore = 1025m,
+                            CreatedAt = new DateTime(2026, 1, 31, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Course fee payment for Creative Thinking Cohort 51",
+                            Direction = 2,
+                            EducationAccountId = 1,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("c2a4b6d8-e0f2-4a6c-8e0a-2c4b6d8e0f2a"),
+                            Type = 2
                         });
                 });
 
@@ -7820,6 +8105,91 @@ namespace educationaccountmanagement.DAL.Migrations
                             SchoolNameSnapshot = "Northview Secondary School",
                             SchoolStudentId = 50,
                             Status = 1
+                        },
+                        new
+                        {
+                            Id = 51,
+                            AccountNumberSnapshot = "EDU-2026-M7QVS7X",
+                            CitizenEmailSnapshot = "phuckhang1088@gmail.com",
+                            CitizenFullNameSnapshot = "Sterling Quach",
+                            CitizenNricSnapshot = "S0000001I",
+                            CitizenPhoneNumberSnapshot = "+6590000001",
+                            CourseDescriptionSnapshot = "Course enrollment created for school-admin review.",
+                            CourseId = 51,
+                            CourseNameSnapshot = "Creative Thinking Cohort 51",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            SchoolNameSnapshot = "Northview Secondary School",
+                            SchoolStudentId = 1,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 52,
+                            AccountNumberSnapshot = "EDU-2026-M7QVS7X",
+                            CitizenEmailSnapshot = "phuckhang1088@gmail.com",
+                            CitizenFullNameSnapshot = "Sterling Quach",
+                            CitizenNricSnapshot = "S0000001I",
+                            CitizenPhoneNumberSnapshot = "+6590000001",
+                            CourseDescriptionSnapshot = "Course enrollment created for school-admin review.",
+                            CourseId = 52,
+                            CourseNameSnapshot = "Critical Analysis Cohort 52",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            SchoolNameSnapshot = "Northview Secondary School",
+                            SchoolStudentId = 1,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 53,
+                            AccountNumberSnapshot = "EDU-2026-M7QVS7X",
+                            CitizenEmailSnapshot = "phuckhang1088@gmail.com",
+                            CitizenFullNameSnapshot = "Sterling Quach",
+                            CitizenNricSnapshot = "S0000001I",
+                            CitizenPhoneNumberSnapshot = "+6590000001",
+                            CourseDescriptionSnapshot = "Course enrollment created for school-admin review.",
+                            CourseId = 53,
+                            CourseNameSnapshot = "Public Speaking Cohort 53",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            SchoolNameSnapshot = "Northview Secondary School",
+                            SchoolStudentId = 1,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 54,
+                            AccountNumberSnapshot = "EDU-2026-M7QVS7X",
+                            CitizenEmailSnapshot = "phuckhang1088@gmail.com",
+                            CitizenFullNameSnapshot = "Sterling Quach",
+                            CitizenNricSnapshot = "S0000001I",
+                            CitizenPhoneNumberSnapshot = "+6590000001",
+                            CourseDescriptionSnapshot = "Course enrollment created for school-admin review.",
+                            CourseId = 54,
+                            CourseNameSnapshot = "Data Literacy Cohort 54",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            SchoolNameSnapshot = "Northview Secondary School",
+                            SchoolStudentId = 1,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 55,
+                            AccountNumberSnapshot = "EDU-2026-M7QVS7X",
+                            CitizenEmailSnapshot = "phuckhang1088@gmail.com",
+                            CitizenFullNameSnapshot = "Sterling Quach",
+                            CitizenNricSnapshot = "S0000001I",
+                            CitizenPhoneNumberSnapshot = "+6590000001",
+                            CourseDescriptionSnapshot = "Course enrollment created for school-admin review.",
+                            CourseId = 55,
+                            CourseNameSnapshot = "Problem Solving Cohort 55",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            SchoolNameSnapshot = "Northview Secondary School",
+                            SchoolStudentId = 1,
+                            Status = 1
                         });
                 });
 
@@ -8662,6 +9032,59 @@ namespace educationaccountmanagement.DAL.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Models.FasApplicationAdditionalQuestionAnswer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AnswerText")
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FasApplicationId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("FasSchemeAdditionalQuestionId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsRequiredSnapshot")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("QuestionTextSnapshot")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FasApplicationId");
+
+                    b.HasIndex("FasSchemeAdditionalQuestionId");
+
+                    b.ToTable("FasApplicationAdditionalQuestionAnswer");
+                });
+
             modelBuilder.Entity("Models.FasApplicationDocument", b =>
                 {
                     b.Property<int>("Id")
@@ -9324,6 +9747,54 @@ namespace educationaccountmanagement.DAL.Migrations
                             Status = 1,
                             SubsidyType = 2
                         });
+                });
+
+            modelBuilder.Entity("Models.FasSchemeAdditionalQuestion", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FasSchemeId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsRequired")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("QuestionText")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FasSchemeId");
+
+                    b.HasIndex("FasSchemeId", "QuestionText")
+                        .IsUnique()
+                        .HasFilter("\"IsDeleted\" = 0 AND \"FasSchemeId\" IS NOT NULL AND \"QuestionText\" IS NOT NULL");
+
+                    b.ToTable("FasSchemeAdditionalQuestion");
                 });
 
             modelBuilder.Entity("Models.FasSchemeCondition", b =>
@@ -10214,6 +10685,67 @@ namespace educationaccountmanagement.DAL.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Models.ManagementActionLog", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Action")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ActorUserId")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("BatchId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("EntityId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EntityType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("IpAddress")
+                        .IsRequired()
+                        .HasMaxLength(45)
+                        .HasColumnType("nvarchar(45)");
+
+                    b.Property<string>("NewStatus")
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
+
+                    b.Property<DateTime>("OccurredAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PreviousStatus")
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
+
+                    b.Property<string>("Reason")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Action");
+
+                    b.HasIndex("ActorUserId");
+
+                    b.HasIndex("BatchId");
+
+                    b.HasIndex("EntityId");
+
+                    b.HasIndex("EntityType");
+
+                    b.HasIndex("OccurredAt");
+
+                    b.ToTable("ManagementActionLog");
+                });
+
             modelBuilder.Entity("Models.OutboxMessage", b =>
                 {
                     b.Property<int>("Id")
@@ -11028,6 +11560,20 @@ namespace educationaccountmanagement.DAL.Migrations
                             PaymentMethod = 2,
                             Status = 2,
                             TotalAmount = 320m
+                        },
+                        new
+                        {
+                            Id = 51,
+                            AccountNumberSnapshot = "EDU-2026-M7QVS7X",
+                            CitizenFullNameSnapshot = "Sterling Quach",
+                            CitizenNricSnapshot = "S0000001I",
+                            CreatedAt = new DateTime(2026, 1, 31, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EducationCreditTransactionId = 51,
+                            IsDeleted = false,
+                            PaidAt = new DateTime(2026, 1, 31, 0, 0, 0, 0, DateTimeKind.Utc),
+                            PaymentMethod = 1,
+                            Status = 2,
+                            TotalAmount = 185m
                         });
                 });
 
@@ -11359,6 +11905,21 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
                             PaymentId = 50,
+                            SchoolNameSnapshot = "Northview Secondary School"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Amount = 185m,
+                            ChargeGrossAmountSnapshot = 185m,
+                            ChargeId = 51,
+                            ChargeInstallmentId = 51,
+                            ChargeNetAmountSnapshot = 185m,
+                            ChargeRemainingAmountSnapshot = 185m,
+                            CourseNameSnapshot = "Creative Thinking Cohort 51",
+                            CreatedAt = new DateTime(2026, 1, 31, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            PaymentId = 51,
                             SchoolNameSnapshot = "Northview Secondary School"
                         });
                 });
@@ -14768,6 +15329,24 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Navigation("SchoolStudent");
                 });
 
+            modelBuilder.Entity("Models.FasApplicationAdditionalQuestionAnswer", b =>
+                {
+                    b.HasOne("Models.FasApplication", "FasApplication")
+                        .WithMany("AdditionalQuestionAnswers")
+                        .HasForeignKey("FasApplicationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Models.FasSchemeAdditionalQuestion", "FasSchemeAdditionalQuestion")
+                        .WithMany("ApplicationAnswers")
+                        .HasForeignKey("FasSchemeAdditionalQuestionId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("FasApplication");
+
+                    b.Navigation("FasSchemeAdditionalQuestion");
+                });
+
             modelBuilder.Entity("Models.FasApplicationDocument", b =>
                 {
                     b.HasOne("Models.FasApplication", "FasApplication")
@@ -14795,6 +15374,17 @@ namespace educationaccountmanagement.DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("School");
+                });
+
+            modelBuilder.Entity("Models.FasSchemeAdditionalQuestion", b =>
+                {
+                    b.HasOne("Models.FasScheme", "FasScheme")
+                        .WithMany("AdditionalQuestions")
+                        .HasForeignKey("FasSchemeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FasScheme");
                 });
 
             modelBuilder.Entity("Models.FasSchemeCondition", b =>
@@ -14899,6 +15489,16 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Navigation("NewTier");
 
                     b.Navigation("OldTier");
+                });
+
+            modelBuilder.Entity("Models.ManagementActionLog", b =>
+                {
+                    b.HasOne("Models.User", "ActorUser")
+                        .WithMany()
+                        .HasForeignKey("ActorUserId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.Navigation("ActorUser");
                 });
 
             modelBuilder.Entity("Models.Payment", b =>
@@ -15191,6 +15791,8 @@ namespace educationaccountmanagement.DAL.Migrations
 
             modelBuilder.Entity("Models.FasApplication", b =>
                 {
+                    b.Navigation("AdditionalQuestionAnswers");
+
                     b.Navigation("AppliedCharges");
 
                     b.Navigation("Documents");
@@ -15200,6 +15802,8 @@ namespace educationaccountmanagement.DAL.Migrations
 
             modelBuilder.Entity("Models.FasScheme", b =>
                 {
+                    b.Navigation("AdditionalQuestions");
+
                     b.Navigation("Applications");
 
                     b.Navigation("ConditionGroups");
@@ -15209,6 +15813,11 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Navigation("SchemeCourses");
 
                     b.Navigation("Tiers");
+                });
+
+            modelBuilder.Entity("Models.FasSchemeAdditionalQuestion", b =>
+                {
+                    b.Navigation("ApplicationAnswers");
                 });
 
             modelBuilder.Entity("Models.FasSchemeConditionGroup", b =>

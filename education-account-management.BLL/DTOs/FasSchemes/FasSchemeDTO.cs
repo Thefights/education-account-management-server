@@ -68,5 +68,8 @@ namespace DTOs.FasSchemes
 
         [EnumDefined]
         public FasSchemeStatus Status { get; set; }
+
+        [MessageRequired, MessageMinLength(10), MessageMaxLength(500)]
+        public string Reason { get; set; } = string.Empty;
     }
 }

@@ -48,11 +48,15 @@ namespace Persistence.SqlServer
 
         public DbSet<FasSchemeRequiredDocument> FasSchemeRequiredDocument { get; set; }
 
+        public DbSet<FasSchemeAdditionalQuestion> FasSchemeAdditionalQuestion { get; set; }
+
         public DbSet<FasSchemeCourse> FasSchemeCourse { get; set; }
 
         public DbSet<FasApplication> FasApplication { get; set; }
 
         public DbSet<FasApplicationDocument> FasApplicationDocument { get; set; }
+
+        public DbSet<FasApplicationAdditionalQuestionAnswer> FasApplicationAdditionalQuestionAnswer { get; set; }
 
         public DbSet<FasTierOverrideHistory> FasTierOverrideHistory { get; set; }
 
@@ -85,6 +89,8 @@ namespace Persistence.SqlServer
         public DbSet<UserStatusHistory> UserStatusHistory { get; set; }
 
         public DbSet<AuditLog> AuditLog { get; set; }
+
+        public DbSet<ManagementActionLog> ManagementActionLog { get; set; }
 
         public DbSet<OutboxMessage> OutboxMessage { get; set; }
 

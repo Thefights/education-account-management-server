@@ -1,6 +1,7 @@
-﻿using DTOs.Enrollments;
+using DTOs.Enrollments;
 using DTOs.SchoolStudents;
 using Filters.SchoolStudents;
+using Interfaces.Audit;
 using Interfaces.Enrollments;
 using Mappers.Enrollments;
 using Mappers.SchoolStudents;
@@ -14,7 +15,8 @@ namespace Services.Enrollments
         EnrollmentMapper mapper,
         SchoolStudentMapper schoolStudentMapper,
         SchoolScopeResolver schoolScopeResolver,
-        TimeProvider timeProvider)
+        TimeProvider timeProvider,
+        IManagementActionLogService managementActionLogService)
         : BaseGetService<Enrollment, GetEnrollmentDTO>(unitOfWork, mapper),
             IEnrollmentService
     {
@@ -22,6 +24,7 @@ namespace Services.Enrollments
         private readonly SchoolStudentMapper _schoolStudentMapper = schoolStudentMapper;
         private readonly SchoolScopeResolver _schoolScopeResolver = schoolScopeResolver;
         private readonly TimeProvider _timeProvider = timeProvider;
+        private readonly IManagementActionLogService _managementActionLogService = managementActionLogService;
         private readonly IGenericRepository<Course> _courseRepository = unitOfWork.Repository<Course>();
         private readonly IGenericRepository<SchoolStudent> _schoolStudentRepository = unitOfWork.Repository<SchoolStudent>();
 
@@ -153,35 +156,12 @@ namespace Services.Enrollments
             return new PaginationResult<GetSchoolStudentDTO>(total, pageSize, students);
         }
 
-        public async Task RemoveAsync(
-            int id,
-            CancellationToken cancellationToken = default)
-        {
-            var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
-            await _unitOfWork.ExecuteInTransactionAsync(
-                async (_, token) =>
-                {
-                    var enrollment = await _repository.Query(tracking: true)
-                        .Include(item => item.Course)
-                        .Include(item => item.Charge)
-                        .FirstOrDefaultAsync(
-                            item => item.Id == id && item.Course.SchoolId == schoolId,
-                            token)
-                        ?? throw new DataNotFoundException(typeof(Enrollment), id);
-
-                    ValidateCanRemove(enrollment);
-                    _repository.Remove(enrollment);
-                    enrollment.Course.UpdatedAt = _timeProvider.GetUtcNow().UtcDateTime;
-                    await _unitOfWork.SaveChangeAsync(token);
-                },
-                cancellationToken);
-        }
-
         public async Task RemoveSelectedAsync(
             RemoveSelectedEnrollmentsDTO removeDTO,
             CancellationToken cancellationToken = default)
         {
             ArgumentNullException.ThrowIfNull(removeDTO);
+            var batchId = Guid.NewGuid();
             ValidateIds(removeDTO.Ids, nameof(removeDTO.Ids));
 
             var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
@@ -205,6 +185,15 @@ namespace Services.Enrollments
                     foreach (var enrollment in enrollments)
                     {
                         ValidateCanRemove(enrollment);
+                        await _managementActionLogService.LogAsync(
+                            batchId,
+                            ManagementActionEntityType.Enrollment,
+                            enrollment.Id,
+                            ManagementAction.Delete,
+                            removeDTO.Reason,
+                            enrollment.Status.ToString(),
+                            null,
+                            cancellationToken: token);
                     }
 
                     _repository.RemoveRange(enrollments);

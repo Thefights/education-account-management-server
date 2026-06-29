@@ -75,10 +75,11 @@ namespace Services.TopUp
                     }
 
                     var account = input.Account;
-                    if (account.Status != EducationAccountStatus.Active)
+                    var ineligibilityReason = TopupEligibilityHelper.GetIneligibilityReason(account);
+                    if (ineligibilityReason != null)
                     {
                         await AddFailureAsync(execution, input, request.TopUpAmount,
-                            $"Account is not Active (current status: {account.Status}).", result, token);
+                            ineligibilityReason, result, token);
                         continue;
                     }
 
