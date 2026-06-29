@@ -76,8 +76,6 @@ namespace Services.FasApplications
                 throw new ValidationFailureException(nameof(dto.RejectionReason), "Rejection reason is required.");
             }
 
-            dto.RejectionReason = dto.RejectionReason.Trim();
-
             var application = await _repository
                 .Query()
                 .Include(a => a.FasScheme)

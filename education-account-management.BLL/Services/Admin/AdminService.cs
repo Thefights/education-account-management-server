@@ -13,16 +13,21 @@ namespace Services.Admin
     public class AdminService(
         IUnitOfWork unitOfWork,
         AdminMapper mapper,
-        IAuditLogWriter auditLogWriter)
+        IAuditLogWriter auditLogWriter,
+        IManagementActionLogService managementActionLogService,
+        ICurrentUserService currentUserService)
         : IAdminService
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly AdminMapper _mapper = mapper;
         private readonly IAuditLogWriter _auditLogWriter = auditLogWriter;
+        private readonly IManagementActionLogService _managementActionLogService = managementActionLogService;
+        private readonly ICurrentUserService _currentUserService = currentUserService;
         private readonly IGenericRepository<User> _userRepository = unitOfWork.Repository<User>();
         private readonly IGenericRepository<SsoIdentity> _ssoIdentityRepository = unitOfWork.Repository<SsoIdentity>();
         private readonly IGenericRepository<AdminProfile> _adminProfileRepository = unitOfWork.Repository<AdminProfile>();
         private readonly IGenericRepository<School> _schoolRepository = unitOfWork.Repository<School>();
+        private readonly IGenericRepository<UserStatusHistory> _userStatusHistoryRepository = unitOfWork.Repository<UserStatusHistory>();
 
         public async Task<GetAdminDTO> CreateAsync(
             CreateAdminDTO createDTO,
@@ -273,13 +278,41 @@ namespace Services.Admin
 
         public async Task UpdateAdminsStatusAsync(BatchUpdateAdminStatusDTO dto, CancellationToken cancellationToken = default)
         {
+            var batchId = Guid.NewGuid();
             var users = await _userRepository.GetByIdsAsync(dto.Ids, cancellationToken: cancellationToken);
+            if (users.Count != dto.Ids.Distinct().Count())
+                throw new ValidationFailureException(nameof(dto.Ids), "One or more admins do not exist.");
 
             await _unitOfWork.ExecuteInTransactionAsync(async (transaction, token) =>
             {
                 foreach (var user in users)
                 {
-                    user.Status = (Enums.UserStatus)dto.Status;
+                    var oldStatus = user.Status;
+                    var newStatus = (UserStatus)dto.Status;
+                    user.Status = newStatus;
+                    if (oldStatus != newStatus)
+                    {
+                        var history = new UserStatusHistory
+                        {
+                            UserId = user.Id,
+                            PreviousStatus = oldStatus,
+                            NewStatus = newStatus,
+                            Reason = dto.Reason,
+                            ChangedAt = DateTime.UtcNow,
+                            ChangedByUserId = _currentUserService.CurrentUserId
+                        };
+                        history.TryValidate();
+                        await _userStatusHistoryRepository.AddAsync(history, token);
+                    }
+                    await _managementActionLogService.LogAsync(
+                        batchId,
+                        "Admin",
+                        user.Id,
+                        newStatus == Enums.UserStatus.Active ? "Activate" : "Deactivate",
+                        dto.Reason,
+                        oldStatus.ToString(),
+                        newStatus.ToString(),
+                        cancellationToken: token);
                 }
                 _userRepository.UpdateRange(users);
             }, cancellationToken);

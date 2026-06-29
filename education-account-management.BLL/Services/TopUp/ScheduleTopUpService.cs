@@ -1,4 +1,5 @@
-﻿using DTOs.TopUp;
+using DTOs.Base;
+using DTOs.TopUp;
 using Interfaces.Audit;
 using Interfaces.TopUp;
 using Mappers.TopUp;
@@ -11,11 +12,13 @@ namespace Services.TopUp
     public class ScheduleTopUpService(
         IUnitOfWork unitOfWork,
         ScheduleTopUpMapper mapper,
-        IAuditLogWriter auditLogWriter)
+        IAuditLogWriter auditLogWriter,
+        IManagementActionLogService managementActionLogService)
         : BaseService<ScheduleTopUp, CreateScheduleTopUpDTO, GetScheduleTopUpDTO, UpdateScheduleTopUpDTO>(unitOfWork, mapper),
           IScheduleTopUpService
     {
         private readonly IAuditLogWriter _auditLogWriter = auditLogWriter;
+        private readonly IManagementActionLogService _managementActionLogService = managementActionLogService;
         private readonly IGenericRepository<ScheduleTopUpConditionGroup> _groupRepository =
             unitOfWork.Repository<ScheduleTopUpConditionGroup>();
         private readonly IGenericRepository<ScheduleTopUpCondition> _conditionRepository =
@@ -100,6 +103,7 @@ namespace Services.TopUp
         {
             ArgumentNullException.ThrowIfNull(dto);
             if (dto.Ids.Count == 0) return;
+            var batchId = Guid.NewGuid();
             if (dto.Status == ScheduleTopUpStatus.Completed)
                 throw new ValidationFailureException(nameof(dto.Status), "Completed status is managed by schedule execution.");
 
@@ -121,9 +125,19 @@ namespace Services.TopUp
             {
                 foreach (var schedule in schedules)
                 {
+                    var oldStatus = schedule.Status;
                     schedule.Status = dto.Status;
                     schedule.NextExecutionAt = ComputeFirstExecutionAt(schedule);
                     schedule.TryValidate();
+                    await _managementActionLogService.LogAsync(
+                        batchId,
+                        "ScheduleTopUp",
+                        schedule.Id,
+                        dto.Status == ScheduleTopUpStatus.Active ? "Activate" : "Deactivate",
+                        dto.Reason,
+                        oldStatus.ToString(),
+                        schedule.Status.ToString(),
+                        cancellationToken: token);
                 }
                 _repository.UpdateRange(schedules);
                 await _auditLogWriter.LogAsync(
@@ -137,6 +151,35 @@ namespace Services.TopUp
         {
             await base.DeleteAsync(id, cancellationToken);
             await LogAsync("DeleteScheduleTopUp", cancellationToken);
+        }
+
+        public override async Task DeleteSelectedIdsAsync(DeleteSelectedIdsDTO dto, CancellationToken cancellationToken = default)
+        {
+            ArgumentNullException.ThrowIfNull(dto);
+
+            var batchId = Guid.NewGuid();
+            await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
+            {
+                var schedules = await _repository.GetTrackedByIdsAsync(dto.Ids, cancellationToken: token);
+                if (schedules.Count != dto.Ids.Distinct().Count())
+                    throw new ValidationFailureException(nameof(dto.Ids), "One or more scheduled top-ups do not exist.");
+
+                foreach (var schedule in schedules)
+                {
+                    await _managementActionLogService.LogAsync(
+                        batchId,
+                        "ScheduleTopUp",
+                        schedule.Id,
+                        "Delete",
+                        dto.Reason,
+                        schedule.Status.ToString(),
+                        null,
+                        cancellationToken: token);
+                }
+
+                _repository.RemoveRange(schedules);
+                await _auditLogWriter.LogAsync(AuditLogCategory.Topup, "DeleteSelectedScheduleTopUp", cancellationToken: token);
+            }, cancellationToken);
         }
 
         public override async Task<GetScheduleTopUpDTO> GetByIdAsync(int id, CancellationToken cancellationToken = default)

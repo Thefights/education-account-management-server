@@ -8,12 +8,10 @@ namespace Services.Audit
 {
     public class AuditLogWriter(
         IUnitOfWork unitOfWork,
-        ICurrentUserService currentUserService,
-        IHttpContextAccessor httpContextAccessor)
+        ICurrentUserService currentUserService)
         : IAuditLogWriter
     {
         private readonly ICurrentUserService _currentUserService = currentUserService;
-        private readonly IHttpContextAccessor _httpContextAccessor = httpContextAccessor;
         private readonly IGenericRepository<AuditLog> _auditLogRepository = unitOfWork.Repository<AuditLog>();
         private readonly IGenericRepository<User> _userRepository = unitOfWork.Repository<User>();
 
@@ -23,7 +21,7 @@ namespace Services.Audit
             string? targetNric = null,
             CancellationToken cancellationToken = default)
         {
-            var userId = ResolveCurrentUserId();
+            var userId = _currentUserService.CurrentUserId;
             if (userId.HasValue)
             {
                 await LogForActorAsync(category, action, targetNric, cancellationToken: cancellationToken);
@@ -41,7 +39,7 @@ namespace Services.Audit
             CancellationToken cancellationToken = default)
         {
             await AddAsync(
-                ResolveCurrentUserId(),
+                _currentUserService.CurrentUserId,
                 category,
                 action,
                 targetNric,
@@ -79,30 +77,11 @@ namespace Services.Audit
                 Category = category,
                 Action = action,
                 Nric = targetNric,
-                IpAddress = ResolveIpAddress(ipAddress)
+                IpAddress = string.IsNullOrWhiteSpace(ipAddress) ? _currentUserService.IpAddress : ipAddress
             };
 
             auditLog.TryValidate();
             await _auditLogRepository.AddAsync(auditLog, cancellationToken);
-        }
-
-        private int? ResolveCurrentUserId()
-        {
-            try
-            {
-                return _currentUserService.UserId;
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return null;
-            }
-        }
-
-        private string ResolveIpAddress(string? ipAddress)
-        {
-            return string.IsNullOrWhiteSpace(ipAddress)
-                ? _httpContextAccessor.HttpContext?.Connection.RemoteIpAddress?.ToString() ?? "0.0.0.0"
-                : ipAddress;
         }
     }
 }

@@ -86,6 +86,8 @@ namespace Persistence.SqlServer
 
         public DbSet<AuditLog> AuditLog { get; set; }
 
+        public DbSet<ManagementActionLog> ManagementActionLog { get; set; }
+
         public DbSet<OutboxMessage> OutboxMessage { get; set; }
 
         public DbSet<ApplicationSetting> ApplicationSetting { get; set; }

@@ -112,16 +112,18 @@ namespace Services.Base
                 cancellationToken);
         }
 
-        public virtual async Task DeleteSelectedIdsAsync(List<int> ids, CancellationToken cancellationToken = default)
+        public virtual async Task DeleteSelectedIdsAsync(DeleteSelectedIdsDTO dto, CancellationToken cancellationToken = default)
         {
+            ArgumentNullException.ThrowIfNull(dto);
+
             await _unitOfWork.ExecuteInTransactionAsync(
                 async (transaction, token) =>
                 {
-                    var entities = await _repository.GetTrackedByIdsAsync(ids, cancellationToken: token);
-                    if (entities.Count != ids.Count)
+                    var entities = await _repository.GetTrackedByIdsAsync(dto.Ids, cancellationToken: token);
+                    if (entities.Count != dto.Ids.Count)
                     {
                         var foundIds = entities.Select(e => e.Id).ToHashSet();
-                        var firstNotFoundId = ids.FirstOrDefault(id => !foundIds.Contains(id));
+                        var firstNotFoundId = dto.Ids.FirstOrDefault(id => !foundIds.Contains(id));
                         throw new DataNotFoundException(typeof(TModel), firstNotFoundId);
                     }
 
