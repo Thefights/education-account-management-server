@@ -168,6 +168,7 @@ namespace Services.FasApplications
             {
                 return existingDraft.Id;
             }
+
             await EnsureNoActiveApplicationAsync(studentInfo.Id, sourceApplication.FasSchemeId, null, cancellationToken);
 
             var applicationNumber = await GenerateApplicationNumberAsync(cancellationToken);
