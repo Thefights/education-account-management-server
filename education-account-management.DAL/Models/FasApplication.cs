@@ -86,6 +86,10 @@ namespace Models
         [OnDelete(OnDeleteBehavior.Cascade)]
         public ICollection<FasApplicationDocument> Documents { get; set; } = [];
 
+        // Câu trả lời bổ sung student đã nhập cho application.
+        [OnDelete(OnDeleteBehavior.Cascade)]
+        public ICollection<FasApplicationAdditionalQuestionAnswer> AdditionalQuestionAnswers { get; set; } = [];
+
         // Lịch sử admin override tier trong lúc review.
         [OnDelete(OnDeleteBehavior.Cascade)]
         public ICollection<FasTierOverrideHistory> TierOverrideHistories { get; set; } = [];

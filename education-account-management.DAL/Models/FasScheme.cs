@@ -49,6 +49,10 @@ namespace Models
         [OnDelete(OnDeleteBehavior.Cascade)]
         public ICollection<FasSchemeRequiredDocument> RequiredDocuments { get; set; } = [];
 
+        // Danh sách câu hỏi bổ sung student phải trả lời khi apply.
+        [OnDelete(OnDeleteBehavior.Cascade)]
+        public ICollection<FasSchemeAdditionalQuestion> AdditionalQuestions { get; set; } = [];
+
         // Danh sách khóa học mà scheme được phép áp dụng.
         [OnDelete(OnDeleteBehavior.Cascade)]
         public ICollection<FasSchemeCourse> SchemeCourses { get; set; } = [];
