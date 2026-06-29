@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+using EntityAnnotations;
 
 namespace DTOs.Payments
 {
@@ -11,12 +13,14 @@ namespace DTOs.Payments
     public class PaymentRequest
     {
         public List<ChargePaymentRequestInfor> ChargePaymentRequestInfors { get; set; } = [];
+        [Range(0, (double)decimal.MaxValue)]
         public decimal CreditBalanceApplied { get; set; } = 0m;
     }
 
     public class ChargePaymentRequestInfor
     {
         public int ChargeId { get; set; }
+        [EnumDefined]
         public PaymentIntent Intent { get; set; }
         [PaymentPlanMonths]
         public int? PaymentPlanMonths { get; set; }

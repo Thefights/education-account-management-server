@@ -176,7 +176,7 @@ namespace education_account_management.BLL
         
         [Required(ErrorMessage = "Stripe Mode is required.")]
         public string Mode { get; set; } = null!;
-        
+        [Range(30, int.MaxValue, ErrorMessage = "Stripe SessionExpiryMinutes must be greater than 30.")]
         public int SessionExpiryMinutes { get; set; } = 30;
         
     }

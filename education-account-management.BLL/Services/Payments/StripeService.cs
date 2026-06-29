@@ -14,14 +14,12 @@ public class StripeService(
     AppConfiguration configuration,
     IUnitOfWork unitOfWork,
     IOutboxWriter outboxWriter,
-    IEmailService emailService,
     ICurrentUserService currentUserService,
     IAuditLogWriter auditLogWriter) : IStripeService
 {
     private readonly AppConfiguration _configuration = configuration;
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly IOutboxWriter _outboxWriter = outboxWriter;
-    private readonly IEmailService _emailService = emailService;
     private readonly IAuditLogWriter _auditLogWriter = auditLogWriter;
     private readonly ICurrentUserService _currentUserService = currentUserService;
 
@@ -54,9 +52,9 @@ public class StripeService(
             .OrderBy(c => c.Enrollment.Course.StartDate)
             .ToListAsync(cancellationToken);
 
-        var educationAccount = await _accountRepository.Query(tracking: false)
+        var educationAccount = await _accountRepository.Query(tracking: true)
             .Include(a => a.Citizen)
-            .FirstOrDefaultAsync(a => a.SchoolStudent!.EducationAccountId == accountId, cancellationToken);
+            .FirstOrDefaultAsync(a => a.Citizen != null && a.Citizen.User != null && a.Citizen.User.Id == accountId, cancellationToken);
 
         ValidatePaymentRequest(chargePaymentRequestInfors, charges, educationAccount, request.CreditBalanceApplied);
 
@@ -152,7 +150,7 @@ public class StripeService(
 
     //Kiểm tra nếu stripe session có tạo thành công không, nếu không xóa các Payment và Payment Allocation đã lock trước đó để tránh bị treo session
     private async Task<Session> ValidateStripeSession(
-        SessionService sessionService, Payment stripePayment, Payment? walletPayment, 
+        SessionService sessionService, Payment stripePayment, Payment? walletPayment,
         SessionCreateOptions options, CancellationToken cancellationToken)
     {
         Session session;
@@ -249,6 +247,8 @@ public class StripeService(
                         totalOwed += inst.Amount;
                     }
                     break;
+                default:
+                    throw new InternalAppException("Invalid Payment Intent.");
             }
         }
 
@@ -310,102 +310,101 @@ public class StripeService(
         Payment? walletPayment = null;
         Payment? stripePayment = null;
 
-            if (balanceToApply > 0)
+        if (balanceToApply > 0)
+        {
+            walletPayment = new Payment
             {
-                walletPayment = new Payment
+                Status = PaymentStatus.Pending,
+                PaymentMethod = PaymentMethod.EducationBalance,
+                TotalAmount = balanceToApply,
+                AccountNumberSnapshot = educationAccount.AccountNumber,
+                CitizenNricSnapshot = charges.First().Enrollment.CitizenNricSnapshot,
+                CitizenFullNameSnapshot = charges.First().Enrollment.CitizenFullNameSnapshot
+            };
+            walletPayment.TryValidate();
+            await _paymentRepository.AddAsync(walletPayment, cancellationToken);
+            payments.Add(walletPayment);
+        }
+
+        if (remainingToPayViaStripe > 0)
+        {
+            stripePayment = new Payment
+            {
+                Status = PaymentStatus.Pending,
+                PaymentMethod = PaymentMethod.OnlinePayment,
+                TotalAmount = remainingToPayViaStripe,
+                AccountNumberSnapshot = educationAccount.AccountNumber,
+                CitizenNricSnapshot = charges.First().Enrollment.CitizenNricSnapshot,
+                CitizenFullNameSnapshot = charges.First().Enrollment.CitizenFullNameSnapshot
+            };
+            stripePayment.TryValidate();
+            await _paymentRepository.AddAsync(stripePayment, cancellationToken);
+            payments.Add(stripePayment);
+        }
+
+        await _unitOfWork.SaveChangeAsync(cancellationToken);
+
+        decimal currentWalletBalance = balanceToApply;
+
+        // Lặp qua từng khoản thu (BillingItem) để trích tiền Wallet và Stripe
+        // Logic Waterfall: Rút cạn Wallet trước, phần dư đẩy sang Stripe
+        foreach (var item in billingItems)
+        {
+            var charge = item.Charge;
+            decimal amountToPay = item.AmountToPay;
+            decimal coveredByWallet = Math.Min(amountToPay, currentWalletBalance);
+            decimal coveredByStripe = amountToPay - coveredByWallet;
+
+            currentWalletBalance -= coveredByWallet;
+
+            if (coveredByWallet > 0 && walletPayment != null)
+            {
+                var allocation = new PaymentAllocation
                 {
-                    Status = PaymentStatus.Pending,
-                    PaymentMethod = PaymentMethod.EducationBalance,
-                    TotalAmount = balanceToApply,
-                    AccountNumberSnapshot = educationAccount.AccountNumber,
-                    CitizenNricSnapshot = charges.First().Enrollment.CitizenNricSnapshot,
-                    CitizenFullNameSnapshot = charges.First().Enrollment.CitizenFullNameSnapshot
+                    PaymentId = walletPayment.Id,
+                    ChargeId = charge.Id,
+                    ChargeInstallmentId = item.TargetInstallmentId,
+                    CourseNameSnapshot = charge.Enrollment.CourseNameSnapshot,
+                    SchoolNameSnapshot = charge.Enrollment.SchoolNameSnapshot,
+                    ChargeGrossAmountSnapshot = charge.GrossAmount,
+                    ChargeNetAmountSnapshot = charge.NetAmount,
+                    ChargeRemainingAmountSnapshot = charge.RemainingAmount,
+                    Amount = coveredByWallet
                 };
-                walletPayment.TryValidate();
-                await _paymentRepository.AddAsync(walletPayment, cancellationToken);
-                payments.Add(walletPayment);
+                allocation.TryValidate();
+                await _paymentAllocationRepository.AddAsync(allocation, cancellationToken);
+
             }
 
-            if (remainingToPayViaStripe > 0)
+            // Nếu Stripe phải gánh khoản này, tạo Allocation tương ứng
+            if (coveredByStripe > 0 && stripePayment != null)
             {
-                stripePayment = new Payment
+                var allocation = new PaymentAllocation
                 {
-                    Status = PaymentStatus.Pending,
-                    PaymentMethod = PaymentMethod.OnlinePayment,
-                    TotalAmount = remainingToPayViaStripe,
-                    AccountNumberSnapshot = educationAccount.AccountNumber,
-                    CitizenNricSnapshot = charges.First().Enrollment.CitizenNricSnapshot,
-                    CitizenFullNameSnapshot = charges.First().Enrollment.CitizenFullNameSnapshot
+                    PaymentId = stripePayment.Id,
+                    ChargeId = charge.Id,
+                    ChargeInstallmentId = item.TargetInstallmentId,
+                    CourseNameSnapshot = charge.Enrollment.CourseNameSnapshot,
+                    SchoolNameSnapshot = charge.Enrollment.SchoolNameSnapshot,
+                    ChargeGrossAmountSnapshot = charge.GrossAmount,
+                    ChargeNetAmountSnapshot = charge.NetAmount,
+                    ChargeRemainingAmountSnapshot = charge.RemainingAmount,
+                    Amount = coveredByStripe
                 };
-                stripePayment.TryValidate();
-                await _paymentRepository.AddAsync(stripePayment, cancellationToken);
-                payments.Add(stripePayment);
+                allocation.TryValidate();
+                await _paymentAllocationRepository.AddAsync(allocation, cancellationToken);
+
             }
+        }
 
-            await _unitOfWork.SaveChangeAsync(cancellationToken);
+        foreach (var p in payments)
+        {
+            var actionMsg = $"{nameof(Payment)} {p.Id} Init for paying {nameof(Course)}s {nameof(Models.Charge)} - Total Owed: {totalOwed}, Credit Applied: {balanceToApply}";
+            if (actionMsg.Length > 90) actionMsg = actionMsg.Substring(0, 90) + "...";
+            await LogAuditAsync(AuditLogCategory.Billing, actionMsg, educationAccount.Id, educationAccount.Citizen.Nric, cancellationToken);
+        }
 
-            decimal currentWalletBalance = balanceToApply;
-
-            // Lặp qua từng khoản thu (BillingItem) để trích tiền Wallet và Stripe
-            // Logic Waterfall: Rút cạn Wallet trước, phần dư đẩy sang Stripe
-            foreach (var item in billingItems)
-            {
-                var charge = item.Charge;
-                decimal amountToPay = item.AmountToPay;
-                decimal coveredByWallet = Math.Min(amountToPay, currentWalletBalance);
-                decimal coveredByStripe = amountToPay - coveredByWallet;
-
-                currentWalletBalance -= coveredByWallet;
-
-                if (coveredByWallet > 0 && walletPayment != null)
-                {
-                    var allocation = new PaymentAllocation
-                    {
-                        PaymentId = walletPayment.Id,
-                        ChargeId = charge.Id,
-                        ChargeInstallmentId = item.TargetInstallmentId,
-                        CourseNameSnapshot = charge.Enrollment.CourseNameSnapshot,
-                        SchoolNameSnapshot = charge.Enrollment.SchoolNameSnapshot,
-                        ChargeGrossAmountSnapshot = charge.GrossAmount,
-                        ChargeNetAmountSnapshot = charge.NetAmount,
-                        ChargeRemainingAmountSnapshot = charge.RemainingAmount,
-                        Amount = coveredByWallet
-                    };
-                    allocation.TryValidate();
-                    await _paymentAllocationRepository.AddAsync(allocation, cancellationToken);
-
-                }
-
-                // Nếu Stripe phải gánh khoản này, tạo Allocation tương ứng
-                if (coveredByStripe > 0 && stripePayment != null)
-                {
-                    var allocation = new PaymentAllocation
-                    {
-                        PaymentId = stripePayment.Id,
-                        ChargeId = charge.Id,
-                        ChargeInstallmentId = item.TargetInstallmentId,
-                        CourseNameSnapshot = charge.Enrollment.CourseNameSnapshot,
-                        SchoolNameSnapshot = charge.Enrollment.SchoolNameSnapshot,
-                        ChargeGrossAmountSnapshot = charge.GrossAmount,
-                        ChargeNetAmountSnapshot = charge.NetAmount,
-                        ChargeRemainingAmountSnapshot = charge.RemainingAmount,
-                        Amount = coveredByStripe
-                    };
-                    allocation.TryValidate();
-                    await _paymentAllocationRepository.AddAsync(allocation, cancellationToken);
-
-                }
-            }
-
-            foreach (var p in payments)
-            {
-                var actionMsg = $"{nameof(Payment)} {p.Id} Init for paying {nameof(Course)}s {nameof(Models.Charge)} - Total Owed: {totalOwed}, Credit Applied: {balanceToApply}";
-                if (actionMsg.Length > 90) actionMsg = actionMsg.Substring(0, 90) + "...";
-                await LogAuditAsync(AuditLogCategory.Billing, actionMsg, educationAccount.Id, educationAccount.Citizen.Nric, cancellationToken);
-            }
-
-
-            await _unitOfWork.SaveChangeAsync(cancellationToken);
+        await _unitOfWork.SaveChangeAsync(cancellationToken);
 
         return payments;
     }
@@ -896,7 +895,7 @@ public class StripeService(
     {
         var accountId = _currentUserService.UserId;
         var educationAccount = await _accountRepository.Query(tracking: false)
-            .FirstOrDefaultAsync(a => a.SchoolStudent!.EducationAccountId == accountId, cancellationToken);
+            .FirstOrDefaultAsync(a => a.Citizen != null && a.Citizen.User != null && a.Citizen.User.Id == accountId, cancellationToken);
 
         if (educationAccount == null) throw new InternalAppException("Current account holder not found!");
 
@@ -905,10 +904,20 @@ public class StripeService(
             .Where(p =>
              (p.ExternalReference == sessionId || p.ExternalReference == sessionId + "_wallet") &&
               p.AccountNumberSnapshot == educationAccount.AccountNumber)
-            .ToListAsync();
-
+            .ToListAsync(cancellationToken);
 
         if (payments == null || !payments.Any()) throw new DataNotFoundException($"Session not found or invalid {nameof(Payment)}s count for sessionId {sessionId}");
+
+        if (payments[0].Status == PaymentStatus.Pending)
+        {
+            var sessionService = new SessionService();
+            var session = await sessionService.GetAsync(sessionId, cancellationToken: cancellationToken);
+            if (session != null && session.PaymentStatus == "paid")
+            {
+                await ProcessStripeSessionAsync(educationAccount.Id, session, PaymentStatus.Succeeded, cancellationToken);
+                return new PaymentSessionResponseDTO { Link = "", Status = PaymentStatus.Succeeded.ToString() };
+            }
+        }
 
         return new PaymentSessionResponseDTO
         {
@@ -923,18 +932,37 @@ public class StripeService(
         var session = await sessionService.GetAsync(sessionId, cancellationToken: cancellationToken);
         if (session == null) throw new DataNotFoundException($"Session not found for sessionId {sessionId}");
 
+        // Lấy đúng EducationAccount dựa theo User.Id thay vì EducationAccountId để tránh lỗi sai lệch ID trên môi trường production
         var accountId = _currentUserService.UserId;
         var educationAccount = await _accountRepository.Query(tracking: false)
-          .FirstOrDefaultAsync(a => a.SchoolStudent!.EducationAccountId == accountId, cancellationToken);
+          .FirstOrDefaultAsync(a => a.Citizen != null && a.Citizen.User != null && a.Citizen.User.Id == accountId, cancellationToken);
 
         if (educationAccount == null) throw new InternalAppException("Current account holder not found!");
 
-        await ProcessStripeSessionAsync(educationAccount.Id, session, PaymentStatus.Canceled, cancellationToken);
+        // Trường hợp user cố tình gọi API Cancel nhưng thực tế đã thanh toán thành công (Stripe báo 'paid')
+        // Bắt buộc xử lý như một giao dịch thành công để tránh thất thoát, không cho phép Hủy
+        if (session.PaymentStatus == "paid")
+        {
+            await ProcessStripeSessionAsync(educationAccount.Id, session, PaymentStatus.Succeeded, cancellationToken);
+            return new PaymentSessionResponseDTO { Link = "", Status = PaymentStatus.Succeeded.ToString() };
+        }
+
+        // Trường hợp người dùng chủ động Hủy phiên hoặc phiên chưa được thanh toán/vẫn đang mở
+        if (session.PaymentStatus == "unpaid" || session.Status == "open")
+        {
+            await ProcessStripeSessionAsync(educationAccount.Id, session, PaymentStatus.Canceled, cancellationToken);
+            
+            // Ép Link thanh toán trên Stripe hết hạn (Expire) ngay lập tức
+            // Ngăn chặn rủi ro người dùng tái sử dụng link cũ để thanh toán sau khi đã Hủy trên hệ thống
+            if (session.Status == "open")
+                await sessionService.ExpireAsync(sessionId, null, cancellationToken: cancellationToken);
+
+        }
 
         return new PaymentSessionResponseDTO
         {
             Link = "",
-            Status = PaymentStatus.Canceled.ToString()
+            Status = session.PaymentStatus == "paid" ? PaymentStatus.Succeeded.ToString() : PaymentStatus.Canceled.ToString()
         };
     }
 
