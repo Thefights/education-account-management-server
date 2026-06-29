@@ -214,6 +214,12 @@ namespace Services.Admin
                 ?? throw new DataNotFoundException("Admin", id);
         }
 
+        public async Task<GetAdminDTO> GetCurrentProfileAsync(
+            CancellationToken cancellationToken = default)
+        {
+            return await GetByIdAsync(_currentUserService.UserId, cancellationToken);
+        }
+
         private async Task ValidateRequestAsync(
             UserRole role,
             int? schoolId,
@@ -278,6 +284,11 @@ namespace Services.Admin
 
         public async Task UpdateAdminsStatusAsync(BatchUpdateAdminStatusDTO dto, CancellationToken cancellationToken = default)
         {
+            if (dto.Ids.Contains(_currentUserService.UserId))
+            {
+                throw new ValidationFailureException(nameof(dto.Ids), "You cannot update your own status.");
+            }
+
             var batchId = Guid.NewGuid();
             var users = await _userRepository.GetByIdsAsync(dto.Ids, cancellationToken: cancellationToken);
             if (users.Count != dto.Ids.Distinct().Count())
@@ -306,9 +317,9 @@ namespace Services.Admin
                     }
                     await _managementActionLogService.LogAsync(
                         batchId,
-                        "Admin",
+                        ManagementActionEntityType.Admin,
                         user.Id,
-                        newStatus == Enums.UserStatus.Active ? "Activate" : "Deactivate",
+                        newStatus == Enums.UserStatus.Active ? ManagementAction.Activate : ManagementAction.Deactivate,
                         dto.Reason,
                         oldStatus.ToString(),
                         newStatus.ToString(),

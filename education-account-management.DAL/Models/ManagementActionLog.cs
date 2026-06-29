@@ -4,13 +4,13 @@ namespace Models
     {
         public Guid BatchId { get; set; }
 
-        [MessageRequired, MessageMaxLength(80)]
-        public string EntityType { get; set; } = string.Empty;
+        [EnumDefined]
+        public ManagementActionEntityType EntityType { get; set; }
 
         public int EntityId { get; set; }
 
-        [MessageRequired, MessageMaxLength(80)]
-        public string Action { get; set; } = string.Empty;
+        [EnumDefined]
+        public ManagementAction Action { get; set; }
 
         [MessageMaxLength(80)]
         public string? PreviousStatus { get; set; }
@@ -28,8 +28,5 @@ namespace Models
 
         [MessageRequired, MessageMaxLength(45)]
         public string IpAddress { get; set; } = string.Empty;
-
-        [MessageMaxLength(4000)]
-        public string? MetadataJson { get; set; }
     }
 }

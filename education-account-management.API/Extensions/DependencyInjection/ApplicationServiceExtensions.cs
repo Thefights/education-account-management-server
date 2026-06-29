@@ -120,6 +120,7 @@ namespace Extensions.DependencyInjection
             services.AddHostedService<CourseLifecycleWorker>();
 
             services.AddScoped<AuditLogMapper>();
+            services.AddScoped<ManagementActionLogMapper>();
             services.AddScoped<EducationAccountMapper>();
             services.AddScoped<EnrollmentMapper>();
             services.AddScoped<TransactionHistoryMapper>();

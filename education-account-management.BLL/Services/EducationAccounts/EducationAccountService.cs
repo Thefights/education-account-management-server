@@ -184,9 +184,9 @@ namespace Services.EducationAccounts
 
                     await _managementActionLogService.LogAsync(
                         batchId,
-                        "EducationAccount",
+                        ManagementActionEntityType.EducationAccount,
                         account.Id,
-                        account.Status == EducationAccountStatus.Active ? "Activate" : "Close",
+                        account.Status == EducationAccountStatus.Active ? ManagementAction.Activate : ManagementAction.Close,
                         dto.Reason,
                         oldStatus.ToString(),
                         account.Status.ToString(),

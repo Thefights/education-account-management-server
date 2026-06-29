@@ -85,9 +85,9 @@ namespace Services.SchoolStudents
                     student.TryValidate();
                     await _managementActionLogService.LogAsync(
                         batchId,
-                        "SchoolStudent",
+                        ManagementActionEntityType.SchoolStudent,
                         student.Id,
-                        newStatus == SchoolStudentStatus.Active ? "Activate" : "Deactivate",
+                        newStatus == SchoolStudentStatus.Active ? ManagementAction.Activate : ManagementAction.Deactivate,
                         updateDTO.Reason,
                         oldStatus.ToString(),
                         newStatus.ToString(),
@@ -121,9 +121,9 @@ namespace Services.SchoolStudents
                 {
                     await _managementActionLogService.LogAsync(
                         batchId,
-                        "SchoolStudent",
+                        ManagementActionEntityType.SchoolStudent,
                         student.Id,
-                        "Delete",
+                        ManagementAction.Delete,
                         reason,
                         student.Status.ToString(),
                         null,
