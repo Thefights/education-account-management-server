@@ -14,12 +14,12 @@ namespace educationaccountmanagement.DAL.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "AiAssistantSetting",
+                name: "ApplicationSetting",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IsEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    IsAiFeatureEnabled = table.Column<bool>(type: "bit", nullable: false),
                     TaxRate = table.Column<decimal>(type: "decimal(5,4)", nullable: false),
                     InstallmentDueDay = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -31,9 +31,9 @@ namespace educationaccountmanagement.DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AiAssistantSetting", x => x.Id);
-                    table.CheckConstraint("CK_AiAssistantSetting_Singleton", "[Id] = 1");
-                    table.CheckConstraint("CK_AiAssistantSetting_TaxRate", "[TaxRate] >= 0");
+                    table.PrimaryKey("PK_ApplicationSetting", x => x.Id);
+                    table.CheckConstraint("CK_ApplicationSetting_Singleton", "[Id] = 1");
+                    table.CheckConstraint("CK_ApplicationSetting_TaxRate", "[TaxRate] >= 0");
                 });
 
             migrationBuilder.CreateTable(
@@ -1314,9 +1314,9 @@ namespace educationaccountmanagement.DAL.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "AiAssistantSetting",
-                columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "InstallmentDueDay", "IsDeleted", "IsEnabled", "TaxRate", "UpdatedAt", "UpdatedBy" },
-                values: new object[] { 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 5, false, true, 0.09m, null, null });
+                table: "ApplicationSetting",
+                columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "InstallmentDueDay", "IsAiFeatureEnabled", "IsDeleted", "TaxRate", "UpdatedAt", "UpdatedBy" },
+                values: new object[] { 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 5, true, false, 0.09m, null, null });
 
             migrationBuilder.InsertData(
                 table: "Citizen",
@@ -3257,7 +3257,7 @@ namespace educationaccountmanagement.DAL.Migrations
                 name: "AdminProfile");
 
             migrationBuilder.DropTable(
-                name: "AiAssistantSetting");
+                name: "ApplicationSetting");
 
             migrationBuilder.DropTable(
                 name: "AuditLog");

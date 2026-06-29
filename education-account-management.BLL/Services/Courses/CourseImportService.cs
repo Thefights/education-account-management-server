@@ -48,6 +48,7 @@ namespace Services.Courses
             var reservedCodes = new HashSet<string>(StringComparer.Ordinal);
             var errors = new List<BatchImportErrorDTO>();
             var entities = new List<Course>();
+            var courseNames = new List<(int RowNumber, string CourseName)>();
 
             foreach (var item in rows.Items)
             {
@@ -75,6 +76,10 @@ namespace Services.Courses
                         cancellationToken);
                     CsvImportHelper.AddEntityValidationErrors(errors, course, item.RowNumber);
                     entities.Add(course);
+                    if (!string.IsNullOrWhiteSpace(course.CourseName))
+                    {
+                        courseNames.Add((item.RowNumber, course.CourseName.Trim()));
+                    }
                 }
                 catch (ValidationFailureException ex)
                 {
@@ -85,6 +90,8 @@ namespace Services.Courses
                     errors.Add(BatchImportErrorDTO.Create(item.RowNumber, string.Empty, ex.Message));
                 }
             }
+
+            await AddCourseNameValidationErrorsAsync(errors, courseNames, cancellationToken);
 
             if (errors.Count != 0)
             {
@@ -117,6 +124,47 @@ namespace Services.Courses
                 BatchImportErrorDTO.Create(rowNumber, error.Key, error.Value)));
             errors.AddRange(exception.GlobalErrors.Select(error =>
                 BatchImportErrorDTO.Create(rowNumber, string.Empty, error)));
+        }
+
+        private async Task AddCourseNameValidationErrorsAsync(
+            List<BatchImportErrorDTO> errors,
+            List<(int RowNumber, string CourseName)> courseNames,
+            CancellationToken cancellationToken)
+        {
+            if (courseNames.Count == 0) return;
+
+            var duplicateImportNames = courseNames
+                .GroupBy(item => item.CourseName, StringComparer.OrdinalIgnoreCase)
+                .Where(group => group.Count() > 1)
+                .Select(group => group.Key)
+                .ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+            foreach (var item in courseNames.Where(item => duplicateImportNames.Contains(item.CourseName)))
+            {
+                errors.Add(BatchImportErrorDTO.Create(
+                    item.RowNumber,
+                    nameof(Course.CourseName),
+                    "Course name is duplicated in the import file."));
+            }
+
+            var distinctNames = courseNames
+                .Select(item => item.CourseName)
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .ToList();
+
+            var existingNames = await Repository.Query()
+                .Where(course => distinctNames.Contains(course.CourseName))
+                .Select(course => course.CourseName)
+                .ToListAsync(cancellationToken);
+            var existingNameSet = existingNames.ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+            foreach (var item in courseNames.Where(item => existingNameSet.Contains(item.CourseName)))
+            {
+                errors.Add(BatchImportErrorDTO.Create(
+                    item.RowNumber,
+                    nameof(Course.CourseName),
+                    "Course name already exists."));
+            }
         }
 
         private async Task<decimal> GetTaxRateAsync(CancellationToken cancellationToken)

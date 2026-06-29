@@ -12,7 +12,7 @@ using Persistence.SqlServer;
 namespace educationaccountmanagement.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260628080030_A")]
+    [Migration("20260629025134_A")]
     partial class A
     {
         /// <inheritdoc />
@@ -726,7 +726,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Models.AiAssistantSetting", b =>
+            modelBuilder.Entity("Models.ApplicationSetting", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -746,10 +746,10 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<int>("InstallmentDueDay")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool>("IsAiFeatureEnabled")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsEnabled")
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<decimal>("TaxRate")
@@ -763,11 +763,11 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AiAssistantSetting", t =>
+                    b.ToTable("ApplicationSetting", t =>
                         {
-                            t.HasCheckConstraint("CK_AiAssistantSetting_Singleton", "[Id] = 1");
+                            t.HasCheckConstraint("CK_ApplicationSetting_Singleton", "[Id] = 1");
 
-                            t.HasCheckConstraint("CK_AiAssistantSetting_TaxRate", "[TaxRate] >= 0");
+                            t.HasCheckConstraint("CK_ApplicationSetting_TaxRate", "[TaxRate] >= 0");
                         });
 
                     b.HasData(
@@ -776,8 +776,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             Id = 1,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentDueDay = 5,
+                            IsAiFeatureEnabled = true,
                             IsDeleted = false,
-                            IsEnabled = true,
                             TaxRate = 0.09m
                         });
                 });
