@@ -123,7 +123,7 @@ namespace Services.Payments
                     IsInstallment = e.Charge.Installments.Count > 1,
                     CurrentInstallmentNumber = e.Charge.Installments.Count > 1 ? e.Charge.Installments.Where(i => i.Status != ChargeInstallmentStatus.Paid).OrderBy(i => i.InstallmentNumber).Select(i => (int?)i.InstallmentNumber).FirstOrDefault() : null,
                     TotalInstallments = e.Charge.Installments.Count > 1 ? (int?)e.Charge.Installments.Count : null,
-                    Installments = e.Charge.Installments.Select(i => new StudentTuitionInstallmentDTO
+                    Installments = e.Charge.Installments.OrderBy(i => i.InstallmentNumber).Select(i => new StudentTuitionInstallmentDTO
                     {
                         Id = i.Id,
                         InstallmentNumber = i.InstallmentNumber,
