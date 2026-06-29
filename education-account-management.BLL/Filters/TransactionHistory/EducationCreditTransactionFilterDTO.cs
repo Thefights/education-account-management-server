@@ -6,9 +6,14 @@
             new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
             {
                 ["id"] = nameof(EducationCreditTransaction.Id),
+                ["transactionCode"] = nameof(EducationCreditTransaction.TransactionCode),
                 ["createdAt"] = nameof(EducationCreditTransaction.CreatedAt),
                 ["amount"] = nameof(EducationCreditTransaction.Amount),
                 ["type"] = nameof(EducationCreditTransaction.Type),
+                ["direction"] = nameof(EducationCreditTransaction.Direction),
+                ["balanceBefore"] = nameof(EducationCreditTransaction.BalanceBefore),
+                ["balanceAfter"] = nameof(EducationCreditTransaction.BalanceAfter),
+                ["description"] = nameof(EducationCreditTransaction.Description),
             };
 
         public override IReadOnlyDictionary<string, string> SortFields => AllowedSortFields;

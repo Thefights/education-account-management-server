@@ -11,7 +11,7 @@ namespace Models
         [MessageRequired, MessageMaxLength(320), EmailValidator, Unique]
         public string Email { get; set; } = string.Empty;
 
-        [MessageMaxLength(20), PhoneNumberValidator]
+        [MessageMaxLength(20), PhoneNumberValidator, Unique]
         public string? PhoneNumber { get; set; }
 
         [NotDefaultValue, Unique]

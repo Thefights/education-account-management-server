@@ -22,9 +22,6 @@ namespace Models
 
         public DateOnly DateOfBirth { get; set; }
 
-        [EnumDefined]
-        public CitizenshipStatus CitizenshipStatus { get; set; } = CitizenshipStatus.Active;
-
         [MessageMaxLength(50)]
         public string? SchoolingStatus { get; set; }
 

@@ -21,6 +21,7 @@ namespace Extensions
             .AddJsonOptions(opt =>
             {
                 opt.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+                opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter(allowIntegerValues: false));
             })
             .ConfigureApiBehaviorOptions(options =>
             {

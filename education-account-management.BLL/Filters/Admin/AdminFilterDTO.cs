@@ -9,10 +9,14 @@ namespace Filters.Admin
                 ["userId"] = nameof(User.Id),
                 ["role"] = nameof(User.Role),
                 ["status"] = nameof(User.Status),
+                ["createdAt"] = nameof(User.CreatedAt),
                 ["staffCode"] = $"{nameof(User.AdminProfile)}.{nameof(AdminProfile.StaffCode)}",
                 ["fullName"] = $"{nameof(User.AdminProfile)}.{nameof(AdminProfile.FullName)}",
                 ["nric"] = $"{nameof(User.AdminProfile)}.{nameof(AdminProfile.Nric)}",
                 ["email"] = $"{nameof(User.AdminProfile)}.{nameof(AdminProfile.Email)}",
+                ["phoneNumber"] = $"{nameof(User.AdminProfile)}.{nameof(AdminProfile.PhoneNumber)}",
+                ["schoolName"] = $"{nameof(User.AdminProfile)}.{nameof(AdminProfile.School)}.{nameof(School.SchoolName)}",
+                ["azureObjectId"] = $"{nameof(User.SsoIdentities)}.Min({nameof(SsoIdentity.ProviderUserId)})",
             };
 
         public override IReadOnlyDictionary<string, string> SortFields => AllowedSortFields;

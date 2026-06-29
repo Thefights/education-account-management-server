@@ -5,7 +5,6 @@ using Interfaces.Audit;
 using Mappers.Admin;
 using Results;
 using System.Linq.Expressions;
-using System.Security.Cryptography;
 using Validators;
 
 
@@ -17,11 +16,6 @@ namespace Services.Admin
         IAuditLogWriter auditLogWriter)
         : IAdminService
     {
-        private const string StaffCodePrefix = "STAFF-";
-        private const string StaffCodeCharacters = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-        private const int StaffCodeRandomLength = 5;
-        private const int StaffCodeGenerationAttempts = 10;
-
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly AdminMapper _mapper = mapper;
         private readonly IAuditLogWriter _auditLogWriter = auditLogWriter;
@@ -41,7 +35,13 @@ namespace Services.Admin
                 createDTO.AzureObjectId,
                 createDTO.Nric,
                 cancellationToken);
-            var staffCode = await GenerateUniqueStaffCodeAsync(cancellationToken);
+            var staffCode = await BusinessCodeGenerator.GenerateUniqueAsync(
+                BusinessCodeGenerator.StaffPrefix,
+                (candidate, token) => _adminProfileRepository.AnyAsync(
+                    profile => profile.StaffCode == candidate,
+                    token),
+                conflictMessage: "Unable to generate a unique staff code. Please retry.",
+                cancellationToken: cancellationToken);
 
             var userId = await _unitOfWork.ExecuteInTransactionAsync(
                 async (_, token) =>
@@ -266,26 +266,6 @@ namespace Services.Admin
                  user.Role == UserRole.FinanceAdmin ||
                  user.Role == UserRole.SchoolAdmin);
 
-        private async Task<string> GenerateUniqueStaffCodeAsync(CancellationToken cancellationToken)
-        {
-            for (var attempt = 0; attempt < StaffCodeGenerationAttempts; attempt++)
-            {
-                var suffix = RandomNumberGenerator.GetString(
-                    StaffCodeCharacters,
-                    StaffCodeRandomLength);
-                var candidate = $"{StaffCodePrefix}{suffix}";
-
-                if (!await _adminProfileRepository.AnyAsync(
-                        profile => profile.StaffCode == candidate,
-                        cancellationToken))
-                {
-                    return candidate;
-                }
-            }
-
-            throw new DataConflictException("Unable to generate a unique staff code. Please retry.");
-        }
-
         private static bool IsAdminRole(UserRole role)
         {
             return role is UserRole.SystemAdmin or UserRole.FinanceAdmin or UserRole.SchoolAdmin;
@@ -309,14 +289,14 @@ namespace Services.Admin
         {
             var fileErrors = CsvImportHelper.ValidateFile(file);
             if (fileErrors.Count != 0)
-                return CsvImportHelper.BuildFailureResult(0, fileErrors);
+                CsvImportHelper.ThrowIfImportFailed(0, fileErrors);
 
             var rows = CsvImportHelper.ReadRows<CreateAdminDTO>(file);
             if (rows.Errors.Count != 0)
-                return CsvImportHelper.BuildFailureResult(rows.Total, rows.Errors);
+                CsvImportHelper.ThrowIfImportFailed(rows.Total, rows.Errors);
 
             if (rows.Items.Count == 0)
-                return CsvImportHelper.BuildFailureResult(0, [DTOs.Csv.BatchImportErrorDTO.Create(0, "File", "CSV file must contain at least one data row.")]);
+                CsvImportHelper.ThrowIfImportFailed(0, [DTOs.Csv.BatchImportErrorDTO.Create(0, "File", "CSV file must contain at least one data row.")]);
 
             var errors = new List<DTOs.Csv.BatchImportErrorDTO>();
             var successCount = 0;
@@ -336,7 +316,7 @@ namespace Services.Admin
 
             if (errors.Count != 0)
             {
-                return CsvImportHelper.BuildFailureResult(rows.Total, errors);
+                CsvImportHelper.ThrowIfImportFailed(rows.Total, errors, successCount);
             }
 
             return new BatchImportResultDTO
