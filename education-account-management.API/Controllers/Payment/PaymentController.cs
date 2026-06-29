@@ -19,7 +19,7 @@ namespace API.Controllers.Payment
             return Result.SuccessData(response);
         }
 
-        [HttpPost("success")]
+        [HttpGet("success")]
         [Authorize(Roles = RolePolicy.AccountHolder)]
         public async Task<IActionResult> Success([FromQuery(Name = "session_id")] string sessionId, CancellationToken token)
         {
