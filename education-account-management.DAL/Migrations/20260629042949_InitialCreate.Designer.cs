@@ -12,8 +12,8 @@ using Persistence.SqlServer;
 namespace educationaccountmanagement.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260628112234_A")]
-    partial class A
+    [Migration("20260629042949_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -9954,6 +9954,9 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<decimal?>("MaxGrossHouseholdIncome")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<decimal?>("MaxPerCapitaIncome")
                         .HasColumnType("decimal(18,2)");
 
@@ -9982,7 +9985,12 @@ namespace educationaccountmanagement.DAL.Migrations
                         .IsUnique()
                         .HasFilter("\"IsDeleted\" = 0 AND \"FasSchemeId\" IS NOT NULL AND \"TierName\" IS NOT NULL");
 
-                    b.ToTable("FasSchemeTier");
+                    b.ToTable("FasSchemeTier", t =>
+                        {
+                            t.HasCheckConstraint("CK_FasSchemeTier_Amounts_NonNegative", "([MaxPerCapitaIncome] IS NULL OR [MaxPerCapitaIncome] >= 0) AND ([MaxGrossHouseholdIncome] IS NULL OR [MaxGrossHouseholdIncome] >= 0) AND ([SubsidyValue] IS NULL OR [SubsidyValue] >= 0) AND ([CourseFeeSubsidyValue] IS NULL OR [CourseFeeSubsidyValue] >= 0) AND ([MiscFeeSubsidyValue] IS NULL OR [MiscFeeSubsidyValue] >= 0)");
+
+                            t.HasCheckConstraint("CK_FasSchemeTier_DisplayOrder_NonNegative", "[DisplayOrder] >= 0");
+                        });
 
                     b.HasData(
                         new
