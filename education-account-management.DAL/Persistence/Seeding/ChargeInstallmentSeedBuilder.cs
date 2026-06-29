@@ -62,12 +62,13 @@ namespace Persistence.Seeding
                 new ChargeInstallment { Id = 48, ChargeId = 48, InstallmentNumber = 1, Status = ChargeInstallmentStatus.Overdue, DueDate = new DateTime(2026, 5, 20, 0, 0, 0, DateTimeKind.Utc), Amount = 438m, CreatedAt = createdAt, BecameOverdueAt = new DateTime(2026, 6, 20, 0, 0, 0, DateTimeKind.Utc) },
                 new ChargeInstallment { Id = 49, ChargeId = 49, InstallmentNumber = 1, Status = ChargeInstallmentStatus.PendingPayment, DueDate = new DateTime(2026, 5, 21, 0, 0, 0, DateTimeKind.Utc), Amount = 444m, CreatedAt = createdAt },
                 new ChargeInstallment { Id = 50, ChargeId = 50, InstallmentNumber = 1, Status = ChargeInstallmentStatus.Paid, DueDate = new DateTime(2026, 5, 22, 0, 0, 0, DateTimeKind.Utc), Amount = 450m, CreatedAt = createdAt },
-                // Sterling Quach additional installments for full status coverage
+                // Sterling Quach installments on one charge for full status coverage
                 new ChargeInstallment { Id = 51, ChargeId = 51, InstallmentNumber = 1, Status = ChargeInstallmentStatus.Paid, DueDate = new DateTime(2026, 4, 1, 0, 0, 0, DateTimeKind.Utc), Amount = 185m, CreatedAt = createdAt },
-                new ChargeInstallment { Id = 52, ChargeId = 52, InstallmentNumber = 1, Status = ChargeInstallmentStatus.Overdue, DueDate = new DateTime(2026, 5, 5, 0, 0, 0, DateTimeKind.Utc), Amount = 201m, CreatedAt = createdAt, BecameOverdueAt = new DateTime(2026, 6, 5, 0, 0, 0, DateTimeKind.Utc) },
-                new ChargeInstallment { Id = 53, ChargeId = 53, InstallmentNumber = 1, Status = ChargeInstallmentStatus.PendingPayment, DueDate = new DateTime(2026, 9, 1, 0, 0, 0, DateTimeKind.Utc), Amount = 172m, CreatedAt = createdAt },
-                new ChargeInstallment { Id = 54, ChargeId = 54, InstallmentNumber = 1, Status = ChargeInstallmentStatus.PendingPayment, DueDate = new DateTime(2026, 3, 10, 0, 0, 0, DateTimeKind.Utc), Amount = 209m, CreatedAt = createdAt },
-                new ChargeInstallment { Id = 55, ChargeId = 55, InstallmentNumber = 1, Status = ChargeInstallmentStatus.PendingPayment, DueDate = new DateTime(2026, 6, 15, 0, 0, 0, DateTimeKind.Utc), Amount = 190m, CreatedAt = createdAt });
+                new ChargeInstallment { Id = 52, ChargeId = 51, InstallmentNumber = 2, Status = ChargeInstallmentStatus.Overdue, DueDate = new DateTime(2026, 5, 1, 0, 0, 0, DateTimeKind.Utc), Amount = 185m, CreatedAt = createdAt, BecameOverdueAt = new DateTime(2026, 6, 5, 0, 0, 0, DateTimeKind.Utc) },
+                new ChargeInstallment { Id = 53, ChargeId = 51, InstallmentNumber = 3, Status = ChargeInstallmentStatus.PendingPayment, DueDate = new DateTime(2026, 7, 1, 0, 0, 0, DateTimeKind.Utc), Amount = 185m, CreatedAt = createdAt },
+                new ChargeInstallment { Id = 54, ChargeId = 51, InstallmentNumber = 4, Status = ChargeInstallmentStatus.PendingPayment, DueDate = new DateTime(2026, 8, 1, 0, 0, 0, DateTimeKind.Utc), Amount = 185m, CreatedAt = createdAt },
+                new ChargeInstallment { Id = 55, ChargeId = 51, InstallmentNumber = 5, Status = ChargeInstallmentStatus.PendingPayment, DueDate = new DateTime(2026, 9, 1, 0, 0, 0, DateTimeKind.Utc), Amount = 185m, CreatedAt = createdAt },
+                new ChargeInstallment { Id = 56, ChargeId = 51, InstallmentNumber = 6, Status = ChargeInstallmentStatus.PendingPayment, DueDate = new DateTime(2026, 10, 1, 0, 0, 0, DateTimeKind.Utc), Amount = 185m, CreatedAt = createdAt });
 
             return modelBuilder;
         }
