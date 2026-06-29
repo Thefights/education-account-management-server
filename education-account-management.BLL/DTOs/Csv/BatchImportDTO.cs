@@ -15,17 +15,20 @@ namespace DTOs.Csv
     {
         public int RowNumber { get; set; }
 
+        public string? Nric { get; set; }
+
         public string Field { get; set; } = string.Empty;
 
         public string Message { get; set; } = string.Empty;
 
-        public static BatchImportErrorDTO Create(int rowNumber, string field, string message)
+        public static BatchImportErrorDTO Create(int rowNumber, string field, string message, string? nric = null)
         {
             return new BatchImportErrorDTO
             {
                 RowNumber = rowNumber,
                 Field = field,
-                Message = string.IsNullOrWhiteSpace(message) ? "Invalid" : message
+                Message = string.IsNullOrWhiteSpace(message) ? "Invalid" : message,
+                Nric = nric
             };
         }
     }

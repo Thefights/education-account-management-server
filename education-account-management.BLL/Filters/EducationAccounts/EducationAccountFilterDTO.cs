@@ -30,5 +30,9 @@ namespace Filters.EducationAccounts
         [FilterField(FilterOperationEnum.Contains, "Citizen.FullName")]
         [SearchField("Citizen.FullName")]
         public string? Name { get; set; }
+
+        [FilterField(FilterOperationEnum.Contains, nameof(EducationAccount.AccountNumber))]
+        [SearchField(nameof(EducationAccount.AccountNumber))]
+        public string? AccountNumber { get; set; }
     }
 }
