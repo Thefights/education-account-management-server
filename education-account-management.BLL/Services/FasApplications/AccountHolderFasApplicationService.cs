@@ -155,6 +155,8 @@ namespace Services.FasApplications
                 throw new DataConflictException("Only rejected or expired applications can be used for reapply.");
             }
 
+            await GetActiveSchemeAsync(sourceApplication.FasSchemeId, studentInfo.SchoolId, cancellationToken);
+
             var existingDraft = await _unitOfWork.Repository<FasApplication>()
                 .Query()
                 .FirstOrDefaultAsync(a => a.SchoolStudentId == studentInfo.Id
@@ -166,8 +168,6 @@ namespace Services.FasApplications
             {
                 return existingDraft.Id;
             }
-
-            await GetActiveSchemeAsync(sourceApplication.FasSchemeId, studentInfo.SchoolId, cancellationToken);
             await EnsureNoActiveApplicationAsync(studentInfo.Id, sourceApplication.FasSchemeId, null, cancellationToken);
 
             var applicationNumber = await GenerateApplicationNumberAsync(cancellationToken);
