@@ -166,14 +166,16 @@ public class StripeService(
                 var stripePaymentId = stripePayment?.Id;
                 if (stripePaymentId != null)
                 {
-                    var p = await _paymentRepository.Query(tracking: true).FirstAsync(x => x.Id == stripePaymentId, token);
+                    var p = await _paymentRepository.Query(tracking: true).Include(x => x.PaymentAllocations).FirstAsync(x => x.Id == stripePaymentId, token);
+                    if (p.PaymentAllocations.Any()) _paymentAllocationRepository.RemoveRange(p.PaymentAllocations.ToList());
                     _paymentRepository.Remove(p);
                 }
 
                 var walletPaymentId = walletPayment?.Id;
                 if (walletPaymentId != null)
                 {
-                    var p = await _paymentRepository.Query(tracking: true).FirstAsync(x => x.Id == walletPaymentId, token);
+                    var p = await _paymentRepository.Query(tracking: true).Include(x => x.PaymentAllocations).FirstAsync(x => x.Id == walletPaymentId, token);
+                    if (p.PaymentAllocations.Any()) _paymentAllocationRepository.RemoveRange(p.PaymentAllocations.ToList());
                     _paymentRepository.Remove(p);
                 }
 
@@ -527,21 +529,21 @@ public class StripeService(
                     break;
                 case PaymentIntent.CreateInstallment:
                     if (hasPendingInstallments)
-                        errors[$"{nameof(Models.Charge)}_{charge.Id}"] = $"Cannot create new {nameof(ChargeInstallment)} plan. An {nameof(ChargeInstallment)} plan already exists.";
+                        errors[$"{nameof(Models.Charge)}_{charge.Id}_PlanExists"] = $"Cannot create new {nameof(ChargeInstallment)} plan. An {nameof(ChargeInstallment)} plan already exists.";
                     if (!info.PaymentPlanMonths.HasValue)
-                        errors[$"{nameof(Models.Charge)}_{charge.Id}"] = $"{nameof(ChargePaymentRequestInfor.PaymentPlanMonths)} number is required to create an {nameof(ChargeInstallment)} plan.";
+                        errors[$"{nameof(Models.Charge)}_{charge.Id}_MonthsRequired"] = $"{nameof(ChargePaymentRequestInfor.PaymentPlanMonths)} number is required to create an {nameof(ChargeInstallment)} plan.";
                     break;
                 case PaymentIntent.PayCurrentInstallment:
                     if (!hasPendingInstallments)
-                        errors[$"{nameof(Models.Charge)}_{charge.Id}"] = $"Cannot pay current {nameof(ChargeInstallment)} because no active {nameof(ChargeInstallment)} plan exists.";
+                        errors[$"{nameof(Models.Charge)}_{charge.Id}_MissingPlan"] = $"Cannot pay current {nameof(ChargeInstallment)} because no active {nameof(ChargeInstallment)} plan exists.";
                     if (info.PaymentPlanMonths.HasValue)
-                        errors[$"{nameof(Models.Charge)}_{charge.Id}"] = $"Pay current installment does not required {nameof(ChargePaymentRequestInfor.PaymentPlanMonths)} number";
+                        errors[$"{nameof(Models.Charge)}_{charge.Id}_ExtraMonths"] = $"Pay current installment does not required {nameof(ChargePaymentRequestInfor.PaymentPlanMonths)} number";
                     break;
                 case PaymentIntent.PayRemainingInstallments:
                     if (!hasPendingInstallments)
-                        errors[$"{nameof(Models.Charge)}_{charge.Id}"] = $"No active {nameof(ChargeInstallment)} plan exists to pay off remaining installments. Or remaining {nameof(ChargeInstallment)} already paid";
+                        errors[$"{nameof(Models.Charge)}_{charge.Id}_MissingPlan"] = $"No active {nameof(ChargeInstallment)} plan exists to pay off remaining installments. Or remaining {nameof(ChargeInstallment)} already paid";
                     if (info.PaymentPlanMonths.HasValue)
-                        errors[$"{nameof(Models.Charge)}_{charge.Id}"] = $"Pay all {nameof(ChargeInstallment)} does not required {nameof(ChargePaymentRequestInfor.PaymentPlanMonths)} number";
+                        errors[$"{nameof(Models.Charge)}_{charge.Id}_ExtraMonths"] = $"Pay all {nameof(ChargeInstallment)} does not required {nameof(ChargePaymentRequestInfor.PaymentPlanMonths)} number";
                     break;
             }
         }
