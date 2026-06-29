@@ -11,6 +11,16 @@ namespace DTOs.Courses
         public decimal EducationAccountBalance { get; set; }
     }
 
+    public class StudentTuitionInstallmentDTO
+    {
+        public int Id { get; set; }
+        public int InstallmentNumber { get; set; }
+        public decimal Amount { get; set; }
+        public DateTime DueDate { get; set; }
+        public ChargeInstallmentStatus Status { get; set; }
+        public DateTime? BecameOverdueAt { get; set; }
+    }
+
     public class StudentTuitionChargeDTO
     {
         public int EnrollmentId { get; set; }
@@ -33,6 +43,7 @@ namespace DTOs.Courses
         public bool IsInstallment { get; set; }
         public int? CurrentInstallmentNumber { get; set; }
         public int? TotalInstallments { get; set; }
+        public List<StudentTuitionInstallmentDTO> Installments { get; set; } = [];
         public string? AppliedFasSchemeName { get; set; }
         public string? AppliedFasTierName { get; set; }
         public bool HasFasApplication { get; set; }
