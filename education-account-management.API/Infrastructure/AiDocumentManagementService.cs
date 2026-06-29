@@ -77,7 +77,14 @@ namespace Infrastructure
             using var fileStream = file.OpenReadStream();
             
             var fileContent = new StreamContent(fileStream);
-            fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse(file.ContentType);
+            if (MediaTypeHeaderValue.TryParse(file.ContentType, out var parsedContentType))
+            {
+                fileContent.Headers.ContentType = parsedContentType;
+            }
+            else
+            {
+                fileContent.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+            }
             
             content.Add(fileContent, "file", file.FileName);
             content.Add(new StringContent(adminOnly.ToString()), "admin_only");

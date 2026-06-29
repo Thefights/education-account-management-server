@@ -144,8 +144,14 @@ namespace Extensions.DependencyInjection
         {
             services.AddHttpClient("AiClient", client =>
             {
-                client.BaseAddress = new Uri(configuration.AiSettings.BaseUrl);
-                client.DefaultRequestHeaders.Add("X-API-Key", configuration.AiSettings.ApiKey);
+                if (!string.IsNullOrWhiteSpace(configuration.AiSettings?.BaseUrl))
+                {
+                    client.BaseAddress = new Uri(configuration.AiSettings.BaseUrl);
+                }
+                if (!string.IsNullOrWhiteSpace(configuration.AiSettings?.ApiKey))
+                {
+                    client.DefaultRequestHeaders.Add("X-API-Key", configuration.AiSettings.ApiKey);
+                }
                 client.Timeout = TimeSpan.FromMinutes(2); // Some AI requests can take time
             });
         }

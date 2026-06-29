@@ -1,6 +1,6 @@
 using Infrastructure.Interface;
 using DTOs.AiChat;
-using Interfaces.AiAssistantSettings;
+using Interfaces.ApplicationSettings;
 using System.Text.Json;
 using System.Text;
 using Microsoft.AspNetCore.Http;
@@ -10,16 +10,16 @@ namespace Infrastructure
 {
     public class AiChatService : IAiChatService
     {
-        private readonly IAiAssistantSettingService _aiSettingService;
+        private readonly IApplicationSettingService _applicationSettingService;
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly ICurrentUserService _currentUserService;
 
         public AiChatService(
-            IAiAssistantSettingService aiSettingService,
+            IApplicationSettingService applicationSettingService,
             IHttpClientFactory httpClientFactory,
             ICurrentUserService currentUserService)
         {
-            _aiSettingService = aiSettingService;
+            _applicationSettingService = applicationSettingService;
             _httpClientFactory = httpClientFactory;
             _currentUserService = currentUserService;
         }
@@ -28,8 +28,8 @@ namespace Infrastructure
         {
             try 
             {
-                var setting = await _aiSettingService.GetAsync();
-                return setting?.IsEnabled ?? false;
+                var setting = await _applicationSettingService.GetAsync();
+                return setting?.IsAiFeatureEnabled ?? false;
             }
             catch
             {
@@ -39,8 +39,8 @@ namespace Infrastructure
 
         public async Task<AiServiceResult> SendChatMessageAsync(AiChatRequestDTO request)
         {
-            var setting = await _aiSettingService.GetAsync();
-            if (setting == null || !setting.IsEnabled)
+            var setting = await _applicationSettingService.GetAsync();
+            if (setting == null || !setting.IsAiFeatureEnabled)
             {
                 return AiServiceResult.Failure("The AI Assistant feature is currently disabled by Admin.", StatusCodes.Status403Forbidden);
             }
