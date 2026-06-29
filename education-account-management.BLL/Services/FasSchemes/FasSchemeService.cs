@@ -312,6 +312,7 @@ namespace Services.FasSchemes
                     FasSchemeId = newScheme.Id,
                     TierName = t.TierName,
                     MaxPerCapitaIncome = t.MaxPerCapitaIncome,
+                    MaxGrossHouseholdIncome = t.MaxGrossHouseholdIncome,
                     SubsidyValue = t.SubsidyValue,
                     CourseFeeSubsidyValue = t.CourseFeeSubsidyValue,
                     MiscFeeSubsidyValue = t.MiscFeeSubsidyValue,
