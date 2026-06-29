@@ -1,9 +1,6 @@
 using DTOs.Audit;
-using Enums;
 using Interfaces.Audit;
 using Interfaces.Csv;
-using Models;
-using Repositories.Interfaces;
 using Services.Base;
 
 namespace Services.Audit
@@ -25,11 +22,12 @@ namespace Services.Audit
             {
                 ["id"] = new("Id", auditLog => auditLog.Id),
                 ["actorUserId"] = new("Actor User Id", auditLog => auditLog.ActorUserId),
+                ["actorUserRole"] = new("Actor User Role", auditLog => auditLog.ActorUserRole),
                 ["category"] = new("Category", auditLog => auditLog.Category),
                 ["action"] = new("Action", auditLog => auditLog.Action),
                 ["ipAddress"] = new("IP Address", auditLog => auditLog.IpAddress),
                 ["occurredAt"] = new("Occurred At", auditLog => auditLog.OccurredAt),
-                ["nRic"] = new("NRIC", auditLog => auditLog.Nric)
+                ["nric"] = new("NRIC", auditLog => auditLog.Nric)
             };
 
         public async Task<byte[]> ExportCsvAsync(

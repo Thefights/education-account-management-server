@@ -155,6 +155,8 @@ namespace Services.FasApplications
                 throw new DataConflictException("Only rejected or expired applications can be used for reapply.");
             }
 
+            await GetActiveSchemeAsync(sourceApplication.FasSchemeId, studentInfo.SchoolId, cancellationToken);
+
             var existingDraft = await _unitOfWork.Repository<FasApplication>()
                 .Query()
                 .FirstOrDefaultAsync(a => a.SchoolStudentId == studentInfo.Id
@@ -229,6 +231,11 @@ namespace Services.FasApplications
             if (dto.FasSchemeId != draft.FasSchemeId)
             {
                 throw new DataConflictException("Draft application scheme does not match the submitted scheme.");
+            }
+
+            if (draft.FasScheme.Status != FasSchemeStatus.Active)
+            {
+                throw new DataConflictException("The selected scheme is no longer active. You cannot submit an application for it.");
             }
 
             await EnsureNoActiveApplicationAsync(studentInfo.Id, draft.FasSchemeId, draft.Id, cancellationToken);
@@ -415,7 +422,7 @@ namespace Services.FasApplications
 
             if (exists)
             {
-                throw new DataConflictException("You already have a pending or approved application for this scheme.");
+                throw new DataConflictException("You already have an active (draft, pending, or approved) application for this scheme.");
             }
         }
 
@@ -477,19 +484,43 @@ namespace Services.FasApplications
                 return (null, recommendationReason);
             }
 
-            var eligibleTier = scheme.Tiers
-                .Where(t => !t.MaxPerCapitaIncome.HasValue || pci <= t.MaxPerCapitaIncome)
-                .OrderBy(t => t.MaxPerCapitaIncome ?? decimal.MaxValue)
+            // Support tier basis configuration by checking both Per-Capita Income (PCI) and Gross Household Income.
+            var eligibleTiers = scheme.Tiers.Where(t =>
+                (!t.MaxPerCapitaIncome.HasValue || pci <= t.MaxPerCapitaIncome.Value) &&
+                (!t.MaxGrossHouseholdIncome.HasValue || dto.GrossHouseholdIncome <= t.MaxGrossHouseholdIncome.Value)
+            ).ToList();
+
+            if (eligibleTiers.Count == 0)
+            {
+                return (null, "Eligible for scheme but exceeded all tier limits");
+            }
+
+            // Calculate benefit score based on total subsidy value to determine the most beneficial tier.
+            decimal GetBenefitScore(FasSchemeTier tier)
+            {
+                if (scheme.IsPerComponent)
+                {
+                    return (tier.CourseFeeSubsidyValue ?? 0) + (tier.MiscFeeSubsidyValue ?? 0);
+                }
+                return tier.SubsidyValue ?? 0;
+            }
+
+            // Select the most beneficial tier automatically for the student by ordering scores descendingly.
+            var eligibleTier = eligibleTiers
+                .OrderByDescending(GetBenefitScore)
+                .ThenBy(t => t.DisplayOrder)
                 .FirstOrDefault();
 
             if (eligibleTier == null)
             {
-                return (null, "Eligible for scheme but exceeded all tier PCI limits");
+                return (null, "Eligible for scheme but exceeded all tier limits");
             }
 
-            recommendationReason = eligibleTier.MaxPerCapitaIncome.HasValue
-                ? $"PCI <= {eligibleTier.MaxPerCapitaIncome}"
-                : "Matched tier with no PCI limit";
+            var reasons = new List<string>();
+            if (eligibleTier.MaxPerCapitaIncome.HasValue) reasons.Add($"PCI <= {eligibleTier.MaxPerCapitaIncome}");
+            if (eligibleTier.MaxGrossHouseholdIncome.HasValue) reasons.Add($"Gross Income <= {eligibleTier.MaxGrossHouseholdIncome}");
+            if (reasons.Count == 0) reasons.Add("Matched tier with no limits");
+            recommendationReason = string.Join(" AND ", reasons);
 
             return (eligibleTier.Id, recommendationReason);
         }

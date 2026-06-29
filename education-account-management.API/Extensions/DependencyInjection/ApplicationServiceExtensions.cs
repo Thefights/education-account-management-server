@@ -7,7 +7,7 @@ using Infrastructure;
 using Infrastructure.CacheServices;
 using Infrastructure.Interface;
 using Interfaces.Admin;
-using Interfaces.AiAssistantSettings;
+using Interfaces.ApplicationSettings;
 using Interfaces.Audit;
 using Interfaces.Auth;
 using Interfaces.Base;
@@ -33,7 +33,7 @@ using Polly.Retry;
 using Repositories.Interfaces;
 using Resend;
 using Services.Admin;
-using Services.AiAssistantSettings;
+using Services.ApplicationSettings;
 using Services.Audit;
 using Services.Auth;
 using Services.Base;
@@ -100,7 +100,7 @@ namespace Extensions.DependencyInjection
 
 
             services.AddScoped<IEducationAccountSweepReportService, EducationAccountSweepReportService>();
-            services.AddScoped<IAiAssistantSettingService, AiAssistantSettingService>();
+            services.AddScoped<IApplicationSettingService, ApplicationSettingService>();
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<ICourseService, CourseService>();
             services.AddScoped<ICourseLifecycleService, CourseLifecycleService>();
@@ -127,7 +127,7 @@ namespace Extensions.DependencyInjection
             services.AddScoped<TransactionHistoryMapper>();
             services.AddScoped<SystemTopupMapper>();
             services.AddScoped<ScheduleTopUpMapper>();
-            services.AddScoped<AiAssistantSettingMapper>();
+            services.AddScoped<ApplicationSettingMapper>();
             services.AddScoped<AdminMapper>();
             services.AddScoped<CourseMapper>();
             services.AddScoped<SchoolMapper>();

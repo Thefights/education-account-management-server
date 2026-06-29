@@ -6,10 +6,10 @@ namespace Persistence.SqlServer.ModelConfigurations
     {
         public static void ConfigureCheckConstraints(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<AiAssistantSetting>().ToTable(table =>
+            modelBuilder.Entity<ApplicationSetting>().ToTable(table =>
             {
-                table.HasCheckConstraint("CK_AiAssistantSetting_Singleton", "[Id] = 1");
-                table.HasCheckConstraint("CK_AiAssistantSetting_TaxRate", "[TaxRate] >= 0");
+                table.HasCheckConstraint("CK_ApplicationSetting_Singleton", "[Id] = 1");
+                table.HasCheckConstraint("CK_ApplicationSetting_TaxRate", "[TaxRate] >= 0");
             });
 
             modelBuilder.Entity<EducationAccount>().ToTable(table =>
@@ -120,6 +120,18 @@ namespace Persistence.SqlServer.ModelConfigurations
                     "AND [EducationCreditTransactionId] IS NOT NULL AND [FailureReason] IS NULL) OR " +
                     "([Status] = 4 AND [EducationCreditTransactionId] IS NULL AND [FailureReason] IS NOT NULL) OR " +
                     "([Status] IN (1, 2) AND [EducationCreditTransactionId] IS NULL)");
+            });
+
+            modelBuilder.Entity<FasSchemeTier>().ToTable(table =>
+            {
+                table.HasCheckConstraint(
+                    "CK_FasSchemeTier_Amounts_NonNegative",
+                    "([MaxPerCapitaIncome] IS NULL OR [MaxPerCapitaIncome] >= 0) AND " +
+                    "([MaxGrossHouseholdIncome] IS NULL OR [MaxGrossHouseholdIncome] >= 0) AND " +
+                    "([SubsidyValue] IS NULL OR [SubsidyValue] >= 0) AND " +
+                    "([CourseFeeSubsidyValue] IS NULL OR [CourseFeeSubsidyValue] >= 0) AND " +
+                    "([MiscFeeSubsidyValue] IS NULL OR [MiscFeeSubsidyValue] >= 0)");
+                table.HasCheckConstraint("CK_FasSchemeTier_DisplayOrder_NonNegative", "[DisplayOrder] >= 0");
             });
         }
 

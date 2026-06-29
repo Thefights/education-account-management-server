@@ -16,6 +16,7 @@ namespace Filters.Courses
             };
 
         public StudentTuitionFilterStatus Status { get; set; } = StudentTuitionFilterStatus.All;
+        public bool? IsInstallment { get; set; }
 
         public List<int>? EnrollmentIds { get; set; }
 
