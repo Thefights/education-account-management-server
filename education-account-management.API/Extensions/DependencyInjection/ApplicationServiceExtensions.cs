@@ -53,6 +53,7 @@ using Services.FasSchemes;
 using StackExchange.Redis;
 using System.Threading.RateLimiting;
 using Utils;
+using Mappers.FasApplications;
 
 namespace Extensions.DependencyInjection
 {
@@ -84,7 +85,7 @@ namespace Extensions.DependencyInjection
             services.AddScoped<ITransactionHistoryService, TransactionHistoryService>();
             services.AddScoped<IAccountHolderFasSchemeService, AccountHolderFasSchemeService>();
             services.AddScoped<IAccountHolderFasApplicationService, AccountHolderFasApplicationService>();
-            services.AddScoped<IManagementFasApplicationService, ManagementFasApplicationService>();
+            services.AddScoped<IFasApplicationManagementService, FasApplicationManagementService>();
             services.AddScoped<IFasBackgroundService, FasBackgroundService>();
 
             services.AddScoped<ISystemTopupService, SystemTopupService>();
@@ -92,6 +93,8 @@ namespace Extensions.DependencyInjection
             services.AddScoped<ITopupService, TopupService>();
             services.AddScoped<ITopupManagementQueryService, TopupManagementQueryService>();
             services.AddScoped<ITopupBackgroundService, TopupBackgroundService>();
+
+
 
             services.AddScoped<IEducationAccountSweepReportService, EducationAccountSweepReportService>();
             services.AddScoped<IAiAssistantSettingService, AiAssistantSettingService>();
@@ -106,6 +109,7 @@ namespace Extensions.DependencyInjection
             services.AddScoped<ISchoolStudentService, SchoolStudentService>();
             services.AddScoped<ISchoolStudentImportService, SchoolStudentImportService>();
             services.AddScoped<IFasSchemeService, FasSchemeService>();
+
 
             services.AddScoped<IDataCleanupService, DataCleanupService>();
             services.AddHostedService<DataCleanupWorker>();
@@ -126,6 +130,7 @@ namespace Extensions.DependencyInjection
             services.AddScoped<SchoolMapper>();
             services.AddScoped<FasSchemeMapper>();
             services.AddScoped<SchoolStudentMapper>();
+            services.AddScoped<FasApplicationMapper>();
 
             return services;
         }
