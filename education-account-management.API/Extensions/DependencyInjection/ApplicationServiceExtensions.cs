@@ -53,6 +53,7 @@ using Services.FasSchemes;
 using StackExchange.Redis;
 using System.Threading.RateLimiting;
 using Utils;
+using Mappers.FasApplications;
 
 namespace Extensions.DependencyInjection
 {
@@ -84,13 +85,16 @@ namespace Extensions.DependencyInjection
             services.AddScoped<ITransactionHistoryService, TransactionHistoryService>();
             services.AddScoped<IAccountHolderFasSchemeService, AccountHolderFasSchemeService>();
             services.AddScoped<IAccountHolderFasApplicationService, AccountHolderFasApplicationService>();
-            services.AddScoped<IManagementFasApplicationService, ManagementFasApplicationService>();
+            services.AddScoped<IFasApplicationManagementService, FasApplicationManagementService>();
+            services.AddScoped<IFasBackgroundService, FasBackgroundService>();
 
             services.AddScoped<ISystemTopupService, SystemTopupService>();
             services.AddScoped<IScheduleTopUpService, ScheduleTopUpService>();
             services.AddScoped<ITopupService, TopupService>();
             services.AddScoped<ITopupManagementQueryService, TopupManagementQueryService>();
             services.AddScoped<ITopupBackgroundService, TopupBackgroundService>();
+
+
 
             services.AddScoped<IEducationAccountSweepReportService, EducationAccountSweepReportService>();
             services.AddScoped<IApplicationSettingService, ApplicationSettingService>();
@@ -106,10 +110,12 @@ namespace Extensions.DependencyInjection
             services.AddScoped<ISchoolStudentImportService, SchoolStudentImportService>();
             services.AddScoped<IFasSchemeService, FasSchemeService>();
 
+
             services.AddScoped<IDataCleanupService, DataCleanupService>();
             services.AddHostedService<DataCleanupWorker>();
             services.AddHostedService<EducationAccountSweepWorker>();
             services.AddHostedService<TopupDailyWorker>();
+            services.AddHostedService<FasDailyWorker>();
             services.AddHostedService<CourseLifecycleWorker>();
 
             services.AddScoped<AuditLogMapper>();
@@ -124,6 +130,7 @@ namespace Extensions.DependencyInjection
             services.AddScoped<SchoolMapper>();
             services.AddScoped<FasSchemeMapper>();
             services.AddScoped<SchoolStudentMapper>();
+            services.AddScoped<FasApplicationMapper>();
 
             return services;
         }

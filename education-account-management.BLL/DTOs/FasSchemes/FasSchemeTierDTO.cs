@@ -5,6 +5,7 @@ namespace DTOs.FasSchemes
         public int Id { get; set; }
         public string TierName { get; set; } = string.Empty;
         public decimal? MaxPerCapitaIncome { get; set; }
+        public decimal? MaxGrossHouseholdIncome { get; set; }
         public decimal? SubsidyValue { get; set; }
         public decimal? CourseFeeSubsidyValue { get; set; }
         public decimal? MiscFeeSubsidyValue { get; set; }
@@ -17,6 +18,7 @@ namespace DTOs.FasSchemes
         public string TierName { get; set; } = string.Empty;
 
         public decimal? MaxPerCapitaIncome { get; set; }
+        public decimal? MaxGrossHouseholdIncome { get; set; }
         public decimal? SubsidyValue { get; set; }
         public decimal? CourseFeeSubsidyValue { get; set; }
         public decimal? MiscFeeSubsidyValue { get; set; }

@@ -60,6 +60,7 @@ namespace Services.FasSchemes
                 .Query()
                 .Where(a => a.SchoolStudentId == studentInfo.Id 
                             && (a.Status == FasApplicationStatus.Pending || 
+                                a.Status == FasApplicationStatus.Draft ||
                                (a.Status == FasApplicationStatus.Approved && a.ValidityEndDate >= today)))
                 .Select(a => a.FasSchemeId)
                 .Distinct()
@@ -153,8 +154,6 @@ namespace Services.FasSchemes
                 filter.GrossHouseholdIncome.Value, 
                 filter.HouseholdMemberCount.Value);
         }
-
-
 
         private List<string> GenerateConditionsSummary(ICollection<FasSchemeConditionGroup> conditionGroups)
         {
