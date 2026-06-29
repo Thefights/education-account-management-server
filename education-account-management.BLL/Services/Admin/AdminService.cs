@@ -352,6 +352,17 @@ namespace Services.Admin
                     await CreateAsync(item.Row, cancellationToken);
                     successCount++;
                 }
+                catch (ValidationFailureException ex)
+                {
+                    foreach (var err in ex.FieldErrors)
+                    {
+                        errors.Add(BatchImportErrorDTO.Create(item.RowNumber, err.Key, err.Value, item.Row.Nric));
+                    }
+                    foreach (var err in ex.GlobalErrors)
+                    {
+                        errors.Add(BatchImportErrorDTO.Create(item.RowNumber, "Row", err, item.Row.Nric));
+                    }
+                }
                 catch (Exception ex)
                 {
                     errors.Add(BatchImportErrorDTO.Create(item.RowNumber, "Row", ex.Message, item.Row.Nric));
