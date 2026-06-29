@@ -155,6 +155,8 @@ namespace Services.FasApplications
                 throw new DataConflictException("Only rejected or expired applications can be used for reapply.");
             }
 
+            await GetActiveSchemeAsync(sourceApplication.FasSchemeId, studentInfo.SchoolId, cancellationToken);
+
             var existingDraft = await _unitOfWork.Repository<FasApplication>()
                 .Query()
                 .FirstOrDefaultAsync(a => a.SchoolStudentId == studentInfo.Id
@@ -229,6 +231,11 @@ namespace Services.FasApplications
             if (dto.FasSchemeId != draft.FasSchemeId)
             {
                 throw new DataConflictException("Draft application scheme does not match the submitted scheme.");
+            }
+
+            if (draft.FasScheme.Status != FasSchemeStatus.Active)
+            {
+                throw new DataConflictException("The selected scheme is no longer active. You cannot submit an application for it.");
             }
 
             await EnsureNoActiveApplicationAsync(studentInfo.Id, draft.FasSchemeId, draft.Id, cancellationToken);
