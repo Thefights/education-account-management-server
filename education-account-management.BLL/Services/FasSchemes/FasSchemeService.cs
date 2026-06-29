@@ -47,7 +47,7 @@ namespace Services.FasSchemes
             ArgumentNullException.ThrowIfNull(createDTO);
             var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
 
-            ValidateInput(createDTO.SchemeName, createDTO.Tiers.Count, createDTO.RootConditionGroup);
+            ValidateInput(createDTO.SchemeName, createDTO.Tiers, createDTO.RootConditionGroup);
             FasConditionTreeUtility.Validate(createDTO.RootConditionGroup);
             await ValidateCoursesExistAsync(createDTO.SchemeCourses.Select(c => c.CourseId).ToList(), schoolId, cancellationToken);
             await ValidateDocumentTemplatesAsync(createDTO.RequiredDocuments, cancellationToken);
@@ -78,6 +78,7 @@ namespace Services.FasSchemes
                     FasSchemeId = scheme.Id,
                     TierName = t.TierName,
                     MaxPerCapitaIncome = t.MaxPerCapitaIncome,
+                    MaxGrossHouseholdIncome = t.MaxGrossHouseholdIncome,
                     SubsidyValue = t.SubsidyValue,
                     CourseFeeSubsidyValue = t.CourseFeeSubsidyValue,
                     MiscFeeSubsidyValue = t.MiscFeeSubsidyValue,
@@ -120,7 +121,7 @@ namespace Services.FasSchemes
             ArgumentNullException.ThrowIfNull(updateDTO);
             var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
 
-            ValidateInput(updateDTO.SchemeName, updateDTO.Tiers.Count, updateDTO.RootConditionGroup);
+            ValidateInput(updateDTO.SchemeName, updateDTO.Tiers, updateDTO.RootConditionGroup);
             FasConditionTreeUtility.Validate(updateDTO.RootConditionGroup);
             await ValidateCoursesExistAsync(updateDTO.SchemeCourses.Select(c => c.CourseId).ToList(), schoolId, cancellationToken);
             await ValidateDocumentTemplatesAsync(updateDTO.RequiredDocuments, cancellationToken);
@@ -161,13 +162,13 @@ namespace Services.FasSchemes
 
                 await _unitOfWork.SaveChangeAsync(token);
 
-                // Map updated properties
                 _mapper.MapFromUpdateDTO(updateDTO, scheme);
                 scheme.TryValidate();
+
                 await UniqueConstraintValidator.ValidateAsync(_repository, scheme, scheme.Id, token);
                 _repository.Update(scheme);
+                await _unitOfWork.SaveChangeAsync(token);
 
-                // Insert new tree & collections
                 var root = FasConditionTreeMapper.MapFasGroup(updateDTO.RootConditionGroup, scheme.Id);
                 await _groupRepository.AddAsync(root, token);
 
@@ -176,6 +177,7 @@ namespace Services.FasSchemes
                     FasSchemeId = scheme.Id,
                     TierName = t.TierName,
                     MaxPerCapitaIncome = t.MaxPerCapitaIncome,
+                    MaxGrossHouseholdIncome = t.MaxGrossHouseholdIncome,
                     SubsidyValue = t.SubsidyValue,
                     CourseFeeSubsidyValue = t.CourseFeeSubsidyValue,
                     MiscFeeSubsidyValue = t.MiscFeeSubsidyValue,
@@ -522,14 +524,25 @@ namespace Services.FasSchemes
             }
         }
 
-        private static void ValidateInput(string name, int tiersCount, FasConditionGroupRequestDTO rootConditionGroup)
+        private static void ValidateInput(string name, List<FasSchemeTierRequestDTO> tiers, FasConditionGroupRequestDTO rootConditionGroup)
         {
             if (string.IsNullOrWhiteSpace(name))
                 throw new ValidationFailureException(nameof(CreateFasSchemeDTO.SchemeName), "Scheme name is required.");
-            if (tiersCount == 0)
+            if (tiers.Count == 0)
                 throw new ValidationFailureException(nameof(CreateFasSchemeDTO.Tiers), "At least one tier is required.");
             if (rootConditionGroup.Conditions.Count + rootConditionGroup.Groups.Count == 0)
                 throw new ValidationFailureException(nameof(CreateFasSchemeDTO.RootConditionGroup), "At least one condition is required.");
+
+            // Prevent overlapping tiers: Ensure no multiple tiers share the exact same income limits.
+            var groups = tiers.GroupBy(t => new { t.MaxPerCapitaIncome, t.MaxGrossHouseholdIncome });
+            foreach (var group in groups)
+            {
+                if (group.Count() > 1)
+                {
+                    var tierNames = string.Join(", ", group.Select(t => $"'{t.TierName}'"));
+                    throw new ValidationFailureException(nameof(CreateFasSchemeDTO.Tiers), $"Overlapping tier ranges detected for tiers: {tierNames}. Multiple tiers cannot have identical income limits.");
+                }
+            }
         }
 
         private async Task ValidateCoursesExistAsync(List<int> courseIds, int schoolId, CancellationToken cancellationToken)
