@@ -130,7 +130,7 @@ namespace Services.TopUp
                 {
                     var accounts = await _accountRepository.Query(tracking: true)
                         .Include(account => account.Citizen)
-                        .Where(account => account.Status == EducationAccountStatus.Active)
+                        .Where(TopupEligibilityHelper.EligibleAccountPredicate)
                         .OrderBy(account => account.Id)
                         .Skip(page * pageSize)
                         .Take(pageSize)

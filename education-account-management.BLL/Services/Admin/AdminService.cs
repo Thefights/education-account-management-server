@@ -278,6 +278,11 @@ namespace Services.Admin
 
         public async Task UpdateAdminsStatusAsync(BatchUpdateAdminStatusDTO dto, CancellationToken cancellationToken = default)
         {
+            if (dto.Ids.Contains(_currentUserService.UserId))
+            {
+                throw new ValidationFailureException(nameof(dto.Ids), "You cannot update your own status.");
+            }
+
             var batchId = Guid.NewGuid();
             var users = await _userRepository.GetByIdsAsync(dto.Ids, cancellationToken: cancellationToken);
             if (users.Count != dto.Ids.Distinct().Count())
