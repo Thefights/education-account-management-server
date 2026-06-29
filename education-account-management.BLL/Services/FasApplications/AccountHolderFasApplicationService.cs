@@ -415,7 +415,7 @@ namespace Services.FasApplications
 
             if (exists)
             {
-                throw new DataConflictException("You already have a pending or approved application for this scheme.");
+                throw new DataConflictException("You already have an active (draft, pending, or approved) application for this scheme.");
             }
         }
 

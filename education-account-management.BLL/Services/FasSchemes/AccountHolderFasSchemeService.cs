@@ -60,6 +60,7 @@ namespace Services.FasSchemes
                 .Query()
                 .Where(a => a.SchoolStudentId == studentInfo.Id 
                             && (a.Status == FasApplicationStatus.Pending || 
+                                a.Status == FasApplicationStatus.Draft ||
                                (a.Status == FasApplicationStatus.Approved && a.ValidityEndDate >= today)))
                 .Select(a => a.FasSchemeId)
                 .Distinct()
