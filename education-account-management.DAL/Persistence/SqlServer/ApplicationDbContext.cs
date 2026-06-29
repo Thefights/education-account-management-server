@@ -88,7 +88,7 @@ namespace Persistence.SqlServer
 
         public DbSet<OutboxMessage> OutboxMessage { get; set; }
 
-        public DbSet<AiAssistantSetting> AiAssistantSetting { get; set; }
+        public DbSet<ApplicationSetting> ApplicationSetting { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

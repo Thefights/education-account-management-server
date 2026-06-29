@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
 
+using Exceptions;
+
 namespace Persistence.SqlServer.ModelConfigurations
 {
     public static class SoftDeleteCascadeHandler
@@ -67,14 +69,8 @@ namespace Persistence.SqlServer.ModelConfigurations
             switch (cascadeMode)
             {
                 case OnDeleteBehavior.Restrict:
-                    var relatedTypeName = relatedEntities.First().GetType().Name;
-                    var count = relatedEntities.Count();
-                    var errorMessage = count == 1
-                        ? $"Cannot delete {entityType.Name} because it has a related {relatedTypeName} record"
-                        : $"Cannot delete {entityType.Name} because it has {count} related {relatedTypeName} record(s)";
-
-                    var innerException = new InvalidOperationException(errorMessage);
-                    throw new DbUpdateException(errorMessage, innerException);
+                    throw new DataConflictException(
+                        "This record cannot be deleted because related records are still using it. Remove the related records first, then try again.");
 
                 case OnDeleteBehavior.Cascade:
                     foreach (var relatedEntity in relatedEntities)

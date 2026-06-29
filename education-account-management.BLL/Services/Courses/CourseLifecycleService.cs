@@ -1,4 +1,4 @@
-﻿using Interfaces.Audit;
+using Interfaces.Audit;
 using Interfaces.Courses;
 using Services.Courses.Utils;
 
@@ -14,8 +14,8 @@ namespace Services.Courses
         private readonly IGenericRepository<Charge> _chargeRepository = unitOfWork.Repository<Charge>();
         private readonly IGenericRepository<ChargeInstallment> _installmentRepository =
             unitOfWork.Repository<ChargeInstallment>();
-        private readonly IGenericRepository<AiAssistantSetting> _settingRepository =
-            unitOfWork.Repository<AiAssistantSetting>();
+        private readonly IGenericRepository<ApplicationSetting> _settingRepository =
+            unitOfWork.Repository<ApplicationSetting>();
         private readonly IAuditLogWriter _auditLogWriter = auditLogWriter;
 
         public async Task<int> ProcessDateTransitionsAsync(

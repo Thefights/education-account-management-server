@@ -1,15 +1,15 @@
 using Authorization;
 using Common.HttpResults;
 using Controllers.Base;
-using DTOs.AiAssistantSettings;
-using Interfaces.AiAssistantSettings;
+using DTOs.ApplicationSettings;
+using Interfaces.ApplicationSettings;
 
 namespace Controllers.Management
 {
     [Authorize(Roles = RolePolicy.SystemAdmin)]
-    public class AiAssistantSettingManagementController(IAiAssistantSettingService service) : BaseController
+    public class ApplicationSettingManagementController(IApplicationSettingService service) : BaseController
     {
-        private readonly IAiAssistantSettingService _service = service;
+        private readonly IApplicationSettingService _service = service;
 
         [HttpGet]
         public async Task<IActionResult> Get(CancellationToken cancellationToken)
@@ -20,11 +20,11 @@ namespace Controllers.Management
 
         [HttpPut]
         public async Task<IActionResult> Update(
-            UpdateAiAssistantSettingDTO updateDTO,
+            UpdateApplicationSettingDTO updateDTO,
             CancellationToken cancellationToken)
         {
             var result = await _service.UpdateAsync(updateDTO, cancellationToken);
-            return Result.SuccessData(result, "AI Assistant setting updated successfully");
+            return Result.SuccessData(result, "Application settings updated successfully");
         }
     }
 }
