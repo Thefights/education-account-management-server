@@ -33,9 +33,9 @@ namespace Services.Schools
                     school.Status = newStatus;
                     await _managementActionLogService.LogAsync(
                         batchId,
-                        "School",
+                        ManagementActionEntityType.School,
                         school.Id,
-                        newStatus == Enums.SchoolStatus.Active ? "Activate" : "Deactivate",
+                        newStatus == Enums.SchoolStatus.Active ? ManagementAction.Activate : ManagementAction.Deactivate,
                         dto.Reason,
                         oldStatus.ToString(),
                         newStatus.ToString(),
@@ -60,9 +60,9 @@ namespace Services.Schools
                 {
                     await _managementActionLogService.LogAsync(
                         batchId,
-                        "School",
+                        ManagementActionEntityType.School,
                         school.Id,
-                        "Delete",
+                        ManagementAction.Delete,
                         dto.Reason,
                         school.Status.ToString(),
                         null,

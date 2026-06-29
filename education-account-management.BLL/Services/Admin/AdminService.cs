@@ -306,9 +306,9 @@ namespace Services.Admin
                     }
                     await _managementActionLogService.LogAsync(
                         batchId,
-                        "Admin",
+                        ManagementActionEntityType.Admin,
                         user.Id,
-                        newStatus == Enums.UserStatus.Active ? "Activate" : "Deactivate",
+                        newStatus == Enums.UserStatus.Active ? ManagementAction.Activate : ManagementAction.Deactivate,
                         dto.Reason,
                         oldStatus.ToString(),
                         newStatus.ToString(),

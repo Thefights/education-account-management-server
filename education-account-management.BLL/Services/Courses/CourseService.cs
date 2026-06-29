@@ -192,9 +192,9 @@ namespace Services.Courses
                         course.Status = CourseStatus.Enrolling;
                         await _managementActionLogService.LogAsync(
                             batchId,
-                            "Course",
+                            ManagementActionEntityType.Course,
                             course.Id,
-                            "Publish",
+                            ManagementAction.Publish,
                             publishDTO.Reason,
                             oldStatus.ToString(),
                             course.Status.ToString(),
@@ -364,13 +364,12 @@ namespace Services.Courses
                         ValidateCanDelete(course);
                         await _managementActionLogService.LogAsync(
                             batchId,
-                            "Course",
+                            ManagementActionEntityType.Course,
                             course.Id,
-                            "Delete",
+                            ManagementAction.Delete,
                             reason,
                             course.Status.ToString(),
                             null,
-                            Convert.ToBase64String(course.RowVersion),
                             token);
                     }
 

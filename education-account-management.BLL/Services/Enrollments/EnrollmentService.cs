@@ -187,9 +187,9 @@ namespace Services.Enrollments
                         ValidateCanRemove(enrollment);
                         await _managementActionLogService.LogAsync(
                             batchId,
-                            "Enrollment",
+                            ManagementActionEntityType.Enrollment,
                             enrollment.Id,
-                            "Delete",
+                            ManagementAction.Delete,
                             removeDTO.Reason,
                             enrollment.Status.ToString(),
                             null,

@@ -253,9 +253,9 @@ namespace Services.FasSchemes
                     _repository.Update(scheme);
                     await _managementActionLogService.LogAsync(
                         batchId,
-                        "FasScheme",
+                        ManagementActionEntityType.FasScheme,
                         scheme.Id,
-                        dto.Status == FasSchemeStatus.Active ? "Activate" : "Deactivate",
+                        dto.Status == FasSchemeStatus.Active ? ManagementAction.Activate : ManagementAction.Deactivate,
                         dto.Reason,
                         oldStatus.ToString(),
                         scheme.Status.ToString(),
@@ -501,9 +501,9 @@ namespace Services.FasSchemes
 
                     await _managementActionLogService.LogAsync(
                         batchId,
-                        "FasScheme",
+                        ManagementActionEntityType.FasScheme,
                         scheme.Id,
-                        "Delete",
+                        ManagementAction.Delete,
                         dto.Reason,
                         scheme.Status.ToString(),
                         null,

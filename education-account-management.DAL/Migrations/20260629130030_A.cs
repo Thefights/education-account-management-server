@@ -592,16 +592,15 @@ namespace educationaccountmanagement.DAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     BatchId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    EntityType = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
+                    EntityType = table.Column<int>(type: "int", nullable: false),
                     EntityId = table.Column<int>(type: "int", nullable: false),
-                    Action = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
+                    Action = table.Column<int>(type: "int", nullable: false),
                     PreviousStatus = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: true),
                     NewStatus = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: true),
                     Reason = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     ActorUserId = table.Column<int>(type: "int", nullable: true),
                     OccurredAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IpAddress = table.Column<string>(type: "nvarchar(45)", maxLength: 45, nullable: false),
-                    MetadataJson = table.Column<string>(type: "nvarchar(4000)", maxLength: 4000, nullable: true)
+                    IpAddress = table.Column<string>(type: "nvarchar(45)", maxLength: 45, nullable: false)
                 },
                 constraints: table =>
                 {

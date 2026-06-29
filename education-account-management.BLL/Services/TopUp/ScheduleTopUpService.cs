@@ -131,9 +131,9 @@ namespace Services.TopUp
                     schedule.TryValidate();
                     await _managementActionLogService.LogAsync(
                         batchId,
-                        "ScheduleTopUp",
+                        ManagementActionEntityType.ScheduleTopUp,
                         schedule.Id,
-                        dto.Status == ScheduleTopUpStatus.Active ? "Activate" : "Deactivate",
+                        dto.Status == ScheduleTopUpStatus.Active ? ManagementAction.Activate : ManagementAction.Deactivate,
                         dto.Reason,
                         oldStatus.ToString(),
                         schedule.Status.ToString(),
@@ -168,9 +168,9 @@ namespace Services.TopUp
                 {
                     await _managementActionLogService.LogAsync(
                         batchId,
-                        "ScheduleTopUp",
+                        ManagementActionEntityType.ScheduleTopUp,
                         schedule.Id,
-                        "Delete",
+                        ManagementAction.Delete,
                         dto.Reason,
                         schedule.Status.ToString(),
                         null,

@@ -1,16 +1,22 @@
+using DTOs.Audit;
+using Interfaces.Base;
+
 namespace Interfaces.Audit
 {
-    public interface IManagementActionLogService
+    public interface IManagementActionLogService : IBaseGetService<GetManagementActionLogDTO>
     {
         Task LogAsync(
             Guid batchId,
-            string entityType,
+            ManagementActionEntityType entityType,
             int entityId,
-            string action,
+            ManagementAction action,
             string reason,
             string? previousStatus = null,
             string? newStatus = null,
-            string? metadataJson = null,
+            CancellationToken cancellationToken = default);
+
+        Task<byte[]> ExportCsvAsync(
+            ExportManagementActionLogRequestDTO request,
             CancellationToken cancellationToken = default);
     }
 }

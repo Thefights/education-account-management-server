@@ -115,9 +115,9 @@ namespace Services.TopUp
                     topup.TryValidate();
                     await _managementActionLogService.LogAsync(
                         batchId,
-                        "SystemTopup",
+                        ManagementActionEntityType.SystemTopup,
                         topup.Id,
-                        dto.Status == SystemTopupStatus.Active ? "Activate" : "Deactivate",
+                        dto.Status == SystemTopupStatus.Active ? ManagementAction.Activate : ManagementAction.Deactivate,
                         dto.Reason,
                         oldStatus.ToString(),
                         topup.Status.ToString(),
@@ -152,9 +152,9 @@ namespace Services.TopUp
                 {
                     await _managementActionLogService.LogAsync(
                         batchId,
-                        "SystemTopup",
+                        ManagementActionEntityType.SystemTopup,
                         topup.Id,
-                        "Delete",
+                        ManagementAction.Delete,
                         dto.Reason,
                         topup.Status.ToString(),
                         null,
