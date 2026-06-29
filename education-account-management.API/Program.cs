@@ -1,6 +1,5 @@
 using Extensions;
 using Persistence.SqlServer;
-using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddEnvironmentVariables();
@@ -13,12 +12,6 @@ builder.Host.UseDefaultServiceProvider(options =>
 
 var configuration = builder.Configuration.Get<AppConfiguration>()!;
 
-// Validate AppConfiguration StripeConfig
-System.ComponentModel.DataAnnotations.Validator.ValidateObject(
-    configuration.StripeConfig, 
-    new System.ComponentModel.DataAnnotations.ValidationContext(configuration.StripeConfig), 
-    validateAllProperties: true);
-
 builder.Services.AddSingleton(configuration);
 
 builder.Services.AddDefaultAPIServices();
@@ -28,8 +21,7 @@ builder.Services.AddSecurityServices(configuration);
 builder.Services.AddSwaggerServices(configuration);
 builder.Services.AddMiddlewares();
 
-// Khai báo global key cho Stripe
-StripeConfiguration.ApiKey = configuration.StripeConfig.SecretKey;
+
 
 var app = builder.Build();
 

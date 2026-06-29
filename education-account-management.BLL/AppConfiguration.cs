@@ -168,26 +168,13 @@ namespace education_account_management.BLL
     #region StripeConfig
     public class StripeConfig
     {
-        [Required(ErrorMessage = "Stripe SecretKey is required.")]
         public string SecretKey { get; set; } = null!;
-        
-        [Required(ErrorMessage = "Stripe WebhookSecret is required.")]
         public string WebhookSecret { get; set; } = null!;
-        
-        [Required(ErrorMessage = "Stripe SuccessUrl is required.")]
         public string SuccessUrl { get; set; } = null!;
-        
-        [Required(ErrorMessage = "Stripe CancelUrl is required.")]
         public string CancelUrl { get; set; } = null!;
-        
-        [Required(ErrorMessage = "Stripe Method is required.")]
         public string Method { get; set; } = null!;
-        
-        [Required(ErrorMessage = "Stripe Mode is required.")]
         public string Mode { get; set; } = null!;
-        [Range(30, int.MaxValue, ErrorMessage = "Stripe SessionExpiryMinutes must be greater than 30.")]
         public int SessionExpiryMinutes { get; set; } = 30;
-        
     }
     #endregion
 }

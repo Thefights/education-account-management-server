@@ -22,6 +22,7 @@ public class StripeService(
     private readonly IOutboxWriter _outboxWriter = outboxWriter;
     private readonly IAuditLogWriter _auditLogWriter = auditLogWriter;
     private readonly ICurrentUserService _currentUserService = currentUserService;
+    private readonly StripeClient _stripeClient = new StripeClient(configuration.StripeConfig.SecretKey);
 
     private readonly IGenericRepository<EducationAccount> _accountRepository = unitOfWork.Repository<EducationAccount>();
     private readonly IGenericRepository<Models.Charge> _chargeRepository = unitOfWork.Repository<Models.Charge>();
@@ -38,7 +39,7 @@ public class StripeService(
     /// </summary>
     public async Task<PaymentSessionResponseDTO> CreateCheckoutSessionAsync(PaymentRequest request, CancellationToken cancellationToken = default)
     {
-        var sessionService = new SessionService();
+        var sessionService = new SessionService(_stripeClient);
         var accountId = _currentUserService.UserId;
 
         var chargePaymentRequestInfors = request.ChargePaymentRequestInfors;
@@ -912,7 +913,7 @@ public class StripeService(
 
         if (payments[0].Status == PaymentStatus.Pending)
         {
-            var sessionService = new SessionService();
+            var sessionService = new SessionService(_stripeClient);
             var session = await sessionService.GetAsync(sessionId, cancellationToken: cancellationToken);
             if (session != null && session.PaymentStatus == "paid")
             {
@@ -930,7 +931,7 @@ public class StripeService(
 
     public async Task<PaymentSessionResponseDTO> HandleSessionCancelledAsync(string sessionId, CancellationToken cancellationToken = default)
     {
-        var sessionService = new SessionService();
+        var sessionService = new SessionService(_stripeClient);
         var session = await sessionService.GetAsync(sessionId, cancellationToken: cancellationToken);
         if (session == null) throw new DataNotFoundException($"Session not found for sessionId {sessionId}");
 
