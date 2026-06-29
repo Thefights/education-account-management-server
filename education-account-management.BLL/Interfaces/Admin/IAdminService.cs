@@ -14,6 +14,9 @@ namespace Interfaces.Admin
             UpdateAdminDTO updateDTO,
             CancellationToken cancellationToken = default);
 
+        Task<GetAdminDTO> GetCurrentProfileAsync(
+            CancellationToken cancellationToken = default);
+
         Task UpdateAdminsStatusAsync(
             BatchUpdateAdminStatusDTO dto,
             CancellationToken cancellationToken = default);

@@ -214,6 +214,12 @@ namespace Services.Admin
                 ?? throw new DataNotFoundException("Admin", id);
         }
 
+        public async Task<GetAdminDTO> GetCurrentProfileAsync(
+            CancellationToken cancellationToken = default)
+        {
+            return await GetByIdAsync(_currentUserService.UserId, cancellationToken);
+        }
+
         private async Task ValidateRequestAsync(
             UserRole role,
             int? schoolId,
