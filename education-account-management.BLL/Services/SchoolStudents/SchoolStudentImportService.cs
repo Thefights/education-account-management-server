@@ -1,4 +1,4 @@
-﻿using DTOs.Csv;
+using DTOs.Csv;
 using DTOs.SchoolStudents;
 using Interfaces.SchoolStudents;
 using Services.Base;
@@ -79,19 +79,19 @@ namespace Services.SchoolStudents
 
                 if (!citizens.TryGetValue(nric, out var citizen))
                 {
-                    errors.Add(BatchImportErrorDTO.Create(rowNumber, nameof(row.Nric), "Student with this NRIC not found."));
+                    errors.Add(BatchImportErrorDTO.Create(rowNumber, nameof(row.Nric), "Student with this NRIC not found.", nric));
                     continue;
                 }
 
                 if (citizen.EducationAccount == null)
                 {
-                    errors.Add(BatchImportErrorDTO.Create(rowNumber, nameof(row.Nric), "This student does not have an Education Account."));
+                    errors.Add(BatchImportErrorDTO.Create(rowNumber, nameof(row.Nric), "This student does not have an Education Account.", nric));
                     continue;
                 }
 
                 if (!seenNrics.Add(nric))
                 {
-                    errors.Add(BatchImportErrorDTO.Create(rowNumber, nameof(row.Nric), "Duplicate NRIC in import file."));
+                    errors.Add(BatchImportErrorDTO.Create(rowNumber, nameof(row.Nric), "Duplicate NRIC in import file.", nric));
                     continue;
                 }
 
@@ -99,11 +99,11 @@ namespace Services.SchoolStudents
                 {
                     if (existingSchoolStudent.SchoolId == schoolId)
                     {
-                        errors.Add(BatchImportErrorDTO.Create(rowNumber, nameof(row.Nric), "This student is already in your school."));
+                        errors.Add(BatchImportErrorDTO.Create(rowNumber, nameof(row.Nric), "This student is already in your school.", nric));
                     }
                     else
                     {
-                        errors.Add(BatchImportErrorDTO.Create(rowNumber, nameof(row.Nric), "This student belongs to another school."));
+                        errors.Add(BatchImportErrorDTO.Create(rowNumber, nameof(row.Nric), "This student belongs to another school.", nric));
                     }
                     continue;
                 }

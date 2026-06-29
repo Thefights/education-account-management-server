@@ -354,7 +354,7 @@ namespace Services.Admin
                 }
                 catch (Exception ex)
                 {
-                    errors.Add(BatchImportErrorDTO.Create(item.RowNumber, "Row", ex.Message));
+                    errors.Add(BatchImportErrorDTO.Create(item.RowNumber, "Row", ex.Message, item.Row.Nric));
                 }
             }
 
