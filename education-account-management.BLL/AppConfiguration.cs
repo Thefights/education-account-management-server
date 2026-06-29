@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace education_account_management.BLL
 {
     public class AppConfiguration
@@ -157,14 +159,26 @@ namespace education_account_management.BLL
     #region StripeConfig
     public class StripeConfig
     {
-        public string SecretKey { get; set; } = string.Empty;
-        public string WebhookSecret { get; set; } = string.Empty;
-        public string SuccessUrl { get; set; } = string.Empty;
-        public string CancelUrl { get; set; } = string.Empty;
-        public string Method { get; set; } = string.Empty;
-        public string Mode { get; set; } = string.Empty;
+        [Required(ErrorMessage = "Stripe SecretKey is required.")]
+        public string SecretKey { get; set; } = null!;
+        
+        [Required(ErrorMessage = "Stripe WebhookSecret is required.")]
+        public string WebhookSecret { get; set; } = null!;
+        
+        [Required(ErrorMessage = "Stripe SuccessUrl is required.")]
+        public string SuccessUrl { get; set; } = null!;
+        
+        [Required(ErrorMessage = "Stripe CancelUrl is required.")]
+        public string CancelUrl { get; set; } = null!;
+        
+        [Required(ErrorMessage = "Stripe Method is required.")]
+        public string Method { get; set; } = null!;
+        
+        [Required(ErrorMessage = "Stripe Mode is required.")]
+        public string Mode { get; set; } = null!;
+        
         public int SessionExpiryMinutes { get; set; } = 30;
-        public string ClientUrl { get; set; } = string.Empty;
+        
     }
     #endregion
 }

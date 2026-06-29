@@ -6,6 +6,7 @@ using Stripe;
 using Stripe.Checkout;
 using System.Text.Json;
 using PaymentMethod = Enums.PaymentMethod;
+using PaymentIntent = Enums.PaymentIntent;
 
 namespace BLL.Services.Payments;
 
@@ -59,9 +60,6 @@ public class StripeService(
 
         ValidatePaymentRequest(chargePaymentRequestInfors, charges, educationAccount, request.CreditBalanceApplied);
 
-        var paymentExisting = await ValidateExistingStripePaymentAsync(educationAccount!.Id, chargeIds, sessionService, cancellationToken);
-        if (paymentExisting != null) return paymentExisting;
-
         decimal totalOwed = 0.0m;
         var billingItems = new List<BillingItem>();
         //Tạo các khoản thu để tính toán trừ tiền credit balance (nếu có) và tính tổng nợ cần trả trong đợt thanh toán này
@@ -70,13 +68,36 @@ public class StripeService(
         decimal balanceToApply = Math.Min(request.CreditBalanceApplied, totalOwed);
         decimal remainingToPayViaStripe = totalOwed - balanceToApply;
 
-        // Tiến hành tạo Payments (chờ xử lý) và các PaymentAllocation tương ứng
-        var payments = await CreatePrePaymentAndPaymentAllocationsAsync(
-            chargePaymentRequestInfors, charges, billingItems, educationAccount,
-            totalOwed, balanceToApply, remainingToPayViaStripe, cancellationToken);
+        // Bắt đầu một Transaction để đảm bảo tính toàn vẹn và độc quyền
+        var (payments, paymentExisting) = await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
+        {
+            // Lock the EducationAccount row to serialize concurrent checkout requests for this user
+            await _accountRepository.Query(tracking: false)
+                .Where(a => a.Id == educationAccount!.Id)
+                .ExecuteUpdateAsync(s => s.SetProperty(a => a.Status, a => a.Status), token);
 
-        var stripePayment = payments.FirstOrDefault(p => p.PaymentMethod == PaymentMethod.OnlinePayment);
-        var walletPayment = payments.FirstOrDefault(p => p.PaymentMethod == PaymentMethod.EducationBalance);
+            var existing = await ValidateExistingStripePaymentAsync(educationAccount!.Id, chargeIds, sessionService, token);
+            if (existing != null) return ((List<Payment>?)null, existing);
+
+            var newPayments = await CreatePrePaymentAndPaymentAllocationsAsync(
+                chargePaymentRequestInfors, charges, billingItems, educationAccount!,
+                totalOwed, balanceToApply, remainingToPayViaStripe, token);
+
+            var pStripe = newPayments.FirstOrDefault(p => p.PaymentMethod == PaymentMethod.OnlinePayment);
+            var pWallet = newPayments.FirstOrDefault(p => p.PaymentMethod == PaymentMethod.EducationBalance);
+
+            string reservationId = "RESERVING_" + Guid.NewGuid().ToString("N");
+            if (pStripe != null) pStripe.ExternalReference = reservationId;
+            if (pWallet != null) pWallet.ExternalReference = reservationId + "_wallet";
+
+            await _unitOfWork.SaveChangeAsync(token);
+            return (newPayments, (PaymentSessionResponseDTO?)null);
+        }, cancellationToken);
+
+        if (paymentExisting != null) return paymentExisting;
+
+        var stripePayment = payments!.FirstOrDefault(p => p.PaymentMethod == PaymentMethod.OnlinePayment);
+        var walletPayment = payments!.FirstOrDefault(p => p.PaymentMethod == PaymentMethod.EducationBalance);
 
         // Trường hợp số dư ví (Wallet) đủ cover toàn bộ tiền cần thanh toán
         // không cần gọi Stripe, trực tiếp process payment với trạng thái thành công (Succeeded).
@@ -105,7 +126,7 @@ public class StripeService(
         var sessionMetadataDto = new StripeSessionMetadataDTO
         {
             AccountId = accountId,
-            PaymentIds = payments.Select(p => p.Id).ToList()
+            PaymentIds = payments!.Select(p => p.Id).ToList()
         };
 
         //Tạo config cơ bản cho stripe
@@ -117,15 +138,59 @@ public class StripeService(
             SuccessUrl = _configuration.StripeConfig.SuccessUrl,
             CancelUrl = _configuration.StripeConfig.CancelUrl,
             ExpiresAt = DateTime.UtcNow.AddMinutes(_configuration.StripeConfig.SessionExpiryMinutes),
-            CustomerEmail = educationAccount.Citizen.Email ?? "",
+            CustomerEmail = educationAccount!.Citizen.Email ?? "",
             Metadata = new Dictionary<string, string>
             {
                 { "sessionData", JsonSerializer.Serialize(sessionMetadataDto) }
             }
         };
 
-        var session = await sessionService.CreateAsync(options, cancellationToken: cancellationToken);
-        //Gắn external reference cho payments để kiểm tra trong trường hợp người dùng spam tạo link cho cùng 1 list charges
+        Session session = await ValidateStripeSession(sessionService, stripePayment, walletPayment, options, cancellationToken);
+
+        return await BindSessionAndReturnUrlAsync(stripePayment, walletPayment, session, cancellationToken);
+    }
+
+    //Kiểm tra nếu stripe session có tạo thành công không, nếu không xóa các Payment và Payment Allocation đã lock trước đó để tránh bị treo session
+    private async Task<Session> ValidateStripeSession(
+        SessionService sessionService, Payment stripePayment, Payment? walletPayment, 
+        SessionCreateOptions options, CancellationToken cancellationToken)
+    {
+        Session session;
+        try
+        {
+            session = await sessionService.CreateAsync(options, cancellationToken: cancellationToken);
+        }
+        catch (Exception)
+        {
+            // If Stripe fails, delete the reserved payments so the user is not stuck
+            await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
+            {
+                var stripePaymentId = stripePayment?.Id;
+                if (stripePaymentId != null)
+                {
+                    var p = await _paymentRepository.Query(tracking: true).FirstAsync(x => x.Id == stripePaymentId, token);
+                    _paymentRepository.Remove(p);
+                }
+
+                var walletPaymentId = walletPayment?.Id;
+                if (walletPaymentId != null)
+                {
+                    var p = await _paymentRepository.Query(tracking: true).FirstAsync(x => x.Id == walletPaymentId, token);
+                    _paymentRepository.Remove(p);
+                }
+
+                await _unitOfWork.SaveChangeAsync(token);
+            }, cancellationToken);
+            throw;
+        }
+
+        return session;
+    }
+
+    //Gắn external reference cho payments để kiểm tra trong trường hợp người dùng spam tạo link cho cùng 1 list charges và trả về link thanh toán
+    private async Task<PaymentSessionResponseDTO> BindSessionAndReturnUrlAsync(Payment stripePayment, Payment? walletPayment, Session session, CancellationToken cancellationToken)
+    {
+
         await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
         {
             var trackedStripePayment = await _paymentRepository
@@ -142,7 +207,6 @@ public class StripeService(
 
                 trackedWalletPayment.ExternalReference = session.Id + "_wallet";
             }
-
 
             await _unitOfWork.SaveChangeAsync(token);
         }, cancellationToken);
@@ -164,21 +228,21 @@ public class StripeService(
 
             switch (requestInfo.Intent)
             {
-                case DTOs.Payments.PaymentIntent.PayFull:
+                case PaymentIntent.PayFull:
                     billingItems.Add(new BillingItem(charge, null, charge.RemainingAmount));
                     totalOwed += charge.RemainingAmount;
                     break;
-                case DTOs.Payments.PaymentIntent.CreateInstallment:
-                    decimal amountToPay = Math.Round(charge.RemainingAmount / requestInfo.InstallmentNumber!.Value, 2, MidpointRounding.AwayFromZero);
+                case PaymentIntent.CreateInstallment:
+                    decimal amountToPay = Math.Round(charge.RemainingAmount / requestInfo.PaymentPlanMonths!.Value, 2, MidpointRounding.AwayFromZero);
                     billingItems.Add(new BillingItem(charge, null, amountToPay));
                     totalOwed += amountToPay;
                     break;
-                case DTOs.Payments.PaymentIntent.PayCurrentInstallment:
+                case PaymentIntent.PayCurrentInstallment:
                     var firstPending = charge.Installments.First();
                     billingItems.Add(new BillingItem(charge, firstPending.Id, firstPending.Amount));
                     totalOwed += firstPending.Amount;
                     break;
-                case DTOs.Payments.PaymentIntent.PayRemainingInstallments:
+                case PaymentIntent.PayRemainingInstallments:
                     foreach (var inst in charge.Installments)
                     {
                         billingItems.Add(new BillingItem(charge, inst.Id, inst.Amount));
@@ -219,9 +283,11 @@ public class StripeService(
                     {
                         Name = enrollment.CourseNameSnapshot,
                         Description = coveredByCreditBalance > 0
-                            ? $"• Remaining Owed: {charge.RemainingAmount:C} SGD | • Current Payment Portion: {chargeAmountToPay:C} SGD | " +
+                            ? $"• Remaining Owed: {charge.RemainingAmount:C} SGD \n" +
+                              $" • Current Payment Portion: {chargeAmountToPay:C} SGD \n " +
                               $"• Credit Balance Applied: -{coveredByCreditBalance:C} SGD"
-                            : $"• Remaining Owed: {charge.RemainingAmount:C} SGD | • Payment Portion: {chargeAmountToPay:C} SGD"
+                            : $"• Remaining Owed: {charge.RemainingAmount:C} SGD \n" +
+                              $" • Payment Portion: {chargeAmountToPay:C} SGD"
                     }
                 },
                 Quantity = 1
@@ -241,10 +307,8 @@ public class StripeService(
     {
         var payments = new List<Payment>();
 
-        await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
-        {
-            Payment? walletPayment = null;
-            Payment? stripePayment = null;
+        Payment? walletPayment = null;
+        Payment? stripePayment = null;
 
             if (balanceToApply > 0)
             {
@@ -258,7 +322,7 @@ public class StripeService(
                     CitizenFullNameSnapshot = charges.First().Enrollment.CitizenFullNameSnapshot
                 };
                 walletPayment.TryValidate();
-                await _paymentRepository.AddAsync(walletPayment, token);
+                await _paymentRepository.AddAsync(walletPayment, cancellationToken);
                 payments.Add(walletPayment);
             }
 
@@ -274,11 +338,11 @@ public class StripeService(
                     CitizenFullNameSnapshot = charges.First().Enrollment.CitizenFullNameSnapshot
                 };
                 stripePayment.TryValidate();
-                await _paymentRepository.AddAsync(stripePayment, token);
+                await _paymentRepository.AddAsync(stripePayment, cancellationToken);
                 payments.Add(stripePayment);
             }
 
-            await _unitOfWork.SaveChangeAsync(token);
+            await _unitOfWork.SaveChangeAsync(cancellationToken);
 
             decimal currentWalletBalance = balanceToApply;
 
@@ -308,7 +372,7 @@ public class StripeService(
                         Amount = coveredByWallet
                     };
                     allocation.TryValidate();
-                    await _paymentAllocationRepository.AddAsync(allocation, token);
+                    await _paymentAllocationRepository.AddAsync(allocation, cancellationToken);
 
                 }
 
@@ -328,7 +392,7 @@ public class StripeService(
                         Amount = coveredByStripe
                     };
                     allocation.TryValidate();
-                    await _paymentAllocationRepository.AddAsync(allocation, token);
+                    await _paymentAllocationRepository.AddAsync(allocation, cancellationToken);
 
                 }
             }
@@ -337,12 +401,11 @@ public class StripeService(
             {
                 var actionMsg = $"{nameof(Payment)} {p.Id} Init for paying {nameof(Course)}s {nameof(Models.Charge)} - Total Owed: {totalOwed}, Credit Applied: {balanceToApply}";
                 if (actionMsg.Length > 90) actionMsg = actionMsg.Substring(0, 90) + "...";
-                await LogAuditAsync(AuditLogCategory.Billing, actionMsg, educationAccount.Id, educationAccount.Citizen.Nric, token);
+                await LogAuditAsync(AuditLogCategory.Billing, actionMsg, educationAccount.Id, educationAccount.Citizen.Nric, cancellationToken);
             }
 
 
-            await _unitOfWork.SaveChangeAsync(token);
-        }, cancellationToken);
+            await _unitOfWork.SaveChangeAsync(cancellationToken);
 
         return payments;
     }
@@ -370,10 +433,18 @@ public class StripeService(
                 .Distinct()
                 .ToList();
 
-            // Nếu chỉ có 1 session duy nhất bị trùng, kiểm tra xem nó có khớp 100% với giỏ hàng hiện tại không
             if (sessionIds.Count == 1)
             {
                 var sessionId = sessionIds.First();
+
+                if (sessionId.StartsWith("RESERVING_"))
+                {
+                    throw new ValidationFailureException(new Dictionary<string, string>
+                    {
+                        { "ChargeIds", $"One or more selected {nameof(Course)}s are currently being processed. Please wait a moment and try again." }
+                    });
+                }
+
                 var walletSessionId = sessionId + "_wallet";
 
                 // Lấy tất cả các ChargeId nằm trong session này (bao gồm cả Stripe và Wallet)
@@ -451,27 +522,27 @@ public class StripeService(
 
             switch (info.Intent)
             {
-                case DTOs.Payments.PaymentIntent.PayFull:
+                case PaymentIntent.PayFull:
                     if (hasPendingInstallments)
-                        errors[$"{nameof(Models.Charge)}_{charge.Id}"] = "Cannot PayFull while an installment plan is active. Use PayRemainingInstallments instead.";
+                        errors[$"{nameof(Models.Charge)}_{charge.Id}"] = $"Cannot {nameof(PaymentIntent.PayFull)} while an installment plan is active. Use {nameof(PaymentIntent.PayCurrentInstallment)} instead.";
                     break;
-                case DTOs.Payments.PaymentIntent.CreateInstallment:
+                case PaymentIntent.CreateInstallment:
                     if (hasPendingInstallments)
                         errors[$"{nameof(Models.Charge)}_{charge.Id}"] = $"Cannot create new {nameof(ChargeInstallment)} plan. An {nameof(ChargeInstallment)} plan already exists.";
-                    if (!info.InstallmentNumber.HasValue)
-                        errors[$"{nameof(Models.Charge)}_{charge.Id}"] = $"Installment number is required to create an {nameof(ChargeInstallment)} plan.";
+                    if (!info.PaymentPlanMonths.HasValue)
+                        errors[$"{nameof(Models.Charge)}_{charge.Id}"] = $"{nameof(ChargePaymentRequestInfor.PaymentPlanMonths)} number is required to create an {nameof(ChargeInstallment)} plan.";
                     break;
-                case DTOs.Payments.PaymentIntent.PayCurrentInstallment:
+                case PaymentIntent.PayCurrentInstallment:
                     if (!hasPendingInstallments)
                         errors[$"{nameof(Models.Charge)}_{charge.Id}"] = $"Cannot pay current {nameof(ChargeInstallment)} because no active {nameof(ChargeInstallment)} plan exists.";
-                    if (info.InstallmentNumber.HasValue)
-                        errors[$"{nameof(Models.Charge)}_{charge.Id}"] = "Pay current installment does not required installment number";
+                    if (info.PaymentPlanMonths.HasValue)
+                        errors[$"{nameof(Models.Charge)}_{charge.Id}"] = $"Pay current installment does not required {nameof(ChargePaymentRequestInfor.PaymentPlanMonths)} number";
                     break;
-                case DTOs.Payments.PaymentIntent.PayRemainingInstallments:
+                case PaymentIntent.PayRemainingInstallments:
                     if (!hasPendingInstallments)
                         errors[$"{nameof(Models.Charge)}_{charge.Id}"] = $"No active {nameof(ChargeInstallment)} plan exists to pay off remaining installments. Or remaining {nameof(ChargeInstallment)} already paid";
-                    if (info.InstallmentNumber.HasValue)
-                        errors[$"{nameof(Models.Charge)}_{charge.Id}"] = $"Pay all {nameof(ChargeInstallment)} does not required installment number";
+                    if (info.PaymentPlanMonths.HasValue)
+                        errors[$"{nameof(Models.Charge)}_{charge.Id}"] = $"Pay all {nameof(ChargeInstallment)} does not required {nameof(ChargePaymentRequestInfor.PaymentPlanMonths)} number";
                     break;
             }
         }
@@ -816,7 +887,7 @@ public class StripeService(
             : $"Dear {payment.CitizenFullNameSnapshot}, your payment session has been {targetStatus}.\n" + subMessage;
 
         await _outboxWriter.EnqueueEmailAsync(
-            educationAccount.Citizen.Email!,
+            educationAccount.Citizen.Email ?? "",
             new EmailTemplate(Subject: subject, HtmlBody: message, TextBody: message)
         );
     }
