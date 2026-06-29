@@ -16,6 +16,7 @@ namespace education_account_management.BLL
         public EmailConfig EmailConfig { get; set; } = null!;
         public RedisConfig RedisConfig { get; set; } = null!;
         public R2Config R2Config { get; set; } = null!;
+        public StripeConfig StripeConfig { get; set; } = null!;
     }
 
     #region AppInfo
@@ -150,6 +151,20 @@ namespace education_account_management.BLL
         public string SecretAccessKey { get; set; } = null!;
         public string Bucket { get; set; } = null!;
         public string PublicBaseUrl { get; set; } = null!;
+    }
+    #endregion
+
+    #region StripeConfig
+    public class StripeConfig
+    {
+        public string SecretKey { get; set; } = string.Empty;
+        public string WebhookSecret { get; set; } = string.Empty;
+        public string SuccessUrl { get; set; } = string.Empty;
+        public string CancelUrl { get; set; } = string.Empty;
+        public string Method { get; set; } = string.Empty;
+        public string Mode { get; set; } = string.Empty;
+        public int SessionExpiryMinutes { get; set; } = 30;
+        public string ClientUrl { get; set; } = string.Empty;
     }
     #endregion
 }

@@ -115,7 +115,7 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(allocation => allocation.PaymentId);
                 entity.HasIndex(allocation => allocation.ChargeId);
                 entity.HasIndex(allocation => allocation.ChargeInstallmentId);
-                entity.HasIndex(allocation => new { allocation.PaymentId, allocation.ChargeId }).IsUnique();
+                entity.HasIndex(allocation => new { allocation.PaymentId, allocation.ChargeId, allocation.ChargeInstallmentId }).IsUnique();
             });
 
             modelBuilder.Entity<FasScheme>(entity =>

@@ -25,7 +25,8 @@ namespace Persistence.SqlServer.ModelConfigurations
                 table.HasCheckConstraint(
                     "CK_EducationCreditTransaction_BalanceEquation",
                     "([Direction] = 1 AND [BalanceAfter] = [BalanceBefore] + [Amount]) OR " +
-                    "([Direction] = 2 AND [BalanceAfter] = [BalanceBefore] - [Amount])");
+                    "([Direction] = 2 AND [BalanceAfter] = [BalanceBefore] - [Amount]) OR " +
+                    "([Direction] = 3 AND [BalanceAfter] = [BalanceBefore])");
             });
 
             modelBuilder.Entity<Course>().ToTable(table =>
