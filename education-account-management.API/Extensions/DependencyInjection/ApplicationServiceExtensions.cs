@@ -132,7 +132,28 @@ namespace Extensions.DependencyInjection
             services.AddScoped<SchoolStudentMapper>();
             services.AddScoped<FasApplicationMapper>();
 
+            services.AddScoped<IAiChatService, AiChatService>();
+            services.AddScoped<IAiDocumentManagementService, AiDocumentManagementService>();
+
+            AddAiServices(services, configuration);
+
             return services;
+        }
+
+        private static void AddAiServices(IServiceCollection services, AppConfiguration configuration)
+        {
+            services.AddHttpClient("AiClient", client =>
+            {
+                if (!string.IsNullOrWhiteSpace(configuration.AiSettings?.BaseUrl))
+                {
+                    client.BaseAddress = new Uri(configuration.AiSettings.BaseUrl);
+                }
+                if (!string.IsNullOrWhiteSpace(configuration.AiSettings?.ApiKey))
+                {
+                    client.DefaultRequestHeaders.Add("X-API-Key", configuration.AiSettings.ApiKey);
+                }
+                client.Timeout = TimeSpan.FromMinutes(2); // Some AI requests can take time
+            });
         }
 
         private static void AddAuthServices(IServiceCollection services)
