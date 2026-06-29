@@ -206,7 +206,7 @@ namespace Services.EducationAccounts
             var citizen = await _citizenRepository.Query()
                 .Include(item => item.EducationAccount)
                 .FirstOrDefaultAsync(item => item.Nric == nric, cancellationToken)
-                ?? throw new ValidationFailureException(nameof(CreateEducationAccountDTO.Nric), "Citizen not found in registry.");
+                ?? throw new ValidationFailureException(nameof(CreateEducationAccountDTO.Nric), "Citizen not found in my-info.");
 
             var todaySgt = DateOnly.FromDateTime(DateTime.UtcNow.AddHours(8));
             var errorMessage = EducationAccountValidationHelper.ValidateCitizenEligibility(citizen, todaySgt);
