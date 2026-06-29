@@ -2,10 +2,8 @@ using Authorization;
 using Common.HttpResults;
 using Controllers.Base;
 using DTOs.FasApplications;
-using Utils;
-using Interfaces.FasApplications;
 using Filters.FasApplications;
-using Microsoft.AspNetCore.Mvc;
+using Interfaces.FasApplications;
 
 namespace Controllers.Management
 {
@@ -16,7 +14,7 @@ namespace Controllers.Management
         private readonly IFasApplicationManagementService _service = service;
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetApplicationDetails(
+        public override async Task<IActionResult> GetById(
             int id,
             CancellationToken cancellationToken)
         {
@@ -34,26 +32,15 @@ namespace Controllers.Management
         [HttpPost("{id}/reject")]
         public async Task<IActionResult> Reject(int id, RejectFasApplicationDTO dto, CancellationToken cancellationToken)
         {
-            await _service.RejectAsync( id, dto, cancellationToken);
+            await _service.RejectAsync(id, dto, cancellationToken);
             return Result.SuccessAction("FAS application rejected successfully.");
-        }
-
-        // ==========================================
-        // UNUSED API IMPLEMENTATIONS FROM BASE CLASS
-        // ==========================================
-
-        [ApiExplorerSettings(IgnoreApi = true)]
-        [NonAction]
-        public override Task<IActionResult> GetById(int id, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
         }
 
         [ApiExplorerSettings(IgnoreApi = true)]
         [NonAction]
         public override Task<IActionResult> GetAll(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return base.GetAll(cancellationToken);
         }
     }
 }

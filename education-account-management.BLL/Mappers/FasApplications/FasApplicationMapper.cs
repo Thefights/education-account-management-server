@@ -1,6 +1,5 @@
 using DTOs.FasApplications;
 using Riok.Mapperly.Abstractions;
-
 using Mappers.Base;
 
 namespace Mappers.FasApplications
@@ -8,10 +7,8 @@ namespace Mappers.FasApplications
     [Mapper(RequiredMappingStrategy = RequiredMappingStrategy.None)]
     public partial class FasApplicationMapper : IReadMapper<FasApplication, GetFasApplicationSchoolAdminDTO>
     {
-        [MapProperty(nameof(FasApplication.Id), nameof(GetFasApplicationSchoolAdminDetailDTO.id))]
+        [MapProperty(nameof(FasApplication.Id), nameof(GetFasApplicationSchoolAdminDetailDTO.Id))]
         [MapProperty(nameof(FasApplication.StudentAgeSnapshot), $"{nameof(GetFasApplicationSchoolAdminDetailDTO.StudentProfile)}.{nameof(StudentProfileDTO.Age)}")]
-        [MapProperty(nameof(FasApplication.StudentNationalitySnapshot), $"{nameof(GetFasApplicationSchoolAdminDetailDTO.StudentProfile)}.{nameof(StudentProfileDTO.StudentNationality)}")]
-        [MapProperty(nameof(FasApplication.GuardianNationalitySnapshot), $"{nameof(GetFasApplicationSchoolAdminDetailDTO.StudentProfile)}.{nameof(StudentProfileDTO.GuardianNationality)}")]
         [MapProperty(nameof(FasApplication.GrossHouseholdIncomeSnapshot), $"{nameof(GetFasApplicationSchoolAdminDetailDTO.StudentProfile)}.{nameof(StudentProfileDTO.GrossHouseholdIncome)}")]
         [MapProperty(nameof(FasApplication.HouseholdMemberCountSnapshot), $"{nameof(GetFasApplicationSchoolAdminDetailDTO.StudentProfile)}.{nameof(StudentProfileDTO.HouseholdMembers)}")]
         [MapProperty(nameof(FasApplication.PerCapitaIncomeSnapshot), $"{nameof(GetFasApplicationSchoolAdminDetailDTO.StudentProfile)}.{nameof(StudentProfileDTO.PerCapitaIncome)}")]
@@ -23,8 +20,10 @@ namespace Mappers.FasApplications
         public GetFasApplicationSchoolAdminDetailDTO MapToDetailDTO(FasApplication model)
         {
             var target = MapToDetailDTOInternal(model);
-            
+
             target.Status = model.Status.ToString();
+            target.StudentProfile.StudentNationality = model.StudentNationalitySnapshot.ToString();
+            target.StudentProfile.GuardianNationality = model.GuardianNationalitySnapshot.ToString();
             target.Scheme = new SchemeDetailsDTO
             {
                 Id = model.FasSchemeId,
@@ -35,8 +34,10 @@ namespace Mappers.FasApplications
                     var attachedDoc = model.Documents.FirstOrDefault(d => d.FasSchemeRequiredDocumentId == rd.Id);
                     return new ApplicationDocumentDTO
                     {
-                        Id = rd.Id,
+                        RequiredDocumentId = rd.Id,
+                        ApplicationDocumentId = attachedDoc?.Id,
                         DocumentName = rd.DocumentName,
+                        FileName = attachedDoc?.FileName,
                         FileKey = attachedDoc?.FileKey
                     };
                 }).ToList()

@@ -1,23 +1,19 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace DTOs.FasApplications
 {
-
     public class GetFasApplicationSchoolAdminDTO
     {
         public int Id { get; set; }
         public string ApplicationNumber { get; set; } = string.Empty;
-        public string AccountName {  get; set; } = string.Empty;
+        public string AccountName { get; set; } = string.Empty;
         public string AccountNumber { get; set; } = string.Empty;
         public string SchemeName { get; set; } = string.Empty;
         public DateTime SubmittedAt { get; set; }
         public string Status { get; set; } = string.Empty;
-
     }
 
     public class GetFasApplicationSchoolAdminDetailDTO
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public string ApplicationNumber { get; set; } = string.Empty;
         public string Status { get; set; } = string.Empty;
         public StudentProfileDTO StudentProfile { get; set; } = new();
@@ -28,8 +24,8 @@ namespace DTOs.FasApplications
     public class StudentProfileDTO
     {
         public int Age { get; set; }
-        public NationalityCategory StudentNationality { get; set; } = NationalityCategory.SingaporeCitizen;
-        public NationalityCategory GuardianNationality { get; set; } = NationalityCategory.SingaporeCitizen;
+        public string? StudentNationality { get; set; }
+        public string? GuardianNationality { get; set; }
         public decimal GrossHouseholdIncome { get; set; }
         public int HouseholdMembers { get; set; }
         public decimal PerCapitaIncome { get; set; }
@@ -55,8 +51,10 @@ namespace DTOs.FasApplications
 
     public class ApplicationDocumentDTO
     {
-        public int Id { get; set; }
+        public int RequiredDocumentId { get; set; }
+        public int? ApplicationDocumentId { get; set; }
         public string DocumentName { get; set; } = string.Empty;
+        public string? FileName { get; set; }
         public string? FileKey { get; set; }
     }
 

@@ -1,14 +1,7 @@
 using DTOs.FasApplications;
-using Filters.FasApplications;
 using Interfaces.FasApplications;
 using Mappers.FasApplications;
 using Results;
-using System.Linq.Expressions;
-using Models;
-using Exceptions;
-using Interfaces.Auth;
-using Microsoft.EntityFrameworkCore;
-using Services.Auth;
 using Services.Base;
 
 namespace Services.FasApplications
@@ -22,32 +15,35 @@ namespace Services.FasApplications
         private readonly ICurrentUserService _currentUserService = currentUserService;
         private readonly SchoolScopeResolver _schoolScopeResolver = schoolScopeResolver;
         private readonly FasApplicationMapper _mapper = mapper;
-        private readonly IGenericRepository<FasApplication> _fasApplicationRepository = unitOfWork.Repository<FasApplication>();
 
-        public override async Task<PaginationResult<GetFasApplicationSchoolAdminDTO>> GetAllPaginatedAsync(Filters.Base.FilterDTO filterDTO, CancellationToken cancellationToken = default)
+        public override async Task<PaginationResult<GetFasApplicationSchoolAdminDTO>> GetAllPaginatedAsync(
+            FilterDTO filterDTO,
+            CancellationToken cancellationToken = default)
         {
-            var request = (FasApplicationFilterDTO)filterDTO;
+            ArgumentNullException.ThrowIfNull(filterDTO);
             var adminSchoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
+            var pageSize = Math.Clamp(filterDTO.PageSize, 1, 100);
 
-            if (request.Status is { } status)
-            {
-                return await base.GetAllPaginatedAsync(
-                    request,
-                    a => a.SchoolStudent.SchoolId == adminSchoolId && a.Status == status,
-                    cancellationToken);
-            }
-
-            return await base.GetAllPaginatedAsync(
-                request,
-                a => a.SchoolStudent.SchoolId == adminSchoolId,
+            var (total, items) = await _repository.GetProjectedPaginatedAsync(
+                _mapper.ProjectToGetDTO,
+                a => a.SchoolStudent.SchoolId == adminSchoolId && a.Status != FasApplicationStatus.Draft,
+                filterDTO.Filter,
+                filterDTO.Search,
+                filterDTO.SearchFields,
+                filterDTO.SortExpression,
+                filterDTO.Page,
+                pageSize,
+                _includes,
                 cancellationToken);
+
+            return new PaginationResult<GetFasApplicationSchoolAdminDTO>(total, pageSize, items);
         }
 
         public async Task<GetFasApplicationSchoolAdminDetailDTO> GetApplicationDetailsAsync(int applicationId, CancellationToken cancellationToken = default)
         {
             var adminSchoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
 
-            var application = await _fasApplicationRepository.Query()
+            var application = await _repository.Query()
                 .Include(a => a.SchoolStudent)
                 .Include(a => a.SchoolStudent.EducationAccount)
                 .Include(a => a.SchoolStudent.EducationAccount.Citizen)
@@ -57,11 +53,15 @@ namespace Services.FasApplications
                 .Include(a => a.FasScheme)
                     .ThenInclude(s => s.RequiredDocuments)
                 .Include(a => a.Documents)
-                .FirstOrDefaultAsync(a => a.Id == applicationId && a.SchoolStudent.SchoolId == adminSchoolId, cancellationToken);
+                .FirstOrDefaultAsync(
+                    a => a.Id == applicationId &&
+                        a.SchoolStudent.SchoolId == adminSchoolId &&
+                        a.Status != FasApplicationStatus.Draft,
+                    cancellationToken);
 
             if (application == null)
             {
-                throw new DataNotFoundException($"Application {applicationId} not found.");
+                throw new DataNotFoundException(typeof(FasApplication), applicationId);
             }
 
             return _mapper.MapToDetailDTO(application);
@@ -71,27 +71,39 @@ namespace Services.FasApplications
         {
             var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
 
-            var application = await _unitOfWork.Repository<FasApplication>()
-            .Query()
-            .Include(a => a.FasScheme)
-            .FirstOrDefaultAsync(a => a.Id == id && a.FasScheme.SchoolId == schoolId, cancellationToken);
+            if (string.IsNullOrWhiteSpace(dto.RejectionReason))
+            {
+                throw new ValidationFailureException(nameof(dto.RejectionReason), "Rejection reason is required.");
+            }
+
+            dto.RejectionReason = dto.RejectionReason.Trim();
+
+            var application = await _repository
+                .Query()
+                .Include(a => a.FasScheme)
+                .Include(a => a.SchoolStudent)
+                .FirstOrDefaultAsync(
+                    a => a.Id == id &&
+                        a.SchoolStudent.SchoolId == schoolId &&
+                        a.FasScheme.SchoolId == schoolId,
+                    cancellationToken);
 
             if (application == null)
             {
                 throw new DataNotFoundException(typeof(FasApplication), id);
             }
 
-            if (application.Status != Enums.FasApplicationStatus.Pending)
+            if (application.Status != FasApplicationStatus.Pending)
             {
                 throw new DataConflictException("Only pending applications can be rejected.");
             }
 
-            application.Status = Enums.FasApplicationStatus.Rejected;
+            application.Status = FasApplicationStatus.Rejected;
             application.RejectionReason = dto.RejectionReason;
 
             application.TryValidate();
 
-            _unitOfWork.Repository<FasApplication>().Update(application);
+            _repository.Update(application);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
         }
 
@@ -99,18 +111,22 @@ namespace Services.FasApplications
         {
             var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
 
-            var application = await _unitOfWork.Repository<FasApplication>()
-           .Query()
-           .Include(a => a.FasScheme)
-           .Include(a => a.SchoolStudent)
-           .FirstOrDefaultAsync(a => a.Id == id && a.FasScheme.SchoolId == schoolId, cancellationToken);
+            var application = await _repository
+                .Query()
+                .Include(a => a.FasScheme)
+                .Include(a => a.SchoolStudent)
+                .FirstOrDefaultAsync(
+                    a => a.Id == id &&
+                        a.SchoolStudent.SchoolId == schoolId &&
+                        a.FasScheme.SchoolId == schoolId,
+                    cancellationToken);
 
             if (application == null)
             {
                 throw new DataNotFoundException(typeof(FasApplication), id);
             }
 
-            if (application.Status != Enums.FasApplicationStatus.Pending)
+            if (application.Status != FasApplicationStatus.Pending)
             {
                 throw new DataConflictException("Only pending applications can be approved.");
             }
@@ -123,7 +139,7 @@ namespace Services.FasApplications
             var currentUserId = _currentUserService.UserId;
             var now = DateTime.UtcNow;
 
-            application.Status = Enums.FasApplicationStatus.Approved;
+            application.Status = FasApplicationStatus.Approved;
             application.ApprovedAt = now;
             application.ApprovedByUserId = currentUserId;
             application.ApprovedTierId = application.RecommendedTierId;
@@ -135,27 +151,47 @@ namespace Services.FasApplications
 
             application.TryValidate();
 
-            _unitOfWork.Repository<FasApplication>().Update(application);
+            _repository.Update(application);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
         }
 
-        // ==========================================
-        // UNUSED API IMPLEMENTATIONS FROM BASE CLASS
-        // ==========================================
-
-        public override Task<List<GetFasApplicationSchoolAdminDTO>> GetAllAsync(CancellationToken cancellationToken = default)
+        public override async Task<List<GetFasApplicationSchoolAdminDTO>> GetAllAsync(CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
+            return await _repository.GetProjectedAsync(
+                _mapper.ProjectToGetDTO,
+                a => a.SchoolStudent.SchoolId == schoolId && a.Status != FasApplicationStatus.Draft,
+                _includes,
+                cancellationToken);
         }
 
-        public override Task<List<GetFasApplicationSchoolAdminDTO>> GetAllByIdsAsync(List<int> ids, CancellationToken cancellationToken = default)
+        public override async Task<List<GetFasApplicationSchoolAdminDTO>> GetAllByIdsAsync(
+            List<int> ids,
+            CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
+            return await _repository.GetProjectedAsync(
+                _mapper.ProjectToGetDTO,
+                a => ids.Contains(a.Id) &&
+                    a.SchoolStudent.SchoolId == schoolId &&
+                    a.Status != FasApplicationStatus.Draft,
+                _includes,
+                cancellationToken);
         }
 
-        public override Task<GetFasApplicationSchoolAdminDTO> GetByIdAsync(int id, CancellationToken cancellationToken = default)
+        public override async Task<GetFasApplicationSchoolAdminDTO> GetByIdAsync(
+            int id,
+            CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
+            return await _repository.FirstOrDefaultProjectedAsync(
+                _mapper.ProjectToGetDTO,
+                a => a.Id == id &&
+                    a.SchoolStudent.SchoolId == schoolId &&
+                    a.Status != FasApplicationStatus.Draft,
+                _includes,
+                cancellationToken)
+                ?? throw new DataNotFoundException(typeof(FasApplication), id);
         }
     }
 }
