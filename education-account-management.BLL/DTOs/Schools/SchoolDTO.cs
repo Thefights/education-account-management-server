@@ -43,5 +43,9 @@ namespace DTOs.Schools
     {
         public List<int> Ids { get; set; } = [];
         public int Status { get; set; }
+
+        [MessageRequired, MessageMinLength(10), MessageMaxLength(500)]
+        public string Reason { get; set; } = string.Empty;
     }
+
 }

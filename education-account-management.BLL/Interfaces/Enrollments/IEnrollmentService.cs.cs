@@ -17,10 +17,6 @@ namespace Interfaces.Enrollments
             SchoolStudentFilterDTO filterDTO,
             CancellationToken cancellationToken = default);
 
-        Task RemoveAsync(
-            int id,
-            CancellationToken cancellationToken = default);
-
         Task RemoveSelectedAsync(
             RemoveSelectedEnrollmentsDTO removeDTO,
             CancellationToken cancellationToken = default);

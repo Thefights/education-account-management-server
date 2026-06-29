@@ -19,15 +19,6 @@ namespace Controllers.Management
             return Result.SuccessData(result, $"{result.Count} student(s) assigned successfully");
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Remove(
-            int id,
-            CancellationToken cancellationToken)
-        {
-            await _service.RemoveAsync(id, cancellationToken);
-            return Result.SuccessAction("Enrollment removed successfully");
-        }
-
         [HttpDelete("selected")]
         public async Task<IActionResult> RemoveSelected(
             RemoveSelectedEnrollmentsDTO removeDTO,

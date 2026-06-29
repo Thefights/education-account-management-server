@@ -99,6 +99,9 @@ namespace DTOs.Courses
     public class PublishCourseDTO
     {
         public List<int> Ids { get; set; } = [];
+
+        [MessageRequired, MessageMinLength(10), MessageMaxLength(500)]
+        public string Reason { get; set; } = string.Empty;
     }
 
     public class AssignCourseFasSchemesDTO
@@ -109,6 +112,9 @@ namespace DTOs.Courses
     public class DeleteSelectedCoursesDTO
     {
         public List<DeleteCourseItemDTO> Items { get; set; } = [];
+
+        [MessageRequired, MessageMinLength(10), MessageMaxLength(500)]
+        public string Reason { get; set; } = string.Empty;
     }
 
     public class DeleteCourseItemDTO

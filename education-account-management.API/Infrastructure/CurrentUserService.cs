@@ -11,6 +11,7 @@ namespace Infrastructure
     {
         private readonly int _userId = ResolveUserId(httpContextAccessor.HttpContext?.User);
         private readonly string _userName = ResolveUserName(httpContextAccessor.HttpContext?.User);
+        private readonly string _ipAddress = httpContextAccessor.HttpContext?.Connection.RemoteIpAddress?.ToString() ?? "0.0.0.0";
 
         public int UserId => _userId <= 0
             ? throw new UnauthorizedAccessException("User is not authenticated.")
@@ -21,6 +22,8 @@ namespace Infrastructure
         public UserRole Role { get; } = ResolveRole(httpContextAccessor.HttpContext?.User);
 
         public string UserName => _userName;
+
+        public string IpAddress => _ipAddress;
 
         private static int ResolveUserId(ClaimsPrincipal? user)
         {

@@ -11,5 +11,7 @@ namespace Infrastructure.Interface
         UserRole Role { get; }
 
         string UserName { get; }
+
+        string IpAddress { get; }
     }
 }

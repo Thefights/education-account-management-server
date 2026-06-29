@@ -31,5 +31,6 @@ namespace Controllers.Management
             var result = await _importService.ImportAsync(file, cancellationToken);
             return Result.SuccessData(result, "School CSV import processed.");
         }
+
     }
 }

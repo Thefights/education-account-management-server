@@ -107,6 +107,12 @@ namespace Persistence.SqlServer.ModelConfigurations
                 .WithMany()
                 .HasForeignKey(history => history.ChangedByUserId)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<ManagementActionLog>()
+                .HasOne(log => log.ActorUser)
+                .WithMany()
+                .HasForeignKey(log => log.ActorUserId)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

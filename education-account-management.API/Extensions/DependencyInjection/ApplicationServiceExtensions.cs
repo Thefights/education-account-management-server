@@ -72,6 +72,7 @@ namespace Extensions.DependencyInjection
 
             services.AddScoped<IAuditLogService, AuditLogService>();
             services.AddScoped<IAuditLogWriter, AuditLogWriter>();
+            services.AddScoped<IManagementActionLogService, ManagementActionLogService>();
 
             services.AddScoped<ICsvExportService, CsvExportService>();
             services.AddScoped(typeof(CsvImportService<,>));

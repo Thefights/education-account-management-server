@@ -280,6 +280,16 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(log => log.OccurredAt);
             });
 
+            modelBuilder.Entity<ManagementActionLog>(entity =>
+            {
+                entity.HasIndex(log => log.BatchId);
+                entity.HasIndex(log => log.EntityType);
+                entity.HasIndex(log => log.EntityId);
+                entity.HasIndex(log => log.Action);
+                entity.HasIndex(log => log.ActorUserId);
+                entity.HasIndex(log => log.OccurredAt);
+            });
+
             modelBuilder.Entity<OutboxMessage>(entity =>
             {
                 entity.HasIndex(message => message.Type);
