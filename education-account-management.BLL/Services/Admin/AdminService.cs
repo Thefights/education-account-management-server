@@ -1,4 +1,5 @@
 using DTOs.Admin;
+using DTOs.Base;
 using DTOs.Csv;
 using Interfaces.Admin;
 using Interfaces.Audit;
@@ -326,6 +327,42 @@ namespace Services.Admin
                         cancellationToken: token);
                 }
                 _userRepository.UpdateRange(users);
+            }, cancellationToken);
+        }
+
+        public async Task DeleteSelectedIdsAsync(DeleteSelectedIdsDTO dto, CancellationToken cancellationToken = default)
+        {
+            ArgumentNullException.ThrowIfNull(dto);
+
+            if (dto.Ids.Contains(_currentUserService.UserId))
+            {
+                throw new ValidationFailureException(nameof(dto.Ids), "You cannot delete your own account.");
+            }
+
+            var batchId = Guid.NewGuid();
+            await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
+            {
+                var users = await _userRepository.Query(tracking: true)
+                    .Include(user => user.AdminProfile)
+                    .Where(user => dto.Ids.Contains(user.Id) && user.AdminProfile != null)
+                    .ToListAsync(token);
+                if (users.Count != dto.Ids.Distinct().Count())
+                    throw new ValidationFailureException(nameof(dto.Ids), "One or more admins do not exist.");
+
+                foreach (var user in users)
+                {
+                    await _managementActionLogService.LogAsync(
+                        batchId,
+                        ManagementActionEntityType.Admin,
+                        user.Id,
+                        ManagementAction.Delete,
+                        dto.Reason,
+                        user.Status.ToString(),
+                        null,
+                        cancellationToken: token);
+                }
+
+                _userRepository.RemoveRange(users);
             }, cancellationToken);
         }
 

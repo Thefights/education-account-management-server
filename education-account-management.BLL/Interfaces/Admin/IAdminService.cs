@@ -1,4 +1,5 @@
 using DTOs.Admin;
+using DTOs.Base;
 using Interfaces.Base;
 
 namespace Interfaces.Admin
@@ -19,6 +20,10 @@ namespace Interfaces.Admin
 
         Task UpdateAdminsStatusAsync(
             BatchUpdateAdminStatusDTO dto,
+            CancellationToken cancellationToken = default);
+
+        Task DeleteSelectedIdsAsync(
+            DeleteSelectedIdsDTO dto,
             CancellationToken cancellationToken = default);
 
         Task<DTOs.Csv.BatchImportResultDTO> ImportAsync(

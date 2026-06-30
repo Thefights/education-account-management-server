@@ -7,6 +7,8 @@ namespace Services.TopUp
         // Root group plus one child-group level.
         private const int MaximumDepth = 2;
         private const int MaximumNodeCount = 100;
+        private const decimal MinimumEligibleAge = 16;
+        private const decimal MaximumEligibleAge = 30;
 
         public static void Validate(TopupConditionGroupRequestDTO root)
         {
@@ -78,8 +80,13 @@ namespace Services.TopUp
                     errors[$"{path}.{nameof(condition.ValueNumber)}"] = "A non-negative numeric value is required.";
                 if (condition.ValueText != null)
                     errors[$"{path}.{nameof(condition.ValueText)}"] = "Text value must be null for numeric fields.";
-                if (condition.Field == TopupConditionField.Age && condition.ValueNumber % 1 != 0)
-                    errors[$"{path}.{nameof(condition.ValueNumber)}"] = "Age must be a whole number.";
+                if (condition.Field == TopupConditionField.Age)
+                {
+                    if (condition.ValueNumber % 1 != 0)
+                        errors[$"{path}.{nameof(condition.ValueNumber)}"] = "Age must be a whole number.";
+                    if (condition.ValueNumber is < MinimumEligibleAge or > MaximumEligibleAge)
+                        errors[$"{path}.{nameof(condition.ValueNumber)}"] = $"Age must be between {MinimumEligibleAge:0} and {MaximumEligibleAge:0}.";
+                }
 
                 if (condition.Operator == TopupConditionOperator.Between)
                 {
@@ -87,8 +94,13 @@ namespace Services.TopUp
                         errors[$"{path}.{nameof(condition.ValueNumberTo)}"] = "Between requires a non-negative upper value.";
                     else if (condition.ValueNumber.HasValue && condition.ValueNumberTo < condition.ValueNumber)
                         errors[$"{path}.{nameof(condition.ValueNumberTo)}"] = "Between upper value must be greater than or equal to the lower value.";
-                    if (condition.Field == TopupConditionField.Age && condition.ValueNumberTo % 1 != 0)
-                        errors[$"{path}.{nameof(condition.ValueNumberTo)}"] = "Age must be a whole number.";
+                    if (condition.Field == TopupConditionField.Age)
+                    {
+                        if (condition.ValueNumberTo % 1 != 0)
+                            errors[$"{path}.{nameof(condition.ValueNumberTo)}"] = "Age must be a whole number.";
+                        if (condition.ValueNumberTo is < MinimumEligibleAge or > MaximumEligibleAge)
+                            errors[$"{path}.{nameof(condition.ValueNumberTo)}"] = $"Age must be between {MinimumEligibleAge:0} and {MaximumEligibleAge:0}.";
+                    }
                 }
                 else if (condition.ValueNumberTo != null)
                 {
