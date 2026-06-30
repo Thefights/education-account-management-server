@@ -62,7 +62,6 @@ namespace Services.Courses
                     var course = _profile.MapToEntity(item.Row);
                     course.SchoolId = schoolId;
                     course.Status = CourseStatus.Draft;
-                    course.FasApplicationDueDate = course.EnrollmentDeadline;
                     course.GstAmount = CourseFeeCalculator.CalculateTaxAmount(
                         course.CourseFeeAmount,
                         course.MiscFeeAmount,

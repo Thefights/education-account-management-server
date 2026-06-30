@@ -7,9 +7,6 @@
             course.EnrollmentDeadline = NormalizeToUtc(
                 course.EnrollmentDeadline,
                 nameof(Course.EnrollmentDeadline));
-            course.FasApplicationDueDate = NormalizeToUtc(
-                course.FasApplicationDueDate,
-                nameof(Course.FasApplicationDueDate));
             course.StartDate = NormalizeToUtc(course.StartDate, nameof(Course.StartDate));
             course.EndDate = NormalizeToUtc(course.EndDate, nameof(Course.EndDate));
         }

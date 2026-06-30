@@ -72,16 +72,6 @@ namespace Services.Payments
                 throw new DataNotFoundException("Education account for the current account holder was not found.");
             }
 
-            TimeZoneInfo sgtZone;
-            try
-            {
-                sgtZone = TimeZoneInfo.FindSystemTimeZoneById("Asia/Singapore");
-            }
-            catch (TimeZoneNotFoundException)
-            {
-                sgtZone = TimeZoneInfo.FindSystemTimeZoneById("Singapore Standard Time");
-            }
-            var now = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, sgtZone);
             var pageSize = Math.Clamp(filter.PageSize, 1, 100);
 
             Expression<Func<Enrollment, bool>> filterExpr = e =>
@@ -91,12 +81,8 @@ namespace Services.Payments
                 (filter.EnrollmentIds == null || filter.EnrollmentIds.Count == 0 || filter.EnrollmentIds.Contains(e.Id)) &&
                 (filter.Status == StudentTuitionFilterStatus.All ||
                  (filter.Status == StudentTuitionFilterStatus.Paid && e.Charge.Status == ChargeStatus.Paid) ||
-                 (filter.Status == StudentTuitionFilterStatus.Overdue &&
-                     (e.Charge.Status == ChargeStatus.Overdue ||
-                      (e.Charge.Status == ChargeStatus.PendingPayment && e.Course.FasApplicationDueDate < now))) ||
-                 (filter.Status == StudentTuitionFilterStatus.Due &&
-                     e.Charge.Status == ChargeStatus.PendingPayment &&
-                     e.Course.FasApplicationDueDate >= now));
+                 (filter.Status == StudentTuitionFilterStatus.Overdue && e.Charge.Status == ChargeStatus.Overdue) ||
+                 (filter.Status == StudentTuitionFilterStatus.Due && e.Charge.Status == ChargeStatus.PendingPayment));
 
             var (total, charges) = await _enrollmentRepository.GetProjectedPaginatedAsync(
                 projection: q => q.Select(e => new StudentTuitionChargeDTO
@@ -106,9 +92,9 @@ namespace Services.Payments
                     CourseCode = e.Course.CourseCode,
                     CourseName = e.CourseNameSnapshot,
                     CourseDescription = e.CourseDescriptionSnapshot,
-                    PaymentDueDate = e.Course.FasApplicationDueDate,
+                    PaymentDueDate = e.Charge.CourseEndDateSnapshot,
                     PaymentStatus = e.Charge.Status == ChargeStatus.Paid ? "Paid" :
-                                    (e.Charge.Status == ChargeStatus.Overdue || e.Course.FasApplicationDueDate < now) ? "Overdue" :
+                                    e.Charge.Status == ChargeStatus.Overdue ? "Overdue" :
                                     e.Charge.Installments.Count > 1 ? "Installment" :
                                     "Due",
                     CourseFee = e.Charge.CourseFeeAmountSnapshot,
@@ -129,8 +115,7 @@ namespace Services.Payments
                         InstallmentNumber = i.InstallmentNumber,
                         Amount = i.Amount,
                         DueDate = i.DueDate,
-                        Status = i.Status,
-                        BecameOverdueAt = i.BecameOverdueAt
+                        Status = i.Status
                     }).ToList(),
                     AppliedFasSchemeName = e.Charge.AppliedFasSchemeNameSnapshot,
                     AppliedFasTierName = e.Charge.AppliedFasTierNameSnapshot,
