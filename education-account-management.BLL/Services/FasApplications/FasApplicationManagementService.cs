@@ -87,9 +87,9 @@ namespace Services.FasApplications
         {
             var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
 
-            if (string.IsNullOrWhiteSpace(dto.RejectionReason))
+            if (string.IsNullOrWhiteSpace(dto.ExternalRejectionReason) || string.IsNullOrWhiteSpace(dto.InternalRejectionReason))
             {
-                throw new ValidationFailureException(nameof(dto.RejectionReason), "Rejection reason is required.");
+                throw new ValidationFailureException(nameof(dto.ExternalRejectionReason), "Both internal and external rejection reasons are required.");
             }
 
             var application = await _repository
@@ -113,7 +113,8 @@ namespace Services.FasApplications
             }
 
             application.Status = FasApplicationStatus.Rejected;
-            application.RejectionReason = dto.RejectionReason;
+            application.ExternalRejectionReason = dto.ExternalRejectionReason;
+            application.InternalRejectionReason = dto.InternalRejectionReason;
 
             application.TryValidate();
 

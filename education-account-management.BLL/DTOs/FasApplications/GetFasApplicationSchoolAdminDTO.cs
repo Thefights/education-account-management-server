@@ -22,6 +22,8 @@ namespace DTOs.FasApplications
         public ApprovedTierDTO? ApprovedTier { get; set; }
         public List<TierOverrideHistoryDTO> TierOverrideHistories { get; set; } = [];
         public List<ApplicationAdditionalAnswerDTO> AdditionalAnswers { get; set; } = [];
+        public string? ExternalRejectionReason { get; set; }
+        public string? InternalRejectionReason { get; set; }
     }
 
     public class StudentProfileDTO
