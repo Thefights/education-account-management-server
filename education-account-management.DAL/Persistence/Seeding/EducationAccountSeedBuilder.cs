@@ -19,22 +19,15 @@ namespace Persistence.Seeding
                 if (i == 7) totalCredit += 145m;
 
                 decimal totalDebit = 0m;
-                
-                if (i % 3 == 0 && i % 2 != 0)
+                if (i == 1)
                 {
-                    decimal courseFee = 125m + (i * 5m);
-                    decimal miscFee = 23m;
-                    decimal gst = Math.Round((courseFee + miscFee) * 0.09m, 2);
-                    decimal grossAmount = courseFee + miscFee + gst;
-                    decimal subsidyAmount = i % 4 == 0 ? 30m : 0m;
-                    totalDebit = grossAmount - subsidyAmount;
+                    totalDebit = SeedScenarioConstants.SterlingCourseIds
+                        .Take(3)
+                        .Sum(SeedScenarioConstants.GetNetAmount);
+
+                    totalDebit += Math.Round(SeedScenarioConstants.GetNetAmount(5) / 6m, 2);
                 }
-                
-                if (i == 1) 
-                {
-                    totalDebit += 185m; // Account 1 has extra payment
-                }
-                
+
                 decimal availableBalance = totalCredit - totalDebit;
 
                 accounts.Add(new EducationAccount
@@ -46,6 +39,25 @@ namespace Persistence.Seeding
                     CitizenId = i,
                     CreatedAt = createdAt,
                     OpenedAt = createdAt
+                });
+            }
+
+            var totalSweepAccounts = SeedScenarioConstants.SweepAccountsPerDay * SeedScenarioConstants.SweepDayCount;
+            for (int index = 0; index < totalSweepAccounts; index++)
+            {
+                var citizenId = SeedScenarioConstants.SweepCitizenStartId + index;
+                var batchDate = SeedScenarioConstants.SweepStartDate.AddDays(index / SeedScenarioConstants.SweepAccountsPerDay);
+                var openedAt = batchDate.ToDateTime(TimeOnly.FromTimeSpan(TimeSpan.FromHours(1)), DateTimeKind.Utc);
+
+                accounts.Add(new EducationAccount
+                {
+                    Id = citizenId,
+                    AccountNumber = SeedBusinessCodeUtil.Generate(BusinessCodeGenerator.EducationAccountPrefix, citizenId),
+                    EducationCreditBalance = 0m,
+                    Status = EducationAccountStatus.Active,
+                    CitizenId = citizenId,
+                    CreatedAt = openedAt,
+                    OpenedAt = openedAt
                 });
             }
 

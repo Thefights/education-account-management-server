@@ -154,7 +154,7 @@ namespace Services.TopUp
                             var transaction = new EducationCreditTransaction
                             {
                                 Type = EducationCreditTransactionType.Topup,
-                                Direction = EducationCreditTransactionDirection.Credit,
+                                Direction = EducationCreditTransactionDirection.Increased,
                                 Amount = amount,
                                 BalanceBefore = balanceBefore,
                                 BalanceAfter = balanceAfter,

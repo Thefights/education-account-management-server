@@ -33,7 +33,6 @@
         public DateTime? CreatedTo { get; set; }
 
         [FilterField(FilterOperationEnum.Contains, nameof(EducationCreditTransaction.Description))]
-        [SearchField(nameof(EducationCreditTransaction.Description))]
         public string? Description { get; set; }
     }
 }

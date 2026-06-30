@@ -29,7 +29,7 @@
                 var transaction = new EducationCreditTransaction
                 {
                     Type = EducationCreditTransactionType.ExpiredBalance,
-                    Direction = EducationCreditTransactionDirection.Debit,
+                    Direction = EducationCreditTransactionDirection.Decreased,
                     Amount = balanceBefore,
                     BalanceBefore = balanceBefore,
                     BalanceAfter = 0,

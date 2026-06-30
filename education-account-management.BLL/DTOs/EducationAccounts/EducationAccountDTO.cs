@@ -76,6 +76,8 @@ namespace DTOs.EducationAccounts
 
     public class EducationAccountSweepTargetDTO
     {
+        internal int CitizenId { get; set; }
+
         public string Nric { get; set; } = string.Empty;
 
         public SweepAction Action { get; set; }

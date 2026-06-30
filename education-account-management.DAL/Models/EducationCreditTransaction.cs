@@ -9,7 +9,7 @@ namespace Models
         public EducationCreditTransactionType Type { get; set; } = EducationCreditTransactionType.Topup;
 
         [EnumDefined]
-        public EducationCreditTransactionDirection Direction { get; set; } = EducationCreditTransactionDirection.Credit;
+        public EducationCreditTransactionDirection Direction { get; set; } = EducationCreditTransactionDirection.Increased;
 
         [Column(TypeName = "decimal(18,2)"), NumberHigherThan(0)]
         public decimal Amount { get; set; }

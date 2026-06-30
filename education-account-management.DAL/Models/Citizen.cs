@@ -27,10 +27,15 @@ namespace Models
 
         public bool IsSingaporean { get; set; }
 
+        public bool IsAutoSweepExcluded { get; set; }
+
         [OnDelete(OnDeleteBehavior.SetNull)]
         public User? User { get; set; }
 
         [OnDelete(OnDeleteBehavior.Restrict)]
         public EducationAccount? EducationAccount { get; set; }
+
+        [OnDelete(OnDeleteBehavior.Restrict)]
+        public ICollection<EducationAccountSweepTarget> SweepTargets { get; set; } = [];
     }
 }

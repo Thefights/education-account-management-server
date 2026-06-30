@@ -10,6 +10,7 @@ namespace Persistence.SqlServer.ModelConfigurations
             {
                 entity.HasIndex(citizen => citizen.DateOfBirth);
                 entity.HasIndex(citizen => citizen.Email);
+                entity.HasIndex(citizen => citizen.IsAutoSweepExcluded);
             });
 
             modelBuilder.Entity<SsoIdentity>(entity =>
@@ -263,6 +264,14 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(a => a.EducationAccountId);
                 entity.HasIndex(a => new { a.SystemTopupId, a.EducationAccountId }).IsUnique();
                 entity.HasIndex(a => a.TopupExecutionTargetId).IsUnique();
+            });
+
+            modelBuilder.Entity<EducationAccountSweepTarget>(entity =>
+            {
+                entity.HasIndex(target => target.SweepReportId);
+                entity.HasIndex(target => target.CitizenId);
+                entity.HasIndex(target => target.Status);
+                entity.HasIndex(target => target.Action);
             });
 
             modelBuilder.Entity<EducationCreditTransaction>(entity =>

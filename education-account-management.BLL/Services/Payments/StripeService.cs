@@ -689,7 +689,7 @@ public class StripeService(
         educationAccount.EducationCreditBalance = balanceAfter;
 
         // Ghi nhận log giao dịch vào ví
-        // Đối với thanh toán qua Ví (Wallet), direction là Debit (Trừ tiền ví)
+        // Đối với thanh toán qua ví, direction là Decreased vì số dư bị trừ.
         if (totalCreditBalanceCovered > 0)
         {
             var coursesNames = string.Join(", ", relatedPayments
@@ -702,7 +702,7 @@ public class StripeService(
             var transactionDebit = new EducationCreditTransaction
             {
                 Type = EducationCreditTransactionType.CourseFeePayment,
-                Direction = EducationCreditTransactionDirection.Debit,
+                Direction = EducationCreditTransactionDirection.Decreased,
                 Amount = totalCreditBalanceCovered,
                 BalanceBefore = balanceBefore,
                 BalanceAfter = balanceAfter,
@@ -714,7 +714,7 @@ public class StripeService(
             await _transactionRepository.AddAsync(transactionDebit, token);
         }
 
-        // Đối với thanh toán Online (Stripe), direction là Neutral (Không ảnh hưởng số dư ví thực)
+        // Đối với thanh toán online, direction là Unchanged vì số dư không đổi.
         if (remainingPaymentViaStripe > 0)
         {
 
@@ -728,7 +728,7 @@ public class StripeService(
             var transactionNeutral = new EducationCreditTransaction
             {
                 Type = EducationCreditTransactionType.CourseFeePayment,
-                Direction = EducationCreditTransactionDirection.Neutral,
+                Direction = EducationCreditTransactionDirection.Unchanged,
                 Amount = remainingPaymentViaStripe,
                 BalanceBefore = balanceAfter,
                 BalanceAfter = balanceAfter,

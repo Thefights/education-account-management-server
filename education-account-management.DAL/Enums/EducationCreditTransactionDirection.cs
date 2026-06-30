@@ -2,8 +2,8 @@ namespace Enums
 {
     public enum EducationCreditTransactionDirection
     {
-        Credit = 1,
-        Debit = 2,
-        Neutral = 3
+        Increased = 1,
+        Decreased = 2,
+        Unchanged = 3
     }
 }
