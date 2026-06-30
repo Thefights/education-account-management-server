@@ -18,7 +18,7 @@ namespace Persistence.Seeding
                 transactions.Add(new EducationCreditTransaction
                 {
                     Id = 100 + i, // Offset topup IDs to avoid collision with payment debits
-                    TransactionCode = Guid.NewGuid(),
+                    TransactionCode = Guid.Parse($"00000000-0000-0000-0000-{(100 + i):D12}"),
                     Type = EducationCreditTransactionType.Topup,
                     Direction = EducationCreditTransactionDirection.Credit,
                     Amount = 1000m,
@@ -45,7 +45,7 @@ namespace Persistence.Seeding
                     transactions.Add(new EducationCreditTransaction
                     {
                         Id = i,
-                        TransactionCode = Guid.NewGuid(),
+                        TransactionCode = Guid.Parse($"00000000-0000-0000-0000-{i:D12}"),
                         Type = EducationCreditTransactionType.CourseFeePayment,
                         Direction = EducationCreditTransactionDirection.Debit,
                         Amount = netAmount,
@@ -59,10 +59,10 @@ namespace Persistence.Seeding
             }
 
             // Sterling Quach (Id 1) additional debit
-            transactions.Add(new EducationCreditTransaction { Id = 51, TransactionCode = Guid.NewGuid(), Type = EducationCreditTransactionType.CourseFeePayment, Direction = EducationCreditTransactionDirection.Debit, Amount = 185m, BalanceBefore = 1000m, BalanceAfter = 815m, Description = "Course fee payment for Creative Thinking Cohort 51", EducationAccountId = 1, CreatedAt = createdAt.AddDays(30) });
+            transactions.Add(new EducationCreditTransaction { Id = 51, TransactionCode = Guid.Parse("00000000-0000-0000-0000-000000000051"), Type = EducationCreditTransactionType.CourseFeePayment, Direction = EducationCreditTransactionDirection.Debit, Amount = 185m, BalanceBefore = 1000m, BalanceAfter = 815m, Description = "Course fee payment for Creative Thinking Cohort 51", EducationAccountId = 1, CreatedAt = createdAt.AddDays(30) });
 
-            transactions.Add(new EducationCreditTransaction { Id = 203, TransactionCode = Guid.NewGuid(), Type = EducationCreditTransactionType.Topup, Direction = EducationCreditTransactionDirection.Credit, Amount = 105m, BalanceBefore = 1000m, BalanceAfter = 1105m, Description = "Manual Account Adjustment", EducationAccountId = 3, CreatedAt = createdAt.AddDays(3) });
-            transactions.Add(new EducationCreditTransaction { Id = 207, TransactionCode = Guid.NewGuid(), Type = EducationCreditTransactionType.Topup, Direction = EducationCreditTransactionDirection.Credit, Amount = 145m, BalanceBefore = 1000m, BalanceAfter = 1145m, Description = "STEM Enrichment Credit", EducationAccountId = 7, CreatedAt = createdAt.AddDays(7) });
+            transactions.Add(new EducationCreditTransaction { Id = 203, TransactionCode = Guid.Parse("00000000-0000-0000-0000-000000000203"), Type = EducationCreditTransactionType.Topup, Direction = EducationCreditTransactionDirection.Credit, Amount = 105m, BalanceBefore = 1000m, BalanceAfter = 1105m, Description = "Manual Account Adjustment", EducationAccountId = 3, CreatedAt = createdAt.AddDays(3) });
+            transactions.Add(new EducationCreditTransaction { Id = 207, TransactionCode = Guid.Parse("00000000-0000-0000-0000-000000000207"), Type = EducationCreditTransactionType.Topup, Direction = EducationCreditTransactionDirection.Credit, Amount = 145m, BalanceBefore = 1000m, BalanceAfter = 1145m, Description = "STEM Enrichment Credit", EducationAccountId = 7, CreatedAt = createdAt.AddDays(7) });
 
             modelBuilder.Entity<EducationCreditTransaction>().HasData(transactions);
             return modelBuilder;

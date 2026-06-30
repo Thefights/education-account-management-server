@@ -17,7 +17,7 @@ namespace Persistence.Seeding
                 new ManagementActionLog
                 {
                     Id = 1,
-                    BatchId = Guid.NewGuid(),
+                    BatchId = Guid.Parse("11111111-1111-1111-1111-000000000001"),
                     EntityType = ManagementActionEntityType.FasScheme,
                     EntityId = 1,
                     Action = ManagementAction.Publish,
@@ -31,7 +31,7 @@ namespace Persistence.Seeding
                 new ManagementActionLog
                 {
                     Id = 2,
-                    BatchId = Guid.NewGuid(),
+                    BatchId = Guid.Parse("11111111-1111-1111-1111-000000000002"),
                     EntityType = ManagementActionEntityType.Course,
                     EntityId = 5,
                     Action = ManagementAction.Close,
