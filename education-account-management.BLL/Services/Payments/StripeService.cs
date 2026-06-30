@@ -54,7 +54,7 @@ public class StripeService(
         var charges = await _chargeRepository.Query(tracking: false)
             .Include(c => c.Enrollment)
             .ThenInclude(e => e.Course)
-            .Include(c => c.Installments.Where(isn => isn.Status == ChargeInstallmentStatus.PendingPayment).OrderBy(isn => isn.DueDate))
+            .Include(c => c.Installments.Where(isn => isn.Status != ChargeInstallmentStatus.Paid).OrderBy(isn => isn.DueDate))
             .Where(c => c.Enrollment.SchoolStudent.EducationAccountId == educationAccount.Id && chargeIds.Contains(c.Id))
             .OrderBy(c => c.Enrollment.Course.StartDate)
             .ToListAsync(cancellationToken);

@@ -13,11 +13,12 @@ namespace API.Controllers.Payment
 
         [HttpPost("handle")]
         [Authorize(Roles = RolePolicy.AccountHolder)]
-        public async Task<IActionResult> HandlePayment([FromBody] PaymentRequest request, CancellationToken token)
+        public async Task<IActionResult> HandlePayment(PaymentRequest request, CancellationToken token)
         {
             var response = await _stripeService.HandlePaymentSessionAsync(request, token);
             return Result.SuccessData(response);
         }
+
 
         [HttpPost("success")]
         [Authorize(Roles = RolePolicy.AccountHolder)]
