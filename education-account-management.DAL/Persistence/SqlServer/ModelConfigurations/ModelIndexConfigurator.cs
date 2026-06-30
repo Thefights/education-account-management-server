@@ -115,7 +115,10 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(allocation => allocation.PaymentId);
                 entity.HasIndex(allocation => allocation.ChargeId);
                 entity.HasIndex(allocation => allocation.ChargeInstallmentId);
-                entity.HasIndex(allocation => new { allocation.PaymentId, allocation.ChargeId }).IsUnique();
+                entity.HasIndex(allocation => new { allocation.PaymentId, allocation.ChargeId, allocation.ChargeInstallmentId }).IsUnique();
+                entity.HasIndex(allocation => new { allocation.PaymentId, allocation.ChargeId })
+                      .IsUnique()
+                      .HasFilter($"\"{nameof(AuditEntity.IsDeleted)}\" = 0 AND \"{nameof(PaymentAllocation.ChargeInstallmentId)}\" IS NULL");
             });
 
             modelBuilder.Entity<FasScheme>(entity =>

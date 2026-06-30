@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace educationaccountmanagement.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class A : Migration
+    public partial class AddNewPaymentConstrains : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -453,7 +453,7 @@ namespace educationaccountmanagement.DAL.Migrations
                 {
                     table.PrimaryKey("PK_EducationCreditTransaction", x => x.Id);
                     table.CheckConstraint("CK_EducationCreditTransaction_Amounts_NonNegative", "[Amount] > 0 AND [BalanceBefore] >= 0 AND [BalanceAfter] >= 0");
-                    table.CheckConstraint("CK_EducationCreditTransaction_BalanceEquation", "([Direction] = 1 AND [BalanceAfter] = [BalanceBefore] + [Amount]) OR ([Direction] = 2 AND [BalanceAfter] = [BalanceBefore] - [Amount])");
+                    table.CheckConstraint("CK_EducationCreditTransaction_BalanceEquation", "([Direction] = 1 AND [BalanceAfter] = [BalanceBefore] + [Amount]) OR ([Direction] = 2 AND [BalanceAfter] = [BalanceBefore] - [Amount]) OR ([Direction] = 3 AND [BalanceAfter] = [BalanceBefore])");
                     table.ForeignKey(
                         name: "FK_EducationCreditTransaction_EducationAccount_EducationAccountId",
                         column: x => x.EducationAccountId,
@@ -1589,7 +1589,6 @@ namespace educationaccountmanagement.DAL.Migrations
                     { 6, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 0, false, null, null, 2, 1, null, null },
                     { 7, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, null, null, 3, 1, null, null },
                     { 8, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, null, null, 1, 1, null, null },
-                    { 9, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 0, false, null, null, 2, 1, null, null },
                     { 10, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, null, null, 3, 1, null, null },
                     { 11, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 2, false, null, null, 1, 2, null, null },
                     { 12, null, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 0, false, null, null, 2, 1, null, null },
@@ -1646,7 +1645,6 @@ namespace educationaccountmanagement.DAL.Migrations
                     { 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin005@example.com", "Elaine Chua", false, "S0000105H", "+6580000005", null, "STAFF-2026-AOAY3A4", null, null, 6 },
                     { 6, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin006@example.com", "Farhan Rahman", false, "S0000106F", "+6580000006", 7, "STAFF-2026-KRNWMLK", null, null, 7 },
                     { 7, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin007@example.com", "Grace Lee", false, "S0000107D", "+6580000007", null, "STAFF-2026-UNJFZW7", null, null, 8 },
-                    { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin008@example.com", "Hannah Wong", false, "S0000108B", "+6580000008", null, "STAFF-2026-SFXEF6F", null, null, 9 },
                     { 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin009@example.com", "Isaac Teo", false, "S0000109J", "+6580000009", 10, "STAFF-2026-O3408F1", null, null, 10 },
                     { 10, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin010@example.com", "Jasmine Goh", false, "S0000110D", "+6580000010", null, "STAFF-2026-7F0PDWW", null, null, 11 },
                     { 11, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin011@example.com", "Kenneth Low", false, "S0000111B", "+6580000011", null, "STAFF-2026-8X4V13Q", null, null, 12 },
@@ -1944,7 +1942,16 @@ namespace educationaccountmanagement.DAL.Migrations
             migrationBuilder.InsertData(
                 table: "User",
                 columns: new[] { "Id", "CitizenId", "CreatedAt", "CreatedBy", "DeletedAt", "FailedLoginCount", "IsDeleted", "LastLoginAt", "LockedUntil", "Role", "Status", "UpdatedAt", "UpdatedBy" },
-                values: new object[] { 4, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc), null, 4, 1, null, null });
+                values: new object[,]
+                {
+                    { 4, 1, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 1, false, new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc), null, 4, 1, null, null },
+                    { 9, 9, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, 0, false, null, null, 4, 1, null, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AdminProfile",
+                columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "Email", "FullName", "IsDeleted", "Nric", "PhoneNumber", "SchoolId", "StaffCode", "UpdatedAt", "UpdatedBy", "UserId" },
+                values: new object[] { 8, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin008@example.com", "Hannah Wong", false, "S0000108B", "+6580000008", null, "STAFF-2026-SFXEF6F", null, null, 9 });
 
             migrationBuilder.InsertData(
                 table: "AuditLog",
@@ -2181,7 +2188,11 @@ namespace educationaccountmanagement.DAL.Migrations
             migrationBuilder.InsertData(
                 table: "SsoIdentity",
                 columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "IsDeleted", "Provider", "ProviderUserId", "UpdatedAt", "UpdatedBy", "UserId" },
-                values: new object[] { 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "singpass-subject-004", null, null, 4 });
+                values: new object[,]
+                {
+                    { 4, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "singpass-subject-004", null, null, 4 },
+                    { 5, new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, false, 1, "singpass-subject-009", null, null, 9 }
+                });
 
             migrationBuilder.InsertData(
                 table: "SystemTopupCondition",
@@ -3177,6 +3188,13 @@ namespace educationaccountmanagement.DAL.Migrations
                 columns: new[] { "PaymentId", "ChargeId" },
                 unique: true,
                 filter: "\"IsDeleted\" = 0 AND \"PaymentId\" IS NOT NULL AND \"ChargeId\" IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PaymentAllocation_PaymentId_ChargeId_ChargeInstallmentId",
+                table: "PaymentAllocation",
+                columns: new[] { "PaymentId", "ChargeId", "ChargeInstallmentId" },
+                unique: true,
+                filter: "\"IsDeleted\" = 0 AND \"PaymentId\" IS NOT NULL AND \"ChargeId\" IS NOT NULL AND \"ChargeInstallmentId\" IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RefreshToken_ExpiresAt",

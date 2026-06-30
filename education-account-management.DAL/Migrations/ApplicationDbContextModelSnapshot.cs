@@ -6356,7 +6356,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             t.HasCheckConstraint("CK_EducationCreditTransaction_Amounts_NonNegative", "[Amount] > 0 AND [BalanceBefore] >= 0 AND [BalanceAfter] >= 0");
 
-                            t.HasCheckConstraint("CK_EducationCreditTransaction_BalanceEquation", "([Direction] = 1 AND [BalanceAfter] = [BalanceBefore] + [Amount]) OR ([Direction] = 2 AND [BalanceAfter] = [BalanceBefore] - [Amount])");
+                            t.HasCheckConstraint("CK_EducationCreditTransaction_BalanceEquation", "([Direction] = 1 AND [BalanceAfter] = [BalanceBefore] + [Amount]) OR ([Direction] = 2 AND [BalanceAfter] = [BalanceBefore] - [Amount]) OR ([Direction] = 3 AND [BalanceAfter] = [BalanceBefore])");
                         });
 
                     b.HasData(
@@ -11487,6 +11487,10 @@ namespace educationaccountmanagement.DAL.Migrations
                         .IsUnique()
                         .HasFilter("\"IsDeleted\" = 0 AND \"PaymentId\" IS NOT NULL AND \"ChargeId\" IS NOT NULL");
 
+                    b.HasIndex("PaymentId", "ChargeId", "ChargeInstallmentId")
+                        .IsUnique()
+                        .HasFilter("\"IsDeleted\" = 0 AND \"PaymentId\" IS NOT NULL AND \"ChargeId\" IS NOT NULL AND \"ChargeInstallmentId\" IS NOT NULL");
+
                     b.ToTable("PaymentAllocation", t =>
                         {
                             t.HasCheckConstraint("CK_PaymentAllocation_Amounts", "[Amount] > 0 AND [ChargeGrossAmountSnapshot] >= 0 AND [ChargeNetAmountSnapshot] >= 0 AND [ChargeRemainingAmountSnapshot] >= 0");
@@ -13473,6 +13477,15 @@ namespace educationaccountmanagement.DAL.Migrations
                             Provider = 1,
                             ProviderUserId = "singpass-subject-004",
                             UserId = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            Provider = 1,
+                            ProviderUserId = "singpass-subject-009",
+                            UserId = 9
                         });
                 });
 
@@ -14567,10 +14580,11 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 9,
+                            CitizenId = 9,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 2,
+                            Role = 4,
                             Status = 1
                         },
                         new

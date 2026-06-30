@@ -54,6 +54,8 @@ using StackExchange.Redis;
 using System.Threading.RateLimiting;
 using Utils;
 using Mappers.FasApplications;
+using BLL.Interfaces.Payments;
+using BLL.Services.Payments;
 
 namespace Extensions.DependencyInjection
 {
@@ -94,6 +96,7 @@ namespace Extensions.DependencyInjection
             services.AddScoped<ITopupService, TopupService>();
             services.AddScoped<ITopupManagementQueryService, TopupManagementQueryService>();
             services.AddScoped<ITopupBackgroundService, TopupBackgroundService>();
+            services.AddScoped<IStripeService, StripeService>();
 
 
 
