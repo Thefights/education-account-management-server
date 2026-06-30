@@ -1,7 +1,5 @@
 using Infrastructure.Interface;
 using System.Net.Http.Headers;
-using Microsoft.AspNetCore.Http;
-using DTOs.Base;
 
 namespace Infrastructure
 {
@@ -18,7 +16,7 @@ namespace Infrastructure
         {
             var client = _httpClientFactory.CreateClient("AiClient");
             var response = await client.GetAsync("/health");
-            
+
             if (response.IsSuccessStatusCode)
             {
                 var responseContent = await response.Content.ReadAsStringAsync();
@@ -31,7 +29,7 @@ namespace Infrastructure
         {
             var client = _httpClientFactory.CreateClient("AiClient");
             var response = await client.GetAsync("/ai/documents/stats");
-            
+
             if (response.IsSuccessStatusCode)
             {
                 var responseContent = await response.Content.ReadAsStringAsync();
@@ -44,7 +42,7 @@ namespace Infrastructure
         {
             var client = _httpClientFactory.CreateClient("AiClient");
             var response = await client.GetAsync("/ai/documents");
-            
+
             if (response.IsSuccessStatusCode)
             {
                 var responseContent = await response.Content.ReadAsStringAsync();
@@ -57,7 +55,7 @@ namespace Infrastructure
         {
             var client = _httpClientFactory.CreateClient("AiClient");
             var response = await client.DeleteAsync($"/ai/documents/{documentId}");
-            
+
             if (response.IsSuccessStatusCode)
             {
                 var responseContent = await response.Content.ReadAsStringAsync();
@@ -75,7 +73,7 @@ namespace Infrastructure
 
             using var content = new MultipartFormDataContent();
             using var fileStream = file.OpenReadStream();
-            
+
             var fileContent = new StreamContent(fileStream);
             if (MediaTypeHeaderValue.TryParse(file.ContentType, out var parsedContentType))
             {
@@ -85,13 +83,13 @@ namespace Infrastructure
             {
                 fileContent.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
             }
-            
+
             content.Add(fileContent, "file", file.FileName);
             content.Add(new StringContent(adminOnly.ToString()), "admin_only");
 
             var client = _httpClientFactory.CreateClient("AiClient");
             var response = await client.PostAsync("/ai/documents/upload", content);
-            
+
             if (response.IsSuccessStatusCode)
             {
                 var responseContent = await response.Content.ReadAsStringAsync();
