@@ -12,6 +12,6 @@ namespace DTOs.FasApplications
         public DateTimeOffset SubmittedAt { get; set; }
         public DateTimeOffset? ApprovedDate { get; set; }
         public DateTimeOffset? ValidityEndDate { get; set; }
-        public string? RejectionReason { get; set; }
+        public string? ExternalRejectionReason { get; set; }
     }
 }

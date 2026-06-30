@@ -6,6 +6,10 @@ namespace DTOs.FasApplications
     {
         [MessageRequired]
         [MessageMaxLength(1000)]
-        public string RejectionReason { get; set; } = string.Empty;
+        public string ExternalRejectionReason { get; set; } = string.Empty;
+
+        [MessageRequired]
+        [MessageMaxLength(1000)]
+        public string InternalRejectionReason { get; set; } = string.Empty;
     }
 }
