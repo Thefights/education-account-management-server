@@ -11483,6 +11483,10 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasIndex("PaymentId");
 
+                    b.HasIndex("PaymentId", "ChargeId")
+                        .IsUnique()
+                        .HasFilter("\"IsDeleted\" = 0 AND \"PaymentId\" IS NOT NULL AND \"ChargeId\" IS NOT NULL");
+
                     b.HasIndex("PaymentId", "ChargeId", "ChargeInstallmentId")
                         .IsUnique()
                         .HasFilter("\"IsDeleted\" = 0 AND \"PaymentId\" IS NOT NULL AND \"ChargeId\" IS NOT NULL AND \"ChargeInstallmentId\" IS NOT NULL");
