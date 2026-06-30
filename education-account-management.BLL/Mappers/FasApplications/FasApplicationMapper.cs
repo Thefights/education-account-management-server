@@ -53,6 +53,14 @@ namespace Mappers.FasApplications
                 };
             }
 
+            target.AdditionalAnswers = model.AdditionalQuestionAnswers.Select(a => new ApplicationAdditionalAnswerDTO
+            {
+                Id = a.Id,
+                QuestionText = a.QuestionTextSnapshot,
+                AnswerText = a.AnswerText,
+                IsRequired = a.IsRequiredSnapshot
+            }).ToList();
+
             return target;
         }
 

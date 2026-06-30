@@ -21,7 +21,7 @@ namespace Services.FasSchemes
         : BaseService<FasScheme, CreateFasSchemeDTO, GetFasSchemeDTO, UpdateFasSchemeDTO>(
             unitOfWork,
             mapper,
-            includes: [nameof(FasScheme.Tiers), nameof(FasScheme.RequiredDocuments), $"{nameof(FasScheme.SchemeCourses)}.{nameof(FasSchemeCourse.Course)}"]),
+            includes: [nameof(FasScheme.Tiers), nameof(FasScheme.RequiredDocuments), $"{nameof(FasScheme.SchemeCourses)}.{nameof(FasSchemeCourse.Course)}", nameof(FasScheme.AdditionalQuestions)]),
           IFasSchemeService
     {
         private readonly SchoolScopeResolver _schoolScopeResolver = schoolScopeResolver;
@@ -42,6 +42,8 @@ namespace Services.FasSchemes
             unitOfWork.Repository<FasSchemeCourse>();
         private readonly IGenericRepository<Course> _courseRepository =
             unitOfWork.Repository<Course>();
+        private readonly IGenericRepository<FasSchemeAdditionalQuestion> _additionalQuestionRepository =
+            unitOfWork.Repository<FasSchemeAdditionalQuestion>();
 
         public override async Task<GetFasSchemeDTO> CreateAsync(
             CreateFasSchemeDTO createDTO,
@@ -107,6 +109,15 @@ namespace Services.FasSchemes
                 }).ToList();
                 await _courseLinkRepository.AddRangeAsync(links, token);
 
+                // Save Additional Questions
+                var questions = createDTO.AdditionalQuestions.Select(q => new FasSchemeAdditionalQuestion
+                {
+                    FasSchemeId = scheme.Id,
+                    QuestionText = q.QuestionText,
+                    IsRequired = q.IsRequired
+                }).ToList();
+                await _additionalQuestionRepository.AddRangeAsync(questions, token);
+
                 await _unitOfWork.SaveChangeAsync(token);
                 ValidatePersistedTree(root);
 
@@ -163,6 +174,12 @@ namespace Services.FasSchemes
                     .ToListAsync(token);
                 _courseLinkRepository.RemoveRange(links);
 
+                // Clear additional questions
+                var oldQuestions = await _additionalQuestionRepository.Query(tracking: true)
+                    .Where(q => q.FasSchemeId == id)
+                    .ToListAsync(token);
+                _additionalQuestionRepository.RemoveRange(oldQuestions);
+
                 await _unitOfWork.SaveChangeAsync(token);
 
                 _mapper.MapFromUpdateDTO(updateDTO, scheme);
@@ -203,6 +220,14 @@ namespace Services.FasSchemes
                     CourseId = c.CourseId
                 }).ToList();
                 await _courseLinkRepository.AddRangeAsync(newLinks, token);
+
+                var newQuestions = updateDTO.AdditionalQuestions.Select(q => new FasSchemeAdditionalQuestion
+                {
+                    FasSchemeId = scheme.Id,
+                    QuestionText = q.QuestionText,
+                    IsRequired = q.IsRequired
+                }).ToList();
+                await _additionalQuestionRepository.AddRangeAsync(newQuestions, token);
 
                 await _unitOfWork.SaveChangeAsync(token);
                 ValidatePersistedTree(root);
