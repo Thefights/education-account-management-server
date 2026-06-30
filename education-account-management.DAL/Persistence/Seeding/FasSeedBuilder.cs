@@ -141,8 +141,11 @@ namespace Persistence.Seeding
                     HouseholdMemberCountSnapshot = 4,
                     PerCapitaIncomeSnapshot = pci,
                     RecommendationReason = appId % 2 == 1 ? "PCI <= 500" : "PCI <= 1000",
-                    RejectionReason = status == FasApplicationStatus.Rejected
+                    ExternalRejectionReason = status == FasApplicationStatus.Rejected
                         ? "Income documents are incomplete."
+                        : null,
+                    InternalRejectionReason = status == FasApplicationStatus.Rejected
+                        ? "Admin note: Missing page 2 of income statement."
                         : null,
                     ApprovedAt = approved ? createdAt.AddDays(appId) : null,
                     ApprovedByUserId = approved ? 3 : null,

@@ -47,6 +47,13 @@ namespace Persistence.Seeding
                 decimal paidAmount = status == ChargeStatus.Paid ? netAmount : 0m;
                 decimal remainingAmount = netAmount - paidAmount;
                 
+                int? paymentPlanMonths = null;
+                if (i == 4) paymentPlanMonths = 6;
+                else if (i % 5 == 0) paymentPlanMonths = 3;
+                else if (i % 7 == 0) paymentPlanMonths = 6;
+                else if (i % 11 == 0) paymentPlanMonths = 9;
+                else if (i % 13 == 0) paymentPlanMonths = 12;
+                
                 charges.Add(new Charge
                 {
                     Id = i,
@@ -56,6 +63,7 @@ namespace Persistence.Seeding
                     NetAmount = netAmount,
                     PaidAmount = paidAmount,
                     RemainingAmount = remainingAmount,
+                    PaymentPlanMonths = paymentPlanMonths,
                     SchoolNameSnapshot = "Northview Secondary School",
                     CourseCodeSnapshot = SeedBusinessCodeUtil.Generate(BusinessCodeGenerator.CoursePrefix, i),
                     CourseNameSnapshot = courseNames[(i - 1) % 10] + " Cohort " + i.ToString("D2"),
@@ -78,7 +86,9 @@ namespace Persistence.Seeding
             }
             
             // Sterling Quach special installment coverage (Id=51)
-            charges.Add(new Charge { Id = 51, Status = ChargeStatus.PendingPayment, GrossAmount = 1110m, SubsidyAmount = 0m, NetAmount = 1110m, PaidAmount = 185m, RemainingAmount = 925m, SchoolNameSnapshot = "Northview Secondary School", CourseCodeSnapshot = SeedBusinessCodeUtil.Generate(BusinessCodeGenerator.CoursePrefix, 51), CourseNameSnapshot = "Creative Thinking Cohort 51", CourseDescriptionSnapshot = "Tuition charge generated from enrollment.", CourseStartDateSnapshot = new DateTime(2026, 4, 1, 0, 0, 0, DateTimeKind.Utc), CourseEndDateSnapshot = new DateTime(2026, 10, 1, 0, 0, 0, DateTimeKind.Utc), CourseFeeAmountSnapshot = 900m, MiscFeeAmountSnapshot = 118.35m, GstAmountSnapshot = 91.65m, TaxRateSnapshot = 0.09m, AppliedFasSchemeNameSnapshot = null, AppliedFasTierNameSnapshot = null, AppliedFasSubsidyTypeSnapshot = null, AppliedFasIsPerComponentSnapshot = false, AppliedFasSubsidyValueSnapshot = null, EnrollmentId = 51, AppliedFasApplicationId = null, CreatedAt = createdAt });
+            charges.Add(new Charge { Id = 51, Status = ChargeStatus.PendingPayment, GrossAmount = 1110m, SubsidyAmount = 0m, NetAmount = 1110m, PaidAmount = 185m, RemainingAmount = 925m, PaymentPlanMonths = 6, SchoolNameSnapshot = "Northview Secondary School", CourseCodeSnapshot = SeedBusinessCodeUtil.Generate(BusinessCodeGenerator.CoursePrefix, 51), CourseNameSnapshot = "Creative Thinking Cohort 51", CourseDescriptionSnapshot = "Tuition charge generated from enrollment.", CourseStartDateSnapshot = new DateTime(2026, 4, 1, 0, 0, 0, DateTimeKind.Utc), CourseEndDateSnapshot = new DateTime(2026, 10, 1, 0, 0, 0, DateTimeKind.Utc), CourseFeeAmountSnapshot = 900m, MiscFeeAmountSnapshot = 118.35m, GstAmountSnapshot = 91.65m, TaxRateSnapshot = 0.09m, AppliedFasSchemeNameSnapshot = null, AppliedFasTierNameSnapshot = null, AppliedFasSubsidyTypeSnapshot = null, AppliedFasIsPerComponentSnapshot = false, AppliedFasSubsidyValueSnapshot = null, EnrollmentId = 51, AppliedFasApplicationId = null, CreatedAt = createdAt });
+            // Singpass 004 unpaid non-installment charge (Id=52)
+            charges.Add(new Charge { Id = 52, Status = ChargeStatus.PendingPayment, GrossAmount = 250m, SubsidyAmount = 0m, NetAmount = 250m, PaidAmount = 0m, RemainingAmount = 250m, PaymentPlanMonths = null, SchoolNameSnapshot = "Northview Secondary School", CourseCodeSnapshot = SeedBusinessCodeUtil.Generate(BusinessCodeGenerator.CoursePrefix, 52), CourseNameSnapshot = "Applied Science Cohort 52", CourseDescriptionSnapshot = "Tuition charge generated from enrollment.", CourseStartDateSnapshot = new DateTime(2026, 8, 1, 0, 0, 0, DateTimeKind.Utc), CourseEndDateSnapshot = new DateTime(2026, 10, 1, 0, 0, 0, DateTimeKind.Utc), CourseFeeAmountSnapshot = 220m, MiscFeeAmountSnapshot = 30m, GstAmountSnapshot = 22.50m, TaxRateSnapshot = 0.09m, AppliedFasSchemeNameSnapshot = null, AppliedFasTierNameSnapshot = null, AppliedFasSubsidyTypeSnapshot = null, AppliedFasIsPerComponentSnapshot = false, AppliedFasSubsidyValueSnapshot = null, EnrollmentId = 52, AppliedFasApplicationId = null, CreatedAt = createdAt });
 
             modelBuilder.Entity<Charge>().HasData(charges);
             return modelBuilder;

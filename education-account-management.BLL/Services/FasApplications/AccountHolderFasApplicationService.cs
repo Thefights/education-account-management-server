@@ -278,7 +278,7 @@ namespace Services.FasApplications
                     SubmittedAt = a.CreatedAt,
                     ApprovedDate = a.ApprovedAt,
                     ValidityEndDate = a.ValidityEndDate,
-                    RejectionReason = a.RejectionReason
+                    ExternalRejectionReason = a.ExternalRejectionReason
                 }),
                 a => a.SchoolStudentId == studentInfo.Id,
                 filter.Filter,
@@ -354,7 +354,7 @@ namespace Services.FasApplications
                 GrossHouseholdIncomeSnapshot = application.GrossHouseholdIncomeSnapshot,
                 HouseholdMemberCountSnapshot = application.HouseholdMemberCountSnapshot,
                 PerCapitaIncomeSnapshot = application.PerCapitaIncomeSnapshot,
-                RejectionReason = application.RejectionReason,
+                ExternalRejectionReason = application.ExternalRejectionReason,
                 ApprovedAt = application.ApprovedAt,
                 ValidityStartDate = application.ValidityStartDate,
                 ValidityEndDate = application.ValidityEndDate,
@@ -496,7 +496,8 @@ namespace Services.FasApplications
             application.RecommendedTierId = recommendedTierId;
             application.ApprovedTierId = null;
             application.RecommendationReason = recommendationReason;
-            application.RejectionReason = null;
+            application.ExternalRejectionReason = null;
+            application.InternalRejectionReason = null;
             application.ApprovedAt = null;
             application.ApprovedByUserId = null;
             application.DurationInMonthsSnapshot = null;

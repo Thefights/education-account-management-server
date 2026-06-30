@@ -116,7 +116,9 @@ namespace Mappers.FasApplications
                 AccountNumber = a.SchoolStudent.EducationAccount.AccountNumber,
                 SchemeName = a.FasScheme.SchemeName,
                 SubmittedAt = a.CreatedAt,
-                Status = a.Status.ToString()
+                Status = a.Status.ToString(),
+                ExternalRejectionReason = a.ExternalRejectionReason,
+                InternalRejectionReason = a.InternalRejectionReason
             });
         }
     }
