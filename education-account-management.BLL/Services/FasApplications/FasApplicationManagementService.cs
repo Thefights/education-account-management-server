@@ -1,4 +1,5 @@
 using DTOs.FasApplications;
+using Interfaces.Audit;
 using Interfaces.FasApplications;
 using Mappers.FasApplications;
 using Results;
@@ -10,11 +11,17 @@ namespace Services.FasApplications
         IUnitOfWork unitOfWork,
         ICurrentUserService currentUserService,
         SchoolScopeResolver schoolScopeResolver,
-        FasApplicationMapper mapper) : BaseGetService<FasApplication, GetFasApplicationSchoolAdminDTO>(unitOfWork, mapper), IFasApplicationManagementService
+        FasApplicationMapper mapper,
+        IAuditLogWriter auditLogWriter,
+        IManagementActionLogService managementActionLogService) : BaseGetService<FasApplication, GetFasApplicationSchoolAdminDTO>(unitOfWork, mapper), IFasApplicationManagementService
     {
         private readonly ICurrentUserService _currentUserService = currentUserService;
         private readonly SchoolScopeResolver _schoolScopeResolver = schoolScopeResolver;
         private readonly FasApplicationMapper _mapper = mapper;
+        private readonly IAuditLogWriter _auditLogWriter = auditLogWriter;
+        private readonly IManagementActionLogService _managementActionLogService = managementActionLogService;
+        private readonly IGenericRepository<FasTierOverrideHistory> _tierOverrideRepository =
+            unitOfWork.Repository<FasTierOverrideHistory>();
 
         public override async Task<PaginationResult<GetFasApplicationSchoolAdminDTO>> GetAllPaginatedAsync(
             FilterDTO filterDTO,
@@ -48,12 +55,20 @@ namespace Services.FasApplications
                 .Include(a => a.SchoolStudent.EducationAccount)
                 .Include(a => a.SchoolStudent.EducationAccount.Citizen)
                 .Include(a => a.RecommendedTier)
+                .Include(a => a.ApprovedTier)
                 .Include(a => a.FasScheme)
                     .ThenInclude(s => s.Tiers)
                 .Include(a => a.FasScheme)
                     .ThenInclude(s => s.RequiredDocuments)
                 .Include(a => a.Documents)
                 .Include(a => a.AdditionalQuestionAnswers)
+                .Include(a => a.TierOverrideHistories)
+                    .ThenInclude(h => h.OldTier)
+                .Include(a => a.TierOverrideHistories)
+                    .ThenInclude(h => h.NewTier)
+                .Include(a => a.TierOverrideHistories)
+                    .ThenInclude(h => h.ModifiedByUser)
+                        .ThenInclude(u => u.AdminProfile)
                 .FirstOrDefaultAsync(
                     a => a.Id == applicationId &&
                         a.SchoolStudent.SchoolId == adminSchoolId &&
@@ -106,52 +121,115 @@ namespace Services.FasApplications
             await _unitOfWork.SaveChangeAsync(cancellationToken);
         }
 
-        public async Task ApproveAsync(int id, CancellationToken cancellationToken = default)
+        public async Task ApproveAsync(
+            int id,
+            ApproveFasApplicationDTO? dto = null,
+            CancellationToken cancellationToken = default)
         {
+            dto ??= new ApproveFasApplicationDTO();
             var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
 
-            var application = await _repository
-                .Query()
-                .Include(a => a.FasScheme)
-                .Include(a => a.SchoolStudent)
-                .FirstOrDefaultAsync(
-                    a => a.Id == id &&
-                        a.SchoolStudent.SchoolId == schoolId &&
-                        a.FasScheme.SchoolId == schoolId,
-                    cancellationToken);
-
-            if (application == null)
+            await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
             {
-                throw new DataNotFoundException(typeof(FasApplication), id);
-            }
+                var application = await _repository
+                    .Query(tracking: true)
+                    .Include(a => a.FasScheme)
+                        .ThenInclude(s => s.Tiers)
+                    .Include(a => a.SchoolStudent)
+                    .Include(a => a.RecommendedTier)
+                    .FirstOrDefaultAsync(
+                        a => a.Id == id &&
+                            a.SchoolStudent.SchoolId == schoolId &&
+                            a.FasScheme.SchoolId == schoolId,
+                        token);
 
-            if (application.Status != FasApplicationStatus.Pending)
-            {
-                throw new DataConflictException("Only pending applications can be approved.");
-            }
+                if (application == null)
+                {
+                    throw new DataNotFoundException(typeof(FasApplication), id);
+                }
 
-            if (!application.RecommendedTierId.HasValue)
-            {
-                throw new DataConflictException("Cannot approve application because no tier is eligible.");
-            }
+                if (application.Status != FasApplicationStatus.Pending)
+                {
+                    throw new DataConflictException("Only pending applications can be approved.");
+                }
 
-            var currentUserId = _currentUserService.UserId;
-            var now = DateTime.UtcNow;
+                if (!application.RecommendedTierId.HasValue)
+                {
+                    throw new DataConflictException("Cannot approve application because no tier is eligible.");
+                }
 
-            application.Status = FasApplicationStatus.Approved;
-            application.ApprovedAt = now;
-            application.ApprovedByUserId = currentUserId;
-            application.ApprovedTierId = application.RecommendedTierId;
-            application.DurationInMonthsSnapshot = application.FasScheme.DurationInMonths;
-            application.ValidityStartDate = now.Date;
-            application.ValidityEndDate = application.FasScheme.DurationInMonths > 0
-                ? application.ValidityStartDate.Value.AddMonths(application.FasScheme.DurationInMonths)
-                : null;
+                var selectedTierId = dto.SelectedTierId ?? application.RecommendedTierId.Value;
+                var selectedTier = application.FasScheme.Tiers.FirstOrDefault(t => t.Id == selectedTierId);
+                if (selectedTier == null)
+                {
+                    throw new ValidationFailureException(nameof(dto.ApprovedTierId), "Selected tier does not belong to this FAS scheme.");
+                }
 
-            application.TryValidate();
+                var isOverride = selectedTier.Id != application.RecommendedTierId.Value;
+                var reason = dto.EffectiveReason?.Trim() ?? string.Empty;
+                if (isOverride)
+                {
+                    ValidateOverrideReason(reason);
+                }
 
-            _repository.Update(application);
-            await _unitOfWork.SaveChangeAsync(cancellationToken);
+                var currentUserId = _currentUserService.UserId;
+                var now = DateTime.UtcNow;
+                var oldStatus = application.Status;
+
+                application.Status = FasApplicationStatus.Approved;
+                application.ApprovedAt = now;
+                application.ApprovedByUserId = currentUserId;
+                application.ApprovedTierId = selectedTier.Id;
+                application.DurationInMonthsSnapshot = application.FasScheme.DurationInMonths;
+                application.ValidityStartDate = now.Date;
+                application.ValidityEndDate = application.FasScheme.DurationInMonths > 0
+                    ? application.ValidityStartDate.Value.AddMonths(application.FasScheme.DurationInMonths)
+                    : null;
+
+                if (isOverride)
+                {
+                    var history = new FasTierOverrideHistory
+                    {
+                        FasApplicationId = application.Id,
+                        OldTierId = application.RecommendedTierId,
+                        NewTierId = selectedTier.Id,
+                        ModifiedByUserId = currentUserId,
+                        ModifiedAt = now,
+                        Reason = reason
+                    };
+                    history.TryValidate();
+                    await _tierOverrideRepository.AddAsync(history, token);
+                }
+
+                application.TryValidate();
+                _repository.Update(application);
+
+                var batchId = Guid.NewGuid();
+                await _managementActionLogService.LogAsync(
+                    batchId,
+                    ManagementActionEntityType.FasApplication,
+                    application.Id,
+                    isOverride ? ManagementAction.Override : ManagementAction.Approve,
+                    isOverride
+                        ? BuildOverrideAuditReason(
+                            reason,
+                            application.RecommendationReason,
+                            application.RecommendedTier?.TierName,
+                            selectedTier.TierName)
+                        : $"Approved system-recommended tier {selectedTier.TierName}.",
+                    oldStatus.ToString(),
+                    application.Status.ToString(),
+                    cancellationToken: token);
+
+                await _auditLogWriter.LogAsync(
+                    AuditLogCategory.StatusChange,
+                    isOverride
+                        ? $"OverrideFasApplicationTier: ApplicationId {application.Id}, OldTierId {application.RecommendedTierId}, NewTierId {selectedTier.Id}"
+                        : $"ApproveFasApplication: ApplicationId {application.Id}, TierId {selectedTier.Id}",
+                    cancellationToken: token);
+
+                await _unitOfWork.SaveChangeAsync(token);
+            }, cancellationToken);
         }
 
         public override async Task<List<GetFasApplicationSchoolAdminDTO>> GetAllAsync(CancellationToken cancellationToken = default)
@@ -191,6 +269,34 @@ namespace Services.FasApplications
                 _includes,
                 cancellationToken)
                 ?? throw new DataNotFoundException(typeof(FasApplication), id);
+        }
+
+        private static void ValidateOverrideReason(string reason)
+        {
+            if (string.IsNullOrWhiteSpace(reason))
+            {
+                throw new ValidationFailureException(nameof(ApproveFasApplicationDTO.Reason), "Override reason is required.");
+            }
+
+            if (reason.Length < 10)
+            {
+                throw new ValidationFailureException(nameof(ApproveFasApplicationDTO.Reason), "Override reason must be at least 10 characters.");
+            }
+
+            if (reason.Length > 500)
+            {
+                throw new ValidationFailureException(nameof(ApproveFasApplicationDTO.Reason), "Override reason must be 500 characters or fewer.");
+            }
+        }
+
+        private static string BuildOverrideAuditReason(
+            string overrideReason,
+            string? recommendationReason,
+            string? oldTierName,
+            string newTierName)
+        {
+            var reason = $"Override reason: {overrideReason}; Recommendation reason: {recommendationReason ?? "N/A"}; Tier: {oldTierName ?? "N/A"} -> {newTierName}";
+            return reason.Length <= 500 ? reason : reason[..500];
         }
     }
 }
