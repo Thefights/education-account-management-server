@@ -310,6 +310,7 @@ namespace Services.FasSchemes
                     .Include(s => s.Tiers)
                     .Include(s => s.RequiredDocuments)
                     .Include(s => s.SchemeCourses)
+                    .Include(s => s.AdditionalQuestions)
                     .FirstOrDefaultAsync(s => s.Id == id && s.SchoolId == schoolId, token)
                     ?? throw new DataNotFoundException(typeof(FasScheme), id);
 
@@ -375,6 +376,15 @@ namespace Services.FasSchemes
                     CourseId = c.CourseId
                 }).ToList();
                 await _courseLinkRepository.AddRangeAsync(newLinks, token);
+
+                // Duplicate additional questions
+                var newQuestions = source.AdditionalQuestions.Select(q => new FasSchemeAdditionalQuestion
+                {
+                    FasSchemeId = newScheme.Id,
+                    QuestionText = q.QuestionText,
+                    IsRequired = q.IsRequired
+                }).ToList();
+                await _additionalQuestionRepository.AddRangeAsync(newQuestions, token);
 
                 // Duplicate condition tree
                 var rootGroup = sourceGroups.SingleOrDefault(g => g.ParentGroupId == null);
