@@ -37,8 +37,6 @@ namespace Services.FasSchemes
                 throw new DataNotFoundException("SchoolStudent for the current account holder was not found.");
             }
 
-            var today = DateTime.UtcNow.Date;
-
             // 2. Tìm tất cả các Scheme đang ở trạng thái Active
             // Bao gồm luôn cả việc load các bảng liên quan như Tiers, RequiredDocuments, ConditionGroups và Conditions
             var activeSchemesQuery = _unitOfWork.Repository<FasScheme>()
@@ -55,22 +53,9 @@ namespace Services.FasSchemes
 
             var activeSchemes = await activeSchemesQuery.ToListAsync(cancellationToken);
 
-            // 3. Tìm danh sách Scheme ID mà học sinh này đã từng apply 
-            // (Chỉ chặn những Scheme đang chờ duyệt (Pending) hoặc đã duyệt nhưng còn hạn (Approved + >= Today))
-            var existingApplicationSchemeIds = await _unitOfWork.Repository<FasApplication>()
-                .Query()
-                .Where(a => a.SchoolStudentId == studentInfo.Id 
-                            && (a.Status == FasApplicationStatus.Pending || 
-                                a.Status == FasApplicationStatus.Draft ||
-                               (a.Status == FasApplicationStatus.Approved && a.ValidityEndDate >= today)))
-                .Select(a => a.FasSchemeId)
-                .Distinct()
-                .ToListAsync(cancellationToken);
-
-            // Loại bỏ các Scheme đã apply thành công khỏi danh sách Active
-            var availableSchemes = activeSchemes
-                .Where(s => !existingApplicationSchemeIds.Contains(s.Id))
-                .ToList();
+            // 3. Keep all active schemes visible. The frontend disables Apply for schemes that
+            // already have a pending or currently valid approved application.
+            var availableSchemes = activeSchemes;
 
             // 4. Tính toán Per-capita Income (PCI) nếu FE có gửi param GrossHouseholdIncome và HouseholdMemberCount
             decimal? calculatedPerCapitaIncome = null;
