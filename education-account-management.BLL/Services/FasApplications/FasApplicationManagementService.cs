@@ -87,9 +87,20 @@ namespace Services.FasApplications
         {
             var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
 
-            if (string.IsNullOrWhiteSpace(dto.ExternalRejectionReason) || string.IsNullOrWhiteSpace(dto.InternalRejectionReason))
+            var errors = new Dictionary<string, string>();
+            if (string.IsNullOrWhiteSpace(dto.ExternalRejectionReason))
             {
-                throw new ValidationFailureException(nameof(dto.ExternalRejectionReason), "Both internal and external rejection reasons are required.");
+                errors[nameof(dto.ExternalRejectionReason)] = "External rejection reason is required.";
+            }
+
+            if (string.IsNullOrWhiteSpace(dto.InternalRejectionReason))
+            {
+                errors[nameof(dto.InternalRejectionReason)] = "Internal rejection reason is required.";
+            }
+
+            if (errors.Count > 0)
+            {
+                throw new ValidationFailureException(errors);
             }
 
             var application = await _repository

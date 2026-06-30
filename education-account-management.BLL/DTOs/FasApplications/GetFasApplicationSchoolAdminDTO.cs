@@ -9,6 +9,8 @@ namespace DTOs.FasApplications
         public string SchemeName { get; set; } = string.Empty;
         public DateTime SubmittedAt { get; set; }
         public string Status { get; set; } = string.Empty;
+        public string? ExternalRejectionReason { get; set; }
+        public string? InternalRejectionReason { get; set; }
     }
 
     public class GetFasApplicationSchoolAdminDetailDTO
