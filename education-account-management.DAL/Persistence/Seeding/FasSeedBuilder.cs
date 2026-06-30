@@ -15,6 +15,7 @@ namespace Persistence.Seeding
         {
             var createdAt = SeedDataConstants.CreatedAt;
             var publishedAt = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            var approvedAt = new DateTime(2026, 2, 1, 0, 0, 0, DateTimeKind.Utc);
             
             var schemes = new List<FasScheme>();
             var conditionGroups = new List<FasSchemeConditionGroup>();
@@ -214,6 +215,11 @@ namespace Persistence.Seeding
             modelBuilder.Entity<FasApplication>().HasData(applications);
             modelBuilder.Entity<FasApplicationDocument>().HasData(appDocs);
             modelBuilder.Entity<FasApplicationAdditionalQuestionAnswer>().HasData(answers);
+
+            modelBuilder.Entity<FasTierOverrideHistory>().HasData(
+                new FasTierOverrideHistory { Id = 1, FasApplicationId = 2, OldTierId = 2, NewTierId = 2, ModifiedByUserId = 1, ModifiedAt = approvedAt.AddDays(2), Reason = "Seed tier review trail.", CreatedAt = createdAt },
+                new FasTierOverrideHistory { Id = 2, FasApplicationId = 6, OldTierId = 6, NewTierId = 6, ModifiedByUserId = 1, ModifiedAt = approvedAt.AddDays(6), Reason = "Seed tier review trail.", CreatedAt = createdAt },
+                new FasTierOverrideHistory { Id = 3, FasApplicationId = 10, OldTierId = 10, NewTierId = 10, ModifiedByUserId = 1, ModifiedAt = approvedAt.AddDays(10), Reason = "Seed tier review trail.", CreatedAt = createdAt });
 
             return modelBuilder;
         }
