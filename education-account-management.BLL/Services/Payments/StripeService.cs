@@ -778,7 +778,7 @@ public class StripeService(
                 // Fallback: Nếu PayRemainingInstallments vô tình thanh toán cạn nợ, ta đánh dấu các kỳ còn lại thành Paid
                 if (charge.RemainingAmount <= 0)
                 {
-                    foreach (var inst in charge.Installments.Where(i => i.Status == ChargeInstallmentStatus.PendingPayment))
+                    foreach (var inst in charge.Installments.Where(i => i.Status != ChargeInstallmentStatus.Paid))
                     {
                         inst.Status = ChargeInstallmentStatus.Paid;
                     }
@@ -787,7 +787,7 @@ public class StripeService(
             // KỊCH BẢN B: Thanh toán nốt toàn bộ nợ (PayFull)
             else if (charge.RemainingAmount <= 0)
             {
-                foreach (var inst in charge.Installments.Where(i => i.Status == ChargeInstallmentStatus.PendingPayment))
+                foreach (var inst in charge.Installments.Where(i => i.Status != ChargeInstallmentStatus.Paid))
                 {
                     inst.Status = ChargeInstallmentStatus.Paid;
                 }
