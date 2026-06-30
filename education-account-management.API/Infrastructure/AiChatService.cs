@@ -65,5 +65,55 @@ namespace Infrastructure
 
             return AiServiceResult.Failure("Failed to connect to the AI server.", (int)response.StatusCode);
         }
+
+        public async Task<AiServiceResult> SendDynamicFasChatAsync(DynamicFasChatRequestDTO request)
+        {
+            var setting = await _applicationSettingService.GetAsync();
+            if (setting == null || !setting.IsAiFeatureEnabled)
+            {
+                return AiServiceResult.Failure("The AI Assistant feature is currently disabled by Admin.", StatusCodes.Status403Forbidden);
+            }
+
+            request.CurrentAnswers = (request.CurrentAnswers ?? [])
+                .Where(answer => !string.IsNullOrWhiteSpace(answer.Value))
+                .ToDictionary(answer => answer.Key, answer => answer.Value);
+
+            var client = _httpClientFactory.CreateClient("AiClient");
+            var jsonContent = JsonSerializer.Serialize(request);
+            var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+            var response = await client.PostAsync("/dynamic-fas/chat", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var responseContent = await response.Content.ReadAsStringAsync();
+                return AiServiceResult.Success(responseContent, (int)response.StatusCode);
+            }
+
+            return AiServiceResult.Failure("Failed to connect to the AI server.", (int)response.StatusCode);
+        }
+
+        public async Task<AiServiceResult> ResetDynamicFasSessionAsync(DynamicFasResetSessionRequestDTO request)
+        {
+            var setting = await _applicationSettingService.GetAsync();
+            if (setting == null || !setting.IsAiFeatureEnabled)
+            {
+                return AiServiceResult.Failure("The AI Assistant feature is currently disabled by Admin.", StatusCodes.Status403Forbidden);
+            }
+
+            var client = _httpClientFactory.CreateClient("AiClient");
+            var jsonContent = JsonSerializer.Serialize(request);
+            var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+            var response = await client.PostAsync("/dynamic-fas/reset-session", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var responseContent = await response.Content.ReadAsStringAsync();
+                return AiServiceResult.Success(responseContent, (int)response.StatusCode);
+            }
+
+            return AiServiceResult.Failure("Failed to connect to the AI server.", (int)response.StatusCode);
+        }
     }
 }
