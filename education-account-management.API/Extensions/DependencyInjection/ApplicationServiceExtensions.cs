@@ -7,7 +7,7 @@ using Infrastructure;
 using Infrastructure.CacheServices;
 using Infrastructure.Interface;
 using Interfaces.Admin;
-using Interfaces.AiAssistantSettings;
+using Interfaces.ApplicationSettings;
 using Interfaces.Audit;
 using Interfaces.Auth;
 using Interfaces.Base;
@@ -25,6 +25,8 @@ using Interfaces.TransactionHistory;
 using Mappers;
 using Mappers.Admin;
 using Mappers.Enrollments;
+using Mappers.FasApplications;
+using Mappers.FasSchemes;
 using Mappers.SchoolStudents;
 using Mappers.TopUp;
 using Polly;
@@ -33,7 +35,7 @@ using Polly.Retry;
 using Repositories.Interfaces;
 using Resend;
 using Services.Admin;
-using Services.AiAssistantSettings;
+using Services.ApplicationSettings;
 using Services.Audit;
 using Services.Auth;
 using Services.Base;
@@ -41,6 +43,7 @@ using Services.EducationAccounts;
 using Services.Email;
 using Services.Enrollments;
 using Services.FasApplications;
+using Services.FasSchemes;
 using Services.Maintenance;
 using Services.Payments;
 using Services.Schools;
@@ -48,8 +51,6 @@ using Services.SchoolStudents;
 using Services.Storage;
 using Services.TopUp;
 using Services.TransactionHistory;
-using Mappers.FasSchemes;
-using Services.FasSchemes;
 using StackExchange.Redis;
 using System.Threading.RateLimiting;
 using Utils;
@@ -71,6 +72,7 @@ namespace Extensions.DependencyInjection
 
             services.AddScoped<IAuditLogService, AuditLogService>();
             services.AddScoped<IAuditLogWriter, AuditLogWriter>();
+            services.AddScoped<IManagementActionLogService, ManagementActionLogService>();
 
             services.AddScoped<ICsvExportService, CsvExportService>();
             services.AddScoped(typeof(CsvImportService<,>));
@@ -84,16 +86,20 @@ namespace Extensions.DependencyInjection
             services.AddScoped<ITransactionHistoryService, TransactionHistoryService>();
             services.AddScoped<IAccountHolderFasSchemeService, AccountHolderFasSchemeService>();
             services.AddScoped<IAccountHolderFasApplicationService, AccountHolderFasApplicationService>();
-            services.AddScoped<IManagementFasApplicationService, ManagementFasApplicationService>();
+            services.AddScoped<IFasApplicationManagementService, FasApplicationManagementService>();
+            services.AddScoped<IFasBackgroundService, FasBackgroundService>();
 
             services.AddScoped<ISystemTopupService, SystemTopupService>();
             services.AddScoped<IScheduleTopUpService, ScheduleTopUpService>();
             services.AddScoped<ITopupService, TopupService>();
             services.AddScoped<ITopupManagementQueryService, TopupManagementQueryService>();
             services.AddScoped<ITopupBackgroundService, TopupBackgroundService>();
+            services.AddScoped<IStripeService, StripeService>();
+
+
 
             services.AddScoped<IEducationAccountSweepReportService, EducationAccountSweepReportService>();
-            services.AddScoped<IAiAssistantSettingService, AiAssistantSettingService>();
+            services.AddScoped<IApplicationSettingService, ApplicationSettingService>();
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<ICourseService, CourseService>();
             services.AddScoped<ICourseLifecycleService, CourseLifecycleService>();
@@ -106,26 +112,51 @@ namespace Extensions.DependencyInjection
             services.AddScoped<ISchoolStudentImportService, SchoolStudentImportService>();
             services.AddScoped<IFasSchemeService, FasSchemeService>();
 
+
             services.AddScoped<IDataCleanupService, DataCleanupService>();
             services.AddHostedService<DataCleanupWorker>();
             services.AddHostedService<EducationAccountSweepWorker>();
             services.AddHostedService<TopupDailyWorker>();
+            services.AddHostedService<FasDailyWorker>();
             services.AddHostedService<CourseLifecycleWorker>();
 
             services.AddScoped<AuditLogMapper>();
+            services.AddScoped<ManagementActionLogMapper>();
             services.AddScoped<EducationAccountMapper>();
             services.AddScoped<EnrollmentMapper>();
             services.AddScoped<TransactionHistoryMapper>();
             services.AddScoped<SystemTopupMapper>();
             services.AddScoped<ScheduleTopUpMapper>();
-            services.AddScoped<AiAssistantSettingMapper>();
+            services.AddScoped<ApplicationSettingMapper>();
             services.AddScoped<AdminMapper>();
             services.AddScoped<CourseMapper>();
             services.AddScoped<SchoolMapper>();
             services.AddScoped<FasSchemeMapper>();
             services.AddScoped<SchoolStudentMapper>();
+            services.AddScoped<FasApplicationMapper>();
+
+            services.AddScoped<IAiChatService, AiChatService>();
+            services.AddScoped<IAiDocumentManagementService, AiDocumentManagementService>();
+
+            AddAiServices(services, configuration);
 
             return services;
+        }
+
+        private static void AddAiServices(IServiceCollection services, AppConfiguration configuration)
+        {
+            services.AddHttpClient("AiClient", client =>
+            {
+                if (!string.IsNullOrWhiteSpace(configuration.AiSettings?.BaseUrl))
+                {
+                    client.BaseAddress = new Uri(configuration.AiSettings.BaseUrl);
+                }
+                if (!string.IsNullOrWhiteSpace(configuration.AiSettings?.ApiKey))
+                {
+                    client.DefaultRequestHeaders.Add("X-API-Key", configuration.AiSettings.ApiKey);
+                }
+                client.Timeout = TimeSpan.FromMinutes(2); // Some AI requests can take time
+            });
         }
 
         private static void AddAuthServices(IServiceCollection services)

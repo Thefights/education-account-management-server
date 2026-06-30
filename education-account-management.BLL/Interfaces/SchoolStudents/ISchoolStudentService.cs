@@ -1,4 +1,4 @@
-﻿using DTOs.SchoolStudents;
+using DTOs.SchoolStudents;
 using Interfaces.Base;
 
 namespace Interfaces.SchoolStudents

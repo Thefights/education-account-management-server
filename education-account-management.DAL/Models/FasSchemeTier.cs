@@ -11,9 +11,11 @@ namespace Models
         [MessageRequired, MessageMaxLength(100)]
         public string TierName { get; set; } = string.Empty;
 
-        // PCI tối đa của tier; system sort tăng dần và chọn tier đầu tiên có PCI <= giá trị này.
         [Column(TypeName = "decimal(18,2)"), NumberPositive]
         public decimal? MaxPerCapitaIncome { get; set; }
+
+        [Column(TypeName = "decimal(18,2)"), NumberPositive]
+        public decimal? MaxGrossHouseholdIncome { get; set; }
 
         // Giá trị hỗ trợ chung khi scheme không tách Course Fee/Misc Fee.
         [Column(TypeName = "decimal(18,2)"), NumberPositive]

@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace education_account_management.BLL
 {
     public class AppConfiguration
@@ -16,7 +18,17 @@ namespace education_account_management.BLL
         public EmailConfig EmailConfig { get; set; } = null!;
         public RedisConfig RedisConfig { get; set; } = null!;
         public R2Config R2Config { get; set; } = null!;
+        public StripeConfig StripeConfig { get; set; } = null!;
+        public AiSettings AiSettings { get; set; } = null!;
     }
+
+    #region AiSettings
+    public class AiSettings
+    {
+        public string BaseUrl { get; set; } = null!;
+        public string ApiKey { get; set; } = null!;
+    }
+    #endregion
 
     #region AppInfo
     public class AppInfo
@@ -150,6 +162,19 @@ namespace education_account_management.BLL
         public string SecretAccessKey { get; set; } = null!;
         public string Bucket { get; set; } = null!;
         public string PublicBaseUrl { get; set; } = null!;
+    }
+    #endregion
+
+    #region StripeConfig
+    public class StripeConfig
+    {
+        public string SecretKey { get; set; } = null!;
+        public string WebhookSecret { get; set; } = null!;
+        public string SuccessUrl { get; set; } = null!;
+        public string CancelUrl { get; set; } = null!;
+        public string Method { get; set; } = null!;
+        public string Mode { get; set; } = null!;
+        public int SessionExpiryMinutes { get; set; } = 30;
     }
     #endregion
 }

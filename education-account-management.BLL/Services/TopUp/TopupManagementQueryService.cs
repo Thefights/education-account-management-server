@@ -21,7 +21,7 @@ namespace Services.TopUp
             var page = Math.Max(filter.Page, 1);
             var pageSize = Math.Clamp(filter.PageSize, 1, 100);
             var query = _accountRepository.Query()
-                .Where(account => account.Status == EducationAccountStatus.Active);
+                .Where(TopupEligibilityHelper.EligibleAccountPredicate);
 
             if (!string.IsNullOrWhiteSpace(filter.Search))
             {

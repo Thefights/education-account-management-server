@@ -391,7 +391,7 @@ namespace Services.Auth
                             UserId = user.Id,
                             PreviousStatus = previousStatus,
                             NewStatus = user.Status,
-                            Reason = dto.Reason.Trim(),
+                            Reason = dto.Reason,
                             ChangedAt = revokeTime,
                             ChangedByUserId = currentUserId
                         };

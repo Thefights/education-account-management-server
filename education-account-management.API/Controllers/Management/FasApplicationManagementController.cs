@@ -2,15 +2,25 @@ using Authorization;
 using Common.HttpResults;
 using Controllers.Base;
 using DTOs.FasApplications;
+using Filters.FasApplications;
 using Interfaces.FasApplications;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Controllers.Management
 {
     [Authorize(Roles = RolePolicy.SchoolAdmin)]
-    public class FasApplicationManagementController(IManagementFasApplicationService service) : BaseController
+    public class FasApplicationManagementController(
+        IFasApplicationManagementService service) : GetController<GetFasApplicationSchoolAdminDTO, FasApplicationFilterDTO>(service)
     {
-        private readonly IManagementFasApplicationService _service = service;
+        private readonly IFasApplicationManagementService _service = service;
+
+        [HttpGet("{id}")]
+        public override async Task<IActionResult> GetById(
+            int id,
+            CancellationToken cancellationToken)
+        {
+            var result = await _service.GetApplicationDetailsAsync(id, cancellationToken);
+            return Result.SuccessData(result);
+        }
 
         [HttpPost("{id}/approve")]
         public async Task<IActionResult> Approve(int id, CancellationToken cancellationToken)
@@ -24,6 +34,13 @@ namespace Controllers.Management
         {
             await _service.RejectAsync(id, dto, cancellationToken);
             return Result.SuccessAction("FAS application rejected successfully.");
+        }
+
+        [ApiExplorerSettings(IgnoreApi = true)]
+        [NonAction]
+        public override Task<IActionResult> GetAll(CancellationToken cancellationToken)
+        {
+            return base.GetAll(cancellationToken);
         }
     }
 }

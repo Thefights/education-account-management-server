@@ -35,18 +35,13 @@ namespace Controllers.Base
             return Result.SuccessData(result, $"{EntityName} updated successfully");
         }
 
-        [HttpDelete("{id}")]
-        public virtual async Task<IActionResult> Delete(int id)
-        {
-            await _service.DeleteAsync(id);
-            return Result.SuccessAction($"{EntityName} deleted successfully");
-        }
-
         [HttpDelete("selected")]
-        public virtual async Task<IActionResult> DeleteSelectedIds([FromQuery] List<int> ids)
+        public virtual async Task<IActionResult> DeleteSelected(
+            DeleteSelectedIdsDTO dto,
+            CancellationToken cancellationToken)
         {
-            await _service.DeleteSelectedIdsAsync(ids);
-            return Result.SuccessAction($"{ids.Count} selected {EntityName}s deleted successfully");
+            await _service.DeleteSelectedIdsAsync(dto, cancellationToken);
+            return Result.SuccessAction($"{dto.Ids.Count} selected {EntityName}s deleted successfully");
         }
     }
 }

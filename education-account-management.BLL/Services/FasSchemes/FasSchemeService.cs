@@ -1,3 +1,4 @@
+using DTOs.Base;
 using DTOs.FasSchemes;
 using Interfaces.Audit;
 using Interfaces.Base;
@@ -15,17 +16,19 @@ namespace Services.FasSchemes
         SchoolScopeResolver schoolScopeResolver,
         IAuditLogWriter auditLogWriter,
         TimeProvider timeProvider,
-        IFileValidator fileValidator)
+        IFileValidator fileValidator,
+        IManagementActionLogService managementActionLogService)
         : BaseService<FasScheme, CreateFasSchemeDTO, GetFasSchemeDTO, UpdateFasSchemeDTO>(
             unitOfWork,
             mapper,
-            includes: [nameof(FasScheme.Tiers), nameof(FasScheme.RequiredDocuments), $"{nameof(FasScheme.SchemeCourses)}.{nameof(FasSchemeCourse.Course)}"]),
+            includes: [nameof(FasScheme.Tiers), nameof(FasScheme.RequiredDocuments), $"{nameof(FasScheme.SchemeCourses)}.{nameof(FasSchemeCourse.Course)}", nameof(FasScheme.AdditionalQuestions)]),
           IFasSchemeService
     {
         private readonly SchoolScopeResolver _schoolScopeResolver = schoolScopeResolver;
         private readonly IAuditLogWriter _auditLogWriter = auditLogWriter;
         private readonly TimeProvider _timeProvider = timeProvider;
         private readonly IFileValidator _fileValidator = fileValidator;
+        private readonly IManagementActionLogService _managementActionLogService = managementActionLogService;
 
         private readonly IGenericRepository<FasSchemeConditionGroup> _groupRepository =
             unitOfWork.Repository<FasSchemeConditionGroup>();
@@ -39,6 +42,8 @@ namespace Services.FasSchemes
             unitOfWork.Repository<FasSchemeCourse>();
         private readonly IGenericRepository<Course> _courseRepository =
             unitOfWork.Repository<Course>();
+        private readonly IGenericRepository<FasSchemeAdditionalQuestion> _additionalQuestionRepository =
+            unitOfWork.Repository<FasSchemeAdditionalQuestion>();
 
         public override async Task<GetFasSchemeDTO> CreateAsync(
             CreateFasSchemeDTO createDTO,
@@ -47,7 +52,7 @@ namespace Services.FasSchemes
             ArgumentNullException.ThrowIfNull(createDTO);
             var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
 
-            ValidateInput(createDTO.SchemeName, createDTO.Tiers.Count, createDTO.RootConditionGroup);
+            ValidateInput(createDTO.SchemeName, createDTO.Tiers, createDTO.RootConditionGroup);
             FasConditionTreeUtility.Validate(createDTO.RootConditionGroup);
             await ValidateCoursesExistAsync(createDTO.SchemeCourses.Select(c => c.CourseId).ToList(), schoolId, cancellationToken);
             await ValidateDocumentTemplatesAsync(createDTO.RequiredDocuments, cancellationToken);
@@ -78,6 +83,7 @@ namespace Services.FasSchemes
                     FasSchemeId = scheme.Id,
                     TierName = t.TierName,
                     MaxPerCapitaIncome = t.MaxPerCapitaIncome,
+                    MaxGrossHouseholdIncome = t.MaxGrossHouseholdIncome,
                     SubsidyValue = t.SubsidyValue,
                     CourseFeeSubsidyValue = t.CourseFeeSubsidyValue,
                     MiscFeeSubsidyValue = t.MiscFeeSubsidyValue,
@@ -103,6 +109,15 @@ namespace Services.FasSchemes
                 }).ToList();
                 await _courseLinkRepository.AddRangeAsync(links, token);
 
+                // Save Additional Questions
+                var questions = createDTO.AdditionalQuestions.Select(q => new FasSchemeAdditionalQuestion
+                {
+                    FasSchemeId = scheme.Id,
+                    QuestionText = q.QuestionText,
+                    IsRequired = q.IsRequired
+                }).ToList();
+                await _additionalQuestionRepository.AddRangeAsync(questions, token);
+
                 await _unitOfWork.SaveChangeAsync(token);
                 ValidatePersistedTree(root);
 
@@ -120,7 +135,7 @@ namespace Services.FasSchemes
             ArgumentNullException.ThrowIfNull(updateDTO);
             var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
 
-            ValidateInput(updateDTO.SchemeName, updateDTO.Tiers.Count, updateDTO.RootConditionGroup);
+            ValidateInput(updateDTO.SchemeName, updateDTO.Tiers, updateDTO.RootConditionGroup);
             FasConditionTreeUtility.Validate(updateDTO.RootConditionGroup);
             await ValidateCoursesExistAsync(updateDTO.SchemeCourses.Select(c => c.CourseId).ToList(), schoolId, cancellationToken);
             await ValidateDocumentTemplatesAsync(updateDTO.RequiredDocuments, cancellationToken);
@@ -159,15 +174,21 @@ namespace Services.FasSchemes
                     .ToListAsync(token);
                 _courseLinkRepository.RemoveRange(links);
 
+                // Clear additional questions
+                var oldQuestions = await _additionalQuestionRepository.Query(tracking: true)
+                    .Where(q => q.FasSchemeId == id)
+                    .ToListAsync(token);
+                _additionalQuestionRepository.RemoveRange(oldQuestions);
+
                 await _unitOfWork.SaveChangeAsync(token);
 
-                // Map updated properties
                 _mapper.MapFromUpdateDTO(updateDTO, scheme);
                 scheme.TryValidate();
+
                 await UniqueConstraintValidator.ValidateAsync(_repository, scheme, scheme.Id, token);
                 _repository.Update(scheme);
+                await _unitOfWork.SaveChangeAsync(token);
 
-                // Insert new tree & collections
                 var root = FasConditionTreeMapper.MapFasGroup(updateDTO.RootConditionGroup, scheme.Id);
                 await _groupRepository.AddAsync(root, token);
 
@@ -176,6 +197,7 @@ namespace Services.FasSchemes
                     FasSchemeId = scheme.Id,
                     TierName = t.TierName,
                     MaxPerCapitaIncome = t.MaxPerCapitaIncome,
+                    MaxGrossHouseholdIncome = t.MaxGrossHouseholdIncome,
                     SubsidyValue = t.SubsidyValue,
                     CourseFeeSubsidyValue = t.CourseFeeSubsidyValue,
                     MiscFeeSubsidyValue = t.MiscFeeSubsidyValue,
@@ -199,6 +221,14 @@ namespace Services.FasSchemes
                 }).ToList();
                 await _courseLinkRepository.AddRangeAsync(newLinks, token);
 
+                var newQuestions = updateDTO.AdditionalQuestions.Select(q => new FasSchemeAdditionalQuestion
+                {
+                    FasSchemeId = scheme.Id,
+                    QuestionText = q.QuestionText,
+                    IsRequired = q.IsRequired
+                }).ToList();
+                await _additionalQuestionRepository.AddRangeAsync(newQuestions, token);
+
                 await _unitOfWork.SaveChangeAsync(token);
                 ValidatePersistedTree(root);
             }, cancellationToken);
@@ -212,6 +242,7 @@ namespace Services.FasSchemes
         {
             ArgumentNullException.ThrowIfNull(dto);
             if (dto.Ids.Count == 0) return;
+            var batchId = Guid.NewGuid();
             var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
 
             await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
@@ -245,6 +276,15 @@ namespace Services.FasSchemes
 
                     scheme.TryValidate();
                     _repository.Update(scheme);
+                    await _managementActionLogService.LogAsync(
+                        batchId,
+                        ManagementActionEntityType.FasScheme,
+                        scheme.Id,
+                        dto.Status == FasSchemeStatus.Active ? ManagementAction.Activate : ManagementAction.Deactivate,
+                        dto.Reason,
+                        oldStatus.ToString(),
+                        scheme.Status.ToString(),
+                        cancellationToken: token);
 
                     // Audit Log
                     string auditAction = dto.Status switch
@@ -270,6 +310,7 @@ namespace Services.FasSchemes
                     .Include(s => s.Tiers)
                     .Include(s => s.RequiredDocuments)
                     .Include(s => s.SchemeCourses)
+                    .Include(s => s.AdditionalQuestions)
                     .FirstOrDefaultAsync(s => s.Id == id && s.SchoolId == schoolId, token)
                     ?? throw new DataNotFoundException(typeof(FasScheme), id);
 
@@ -310,6 +351,7 @@ namespace Services.FasSchemes
                     FasSchemeId = newScheme.Id,
                     TierName = t.TierName,
                     MaxPerCapitaIncome = t.MaxPerCapitaIncome,
+                    MaxGrossHouseholdIncome = t.MaxGrossHouseholdIncome,
                     SubsidyValue = t.SubsidyValue,
                     CourseFeeSubsidyValue = t.CourseFeeSubsidyValue,
                     MiscFeeSubsidyValue = t.MiscFeeSubsidyValue,
@@ -334,6 +376,15 @@ namespace Services.FasSchemes
                     CourseId = c.CourseId
                 }).ToList();
                 await _courseLinkRepository.AddRangeAsync(newLinks, token);
+
+                // Duplicate additional questions
+                var newQuestions = source.AdditionalQuestions.Select(q => new FasSchemeAdditionalQuestion
+                {
+                    FasSchemeId = newScheme.Id,
+                    QuestionText = q.QuestionText,
+                    IsRequired = q.IsRequired
+                }).ToList();
+                await _additionalQuestionRepository.AddRangeAsync(newQuestions, token);
 
                 // Duplicate condition tree
                 var rootGroup = sourceGroups.SingleOrDefault(g => g.ParentGroupId == null);
@@ -439,17 +490,20 @@ namespace Services.FasSchemes
             }, cancellationToken);
         }
 
-        public override async Task DeleteSelectedIdsAsync(List<int> ids, CancellationToken cancellationToken = default)
+        public override async Task DeleteSelectedIdsAsync(DeleteSelectedIdsDTO dto, CancellationToken cancellationToken = default)
         {
-            ArgumentNullException.ThrowIfNull(ids);
-            if (ids.Count == 0) return;
+            ArgumentNullException.ThrowIfNull(dto);
+            if (dto.Ids.Count == 0) return;
+            var batchId = Guid.NewGuid();
             var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
 
             await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
             {
                 var schemes = await _repository.Query(tracking: true)
-                    .Where(s => ids.Contains(s.Id) && s.SchoolId == schoolId)
+                    .Where(s => dto.Ids.Contains(s.Id) && s.SchoolId == schoolId)
                     .ToListAsync(token);
+                if (schemes.Count != dto.Ids.Distinct().Count())
+                    throw new ValidationFailureException(nameof(dto.Ids), "One or more FAS schemes do not exist or you do not have permission.");
 
                 if (schemes.Any(s => s.Status != FasSchemeStatus.Draft))
                 {
@@ -480,6 +534,15 @@ namespace Services.FasSchemes
                         .ToListAsync(token);
                     _courseLinkRepository.RemoveRange(links);
 
+                    await _managementActionLogService.LogAsync(
+                        batchId,
+                        ManagementActionEntityType.FasScheme,
+                        scheme.Id,
+                        ManagementAction.Delete,
+                        dto.Reason,
+                        scheme.Status.ToString(),
+                        null,
+                        cancellationToken: token);
                     _repository.Remove(scheme);
                 }
                 await _unitOfWork.SaveChangeAsync(token);
@@ -522,14 +585,25 @@ namespace Services.FasSchemes
             }
         }
 
-        private static void ValidateInput(string name, int tiersCount, FasConditionGroupRequestDTO rootConditionGroup)
+        private static void ValidateInput(string name, List<FasSchemeTierRequestDTO> tiers, FasConditionGroupRequestDTO rootConditionGroup)
         {
             if (string.IsNullOrWhiteSpace(name))
                 throw new ValidationFailureException(nameof(CreateFasSchemeDTO.SchemeName), "Scheme name is required.");
-            if (tiersCount == 0)
+            if (tiers.Count == 0)
                 throw new ValidationFailureException(nameof(CreateFasSchemeDTO.Tiers), "At least one tier is required.");
             if (rootConditionGroup.Conditions.Count + rootConditionGroup.Groups.Count == 0)
                 throw new ValidationFailureException(nameof(CreateFasSchemeDTO.RootConditionGroup), "At least one condition is required.");
+
+            // Prevent overlapping tiers: Ensure no multiple tiers share the exact same income limits.
+            var groups = tiers.GroupBy(t => new { t.MaxPerCapitaIncome, t.MaxGrossHouseholdIncome });
+            foreach (var group in groups)
+            {
+                if (group.Count() > 1)
+                {
+                    var tierNames = string.Join(", ", group.Select(t => $"'{t.TierName}'"));
+                    throw new ValidationFailureException(nameof(CreateFasSchemeDTO.Tiers), $"Overlapping tier ranges detected for tiers: {tierNames}. Multiple tiers cannot have identical income limits.");
+                }
+            }
         }
 
         private async Task ValidateCoursesExistAsync(List<int> courseIds, int schoolId, CancellationToken cancellationToken)

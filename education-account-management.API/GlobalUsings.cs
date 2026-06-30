@@ -1,4 +1,5 @@
 global using Asp.Versioning;
+global using DTOs.Base;
 global using DTOs.Enrollments;
 global using DTOs.SchoolStudents;
 global using DTOs.TopUp;

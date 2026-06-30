@@ -17,6 +17,7 @@ namespace DTOs.FasSchemes
         public List<FasSchemeTierDTO> Tiers { get; set; } = [];
         public List<FasRequiredDocumentDTO> RequiredDocuments { get; set; } = [];
         public List<FasSchemeCourseDTO> SchemeCourses { get; set; } = [];
+        public List<GetFasSchemeAdditionalQuestionDTO> AdditionalQuestions { get; set; } = [];
     }
 
     public sealed class CreateFasSchemeDTO
@@ -38,6 +39,7 @@ namespace DTOs.FasSchemes
         public List<FasSchemeTierRequestDTO> Tiers { get; set; } = [];
         public List<FasRequiredDocumentRequestDTO> RequiredDocuments { get; set; } = [];
         public List<FasSchemeCourseRequestDTO> SchemeCourses { get; set; } = [];
+        public List<FasSchemeAdditionalQuestionRequestDTO> AdditionalQuestions { get; set; } = [];
     }
 
     public sealed class UpdateFasSchemeDTO
@@ -59,6 +61,7 @@ namespace DTOs.FasSchemes
         public List<FasSchemeTierRequestDTO> Tiers { get; set; } = [];
         public List<FasRequiredDocumentRequestDTO> RequiredDocuments { get; set; } = [];
         public List<FasSchemeCourseRequestDTO> SchemeCourses { get; set; } = [];
+        public List<FasSchemeAdditionalQuestionRequestDTO> AdditionalQuestions { get; set; } = [];
     }
 
     public sealed class BatchUpdateFasSchemeStatusDTO
@@ -68,5 +71,8 @@ namespace DTOs.FasSchemes
 
         [EnumDefined]
         public FasSchemeStatus Status { get; set; }
+
+        [MessageRequired, MessageMinLength(10), MessageMaxLength(500)]
+        public string Reason { get; set; } = string.Empty;
     }
 }

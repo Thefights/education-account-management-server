@@ -1,5 +1,9 @@
 using Models;
 using Persistence.Seeding.Constants;
+using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using Enums;
 
 namespace Persistence.Seeding
 {
@@ -10,121 +14,207 @@ namespace Persistence.Seeding
         public ModelBuilder Seed(ModelBuilder modelBuilder)
         {
             var createdAt = SeedDataConstants.CreatedAt;
-            var approvedAt = new DateTime(2026, 6, 1, 0, 0, 0, DateTimeKind.Utc);
+            var publishedAt = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            var approvedAt = new DateTime(2026, 2, 1, 0, 0, 0, DateTimeKind.Utc);
+            
+            var schemes = new List<FasScheme>();
+            var conditionGroups = new List<FasSchemeConditionGroup>();
+            var conditions = new List<FasSchemeCondition>();
+            var tiers = new List<FasSchemeTier>();
+            var documents = new List<FasSchemeRequiredDocument>();
+            var courses = new List<FasSchemeCourse>();
+            var questions = new List<FasSchemeAdditionalQuestion>();
 
-            modelBuilder.Entity<FasScheme>().HasData(
-                new FasScheme { Id = 1, SchoolId = 1, Status = FasSchemeStatus.Draft, SchemeCode = SeedBusinessCodeUtil.Generate(BusinessCodeGenerator.FasSchemePrefix, 1), SchemeName = "Seed FAS Scheme 01", Description = "Seed financial assistance scheme for school-admin scope.", DurationInMonths = 3, SubsidyType = FasSubsidyType.Percent, IsPerComponent = true, PublishedAt = null, CreatedAt = createdAt },
-                new FasScheme { Id = 2, SchoolId = 1, Status = FasSchemeStatus.Active, SchemeCode = SeedBusinessCodeUtil.Generate(BusinessCodeGenerator.FasSchemePrefix, 2), SchemeName = "Seed FAS Scheme 02", Description = "Seed financial assistance scheme for school-admin scope.", DurationInMonths = 6, SubsidyType = FasSubsidyType.FixedAmount, IsPerComponent = false, PublishedAt = new DateTime(2026, 1, 2, 0, 0, 0, DateTimeKind.Utc), CreatedAt = createdAt },
-                new FasScheme { Id = 3, SchoolId = 1, Status = FasSchemeStatus.Inactive, SchemeCode = SeedBusinessCodeUtil.Generate(BusinessCodeGenerator.FasSchemePrefix, 3), SchemeName = "Seed FAS Scheme 03", Description = "Seed financial assistance scheme for school-admin scope.", DurationInMonths = 9, SubsidyType = FasSubsidyType.Percent, IsPerComponent = true, PublishedAt = new DateTime(2026, 1, 3, 0, 0, 0, DateTimeKind.Utc), CreatedAt = createdAt },
-                new FasScheme { Id = 4, SchoolId = 1, Status = FasSchemeStatus.Draft, SchemeCode = SeedBusinessCodeUtil.Generate(BusinessCodeGenerator.FasSchemePrefix, 4), SchemeName = "Seed FAS Scheme 04", Description = "Seed financial assistance scheme for school-admin scope.", DurationInMonths = 12, SubsidyType = FasSubsidyType.FixedAmount, IsPerComponent = false, PublishedAt = null, CreatedAt = createdAt },
-                new FasScheme { Id = 5, SchoolId = 1, Status = FasSchemeStatus.Active, SchemeCode = SeedBusinessCodeUtil.Generate(BusinessCodeGenerator.FasSchemePrefix, 5), SchemeName = "Seed FAS Scheme 05", Description = "Seed financial assistance scheme for school-admin scope.", DurationInMonths = 3, SubsidyType = FasSubsidyType.Percent, IsPerComponent = true, PublishedAt = new DateTime(2026, 1, 5, 0, 0, 0, DateTimeKind.Utc), CreatedAt = createdAt },
-                new FasScheme { Id = 6, SchoolId = 1, Status = FasSchemeStatus.Inactive, SchemeCode = SeedBusinessCodeUtil.Generate(BusinessCodeGenerator.FasSchemePrefix, 6), SchemeName = "Seed FAS Scheme 06", Description = "Seed financial assistance scheme for school-admin scope.", DurationInMonths = 6, SubsidyType = FasSubsidyType.FixedAmount, IsPerComponent = false, PublishedAt = new DateTime(2026, 1, 6, 0, 0, 0, DateTimeKind.Utc), CreatedAt = createdAt },
-                new FasScheme { Id = 7, SchoolId = 1, Status = FasSchemeStatus.Draft, SchemeCode = SeedBusinessCodeUtil.Generate(BusinessCodeGenerator.FasSchemePrefix, 7), SchemeName = "Seed FAS Scheme 07", Description = "Seed financial assistance scheme for school-admin scope.", DurationInMonths = 9, SubsidyType = FasSubsidyType.Percent, IsPerComponent = true, PublishedAt = null, CreatedAt = createdAt },
-                new FasScheme { Id = 8, SchoolId = 1, Status = FasSchemeStatus.Active, SchemeCode = SeedBusinessCodeUtil.Generate(BusinessCodeGenerator.FasSchemePrefix, 8), SchemeName = "Seed FAS Scheme 08", Description = "Seed financial assistance scheme for school-admin scope.", DurationInMonths = 12, SubsidyType = FasSubsidyType.FixedAmount, IsPerComponent = false, PublishedAt = new DateTime(2026, 1, 8, 0, 0, 0, DateTimeKind.Utc), CreatedAt = createdAt },
-                new FasScheme { Id = 9, SchoolId = 1, Status = FasSchemeStatus.Inactive, SchemeCode = SeedBusinessCodeUtil.Generate(BusinessCodeGenerator.FasSchemePrefix, 9), SchemeName = "Seed FAS Scheme 09", Description = "Seed financial assistance scheme for school-admin scope.", DurationInMonths = 3, SubsidyType = FasSubsidyType.Percent, IsPerComponent = true, PublishedAt = new DateTime(2026, 1, 9, 0, 0, 0, DateTimeKind.Utc), CreatedAt = createdAt },
-                new FasScheme { Id = 10, SchoolId = 1, Status = FasSchemeStatus.Draft, SchemeCode = SeedBusinessCodeUtil.Generate(BusinessCodeGenerator.FasSchemePrefix, 10), SchemeName = "Seed FAS Scheme 10", Description = "Seed financial assistance scheme for school-admin scope.", DurationInMonths = 6, SubsidyType = FasSubsidyType.FixedAmount, IsPerComponent = false, PublishedAt = null, CreatedAt = createdAt });
+            for (int i = 1; i <= 60; i++)
+            {
+                var status = FasSchemeStatus.Active;
+                if (i >= 16 && i <= 20) status = FasSchemeStatus.Draft;
+                if (i >= 21 && i <= 23) status = FasSchemeStatus.Inactive;
 
-            modelBuilder.Entity<FasSchemeConditionGroup>().HasData(
-                new FasSchemeConditionGroup { Id = 1, FasSchemeId = 1, ParentGroupId = null, LogicalOperator = TopupLogicalOperator.And, DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeConditionGroup { Id = 2, FasSchemeId = 2, ParentGroupId = null, LogicalOperator = TopupLogicalOperator.And, DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeConditionGroup { Id = 3, FasSchemeId = 3, ParentGroupId = null, LogicalOperator = TopupLogicalOperator.And, DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeConditionGroup { Id = 4, FasSchemeId = 4, ParentGroupId = null, LogicalOperator = TopupLogicalOperator.And, DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeConditionGroup { Id = 5, FasSchemeId = 5, ParentGroupId = null, LogicalOperator = TopupLogicalOperator.And, DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeConditionGroup { Id = 6, FasSchemeId = 6, ParentGroupId = null, LogicalOperator = TopupLogicalOperator.And, DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeConditionGroup { Id = 7, FasSchemeId = 7, ParentGroupId = null, LogicalOperator = TopupLogicalOperator.And, DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeConditionGroup { Id = 8, FasSchemeId = 8, ParentGroupId = null, LogicalOperator = TopupLogicalOperator.And, DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeConditionGroup { Id = 9, FasSchemeId = 9, ParentGroupId = null, LogicalOperator = TopupLogicalOperator.And, DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeConditionGroup { Id = 10, FasSchemeId = 10, ParentGroupId = null, LogicalOperator = TopupLogicalOperator.And, DisplayOrder = 1, CreatedAt = createdAt });
+                schemes.Add(new FasScheme 
+                { 
+                    Id = i, SchoolId = 1, Status = status, 
+                    SchemeCode = SeedBusinessCodeUtil.Generate(BusinessCodeGenerator.FasSchemePrefix, i), 
+                    SchemeName = $"Seed FAS Scheme {i:D2}", 
+                    Description = "Seed financial assistance scheme.", 
+                    DurationInMonths = 12, SubsidyType = FasSubsidyType.FixedAmount, 
+                    IsPerComponent = false, 
+                    PublishedAt = status == FasSchemeStatus.Active ? publishedAt.AddDays(i) : null, 
+                    CreatedAt = createdAt 
+                });
 
-            modelBuilder.Entity<FasSchemeCondition>().HasData(
-                new FasSchemeCondition { Id = 1, GroupId = 1, Field = FasConditionField.PerCapitaIncome, Operator = FasConditionOperator.LessThanOrEqual, ValueNumber = 750m, DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeCondition { Id = 2, GroupId = 2, Field = FasConditionField.PerCapitaIncome, Operator = FasConditionOperator.LessThanOrEqual, ValueNumber = 800m, DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeCondition { Id = 3, GroupId = 3, Field = FasConditionField.PerCapitaIncome, Operator = FasConditionOperator.LessThanOrEqual, ValueNumber = 850m, DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeCondition { Id = 4, GroupId = 4, Field = FasConditionField.PerCapitaIncome, Operator = FasConditionOperator.LessThanOrEqual, ValueNumber = 900m, DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeCondition { Id = 5, GroupId = 5, Field = FasConditionField.PerCapitaIncome, Operator = FasConditionOperator.LessThanOrEqual, ValueNumber = 950m, DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeCondition { Id = 6, GroupId = 6, Field = FasConditionField.PerCapitaIncome, Operator = FasConditionOperator.LessThanOrEqual, ValueNumber = 1000m, DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeCondition { Id = 7, GroupId = 7, Field = FasConditionField.PerCapitaIncome, Operator = FasConditionOperator.LessThanOrEqual, ValueNumber = 1050m, DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeCondition { Id = 8, GroupId = 8, Field = FasConditionField.PerCapitaIncome, Operator = FasConditionOperator.LessThanOrEqual, ValueNumber = 1100m, DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeCondition { Id = 9, GroupId = 9, Field = FasConditionField.PerCapitaIncome, Operator = FasConditionOperator.LessThanOrEqual, ValueNumber = 1150m, DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeCondition { Id = 10, GroupId = 10, Field = FasConditionField.PerCapitaIncome, Operator = FasConditionOperator.LessThanOrEqual, ValueNumber = 1200m, DisplayOrder = 1, CreatedAt = createdAt });
+                conditionGroups.Add(new FasSchemeConditionGroup 
+                { 
+                    Id = i, FasSchemeId = i, ParentGroupId = null, 
+                    LogicalOperator = TopupLogicalOperator.And, DisplayOrder = 1, CreatedAt = createdAt 
+                });
 
-            modelBuilder.Entity<FasSchemeTier>().HasData(
-                new FasSchemeTier { Id = 1, FasSchemeId = 1, TierName = "Tier 1", MaxPerCapitaIncome = 750m, SubsidyValue = 21m, CourseFeeSubsidyValue = 11m, MiscFeeSubsidyValue = 6m, DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeTier { Id = 2, FasSchemeId = 2, TierName = "Tier 2", MaxPerCapitaIncome = 800m, SubsidyValue = 70m, CourseFeeSubsidyValue = null, MiscFeeSubsidyValue = null, DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeTier { Id = 3, FasSchemeId = 3, TierName = "Tier 3", MaxPerCapitaIncome = 850m, SubsidyValue = 23m, CourseFeeSubsidyValue = 13m, MiscFeeSubsidyValue = 8m, DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeTier { Id = 4, FasSchemeId = 4, TierName = "Tier 1", MaxPerCapitaIncome = 900m, SubsidyValue = 90m, CourseFeeSubsidyValue = null, MiscFeeSubsidyValue = null, DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeTier { Id = 5, FasSchemeId = 5, TierName = "Tier 2", MaxPerCapitaIncome = 950m, SubsidyValue = 25m, CourseFeeSubsidyValue = 15m, MiscFeeSubsidyValue = 10m, DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeTier { Id = 6, FasSchemeId = 6, TierName = "Tier 3", MaxPerCapitaIncome = 1000m, SubsidyValue = 110m, CourseFeeSubsidyValue = null, MiscFeeSubsidyValue = null, DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeTier { Id = 7, FasSchemeId = 7, TierName = "Tier 1", MaxPerCapitaIncome = 1050m, SubsidyValue = 27m, CourseFeeSubsidyValue = 17m, MiscFeeSubsidyValue = 12m, DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeTier { Id = 8, FasSchemeId = 8, TierName = "Tier 2", MaxPerCapitaIncome = 1100m, SubsidyValue = 130m, CourseFeeSubsidyValue = null, MiscFeeSubsidyValue = null, DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeTier { Id = 9, FasSchemeId = 9, TierName = "Tier 3", MaxPerCapitaIncome = 1150m, SubsidyValue = 29m, CourseFeeSubsidyValue = 19m, MiscFeeSubsidyValue = 14m, DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeTier { Id = 10, FasSchemeId = 10, TierName = "Tier 1", MaxPerCapitaIncome = 1200m, SubsidyValue = 150m, CourseFeeSubsidyValue = null, MiscFeeSubsidyValue = null, DisplayOrder = 1, CreatedAt = createdAt });
+                conditions.Add(new FasSchemeCondition 
+                { 
+                    Id = i, GroupId = i, Field = FasConditionField.PerCapitaIncome, 
+                    Operator = FasConditionOperator.LessThanOrEqual, 
+                    ValueNumber = 5000m, DisplayOrder = 1, CreatedAt = createdAt 
+                });
 
-            modelBuilder.Entity<FasSchemeRequiredDocument>().HasData(
-                new FasSchemeRequiredDocument { Id = 1, FasSchemeId = 1, DocumentName = "Recent Payslip", TemplateFileKey = "fas/templates/document-01.pdf", DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeRequiredDocument { Id = 2, FasSchemeId = 2, DocumentName = "Income Statement", TemplateFileKey = "fas/templates/document-02.pdf", DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeRequiredDocument { Id = 3, FasSchemeId = 3, DocumentName = "Recent Payslip", TemplateFileKey = "fas/templates/document-03.pdf", DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeRequiredDocument { Id = 4, FasSchemeId = 4, DocumentName = "Income Statement", TemplateFileKey = "fas/templates/document-04.pdf", DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeRequiredDocument { Id = 5, FasSchemeId = 5, DocumentName = "Recent Payslip", TemplateFileKey = "fas/templates/document-05.pdf", DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeRequiredDocument { Id = 6, FasSchemeId = 6, DocumentName = "Income Statement", TemplateFileKey = "fas/templates/document-06.pdf", DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeRequiredDocument { Id = 7, FasSchemeId = 7, DocumentName = "Recent Payslip", TemplateFileKey = "fas/templates/document-07.pdf", DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeRequiredDocument { Id = 8, FasSchemeId = 8, DocumentName = "Income Statement", TemplateFileKey = "fas/templates/document-08.pdf", DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeRequiredDocument { Id = 9, FasSchemeId = 9, DocumentName = "Recent Payslip", TemplateFileKey = "fas/templates/document-09.pdf", DisplayOrder = 1, CreatedAt = createdAt },
-                new FasSchemeRequiredDocument { Id = 10, FasSchemeId = 10, DocumentName = "Income Statement", TemplateFileKey = "fas/templates/document-10.pdf", DisplayOrder = 1, CreatedAt = createdAt });
+                tiers.Add(new FasSchemeTier 
+                { 
+                    Id = i, FasSchemeId = i, TierName = "Tier 1", 
+                    MaxPerCapitaIncome = 5000m, SubsidyValue = 100m, 
+                    DisplayOrder = 1, CreatedAt = createdAt 
+                });
 
-            modelBuilder.Entity<FasSchemeCourse>().HasData(
-                new FasSchemeCourse { Id = 1, FasSchemeId = 1, CourseId = 1, CreatedAt = createdAt },
-                new FasSchemeCourse { Id = 2, FasSchemeId = 2, CourseId = 2, CreatedAt = createdAt },
-                new FasSchemeCourse { Id = 3, FasSchemeId = 3, CourseId = 3, CreatedAt = createdAt },
-                new FasSchemeCourse { Id = 4, FasSchemeId = 4, CourseId = 4, CreatedAt = createdAt },
-                new FasSchemeCourse { Id = 5, FasSchemeId = 5, CourseId = 5, CreatedAt = createdAt },
-                new FasSchemeCourse { Id = 6, FasSchemeId = 6, CourseId = 6, CreatedAt = createdAt },
-                new FasSchemeCourse { Id = 7, FasSchemeId = 7, CourseId = 7, CreatedAt = createdAt },
-                new FasSchemeCourse { Id = 8, FasSchemeId = 8, CourseId = 8, CreatedAt = createdAt },
-                new FasSchemeCourse { Id = 9, FasSchemeId = 9, CourseId = 9, CreatedAt = createdAt },
-                new FasSchemeCourse { Id = 10, FasSchemeId = 10, CourseId = 10, CreatedAt = createdAt });
+                documents.Add(new FasSchemeRequiredDocument 
+                { 
+                    Id = i, FasSchemeId = i, DocumentName = "Income Statement", 
+                    TemplateFileKey = $"fas/templates/document-{i:D2}.pdf", 
+                    DisplayOrder = 1, CreatedAt = createdAt 
+                });
 
-            modelBuilder.Entity<FasApplication>().HasData(
-                new FasApplication { Id = 1, FasSchemeId = 1, SchoolStudentId = 1, RecommendedTierId = 1, ApprovedTierId = 1, ApplicationNumber = "FASAPP-20260101-A1B2C3D", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 18, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 2500m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 625m, RecommendationReason = "PCI <= 750", ApprovedAt = approvedAt, ApprovedByUserId = 1, DurationInMonthsSnapshot = 6, ValidityStartDate = approvedAt, ValidityEndDate = approvedAt.AddMonths(6), CreatedAt = createdAt },
-                new FasApplication { Id = 2, FasSchemeId = 2, SchoolStudentId = 2, RecommendedTierId = 2, ApprovedTierId = 2, ApplicationNumber = "FASAPP-20260102-E4F5G6H", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 17, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.Other, GrossHouseholdIncomeSnapshot = 3000m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 750m, RecommendationReason = "GHI <= 3500", ApprovedAt = approvedAt, ApprovedByUserId = 1, DurationInMonthsSnapshot = 3, ValidityStartDate = approvedAt, ValidityEndDate = approvedAt.AddMonths(3), CreatedAt = createdAt },
-                new FasApplication { Id = 3, FasSchemeId = 3, SchoolStudentId = 3, RecommendedTierId = 3, ApprovedTierId = 3, ApplicationNumber = "FASAPP-20260103-I7J8K9L", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 19, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 2200m, HouseholdMemberCountSnapshot = 5, PerCapitaIncomeSnapshot = 440m, RecommendationReason = "Singapore citizen and PCI <= 690", ApprovedAt = approvedAt, ApprovedByUserId = 1, DurationInMonthsSnapshot = 12, ValidityStartDate = approvedAt, ValidityEndDate = approvedAt.AddMonths(12), CreatedAt = createdAt },
-                new FasApplication { Id = 4, FasSchemeId = 4, SchoolStudentId = 4, RecommendedTierId = 4, ApplicationNumber = "FASAPP-20260104-M1N2P3Q", Status = FasApplicationStatus.Pending, StudentAgeSnapshot = 20, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.Other, GrossHouseholdIncomeSnapshot = 3600m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 900m, RecommendationReason = "Pending admin review", CreatedAt = createdAt },
-                new FasApplication { Id = 5, FasSchemeId = 5, SchoolStudentId = 5, RecommendedTierId = 5, ApplicationNumber = "FASAPP-20260105-R4S5T6U", Status = FasApplicationStatus.Rejected, StudentAgeSnapshot = 21, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.Other, GrossHouseholdIncomeSnapshot = 7000m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 1750m, RecommendationReason = "No tier matched", RejectionReason = "Income exceeds supported threshold.", CreatedAt = createdAt },
-                new FasApplication { Id = 6, FasSchemeId = 6, SchoolStudentId = 6, RecommendedTierId = 6, ApplicationNumber = "FASAPP-20260106-V7W8X9Y", Status = FasApplicationStatus.Withdrawn, StudentAgeSnapshot = 18, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 2800m, HouseholdMemberCountSnapshot = 5, PerCapitaIncomeSnapshot = 560m, RecommendationReason = "Student withdrew before review", WithdrawnAt = new DateTime(2026, 6, 3, 0, 0, 0, DateTimeKind.Utc), CreatedAt = createdAt },
-                new FasApplication { Id = 7, FasSchemeId = 7, SchoolStudentId = 7, RecommendedTierId = 7, ApprovedTierId = 7, ApplicationNumber = "FASAPP-20260107-Z1A2B3C", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 16, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 4800m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 1200m, RecommendationReason = "Special needs support threshold matched", ApprovedAt = approvedAt, ApprovedByUserId = 1, DurationInMonthsSnapshot = 12, ValidityStartDate = approvedAt, ValidityEndDate = approvedAt.AddMonths(12), CreatedAt = createdAt },
-                new FasApplication { Id = 8, FasSchemeId = 8, SchoolStudentId = 8, RecommendedTierId = 8, ApprovedTierId = 8, ApplicationNumber = "FASAPP-20260108-D4E5F6G", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 22, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.Other, GrossHouseholdIncomeSnapshot = 3200m, HouseholdMemberCountSnapshot = 5, PerCapitaIncomeSnapshot = 640m, RecommendationReason = "PCI <= 850", ApprovedAt = new DateTime(2025, 6, 1, 0, 0, 0, DateTimeKind.Utc), ApprovedByUserId = 1, DurationInMonthsSnapshot = 6, ValidityStartDate = new DateTime(2025, 6, 1, 0, 0, 0, DateTimeKind.Utc), ValidityEndDate = new DateTime(2025, 12, 1, 0, 0, 0, DateTimeKind.Utc), CreatedAt = createdAt },
-                new FasApplication { Id = 9, FasSchemeId = 9, SchoolStudentId = 9, RecommendedTierId = 9, ApplicationNumber = "FASAPP-20260109-H7J8K9L", Status = FasApplicationStatus.Pending, StudentAgeSnapshot = 17, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.Other, GrossHouseholdIncomeSnapshot = 2600m, HouseholdMemberCountSnapshot = 3, PerCapitaIncomeSnapshot = 866.67m, RecommendationReason = "Emergency aid review required", CreatedAt = createdAt },
-                new FasApplication { Id = 10, FasSchemeId = 10, SchoolStudentId = 10, RecommendedTierId = 10, ApprovedTierId = 10, ApplicationNumber = "FASAPP-20260110-M1N2P3Q", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 18, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 3900m, HouseholdMemberCountSnapshot = 5, PerCapitaIncomeSnapshot = 780m, RecommendationReason = "PCI <= 1000", ApprovedAt = approvedAt, ApprovedByUserId = 1, DurationInMonthsSnapshot = 12, ValidityStartDate = approvedAt, ValidityEndDate = approvedAt.AddMonths(12), CreatedAt = createdAt },
-                new FasApplication { Id = 21, FasSchemeId = 1, SchoolStudentId = 1, RecommendedTierId = 1, ApprovedTierId = 1, ApplicationNumber = "FASAPP-DEMO-001A", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 18, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 2200m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 550m, RecommendationReason = "Demo Tier 1", ApprovedAt = approvedAt, ApprovedByUserId = 1, DurationInMonthsSnapshot = 6, ValidityStartDate = approvedAt, ValidityEndDate = approvedAt.AddMonths(6), CreatedAt = createdAt },
-                new FasApplication { Id = 22, FasSchemeId = 1, SchoolStudentId = 11, RecommendedTierId = 21, ApprovedTierId = 21, ApplicationNumber = "FASAPP-DEMO-001B", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 18, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 5200m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 1300m, RecommendationReason = "Demo Tier 2", ApprovedAt = approvedAt, ApprovedByUserId = 1, DurationInMonthsSnapshot = 6, ValidityStartDate = approvedAt, ValidityEndDate = approvedAt.AddMonths(6), CreatedAt = createdAt },
-                new FasApplication { Id = 23, FasSchemeId = 2, SchoolStudentId = 2, RecommendedTierId = 2, ApprovedTierId = 2, ApplicationNumber = "FASAPP-DEMO-002A", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 18, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 2200m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 550m, RecommendationReason = "Demo Tier 1", ApprovedAt = approvedAt, ApprovedByUserId = 1, DurationInMonthsSnapshot = 3, ValidityStartDate = approvedAt, ValidityEndDate = approvedAt.AddMonths(3), CreatedAt = createdAt },
-                new FasApplication { Id = 24, FasSchemeId = 2, SchoolStudentId = 20, RecommendedTierId = 22, ApprovedTierId = 22, ApplicationNumber = "FASAPP-DEMO-002B", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 18, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 5200m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 1300m, RecommendationReason = "Demo Tier 2", ApprovedAt = approvedAt, ApprovedByUserId = 1, DurationInMonthsSnapshot = 3, ValidityStartDate = approvedAt, ValidityEndDate = approvedAt.AddMonths(3), CreatedAt = createdAt },
-                new FasApplication { Id = 25, FasSchemeId = 3, SchoolStudentId = 3, RecommendedTierId = 3, ApprovedTierId = 3, ApplicationNumber = "FASAPP-DEMO-003A", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 18, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 2200m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 550m, RecommendationReason = "Demo Tier 1", ApprovedAt = approvedAt, ApprovedByUserId = 1, DurationInMonthsSnapshot = 12, ValidityStartDate = approvedAt, ValidityEndDate = approvedAt.AddMonths(12), CreatedAt = createdAt },
-                new FasApplication { Id = 26, FasSchemeId = 3, SchoolStudentId = 29, RecommendedTierId = 23, ApprovedTierId = 23, ApplicationNumber = "FASAPP-DEMO-003B", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 18, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 5200m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 1300m, RecommendationReason = "Demo Tier 2", ApprovedAt = approvedAt, ApprovedByUserId = 1, DurationInMonthsSnapshot = 12, ValidityStartDate = approvedAt, ValidityEndDate = approvedAt.AddMonths(12), CreatedAt = createdAt },
-                new FasApplication { Id = 27, FasSchemeId = 4, SchoolStudentId = 4, RecommendedTierId = 4, ApprovedTierId = 4, ApplicationNumber = "FASAPP-DEMO-004A", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 18, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 2200m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 550m, RecommendationReason = "Demo Tier 1", ApprovedAt = approvedAt, ApprovedByUserId = 1, DurationInMonthsSnapshot = 6, ValidityStartDate = approvedAt, ValidityEndDate = approvedAt.AddMonths(6), CreatedAt = createdAt },
-                new FasApplication { Id = 28, FasSchemeId = 4, SchoolStudentId = 38, RecommendedTierId = 24, ApprovedTierId = 24, ApplicationNumber = "FASAPP-DEMO-004B", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 18, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 5200m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 1300m, RecommendationReason = "Demo Tier 2", ApprovedAt = approvedAt, ApprovedByUserId = 1, DurationInMonthsSnapshot = 6, ValidityStartDate = approvedAt, ValidityEndDate = approvedAt.AddMonths(6), CreatedAt = createdAt },
-                new FasApplication { Id = 29, FasSchemeId = 5, SchoolStudentId = 5, RecommendedTierId = 5, ApprovedTierId = 5, ApplicationNumber = "FASAPP-DEMO-005A", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 18, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 2200m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 550m, RecommendationReason = "Demo Tier 1", ApprovedAt = approvedAt, ApprovedByUserId = 1, DurationInMonthsSnapshot = 9, ValidityStartDate = approvedAt, ValidityEndDate = approvedAt.AddMonths(9), CreatedAt = createdAt },
-                new FasApplication { Id = 30, FasSchemeId = 5, SchoolStudentId = 47, RecommendedTierId = 25, ApprovedTierId = 25, ApplicationNumber = "FASAPP-DEMO-005B", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 18, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 5200m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 1300m, RecommendationReason = "Demo Tier 2", ApprovedAt = approvedAt, ApprovedByUserId = 1, DurationInMonthsSnapshot = 9, ValidityStartDate = approvedAt, ValidityEndDate = approvedAt.AddMonths(9), CreatedAt = createdAt },
-                new FasApplication { Id = 31, FasSchemeId = 6, SchoolStudentId = 6, RecommendedTierId = 6, ApprovedTierId = 6, ApplicationNumber = "FASAPP-DEMO-006A", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 18, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 2200m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 550m, RecommendationReason = "Demo Tier 1", ApprovedAt = approvedAt, ApprovedByUserId = 1, DurationInMonthsSnapshot = 3, ValidityStartDate = approvedAt, ValidityEndDate = approvedAt.AddMonths(3), CreatedAt = createdAt },
-                new FasApplication { Id = 32, FasSchemeId = 6, SchoolStudentId = 56, RecommendedTierId = 26, ApprovedTierId = 26, ApplicationNumber = "FASAPP-DEMO-006B", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 18, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 5200m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 1300m, RecommendationReason = "Demo Tier 2", ApprovedAt = approvedAt, ApprovedByUserId = 1, DurationInMonthsSnapshot = 3, ValidityStartDate = approvedAt, ValidityEndDate = approvedAt.AddMonths(3), CreatedAt = createdAt },
-                new FasApplication { Id = 33, FasSchemeId = 7, SchoolStudentId = 7, RecommendedTierId = 7, ApprovedTierId = 7, ApplicationNumber = "FASAPP-DEMO-007A", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 18, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 2200m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 550m, RecommendationReason = "Demo Tier 1", ApprovedAt = approvedAt, ApprovedByUserId = 1, DurationInMonthsSnapshot = 12, ValidityStartDate = approvedAt, ValidityEndDate = approvedAt.AddMonths(12), CreatedAt = createdAt },
-                new FasApplication { Id = 34, FasSchemeId = 7, SchoolStudentId = 65, RecommendedTierId = 27, ApprovedTierId = 27, ApplicationNumber = "FASAPP-DEMO-007B", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 18, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 5200m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 1300m, RecommendationReason = "Demo Tier 2", ApprovedAt = approvedAt, ApprovedByUserId = 1, DurationInMonthsSnapshot = 12, ValidityStartDate = approvedAt, ValidityEndDate = approvedAt.AddMonths(12), CreatedAt = createdAt },
-                new FasApplication { Id = 35, FasSchemeId = 8, SchoolStudentId = 8, RecommendedTierId = 8, ApprovedTierId = 8, ApplicationNumber = "FASAPP-DEMO-008A", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 18, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 2200m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 550m, RecommendationReason = "Demo Tier 1", ApprovedAt = approvedAt, ApprovedByUserId = 1, DurationInMonthsSnapshot = 6, ValidityStartDate = approvedAt, ValidityEndDate = approvedAt.AddMonths(6), CreatedAt = createdAt },
-                new FasApplication { Id = 36, FasSchemeId = 8, SchoolStudentId = 74, RecommendedTierId = 28, ApprovedTierId = 28, ApplicationNumber = "FASAPP-DEMO-008B", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 18, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 5200m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 1300m, RecommendationReason = "Demo Tier 2", ApprovedAt = approvedAt, ApprovedByUserId = 1, DurationInMonthsSnapshot = 6, ValidityStartDate = approvedAt, ValidityEndDate = approvedAt.AddMonths(6), CreatedAt = createdAt },
-                new FasApplication { Id = 37, FasSchemeId = 9, SchoolStudentId = 9, RecommendedTierId = 9, ApprovedTierId = 9, ApplicationNumber = "FASAPP-DEMO-009A", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 18, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 2200m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 550m, RecommendationReason = "Demo Tier 1", ApprovedAt = approvedAt, ApprovedByUserId = 1, DurationInMonthsSnapshot = 3, ValidityStartDate = approvedAt, ValidityEndDate = approvedAt.AddMonths(3), CreatedAt = createdAt },
-                new FasApplication { Id = 38, FasSchemeId = 9, SchoolStudentId = 83, RecommendedTierId = 29, ApprovedTierId = 29, ApplicationNumber = "FASAPP-DEMO-009B", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 18, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 5200m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 1300m, RecommendationReason = "Demo Tier 2", ApprovedAt = approvedAt, ApprovedByUserId = 1, DurationInMonthsSnapshot = 3, ValidityStartDate = approvedAt, ValidityEndDate = approvedAt.AddMonths(3), CreatedAt = createdAt },
-                new FasApplication { Id = 39, FasSchemeId = 10, SchoolStudentId = 10, RecommendedTierId = 10, ApprovedTierId = 10, ApplicationNumber = "FASAPP-DEMO-010A", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 18, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 2200m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 550m, RecommendationReason = "Demo Tier 1", ApprovedAt = approvedAt, ApprovedByUserId = 1, DurationInMonthsSnapshot = 12, ValidityStartDate = approvedAt, ValidityEndDate = approvedAt.AddMonths(12), CreatedAt = createdAt },
-                new FasApplication { Id = 40, FasSchemeId = 10, SchoolStudentId = 92, RecommendedTierId = 30, ApprovedTierId = 30, ApplicationNumber = "FASAPP-DEMO-010B", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 18, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 5200m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 1300m, RecommendationReason = "Demo Tier 2", ApprovedAt = approvedAt, ApprovedByUserId = 1, DurationInMonthsSnapshot = 12, ValidityStartDate = approvedAt, ValidityEndDate = approvedAt.AddMonths(12), CreatedAt = createdAt },
-                new FasApplication { Id = 141, FasSchemeId = 11, SchoolStudentId = 9, RecommendedTierId = 11, ApprovedTierId = 11, ApplicationNumber = "FASAPP-DEMO-EXPIRED", Status = FasApplicationStatus.Approved, StudentAgeSnapshot = 18, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 2200m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 550m, RecommendationReason = "Demo Tier 1", ApprovedAt = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc), ApprovedByUserId = 1, DurationInMonthsSnapshot = 6, ValidityStartDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc), ValidityEndDate = new DateTime(2025, 7, 1, 0, 0, 0, DateTimeKind.Utc), CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
-                new FasApplication { Id = 142, FasSchemeId = 12, SchoolStudentId = 9, RecommendedTierId = 12, ApplicationNumber = "FASAPP-DEMO-REJECTED", Status = FasApplicationStatus.Rejected, StudentAgeSnapshot = 18, StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen, GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen, GrossHouseholdIncomeSnapshot = 8000m, HouseholdMemberCountSnapshot = 4, PerCapitaIncomeSnapshot = 2000m, RecommendationReason = "No tier matched", RejectionReason = "Income exceeds supported threshold.", CreatedAt = createdAt });
+                courses.Add(new FasSchemeCourse 
+                { 
+                    Id = i, FasSchemeId = i, CourseId = (i % 10) + 1, CreatedAt = createdAt 
+                });
 
-            modelBuilder.Entity<FasApplicationDocument>().HasData(
-                new FasApplicationDocument { Id = 1, FasApplicationId = 1, FasSchemeRequiredDocumentId = 1, DocumentNameSnapshot = "Recent Payslip", FileKey = "fas/applications/1/document.pdf", FileName = "fas-application-01.pdf", CreatedAt = createdAt },
-                new FasApplicationDocument { Id = 2, FasApplicationId = 2, FasSchemeRequiredDocumentId = 2, DocumentNameSnapshot = "Income Statement", FileKey = "fas/applications/2/document.pdf", FileName = "fas-application-02.pdf", CreatedAt = createdAt },
-                new FasApplicationDocument { Id = 3, FasApplicationId = 3, FasSchemeRequiredDocumentId = 3, DocumentNameSnapshot = "Recent Payslip", FileKey = "fas/applications/3/document.pdf", FileName = "fas-application-03.pdf", CreatedAt = createdAt },
-                new FasApplicationDocument { Id = 4, FasApplicationId = 4, FasSchemeRequiredDocumentId = 4, DocumentNameSnapshot = "Income Statement", FileKey = "fas/applications/4/document.pdf", FileName = "fas-application-04.pdf", CreatedAt = createdAt },
-                new FasApplicationDocument { Id = 5, FasApplicationId = 5, FasSchemeRequiredDocumentId = 5, DocumentNameSnapshot = "Recent Payslip", FileKey = "fas/applications/5/document.pdf", FileName = "fas-application-05.pdf", CreatedAt = createdAt },
-                new FasApplicationDocument { Id = 6, FasApplicationId = 6, FasSchemeRequiredDocumentId = 6, DocumentNameSnapshot = "Income Statement", FileKey = "fas/applications/6/document.pdf", FileName = "fas-application-06.pdf", CreatedAt = createdAt });
+                questions.Add(new FasSchemeAdditionalQuestion
+                {
+                    Id = i * 2 - 1, FasSchemeId = i,
+                    QuestionText = "Briefly explain the primary reason for your financial assistance application.",
+                    IsRequired = true, CreatedAt = createdAt
+                });
+                
+                questions.Add(new FasSchemeAdditionalQuestion
+                {
+                    Id = i * 2, FasSchemeId = i,
+                    QuestionText = "Are there any specific medical conditions in your household?",
+                    IsRequired = false, CreatedAt = createdAt
+                });
+            }
+
+            modelBuilder.Entity<FasScheme>().HasData(schemes);
+            modelBuilder.Entity<FasSchemeConditionGroup>().HasData(conditionGroups);
+            modelBuilder.Entity<FasSchemeCondition>().HasData(conditions);
+            modelBuilder.Entity<FasSchemeTier>().HasData(tiers);
+            modelBuilder.Entity<FasSchemeRequiredDocument>().HasData(documents);
+            modelBuilder.Entity<FasSchemeCourse>().HasData(courses);
+            modelBuilder.Entity<FasSchemeAdditionalQuestion>().HasData(questions);
+
+            var applications = new List<FasApplication>();
+            var appDocs = new List<FasApplicationDocument>();
+            var answers = new List<FasApplicationAdditionalQuestionAnswer>();
+            
+            int appId = 1;
+            
+            // Generate 25 applications for Student 2 to satisfy ChargeSeedBuilder
+            for (int i = 1; i <= 25; i++)
+            {
+                int schemeId = i;
+                applications.Add(new FasApplication
+                {
+                    Id = appId,
+                    FasSchemeId = schemeId,
+                    SchoolStudentId = 2, 
+                    RecommendedTierId = schemeId,
+                    ApplicationNumber = $"FASAPP-2026-{appId:D4}",
+                    Status = FasApplicationStatus.Pending,
+                    StudentAgeSnapshot = 18,
+                    StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen,
+                    GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen,
+                    GrossHouseholdIncomeSnapshot = 2500m,
+                    HouseholdMemberCountSnapshot = 4,
+                    PerCapitaIncomeSnapshot = 625m,
+                    RecommendationReason = "PCI <= 5000",
+                    CreatedAt = createdAt
+                });
+
+                appDocs.Add(new FasApplicationDocument
+                {
+                    Id = appId,
+                    FasApplicationId = appId,
+                    FasSchemeRequiredDocumentId = schemeId,
+                    DocumentNameSnapshot = "Income Statement",
+                    FileKey = $"fas/applications/{appId}/document.pdf",
+                    FileName = $"fas-application-{appId:D2}.pdf",
+                    CreatedAt = createdAt
+                });
+
+                answers.Add(new FasApplicationAdditionalQuestionAnswer
+                {
+                    Id = appId * 2 - 1,
+                    FasApplicationId = appId,
+                    FasSchemeAdditionalQuestionId = schemeId * 2 - 1,
+                    QuestionTextSnapshot = "Reason",
+                    IsRequiredSnapshot = true,
+                    AnswerText = "Need help.",
+                    CreatedAt = createdAt
+                });
+
+                appId++;
+            }
+
+            // Generate 30 applications for Student 1 (current user)
+            // 6 statuses * 5 records
+            var statuses = new[] { 
+                FasApplicationStatus.Pending, 
+                FasApplicationStatus.Approved, 
+                FasApplicationStatus.Rejected, 
+                FasApplicationStatus.Withdrawn, 
+                FasApplicationStatus.Draft, 
+                FasApplicationStatus.Expired 
+            };
+            
+            int schemeIdForUser = 26;
+            foreach (var appStatus in statuses)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    applications.Add(new FasApplication
+                    {
+                        Id = appId,
+                        FasSchemeId = schemeIdForUser,
+                        SchoolStudentId = 1, // Current User
+                        RecommendedTierId = schemeIdForUser,
+                        ApplicationNumber = $"FASAPP-2026-{appId:D4}",
+                        Status = appStatus,
+                        StudentAgeSnapshot = 18,
+                        StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen,
+                        GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen,
+                        GrossHouseholdIncomeSnapshot = 2500m,
+                        HouseholdMemberCountSnapshot = 4,
+                        PerCapitaIncomeSnapshot = 625m,
+                        RecommendationReason = "PCI <= 5000",
+                        CreatedAt = createdAt
+                    });
+
+                    appDocs.Add(new FasApplicationDocument
+                    {
+                        Id = appId,
+                        FasApplicationId = appId,
+                        FasSchemeRequiredDocumentId = schemeIdForUser,
+                        DocumentNameSnapshot = "Income Statement",
+                        FileKey = $"fas/applications/{appId}/document.pdf",
+                        FileName = $"fas-application-{appId:D2}.pdf",
+                        CreatedAt = createdAt
+                    });
+
+                    answers.Add(new FasApplicationAdditionalQuestionAnswer
+                    {
+                        Id = appId * 2 - 1,
+                        FasApplicationId = appId,
+                        FasSchemeAdditionalQuestionId = schemeIdForUser * 2 - 1,
+                        QuestionTextSnapshot = "Reason",
+                        IsRequiredSnapshot = true,
+                        AnswerText = "Need help.",
+                        CreatedAt = createdAt
+                    });
+
+                    appId++;
+                    schemeIdForUser++;
+                }
+            }
+
+            modelBuilder.Entity<FasApplication>().HasData(applications);
+            modelBuilder.Entity<FasApplicationDocument>().HasData(appDocs);
+            modelBuilder.Entity<FasApplicationAdditionalQuestionAnswer>().HasData(answers);
 
             modelBuilder.Entity<FasTierOverrideHistory>().HasData(
                 new FasTierOverrideHistory { Id = 1, FasApplicationId = 2, OldTierId = 2, NewTierId = 2, ModifiedByUserId = 1, ModifiedAt = approvedAt.AddDays(2), Reason = "Seed tier review trail.", CreatedAt = createdAt },

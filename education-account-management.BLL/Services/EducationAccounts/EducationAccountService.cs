@@ -11,7 +11,8 @@ namespace Services.EducationAccounts
         IUnitOfWork unitOfWork,
         EducationAccountMapper mapper,
         ICurrentUserService currentUserService,
-        IAuditLogWriter auditLogWriter)
+        IAuditLogWriter auditLogWriter,
+        IManagementActionLogService managementActionLogService)
         : BaseService<EducationAccount, CreateEducationAccountDTO, GetEducationAccountDTO, UpdateEducationAccountDTO>(
             unitOfWork,
             mapper,
@@ -21,6 +22,7 @@ namespace Services.EducationAccounts
         private readonly EducationAccountMapper _educationAccountMapper = mapper;
         private readonly ICurrentUserService _currentUserService = currentUserService;
         private readonly IAuditLogWriter _auditLogWriter = auditLogWriter;
+        private readonly IManagementActionLogService _managementActionLogService = managementActionLogService;
         private readonly IGenericRepository<Citizen> _citizenRepository = unitOfWork.Repository<Citizen>();
         private readonly IGenericRepository<EducationCreditTransaction> _transactionRepository =
             unitOfWork.Repository<EducationCreditTransaction>();
@@ -138,6 +140,7 @@ namespace Services.EducationAccounts
             ArgumentNullException.ThrowIfNull(dto);
 
             if (dto.Ids.Count == 0) return;
+            var batchId = Guid.NewGuid();
 
             await _unitOfWork.ExecuteInTransactionAsync(async (transaction, token) =>
             {
@@ -145,6 +148,8 @@ namespace Services.EducationAccounts
                     .Include(a => a.Citizen)
                     .Where(a => dto.Ids.Contains(a.Id))
                     .ToListAsync(token);
+                if (accounts.Count != dto.Ids.Distinct().Count())
+                    throw new ValidationFailureException(nameof(dto.Ids), "One or more education accounts do not exist.");
 
                 foreach (var account in accounts)
                 {
@@ -173,9 +178,19 @@ namespace Services.EducationAccounts
                             account.Id,
                             oldStatus,
                             account.Status,
-                            "Education account status updated by administrator.",
+                            dto.Reason,
                             token);
                     }
+
+                    await _managementActionLogService.LogAsync(
+                        batchId,
+                        ManagementActionEntityType.EducationAccount,
+                        account.Id,
+                        account.Status == EducationAccountStatus.Active ? ManagementAction.Activate : ManagementAction.Close,
+                        dto.Reason,
+                        oldStatus.ToString(),
+                        account.Status.ToString(),
+                        cancellationToken: token);
 
                     await _auditLogWriter.LogAsync(
                         AuditLogCategory.AccountCreation,
@@ -191,7 +206,7 @@ namespace Services.EducationAccounts
             var citizen = await _citizenRepository.Query()
                 .Include(item => item.EducationAccount)
                 .FirstOrDefaultAsync(item => item.Nric == nric, cancellationToken)
-                ?? throw new ValidationFailureException(nameof(CreateEducationAccountDTO.Nric), "Citizen not found in registry.");
+                ?? throw new ValidationFailureException(nameof(CreateEducationAccountDTO.Nric), "Citizen not found in my-info.");
 
             var todaySgt = DateOnly.FromDateTime(DateTime.UtcNow.AddHours(8));
             var errorMessage = EducationAccountValidationHelper.ValidateCitizenEligibility(citizen, todaySgt);

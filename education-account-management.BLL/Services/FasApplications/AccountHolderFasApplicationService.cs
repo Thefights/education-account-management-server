@@ -47,6 +47,89 @@ namespace Services.FasApplications
             return application.ApplicationNumber;
         }
 
+        public async Task<int> SaveDraftApplicationAsync(SubmitFasApplicationDTO dto, CancellationToken cancellationToken = default)
+        {
+            var studentInfo = await GetCurrentStudentInfoAsync(cancellationToken);
+            var scheme = await GetActiveSchemeAsync(dto.FasSchemeId, studentInfo.SchoolId, cancellationToken);
+
+            await EnsureNoActiveApplicationAsync(studentInfo.Id, dto.FasSchemeId, null, cancellationToken);
+
+            var applicationNumber = await GenerateApplicationNumberAsync(cancellationToken);
+
+            var application = new FasApplication
+            {
+                FasSchemeId = dto.FasSchemeId,
+                SchoolStudentId = studentInfo.Id,
+                ApplicationNumber = applicationNumber,
+                Status = FasApplicationStatus.Draft
+            };
+
+            ApplySubmission(application, dto, studentInfo, scheme, FasApplicationStatus.Draft);
+            application.TryValidate();
+
+            await _unitOfWork.Repository<FasApplication>().AddAsync(application, cancellationToken);
+            await _unitOfWork.SaveChangeAsync(cancellationToken);
+
+            return application.Id;
+        }
+
+        public async Task UpdateDraftApplicationAsync(int id, SubmitFasApplicationDTO dto, CancellationToken cancellationToken = default)
+        {
+            var studentInfo = await GetCurrentStudentInfoAsync(cancellationToken);
+
+            var draft = await _unitOfWork.Repository<FasApplication>()
+                .Query(tracking: true)
+                .Include(a => a.Documents)
+                .Include(a => a.AdditionalQuestionAnswers)
+                .FirstOrDefaultAsync(a => a.Id == id && a.SchoolStudentId == studentInfo.Id, cancellationToken);
+
+            if (draft == null)
+            {
+                throw new DataNotFoundException(typeof(FasApplication), id);
+            }
+
+            if (draft.Status != FasApplicationStatus.Draft)
+            {
+                throw new DataConflictException("Only draft applications can be updated.");
+            }
+
+            if (dto.FasSchemeId != draft.FasSchemeId)
+            {
+                throw new DataConflictException("Draft application scheme does not match the submitted scheme.");
+            }
+
+            var scheme = await GetActiveSchemeAsync(dto.FasSchemeId, studentInfo.SchoolId, cancellationToken);
+
+            ApplySubmission(draft, dto, studentInfo, scheme, FasApplicationStatus.Draft);
+            draft.TryValidate();
+
+            await _unitOfWork.SaveChangeAsync(cancellationToken);
+        }
+
+        public async Task DeleteDraftApplicationAsync(int id, CancellationToken cancellationToken = default)
+        {
+            var studentInfo = await GetCurrentStudentInfoAsync(cancellationToken);
+
+            var draft = await _unitOfWork.Repository<FasApplication>()
+                .Query(tracking: true)
+                .Include(a => a.Documents)
+                .Include(a => a.AdditionalQuestionAnswers)
+                .FirstOrDefaultAsync(a => a.Id == id && a.SchoolStudentId == studentInfo.Id, cancellationToken);
+
+            if (draft == null)
+            {
+                throw new DataNotFoundException(typeof(FasApplication), id);
+            }
+
+            if (draft.Status != FasApplicationStatus.Draft)
+            {
+                throw new DataConflictException("Only draft applications can be deleted.");
+            }
+
+            _unitOfWork.Repository<FasApplication>().Remove(draft);
+            await _unitOfWork.SaveChangeAsync(cancellationToken);
+        }
+
         public async Task<int> CreateReapplyDraftAsync(int sourceApplicationId, CancellationToken cancellationToken = default)
         {
             var studentInfo = await GetCurrentStudentInfoAsync(cancellationToken);
@@ -55,6 +138,8 @@ namespace Services.FasApplications
             var sourceApplication = await _unitOfWork.Repository<FasApplication>()
                 .Query()
                 .Include(a => a.Documents)
+                .Include(a => a.AdditionalQuestionAnswers)
+                .Include(a => a.FasScheme)
                 .FirstOrDefaultAsync(a => a.Id == sourceApplicationId && a.SchoolStudentId == studentInfo.Id, cancellationToken);
 
             if (sourceApplication == null)
@@ -62,8 +147,14 @@ namespace Services.FasApplications
                 throw new DataNotFoundException(typeof(FasApplication), sourceApplicationId);
             }
 
+            if (sourceApplication.FasScheme.Status != FasSchemeStatus.Active)
+            {
+                throw new DataConflictException("The selected FAS Scheme is no longer active.");
+            }
+
             var canReapply =
                 sourceApplication.Status == FasApplicationStatus.Rejected ||
+                sourceApplication.Status == FasApplicationStatus.Expired ||
                 (sourceApplication.Status == FasApplicationStatus.Approved &&
                  sourceApplication.ValidityEndDate.HasValue &&
                  sourceApplication.ValidityEndDate.Value.Date < today);
@@ -72,6 +163,8 @@ namespace Services.FasApplications
             {
                 throw new DataConflictException("Only rejected or expired applications can be used for reapply.");
             }
+
+            await GetActiveSchemeAsync(sourceApplication.FasSchemeId, studentInfo.SchoolId, cancellationToken);
 
             var existingDraft = await _unitOfWork.Repository<FasApplication>()
                 .Query()
@@ -103,7 +196,8 @@ namespace Services.FasApplications
                 PerCapitaIncomeSnapshot = sourceApplication.PerCapitaIncomeSnapshot,
                 RecommendedTierId = sourceApplication.RecommendedTierId,
                 RecommendationReason = sourceApplication.RecommendationReason,
-                Documents = CloneDocuments(sourceApplication.Documents, -1)
+                Documents = CloneDocuments(sourceApplication.Documents, -1),
+                AdditionalQuestionAnswers = CloneAdditionalAnswers(sourceApplication.AdditionalQuestionAnswers, -1)
             };
 
             draft.TryValidate();
@@ -121,10 +215,13 @@ namespace Services.FasApplications
             var draft = await _unitOfWork.Repository<FasApplication>()
                 .Query(tracking: true)
                 .Include(a => a.Documents)
+                .Include(a => a.AdditionalQuestionAnswers)
                 .Include(a => a.FasScheme)
                     .ThenInclude(s => s.Tiers)
                 .Include(a => a.FasScheme)
                     .ThenInclude(s => s.RequiredDocuments)
+                .Include(a => a.FasScheme)
+                    .ThenInclude(s => s.AdditionalQuestions)
                 .Include(a => a.FasScheme)
                     .ThenInclude(s => s.ConditionGroups)
                         .ThenInclude(cg => cg.Conditions)
@@ -149,9 +246,14 @@ namespace Services.FasApplications
                 throw new DataConflictException("Draft application scheme does not match the submitted scheme.");
             }
 
-            await EnsureNoActiveApplicationAsync(studentInfo.Id, draft.FasSchemeId, draft.Id, cancellationToken); 
-            var scheme = await GetActiveSchemeAsync(draft.FasSchemeId, studentInfo.SchoolId, cancellationToken);
-            ApplySubmission(draft, dto, studentInfo, scheme, FasApplicationStatus.Pending);            
+            if (draft.FasScheme.Status != FasSchemeStatus.Active)
+            {
+                throw new DataConflictException("The selected FAS Scheme is no longer active.");
+            }
+
+            await EnsureNoActiveApplicationAsync(studentInfo.Id, draft.FasSchemeId, draft.Id, cancellationToken);
+
+            ApplySubmission(draft, dto, studentInfo, draft.FasScheme, FasApplicationStatus.Pending);
             draft.CreatedAt = DateTime.UtcNow;
             draft.TryValidate();
 
@@ -178,7 +280,7 @@ namespace Services.FasApplications
                     ValidityEndDate = a.ValidityEndDate,
                     RejectionReason = a.RejectionReason
                 }),
-                a => a.SchoolStudentId == studentInfo.Id && a.Status != FasApplicationStatus.Draft,
+                a => a.SchoolStudentId == studentInfo.Id && (filter.Status.HasValue || a.Status != FasApplicationStatus.Draft),
                 filter.Filter,
                 filter.Search,
                 filter.SearchFields,
@@ -224,6 +326,7 @@ namespace Services.FasApplications
                 .Include(a => a.FasScheme)
                 .Include(a => a.ApprovedTier)
                 .Include(a => a.Documents)
+                .Include(a => a.AdditionalQuestionAnswers)
                 .FirstOrDefaultAsync(a => a.Id == id && a.SchoolStudentId == studentInfo.Id, cancellationToken);
 
             if (application == null)
@@ -269,6 +372,14 @@ namespace Services.FasApplications
                     DocumentNameSnapshot = d.DocumentNameSnapshot,
                     FileName = d.FileName,
                     FileKey = d.FileKey
+                }).ToList(),
+                AdditionalAnswers = application.AdditionalQuestionAnswers.Select(a => new FasApplicationAdditionalAnswerDetailDTO
+                {
+                    Id = a.Id,
+                    FasSchemeAdditionalQuestionId = a.FasSchemeAdditionalQuestionId,
+                    QuestionTextSnapshot = a.QuestionTextSnapshot,
+                    IsRequiredSnapshot = a.IsRequiredSnapshot,
+                    AnswerText = a.AnswerText
                 }).ToList()
             };
 
@@ -300,17 +411,27 @@ namespace Services.FasApplications
                 .Query()
                 .Include(s => s.Tiers)
                 .Include(s => s.RequiredDocuments)
+                .Include(s => s.AdditionalQuestions)
                 .Include(s => s.ConditionGroups)
                     .ThenInclude(cg => cg.Conditions)
                 .Include(s => s.ConditionGroups)
                     .ThenInclude(cg => cg.ChildGroups)
                         .ThenInclude(child => child.Conditions)
                 .FirstOrDefaultAsync(s => s.Id == schemeId
-                    && s.Status == FasSchemeStatus.Active
                     && s.SchoolId == schoolId,
                     cancellationToken);
 
-            return scheme ?? throw new DataNotFoundException(typeof(FasScheme), schemeId);
+            if (scheme == null)
+            {
+                throw new DataNotFoundException(typeof(FasScheme), schemeId);
+            }
+
+            if (scheme.Status != FasSchemeStatus.Active)
+            {
+                throw new DataConflictException("The selected FAS Scheme is no longer active.");
+            }
+
+            return scheme;
         }
 
         private async Task EnsureNoActiveApplicationAsync(
@@ -333,7 +454,7 @@ namespace Services.FasApplications
 
             if (exists)
             {
-                throw new DataConflictException("You already have a pending or approved application for this scheme.");
+                throw new DataConflictException("You already have an active (draft, pending, or approved) application for this scheme.");
             }
         }
 
@@ -348,7 +469,20 @@ namespace Services.FasApplications
             var pci = dto.HouseholdMemberCount > 0 ? dto.GrossHouseholdIncome / dto.HouseholdMemberCount : 0;
             var (recommendedTierId, recommendationReason) = GetRecommendation(dto, studentInfo, scheme, studentAge, pci);
 
+            if (status != FasApplicationStatus.Draft && scheme.AdditionalQuestions != null)
+            {
+                foreach (var q in scheme.AdditionalQuestions.Where(q => q.IsRequired))
+                {
+                    var providedAnswer = dto.AdditionalAnswers?.FirstOrDefault(a => a.FasSchemeAdditionalQuestionId == q.Id);
+                    if (providedAnswer == null || string.IsNullOrWhiteSpace(providedAnswer.AnswerText))
+                    {
+                        throw new ValidationFailureException(nameof(dto.AdditionalAnswers), $"Question '{q.QuestionText}' is required.");
+                    }
+                }
+            }
+
             RemoveDocuments(application.Documents);
+            RemoveAdditionalAnswers(application.AdditionalQuestionAnswers);
 
             application.FasSchemeId = dto.FasSchemeId;
             application.Status = status;
@@ -371,6 +505,7 @@ namespace Services.FasApplications
             application.ValidityEndDate = null;
             application.WithdrawnAt = null;
             application.Documents = BuildDocuments(dto.Documents, scheme, application.Id == 0 ? -1 : application.Id);
+            application.AdditionalQuestionAnswers = BuildAdditionalAnswers(dto.AdditionalAnswers, scheme, application.Id == 0 ? -1 : application.Id);
         }
 
         private (int? RecommendedTierId, string RecommendationReason) GetRecommendation(
@@ -395,19 +530,43 @@ namespace Services.FasApplications
                 return (null, recommendationReason);
             }
 
-            var eligibleTier = scheme.Tiers
-                .Where(t => !t.MaxPerCapitaIncome.HasValue || pci <= t.MaxPerCapitaIncome)
-                .OrderBy(t => t.MaxPerCapitaIncome ?? decimal.MaxValue)
+            // Support tier basis configuration by checking both Per-Capita Income (PCI) and Gross Household Income.
+            var eligibleTiers = scheme.Tiers.Where(t =>
+                (!t.MaxPerCapitaIncome.HasValue || pci <= t.MaxPerCapitaIncome.Value) &&
+                (!t.MaxGrossHouseholdIncome.HasValue || dto.GrossHouseholdIncome <= t.MaxGrossHouseholdIncome.Value)
+            ).ToList();
+
+            if (eligibleTiers.Count == 0)
+            {
+                return (null, "Eligible for scheme but exceeded all tier limits");
+            }
+
+            // Calculate benefit score based on total subsidy value to determine the most beneficial tier.
+            decimal GetBenefitScore(FasSchemeTier tier)
+            {
+                if (scheme.IsPerComponent)
+                {
+                    return (tier.CourseFeeSubsidyValue ?? 0) + (tier.MiscFeeSubsidyValue ?? 0);
+                }
+                return tier.SubsidyValue ?? 0;
+            }
+
+            // Select the most beneficial tier automatically for the student by ordering scores descendingly.
+            var eligibleTier = eligibleTiers
+                .OrderByDescending(GetBenefitScore)
+                .ThenBy(t => t.DisplayOrder)
                 .FirstOrDefault();
 
             if (eligibleTier == null)
             {
-                return (null, "Eligible for scheme but exceeded all tier PCI limits");
+                return (null, "Eligible for scheme but exceeded all tier limits");
             }
 
-            recommendationReason = eligibleTier.MaxPerCapitaIncome.HasValue
-                ? $"PCI <= {eligibleTier.MaxPerCapitaIncome}"
-                : "Matched tier with no PCI limit";
+            var reasons = new List<string>();
+            if (eligibleTier.MaxPerCapitaIncome.HasValue) reasons.Add($"PCI <= {eligibleTier.MaxPerCapitaIncome}");
+            if (eligibleTier.MaxGrossHouseholdIncome.HasValue) reasons.Add($"Gross Income <= {eligibleTier.MaxGrossHouseholdIncome}");
+            if (reasons.Count == 0) reasons.Add("Matched tier with no limits");
+            recommendationReason = string.Join(" AND ", reasons);
 
             return (eligibleTier.Id, recommendationReason);
         }
@@ -425,18 +584,23 @@ namespace Services.FasApplications
             FasScheme scheme,
             int applicationId)
         {
-            return documents.Select(document =>
+            var result = new List<FasApplicationDocument>();
+            foreach (var document in documents)
             {
                 var requiredDocument = scheme.RequiredDocuments.FirstOrDefault(r => r.Id == document.RequiredDocumentId);
-                return new FasApplicationDocument
+                if (requiredDocument != null)
                 {
-                    FasApplicationId = applicationId,
-                    FasSchemeRequiredDocumentId = document.RequiredDocumentId,
-                    FileKey = document.FileKey,
-                    FileName = document.FileName,
-                    DocumentNameSnapshot = requiredDocument?.DocumentName ?? document.FileName
-                };
-            }).ToList();
+                    result.Add(new FasApplicationDocument
+                    {
+                        FasApplicationId = applicationId,
+                        FasSchemeRequiredDocumentId = document.RequiredDocumentId,
+                        FileKey = document.FileKey,
+                        FileName = document.FileName,
+                        DocumentNameSnapshot = requiredDocument.DocumentName
+                    });
+                }
+            }
+            return result;
         }
 
         private static List<FasApplicationDocument> CloneDocuments(
@@ -459,6 +623,57 @@ namespace Services.FasApplications
             if (existingDocuments.Count > 0)
             {
                 _unitOfWork.Repository<FasApplicationDocument>().RemoveRange(existingDocuments);
+            }
+        }
+
+        private static List<FasApplicationAdditionalQuestionAnswer> BuildAdditionalAnswers(
+            IEnumerable<SubmitFasApplicationAdditionalAnswerDTO>? answers,
+            FasScheme scheme,
+            int applicationId)
+        {
+            var result = new List<FasApplicationAdditionalQuestionAnswer>();
+            if (answers == null) return result;
+
+            foreach (var answer in answers)
+            {
+                var question = scheme.AdditionalQuestions?.FirstOrDefault(q => q.Id == answer.FasSchemeAdditionalQuestionId);
+                if (question != null)
+                {
+                    result.Add(new FasApplicationAdditionalQuestionAnswer
+                    {
+                        FasApplicationId = applicationId,
+                        FasSchemeAdditionalQuestionId = question.Id,
+                        QuestionTextSnapshot = question.QuestionText,
+                        IsRequiredSnapshot = question.IsRequired,
+                        AnswerText = answer.AnswerText
+                    });
+                }
+            }
+            return result;
+        }
+
+        private static List<FasApplicationAdditionalQuestionAnswer> CloneAdditionalAnswers(
+            IEnumerable<FasApplicationAdditionalQuestionAnswer>? answers,
+            int applicationId)
+        {
+            if (answers == null) return new List<FasApplicationAdditionalQuestionAnswer>();
+
+            return answers.Select(answer => new FasApplicationAdditionalQuestionAnswer
+            {
+                FasApplicationId = applicationId,
+                FasSchemeAdditionalQuestionId = answer.FasSchemeAdditionalQuestionId,
+                QuestionTextSnapshot = answer.QuestionTextSnapshot,
+                IsRequiredSnapshot = answer.IsRequiredSnapshot,
+                AnswerText = answer.AnswerText
+            }).ToList();
+        }
+
+        private void RemoveAdditionalAnswers(IEnumerable<FasApplicationAdditionalQuestionAnswer>? answers)
+        {
+            var existingAnswers = answers?.ToList();
+            if (existingAnswers?.Count > 0)
+            {
+                _unitOfWork.Repository<FasApplicationAdditionalQuestionAnswer>().RemoveRange(existingAnswers);
             }
         }
 

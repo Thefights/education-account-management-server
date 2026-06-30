@@ -66,20 +66,20 @@ namespace Services.EducationAccounts
 
                 if (!citizens.TryGetValue(row.Nric, out var citizen))
                 {
-                    errors.Add(BatchImportErrorDTO.Create(rowNumber, nameof(row.Nric), "Citizen not found in registry."));
+                    errors.Add(BatchImportErrorDTO.Create(rowNumber, nameof(row.Nric), "Citizen not found in my-info.", row.Nric));
                     continue;
                 }
 
                 var validationError = EducationAccountValidationHelper.ValidateCitizenEligibility(citizen, todaySgt);
                 if (validationError != null)
                 {
-                    errors.Add(BatchImportErrorDTO.Create(rowNumber, nameof(row.Nric), validationError));
+                    errors.Add(BatchImportErrorDTO.Create(rowNumber, nameof(row.Nric), validationError, row.Nric));
                     continue;
                 }
 
                 if (!seenNrics.Add(row.Nric))
                 {
-                    errors.Add(BatchImportErrorDTO.Create(rowNumber, nameof(row.Nric), "Duplicate NRIC in import file."));
+                    errors.Add(BatchImportErrorDTO.Create(rowNumber, nameof(row.Nric), "Duplicate NRIC in import file.", row.Nric));
                     continue;
                 }
 
@@ -125,9 +125,9 @@ namespace Services.EducationAccounts
                 catch (ValidationFailureException ex)
                 {
                     rowErrors.AddRange(ex.FieldErrors.Select(e =>
-                        BatchImportErrorDTO.Create(rowNumber, e.Key, e.Value)));
+                        BatchImportErrorDTO.Create(rowNumber, e.Key, e.Value, nric)));
                     rowErrors.AddRange(ex.GlobalErrors.Select(e =>
-                        BatchImportErrorDTO.Create(rowNumber, string.Empty, e)));
+                        BatchImportErrorDTO.Create(rowNumber, string.Empty, e, nric)));
                 }
             }
 
