@@ -53,6 +53,7 @@ namespace Services.FasApplications
                 .Include(a => a.FasScheme)
                     .ThenInclude(s => s.RequiredDocuments)
                 .Include(a => a.Documents)
+                .Include(a => a.AdditionalQuestionAnswers)
                 .FirstOrDefaultAsync(
                     a => a.Id == applicationId &&
                         a.SchoolStudent.SchoolId == adminSchoolId &&

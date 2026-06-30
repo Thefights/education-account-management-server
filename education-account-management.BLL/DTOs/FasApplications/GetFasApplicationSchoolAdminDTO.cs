@@ -19,6 +19,7 @@ namespace DTOs.FasApplications
         public StudentProfileDTO StudentProfile { get; set; } = new();
         public SchemeDetailsDTO Scheme { get; set; } = new();
         public SystemSuggestedTierDTO? SystemSuggestedTier { get; set; }
+        public List<ApplicationAdditionalAnswerDTO> AdditionalAnswers { get; set; } = [];
     }
 
     public class StudentProfileDTO
@@ -63,5 +64,13 @@ namespace DTOs.FasApplications
         public int Id { get; set; }
         public string TierName { get; set; } = string.Empty;
         public string Reason { get; set; } = string.Empty;
+    }
+
+    public class ApplicationAdditionalAnswerDTO
+    {
+        public int Id { get; set; }
+        public string QuestionText { get; set; } = string.Empty;
+        public string? AnswerText { get; set; }
+        public bool IsRequired { get; set; }
     }
 }

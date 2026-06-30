@@ -5,7 +5,7 @@
         [MessageRequired, MessageMaxLength(150), Unique]
         public string Name { get; set; } = string.Empty;
 
-        [Column(TypeName = "decimal(18,2)")]
+        [Column(TypeName = "decimal(18,2)"), NumberPositive]
         public decimal? TopupAmount { get; set; }
 
         [EnumDefined]

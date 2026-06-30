@@ -12,11 +12,13 @@ namespace Mappers.FasSchemes
         [MapperIgnoreTarget(nameof(FasScheme.Tiers))]
         [MapperIgnoreTarget(nameof(FasScheme.RequiredDocuments))]
         [MapperIgnoreTarget(nameof(FasScheme.SchemeCourses))]
+        [MapperIgnoreTarget(nameof(FasScheme.AdditionalQuestions))]
         public partial FasScheme MapFromCreateDTO(CreateFasSchemeDTO createDTO);
 
         [MapperIgnoreTarget(nameof(FasScheme.Tiers))]
         [MapperIgnoreTarget(nameof(FasScheme.RequiredDocuments))]
         [MapperIgnoreTarget(nameof(FasScheme.SchemeCourses))]
+        [MapperIgnoreTarget(nameof(FasScheme.AdditionalQuestions))]
         public partial void MapFromUpdateDTO(UpdateFasSchemeDTO updateDTO, FasScheme model);
 
         [MapProperty(nameof(FasSchemeCourse.CourseId), nameof(FasSchemeCourseDTO.CourseId))]

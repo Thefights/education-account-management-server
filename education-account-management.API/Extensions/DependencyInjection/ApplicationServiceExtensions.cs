@@ -25,6 +25,8 @@ using Interfaces.TransactionHistory;
 using Mappers;
 using Mappers.Admin;
 using Mappers.Enrollments;
+using Mappers.FasApplications;
+using Mappers.FasSchemes;
 using Mappers.SchoolStudents;
 using Mappers.TopUp;
 using Polly;
@@ -41,6 +43,7 @@ using Services.EducationAccounts;
 using Services.Email;
 using Services.Enrollments;
 using Services.FasApplications;
+using Services.FasSchemes;
 using Services.Maintenance;
 using Services.Payments;
 using Services.Schools;
@@ -48,14 +51,9 @@ using Services.SchoolStudents;
 using Services.Storage;
 using Services.TopUp;
 using Services.TransactionHistory;
-using Mappers.FasSchemes;
-using Services.FasSchemes;
 using StackExchange.Redis;
 using System.Threading.RateLimiting;
 using Utils;
-using Mappers.FasApplications;
-using BLL.Interfaces.Payments;
-using BLL.Services.Payments;
 
 namespace Extensions.DependencyInjection
 {

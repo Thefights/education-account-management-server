@@ -1,10 +1,8 @@
-using Infrastructure.Interface;
 using DTOs.AiChat;
+using Infrastructure.Interface;
 using Interfaces.ApplicationSettings;
-using System.Text.Json;
 using System.Text;
-using Microsoft.AspNetCore.Http;
-using DTOs.Base;
+using System.Text.Json;
 
 namespace Infrastructure
 {
@@ -26,7 +24,7 @@ namespace Infrastructure
 
         public async Task<bool> GetAiStatusAsync()
         {
-            try 
+            try
             {
                 var setting = await _applicationSettingService.GetAsync();
                 return setting?.IsAiFeatureEnabled ?? false;
@@ -58,13 +56,13 @@ namespace Infrastructure
             var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
             var response = await client.PostAsync("/ai/faq/chat", content);
-            
+
             if (response.IsSuccessStatusCode)
             {
                 var responseContent = await response.Content.ReadAsStringAsync();
                 return AiServiceResult.Success(responseContent, (int)response.StatusCode);
             }
-            
+
             return AiServiceResult.Failure("Failed to connect to the AI server.", (int)response.StatusCode);
         }
     }

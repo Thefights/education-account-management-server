@@ -2,6 +2,7 @@ using Authorization;
 using Common.HttpResults;
 using Controllers.Base;
 using DTOs.Admin;
+using DTOs.Base;
 using Filters.Admin;
 using Interfaces.Admin;
 
@@ -34,6 +35,13 @@ namespace Controllers.Management
         {
             await _service.UpdateAdminsStatusAsync(dto, cancellationToken);
             return Result.SuccessAction("Admin status updated successfully.");
+        }
+
+        [HttpDelete("selected")]
+        public async Task<IActionResult> DeleteSelected(DeleteSelectedIdsDTO dto, CancellationToken cancellationToken)
+        {
+            await _service.DeleteSelectedIdsAsync(dto, cancellationToken);
+            return Result.SuccessAction($"{dto.Ids.Count} selected Admins deleted successfully");
         }
 
         [HttpPost("import")]

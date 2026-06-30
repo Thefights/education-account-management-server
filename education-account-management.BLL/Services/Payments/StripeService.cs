@@ -1,4 +1,3 @@
-using BLL.Interfaces.Payments;
 using DTOs.Payments;
 using Interfaces.Audit;
 using Interfaces.Email;
@@ -7,8 +6,9 @@ using Stripe.Checkout;
 using System.Text.Json;
 using PaymentMethod = Enums.PaymentMethod;
 using PaymentIntent = Enums.PaymentIntent;
+using Interfaces.Payments;
 
-namespace BLL.Services.Payments;
+namespace Services.Payments;
 
 public class StripeService(
     AppConfiguration configuration,

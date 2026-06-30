@@ -1,6 +1,6 @@
 ﻿using DTOs.Payments;
 
-namespace BLL.Interfaces.Payments
+namespace Interfaces.Payments
 {
     public interface IStripeService
     {
