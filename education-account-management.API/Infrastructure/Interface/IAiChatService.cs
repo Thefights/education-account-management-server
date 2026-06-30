@@ -6,5 +6,7 @@ namespace Infrastructure.Interface
     {
         Task<bool> GetAiStatusAsync();
         Task<AiServiceResult> SendChatMessageAsync(AiChatRequestDTO request);
+        Task<AiServiceResult> SendDynamicFasChatAsync(DynamicFasChatRequestDTO request);
+        Task<AiServiceResult> ResetDynamicFasSessionAsync(DynamicFasResetSessionRequestDTO request);
     }
 }

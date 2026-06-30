@@ -30,5 +30,31 @@ namespace Controllers
 
             return Result.FailError<object?>(null, result.ErrorMessage ?? "Error", result.StatusCode);
         }
+
+        [HttpPost("fas-auto-fill")]
+        public async Task<IActionResult> DynamicFasChat([FromForm] DynamicFasChatRequestDTO request)
+        {
+            var result = await _aiChatService.SendDynamicFasChatAsync(request);
+
+            if (result.IsSuccess)
+            {
+                return Content(result.Content!, "application/json");
+            }
+
+            return Result.FailError<object?>(null, result.ErrorMessage ?? "Error", result.StatusCode);
+        }
+
+        [HttpPost("fas-auto-fill/reset-session")]
+        public async Task<IActionResult> ResetDynamicFasSession([FromForm] DynamicFasResetSessionRequestDTO request)
+        {
+            var result = await _aiChatService.ResetDynamicFasSessionAsync(request);
+
+            if (result.IsSuccess)
+            {
+                return Content(result.Content!, "application/json");
+            }
+
+            return Result.FailError<object?>(null, result.ErrorMessage ?? "Error", result.StatusCode);
+        }
     }
 }
