@@ -20,9 +20,15 @@ namespace DTOs.FasSchemes
         public List<FasSchemeTierDTO> Tiers { get; set; } = [];
         public List<FasSchemeRequiredDocumentDTO> RequiredDocuments { get; set; } = [];
         public List<string> ConditionsSummary { get; set; } = [];
+        public List<FasSchemeAdditionalQuestionDTO> AdditionalQuestions { get; set; } = [];
     }
 
-
+    public class FasSchemeAdditionalQuestionDTO
+    {
+        public int Id { get; set; }
+        public string QuestionText { get; set; } = string.Empty;
+        public bool IsRequired { get; set; }
+    }
 
     public class FasSchemeRequiredDocumentDTO
     {

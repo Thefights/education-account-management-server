@@ -80,6 +80,7 @@ namespace Services.FasApplications
             var draft = await _unitOfWork.Repository<FasApplication>()
                 .Query(tracking: true)
                 .Include(a => a.Documents)
+                .Include(a => a.AdditionalQuestionAnswers)
                 .FirstOrDefaultAsync(a => a.Id == id && a.SchoolStudentId == studentInfo.Id, cancellationToken);
 
             if (draft == null)
@@ -112,6 +113,7 @@ namespace Services.FasApplications
             var draft = await _unitOfWork.Repository<FasApplication>()
                 .Query(tracking: true)
                 .Include(a => a.Documents)
+                .Include(a => a.AdditionalQuestionAnswers)
                 .FirstOrDefaultAsync(a => a.Id == id && a.SchoolStudentId == studentInfo.Id, cancellationToken);
 
             if (draft == null)
@@ -136,6 +138,7 @@ namespace Services.FasApplications
             var sourceApplication = await _unitOfWork.Repository<FasApplication>()
                 .Query()
                 .Include(a => a.Documents)
+                .Include(a => a.AdditionalQuestionAnswers)
                 .Include(a => a.FasScheme)
                 .FirstOrDefaultAsync(a => a.Id == sourceApplicationId && a.SchoolStudentId == studentInfo.Id, cancellationToken);
 
@@ -193,7 +196,8 @@ namespace Services.FasApplications
                 PerCapitaIncomeSnapshot = sourceApplication.PerCapitaIncomeSnapshot,
                 RecommendedTierId = sourceApplication.RecommendedTierId,
                 RecommendationReason = sourceApplication.RecommendationReason,
-                Documents = CloneDocuments(sourceApplication.Documents, -1)
+                Documents = CloneDocuments(sourceApplication.Documents, -1),
+                AdditionalQuestionAnswers = CloneAdditionalAnswers(sourceApplication.AdditionalQuestionAnswers, -1)
             };
 
             draft.TryValidate();
@@ -211,10 +215,13 @@ namespace Services.FasApplications
             var draft = await _unitOfWork.Repository<FasApplication>()
                 .Query(tracking: true)
                 .Include(a => a.Documents)
+                .Include(a => a.AdditionalQuestionAnswers)
                 .Include(a => a.FasScheme)
                     .ThenInclude(s => s.Tiers)
                 .Include(a => a.FasScheme)
                     .ThenInclude(s => s.RequiredDocuments)
+                .Include(a => a.FasScheme)
+                    .ThenInclude(s => s.AdditionalQuestions)
                 .Include(a => a.FasScheme)
                     .ThenInclude(s => s.ConditionGroups)
                         .ThenInclude(cg => cg.Conditions)
@@ -319,6 +326,7 @@ namespace Services.FasApplications
                 .Include(a => a.FasScheme)
                 .Include(a => a.ApprovedTier)
                 .Include(a => a.Documents)
+                .Include(a => a.AdditionalQuestionAnswers)
                 .FirstOrDefaultAsync(a => a.Id == id && a.SchoolStudentId == studentInfo.Id, cancellationToken);
 
             if (application == null)
@@ -364,6 +372,14 @@ namespace Services.FasApplications
                     DocumentNameSnapshot = d.DocumentNameSnapshot,
                     FileName = d.FileName,
                     FileKey = d.FileKey
+                }).ToList(),
+                AdditionalAnswers = application.AdditionalQuestionAnswers.Select(a => new FasApplicationAdditionalAnswerDetailDTO
+                {
+                    Id = a.Id,
+                    FasSchemeAdditionalQuestionId = a.FasSchemeAdditionalQuestionId,
+                    QuestionTextSnapshot = a.QuestionTextSnapshot,
+                    IsRequiredSnapshot = a.IsRequiredSnapshot,
+                    AnswerText = a.AnswerText
                 }).ToList()
             };
 
@@ -395,6 +411,7 @@ namespace Services.FasApplications
                 .Query()
                 .Include(s => s.Tiers)
                 .Include(s => s.RequiredDocuments)
+                .Include(s => s.AdditionalQuestions)
                 .Include(s => s.ConditionGroups)
                     .ThenInclude(cg => cg.Conditions)
                 .Include(s => s.ConditionGroups)
@@ -452,7 +469,20 @@ namespace Services.FasApplications
             var pci = dto.HouseholdMemberCount > 0 ? dto.GrossHouseholdIncome / dto.HouseholdMemberCount : 0;
             var (recommendedTierId, recommendationReason) = GetRecommendation(dto, studentInfo, scheme, studentAge, pci);
 
+            if (status != FasApplicationStatus.Draft && scheme.AdditionalQuestions != null)
+            {
+                foreach (var q in scheme.AdditionalQuestions.Where(q => q.IsRequired))
+                {
+                    var providedAnswer = dto.AdditionalAnswers?.FirstOrDefault(a => a.FasSchemeAdditionalQuestionId == q.Id);
+                    if (providedAnswer == null || string.IsNullOrWhiteSpace(providedAnswer.AnswerText))
+                    {
+                        throw new ValidationFailureException(nameof(dto.AdditionalAnswers), $"Question '{q.QuestionText}' is required.");
+                    }
+                }
+            }
+
             RemoveDocuments(application.Documents);
+            RemoveAdditionalAnswers(application.AdditionalQuestionAnswers);
 
             application.FasSchemeId = dto.FasSchemeId;
             application.Status = status;
@@ -475,6 +505,7 @@ namespace Services.FasApplications
             application.ValidityEndDate = null;
             application.WithdrawnAt = null;
             application.Documents = BuildDocuments(dto.Documents, scheme, application.Id == 0 ? -1 : application.Id);
+            application.AdditionalQuestionAnswers = BuildAdditionalAnswers(dto.AdditionalAnswers, scheme, application.Id == 0 ? -1 : application.Id);
         }
 
         private (int? RecommendedTierId, string RecommendationReason) GetRecommendation(
@@ -592,6 +623,57 @@ namespace Services.FasApplications
             if (existingDocuments.Count > 0)
             {
                 _unitOfWork.Repository<FasApplicationDocument>().RemoveRange(existingDocuments);
+            }
+        }
+
+        private static List<FasApplicationAdditionalQuestionAnswer> BuildAdditionalAnswers(
+            IEnumerable<SubmitFasApplicationAdditionalAnswerDTO>? answers,
+            FasScheme scheme,
+            int applicationId)
+        {
+            var result = new List<FasApplicationAdditionalQuestionAnswer>();
+            if (answers == null) return result;
+
+            foreach (var answer in answers)
+            {
+                var question = scheme.AdditionalQuestions?.FirstOrDefault(q => q.Id == answer.FasSchemeAdditionalQuestionId);
+                if (question != null)
+                {
+                    result.Add(new FasApplicationAdditionalQuestionAnswer
+                    {
+                        FasApplicationId = applicationId,
+                        FasSchemeAdditionalQuestionId = question.Id,
+                        QuestionTextSnapshot = question.QuestionText,
+                        IsRequiredSnapshot = question.IsRequired,
+                        AnswerText = answer.AnswerText
+                    });
+                }
+            }
+            return result;
+        }
+
+        private static List<FasApplicationAdditionalQuestionAnswer> CloneAdditionalAnswers(
+            IEnumerable<FasApplicationAdditionalQuestionAnswer>? answers,
+            int applicationId)
+        {
+            if (answers == null) return new List<FasApplicationAdditionalQuestionAnswer>();
+
+            return answers.Select(answer => new FasApplicationAdditionalQuestionAnswer
+            {
+                FasApplicationId = applicationId,
+                FasSchemeAdditionalQuestionId = answer.FasSchemeAdditionalQuestionId,
+                QuestionTextSnapshot = answer.QuestionTextSnapshot,
+                IsRequiredSnapshot = answer.IsRequiredSnapshot,
+                AnswerText = answer.AnswerText
+            }).ToList();
+        }
+
+        private void RemoveAdditionalAnswers(IEnumerable<FasApplicationAdditionalQuestionAnswer>? answers)
+        {
+            var existingAnswers = answers?.ToList();
+            if (existingAnswers?.Count > 0)
+            {
+                _unitOfWork.Repository<FasApplicationAdditionalQuestionAnswer>().RemoveRange(existingAnswers);
             }
         }
 

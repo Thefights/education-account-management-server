@@ -53,5 +53,15 @@ namespace DTOs.FasApplications
         public FasApplicationTierDetailDTO? ApprovedTier { get; set; }
 
         public List<FasApplicationDocumentDetailDTO> Documents { get; set; } = [];
+        public List<FasApplicationAdditionalAnswerDetailDTO> AdditionalAnswers { get; set; } = [];
+    }
+
+    public class FasApplicationAdditionalAnswerDetailDTO
+    {
+        public int Id { get; set; }
+        public int? FasSchemeAdditionalQuestionId { get; set; }
+        public string QuestionTextSnapshot { get; set; } = string.Empty;
+        public bool IsRequiredSnapshot { get; set; }
+        public string? AnswerText { get; set; }
     }
 }

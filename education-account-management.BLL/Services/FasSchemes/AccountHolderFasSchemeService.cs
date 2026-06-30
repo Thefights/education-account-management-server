@@ -46,6 +46,7 @@ namespace Services.FasSchemes
                 .Where(s => s.Status == FasSchemeStatus.Active && s.SchoolId == studentInfo.SchoolId)
                 .Include(s => s.Tiers)
                 .Include(s => s.RequiredDocuments)
+                .Include(s => s.AdditionalQuestions)
                 .Include(s => s.ConditionGroups)
                     .ThenInclude(cg => cg.Conditions)
                 .Include(s => s.ConditionGroups)
@@ -126,6 +127,12 @@ namespace Services.FasSchemes
                         Id = d.Id,
                         DocumentName = d.DocumentName,
                         TemplateUrl = d.TemplateFileKey
+                    }).ToList(),
+                    AdditionalQuestions = s.AdditionalQuestions.Select(q => new FasSchemeAdditionalQuestionDTO
+                    {
+                        Id = q.Id,
+                        QuestionText = q.QuestionText,
+                        IsRequired = q.IsRequired
                     }).ToList(),
                     ConditionsSummary = GenerateConditionsSummary(s.ConditionGroups)
                 }).ToList();
