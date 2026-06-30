@@ -45,7 +45,7 @@ public class StripeService(
         var chargePaymentRequestInfors = request.ChargePaymentRequestInfors;
         var chargeIds = chargePaymentRequestInfors.Select(c => c.ChargeId).ToList();
 
-        var educationAccount = await _accountRepository.Query(tracking: true)
+        var educationAccount = await _accountRepository.Query(tracking: false)
             .Include(a => a.Citizen)
             .FirstOrDefaultAsync(a => a.Citizen != null && a.Citizen.User != null && a.Citizen.User.Id == currentUserId, cancellationToken);
 

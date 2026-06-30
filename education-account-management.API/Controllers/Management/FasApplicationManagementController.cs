@@ -4,6 +4,7 @@ using Controllers.Base;
 using DTOs.FasApplications;
 using Filters.FasApplications;
 using Interfaces.FasApplications;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Controllers.Management
 {
@@ -23,9 +24,12 @@ namespace Controllers.Management
         }
 
         [HttpPost("{id}/approve")]
-        public async Task<IActionResult> Approve(int id, CancellationToken cancellationToken)
+        public async Task<IActionResult> Approve(
+            int id,
+            [FromBody(EmptyBodyBehavior = EmptyBodyBehavior.Allow)] ApproveFasApplicationDTO? dto,
+            CancellationToken cancellationToken)
         {
-            await _service.ApproveAsync(id, cancellationToken);
+            await _service.ApproveAsync(id, dto, cancellationToken);
             return Result.SuccessAction("FAS application approved successfully.");
         }
 

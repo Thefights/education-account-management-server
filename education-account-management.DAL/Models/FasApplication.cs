@@ -58,9 +58,13 @@ namespace Models
         [MessageMaxLength(1000)]
         public string? RecommendationReason { get; set; }
 
-        // Lý do reject do admin nhập.
+        // Lý do reject (hiển thị cho student) do admin nhập.
         [MessageMaxLength(1000)]
-        public string? RejectionReason { get; set; }
+        public string? ExternalRejectionReason { get; set; }
+
+        // Lý do reject nội bộ (chỉ admin xem) do admin nhập.
+        [MessageMaxLength(1000)]
+        public string? InternalRejectionReason { get; set; }
 
         // Thời điểm application được approve.
         public DateTime? ApprovedAt { get; set; }

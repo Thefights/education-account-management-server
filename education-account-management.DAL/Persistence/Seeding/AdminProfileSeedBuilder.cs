@@ -20,6 +20,13 @@ namespace Persistence.Seeding
                 int mappedUserId = i;
                 if (i == 4) mappedUserId = 21; // Since UserId=4 is an AccountHolder, we map this admin profile to the 21st user which is a SchoolAdmin.
 
+                                int? schoolId = null;
+                int[] schoolAdminIds = { 3, 7, 10, 13, 16, 17, 18, 19, 20, 21 };
+                if (System.Array.IndexOf(schoolAdminIds, mappedUserId) >= 0)
+                {
+                    schoolId = System.Array.IndexOf(schoolAdminIds, mappedUserId) + 1;
+                }
+
                 adminProfiles.Add(new AdminProfile
                 {
                     Id = i,
@@ -29,7 +36,7 @@ namespace Persistence.Seeding
                     Email = $"admin{i:D3}@example.com",
                     PhoneNumber = $"+6580000{i:D3}",
                     UserId = mappedUserId,
-                    SchoolId = i > 10 ? i - 10 : null, // School admins 11-20 linked to schools 1-10
+                    SchoolId = schoolId,
                     CreatedAt = createdAt
                 });
             }

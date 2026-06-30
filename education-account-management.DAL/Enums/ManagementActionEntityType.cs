@@ -10,6 +10,7 @@ namespace Enums
         FasScheme = 6,
         Enrollment = 7,
         SystemTopup = 8,
-        ScheduleTopUp = 9
+        ScheduleTopUp = 9,
+        FasApplication = 10
     }
 }

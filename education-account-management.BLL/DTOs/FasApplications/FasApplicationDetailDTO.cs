@@ -45,7 +45,7 @@ namespace DTOs.FasApplications
         public int HouseholdMemberCountSnapshot { get; set; }
         public decimal PerCapitaIncomeSnapshot { get; set; }
 
-        public string? RejectionReason { get; set; }
+        public string? ExternalRejectionReason { get; set; }
 
         public DateTime? ApprovedAt { get; set; }
         public DateTime? ValidityStartDate { get; set; }

@@ -278,9 +278,9 @@ namespace Services.FasApplications
                     SubmittedAt = a.CreatedAt,
                     ApprovedDate = a.ApprovedAt,
                     ValidityEndDate = a.ValidityEndDate,
-                    RejectionReason = a.RejectionReason
+                    ExternalRejectionReason = a.ExternalRejectionReason
                 }),
-                a => a.SchoolStudentId == studentInfo.Id && (filter.Status.HasValue || a.Status != FasApplicationStatus.Draft),
+                a => a.SchoolStudentId == studentInfo.Id,
                 filter.Filter,
                 filter.Search,
                 filter.SearchFields,
@@ -354,7 +354,7 @@ namespace Services.FasApplications
                 GrossHouseholdIncomeSnapshot = application.GrossHouseholdIncomeSnapshot,
                 HouseholdMemberCountSnapshot = application.HouseholdMemberCountSnapshot,
                 PerCapitaIncomeSnapshot = application.PerCapitaIncomeSnapshot,
-                RejectionReason = application.RejectionReason,
+                ExternalRejectionReason = application.ExternalRejectionReason,
                 ApprovedAt = application.ApprovedAt,
                 ValidityStartDate = application.ValidityStartDate,
                 ValidityEndDate = application.ValidityEndDate,
@@ -447,14 +447,13 @@ namespace Services.FasApplications
                     && a.FasSchemeId == schemeId
                     && (!excludeApplicationId.HasValue || a.Id != excludeApplicationId.Value)
                     && (a.Status == FasApplicationStatus.Pending
-                        || a.Status == FasApplicationStatus.Draft
                         || (a.Status == FasApplicationStatus.Approved
                             && (a.ValidityEndDate == null || a.ValidityEndDate >= today))),
                     cancellationToken);
 
             if (exists)
             {
-                throw new DataConflictException("You already have an active (draft, pending, or approved) application for this scheme.");
+                throw new DataConflictException("You already have a pending or active approved application for this scheme.");
             }
         }
 
@@ -497,7 +496,8 @@ namespace Services.FasApplications
             application.RecommendedTierId = recommendedTierId;
             application.ApprovedTierId = null;
             application.RecommendationReason = recommendationReason;
-            application.RejectionReason = null;
+            application.ExternalRejectionReason = null;
+            application.InternalRejectionReason = null;
             application.ApprovedAt = null;
             application.ApprovedByUserId = null;
             application.DurationInMonthsSnapshot = null;

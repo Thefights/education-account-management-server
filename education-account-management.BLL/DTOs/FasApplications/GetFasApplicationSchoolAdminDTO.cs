@@ -9,6 +9,8 @@ namespace DTOs.FasApplications
         public string SchemeName { get; set; } = string.Empty;
         public DateTime SubmittedAt { get; set; }
         public string Status { get; set; } = string.Empty;
+        public string? ExternalRejectionReason { get; set; }
+        public string? InternalRejectionReason { get; set; }
     }
 
     public class GetFasApplicationSchoolAdminDetailDTO
@@ -19,7 +21,11 @@ namespace DTOs.FasApplications
         public StudentProfileDTO StudentProfile { get; set; } = new();
         public SchemeDetailsDTO Scheme { get; set; } = new();
         public SystemSuggestedTierDTO? SystemSuggestedTier { get; set; }
+        public ApprovedTierDTO? ApprovedTier { get; set; }
+        public List<TierOverrideHistoryDTO> TierOverrideHistories { get; set; } = [];
         public List<ApplicationAdditionalAnswerDTO> AdditionalAnswers { get; set; } = [];
+        public string? ExternalRejectionReason { get; set; }
+        public string? InternalRejectionReason { get; set; }
     }
 
     public class StudentProfileDTO
@@ -48,6 +54,7 @@ namespace DTOs.FasApplications
         public decimal? CourseFeeSubsidyValue { get; set; }
         public decimal? MiscFeeSubsidyValue { get; set; }
         public decimal? MaxPerCapitaIncome { get; set; }
+        public decimal? MaxGrossHouseholdIncome { get; set; }
     }
 
     public class ApplicationDocumentDTO
@@ -64,6 +71,26 @@ namespace DTOs.FasApplications
         public int Id { get; set; }
         public string TierName { get; set; } = string.Empty;
         public string Reason { get; set; } = string.Empty;
+    }
+
+    public class ApprovedTierDTO
+    {
+        public int Id { get; set; }
+        public string TierName { get; set; } = string.Empty;
+    }
+
+    public class TierOverrideHistoryDTO
+    {
+        public int Id { get; set; }
+        public int? OldTierId { get; set; }
+        public string? OldTierName { get; set; }
+        public int NewTierId { get; set; }
+        public string NewTierName { get; set; } = string.Empty;
+        public string RecommendationReason { get; set; } = string.Empty;
+        public string Reason { get; set; } = string.Empty;
+        public int ModifiedByUserId { get; set; }
+        public string? ModifiedByName { get; set; }
+        public DateTime ModifiedAt { get; set; }
     }
 
     public class ApplicationAdditionalAnswerDTO
