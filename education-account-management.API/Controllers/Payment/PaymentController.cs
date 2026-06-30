@@ -1,11 +1,11 @@
 using Authorization;
-using BLL.Interfaces.Payments;
 using Common.HttpResults;
 using Controllers.Base;
 using DTOs.Payments;
+using Interfaces.Payments;
 
 
-namespace API.Controllers.Payment
+namespace Controllers.Payment
 {
     public class PaymentController(IStripeService stripeService) : BaseController
     {

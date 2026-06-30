@@ -1,6 +1,3 @@
-using Microsoft.AspNetCore.Http;
-using DTOs.Base;
-
 namespace Infrastructure.Interface
 {
     public interface IAiDocumentManagementService

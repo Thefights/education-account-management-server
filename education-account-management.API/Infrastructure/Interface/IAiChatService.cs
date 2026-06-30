@@ -1,5 +1,4 @@
 using DTOs.AiChat;
-using DTOs.Base;
 
 namespace Infrastructure.Interface
 {
