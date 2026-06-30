@@ -138,7 +138,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000103A",
                             PhoneNumber = "+6580000003",
-                            SchoolId = 1,
                             StaffCode = "STAFF-2026-MUWAHW6",
                             UserId = 3
                         },
@@ -152,7 +151,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000104Z",
                             PhoneNumber = "+6580000004",
                             StaffCode = "STAFF-2026-S4FZU83",
-                            UserId = 5
+                            UserId = 21
                         },
                         new
                         {
@@ -164,7 +163,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000105H",
                             PhoneNumber = "+6580000005",
                             StaffCode = "STAFF-2026-AOAY3A4",
-                            UserId = 6
+                            UserId = 5
                         },
                         new
                         {
@@ -175,9 +174,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000106F",
                             PhoneNumber = "+6580000006",
-                            SchoolId = 7,
                             StaffCode = "STAFF-2026-KRNWMLK",
-                            UserId = 7
+                            UserId = 6
                         },
                         new
                         {
@@ -189,7 +187,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000107D",
                             PhoneNumber = "+6580000007",
                             StaffCode = "STAFF-2026-UNJFZW7",
-                            UserId = 8
+                            UserId = 7
                         },
                         new
                         {
@@ -201,7 +199,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000108B",
                             PhoneNumber = "+6580000008",
                             StaffCode = "STAFF-2026-SFXEF6F",
-                            UserId = 9
+                            UserId = 8
                         },
                         new
                         {
@@ -212,9 +210,8 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000109J",
                             PhoneNumber = "+6580000009",
-                            SchoolId = 10,
                             StaffCode = "STAFF-2026-O3408F1",
-                            UserId = 10
+                            UserId = 9
                         },
                         new
                         {
@@ -226,7 +223,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             Nric = "S0000110D",
                             PhoneNumber = "+6580000010",
                             StaffCode = "STAFF-2026-7F0PDWW",
-                            UserId = 11
+                            UserId = 10
                         },
                         new
                         {
@@ -237,8 +234,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000111B",
                             PhoneNumber = "+6580000011",
+                            SchoolId = 1,
                             StaffCode = "STAFF-2026-8X4V13Q",
-                            UserId = 12
+                            UserId = 11
                         },
                         new
                         {
@@ -249,9 +247,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000112J",
                             PhoneNumber = "+6580000012",
-                            SchoolId = 13,
+                            SchoolId = 2,
                             StaffCode = "STAFF-2026-U02ABWW",
-                            UserId = 13
+                            UserId = 12
                         },
                         new
                         {
@@ -262,8 +260,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000113I",
                             PhoneNumber = "+6580000013",
+                            SchoolId = 3,
                             StaffCode = "STAFF-2026-YAASVP4",
-                            UserId = 14
+                            UserId = 13
                         },
                         new
                         {
@@ -274,8 +273,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000114G",
                             PhoneNumber = "+6580000014",
+                            SchoolId = 4,
                             StaffCode = "STAFF-2026-MD7QFDN",
-                            UserId = 15
+                            UserId = 14
                         },
                         new
                         {
@@ -286,9 +286,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000115E",
                             PhoneNumber = "+6580000015",
-                            SchoolId = 16,
+                            SchoolId = 5,
                             StaffCode = "STAFF-2026-YM3YL5X",
-                            UserId = 16
+                            UserId = 15
                         },
                         new
                         {
@@ -299,8 +299,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000116C",
                             PhoneNumber = "+6580000016",
+                            SchoolId = 6,
                             StaffCode = "STAFF-2026-KOWBPV1",
-                            UserId = 17
+                            UserId = 16
                         },
                         new
                         {
@@ -311,8 +312,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000117A",
                             PhoneNumber = "+6580000017",
+                            SchoolId = 7,
                             StaffCode = "STAFF-2026-D7G9W6U",
-                            UserId = 18
+                            UserId = 17
                         },
                         new
                         {
@@ -323,9 +325,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000118Z",
                             PhoneNumber = "+6580000018",
-                            SchoolId = 19,
+                            SchoolId = 8,
                             StaffCode = "STAFF-2026-ZAQHZJY",
-                            UserId = 19
+                            UserId = 18
                         },
                         new
                         {
@@ -336,8 +338,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000119H",
                             PhoneNumber = "+6580000019",
+                            SchoolId = 9,
                             StaffCode = "STAFF-2026-NI8TCIU",
-                            UserId = 20
+                            UserId = 19
                         },
                         new
                         {
@@ -348,378 +351,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             Nric = "S0000120A",
                             PhoneNumber = "+6580000020",
+                            SchoolId = 10,
                             StaffCode = "STAFF-2026-BM63HUE",
-                            UserId = 21
-                        },
-                        new
-                        {
-                            Id = 21,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin021@example.com",
-                            FullName = "Uma Devi",
-                            IsDeleted = false,
-                            Nric = "S0000121Z",
-                            PhoneNumber = "+6580000021",
-                            SchoolId = 22,
-                            StaffCode = "STAFF-2026-OE318VW",
-                            UserId = 22
-                        },
-                        new
-                        {
-                            Id = 22,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin022@example.com",
-                            FullName = "Victor Ho",
-                            IsDeleted = false,
-                            Nric = "S0000122H",
-                            PhoneNumber = "+6580000022",
-                            StaffCode = "STAFF-2026-LC8GF2Z",
-                            UserId = 23
-                        },
-                        new
-                        {
-                            Id = 23,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin023@example.com",
-                            FullName = "Wendy Seah",
-                            IsDeleted = false,
-                            Nric = "S0000123F",
-                            PhoneNumber = "+6580000023",
-                            StaffCode = "STAFF-2026-5TBCP3X",
-                            UserId = 24
-                        },
-                        new
-                        {
-                            Id = 24,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin024@example.com",
-                            FullName = "Xavier Wong",
-                            IsDeleted = false,
-                            Nric = "S0000124D",
-                            PhoneNumber = "+6580000024",
-                            SchoolId = 25,
-                            StaffCode = "STAFF-2026-AJHDSIO",
-                            UserId = 25
-                        },
-                        new
-                        {
-                            Id = 25,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin025@example.com",
-                            FullName = "Yasmin Abdullah",
-                            IsDeleted = false,
-                            Nric = "S0000125B",
-                            PhoneNumber = "+6580000025",
-                            StaffCode = "STAFF-2026-VV1BIL1",
-                            UserId = 26
-                        },
-                        new
-                        {
-                            Id = 26,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin026@example.com",
-                            FullName = "Zachary Lee",
-                            IsDeleted = false,
-                            Nric = "S0000126J",
-                            PhoneNumber = "+6580000026",
-                            StaffCode = "STAFF-2026-W7UIFU4",
-                            UserId = 27
-                        },
-                        new
-                        {
-                            Id = 27,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin027@example.com",
-                            FullName = "Amelia Tan",
-                            IsDeleted = false,
-                            Nric = "S0000127I",
-                            PhoneNumber = "+6580000027",
-                            SchoolId = 28,
-                            StaffCode = "STAFF-2026-PZ60RTL",
-                            UserId = 28
-                        },
-                        new
-                        {
-                            Id = 28,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin028@example.com",
-                            FullName = "Brandon Quek",
-                            IsDeleted = false,
-                            Nric = "S0000128G",
-                            PhoneNumber = "+6580000028",
-                            StaffCode = "STAFF-2026-CIIW02U",
-                            UserId = 29
-                        },
-                        new
-                        {
-                            Id = 29,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin029@example.com",
-                            FullName = "Celeste Sim",
-                            IsDeleted = false,
-                            Nric = "S0000129E",
-                            PhoneNumber = "+6580000029",
-                            StaffCode = "STAFF-2026-Z53N6V0",
-                            UserId = 30
-                        },
-                        new
-                        {
-                            Id = 30,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin030@example.com",
-                            FullName = "Darren Chia",
-                            IsDeleted = false,
-                            Nric = "S0000130I",
-                            PhoneNumber = "+6580000030",
-                            SchoolId = 31,
-                            StaffCode = "STAFF-2026-53DUZ0B",
-                            UserId = 31
-                        },
-                        new
-                        {
-                            Id = 31,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin031@example.com",
-                            FullName = "Evelyn Lim",
-                            IsDeleted = false,
-                            Nric = "S0000131G",
-                            PhoneNumber = "+6580000031",
-                            StaffCode = "STAFF-2026-UF5TOFH",
-                            UserId = 32
-                        },
-                        new
-                        {
-                            Id = 32,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin032@example.com",
-                            FullName = "Faris Ahmad",
-                            IsDeleted = false,
-                            Nric = "S0000132E",
-                            PhoneNumber = "+6580000032",
-                            StaffCode = "STAFF-2026-BI0W84O",
-                            UserId = 33
-                        },
-                        new
-                        {
-                            Id = 33,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin033@example.com",
-                            FullName = "Giselle Chan",
-                            IsDeleted = false,
-                            Nric = "S0000133C",
-                            PhoneNumber = "+6580000033",
-                            SchoolId = 34,
-                            StaffCode = "STAFF-2026-NQNU96E",
-                            UserId = 34
-                        },
-                        new
-                        {
-                            Id = 34,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin034@example.com",
-                            FullName = "Harith Salleh",
-                            IsDeleted = false,
-                            Nric = "S0000134A",
-                            PhoneNumber = "+6580000034",
-                            StaffCode = "STAFF-2026-IXYYHWY",
-                            UserId = 35
-                        },
-                        new
-                        {
-                            Id = 35,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin035@example.com",
-                            FullName = "Irene Koh",
-                            IsDeleted = false,
-                            Nric = "S0000135Z",
-                            PhoneNumber = "+6580000035",
-                            StaffCode = "STAFF-2026-6F5BSF7",
-                            UserId = 36
-                        },
-                        new
-                        {
-                            Id = 36,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin036@example.com",
-                            FullName = "Jonas Tay",
-                            IsDeleted = false,
-                            Nric = "S0000136H",
-                            PhoneNumber = "+6580000036",
-                            SchoolId = 37,
-                            StaffCode = "STAFF-2026-76F87EB",
-                            UserId = 37
-                        },
-                        new
-                        {
-                            Id = 37,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin037@example.com",
-                            FullName = "Kelly Foo",
-                            IsDeleted = false,
-                            Nric = "S0000137F",
-                            PhoneNumber = "+6580000037",
-                            StaffCode = "STAFF-2026-7QE6AWN",
-                            UserId = 38
-                        },
-                        new
-                        {
-                            Id = 38,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin038@example.com",
-                            FullName = "Leonard Goh",
-                            IsDeleted = false,
-                            Nric = "S0000138D",
-                            PhoneNumber = "+6580000038",
-                            StaffCode = "STAFF-2026-F5AF0MK",
-                            UserId = 39
-                        },
-                        new
-                        {
-                            Id = 39,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin039@example.com",
-                            FullName = "Mei Ling Tan",
-                            IsDeleted = false,
-                            Nric = "S0000139B",
-                            PhoneNumber = "+6580000039",
-                            SchoolId = 40,
-                            StaffCode = "STAFF-2026-VN6QRJT",
-                            UserId = 40
-                        },
-                        new
-                        {
-                            Id = 40,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin040@example.com",
-                            FullName = "Nicholas Yip",
-                            IsDeleted = false,
-                            Nric = "S0000140F",
-                            PhoneNumber = "+6580000040",
-                            StaffCode = "STAFF-2026-1702LWO",
-                            UserId = 41
-                        },
-                        new
-                        {
-                            Id = 41,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin041@example.com",
-                            FullName = "Olivia Ho",
-                            IsDeleted = false,
-                            Nric = "S0000141D",
-                            PhoneNumber = "+6580000041",
-                            StaffCode = "STAFF-2026-4NCICBA",
-                            UserId = 42
-                        },
-                        new
-                        {
-                            Id = 42,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin042@example.com",
-                            FullName = "Pavan Kumar",
-                            IsDeleted = false,
-                            Nric = "S0000142B",
-                            PhoneNumber = "+6580000042",
-                            SchoolId = 43,
-                            StaffCode = "STAFF-2026-IBPQ8VK",
-                            UserId = 43
-                        },
-                        new
-                        {
-                            Id = 43,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin043@example.com",
-                            FullName = "Queenie Lau",
-                            IsDeleted = false,
-                            Nric = "S0000143J",
-                            PhoneNumber = "+6580000043",
-                            StaffCode = "STAFF-2026-JTA16SN",
-                            UserId = 44
-                        },
-                        new
-                        {
-                            Id = 44,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin044@example.com",
-                            FullName = "Rashidah Osman",
-                            IsDeleted = false,
-                            Nric = "S0000144I",
-                            PhoneNumber = "+6580000044",
-                            StaffCode = "STAFF-2026-1GN95ZX",
-                            UserId = 45
-                        },
-                        new
-                        {
-                            Id = 45,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin045@example.com",
-                            FullName = "Shawn Lim",
-                            IsDeleted = false,
-                            Nric = "S0000145G",
-                            PhoneNumber = "+6580000045",
-                            SchoolId = 46,
-                            StaffCode = "STAFF-2026-I2D4PEW",
-                            UserId = 46
-                        },
-                        new
-                        {
-                            Id = 46,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin046@example.com",
-                            FullName = "Tessa Wong",
-                            IsDeleted = false,
-                            Nric = "S0000146E",
-                            PhoneNumber = "+6580000046",
-                            StaffCode = "STAFF-2026-Z6LSG0N",
-                            UserId = 47
-                        },
-                        new
-                        {
-                            Id = 47,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin047@example.com",
-                            FullName = "Umar Farooq",
-                            IsDeleted = false,
-                            Nric = "S0000147C",
-                            PhoneNumber = "+6580000047",
-                            StaffCode = "STAFF-2026-TNPXJ1D",
-                            UserId = 48
-                        },
-                        new
-                        {
-                            Id = 48,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin048@example.com",
-                            FullName = "Valerie Chua",
-                            IsDeleted = false,
-                            Nric = "S0000148A",
-                            PhoneNumber = "+6580000048",
-                            SchoolId = 49,
-                            StaffCode = "STAFF-2026-MJO4T2S",
-                            UserId = 49
-                        },
-                        new
-                        {
-                            Id = 49,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin049@example.com",
-                            FullName = "Wei Jie Tan",
-                            IsDeleted = false,
-                            Nric = "S0000149Z",
-                            PhoneNumber = "+6580000049",
-                            StaffCode = "STAFF-2026-D65QQRF",
-                            UserId = 50
-                        },
-                        new
-                        {
-                            Id = 50,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Email = "admin050@example.com",
-                            FullName = "Xinyi Lim",
-                            IsDeleted = false,
-                            Nric = "S0000150C",
-                            PhoneNumber = "+6580000050",
-                            StaffCode = "STAFF-2026-KT2E8MC",
-                            UserId = 51
+                            UserId = 20
                         });
                 });
 
@@ -1413,19 +1047,19 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-SAGH611",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 125m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 2, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 130m,
                             CourseNameSnapshot = "Academic Writing Cohort 01",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 1,
-                            GrossAmount = 156m,
-                            GstAmountSnapshot = 13.32m,
+                            GrossAmount = 166.77m,
+                            GstAmountSnapshot = 13.77m,
                             IsDeleted = false,
                             MiscFeeAmountSnapshot = 23m,
-                            NetAmount = 156m,
+                            NetAmount = 166.77m,
                             PaidAmount = 0m,
-                            RemainingAmount = 156m,
+                            RemainingAmount = 166.77m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
                             Status = 1,
@@ -1438,22 +1072,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-A9CFJRZ",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 2, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 130m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 135m,
                             CourseNameSnapshot = "Business Numeracy Cohort 02",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 2, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 3, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 2,
-                            GrossAmount = 162m,
-                            GstAmountSnapshot = 14.04m,
+                            GrossAmount = 172.22m,
+                            GstAmountSnapshot = 14.22m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 26m,
-                            NetAmount = 162m,
-                            PaidAmount = 162m,
-                            RemainingAmount = 0m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 172.22m,
+                            PaidAmount = 0m,
+                            RemainingAmount = 172.22m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 2,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -1463,22 +1097,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-1QOTM9Q",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 3, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 135m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 4, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 140m,
                             CourseNameSnapshot = "Digital Literacy Cohort 03",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 4, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 3,
-                            GrossAmount = 168m,
-                            GstAmountSnapshot = 14.76m,
+                            GrossAmount = 177.67m,
+                            GstAmountSnapshot = 14.67m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 29m,
-                            NetAmount = 168m,
-                            PaidAmount = 0m,
-                            RemainingAmount = 168m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 177.67m,
+                            PaidAmount = 177.67m,
+                            RemainingAmount = 0.00m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 3,
+                            Status = 2,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -1493,19 +1127,19 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasTierNameSnapshot = "Tier 1",
                             CourseCodeSnapshot = "CRS-2026-EJ1A67A",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 4, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 140m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 145m,
                             CourseNameSnapshot = "Career Readiness Cohort 04",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 4, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 5, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 4,
-                            GrossAmount = 174m,
-                            GstAmountSnapshot = 15.48m,
+                            GrossAmount = 183.12m,
+                            GstAmountSnapshot = 15.12m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 32m,
-                            NetAmount = 144m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 153.12m,
                             PaidAmount = 0m,
-                            RemainingAmount = 144m,
+                            RemainingAmount = 153.12m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
                             Status = 1,
@@ -1518,22 +1152,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-HPS3B9I",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 5, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 145m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 6, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 150m,
                             CourseNameSnapshot = "Applied Science Cohort 05",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 6, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 5,
-                            GrossAmount = 180m,
-                            GstAmountSnapshot = 14.85m,
+                            GrossAmount = 188.57m,
+                            GstAmountSnapshot = 15.57m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 20m,
-                            NetAmount = 180m,
-                            PaidAmount = 180m,
-                            RemainingAmount = 0m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 188.57m,
+                            PaidAmount = 0m,
+                            RemainingAmount = 188.57m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 2,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -1543,22 +1177,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-UPUZSA3",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 6, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 150m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 7, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 155m,
                             CourseNameSnapshot = "Financial Literacy Cohort 06",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 6, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 7, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 6,
-                            GrossAmount = 186m,
-                            GstAmountSnapshot = 15.57m,
+                            GrossAmount = 194.02m,
+                            GstAmountSnapshot = 16.02m,
                             IsDeleted = false,
                             MiscFeeAmountSnapshot = 23m,
-                            NetAmount = 186m,
-                            PaidAmount = 0m,
-                            RemainingAmount = 186m,
+                            NetAmount = 194.02m,
+                            PaidAmount = 194.02m,
+                            RemainingAmount = 0.00m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 3,
+                            Status = 2,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -1568,19 +1202,19 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-SMDS48L",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 7, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 155m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 8, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 160m,
                             CourseNameSnapshot = "Project Collaboration Cohort 07",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 7, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 8, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 7,
-                            GrossAmount = 192m,
-                            GstAmountSnapshot = 16.29m,
+                            GrossAmount = 199.47m,
+                            GstAmountSnapshot = 16.47m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 26m,
-                            NetAmount = 192m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 199.47m,
                             PaidAmount = 0m,
-                            RemainingAmount = 192m,
+                            RemainingAmount = 199.47m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
                             Status = 1,
@@ -1598,22 +1232,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasTierNameSnapshot = "Tier 1",
                             CourseCodeSnapshot = "CRS-2026-DTVK2L0",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 8, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 160m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 9, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 165m,
                             CourseNameSnapshot = "Data Skills Cohort 08",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 8, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 9, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 8,
-                            GrossAmount = 198m,
-                            GstAmountSnapshot = 17.01m,
+                            GrossAmount = 204.92m,
+                            GstAmountSnapshot = 16.92m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 29m,
-                            NetAmount = 168m,
-                            PaidAmount = 168m,
-                            RemainingAmount = 0m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 174.92m,
+                            PaidAmount = 0m,
+                            RemainingAmount = 174.92m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 2,
+                            Status = 3,
                             SubsidyAmount = 30m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -1623,22 +1257,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-5HA3NN0",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 9, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 165m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 170m,
                             CourseNameSnapshot = "Workplace Communication Cohort 09",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 9, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 10, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 9,
-                            GrossAmount = 204m,
-                            GstAmountSnapshot = 17.73m,
+                            GrossAmount = 210.37m,
+                            GstAmountSnapshot = 17.37m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 32m,
-                            NetAmount = 204m,
-                            PaidAmount = 0m,
-                            RemainingAmount = 204m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 210.37m,
+                            PaidAmount = 210.37m,
+                            RemainingAmount = 0.00m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 3,
+                            Status = 2,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -1648,19 +1282,19 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-PG7MVO8",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 10, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 170m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 175m,
                             CourseNameSnapshot = "Software Foundations Cohort 10",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 11, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 10,
-                            GrossAmount = 210m,
-                            GstAmountSnapshot = 17.10m,
+                            GrossAmount = 215.82m,
+                            GstAmountSnapshot = 17.82m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 20m,
-                            NetAmount = 210m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 215.82m,
                             PaidAmount = 0m,
-                            RemainingAmount = 210m,
+                            RemainingAmount = 215.82m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
                             Status = 1,
@@ -1673,22 +1307,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-7HGGL06",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 11, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 175m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 12, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 180m,
                             CourseNameSnapshot = "Academic Writing Cohort 11",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 12, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 11,
-                            GrossAmount = 216m,
-                            GstAmountSnapshot = 17.82m,
+                            GrossAmount = 221.27m,
+                            GstAmountSnapshot = 18.27m,
                             IsDeleted = false,
                             MiscFeeAmountSnapshot = 23m,
-                            NetAmount = 216m,
-                            PaidAmount = 216m,
-                            RemainingAmount = 0m,
+                            NetAmount = 221.27m,
+                            PaidAmount = 0m,
+                            RemainingAmount = 221.27m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 2,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -1703,22 +1337,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasTierNameSnapshot = "Tier 1",
                             CourseCodeSnapshot = "CRS-2026-8QVCFIJ",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 12, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 180m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 13, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 185m,
                             CourseNameSnapshot = "Business Numeracy Cohort 12",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 12, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 13, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 12,
-                            GrossAmount = 222m,
-                            GstAmountSnapshot = 18.54m,
+                            GrossAmount = 226.72m,
+                            GstAmountSnapshot = 18.72m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 26m,
-                            NetAmount = 192m,
-                            PaidAmount = 0m,
-                            RemainingAmount = 192m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 196.72m,
+                            PaidAmount = 196.72m,
+                            RemainingAmount = 0.00m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 3,
+                            Status = 2,
                             SubsidyAmount = 30m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -1728,19 +1362,19 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-LTXWODC",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 13, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 185m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 14, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 190m,
                             CourseNameSnapshot = "Digital Literacy Cohort 13",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 13, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 14, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 13,
-                            GrossAmount = 228m,
-                            GstAmountSnapshot = 19.26m,
+                            GrossAmount = 232.17m,
+                            GstAmountSnapshot = 19.17m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 29m,
-                            NetAmount = 228m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 232.17m,
                             PaidAmount = 0m,
-                            RemainingAmount = 228m,
+                            RemainingAmount = 232.17m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
                             Status = 1,
@@ -1753,22 +1387,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-9O0PVAP",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 14, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 190m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 195m,
                             CourseNameSnapshot = "Career Readiness Cohort 14",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 14, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 14,
-                            GrossAmount = 234m,
-                            GstAmountSnapshot = 19.98m,
+                            GrossAmount = 237.62m,
+                            GstAmountSnapshot = 19.62m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 32m,
-                            NetAmount = 234m,
-                            PaidAmount = 234m,
-                            RemainingAmount = 0m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 237.62m,
+                            PaidAmount = 0m,
+                            RemainingAmount = 237.62m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 2,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -1778,22 +1412,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-WEJ9TUS",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 15, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 195m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 200m,
                             CourseNameSnapshot = "Applied Science Cohort 15",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 16, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 15,
-                            GrossAmount = 240m,
-                            GstAmountSnapshot = 19.35m,
+                            GrossAmount = 243.07m,
+                            GstAmountSnapshot = 20.07m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 20m,
-                            NetAmount = 240m,
-                            PaidAmount = 0m,
-                            RemainingAmount = 240m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 243.07m,
+                            PaidAmount = 243.07m,
+                            RemainingAmount = 0.00m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 3,
+                            Status = 2,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -1808,19 +1442,19 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasTierNameSnapshot = "Tier 1",
                             CourseCodeSnapshot = "CRS-2026-DW55O4J",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 200m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 17, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 205m,
                             CourseNameSnapshot = "Financial Literacy Cohort 16",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 17, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 16,
-                            GrossAmount = 246m,
-                            GstAmountSnapshot = 20.07m,
+                            GrossAmount = 248.52m,
+                            GstAmountSnapshot = 20.52m,
                             IsDeleted = false,
                             MiscFeeAmountSnapshot = 23m,
-                            NetAmount = 216m,
+                            NetAmount = 218.52m,
                             PaidAmount = 0m,
-                            RemainingAmount = 216m,
+                            RemainingAmount = 218.52m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
                             Status = 1,
@@ -1833,22 +1467,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-BEOMA7Q",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 17, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 205m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 18, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 210m,
                             CourseNameSnapshot = "Project Collaboration Cohort 17",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 17, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 18, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 17,
-                            GrossAmount = 252m,
-                            GstAmountSnapshot = 20.79m,
+                            GrossAmount = 253.97m,
+                            GstAmountSnapshot = 20.97m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 26m,
-                            NetAmount = 252m,
-                            PaidAmount = 252m,
-                            RemainingAmount = 0m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 253.97m,
+                            PaidAmount = 0m,
+                            RemainingAmount = 253.97m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 2,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -1858,22 +1492,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-E5YXUWF",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 18, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 210m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 19, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 215m,
                             CourseNameSnapshot = "Data Skills Cohort 18",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 18, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 19, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 18,
-                            GrossAmount = 258m,
-                            GstAmountSnapshot = 21.51m,
+                            GrossAmount = 259.42m,
+                            GstAmountSnapshot = 21.42m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 29m,
-                            NetAmount = 258m,
-                            PaidAmount = 0m,
-                            RemainingAmount = 258m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 259.42m,
+                            PaidAmount = 259.42m,
+                            RemainingAmount = 0.00m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 3,
+                            Status = 2,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -1883,19 +1517,19 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-5TQ32YK",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 19, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 215m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 220m,
                             CourseNameSnapshot = "Workplace Communication Cohort 19",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 19, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 20, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 19,
-                            GrossAmount = 264m,
-                            GstAmountSnapshot = 22.23m,
+                            GrossAmount = 264.87m,
+                            GstAmountSnapshot = 21.87m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 32m,
-                            NetAmount = 264m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 264.87m,
                             PaidAmount = 0m,
-                            RemainingAmount = 264m,
+                            RemainingAmount = 264.87m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
                             Status = 1,
@@ -1913,22 +1547,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasTierNameSnapshot = "Tier 1",
                             CourseCodeSnapshot = "CRS-2026-QHA65C0",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 20, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 220m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 21, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 225m,
                             CourseNameSnapshot = "Software Foundations Cohort 20",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 21, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 20,
-                            GrossAmount = 270m,
-                            GstAmountSnapshot = 21.60m,
+                            GrossAmount = 270.32m,
+                            GstAmountSnapshot = 22.32m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 20m,
-                            NetAmount = 240m,
-                            PaidAmount = 240m,
-                            RemainingAmount = 0m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 240.32m,
+                            PaidAmount = 0m,
+                            RemainingAmount = 240.32m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 2,
+                            Status = 3,
                             SubsidyAmount = 30m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -1938,22 +1572,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-IF4LTDN",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 21, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 225m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 22, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 230m,
                             CourseNameSnapshot = "Academic Writing Cohort 21",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 21, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 22, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 21,
-                            GrossAmount = 276m,
-                            GstAmountSnapshot = 22.32m,
+                            GrossAmount = 275.77m,
+                            GstAmountSnapshot = 22.77m,
                             IsDeleted = false,
                             MiscFeeAmountSnapshot = 23m,
-                            NetAmount = 276m,
-                            PaidAmount = 0m,
-                            RemainingAmount = 276m,
+                            NetAmount = 275.77m,
+                            PaidAmount = 275.77m,
+                            RemainingAmount = 0.00m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 3,
+                            Status = 2,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -1963,19 +1597,19 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-EOWJ7RI",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 22, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 230m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 23, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 235m,
                             CourseNameSnapshot = "Business Numeracy Cohort 22",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 22, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 23, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 22,
-                            GrossAmount = 282m,
-                            GstAmountSnapshot = 23.04m,
+                            GrossAmount = 281.22m,
+                            GstAmountSnapshot = 23.22m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 26m,
-                            NetAmount = 282m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 281.22m,
                             PaidAmount = 0m,
-                            RemainingAmount = 282m,
+                            RemainingAmount = 281.22m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
                             Status = 1,
@@ -1988,22 +1622,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-JTOV8NE",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 23, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 235m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 24, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 240m,
                             CourseNameSnapshot = "Digital Literacy Cohort 23",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 23, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 24, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 23,
-                            GrossAmount = 288m,
-                            GstAmountSnapshot = 23.76m,
+                            GrossAmount = 286.67m,
+                            GstAmountSnapshot = 23.67m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 29m,
-                            NetAmount = 288m,
-                            PaidAmount = 288m,
-                            RemainingAmount = 0m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 286.67m,
+                            PaidAmount = 0m,
+                            RemainingAmount = 286.67m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 2,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -2018,22 +1652,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasTierNameSnapshot = "Tier 1",
                             CourseCodeSnapshot = "CRS-2026-D6C5MU1",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 24, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 240m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 25, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 245m,
                             CourseNameSnapshot = "Career Readiness Cohort 24",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 24, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 25, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 24,
-                            GrossAmount = 294m,
-                            GstAmountSnapshot = 24.48m,
+                            GrossAmount = 292.12m,
+                            GstAmountSnapshot = 24.12m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 32m,
-                            NetAmount = 264m,
-                            PaidAmount = 0m,
-                            RemainingAmount = 264m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 262.12m,
+                            PaidAmount = 262.12m,
+                            RemainingAmount = 0.00m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 3,
+                            Status = 2,
                             SubsidyAmount = 30m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -2043,19 +1677,19 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-CWWS3U3",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 25, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 245m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 26, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 250m,
                             CourseNameSnapshot = "Applied Science Cohort 25",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 25, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 26, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 25,
-                            GrossAmount = 300m,
-                            GstAmountSnapshot = 23.85m,
+                            GrossAmount = 297.57m,
+                            GstAmountSnapshot = 24.57m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 20m,
-                            NetAmount = 300m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 297.57m,
                             PaidAmount = 0m,
-                            RemainingAmount = 300m,
+                            RemainingAmount = 297.57m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
                             Status = 1,
@@ -2068,22 +1702,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-SPJ7E30",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 26, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 250m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 27, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 255m,
                             CourseNameSnapshot = "Financial Literacy Cohort 26",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 26, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 27, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 26,
-                            GrossAmount = 306m,
-                            GstAmountSnapshot = 24.57m,
+                            GrossAmount = 303.02m,
+                            GstAmountSnapshot = 25.02m,
                             IsDeleted = false,
                             MiscFeeAmountSnapshot = 23m,
-                            NetAmount = 306m,
-                            PaidAmount = 306m,
-                            RemainingAmount = 0m,
+                            NetAmount = 303.02m,
+                            PaidAmount = 0m,
+                            RemainingAmount = 303.02m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 2,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -2093,22 +1727,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-HHV04Y9",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 27, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 255m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 28, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 260m,
                             CourseNameSnapshot = "Project Collaboration Cohort 27",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 27, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 28, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 27,
-                            GrossAmount = 312m,
-                            GstAmountSnapshot = 25.29m,
+                            GrossAmount = 308.47m,
+                            GstAmountSnapshot = 25.47m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 26m,
-                            NetAmount = 312m,
-                            PaidAmount = 0m,
-                            RemainingAmount = 312m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 308.47m,
+                            PaidAmount = 308.47m,
+                            RemainingAmount = 0.00m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 3,
+                            Status = 2,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -2123,19 +1757,19 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasTierNameSnapshot = "Tier 1",
                             CourseCodeSnapshot = "CRS-2026-LUJ9RT4",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 28, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 260m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 265m,
                             CourseNameSnapshot = "Data Skills Cohort 28",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 28, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 28,
-                            GrossAmount = 318m,
-                            GstAmountSnapshot = 26.01m,
+                            GrossAmount = 313.92m,
+                            GstAmountSnapshot = 25.92m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 29m,
-                            NetAmount = 288m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 283.92m,
                             PaidAmount = 0m,
-                            RemainingAmount = 288m,
+                            RemainingAmount = 283.92m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
                             Status = 1,
@@ -2148,22 +1782,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-MATA5OE",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 265m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 2, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 270m,
                             CourseNameSnapshot = "Workplace Communication Cohort 29",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 29,
-                            GrossAmount = 324m,
-                            GstAmountSnapshot = 26.73m,
+                            GrossAmount = 319.37m,
+                            GstAmountSnapshot = 26.37m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 32m,
-                            NetAmount = 324m,
-                            PaidAmount = 324m,
-                            RemainingAmount = 0m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 319.37m,
+                            PaidAmount = 0m,
+                            RemainingAmount = 319.37m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 2,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -2173,22 +1807,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-TBP3E3W",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 2, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 270m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 275m,
                             CourseNameSnapshot = "Software Foundations Cohort 30",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 2, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 3, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 30,
-                            GrossAmount = 330m,
-                            GstAmountSnapshot = 26.10m,
+                            GrossAmount = 324.82m,
+                            GstAmountSnapshot = 26.82m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 20m,
-                            NetAmount = 330m,
-                            PaidAmount = 0m,
-                            RemainingAmount = 330m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 324.82m,
+                            PaidAmount = 324.82m,
+                            RemainingAmount = 0.00m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 3,
+                            Status = 2,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -2198,19 +1832,19 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-NMXIH0W",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 3, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 275m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 4, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 280m,
                             CourseNameSnapshot = "Academic Writing Cohort 31",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 4, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 31,
-                            GrossAmount = 336m,
-                            GstAmountSnapshot = 26.82m,
+                            GrossAmount = 330.27m,
+                            GstAmountSnapshot = 27.27m,
                             IsDeleted = false,
                             MiscFeeAmountSnapshot = 23m,
-                            NetAmount = 336m,
+                            NetAmount = 330.27m,
                             PaidAmount = 0m,
-                            RemainingAmount = 336m,
+                            RemainingAmount = 330.27m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
                             Status = 1,
@@ -2228,22 +1862,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasTierNameSnapshot = "Tier 1",
                             CourseCodeSnapshot = "CRS-2026-M2C29EQ",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 4, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 280m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 285m,
                             CourseNameSnapshot = "Business Numeracy Cohort 32",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 4, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 5, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 32,
-                            GrossAmount = 342m,
-                            GstAmountSnapshot = 27.54m,
+                            GrossAmount = 335.72m,
+                            GstAmountSnapshot = 27.72m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 26m,
-                            NetAmount = 312m,
-                            PaidAmount = 312m,
-                            RemainingAmount = 0m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 305.72m,
+                            PaidAmount = 0m,
+                            RemainingAmount = 305.72m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 2,
+                            Status = 3,
                             SubsidyAmount = 30m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -2253,22 +1887,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-YXZ452K",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 5, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 285m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 6, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 290m,
                             CourseNameSnapshot = "Digital Literacy Cohort 33",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 6, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 33,
-                            GrossAmount = 348m,
-                            GstAmountSnapshot = 28.26m,
+                            GrossAmount = 341.17m,
+                            GstAmountSnapshot = 28.17m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 29m,
-                            NetAmount = 348m,
-                            PaidAmount = 0m,
-                            RemainingAmount = 348m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 341.17m,
+                            PaidAmount = 341.17m,
+                            RemainingAmount = 0.00m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 3,
+                            Status = 2,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -2278,19 +1912,19 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-OJZT05F",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 6, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 290m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 7, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 295m,
                             CourseNameSnapshot = "Career Readiness Cohort 34",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 6, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 7, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 34,
-                            GrossAmount = 354m,
-                            GstAmountSnapshot = 28.98m,
+                            GrossAmount = 346.62m,
+                            GstAmountSnapshot = 28.62m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 32m,
-                            NetAmount = 354m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 346.62m,
                             PaidAmount = 0m,
-                            RemainingAmount = 354m,
+                            RemainingAmount = 346.62m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
                             Status = 1,
@@ -2303,22 +1937,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-FBV0QY7",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 7, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 295m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 8, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 300m,
                             CourseNameSnapshot = "Applied Science Cohort 35",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 7, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 8, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 35,
-                            GrossAmount = 360m,
-                            GstAmountSnapshot = 28.35m,
+                            GrossAmount = 352.07m,
+                            GstAmountSnapshot = 29.07m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 20m,
-                            NetAmount = 360m,
-                            PaidAmount = 360m,
-                            RemainingAmount = 0m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 352.07m,
+                            PaidAmount = 0m,
+                            RemainingAmount = 352.07m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 2,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -2333,22 +1967,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasTierNameSnapshot = "Tier 1",
                             CourseCodeSnapshot = "CRS-2026-R46A00W",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 8, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 300m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 9, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 305m,
                             CourseNameSnapshot = "Financial Literacy Cohort 36",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 8, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 9, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 36,
-                            GrossAmount = 366m,
-                            GstAmountSnapshot = 29.07m,
+                            GrossAmount = 357.52m,
+                            GstAmountSnapshot = 29.52m,
                             IsDeleted = false,
                             MiscFeeAmountSnapshot = 23m,
-                            NetAmount = 336m,
-                            PaidAmount = 0m,
-                            RemainingAmount = 336m,
+                            NetAmount = 327.52m,
+                            PaidAmount = 327.52m,
+                            RemainingAmount = 0.00m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 3,
+                            Status = 2,
                             SubsidyAmount = 30m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -2358,19 +1992,19 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-JMAO1QA",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 9, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 305m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 310m,
                             CourseNameSnapshot = "Project Collaboration Cohort 37",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 9, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 10, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 37,
-                            GrossAmount = 372m,
-                            GstAmountSnapshot = 29.79m,
+                            GrossAmount = 362.97m,
+                            GstAmountSnapshot = 29.97m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 26m,
-                            NetAmount = 372m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 362.97m,
                             PaidAmount = 0m,
-                            RemainingAmount = 372m,
+                            RemainingAmount = 362.97m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
                             Status = 1,
@@ -2383,22 +2017,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-VA3LGE0",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 10, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 310m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 315m,
                             CourseNameSnapshot = "Data Skills Cohort 38",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 11, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 38,
-                            GrossAmount = 378m,
-                            GstAmountSnapshot = 30.51m,
+                            GrossAmount = 368.42m,
+                            GstAmountSnapshot = 30.42m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 29m,
-                            NetAmount = 378m,
-                            PaidAmount = 378m,
-                            RemainingAmount = 0m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 368.42m,
+                            PaidAmount = 0m,
+                            RemainingAmount = 368.42m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 2,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -2408,22 +2042,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-C2L9WG4",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 11, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 315m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 12, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 320m,
                             CourseNameSnapshot = "Workplace Communication Cohort 39",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 12, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 39,
-                            GrossAmount = 384m,
-                            GstAmountSnapshot = 31.23m,
+                            GrossAmount = 373.87m,
+                            GstAmountSnapshot = 30.87m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 32m,
-                            NetAmount = 384m,
-                            PaidAmount = 0m,
-                            RemainingAmount = 384m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 373.87m,
+                            PaidAmount = 373.87m,
+                            RemainingAmount = 0.00m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 3,
+                            Status = 2,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -2438,19 +2072,19 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasTierNameSnapshot = "Tier 1",
                             CourseCodeSnapshot = "CRS-2026-L6UUQYK",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 12, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 320m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 13, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 325m,
                             CourseNameSnapshot = "Software Foundations Cohort 40",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 12, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 13, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 40,
-                            GrossAmount = 390m,
-                            GstAmountSnapshot = 30.60m,
+                            GrossAmount = 379.32m,
+                            GstAmountSnapshot = 31.32m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 20m,
-                            NetAmount = 360m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 349.32m,
                             PaidAmount = 0m,
-                            RemainingAmount = 360m,
+                            RemainingAmount = 349.32m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
                             Status = 1,
@@ -2463,22 +2097,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-79UQVDL",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 13, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 325m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 14, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 330m,
                             CourseNameSnapshot = "Academic Writing Cohort 41",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 13, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 14, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 41,
-                            GrossAmount = 396m,
-                            GstAmountSnapshot = 31.32m,
+                            GrossAmount = 384.77m,
+                            GstAmountSnapshot = 31.77m,
                             IsDeleted = false,
                             MiscFeeAmountSnapshot = 23m,
-                            NetAmount = 396m,
-                            PaidAmount = 396m,
-                            RemainingAmount = 0m,
+                            NetAmount = 384.77m,
+                            PaidAmount = 0m,
+                            RemainingAmount = 384.77m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 2,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -2488,22 +2122,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-SDLMCO9",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 14, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 330m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 335m,
                             CourseNameSnapshot = "Business Numeracy Cohort 42",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 14, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 42,
-                            GrossAmount = 402m,
-                            GstAmountSnapshot = 32.04m,
+                            GrossAmount = 390.22m,
+                            GstAmountSnapshot = 32.22m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 26m,
-                            NetAmount = 402m,
-                            PaidAmount = 0m,
-                            RemainingAmount = 402m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 390.22m,
+                            PaidAmount = 390.22m,
+                            RemainingAmount = 0.00m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 3,
+                            Status = 2,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -2513,19 +2147,19 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-LUEVJLD",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 15, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 335m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 340m,
                             CourseNameSnapshot = "Digital Literacy Cohort 43",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 16, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 43,
-                            GrossAmount = 408m,
-                            GstAmountSnapshot = 32.76m,
+                            GrossAmount = 395.67m,
+                            GstAmountSnapshot = 32.67m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 29m,
-                            NetAmount = 408m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 395.67m,
                             PaidAmount = 0m,
-                            RemainingAmount = 408m,
+                            RemainingAmount = 395.67m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
                             Status = 1,
@@ -2543,22 +2177,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasTierNameSnapshot = "Tier 1",
                             CourseCodeSnapshot = "CRS-2026-GO9AJL4",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 340m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 17, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 345m,
                             CourseNameSnapshot = "Career Readiness Cohort 44",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 17, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 44,
-                            GrossAmount = 414m,
-                            GstAmountSnapshot = 33.48m,
+                            GrossAmount = 401.12m,
+                            GstAmountSnapshot = 33.12m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 32m,
-                            NetAmount = 384m,
-                            PaidAmount = 384m,
-                            RemainingAmount = 0m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 371.12m,
+                            PaidAmount = 0m,
+                            RemainingAmount = 371.12m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 2,
+                            Status = 3,
                             SubsidyAmount = 30m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -2568,22 +2202,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-B29KV62",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 17, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 345m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 18, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 350m,
                             CourseNameSnapshot = "Applied Science Cohort 45",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 17, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 18, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 45,
-                            GrossAmount = 420m,
-                            GstAmountSnapshot = 32.85m,
+                            GrossAmount = 406.57m,
+                            GstAmountSnapshot = 33.57m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 20m,
-                            NetAmount = 420m,
-                            PaidAmount = 0m,
-                            RemainingAmount = 420m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 406.57m,
+                            PaidAmount = 406.57m,
+                            RemainingAmount = 0.00m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 3,
+                            Status = 2,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -2593,19 +2227,19 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-2ME55AE",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 18, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 350m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 19, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 355m,
                             CourseNameSnapshot = "Financial Literacy Cohort 46",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 18, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 19, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 46,
-                            GrossAmount = 426m,
-                            GstAmountSnapshot = 33.57m,
+                            GrossAmount = 412.02m,
+                            GstAmountSnapshot = 34.02m,
                             IsDeleted = false,
                             MiscFeeAmountSnapshot = 23m,
-                            NetAmount = 426m,
+                            NetAmount = 412.02m,
                             PaidAmount = 0m,
-                            RemainingAmount = 426m,
+                            RemainingAmount = 412.02m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
                             Status = 1,
@@ -2618,22 +2252,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-X7JQUEV",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 19, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 355m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 360m,
                             CourseNameSnapshot = "Project Collaboration Cohort 47",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 19, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 20, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 47,
-                            GrossAmount = 432m,
-                            GstAmountSnapshot = 34.29m,
+                            GrossAmount = 417.47m,
+                            GstAmountSnapshot = 34.47m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 26m,
-                            NetAmount = 432m,
-                            PaidAmount = 432m,
-                            RemainingAmount = 0m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 417.47m,
+                            PaidAmount = 0m,
+                            RemainingAmount = 417.47m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 2,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -2648,22 +2282,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasTierNameSnapshot = "Tier 1",
                             CourseCodeSnapshot = "CRS-2026-Y8VG30C",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 20, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 360m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 21, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 365m,
                             CourseNameSnapshot = "Data Skills Cohort 48",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 21, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 48,
-                            GrossAmount = 438m,
-                            GstAmountSnapshot = 35.01m,
+                            GrossAmount = 422.92m,
+                            GstAmountSnapshot = 34.92m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 29m,
-                            NetAmount = 408m,
-                            PaidAmount = 0m,
-                            RemainingAmount = 408m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 392.92m,
+                            PaidAmount = 392.92m,
+                            RemainingAmount = 0.00m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 3,
+                            Status = 2,
                             SubsidyAmount = 30m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -2673,19 +2307,19 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-8A1B6PI",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 21, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 365m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 22, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 370m,
                             CourseNameSnapshot = "Workplace Communication Cohort 49",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 21, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 22, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 49,
-                            GrossAmount = 444m,
-                            GstAmountSnapshot = 35.73m,
+                            GrossAmount = 428.37m,
+                            GstAmountSnapshot = 35.37m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 32m,
-                            NetAmount = 444m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 428.37m,
                             PaidAmount = 0m,
-                            RemainingAmount = 444m,
+                            RemainingAmount = 428.37m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
                             Status = 1,
@@ -2698,22 +2332,22 @@ namespace educationaccountmanagement.DAL.Migrations
                             AppliedFasIsPerComponentSnapshot = false,
                             CourseCodeSnapshot = "CRS-2026-2H98HR4",
                             CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                            CourseEndDateSnapshot = new DateTime(2026, 10, 22, 0, 0, 0, 0, DateTimeKind.Utc),
-                            CourseFeeAmountSnapshot = 370m,
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 23, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 375m,
                             CourseNameSnapshot = "Software Foundations Cohort 50",
-                            CourseStartDateSnapshot = new DateTime(2026, 8, 22, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 23, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 50,
-                            GrossAmount = 450m,
-                            GstAmountSnapshot = 35.10m,
+                            GrossAmount = 433.82m,
+                            GstAmountSnapshot = 35.82m,
                             IsDeleted = false,
-                            MiscFeeAmountSnapshot = 20m,
-                            NetAmount = 450m,
-                            PaidAmount = 450m,
-                            RemainingAmount = 0m,
+                            MiscFeeAmountSnapshot = 23m,
+                            NetAmount = 433.82m,
+                            PaidAmount = 0m,
+                            RemainingAmount = 433.82m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 2,
+                            Status = 3,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         },
@@ -2726,7 +2360,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             CourseEndDateSnapshot = new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             CourseFeeAmountSnapshot = 900m,
                             CourseNameSnapshot = "Creative Thinking Cohort 51",
-                            CourseStartDateSnapshot = new DateTime(2026, 3, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseStartDateSnapshot = new DateTime(2026, 4, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentId = 51,
                             GrossAmount = 1110m,
@@ -2735,11 +2369,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             MiscFeeAmountSnapshot = 118.35m,
                             NetAmount = 1110m,
                             PaidAmount = 185m,
-                            PaymentPlanMonths = 6,
                             RemainingAmount = 925m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
-                            Status = 3,
+                            Status = 1,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
                         });
@@ -2812,10 +2445,10 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            Amount = 156m,
+                            Amount = 166.77m,
                             ChargeId = 1,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DueDate = new DateTime(2026, 5, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 5, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
                             IsDeleted = false,
                             Status = 1
@@ -2823,20 +2456,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            Amount = 162m,
-                            ChargeId = 2,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DueDate = new DateTime(2026, 5, 2, 0, 0, 0, 0, DateTimeKind.Utc),
-                            InstallmentNumber = 1,
-                            IsDeleted = false,
-                            Status = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Amount = 168m,
+                            Amount = 172.22m,
                             BecameOverdueAt = new DateTime(2026, 6, 3, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ChargeId = 3,
+                            ChargeId = 2,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 3, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
@@ -2845,11 +2467,22 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 4,
-                            Amount = 174m,
-                            ChargeId = 4,
+                            Id = 3,
+                            Amount = 177.67m,
+                            ChargeId = 3,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 4, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
+                            IsDeleted = false,
+                            Status = 2
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Amount = 153.12m,
+                            ChargeId = 4,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 5, 5, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
                             IsDeleted = false,
                             Status = 1
@@ -2857,20 +2490,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 5,
-                            Amount = 180m,
-                            ChargeId = 5,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DueDate = new DateTime(2026, 5, 5, 0, 0, 0, 0, DateTimeKind.Utc),
-                            InstallmentNumber = 1,
-                            IsDeleted = false,
-                            Status = 2
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Amount = 186m,
+                            Amount = 188.57m,
                             BecameOverdueAt = new DateTime(2026, 6, 6, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ChargeId = 6,
+                            ChargeId = 5,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 6, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
@@ -2879,11 +2501,22 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 7,
-                            Amount = 192m,
-                            ChargeId = 7,
+                            Id = 6,
+                            Amount = 194.02m,
+                            ChargeId = 6,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 7, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
+                            IsDeleted = false,
+                            Status = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Amount = 199.47m,
+                            ChargeId = 7,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 5, 8, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
                             IsDeleted = false,
                             Status = 1
@@ -2891,20 +2524,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 8,
-                            Amount = 198m,
-                            ChargeId = 8,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DueDate = new DateTime(2026, 5, 8, 0, 0, 0, 0, DateTimeKind.Utc),
-                            InstallmentNumber = 1,
-                            IsDeleted = false,
-                            Status = 2
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Amount = 204m,
+                            Amount = 174.92m,
                             BecameOverdueAt = new DateTime(2026, 6, 9, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ChargeId = 9,
+                            ChargeId = 8,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 9, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
@@ -2913,11 +2535,22 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 10,
-                            Amount = 210m,
-                            ChargeId = 10,
+                            Id = 9,
+                            Amount = 210.37m,
+                            ChargeId = 9,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
+                            IsDeleted = false,
+                            Status = 2
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Amount = 215.82m,
+                            ChargeId = 10,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 5, 11, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
                             IsDeleted = false,
                             Status = 1
@@ -2925,20 +2558,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 11,
-                            Amount = 216m,
-                            ChargeId = 11,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DueDate = new DateTime(2026, 5, 11, 0, 0, 0, 0, DateTimeKind.Utc),
-                            InstallmentNumber = 1,
-                            IsDeleted = false,
-                            Status = 2
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Amount = 222m,
+                            Amount = 221.27m,
                             BecameOverdueAt = new DateTime(2026, 6, 12, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ChargeId = 12,
+                            ChargeId = 11,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 12, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
@@ -2947,11 +2569,22 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 13,
-                            Amount = 228m,
-                            ChargeId = 13,
+                            Id = 12,
+                            Amount = 196.72m,
+                            ChargeId = 12,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 13, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
+                            IsDeleted = false,
+                            Status = 2
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Amount = 232.17m,
+                            ChargeId = 13,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 5, 14, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
                             IsDeleted = false,
                             Status = 1
@@ -2959,20 +2592,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 14,
-                            Amount = 234m,
-                            ChargeId = 14,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DueDate = new DateTime(2026, 5, 14, 0, 0, 0, 0, DateTimeKind.Utc),
-                            InstallmentNumber = 1,
-                            IsDeleted = false,
-                            Status = 2
-                        },
-                        new
-                        {
-                            Id = 15,
-                            Amount = 240m,
+                            Amount = 237.62m,
                             BecameOverdueAt = new DateTime(2026, 6, 15, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ChargeId = 15,
+                            ChargeId = 14,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
@@ -2981,11 +2603,22 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 16,
-                            Amount = 246m,
-                            ChargeId = 16,
+                            Id = 15,
+                            Amount = 243.07m,
+                            ChargeId = 15,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
+                            IsDeleted = false,
+                            Status = 2
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Amount = 218.52m,
+                            ChargeId = 16,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 5, 17, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
                             IsDeleted = false,
                             Status = 1
@@ -2993,20 +2626,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 17,
-                            Amount = 252m,
-                            ChargeId = 17,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DueDate = new DateTime(2026, 5, 17, 0, 0, 0, 0, DateTimeKind.Utc),
-                            InstallmentNumber = 1,
-                            IsDeleted = false,
-                            Status = 2
-                        },
-                        new
-                        {
-                            Id = 18,
-                            Amount = 258m,
+                            Amount = 253.97m,
                             BecameOverdueAt = new DateTime(2026, 6, 18, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ChargeId = 18,
+                            ChargeId = 17,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 18, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
@@ -3015,11 +2637,22 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 19,
-                            Amount = 264m,
-                            ChargeId = 19,
+                            Id = 18,
+                            Amount = 259.42m,
+                            ChargeId = 18,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 19, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
+                            IsDeleted = false,
+                            Status = 2
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Amount = 264.87m,
+                            ChargeId = 19,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 5, 20, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
                             IsDeleted = false,
                             Status = 1
@@ -3027,20 +2660,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 20,
-                            Amount = 270m,
-                            ChargeId = 20,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DueDate = new DateTime(2026, 5, 20, 0, 0, 0, 0, DateTimeKind.Utc),
-                            InstallmentNumber = 1,
-                            IsDeleted = false,
-                            Status = 2
-                        },
-                        new
-                        {
-                            Id = 21,
-                            Amount = 276m,
+                            Amount = 240.32m,
                             BecameOverdueAt = new DateTime(2026, 6, 21, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ChargeId = 21,
+                            ChargeId = 20,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 21, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
@@ -3049,11 +2671,22 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 22,
-                            Amount = 282m,
-                            ChargeId = 22,
+                            Id = 21,
+                            Amount = 275.77m,
+                            ChargeId = 21,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 22, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
+                            IsDeleted = false,
+                            Status = 2
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Amount = 281.22m,
+                            ChargeId = 22,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 5, 23, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
                             IsDeleted = false,
                             Status = 1
@@ -3061,20 +2694,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 23,
-                            Amount = 288m,
-                            ChargeId = 23,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DueDate = new DateTime(2026, 5, 23, 0, 0, 0, 0, DateTimeKind.Utc),
-                            InstallmentNumber = 1,
-                            IsDeleted = false,
-                            Status = 2
-                        },
-                        new
-                        {
-                            Id = 24,
-                            Amount = 294m,
+                            Amount = 286.67m,
                             BecameOverdueAt = new DateTime(2026, 6, 24, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ChargeId = 24,
+                            ChargeId = 23,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 24, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
@@ -3083,11 +2705,22 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 25,
-                            Amount = 300m,
-                            ChargeId = 25,
+                            Id = 24,
+                            Amount = 262.12m,
+                            ChargeId = 24,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 25, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
+                            IsDeleted = false,
+                            Status = 2
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Amount = 297.57m,
+                            ChargeId = 25,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 5, 26, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
                             IsDeleted = false,
                             Status = 1
@@ -3095,20 +2728,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 26,
-                            Amount = 306m,
-                            ChargeId = 26,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DueDate = new DateTime(2026, 5, 26, 0, 0, 0, 0, DateTimeKind.Utc),
-                            InstallmentNumber = 1,
-                            IsDeleted = false,
-                            Status = 2
-                        },
-                        new
-                        {
-                            Id = 27,
-                            Amount = 312m,
+                            Amount = 303.02m,
                             BecameOverdueAt = new DateTime(2026, 6, 27, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ChargeId = 27,
+                            ChargeId = 26,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 27, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
@@ -3117,11 +2739,22 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 28,
-                            Amount = 318m,
-                            ChargeId = 28,
+                            Id = 27,
+                            Amount = 308.47m,
+                            ChargeId = 27,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 28, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
+                            IsDeleted = false,
+                            Status = 2
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Amount = 283.92m,
+                            ChargeId = 28,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 5, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
                             IsDeleted = false,
                             Status = 1
@@ -3129,20 +2762,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 29,
-                            Amount = 324m,
-                            ChargeId = 29,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DueDate = new DateTime(2026, 5, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            InstallmentNumber = 1,
-                            IsDeleted = false,
-                            Status = 2
-                        },
-                        new
-                        {
-                            Id = 30,
-                            Amount = 330m,
+                            Amount = 319.37m,
                             BecameOverdueAt = new DateTime(2026, 6, 2, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ChargeId = 30,
+                            ChargeId = 29,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
@@ -3151,11 +2773,22 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 31,
-                            Amount = 336m,
-                            ChargeId = 31,
+                            Id = 30,
+                            Amount = 324.82m,
+                            ChargeId = 30,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
+                            IsDeleted = false,
+                            Status = 2
+                        },
+                        new
+                        {
+                            Id = 31,
+                            Amount = 330.27m,
+                            ChargeId = 31,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 5, 4, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
                             IsDeleted = false,
                             Status = 1
@@ -3163,20 +2796,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 32,
-                            Amount = 342m,
-                            ChargeId = 32,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DueDate = new DateTime(2026, 5, 4, 0, 0, 0, 0, DateTimeKind.Utc),
-                            InstallmentNumber = 1,
-                            IsDeleted = false,
-                            Status = 2
-                        },
-                        new
-                        {
-                            Id = 33,
-                            Amount = 348m,
+                            Amount = 305.72m,
                             BecameOverdueAt = new DateTime(2026, 6, 5, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ChargeId = 33,
+                            ChargeId = 32,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 5, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
@@ -3185,11 +2807,22 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 34,
-                            Amount = 354m,
-                            ChargeId = 34,
+                            Id = 33,
+                            Amount = 341.17m,
+                            ChargeId = 33,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 6, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
+                            IsDeleted = false,
+                            Status = 2
+                        },
+                        new
+                        {
+                            Id = 34,
+                            Amount = 346.62m,
+                            ChargeId = 34,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 5, 7, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
                             IsDeleted = false,
                             Status = 1
@@ -3197,20 +2830,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 35,
-                            Amount = 360m,
-                            ChargeId = 35,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DueDate = new DateTime(2026, 5, 7, 0, 0, 0, 0, DateTimeKind.Utc),
-                            InstallmentNumber = 1,
-                            IsDeleted = false,
-                            Status = 2
-                        },
-                        new
-                        {
-                            Id = 36,
-                            Amount = 366m,
+                            Amount = 352.07m,
                             BecameOverdueAt = new DateTime(2026, 6, 8, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ChargeId = 36,
+                            ChargeId = 35,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 8, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
@@ -3219,11 +2841,22 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 37,
-                            Amount = 372m,
-                            ChargeId = 37,
+                            Id = 36,
+                            Amount = 327.52m,
+                            ChargeId = 36,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 9, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
+                            IsDeleted = false,
+                            Status = 2
+                        },
+                        new
+                        {
+                            Id = 37,
+                            Amount = 362.97m,
+                            ChargeId = 37,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 5, 10, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
                             IsDeleted = false,
                             Status = 1
@@ -3231,20 +2864,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 38,
-                            Amount = 378m,
-                            ChargeId = 38,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DueDate = new DateTime(2026, 5, 10, 0, 0, 0, 0, DateTimeKind.Utc),
-                            InstallmentNumber = 1,
-                            IsDeleted = false,
-                            Status = 2
-                        },
-                        new
-                        {
-                            Id = 39,
-                            Amount = 384m,
+                            Amount = 368.42m,
                             BecameOverdueAt = new DateTime(2026, 6, 11, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ChargeId = 39,
+                            ChargeId = 38,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 11, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
@@ -3253,11 +2875,22 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 40,
-                            Amount = 390m,
-                            ChargeId = 40,
+                            Id = 39,
+                            Amount = 373.87m,
+                            ChargeId = 39,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 12, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
+                            IsDeleted = false,
+                            Status = 2
+                        },
+                        new
+                        {
+                            Id = 40,
+                            Amount = 349.32m,
+                            ChargeId = 40,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 5, 13, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
                             IsDeleted = false,
                             Status = 1
@@ -3265,20 +2898,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 41,
-                            Amount = 396m,
-                            ChargeId = 41,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DueDate = new DateTime(2026, 5, 13, 0, 0, 0, 0, DateTimeKind.Utc),
-                            InstallmentNumber = 1,
-                            IsDeleted = false,
-                            Status = 2
-                        },
-                        new
-                        {
-                            Id = 42,
-                            Amount = 402m,
+                            Amount = 384.77m,
                             BecameOverdueAt = new DateTime(2026, 6, 14, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ChargeId = 42,
+                            ChargeId = 41,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 14, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
@@ -3287,11 +2909,22 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 43,
-                            Amount = 408m,
-                            ChargeId = 43,
+                            Id = 42,
+                            Amount = 390.22m,
+                            ChargeId = 42,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
+                            IsDeleted = false,
+                            Status = 2
+                        },
+                        new
+                        {
+                            Id = 43,
+                            Amount = 395.67m,
+                            ChargeId = 43,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 5, 16, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
                             IsDeleted = false,
                             Status = 1
@@ -3299,20 +2932,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 44,
-                            Amount = 414m,
-                            ChargeId = 44,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DueDate = new DateTime(2026, 5, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            InstallmentNumber = 1,
-                            IsDeleted = false,
-                            Status = 2
-                        },
-                        new
-                        {
-                            Id = 45,
-                            Amount = 420m,
+                            Amount = 371.12m,
                             BecameOverdueAt = new DateTime(2026, 6, 17, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ChargeId = 45,
+                            ChargeId = 44,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 17, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
@@ -3321,11 +2943,22 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 46,
-                            Amount = 426m,
-                            ChargeId = 46,
+                            Id = 45,
+                            Amount = 406.57m,
+                            ChargeId = 45,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 18, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
+                            IsDeleted = false,
+                            Status = 2
+                        },
+                        new
+                        {
+                            Id = 46,
+                            Amount = 412.02m,
+                            ChargeId = 46,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 5, 19, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
                             IsDeleted = false,
                             Status = 1
@@ -3333,20 +2966,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 47,
-                            Amount = 432m,
-                            ChargeId = 47,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DueDate = new DateTime(2026, 5, 19, 0, 0, 0, 0, DateTimeKind.Utc),
-                            InstallmentNumber = 1,
-                            IsDeleted = false,
-                            Status = 2
-                        },
-                        new
-                        {
-                            Id = 48,
-                            Amount = 438m,
+                            Amount = 417.47m,
                             BecameOverdueAt = new DateTime(2026, 6, 20, 0, 0, 0, 0, DateTimeKind.Utc),
-                            ChargeId = 48,
+                            ChargeId = 47,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 20, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
@@ -3355,11 +2977,22 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 49,
-                            Amount = 444m,
-                            ChargeId = 49,
+                            Id = 48,
+                            Amount = 392.92m,
+                            ChargeId = 48,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 21, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
+                            IsDeleted = false,
+                            Status = 2
+                        },
+                        new
+                        {
+                            Id = 49,
+                            Amount = 428.37m,
+                            ChargeId = 49,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 5, 22, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
                             IsDeleted = false,
                             Status = 1
@@ -3367,13 +3000,14 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 50,
-                            Amount = 450m,
+                            Amount = 433.82m,
+                            BecameOverdueAt = new DateTime(2026, 6, 23, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 50,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DueDate = new DateTime(2026, 5, 22, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 5, 23, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 1,
                             IsDeleted = false,
-                            Status = 2
+                            Status = 3
                         },
                         new
                         {
@@ -4390,7 +4024,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RowVersion = new byte[0],
                             SchoolId = 1,
                             StartDate = new DateTime(2026, 8, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Status = 1
+                            Status = 3
                         },
                         new
                         {
@@ -4480,7 +4114,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RowVersion = new byte[0],
                             SchoolId = 1,
                             StartDate = new DateTime(2026, 8, 6, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Status = 1
+                            Status = 3
                         },
                         new
                         {
@@ -4570,7 +4204,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RowVersion = new byte[0],
                             SchoolId = 1,
                             StartDate = new DateTime(2026, 8, 11, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Status = 1
+                            Status = 3
                         },
                         new
                         {
@@ -4660,7 +4294,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RowVersion = new byte[0],
                             SchoolId = 1,
                             StartDate = new DateTime(2026, 8, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Status = 1
+                            Status = 3
                         },
                         new
                         {
@@ -4750,7 +4384,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RowVersion = new byte[0],
                             SchoolId = 1,
                             StartDate = new DateTime(2026, 8, 21, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Status = 1
+                            Status = 3
                         },
                         new
                         {
@@ -4840,7 +4474,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RowVersion = new byte[0],
                             SchoolId = 1,
                             StartDate = new DateTime(2026, 8, 26, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Status = 1
+                            Status = 3
                         },
                         new
                         {
@@ -4930,7 +4564,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RowVersion = new byte[0],
                             SchoolId = 1,
                             StartDate = new DateTime(2026, 8, 3, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Status = 1
+                            Status = 3
                         },
                         new
                         {
@@ -5020,7 +4654,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RowVersion = new byte[0],
                             SchoolId = 1,
                             StartDate = new DateTime(2026, 8, 8, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Status = 1
+                            Status = 3
                         },
                         new
                         {
@@ -5110,7 +4744,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RowVersion = new byte[0],
                             SchoolId = 1,
                             StartDate = new DateTime(2026, 8, 13, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Status = 1
+                            Status = 3
                         },
                         new
                         {
@@ -5200,7 +4834,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             RowVersion = new byte[0],
                             SchoolId = 1,
                             StartDate = new DateTime(2026, 8, 18, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Status = 1
+                            Status = 3
                         },
                         new
                         {
@@ -5363,6 +4997,60 @@ namespace educationaccountmanagement.DAL.Migrations
                             SchoolId = 1,
                             StartDate = new DateTime(2026, 5, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             Status = 4
+                        },
+                        new
+                        {
+                            Id = 56,
+                            CourseCode = "CRS-2026-PDY15VJ",
+                            CourseFeeAmount = 155m,
+                            CourseName = "Future Draft Course A",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EndDate = new DateTime(2027, 9, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentDeadline = new DateTime(2027, 3, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationDueDate = new DateTime(2027, 3, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            GstAmount = 15.75m,
+                            IsDeleted = false,
+                            MiscFeeAmount = 20m,
+                            RowVersion = new byte[0],
+                            SchoolId = 1,
+                            StartDate = new DateTime(2027, 5, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 57,
+                            CourseCode = "CRS-2026-8Q05JX1",
+                            CourseFeeAmount = 200m,
+                            CourseName = "Future Draft Course B",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EndDate = new DateTime(2027, 10, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentDeadline = new DateTime(2027, 4, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationDueDate = new DateTime(2027, 4, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            GstAmount = 19.80m,
+                            IsDeleted = false,
+                            MiscFeeAmount = 20m,
+                            RowVersion = new byte[0],
+                            SchoolId = 1,
+                            StartDate = new DateTime(2027, 6, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 58,
+                            CourseCode = "CRS-2026-98UAS1T",
+                            CourseFeeAmount = 300m,
+                            CourseName = "Future Draft Course C",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EndDate = new DateTime(2027, 11, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentDeadline = new DateTime(2027, 5, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationDueDate = new DateTime(2027, 5, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            GstAmount = 28.80m,
+                            IsDeleted = false,
+                            MiscFeeAmount = 20m,
+                            RowVersion = new byte[0],
+                            SchoolId = 1,
+                            StartDate = new DateTime(2027, 7, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Status = 1
                         });
                 });
 
@@ -5446,7 +5134,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-M7QVS7X",
                             CitizenId = 1,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1025m,
+                            EducationCreditBalance = 815m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
@@ -5458,24 +5146,23 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-H4W9JYQ",
                             CitizenId = 2,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1050m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 2
+                            Status = 1
                         },
                         new
                         {
                             Id = 3,
                             AccountNumber = "EDU-2026-5BHC84W",
                             CitizenId = 3,
-                            ClosedAt = new DateTime(2026, 6, 3, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1075m,
+                            EducationCreditBalance = 927.33m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 3
+                            Status = 1
                         },
                         new
                         {
@@ -5483,7 +5170,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-K6CAJET",
                             CitizenId = 4,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1100m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
@@ -5495,24 +5182,23 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-C865DQ8",
                             CitizenId = 5,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1125m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 2
+                            Status = 1
                         },
                         new
                         {
                             Id = 6,
                             AccountNumber = "EDU-2026-J3PD5GI",
                             CitizenId = 6,
-                            ClosedAt = new DateTime(2026, 6, 6, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1150m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 3
+                            Status = 1
                         },
                         new
                         {
@@ -5520,7 +5206,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-RHEGIE7",
                             CitizenId = 7,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1175m,
+                            EducationCreditBalance = 1145m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
@@ -5532,24 +5218,23 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-ERZPP9D",
                             CitizenId = 8,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1200m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 2
+                            Status = 1
                         },
                         new
                         {
                             Id = 9,
                             AccountNumber = "EDU-2026-3WTXQL2",
                             CitizenId = 9,
-                            ClosedAt = new DateTime(2026, 6, 9, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1225m,
+                            EducationCreditBalance = 789.63m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 3
+                            Status = 1
                         },
                         new
                         {
@@ -5557,7 +5242,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-5A2BWXE",
                             CitizenId = 10,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1250m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
@@ -5569,24 +5254,23 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-YKWELYD",
                             CitizenId = 11,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1275m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 2
+                            Status = 1
                         },
                         new
                         {
                             Id = 12,
                             AccountNumber = "EDU-2026-XW95AJ5",
                             CitizenId = 12,
-                            ClosedAt = new DateTime(2026, 6, 12, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1300m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 3
+                            Status = 1
                         },
                         new
                         {
@@ -5594,7 +5278,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-OOROKGZ",
                             CitizenId = 13,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1325m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
@@ -5606,24 +5290,23 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-EC0POYJ",
                             CitizenId = 14,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1350m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 2
+                            Status = 1
                         },
                         new
                         {
                             Id = 15,
                             AccountNumber = "EDU-2026-1ZHBQ2S",
                             CitizenId = 15,
-                            ClosedAt = new DateTime(2026, 6, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1375m,
+                            EducationCreditBalance = 756.93m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 3
+                            Status = 1
                         },
                         new
                         {
@@ -5631,7 +5314,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-A5L21GT",
                             CitizenId = 16,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1400m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
@@ -5643,24 +5326,23 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-R9VEYR0",
                             CitizenId = 17,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1425m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 2
+                            Status = 1
                         },
                         new
                         {
                             Id = 18,
                             AccountNumber = "EDU-2026-JLH113O",
                             CitizenId = 18,
-                            ClosedAt = new DateTime(2026, 6, 18, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1450m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 3
+                            Status = 1
                         },
                         new
                         {
@@ -5668,7 +5350,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-S7OK05W",
                             CitizenId = 19,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1475m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
@@ -5680,24 +5362,23 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-2MYNLK1",
                             CitizenId = 20,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1500m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 2
+                            Status = 1
                         },
                         new
                         {
                             Id = 21,
                             AccountNumber = "EDU-2026-7M9PDGH",
                             CitizenId = 21,
-                            ClosedAt = new DateTime(2026, 6, 21, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1525m,
+                            EducationCreditBalance = 724.23m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 3
+                            Status = 1
                         },
                         new
                         {
@@ -5705,7 +5386,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-TIXLNIB",
                             CitizenId = 22,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1550m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
@@ -5717,24 +5398,23 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-T5N58HB",
                             CitizenId = 23,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1575m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 2
+                            Status = 1
                         },
                         new
                         {
                             Id = 24,
                             AccountNumber = "EDU-2026-7MH1FBP",
                             CitizenId = 24,
-                            ClosedAt = new DateTime(2026, 6, 24, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1600m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 3
+                            Status = 1
                         },
                         new
                         {
@@ -5742,7 +5422,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-GDE8Q6P",
                             CitizenId = 25,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1625m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
@@ -5754,24 +5434,23 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-SNYKN82",
                             CitizenId = 26,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1650m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 2
+                            Status = 1
                         },
                         new
                         {
                             Id = 27,
                             AccountNumber = "EDU-2026-QJZM8YL",
                             CitizenId = 27,
-                            ClosedAt = new DateTime(2026, 6, 27, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1675m,
+                            EducationCreditBalance = 691.53m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 3
+                            Status = 1
                         },
                         new
                         {
@@ -5779,7 +5458,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-G0N8QXW",
                             CitizenId = 28,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1700m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
@@ -5791,24 +5470,23 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-A3B8IRY",
                             CitizenId = 29,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1725m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 2
+                            Status = 1
                         },
                         new
                         {
                             Id = 30,
                             AccountNumber = "EDU-2026-CYOBPQU",
                             CitizenId = 30,
-                            ClosedAt = new DateTime(2026, 6, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1750m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 3
+                            Status = 1
                         },
                         new
                         {
@@ -5816,7 +5494,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-20G2H3L",
                             CitizenId = 31,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1775m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
@@ -5828,24 +5506,23 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-9RY98UG",
                             CitizenId = 32,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1800m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 2
+                            Status = 1
                         },
                         new
                         {
                             Id = 33,
                             AccountNumber = "EDU-2026-LBUTZEW",
                             CitizenId = 33,
-                            ClosedAt = new DateTime(2026, 6, 5, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1825m,
+                            EducationCreditBalance = 658.83m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 3
+                            Status = 1
                         },
                         new
                         {
@@ -5853,7 +5530,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-CVJPW51",
                             CitizenId = 34,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1850m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
@@ -5865,24 +5542,23 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-GL31H3K",
                             CitizenId = 35,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1875m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 2
+                            Status = 1
                         },
                         new
                         {
                             Id = 36,
                             AccountNumber = "EDU-2026-L1OX9Y0",
                             CitizenId = 36,
-                            ClosedAt = new DateTime(2026, 6, 8, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1900m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 3
+                            Status = 1
                         },
                         new
                         {
@@ -5890,7 +5566,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-3V9Y2I0",
                             CitizenId = 37,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1925m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
@@ -5902,24 +5578,23 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-UIX61F4",
                             CitizenId = 38,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1950m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 2
+                            Status = 1
                         },
                         new
                         {
                             Id = 39,
                             AccountNumber = "EDU-2026-NQZL2LT",
                             CitizenId = 39,
-                            ClosedAt = new DateTime(2026, 6, 11, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 1975m,
+                            EducationCreditBalance = 626.13m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 3
+                            Status = 1
                         },
                         new
                         {
@@ -5927,7 +5602,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-2A9X7HT",
                             CitizenId = 40,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 2000m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
@@ -5939,24 +5614,23 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-HIZFYQR",
                             CitizenId = 41,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 2025m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 2
+                            Status = 1
                         },
                         new
                         {
                             Id = 42,
                             AccountNumber = "EDU-2026-5FO1ERB",
                             CitizenId = 42,
-                            ClosedAt = new DateTime(2026, 6, 14, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 2050m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 3
+                            Status = 1
                         },
                         new
                         {
@@ -5964,7 +5638,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-C6GLP5G",
                             CitizenId = 43,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 2075m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
@@ -5976,24 +5650,23 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-VBGBHB4",
                             CitizenId = 44,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 2100m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 2
+                            Status = 1
                         },
                         new
                         {
                             Id = 45,
                             AccountNumber = "EDU-2026-PMQT1K5",
                             CitizenId = 45,
-                            ClosedAt = new DateTime(2026, 6, 17, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 2125m,
+                            EducationCreditBalance = 593.43m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 3
+                            Status = 1
                         },
                         new
                         {
@@ -6001,7 +5674,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-Z2MR7S3",
                             CitizenId = 46,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 2150m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
@@ -6013,24 +5686,23 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-2OK04RQ",
                             CitizenId = 47,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 2175m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 2
+                            Status = 1
                         },
                         new
                         {
                             Id = 48,
                             AccountNumber = "EDU-2026-5L2W56M",
                             CitizenId = 48,
-                            ClosedAt = new DateTime(2026, 6, 20, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 2200m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 3
+                            Status = 1
                         },
                         new
                         {
@@ -6038,7 +5710,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-7UZZHKN",
                             CitizenId = 49,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 2225m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
@@ -6050,11 +5722,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             AccountNumber = "EDU-2026-9DG3ZSZ",
                             CitizenId = 50,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditBalance = 2250m,
+                            EducationCreditBalance = 1000m,
                             IsDeleted = false,
                             OpenedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             RowVersion = new byte[0],
-                            Status = 2
+                            Status = 1
                         });
                 });
 
@@ -6362,717 +6034,857 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1,
-                            Amount = 60m,
-                            BalanceAfter = 1080m,
-                            BalanceBefore = 1020m,
+                            Id = 101,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Initial top-up credit",
+                            Description = "Initial system top-up",
                             Direction = 1,
                             EducationAccountId = 1,
                             IsDeleted = false,
-                            TransactionCode = new Guid("49594d61-4376-40b8-ac80-939fdcc75d03"),
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000101"),
                             Type = 1
                         },
                         new
                         {
-                            Id = 2,
-                            Amount = 70m,
-                            BalanceAfter = 970m,
-                            BalanceBefore = 1040m,
-                            CreatedAt = new DateTime(2026, 1, 2, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Monthly allowance credit",
-                            Direction = 2,
+                            Id = 102,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
                             EducationAccountId = 2,
                             IsDeleted = false,
-                            TransactionCode = new Guid("e0318f15-fdda-4abf-9c6b-419497da2df5"),
-                            Type = 2
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000102"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 103,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 3,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000103"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 104,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 4,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000104"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 105,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 5,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000105"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 106,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 6,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000106"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 107,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 7,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000107"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 108,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 8,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000108"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 109,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 9,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000109"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 110,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 10,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000110"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 111,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 11,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000111"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 112,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 12,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000112"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 113,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 13,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000113"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 114,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 14,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000114"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 115,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 15,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000115"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 116,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 16,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000116"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 117,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 17,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000117"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 118,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 18,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000118"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 119,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 19,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000119"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 120,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 20,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000120"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 121,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 21,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000121"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 122,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 22,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000122"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 123,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 23,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000123"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 124,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 24,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000124"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 125,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 25,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000125"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 126,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 26,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000126"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 127,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 27,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000127"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 128,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 28,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000128"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 129,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 29,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000129"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 130,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 30,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000130"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 131,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 31,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000131"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 132,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 32,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000132"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 133,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 33,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000133"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 134,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 34,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000134"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 135,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 35,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000135"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 136,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 36,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000136"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 137,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 37,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000137"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 138,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 38,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000138"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 139,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 39,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000139"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 140,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 40,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000140"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 141,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 41,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000141"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 142,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 42,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000142"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 143,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 43,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000143"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 144,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 44,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000144"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 145,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 45,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000145"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 146,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 46,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000146"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 147,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 47,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000147"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 148,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 48,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000148"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 149,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 49,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000149"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 150,
+                            Amount = 1000m,
+                            BalanceAfter = 1000m,
+                            BalanceBefore = 0m,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Initial system top-up",
+                            Direction = 1,
+                            EducationAccountId = 50,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000150"),
+                            Type = 1
                         },
                         new
                         {
                             Id = 3,
-                            Amount = 80m,
-                            BalanceAfter = 980m,
-                            BalanceBefore = 1060m,
+                            Amount = 177.67m,
+                            BalanceAfter = 822.33m,
+                            BalanceBefore = 1000m,
                             CreatedAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Transport support credit",
+                            Description = "Course fee payment deduction",
                             Direction = 2,
                             EducationAccountId = 3,
                             IsDeleted = false,
-                            TransactionCode = new Guid("3cc72b88-c9fe-4854-9f18-20216358e732"),
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000003"),
                             Type = 2
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Amount = 90m,
-                            BalanceAfter = 990m,
-                            BalanceBefore = 1080m,
-                            CreatedAt = new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Payment allocation debit",
-                            Direction = 2,
-                            EducationAccountId = 4,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("20a47861-e67b-4d7d-a411-fa77f197d86b"),
-                            Type = 4
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Amount = 100m,
-                            BalanceAfter = 1200m,
-                            BalanceBefore = 1100m,
-                            CreatedAt = new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Course fee payment debit",
-                            Direction = 1,
-                            EducationAccountId = 5,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("13a7d8f6-33b2-457f-83c9-013639995db0"),
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Amount = 110m,
-                            BalanceAfter = 1010m,
-                            BalanceBefore = 1120m,
-                            CreatedAt = new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Manual adjustment credit",
-                            Direction = 2,
-                            EducationAccountId = 6,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("b173acbb-c707-4e20-8d42-f73c61af31eb"),
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Amount = 120m,
-                            BalanceAfter = 1020m,
-                            BalanceBefore = 1140m,
-                            CreatedAt = new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Scheduled meal allowance",
-                            Direction = 2,
-                            EducationAccountId = 7,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("b9b22a3a-e1ed-445e-830d-3f7900433702"),
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Amount = 130m,
-                            BalanceAfter = 1030m,
-                            BalanceBefore = 1160m,
-                            CreatedAt = new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Learning materials credit",
-                            Direction = 2,
-                            EducationAccountId = 8,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("9c034e05-2ad7-48f6-9d0e-1d75f3a9dc11"),
-                            Type = 4
                         },
                         new
                         {
                             Id = 9,
-                            Amount = 140m,
-                            BalanceAfter = 1320m,
-                            BalanceBefore = 1180m,
-                            CreatedAt = new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Account balance correction",
-                            Direction = 1,
+                            Amount = 210.37m,
+                            BalanceAfter = 789.63m,
+                            BalanceBefore = 1000m,
+                            CreatedAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Course fee payment deduction",
+                            Direction = 2,
                             EducationAccountId = 9,
                             IsDeleted = false,
-                            TransactionCode = new Guid("11b9710a-dc40-4940-8346-3426a0b08cc1"),
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Amount = 50m,
-                            BalanceAfter = 1150m,
-                            BalanceBefore = 1200m,
-                            CreatedAt = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Tuition payment debit",
-                            Direction = 2,
-                            EducationAccountId = 10,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("534f9ac0-3749-48bf-9830-9c3a494e0357"),
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Amount = 60m,
-                            BalanceAfter = 1160m,
-                            BalanceBefore = 1220m,
-                            CreatedAt = new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Initial top-up credit",
-                            Direction = 2,
-                            EducationAccountId = 11,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("5a7565fa-724d-4ed7-a659-c55f2b82b148"),
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Amount = 70m,
-                            BalanceAfter = 1170m,
-                            BalanceBefore = 1240m,
-                            CreatedAt = new DateTime(2026, 1, 12, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Monthly allowance credit",
-                            Direction = 2,
-                            EducationAccountId = 12,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("dce18490-c9c0-47d1-8888-bbc96fbeaa8f"),
-                            Type = 4
-                        },
-                        new
-                        {
-                            Id = 13,
-                            Amount = 80m,
-                            BalanceAfter = 1340m,
-                            BalanceBefore = 1260m,
-                            CreatedAt = new DateTime(2026, 1, 13, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Transport support credit",
-                            Direction = 1,
-                            EducationAccountId = 13,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("26410860-8d9c-4653-b8dc-737d522a260c"),
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 14,
-                            Amount = 90m,
-                            BalanceAfter = 1190m,
-                            BalanceBefore = 1280m,
-                            CreatedAt = new DateTime(2026, 1, 14, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Payment allocation debit",
-                            Direction = 2,
-                            EducationAccountId = 14,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("56c40714-1195-4170-ab78-fde7334aac85"),
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000009"),
                             Type = 2
                         },
                         new
                         {
                             Id = 15,
-                            Amount = 100m,
-                            BalanceAfter = 1200m,
-                            BalanceBefore = 1300m,
-                            CreatedAt = new DateTime(2026, 1, 15, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Course fee payment debit",
+                            Amount = 243.07m,
+                            BalanceAfter = 756.93m,
+                            BalanceBefore = 1000m,
+                            CreatedAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Course fee payment deduction",
                             Direction = 2,
                             EducationAccountId = 15,
                             IsDeleted = false,
-                            TransactionCode = new Guid("60b17549-097b-4586-bcc9-b7adcdd28ab0"),
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000015"),
                             Type = 2
-                        },
-                        new
-                        {
-                            Id = 16,
-                            Amount = 110m,
-                            BalanceAfter = 1210m,
-                            BalanceBefore = 1320m,
-                            CreatedAt = new DateTime(2026, 1, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Manual adjustment credit",
-                            Direction = 2,
-                            EducationAccountId = 16,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("411d1141-302f-4164-a767-0427a915ca08"),
-                            Type = 4
-                        },
-                        new
-                        {
-                            Id = 17,
-                            Amount = 120m,
-                            BalanceAfter = 1460m,
-                            BalanceBefore = 1340m,
-                            CreatedAt = new DateTime(2026, 1, 17, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Scheduled meal allowance",
-                            Direction = 1,
-                            EducationAccountId = 17,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("0bc2a282-c6de-47b7-98b0-fdac93855e55"),
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 18,
-                            Amount = 130m,
-                            BalanceAfter = 1230m,
-                            BalanceBefore = 1360m,
-                            CreatedAt = new DateTime(2026, 1, 18, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Learning materials credit",
-                            Direction = 2,
-                            EducationAccountId = 18,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("3a8d08c2-da97-4c08-9195-9c6fd5486e4f"),
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 19,
-                            Amount = 140m,
-                            BalanceAfter = 1240m,
-                            BalanceBefore = 1380m,
-                            CreatedAt = new DateTime(2026, 1, 19, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Account balance correction",
-                            Direction = 2,
-                            EducationAccountId = 19,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("8f433ea5-cfc6-4449-9915-76fba85d7474"),
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 20,
-                            Amount = 50m,
-                            BalanceAfter = 1350m,
-                            BalanceBefore = 1400m,
-                            CreatedAt = new DateTime(2026, 1, 20, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Tuition payment debit",
-                            Direction = 2,
-                            EducationAccountId = 20,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("5a3b8e16-fa7f-4ae2-b395-4dd8e27c3c25"),
-                            Type = 4
                         },
                         new
                         {
                             Id = 21,
-                            Amount = 60m,
-                            BalanceAfter = 1480m,
-                            BalanceBefore = 1420m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Initial top-up credit",
-                            Direction = 1,
+                            Amount = 275.77m,
+                            BalanceAfter = 724.23m,
+                            BalanceBefore = 1000m,
+                            CreatedAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Course fee payment deduction",
+                            Direction = 2,
                             EducationAccountId = 21,
                             IsDeleted = false,
-                            TransactionCode = new Guid("af161551-4185-4376-a70e-b0ad42e7d980"),
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 22,
-                            Amount = 70m,
-                            BalanceAfter = 1370m,
-                            BalanceBefore = 1440m,
-                            CreatedAt = new DateTime(2026, 1, 2, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Monthly allowance credit",
-                            Direction = 2,
-                            EducationAccountId = 22,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("206fc099-fd74-4264-b317-04c0426e1be8"),
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 23,
-                            Amount = 80m,
-                            BalanceAfter = 1380m,
-                            BalanceBefore = 1460m,
-                            CreatedAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Transport support credit",
-                            Direction = 2,
-                            EducationAccountId = 23,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("56b65cbf-d647-4447-90df-1b52a3f11fb6"),
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 24,
-                            Amount = 90m,
-                            BalanceAfter = 1390m,
-                            BalanceBefore = 1480m,
-                            CreatedAt = new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Payment allocation debit",
-                            Direction = 2,
-                            EducationAccountId = 24,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("7867f9b5-1d38-4781-b786-4daeb46ad46f"),
-                            Type = 4
-                        },
-                        new
-                        {
-                            Id = 25,
-                            Amount = 100m,
-                            BalanceAfter = 1600m,
-                            BalanceBefore = 1500m,
-                            CreatedAt = new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Course fee payment debit",
-                            Direction = 1,
-                            EducationAccountId = 25,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("641eb577-86a7-48aa-855c-66b19f1bb194"),
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 26,
-                            Amount = 110m,
-                            BalanceAfter = 1410m,
-                            BalanceBefore = 1520m,
-                            CreatedAt = new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Manual adjustment credit",
-                            Direction = 2,
-                            EducationAccountId = 26,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("16b8a137-6519-48ba-95f8-00561fc14186"),
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000021"),
                             Type = 2
                         },
                         new
                         {
                             Id = 27,
-                            Amount = 120m,
-                            BalanceAfter = 1420m,
-                            BalanceBefore = 1540m,
-                            CreatedAt = new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Scheduled meal allowance",
+                            Amount = 308.47m,
+                            BalanceAfter = 691.53m,
+                            BalanceBefore = 1000m,
+                            CreatedAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Course fee payment deduction",
                             Direction = 2,
                             EducationAccountId = 27,
                             IsDeleted = false,
-                            TransactionCode = new Guid("302e2943-b197-498a-92a2-3b56ee17c5c8"),
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000027"),
                             Type = 2
-                        },
-                        new
-                        {
-                            Id = 28,
-                            Amount = 130m,
-                            BalanceAfter = 1430m,
-                            BalanceBefore = 1560m,
-                            CreatedAt = new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Learning materials credit",
-                            Direction = 2,
-                            EducationAccountId = 28,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("0a68c2bf-fa68-482d-97df-5c7e8fe02e12"),
-                            Type = 4
-                        },
-                        new
-                        {
-                            Id = 29,
-                            Amount = 140m,
-                            BalanceAfter = 1720m,
-                            BalanceBefore = 1580m,
-                            CreatedAt = new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Account balance correction",
-                            Direction = 1,
-                            EducationAccountId = 29,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("03ed2f50-9240-41d8-8ed5-d4d029e1f377"),
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 30,
-                            Amount = 50m,
-                            BalanceAfter = 1550m,
-                            BalanceBefore = 1600m,
-                            CreatedAt = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Tuition payment debit",
-                            Direction = 2,
-                            EducationAccountId = 30,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("947ff9d0-5119-4ae2-91b8-3c2ed6763e0a"),
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 31,
-                            Amount = 60m,
-                            BalanceAfter = 1560m,
-                            BalanceBefore = 1620m,
-                            CreatedAt = new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Initial top-up credit",
-                            Direction = 2,
-                            EducationAccountId = 31,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("41c77e92-62c7-4e1b-9228-2a440f58347b"),
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 32,
-                            Amount = 70m,
-                            BalanceAfter = 1570m,
-                            BalanceBefore = 1640m,
-                            CreatedAt = new DateTime(2026, 1, 12, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Monthly allowance credit",
-                            Direction = 2,
-                            EducationAccountId = 32,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("19e0145e-509e-495b-a780-2fbca86bb7f0"),
-                            Type = 4
                         },
                         new
                         {
                             Id = 33,
-                            Amount = 80m,
-                            BalanceAfter = 1740m,
-                            BalanceBefore = 1660m,
-                            CreatedAt = new DateTime(2026, 1, 13, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Transport support credit",
-                            Direction = 1,
+                            Amount = 341.17m,
+                            BalanceAfter = 658.83m,
+                            BalanceBefore = 1000m,
+                            CreatedAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Course fee payment deduction",
+                            Direction = 2,
                             EducationAccountId = 33,
                             IsDeleted = false,
-                            TransactionCode = new Guid("4818a12d-3778-476f-818f-93513e797f82"),
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 34,
-                            Amount = 90m,
-                            BalanceAfter = 1590m,
-                            BalanceBefore = 1680m,
-                            CreatedAt = new DateTime(2026, 1, 14, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Payment allocation debit",
-                            Direction = 2,
-                            EducationAccountId = 34,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("b866b87d-d793-495b-ba11-a8e4adb05302"),
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 35,
-                            Amount = 100m,
-                            BalanceAfter = 1600m,
-                            BalanceBefore = 1700m,
-                            CreatedAt = new DateTime(2026, 1, 15, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Course fee payment debit",
-                            Direction = 2,
-                            EducationAccountId = 35,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("84a02f3a-4080-4a44-bee4-4c6c57238abd"),
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 36,
-                            Amount = 110m,
-                            BalanceAfter = 1610m,
-                            BalanceBefore = 1720m,
-                            CreatedAt = new DateTime(2026, 1, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Manual adjustment credit",
-                            Direction = 2,
-                            EducationAccountId = 36,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("ef705496-e433-4e7d-a27b-2f283fd15f2d"),
-                            Type = 4
-                        },
-                        new
-                        {
-                            Id = 37,
-                            Amount = 120m,
-                            BalanceAfter = 1860m,
-                            BalanceBefore = 1740m,
-                            CreatedAt = new DateTime(2026, 1, 17, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Scheduled meal allowance",
-                            Direction = 1,
-                            EducationAccountId = 37,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("a3a314a6-1a3c-4939-af36-3d1b4edcb340"),
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 38,
-                            Amount = 130m,
-                            BalanceAfter = 1630m,
-                            BalanceBefore = 1760m,
-                            CreatedAt = new DateTime(2026, 1, 18, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Learning materials credit",
-                            Direction = 2,
-                            EducationAccountId = 38,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("f8033fe6-a6f8-4ee1-a7d6-d9d92638dd47"),
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000033"),
                             Type = 2
                         },
                         new
                         {
                             Id = 39,
-                            Amount = 140m,
-                            BalanceAfter = 1640m,
-                            BalanceBefore = 1780m,
-                            CreatedAt = new DateTime(2026, 1, 19, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Account balance correction",
+                            Amount = 373.87m,
+                            BalanceAfter = 626.13m,
+                            BalanceBefore = 1000m,
+                            CreatedAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Course fee payment deduction",
                             Direction = 2,
                             EducationAccountId = 39,
                             IsDeleted = false,
-                            TransactionCode = new Guid("e83276cf-8a65-4d36-8f34-56b2aceed589"),
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000039"),
                             Type = 2
-                        },
-                        new
-                        {
-                            Id = 40,
-                            Amount = 50m,
-                            BalanceAfter = 1750m,
-                            BalanceBefore = 1800m,
-                            CreatedAt = new DateTime(2026, 1, 20, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Tuition payment debit",
-                            Direction = 2,
-                            EducationAccountId = 40,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("66360922-c48e-4a2e-a027-a250c090621b"),
-                            Type = 4
-                        },
-                        new
-                        {
-                            Id = 41,
-                            Amount = 60m,
-                            BalanceAfter = 1880m,
-                            BalanceBefore = 1820m,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Initial top-up credit",
-                            Direction = 1,
-                            EducationAccountId = 41,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("b24cc55a-d9d6-4496-af44-3a66f7554f54"),
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 42,
-                            Amount = 70m,
-                            BalanceAfter = 1770m,
-                            BalanceBefore = 1840m,
-                            CreatedAt = new DateTime(2026, 1, 2, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Monthly allowance credit",
-                            Direction = 2,
-                            EducationAccountId = 42,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("1ff96513-da7e-42f4-a069-3a2ca5d8683e"),
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 43,
-                            Amount = 80m,
-                            BalanceAfter = 1780m,
-                            BalanceBefore = 1860m,
-                            CreatedAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Transport support credit",
-                            Direction = 2,
-                            EducationAccountId = 43,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("d63ba3cb-e4e2-43c9-ac55-44c8471a39ca"),
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 44,
-                            Amount = 90m,
-                            BalanceAfter = 1790m,
-                            BalanceBefore = 1880m,
-                            CreatedAt = new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Payment allocation debit",
-                            Direction = 2,
-                            EducationAccountId = 44,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("a4b0db24-dd9d-46ad-bd0e-06338a7f223d"),
-                            Type = 4
                         },
                         new
                         {
                             Id = 45,
-                            Amount = 100m,
-                            BalanceAfter = 2000m,
-                            BalanceBefore = 1900m,
-                            CreatedAt = new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Course fee payment debit",
-                            Direction = 1,
+                            Amount = 406.57m,
+                            BalanceAfter = 593.43m,
+                            BalanceBefore = 1000m,
+                            CreatedAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Course fee payment deduction",
+                            Direction = 2,
                             EducationAccountId = 45,
                             IsDeleted = false,
-                            TransactionCode = new Guid("fc22cb9e-b54e-4be1-8da5-4f6bc19f5872"),
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 46,
-                            Amount = 110m,
-                            BalanceAfter = 1810m,
-                            BalanceBefore = 1920m,
-                            CreatedAt = new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Manual adjustment credit",
-                            Direction = 2,
-                            EducationAccountId = 46,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("b8281119-e152-4b4b-a305-12a6cdac0443"),
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 47,
-                            Amount = 120m,
-                            BalanceAfter = 1820m,
-                            BalanceBefore = 1940m,
-                            CreatedAt = new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Scheduled meal allowance",
-                            Direction = 2,
-                            EducationAccountId = 47,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("aa3b2e4c-4168-41e1-9e2d-e42027d45872"),
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 48,
-                            Amount = 130m,
-                            BalanceAfter = 1830m,
-                            BalanceBefore = 1960m,
-                            CreatedAt = new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Learning materials credit",
-                            Direction = 2,
-                            EducationAccountId = 48,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("f2568b2f-b965-4d82-8bb2-0d344af9df0c"),
-                            Type = 4
-                        },
-                        new
-                        {
-                            Id = 49,
-                            Amount = 140m,
-                            BalanceAfter = 2120m,
-                            BalanceBefore = 1980m,
-                            CreatedAt = new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Account balance correction",
-                            Direction = 1,
-                            EducationAccountId = 49,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("20489516-1121-469e-8d21-e46a93a2fffc"),
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 50,
-                            Amount = 50m,
-                            BalanceAfter = 1950m,
-                            BalanceBefore = 2000m,
-                            CreatedAt = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Description = "Tuition payment debit",
-                            Direction = 2,
-                            EducationAccountId = 50,
-                            IsDeleted = false,
-                            TransactionCode = new Guid("ed9be019-597a-4217-9b0e-d0c47009c4ec"),
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000045"),
                             Type = 2
                         },
                         new
                         {
                             Id = 51,
                             Amount = 185m,
-                            BalanceAfter = 840m,
-                            BalanceBefore = 1025m,
+                            BalanceAfter = 815m,
+                            BalanceBefore = 1000m,
                             CreatedAt = new DateTime(2026, 1, 31, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Course fee payment for Creative Thinking Cohort 51",
                             Direction = 2,
                             EducationAccountId = 1,
                             IsDeleted = false,
-                            TransactionCode = new Guid("c2a4b6d8-e0f2-4a6c-8e0a-2c4b6d8e0f2a"),
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000051"),
                             Type = 2
+                        },
+                        new
+                        {
+                            Id = 203,
+                            Amount = 105m,
+                            BalanceAfter = 1105m,
+                            BalanceBefore = 1000m,
+                            CreatedAt = new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "Manual Account Adjustment",
+                            Direction = 1,
+                            EducationAccountId = 3,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000203"),
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = 207,
+                            Amount = 145m,
+                            BalanceAfter = 1145m,
+                            BalanceBefore = 1000m,
+                            CreatedAt = new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Description = "STEM Enrichment Credit",
+                            Direction = 1,
+                            EducationAccountId = 7,
+                            IsDeleted = false,
+                            TransactionCode = new Guid("00000000-0000-0000-0000-000000000207"),
+                            Type = 1
                         });
                 });
 
@@ -15847,6 +15659,44 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasIndex("OldTierId");
 
                     b.ToTable("FasTierOverrideHistory");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationId = 2,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTime(2026, 2, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModifiedByUserId = 1,
+                            NewTierId = 2,
+                            OldTierId = 2,
+                            Reason = "Seed tier review trail."
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationId = 6,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTime(2026, 2, 7, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModifiedByUserId = 1,
+                            NewTierId = 6,
+                            OldTierId = 6,
+                            Reason = "Seed tier review trail."
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FasApplicationId = 10,
+                            IsDeleted = false,
+                            ModifiedAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModifiedByUserId = 1,
+                            NewTierId = 10,
+                            OldTierId = 10,
+                            Reason = "Seed tier review trail."
+                        });
                 });
 
             modelBuilder.Entity("Models.ManagementActionLog", b =>
@@ -15908,6 +15758,36 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.HasIndex("OccurredAt");
 
                     b.ToTable("ManagementActionLog");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Action = 4,
+                            ActorUserId = 1,
+                            BatchId = new Guid("11111111-1111-1111-1111-000000000001"),
+                            EntityId = 1,
+                            EntityType = 6,
+                            IpAddress = "127.0.0.1",
+                            NewStatus = "Active",
+                            OccurredAt = new DateTime(2026, 1, 2, 0, 0, 0, 0, DateTimeKind.Utc),
+                            PreviousStatus = "Draft",
+                            Reason = "Manual review passed, scheme published."
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Action = 5,
+                            ActorUserId = 1,
+                            BatchId = new Guid("11111111-1111-1111-1111-000000000002"),
+                            EntityId = 5,
+                            EntityType = 5,
+                            IpAddress = "127.0.0.1",
+                            NewStatus = "Closed",
+                            OccurredAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            PreviousStatus = "InProgress",
+                            Reason = "Course duration finished."
+                        });
                 });
 
             modelBuilder.Entity("Models.OutboxMessage", b =>
@@ -16040,11 +15920,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Sterling Quach",
                             CitizenNricSnapshot = "S0000001I",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 1,
                             IsDeleted = false,
                             PaymentMethod = 1,
                             Status = 1,
-                            TotalAmount = 124m
+                            TotalAmount = 166.77m
                         },
                         new
                         {
@@ -16053,13 +15932,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Amelia Tan",
                             CitizenNricSnapshot = "S0000002G",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 2,
                             ExternalReference = "PAY-EXT-00002",
                             IsDeleted = false,
-                            PaidAt = new DateTime(2026, 6, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 2,
-                            Status = 2,
-                            TotalAmount = 128m
+                            Status = 3,
+                            TotalAmount = 172.22m
                         },
                         new
                         {
@@ -16070,9 +15947,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditTransactionId = 3,
                             IsDeleted = false,
+                            PaidAt = new DateTime(2026, 6, 4, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 1,
-                            Status = 3,
-                            TotalAmount = 132m
+                            Status = 2,
+                            TotalAmount = 177.67m
                         },
                         new
                         {
@@ -16081,12 +15959,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Priya Nair",
                             CitizenNricSnapshot = "S0000004C",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 4,
                             ExternalReference = "PAY-EXT-00004",
                             IsDeleted = false,
                             PaymentMethod = 2,
                             Status = 1,
-                            TotalAmount = 136m
+                            TotalAmount = 153.12m
                         },
                         new
                         {
@@ -16095,12 +15972,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Ethan Koh",
                             CitizenNricSnapshot = "S0000005A",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 5,
                             IsDeleted = false,
-                            PaidAt = new DateTime(2026, 6, 5, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 1,
-                            Status = 2,
-                            TotalAmount = 140m
+                            Status = 3,
+                            TotalAmount = 188.57m
                         },
                         new
                         {
@@ -16109,12 +15984,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Hannah Lee",
                             CitizenNricSnapshot = "S0000006Z",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 6,
                             ExternalReference = "PAY-EXT-00006",
                             IsDeleted = false,
+                            PaidAt = new DateTime(2026, 6, 7, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 2,
-                            Status = 3,
-                            TotalAmount = 144m
+                            Status = 2,
+                            TotalAmount = 194.02m
                         },
                         new
                         {
@@ -16123,11 +15998,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Daniel Wong",
                             CitizenNricSnapshot = "S0000007H",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 7,
                             IsDeleted = false,
                             PaymentMethod = 1,
                             Status = 1,
-                            TotalAmount = 148m
+                            TotalAmount = 199.47m
                         },
                         new
                         {
@@ -16136,13 +16010,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Sofia Chen",
                             CitizenNricSnapshot = "S0000008F",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 8,
                             ExternalReference = "PAY-EXT-00008",
                             IsDeleted = false,
-                            PaidAt = new DateTime(2026, 6, 8, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 2,
-                            Status = 2,
-                            TotalAmount = 152m
+                            Status = 3,
+                            TotalAmount = 174.92m
                         },
                         new
                         {
@@ -16153,9 +16025,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditTransactionId = 9,
                             IsDeleted = false,
+                            PaidAt = new DateTime(2026, 6, 10, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 1,
-                            Status = 3,
-                            TotalAmount = 156m
+                            Status = 2,
+                            TotalAmount = 210.37m
                         },
                         new
                         {
@@ -16164,12 +16037,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Maya Rahman",
                             CitizenNricSnapshot = "S0000010H",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 10,
                             ExternalReference = "PAY-EXT-00010",
                             IsDeleted = false,
                             PaymentMethod = 2,
                             Status = 1,
-                            TotalAmount = 160m
+                            TotalAmount = 215.82m
                         },
                         new
                         {
@@ -16178,12 +16050,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Noah Teo",
                             CitizenNricSnapshot = "S0000011F",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 11,
                             IsDeleted = false,
-                            PaidAt = new DateTime(2026, 6, 11, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 1,
-                            Status = 2,
-                            TotalAmount = 164m
+                            Status = 3,
+                            TotalAmount = 221.27m
                         },
                         new
                         {
@@ -16192,12 +16062,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Aisha Fernandez",
                             CitizenNricSnapshot = "S0000012D",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 12,
                             ExternalReference = "PAY-EXT-00012",
                             IsDeleted = false,
+                            PaidAt = new DateTime(2026, 6, 13, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 2,
-                            Status = 3,
-                            TotalAmount = 168m
+                            Status = 2,
+                            TotalAmount = 196.72m
                         },
                         new
                         {
@@ -16206,11 +16076,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Ryan Chua",
                             CitizenNricSnapshot = "S0000013B",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 13,
                             IsDeleted = false,
                             PaymentMethod = 1,
                             Status = 1,
-                            TotalAmount = 172m
+                            TotalAmount = 232.17m
                         },
                         new
                         {
@@ -16219,13 +16088,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Chloe Goh",
                             CitizenNricSnapshot = "S0000014J",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 14,
                             ExternalReference = "PAY-EXT-00014",
                             IsDeleted = false,
-                            PaidAt = new DateTime(2026, 6, 14, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 2,
-                            Status = 2,
-                            TotalAmount = 176m
+                            Status = 3,
+                            TotalAmount = 237.62m
                         },
                         new
                         {
@@ -16236,9 +16103,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditTransactionId = 15,
                             IsDeleted = false,
+                            PaidAt = new DateTime(2026, 6, 16, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 1,
-                            Status = 3,
-                            TotalAmount = 180m
+                            Status = 2,
+                            TotalAmount = 243.07m
                         },
                         new
                         {
@@ -16247,12 +16115,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Natalie Seah",
                             CitizenNricSnapshot = "S0000016G",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 16,
                             ExternalReference = "PAY-EXT-00016",
                             IsDeleted = false,
                             PaymentMethod = 2,
                             Status = 1,
-                            TotalAmount = 184m
+                            TotalAmount = 218.52m
                         },
                         new
                         {
@@ -16261,12 +16128,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Alina Ang",
                             CitizenNricSnapshot = "S0000017E",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 17,
                             IsDeleted = false,
-                            PaidAt = new DateTime(2026, 6, 17, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 1,
-                            Status = 2,
-                            TotalAmount = 188m
+                            Status = 3,
+                            TotalAmount = 253.97m
                         },
                         new
                         {
@@ -16275,12 +16140,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Benjamin Bala",
                             CitizenNricSnapshot = "S0000018C",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 18,
                             ExternalReference = "PAY-EXT-00018",
                             IsDeleted = false,
+                            PaidAt = new DateTime(2026, 6, 19, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 2,
-                            Status = 3,
-                            TotalAmount = 192m
+                            Status = 2,
+                            TotalAmount = 259.42m
                         },
                         new
                         {
@@ -16289,11 +16154,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Clara Chew",
                             CitizenNricSnapshot = "S0000019A",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 19,
                             IsDeleted = false,
                             PaymentMethod = 1,
                             Status = 1,
-                            TotalAmount = 196m
+                            TotalAmount = 264.87m
                         },
                         new
                         {
@@ -16302,13 +16166,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Darius Das",
                             CitizenNricSnapshot = "S0000020E",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 20,
                             ExternalReference = "PAY-EXT-00020",
                             IsDeleted = false,
-                            PaidAt = new DateTime(2026, 6, 20, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 2,
-                            Status = 2,
-                            TotalAmount = 200m
+                            Status = 3,
+                            TotalAmount = 240.32m
                         },
                         new
                         {
@@ -16319,9 +16181,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditTransactionId = 21,
                             IsDeleted = false,
+                            PaidAt = new DateTime(2026, 6, 22, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 1,
-                            Status = 3,
-                            TotalAmount = 204m
+                            Status = 2,
+                            TotalAmount = 275.77m
                         },
                         new
                         {
@@ -16330,12 +16193,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Farhan Foo",
                             CitizenNricSnapshot = "S0000022A",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 22,
                             ExternalReference = "PAY-EXT-00022",
                             IsDeleted = false,
                             PaymentMethod = 2,
                             Status = 1,
-                            TotalAmount = 208m
+                            TotalAmount = 281.22m
                         },
                         new
                         {
@@ -16344,12 +16206,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Grace Gan",
                             CitizenNricSnapshot = "S0000023Z",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 23,
                             IsDeleted = false,
-                            PaidAt = new DateTime(2026, 6, 23, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 1,
-                            Status = 2,
-                            TotalAmount = 212m
+                            Status = 3,
+                            TotalAmount = 286.67m
                         },
                         new
                         {
@@ -16358,12 +16218,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Haruto Ho",
                             CitizenNricSnapshot = "S0000024H",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 24,
                             ExternalReference = "PAY-EXT-00024",
                             IsDeleted = false,
+                            PaidAt = new DateTime(2026, 6, 25, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 2,
-                            Status = 3,
-                            TotalAmount = 216m
+                            Status = 2,
+                            TotalAmount = 262.12m
                         },
                         new
                         {
@@ -16372,11 +16232,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Isabelle Ismail",
                             CitizenNricSnapshot = "S0000025F",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 25,
                             IsDeleted = false,
                             PaymentMethod = 1,
                             Status = 1,
-                            TotalAmount = 220m
+                            TotalAmount = 297.57m
                         },
                         new
                         {
@@ -16385,13 +16244,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Jasper Jeyaratnam",
                             CitizenNricSnapshot = "S0000026D",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 26,
                             ExternalReference = "PAY-EXT-00026",
                             IsDeleted = false,
-                            PaidAt = new DateTime(2026, 6, 26, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 2,
-                            Status = 2,
-                            TotalAmount = 224m
+                            Status = 3,
+                            TotalAmount = 303.02m
                         },
                         new
                         {
@@ -16402,9 +16259,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditTransactionId = 27,
                             IsDeleted = false,
+                            PaidAt = new DateTime(2026, 6, 28, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 1,
-                            Status = 3,
-                            TotalAmount = 228m
+                            Status = 2,
+                            TotalAmount = 308.47m
                         },
                         new
                         {
@@ -16413,12 +16271,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Leon Lim",
                             CitizenNricSnapshot = "S0000028J",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 28,
                             ExternalReference = "PAY-EXT-00028",
                             IsDeleted = false,
                             PaymentMethod = 2,
                             Status = 1,
-                            TotalAmount = 232m
+                            TotalAmount = 283.92m
                         },
                         new
                         {
@@ -16427,12 +16284,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Mei Lin Mohamed",
                             CitizenNricSnapshot = "S0000029I",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 29,
                             IsDeleted = false,
-                            PaidAt = new DateTime(2026, 6, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 1,
-                            Status = 2,
-                            TotalAmount = 236m
+                            Status = 3,
+                            TotalAmount = 319.37m
                         },
                         new
                         {
@@ -16441,12 +16296,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Nathan Ng",
                             CitizenNricSnapshot = "S0000030B",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 30,
                             ExternalReference = "PAY-EXT-00030",
                             IsDeleted = false,
+                            PaidAt = new DateTime(2026, 6, 3, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 2,
-                            Status = 3,
-                            TotalAmount = 240m
+                            Status = 2,
+                            TotalAmount = 324.82m
                         },
                         new
                         {
@@ -16455,11 +16310,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Olivia Ong",
                             CitizenNricSnapshot = "S0000031J",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 31,
                             IsDeleted = false,
                             PaymentMethod = 1,
                             Status = 1,
-                            TotalAmount = 244m
+                            TotalAmount = 330.27m
                         },
                         new
                         {
@@ -16468,13 +16322,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Pranav Pillai",
                             CitizenNricSnapshot = "S0000032I",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 32,
                             ExternalReference = "PAY-EXT-00032",
                             IsDeleted = false,
-                            PaidAt = new DateTime(2026, 6, 4, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 2,
-                            Status = 2,
-                            TotalAmount = 248m
+                            Status = 3,
+                            TotalAmount = 305.72m
                         },
                         new
                         {
@@ -16485,9 +16337,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditTransactionId = 33,
                             IsDeleted = false,
+                            PaidAt = new DateTime(2026, 6, 6, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 1,
-                            Status = 3,
-                            TotalAmount = 252m
+                            Status = 2,
+                            TotalAmount = 341.17m
                         },
                         new
                         {
@@ -16496,12 +16349,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Rafael Rao",
                             CitizenNricSnapshot = "S0000034E",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 34,
                             ExternalReference = "PAY-EXT-00034",
                             IsDeleted = false,
                             PaymentMethod = 2,
                             Status = 1,
-                            TotalAmount = 256m
+                            TotalAmount = 346.62m
                         },
                         new
                         {
@@ -16510,12 +16362,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Selina Sim",
                             CitizenNricSnapshot = "S0000035C",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 35,
                             IsDeleted = false,
-                            PaidAt = new DateTime(2026, 6, 7, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 1,
-                            Status = 2,
-                            TotalAmount = 260m
+                            Status = 3,
+                            TotalAmount = 352.07m
                         },
                         new
                         {
@@ -16524,12 +16374,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Terence Tan",
                             CitizenNricSnapshot = "S0000036A",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 36,
                             ExternalReference = "PAY-EXT-00036",
                             IsDeleted = false,
+                            PaidAt = new DateTime(2026, 6, 9, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 2,
-                            Status = 3,
-                            TotalAmount = 264m
+                            Status = 2,
+                            TotalAmount = 327.52m
                         },
                         new
                         {
@@ -16538,11 +16388,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Umairah Uddin",
                             CitizenNricSnapshot = "S0000037Z",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 37,
                             IsDeleted = false,
                             PaymentMethod = 1,
                             Status = 1,
-                            TotalAmount = 268m
+                            TotalAmount = 362.97m
                         },
                         new
                         {
@@ -16551,13 +16400,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Victor Vasquez",
                             CitizenNricSnapshot = "S0000038H",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 38,
                             ExternalReference = "PAY-EXT-00038",
                             IsDeleted = false,
-                            PaidAt = new DateTime(2026, 6, 10, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 2,
-                            Status = 2,
-                            TotalAmount = 272m
+                            Status = 3,
+                            TotalAmount = 368.42m
                         },
                         new
                         {
@@ -16568,9 +16415,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditTransactionId = 39,
                             IsDeleted = false,
+                            PaidAt = new DateTime(2026, 6, 12, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 1,
-                            Status = 3,
-                            TotalAmount = 276m
+                            Status = 2,
+                            TotalAmount = 373.87m
                         },
                         new
                         {
@@ -16579,12 +16427,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Xavier Xu",
                             CitizenNricSnapshot = "S0000040Z",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 40,
                             ExternalReference = "PAY-EXT-00040",
                             IsDeleted = false,
                             PaymentMethod = 2,
                             Status = 1,
-                            TotalAmount = 280m
+                            TotalAmount = 349.32m
                         },
                         new
                         {
@@ -16593,12 +16440,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Yasmin Yeo",
                             CitizenNricSnapshot = "S0000041H",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 41,
                             IsDeleted = false,
-                            PaidAt = new DateTime(2026, 6, 13, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 1,
-                            Status = 2,
-                            TotalAmount = 284m
+                            Status = 3,
+                            TotalAmount = 384.77m
                         },
                         new
                         {
@@ -16607,12 +16452,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Zachary Zainal",
                             CitizenNricSnapshot = "S0000042F",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 42,
                             ExternalReference = "PAY-EXT-00042",
                             IsDeleted = false,
+                            PaidAt = new DateTime(2026, 6, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 2,
-                            Status = 3,
-                            TotalAmount = 288m
+                            Status = 2,
+                            TotalAmount = 390.22m
                         },
                         new
                         {
@@ -16621,11 +16466,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Adeline Ang",
                             CitizenNricSnapshot = "S0000043D",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 43,
                             IsDeleted = false,
                             PaymentMethod = 1,
                             Status = 1,
-                            TotalAmount = 292m
+                            TotalAmount = 395.67m
                         },
                         new
                         {
@@ -16634,13 +16478,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Brandon Bala",
                             CitizenNricSnapshot = "S0000044B",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 44,
                             ExternalReference = "PAY-EXT-00044",
                             IsDeleted = false,
-                            PaidAt = new DateTime(2026, 6, 16, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 2,
-                            Status = 2,
-                            TotalAmount = 296m
+                            Status = 3,
+                            TotalAmount = 371.12m
                         },
                         new
                         {
@@ -16651,9 +16493,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EducationCreditTransactionId = 45,
                             IsDeleted = false,
+                            PaidAt = new DateTime(2026, 6, 18, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 1,
-                            Status = 3,
-                            TotalAmount = 300m
+                            Status = 2,
+                            TotalAmount = 406.57m
                         },
                         new
                         {
@@ -16662,12 +16505,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Damien Das",
                             CitizenNricSnapshot = "S0000046I",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 46,
                             ExternalReference = "PAY-EXT-00046",
                             IsDeleted = false,
                             PaymentMethod = 2,
                             Status = 1,
-                            TotalAmount = 304m
+                            TotalAmount = 412.02m
                         },
                         new
                         {
@@ -16676,12 +16518,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Evelyn Eng",
                             CitizenNricSnapshot = "S0000047G",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 47,
                             IsDeleted = false,
-                            PaidAt = new DateTime(2026, 6, 19, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 1,
-                            Status = 2,
-                            TotalAmount = 308m
+                            Status = 3,
+                            TotalAmount = 417.47m
                         },
                         new
                         {
@@ -16690,12 +16530,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Faris Foo",
                             CitizenNricSnapshot = "S0000048E",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 48,
                             ExternalReference = "PAY-EXT-00048",
                             IsDeleted = false,
+                            PaidAt = new DateTime(2026, 6, 21, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 2,
-                            Status = 3,
-                            TotalAmount = 312m
+                            Status = 2,
+                            TotalAmount = 392.92m
                         },
                         new
                         {
@@ -16704,11 +16544,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Giselle Gan",
                             CitizenNricSnapshot = "S0000049C",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 49,
                             IsDeleted = false,
                             PaymentMethod = 1,
                             Status = 1,
-                            TotalAmount = 316m
+                            TotalAmount = 428.37m
                         },
                         new
                         {
@@ -16717,13 +16556,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             CitizenFullNameSnapshot = "Haziq Ho",
                             CitizenNricSnapshot = "S0000050G",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            EducationCreditTransactionId = 50,
                             ExternalReference = "PAY-EXT-00050",
                             IsDeleted = false,
-                            PaidAt = new DateTime(2026, 6, 22, 0, 0, 0, 0, DateTimeKind.Utc),
                             PaymentMethod = 2,
-                            Status = 2,
-                            TotalAmount = 320m
+                            Status = 3,
+                            TotalAmount = 433.82m
                         },
                         new
                         {
@@ -16823,267 +16660,252 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            Amount = 128m,
-                            ChargeGrossAmountSnapshot = 162m,
-                            ChargeId = 2,
-                            ChargeInstallmentId = 2,
-                            ChargeNetAmountSnapshot = 162m,
-                            ChargeRemainingAmountSnapshot = 162m,
-                            CourseNameSnapshot = "Academic Writing Cohort 02",
+                            Amount = 177.67m,
+                            ChargeGrossAmountSnapshot = 177.67m,
+                            ChargeId = 3,
+                            ChargeInstallmentId = 3,
+                            ChargeNetAmountSnapshot = 177.67m,
+                            ChargeRemainingAmountSnapshot = 177.67m,
+                            CourseNameSnapshot = "Digital Literacy Cohort 03",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            PaymentId = 2,
+                            PaymentId = 3,
                             SchoolNameSnapshot = "Northview Secondary School"
                         },
                         new
                         {
                             Id = 2,
-                            Amount = 140m,
-                            ChargeGrossAmountSnapshot = 180m,
-                            ChargeId = 5,
-                            ChargeInstallmentId = 5,
-                            ChargeNetAmountSnapshot = 180m,
-                            ChargeRemainingAmountSnapshot = 180m,
-                            CourseNameSnapshot = "Business Numeracy Cohort 05",
+                            Amount = 194.02m,
+                            ChargeGrossAmountSnapshot = 194.02m,
+                            ChargeId = 6,
+                            ChargeInstallmentId = 6,
+                            ChargeNetAmountSnapshot = 194.02m,
+                            ChargeRemainingAmountSnapshot = 194.02m,
+                            CourseNameSnapshot = "Financial Literacy Cohort 06",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            PaymentId = 5,
+                            PaymentId = 6,
                             SchoolNameSnapshot = "Northview Secondary School"
                         },
                         new
                         {
                             Id = 3,
-                            Amount = 152m,
-                            ChargeGrossAmountSnapshot = 198m,
-                            ChargeId = 8,
-                            ChargeInstallmentId = 8,
-                            ChargeNetAmountSnapshot = 198m,
-                            ChargeRemainingAmountSnapshot = 198m,
-                            CourseNameSnapshot = "Digital Literacy Cohort 08",
+                            Amount = 210.37m,
+                            ChargeGrossAmountSnapshot = 210.37m,
+                            ChargeId = 9,
+                            ChargeInstallmentId = 9,
+                            ChargeNetAmountSnapshot = 210.37m,
+                            ChargeRemainingAmountSnapshot = 210.37m,
+                            CourseNameSnapshot = "Workplace Communication Cohort 09",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            PaymentId = 8,
+                            PaymentId = 9,
                             SchoolNameSnapshot = "Northview Secondary School"
                         },
                         new
                         {
                             Id = 4,
-                            Amount = 164m,
-                            ChargeGrossAmountSnapshot = 216m,
-                            ChargeId = 11,
-                            ChargeInstallmentId = 11,
-                            ChargeNetAmountSnapshot = 216m,
-                            ChargeRemainingAmountSnapshot = 216m,
-                            CourseNameSnapshot = "Career Readiness Cohort 11",
+                            Amount = 196.72m,
+                            ChargeGrossAmountSnapshot = 226.72m,
+                            ChargeId = 12,
+                            ChargeInstallmentId = 12,
+                            ChargeNetAmountSnapshot = 196.72m,
+                            ChargeRemainingAmountSnapshot = 196.72m,
+                            CourseNameSnapshot = "Business Numeracy Cohort 12",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            PaymentId = 11,
+                            PaymentId = 12,
                             SchoolNameSnapshot = "Northview Secondary School"
                         },
                         new
                         {
                             Id = 5,
-                            Amount = 176m,
-                            ChargeGrossAmountSnapshot = 234m,
-                            ChargeId = 14,
-                            ChargeInstallmentId = 14,
-                            ChargeNetAmountSnapshot = 234m,
-                            ChargeRemainingAmountSnapshot = 234m,
-                            CourseNameSnapshot = "Applied Science Cohort 14",
+                            Amount = 243.07m,
+                            ChargeGrossAmountSnapshot = 243.07m,
+                            ChargeId = 15,
+                            ChargeInstallmentId = 15,
+                            ChargeNetAmountSnapshot = 243.07m,
+                            ChargeRemainingAmountSnapshot = 243.07m,
+                            CourseNameSnapshot = "Applied Science Cohort 15",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            PaymentId = 14,
+                            PaymentId = 15,
                             SchoolNameSnapshot = "Northview Secondary School"
                         },
                         new
                         {
                             Id = 6,
-                            Amount = 188m,
-                            ChargeGrossAmountSnapshot = 252m,
-                            ChargeId = 17,
-                            ChargeInstallmentId = 17,
-                            ChargeNetAmountSnapshot = 252m,
-                            ChargeRemainingAmountSnapshot = 252m,
-                            CourseNameSnapshot = "Financial Literacy Cohort 17",
+                            Amount = 259.42m,
+                            ChargeGrossAmountSnapshot = 259.42m,
+                            ChargeId = 18,
+                            ChargeInstallmentId = 18,
+                            ChargeNetAmountSnapshot = 259.42m,
+                            ChargeRemainingAmountSnapshot = 259.42m,
+                            CourseNameSnapshot = "Data Skills Cohort 18",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            PaymentId = 17,
+                            PaymentId = 18,
                             SchoolNameSnapshot = "Northview Secondary School"
                         },
                         new
                         {
                             Id = 7,
-                            Amount = 200m,
-                            ChargeGrossAmountSnapshot = 270m,
-                            ChargeId = 20,
-                            ChargeInstallmentId = 20,
-                            ChargeNetAmountSnapshot = 270m,
-                            ChargeRemainingAmountSnapshot = 270m,
-                            CourseNameSnapshot = "Project Collaboration Cohort 20",
+                            Amount = 275.77m,
+                            ChargeGrossAmountSnapshot = 275.77m,
+                            ChargeId = 21,
+                            ChargeInstallmentId = 21,
+                            ChargeNetAmountSnapshot = 275.77m,
+                            ChargeRemainingAmountSnapshot = 275.77m,
+                            CourseNameSnapshot = "Academic Writing Cohort 21",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            PaymentId = 20,
+                            PaymentId = 21,
                             SchoolNameSnapshot = "Northview Secondary School"
                         },
                         new
                         {
                             Id = 8,
-                            Amount = 212m,
-                            ChargeGrossAmountSnapshot = 288m,
-                            ChargeId = 23,
-                            ChargeInstallmentId = 23,
-                            ChargeNetAmountSnapshot = 288m,
-                            ChargeRemainingAmountSnapshot = 288m,
-                            CourseNameSnapshot = "Data Skills Cohort 23",
+                            Amount = 262.12m,
+                            ChargeGrossAmountSnapshot = 292.12m,
+                            ChargeId = 24,
+                            ChargeInstallmentId = 24,
+                            ChargeNetAmountSnapshot = 262.12m,
+                            ChargeRemainingAmountSnapshot = 262.12m,
+                            CourseNameSnapshot = "Career Readiness Cohort 24",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            PaymentId = 23,
+                            PaymentId = 24,
                             SchoolNameSnapshot = "Northview Secondary School"
                         },
                         new
                         {
                             Id = 9,
-                            Amount = 224m,
-                            ChargeGrossAmountSnapshot = 306m,
-                            ChargeId = 26,
-                            ChargeInstallmentId = 26,
-                            ChargeNetAmountSnapshot = 306m,
-                            ChargeRemainingAmountSnapshot = 306m,
-                            CourseNameSnapshot = "Workplace Communication Cohort 26",
+                            Amount = 308.47m,
+                            ChargeGrossAmountSnapshot = 308.47m,
+                            ChargeId = 27,
+                            ChargeInstallmentId = 27,
+                            ChargeNetAmountSnapshot = 308.47m,
+                            ChargeRemainingAmountSnapshot = 308.47m,
+                            CourseNameSnapshot = "Project Collaboration Cohort 27",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            PaymentId = 26,
+                            PaymentId = 27,
                             SchoolNameSnapshot = "Northview Secondary School"
                         },
                         new
                         {
                             Id = 10,
-                            Amount = 236m,
-                            ChargeGrossAmountSnapshot = 324m,
-                            ChargeId = 29,
-                            ChargeInstallmentId = 29,
-                            ChargeNetAmountSnapshot = 324m,
-                            ChargeRemainingAmountSnapshot = 324m,
-                            CourseNameSnapshot = "Software Foundations Cohort 29",
+                            Amount = 324.82m,
+                            ChargeGrossAmountSnapshot = 324.82m,
+                            ChargeId = 30,
+                            ChargeInstallmentId = 30,
+                            ChargeNetAmountSnapshot = 324.82m,
+                            ChargeRemainingAmountSnapshot = 324.82m,
+                            CourseNameSnapshot = "Software Foundations Cohort 30",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            PaymentId = 29,
+                            PaymentId = 30,
                             SchoolNameSnapshot = "Northview Secondary School"
                         },
                         new
                         {
                             Id = 11,
-                            Amount = 248m,
-                            ChargeGrossAmountSnapshot = 342m,
-                            ChargeId = 32,
-                            ChargeInstallmentId = 32,
-                            ChargeNetAmountSnapshot = 342m,
-                            ChargeRemainingAmountSnapshot = 342m,
-                            CourseNameSnapshot = "Academic Writing Cohort 32",
+                            Amount = 341.17m,
+                            ChargeGrossAmountSnapshot = 341.17m,
+                            ChargeId = 33,
+                            ChargeInstallmentId = 33,
+                            ChargeNetAmountSnapshot = 341.17m,
+                            ChargeRemainingAmountSnapshot = 341.17m,
+                            CourseNameSnapshot = "Digital Literacy Cohort 33",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            PaymentId = 32,
+                            PaymentId = 33,
                             SchoolNameSnapshot = "Northview Secondary School"
                         },
                         new
                         {
                             Id = 12,
-                            Amount = 260m,
-                            ChargeGrossAmountSnapshot = 360m,
-                            ChargeId = 35,
-                            ChargeInstallmentId = 35,
-                            ChargeNetAmountSnapshot = 360m,
-                            ChargeRemainingAmountSnapshot = 360m,
-                            CourseNameSnapshot = "Business Numeracy Cohort 35",
+                            Amount = 327.52m,
+                            ChargeGrossAmountSnapshot = 357.52m,
+                            ChargeId = 36,
+                            ChargeInstallmentId = 36,
+                            ChargeNetAmountSnapshot = 327.52m,
+                            ChargeRemainingAmountSnapshot = 327.52m,
+                            CourseNameSnapshot = "Financial Literacy Cohort 36",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            PaymentId = 35,
+                            PaymentId = 36,
                             SchoolNameSnapshot = "Northview Secondary School"
                         },
                         new
                         {
                             Id = 13,
-                            Amount = 272m,
-                            ChargeGrossAmountSnapshot = 378m,
-                            ChargeId = 38,
-                            ChargeInstallmentId = 38,
-                            ChargeNetAmountSnapshot = 378m,
-                            ChargeRemainingAmountSnapshot = 378m,
-                            CourseNameSnapshot = "Digital Literacy Cohort 38",
+                            Amount = 373.87m,
+                            ChargeGrossAmountSnapshot = 373.87m,
+                            ChargeId = 39,
+                            ChargeInstallmentId = 39,
+                            ChargeNetAmountSnapshot = 373.87m,
+                            ChargeRemainingAmountSnapshot = 373.87m,
+                            CourseNameSnapshot = "Workplace Communication Cohort 39",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            PaymentId = 38,
+                            PaymentId = 39,
                             SchoolNameSnapshot = "Northview Secondary School"
                         },
                         new
                         {
                             Id = 14,
-                            Amount = 284m,
-                            ChargeGrossAmountSnapshot = 396m,
-                            ChargeId = 41,
-                            ChargeInstallmentId = 41,
-                            ChargeNetAmountSnapshot = 396m,
-                            ChargeRemainingAmountSnapshot = 396m,
-                            CourseNameSnapshot = "Career Readiness Cohort 41",
+                            Amount = 390.22m,
+                            ChargeGrossAmountSnapshot = 390.22m,
+                            ChargeId = 42,
+                            ChargeInstallmentId = 42,
+                            ChargeNetAmountSnapshot = 390.22m,
+                            ChargeRemainingAmountSnapshot = 390.22m,
+                            CourseNameSnapshot = "Business Numeracy Cohort 42",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            PaymentId = 41,
+                            PaymentId = 42,
                             SchoolNameSnapshot = "Northview Secondary School"
                         },
                         new
                         {
                             Id = 15,
-                            Amount = 296m,
-                            ChargeGrossAmountSnapshot = 414m,
-                            ChargeId = 44,
-                            ChargeInstallmentId = 44,
-                            ChargeNetAmountSnapshot = 414m,
-                            ChargeRemainingAmountSnapshot = 414m,
-                            CourseNameSnapshot = "Applied Science Cohort 44",
+                            Amount = 406.57m,
+                            ChargeGrossAmountSnapshot = 406.57m,
+                            ChargeId = 45,
+                            ChargeInstallmentId = 45,
+                            ChargeNetAmountSnapshot = 406.57m,
+                            ChargeRemainingAmountSnapshot = 406.57m,
+                            CourseNameSnapshot = "Applied Science Cohort 45",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            PaymentId = 44,
+                            PaymentId = 45,
                             SchoolNameSnapshot = "Northview Secondary School"
                         },
                         new
                         {
                             Id = 16,
-                            Amount = 308m,
-                            ChargeGrossAmountSnapshot = 432m,
-                            ChargeId = 47,
-                            ChargeInstallmentId = 47,
-                            ChargeNetAmountSnapshot = 432m,
-                            ChargeRemainingAmountSnapshot = 432m,
-                            CourseNameSnapshot = "Financial Literacy Cohort 47",
+                            Amount = 392.92m,
+                            ChargeGrossAmountSnapshot = 422.92m,
+                            ChargeId = 48,
+                            ChargeInstallmentId = 48,
+                            ChargeNetAmountSnapshot = 392.92m,
+                            ChargeRemainingAmountSnapshot = 392.92m,
+                            CourseNameSnapshot = "Data Skills Cohort 48",
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
-                            PaymentId = 47,
+                            PaymentId = 48,
                             SchoolNameSnapshot = "Northview Secondary School"
                         },
                         new
                         {
                             Id = 17,
-                            Amount = 320m,
-                            ChargeGrossAmountSnapshot = 450m,
-                            ChargeId = 50,
-                            ChargeInstallmentId = 50,
-                            ChargeNetAmountSnapshot = 450m,
-                            ChargeRemainingAmountSnapshot = 450m,
-                            CourseNameSnapshot = "Project Collaboration Cohort 50",
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            IsDeleted = false,
-                            PaymentId = 50,
-                            SchoolNameSnapshot = "Northview Secondary School"
-                        },
-                        new
-                        {
-                            Id = 18,
                             Amount = 185m,
-                            ChargeGrossAmountSnapshot = 185m,
+                            ChargeGrossAmountSnapshot = 1110m,
                             ChargeId = 51,
                             ChargeInstallmentId = 51,
-                            ChargeNetAmountSnapshot = 185m,
-                            ChargeRemainingAmountSnapshot = 185m,
+                            ChargeNetAmountSnapshot = 1110m,
+                            ChargeRemainingAmountSnapshot = 1110m,
                             CourseNameSnapshot = "Creative Thinking Cohort 51",
                             CreatedAt = new DateTime(2026, 1, 31, 0, 0, 0, 0, DateTimeKind.Utc),
                             IsDeleted = false,
@@ -19599,7 +19421,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedBy = 2,
                             EducationAccountId = 3,
-                            EducationCreditTransactionId = 3,
+                            EducationCreditTransactionId = 203,
                             IsDeleted = false,
                             MatchedConditionsSnapshot = "Matched household income condition",
                             Status = 3,
@@ -19653,7 +19475,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc),
                             CreatedBy = 2,
                             EducationAccountId = 7,
-                            EducationCreditTransactionId = 7,
+                            EducationCreditTransactionId = 207,
                             IsDeleted = false,
                             MatchedConditionsSnapshot = "Matched household income condition",
                             Status = 3,
@@ -19818,7 +19640,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 1,
+                            FailedLoginCount = 0,
                             IsDeleted = false,
                             LastLoginAt = new DateTime(2026, 1, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             Role = 1,
@@ -19826,11 +19648,91 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
+                            Id = 5,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FailedLoginCount = 0,
+                            IsDeleted = false,
+                            LastLoginAt = new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 1,
+                            Status = 2
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FailedLoginCount = 0,
+                            IsDeleted = false,
+                            LastLoginAt = new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 1,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FailedLoginCount = 0,
+                            IsDeleted = false,
+                            LastLoginAt = new DateTime(2026, 1, 12, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 1,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FailedLoginCount = 0,
+                            IsDeleted = false,
+                            LastLoginAt = new DateTime(2026, 1, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 1,
+                            Status = 1
+                        },
+                        new
+                        {
                             Id = 2,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 2,
+                            FailedLoginCount = 0,
                             IsDeleted = false,
                             LastLoginAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 2,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FailedLoginCount = 0,
+                            IsDeleted = false,
+                            LastLoginAt = new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 2,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FailedLoginCount = 0,
+                            IsDeleted = false,
+                            LastLoginAt = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 2,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FailedLoginCount = 0,
+                            IsDeleted = false,
+                            LastLoginAt = new DateTime(2026, 1, 13, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 2,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FailedLoginCount = 0,
+                            IsDeleted = false,
+                            LastLoginAt = new DateTime(2026, 1, 16, 0, 0, 0, 0, DateTimeKind.Utc),
                             Role = 2,
                             Status = 1
                         },
@@ -19846,120 +19748,41 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 4,
-                            CitizenId = 1,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 1,
-                            IsDeleted = false,
-                            LastLoginAt = new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Role = 4,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 2,
-                            IsDeleted = false,
-                            Role = 1,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 0,
-                            IsDeleted = false,
-                            Role = 2,
-                            Status = 1
-                        },
-                        new
-                        {
                             Id = 7,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 1,
-                            IsDeleted = false,
-                            Role = 3,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 2,
-                            IsDeleted = false,
-                            Role = 1,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 2,
+                            LastLoginAt = new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 3,
                             Status = 1
                         },
                         new
                         {
                             Id = 10,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 1,
-                            IsDeleted = false,
-                            Role = 3,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 11,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 2,
-                            IsDeleted = false,
-                            Role = 1,
-                            Status = 2
-                        },
-                        new
-                        {
-                            Id = 12,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 2,
+                            LastLoginAt = new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 3,
                             Status = 1
                         },
                         new
                         {
                             Id = 13,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 1,
-                            IsDeleted = false,
-                            Role = 3,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 14,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 2,
-                            IsDeleted = false,
-                            Role = 1,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 15,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 2,
+                            LastLoginAt = new DateTime(2026, 1, 14, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 3,
                             Status = 1
                         },
                         new
                         {
                             Id = 16,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 1,
+                            FailedLoginCount = 0,
                             IsDeleted = false,
+                            LastLoginAt = new DateTime(2026, 1, 17, 0, 0, 0, 0, DateTimeKind.Utc),
                             Role = 3,
                             Status = 1
                         },
@@ -19967,9 +19790,10 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 17,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 2,
+                            FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 1,
+                            LastLoginAt = new DateTime(2026, 1, 18, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 3,
                             Status = 1
                         },
                         new
@@ -19978,15 +19802,17 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 2,
+                            LastLoginAt = new DateTime(2026, 1, 19, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 3,
                             Status = 1
                         },
                         new
                         {
                             Id = 19,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 1,
+                            FailedLoginCount = 0,
                             IsDeleted = false,
+                            LastLoginAt = new DateTime(2026, 1, 20, 0, 0, 0, 0, DateTimeKind.Utc),
                             Role = 3,
                             Status = 1
                         },
@@ -19994,9 +19820,10 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 20,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 2,
+                            FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 1,
+                            LastLoginAt = new DateTime(2026, 1, 21, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 3,
                             Status = 1
                         },
                         new
@@ -20005,277 +19832,338 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 2,
+                            LastLoginAt = new DateTime(2026, 1, 22, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 3,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CitizenId = 1,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            FailedLoginCount = 0,
+                            IsDeleted = false,
+                            LastLoginAt = new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
                             Status = 1
                         },
                         new
                         {
                             Id = 22,
+                            CitizenId = 2,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 1,
+                            FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 3,
-                            Status = 2
+                            LastLoginAt = new DateTime(2026, 1, 23, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
+                            Status = 1
                         },
                         new
                         {
                             Id = 23,
+                            CitizenId = 3,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 2,
+                            FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 1,
+                            LastLoginAt = new DateTime(2026, 1, 24, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
                             Status = 1
                         },
                         new
                         {
                             Id = 24,
+                            CitizenId = 4,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 2,
+                            LastLoginAt = new DateTime(2026, 1, 25, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
                             Status = 1
                         },
                         new
                         {
                             Id = 25,
+                            CitizenId = 5,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 1,
+                            FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 3,
+                            LastLoginAt = new DateTime(2026, 1, 26, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
                             Status = 1
                         },
                         new
                         {
                             Id = 26,
+                            CitizenId = 6,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 2,
+                            FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 1,
+                            LastLoginAt = new DateTime(2026, 1, 27, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
                             Status = 1
                         },
                         new
                         {
                             Id = 27,
+                            CitizenId = 7,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 2,
+                            LastLoginAt = new DateTime(2026, 1, 28, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
                             Status = 1
                         },
                         new
                         {
                             Id = 28,
+                            CitizenId = 8,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 1,
+                            FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 3,
+                            LastLoginAt = new DateTime(2026, 1, 29, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
                             Status = 1
                         },
                         new
                         {
                             Id = 29,
+                            CitizenId = 9,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 2,
+                            FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 1,
+                            LastLoginAt = new DateTime(2026, 1, 30, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
                             Status = 1
                         },
                         new
                         {
                             Id = 30,
+                            CitizenId = 10,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 2,
+                            LastLoginAt = new DateTime(2026, 1, 31, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
                             Status = 1
                         },
                         new
                         {
                             Id = 31,
+                            CitizenId = 11,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 1,
+                            FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 3,
+                            LastLoginAt = new DateTime(2026, 2, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
                             Status = 1
                         },
                         new
                         {
                             Id = 32,
+                            CitizenId = 12,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 2,
+                            FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 1,
+                            LastLoginAt = new DateTime(2026, 2, 2, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
                             Status = 1
                         },
                         new
                         {
                             Id = 33,
+                            CitizenId = 13,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 2,
-                            Status = 2
+                            LastLoginAt = new DateTime(2026, 2, 3, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
+                            Status = 1
                         },
                         new
                         {
                             Id = 34,
+                            CitizenId = 14,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 1,
+                            FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 3,
+                            LastLoginAt = new DateTime(2026, 2, 4, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
                             Status = 1
                         },
                         new
                         {
                             Id = 35,
+                            CitizenId = 15,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 2,
+                            FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 1,
+                            LastLoginAt = new DateTime(2026, 2, 5, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
                             Status = 1
                         },
                         new
                         {
                             Id = 36,
+                            CitizenId = 16,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 2,
+                            LastLoginAt = new DateTime(2026, 2, 6, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
                             Status = 1
                         },
                         new
                         {
                             Id = 37,
+                            CitizenId = 17,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 1,
+                            FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 3,
+                            LastLoginAt = new DateTime(2026, 2, 7, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
                             Status = 1
                         },
                         new
                         {
                             Id = 38,
+                            CitizenId = 18,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 2,
+                            FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 1,
+                            LastLoginAt = new DateTime(2026, 2, 8, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
                             Status = 1
                         },
                         new
                         {
                             Id = 39,
+                            CitizenId = 19,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 2,
+                            LastLoginAt = new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
                             Status = 1
                         },
                         new
                         {
                             Id = 40,
+                            CitizenId = 20,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 1,
+                            FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 3,
+                            LastLoginAt = new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
                             Status = 1
                         },
                         new
                         {
                             Id = 41,
+                            CitizenId = 21,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 2,
+                            FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 1,
+                            LastLoginAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
                             Status = 1
                         },
                         new
                         {
                             Id = 42,
+                            CitizenId = 22,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 2,
+                            LastLoginAt = new DateTime(2026, 2, 12, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
                             Status = 1
                         },
                         new
                         {
                             Id = 43,
+                            CitizenId = 23,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 1,
+                            FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 3,
+                            LastLoginAt = new DateTime(2026, 2, 13, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
                             Status = 1
                         },
                         new
                         {
                             Id = 44,
+                            CitizenId = 24,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 2,
+                            FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 1,
-                            Status = 2
+                            LastLoginAt = new DateTime(2026, 2, 14, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
+                            Status = 1
                         },
                         new
                         {
                             Id = 45,
+                            CitizenId = 25,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 2,
+                            LastLoginAt = new DateTime(2026, 2, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
                             Status = 1
                         },
                         new
                         {
                             Id = 46,
+                            CitizenId = 26,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 1,
+                            FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 3,
+                            LastLoginAt = new DateTime(2026, 2, 16, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
                             Status = 1
                         },
                         new
                         {
                             Id = 47,
+                            CitizenId = 27,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 2,
+                            FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 1,
+                            LastLoginAt = new DateTime(2026, 2, 17, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
                             Status = 1
                         },
                         new
                         {
                             Id = 48,
+                            CitizenId = 28,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 2,
+                            LastLoginAt = new DateTime(2026, 2, 18, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
                             Status = 1
                         },
                         new
                         {
                             Id = 49,
+                            CitizenId = 29,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 1,
+                            FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 3,
+                            LastLoginAt = new DateTime(2026, 2, 19, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
                             Status = 1
                         },
                         new
                         {
                             Id = 50,
-                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FailedLoginCount = 2,
-                            IsDeleted = false,
-                            Role = 1,
-                            Status = 1
-                        },
-                        new
-                        {
-                            Id = 51,
+                            CitizenId = 30,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             FailedLoginCount = 0,
                             IsDeleted = false,
-                            Role = 2,
+                            LastLoginAt = new DateTime(2026, 2, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Role = 4,
                             Status = 1
                         });
                 });
