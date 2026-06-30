@@ -41,6 +41,10 @@
 
         public static EvaluationResult Evaluate(EducationAccount account, GroupNode root, DateTime now)
         {
+            var age = CalculateAge(account.Citizen.DateOfBirth, DateOnly.FromDateTime(now));
+            if (!TopupEligibilityPolicy.IsEligibleAge(age))
+                return new EvaluationResult(false, []);
+
             var matched = new List<ConditionNode>();
             var isSatisfied = EvaluateGroup(account, root, now, matched);
             return new EvaluationResult(isSatisfied, isSatisfied ? matched : []);

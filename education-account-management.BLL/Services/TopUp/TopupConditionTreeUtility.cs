@@ -7,9 +7,6 @@ namespace Services.TopUp
         // Root group plus one child-group level.
         private const int MaximumDepth = 2;
         private const int MaximumNodeCount = 100;
-        private const decimal MinimumEligibleAge = 16;
-        private const decimal MaximumEligibleAge = 30;
-
         public static void Validate(TopupConditionGroupRequestDTO root)
         {
             ArgumentNullException.ThrowIfNull(root);
@@ -18,6 +15,12 @@ namespace Services.TopUp
             ValidateGroup(root, nameof(root), 1, ref nodeCount, errors);
             if (nodeCount > MaximumNodeCount)
                 errors[nameof(root)] = $"A condition tree cannot contain more than {MaximumNodeCount} nodes.";
+            if (errors.Count == 0)
+            {
+                var semanticErrors = TopupConditionSemanticAnalyzer.Analyze(root);
+                for (var index = 0; index < semanticErrors.Count; index++)
+                    errors[$"{nameof(root)}.Semantic[{index}]"] = semanticErrors[index];
+            }
             if (errors.Count != 0) throw new ValidationFailureException(errors);
         }
 
@@ -84,8 +87,17 @@ namespace Services.TopUp
                 {
                     if (condition.ValueNumber % 1 != 0)
                         errors[$"{path}.{nameof(condition.ValueNumber)}"] = "Age must be a whole number.";
-                    if (condition.ValueNumber is < MinimumEligibleAge or > MaximumEligibleAge)
-                        errors[$"{path}.{nameof(condition.ValueNumber)}"] = $"Age must be between {MinimumEligibleAge:0} and {MaximumEligibleAge:0}.";
+                    if (condition.ValueNumber is < TopupEligibilityPolicy.MinimumAge or > TopupEligibilityPolicy.MaximumAge)
+                        errors[$"{path}.{nameof(condition.ValueNumber)}"] = $"Age must be between {TopupEligibilityPolicy.MinimumAge} and {TopupEligibilityPolicy.MaximumAge}.";
+                }
+                else if (condition.ValueNumber > TopupEligibilityPolicy.MaximumBalance)
+                {
+                    errors[$"{path}.{nameof(condition.ValueNumber)}"] = "Balance cannot exceed the supported account balance.";
+                }
+                else if (condition.ValueNumber.HasValue &&
+                         decimal.Round(condition.ValueNumber.Value, 2) != condition.ValueNumber)
+                {
+                    errors[$"{path}.{nameof(condition.ValueNumber)}"] = "Balance cannot have more than two decimal places.";
                 }
 
                 if (condition.Operator == TopupConditionOperator.Between)
@@ -98,8 +110,16 @@ namespace Services.TopUp
                     {
                         if (condition.ValueNumberTo % 1 != 0)
                             errors[$"{path}.{nameof(condition.ValueNumberTo)}"] = "Age must be a whole number.";
-                        if (condition.ValueNumberTo is < MinimumEligibleAge or > MaximumEligibleAge)
-                            errors[$"{path}.{nameof(condition.ValueNumberTo)}"] = $"Age must be between {MinimumEligibleAge:0} and {MaximumEligibleAge:0}.";
+                        if (condition.ValueNumberTo is < TopupEligibilityPolicy.MinimumAge or > TopupEligibilityPolicy.MaximumAge)
+                            errors[$"{path}.{nameof(condition.ValueNumberTo)}"] = $"Age must be between {TopupEligibilityPolicy.MinimumAge} and {TopupEligibilityPolicy.MaximumAge}.";
+                    }
+                    else if (condition.ValueNumberTo > TopupEligibilityPolicy.MaximumBalance)
+                    {
+                        errors[$"{path}.{nameof(condition.ValueNumberTo)}"] = "Balance cannot exceed the supported account balance.";
+                    }
+                    else if (condition.ValueNumberTo.HasValue && decimal.Round(condition.ValueNumberTo.Value, 2) != condition.ValueNumberTo)
+                    {
+                        errors[$"{path}.{nameof(condition.ValueNumberTo)}"] = "Balance cannot have more than two decimal places.";
                     }
                 }
                 else if (condition.ValueNumberTo != null)
