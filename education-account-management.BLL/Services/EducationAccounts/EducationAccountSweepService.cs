@@ -41,7 +41,8 @@ namespace Services.EducationAccounts
             var closingBirthDate = batchDate.AddYears(-31);
             var citizensToCreate = await _citizenRepository.Query()
                 .Where(citizen => citizen.DateOfBirth <= firstEligibleBirthDate
-                    && citizen.DateOfBirth > closingBirthDate)
+                    && citizen.DateOfBirth > closingBirthDate
+                    && !citizen.IsAutoSweepExcluded)
                 .Where(citizen => citizen.EducationAccount == null)
                 .OrderBy(citizen => citizen.Id)
                 .ToListAsync(cancellationToken);
@@ -53,6 +54,7 @@ namespace Services.EducationAccounts
                 .Select(account => new
                 {
                     account.Id,
+                    account.CitizenId,
                     account.Citizen.Nric,
                     account.Status
                 })
@@ -86,6 +88,7 @@ namespace Services.EducationAccounts
                         result.AccountsCreatedCount++;
                         result.Targets.Add(new EducationAccountSweepTargetDTO
                         {
+                            CitizenId = citizen.Id,
                             Nric = citizen.Nric,
                             Action = SweepAction.Create,
                             Status = SweepTargetStatus.Success
@@ -95,6 +98,7 @@ namespace Services.EducationAccounts
                     {
                         result.Targets.Add(new EducationAccountSweepTargetDTO
                         {
+                            CitizenId = citizen.Id,
                             Nric = citizen.Nric,
                             Action = SweepAction.Create,
                             Status = SweepTargetStatus.Failed,
@@ -137,6 +141,7 @@ namespace Services.EducationAccounts
                             result.AccountsExtendedCount++;
                             result.Targets.Add(new EducationAccountSweepTargetDTO
                             {
+                                CitizenId = candidate.CitizenId,
                                 Nric = candidate.Nric,
                                 Action = SweepAction.Extend,
                                 Status = SweepTargetStatus.Success
@@ -147,6 +152,7 @@ namespace Services.EducationAccounts
                             result.AccountsClosedCount++;
                             result.Targets.Add(new EducationAccountSweepTargetDTO
                             {
+                                CitizenId = candidate.CitizenId,
                                 Nric = candidate.Nric,
                                 Action = SweepAction.Close,
                                 Status = SweepTargetStatus.Success
@@ -157,6 +163,7 @@ namespace Services.EducationAccounts
                     {
                         result.Targets.Add(new EducationAccountSweepTargetDTO
                         {
+                            CitizenId = candidate.CitizenId,
                             Nric = candidate.Nric,
                             Action = candidate.Status == EducationAccountStatus.Active ? SweepAction.Close : SweepAction.Extend,
                             Status = SweepTargetStatus.Failed,
@@ -176,6 +183,7 @@ namespace Services.EducationAccounts
                     AccountsExtendedCount = result.AccountsExtendedCount,
                     Targets = result.Targets.Select(item => new EducationAccountSweepTarget
                     {
+                        CitizenId = item.CitizenId,
                         Nric = item.Nric,
                         Action = item.Action,
                         Status = item.Status,

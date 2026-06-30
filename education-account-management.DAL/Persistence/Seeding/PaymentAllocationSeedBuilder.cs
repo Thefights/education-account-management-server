@@ -11,40 +11,40 @@ namespace Persistence.Seeding
         {
             var createdAt = SeedDataConstants.CreatedAt;
             var allocations = new List<PaymentAllocation>();
-            string[] courseNames = { "Academic Writing", "Business Numeracy", "Digital Literacy", "Career Readiness", "Applied Science", "Financial Literacy", "Project Collaboration", "Data Skills", "Workplace Communication", "Software Foundations" };
-            
-            int allocationId = 1;
-            for (int i = 1; i <= 50; i++)
+            var allocationId = 1;
+
+            foreach (var paidCharge in EducationCreditTransactionSeedBuilder.GetSterlingPaidCharges())
             {
-                if (i % 3 == 0) // Succeeded payments
+                var netAmount = SeedScenarioConstants.GetNetAmount(paidCharge.CourseId);
+                var baseInstallmentAmount = Math.Round(netAmount / 6m, 2);
+
+                foreach (var installmentNumber in paidCharge.PaidInstallmentNumbers)
                 {
-                    decimal courseFee = 125m + (i * 5m);
-                    decimal miscFee = 23m;
-                    decimal gst = Math.Round((courseFee + miscFee) * 0.09m, 2);
-                    decimal grossAmount = courseFee + miscFee + gst;
-                    decimal subsidyAmount = i % 4 == 0 ? 30m : 0m;
-                    decimal netAmount = grossAmount - subsidyAmount;
-                    
+                    var amount = installmentNumber < 6
+                        ? baseInstallmentAmount
+                        : netAmount - (baseInstallmentAmount * 5m);
+
                     allocations.Add(new PaymentAllocation
                     {
                         Id = allocationId++,
-                        PaymentId = i,
-                        ChargeId = i,
-                        ChargeInstallmentId = i,
-                        CourseNameSnapshot = courseNames[(i - 1) % 10] + " Cohort " + i.ToString("D2"),
+                        PaymentId = paidCharge.PaymentId,
+                        ChargeId = paidCharge.ChargeId,
+                        ChargeInstallmentId = SeedScenarioConstants.GetSterlingInstallmentId(
+                            paidCharge.ChargeId,
+                            installmentNumber),
+                        CourseNameSnapshot = SeedScenarioConstants.GetCourseName(paidCharge.CourseId),
                         SchoolNameSnapshot = "Northview Secondary School",
-                        ChargeGrossAmountSnapshot = grossAmount,
+                        ChargeGrossAmountSnapshot = netAmount + (paidCharge.CourseId % 4 == 0 ? 30m : 0m),
                         ChargeNetAmountSnapshot = netAmount,
                         ChargeRemainingAmountSnapshot = netAmount,
-                        Amount = netAmount,
-                        CreatedAt = createdAt
+                        Amount = amount,
+                        CreatedAt = createdAt.AddDays(10 + paidCharge.CourseIndex)
                     });
                 }
             }
 
-            allocations.Add(new PaymentAllocation { Id = allocationId++, PaymentId = 51, ChargeId = 51, ChargeInstallmentId = 51, CourseNameSnapshot = "Creative Thinking Cohort 51", SchoolNameSnapshot = "Northview Secondary School", ChargeGrossAmountSnapshot = 1110m, ChargeNetAmountSnapshot = 1110m, ChargeRemainingAmountSnapshot = 1110m, Amount = 185m, CreatedAt = createdAt.AddDays(30) });
-
             modelBuilder.Entity<PaymentAllocation>().HasData(allocations);
+
             return modelBuilder;
         }
     }

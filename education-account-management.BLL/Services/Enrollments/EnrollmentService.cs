@@ -53,7 +53,9 @@ namespace Services.Enrollments
                             token)
                         ?? throw new DataNotFoundException(typeof(Course), assignDTO.CourseId);
 
-                    ValidateCourseCanManageEnrollments(course);
+                    ValidateCourseCanManageEnrollments(
+                        course,
+                        _timeProvider.GetUtcNow().UtcDateTime);
 
                     var students = await _schoolStudentRepository.Query()
                         .Where(student => assignDTO.SchoolStudentIds.Contains(student.Id)
@@ -136,7 +138,9 @@ namespace Services.Enrollments
                     cancellationToken)
                 ?? throw new DataNotFoundException(typeof(Course), courseId);
 
-            ValidateCourseCanManageEnrollments(course);
+            ValidateCourseCanManageEnrollments(
+                course,
+                _timeProvider.GetUtcNow().UtcDateTime);
 
             var pageSize = Math.Clamp(filterDTO.PageSize, 1, 100);
             var (total, students) = await _schoolStudentRepository.GetProjectedPaginatedAsync(
@@ -184,7 +188,9 @@ namespace Services.Enrollments
 
                     foreach (var enrollment in enrollments)
                     {
-                        ValidateCanRemove(enrollment);
+                        ValidateCanRemove(
+                            enrollment,
+                            _timeProvider.GetUtcNow().UtcDateTime);
                         await _managementActionLogService.LogAsync(
                             batchId,
                             ManagementActionEntityType.Enrollment,
@@ -293,9 +299,9 @@ namespace Services.Enrollments
                 ?? throw new DataNotFoundException(typeof(Enrollment), id);
         }
 
-        private static void ValidateCanRemove(Enrollment enrollment)
+        private static void ValidateCanRemove(Enrollment enrollment, DateTime utcNow)
         {
-            ValidateCourseCanManageEnrollments(enrollment.Course);
+            ValidateCourseCanManageEnrollments(enrollment.Course, utcNow);
             if (enrollment.Charge != null)
             {
                 throw new DataConflictException(
@@ -303,12 +309,18 @@ namespace Services.Enrollments
             }
         }
 
-        private static void ValidateCourseCanManageEnrollments(Course course)
+        private static void ValidateCourseCanManageEnrollments(Course course, DateTime utcNow)
         {
             if (course.Status is not CourseStatus.Draft and not CourseStatus.Enrolling)
             {
                 throw new DataConflictException(
                     "The enrollment list can only be changed while the course is in Draft or Enrolling status.");
+            }
+
+            if (course.Status == CourseStatus.Enrolling && course.EnrollmentDeadline <= utcNow)
+            {
+                throw new DataConflictException(
+                    "The enrollment list cannot be changed after the enrollment deadline.");
             }
         }
 

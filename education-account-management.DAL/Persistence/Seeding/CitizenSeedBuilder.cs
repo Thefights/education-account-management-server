@@ -63,6 +63,52 @@ namespace Persistence.Seeding
                 new Citizen { Id = 49, Nric = SingaporeNricUtil.Generate(49), FullName = "Giselle Gan", Email = "giselle.gan@example.com", PhoneNumber = "+6590000049", ResidentialAddress = "49 Learning Grove, Singapore", MailingAddress = "49 Learning Grove, Singapore", DateOfBirth = new DateOnly(1995, 1, 23), SchoolingStatus = "Suspended", IsSingaporean = true, CreatedAt = createdAt },
                 new Citizen { Id = 50, Nric = SingaporeNricUtil.Generate(50), FullName = "Haziq Ho", Email = "haziq.ho@example.com", PhoneNumber = "+6590000050", ResidentialAddress = "50 Learning Grove, Singapore", MailingAddress = "50 Learning Grove, Singapore", DateOfBirth = new DateOnly(1996, 2, 24), SchoolingStatus = "Withdrawn", IsSingaporean = true, CreatedAt = createdAt });
 
+            var sweepCitizens = new List<Citizen>();
+            var totalSweepCitizens = SeedScenarioConstants.SweepAccountsPerDay * SeedScenarioConstants.SweepDayCount;
+            for (int index = 0; index < totalSweepCitizens; index++)
+            {
+                var id = SeedScenarioConstants.SweepCitizenStartId + index;
+                sweepCitizens.Add(new Citizen
+                {
+                    Id = id,
+                    Nric = SingaporeNricUtil.Generate(id),
+                    FullName = $"Sweep Citizen {index + 1:D3}",
+                    Email = $"sweep.citizen.{index + 1:D3}@example.com",
+                    PhoneNumber = $"+658{id:D8}"[..12],
+                    ResidentialAddress = $"{index + 1} Sweep Road, Singapore",
+                    MailingAddress = $"{index + 1} Sweep Road, Singapore",
+                    DateOfBirth = new DateOnly(2000, ((index % 12) + 1), ((index % 28) + 1)),
+                    SchoolingStatus = "Not Enrolled",
+                    IsSingaporean = true,
+                    CreatedAt = createdAt
+                });
+            }
+
+            modelBuilder.Entity<Citizen>().HasData(sweepCitizens);
+
+            var manualCitizens = new List<Citizen>();
+            for (int index = 0; index < SeedScenarioConstants.ManualCitizenCount; index++)
+            {
+                var id = SeedScenarioConstants.ManualCitizenStartId + index;
+                manualCitizens.Add(new Citizen
+                {
+                    Id = id,
+                    Nric = SingaporeNricUtil.Generate(id),
+                    FullName = $"Manual Account Test Citizen {index + 1:D2}",
+                    Email = $"manual.account.test.{index + 1:D2}@example.com",
+                    PhoneNumber = $"+659901{index + 1:D4}",
+                    ResidentialAddress = $"{index + 1} Manual Test Lane, Singapore",
+                    MailingAddress = $"{index + 1} Manual Test Lane, Singapore",
+                    DateOfBirth = new DateOnly(2000, ((index % 12) + 1), ((index % 28) + 1)),
+                    SchoolingStatus = "Not Enrolled",
+                    IsSingaporean = true,
+                    IsAutoSweepExcluded = true,
+                    CreatedAt = createdAt
+                });
+            }
+
+            modelBuilder.Entity<Citizen>().HasData(manualCitizens);
+
             return modelBuilder;
         }
     }

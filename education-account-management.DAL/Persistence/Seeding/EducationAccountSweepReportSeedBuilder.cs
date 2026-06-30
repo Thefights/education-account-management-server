@@ -9,11 +9,26 @@ namespace Persistence.Seeding
 
         public ModelBuilder Seed(ModelBuilder modelBuilder)
         {
-            var createdAt = SeedDataConstants.CreatedAt;
+            var reports = new List<EducationAccountSweepReport>();
 
-            modelBuilder.Entity<EducationAccountSweepReport>().HasData(
-                new EducationAccountSweepReport { Id = 1, BatchDate = new DateOnly(2026, 6, 1), StartedAt = new DateTime(2026, 6, 1, 0, 0, 0, DateTimeKind.Utc), CompletedAt = new DateTime(2026, 6, 1, 0, 0, 0, DateTimeKind.Utc).AddHours(1), AccountsCreatedCount = 1, AccountsClosedCount = 1, AccountsExtendedCount = 1 },
-                new EducationAccountSweepReport { Id = 2, BatchDate = new DateOnly(2026, 6, 2), StartedAt = new DateTime(2026, 6, 2, 0, 0, 0, DateTimeKind.Utc), CompletedAt = new DateTime(2026, 6, 2, 0, 0, 0, DateTimeKind.Utc).AddHours(1), AccountsCreatedCount = 0, AccountsClosedCount = 1, AccountsExtendedCount = 0 });
+            for (var dayIndex = 0; dayIndex < SeedScenarioConstants.SweepDayCount; dayIndex++)
+            {
+                var batchDate = SeedScenarioConstants.SweepStartDate.AddDays(dayIndex);
+                var startedAt = batchDate.ToDateTime(TimeOnly.FromTimeSpan(TimeSpan.FromMinutes(5)), DateTimeKind.Utc);
+
+                reports.Add(new EducationAccountSweepReport
+                {
+                    Id = dayIndex + 1,
+                    BatchDate = batchDate,
+                    StartedAt = startedAt,
+                    CompletedAt = startedAt.AddMinutes(55),
+                    AccountsCreatedCount = SeedScenarioConstants.SweepAccountsPerDay,
+                    AccountsClosedCount = 1,
+                    AccountsExtendedCount = 1
+                });
+            }
+
+            modelBuilder.Entity<EducationAccountSweepReport>().HasData(reports);
 
             return modelBuilder;
         }

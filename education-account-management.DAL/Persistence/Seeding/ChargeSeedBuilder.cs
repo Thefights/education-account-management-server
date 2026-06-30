@@ -11,77 +11,129 @@ namespace Persistence.Seeding
         {
             var createdAt = SeedDataConstants.CreatedAt;
             var charges = new List<Charge>();
-            string[] courseNames = { "Academic Writing", "Business Numeracy", "Digital Literacy", "Career Readiness", "Applied Science", "Financial Literacy", "Project Collaboration", "Data Skills", "Workplace Communication", "Software Foundations" };
-            
+
             for (int i = 1; i <= 50; i++)
             {
-                decimal courseFee = 125m + (i * 5m);
-                decimal miscFee = 23m;
-                decimal gst = Math.Round((courseFee + miscFee) * 0.09m, 2);
-                decimal grossAmount = courseFee + miscFee + gst;
-                
-                decimal subsidyAmount = 0m;
-                int? appliedFasApplicationId = null;
-                string? appliedScheme = null;
-                string? appliedTier = null;
-                FasSubsidyType? subsidyType = null;
-                decimal? subsidyValue = null;
-                
-                if (i % 4 == 0)
+                if (CanSeedChargeForCourse(i))
                 {
-                    subsidyAmount = 30m;
-                    int[] fasIds = { 4, 8, 2, 6, 10 };
-                    appliedFasApplicationId = fasIds[(i / 4 - 1) % 5];
-                    appliedScheme = "Low Income Course Fee Support";
-                    appliedTier = "Tier 1";
-                    subsidyType = FasSubsidyType.FixedAmount;
-                    subsidyValue = 30m;
+                    charges.Add(CreateCharge(
+                        id: i,
+                        enrollmentId: i,
+                        courseId: i,
+                        schoolStudentId: i,
+                        createdAt));
                 }
-                
-                decimal netAmount = grossAmount - subsidyAmount;
-                
-                var status = ChargeStatus.PendingPayment;
-                if (i % 3 == 0) status = ChargeStatus.Paid;
-                else if (i % 3 == 2) status = ChargeStatus.Overdue;
-                
-                decimal paidAmount = status == ChargeStatus.Paid ? netAmount : 0m;
-                decimal remainingAmount = netAmount - paidAmount;
-                
-                charges.Add(new Charge
-                {
-                    Id = i,
-                    Status = status,
-                    GrossAmount = grossAmount,
-                    SubsidyAmount = subsidyAmount,
-                    NetAmount = netAmount,
-                    PaidAmount = paidAmount,
-                    RemainingAmount = remainingAmount,
-                    SchoolNameSnapshot = "Northview Secondary School",
-                    CourseCodeSnapshot = SeedBusinessCodeUtil.Generate(BusinessCodeGenerator.CoursePrefix, i),
-                    CourseNameSnapshot = courseNames[(i - 1) % 10] + " Cohort " + i.ToString("D2"),
-                    CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
-                    CourseStartDateSnapshot = new DateTime(2026, 8, (i % 28) + 1, 0, 0, 0, DateTimeKind.Utc),
-                    CourseEndDateSnapshot = new DateTime(2026, 10, (i % 28) + 1, 0, 0, 0, DateTimeKind.Utc),
-                    CourseFeeAmountSnapshot = courseFee,
-                    MiscFeeAmountSnapshot = miscFee,
-                    GstAmountSnapshot = gst,
-                    TaxRateSnapshot = 0.09m,
-                    AppliedFasSchemeNameSnapshot = appliedScheme,
-                    AppliedFasTierNameSnapshot = appliedTier,
-                    AppliedFasSubsidyTypeSnapshot = subsidyType,
-                    AppliedFasIsPerComponentSnapshot = false,
-                    AppliedFasSubsidyValueSnapshot = subsidyValue,
-                    EnrollmentId = i,
-                    AppliedFasApplicationId = appliedFasApplicationId,
-                    CreatedAt = createdAt
-                });
             }
-            
-            // Sterling Quach special installment coverage (Id=51)
-            charges.Add(new Charge { Id = 51, Status = ChargeStatus.PendingPayment, GrossAmount = 1110m, SubsidyAmount = 0m, NetAmount = 1110m, PaidAmount = 185m, RemainingAmount = 925m, SchoolNameSnapshot = "Northview Secondary School", CourseCodeSnapshot = SeedBusinessCodeUtil.Generate(BusinessCodeGenerator.CoursePrefix, 51), CourseNameSnapshot = "Creative Thinking Cohort 51", CourseDescriptionSnapshot = "Tuition charge generated from enrollment.", CourseStartDateSnapshot = new DateTime(2026, 4, 1, 0, 0, 0, DateTimeKind.Utc), CourseEndDateSnapshot = new DateTime(2026, 10, 1, 0, 0, 0, DateTimeKind.Utc), CourseFeeAmountSnapshot = 900m, MiscFeeAmountSnapshot = 118.35m, GstAmountSnapshot = 91.65m, TaxRateSnapshot = 0.09m, AppliedFasSchemeNameSnapshot = null, AppliedFasTierNameSnapshot = null, AppliedFasSubsidyTypeSnapshot = null, AppliedFasIsPerComponentSnapshot = false, AppliedFasSubsidyValueSnapshot = null, EnrollmentId = 51, AppliedFasApplicationId = null, CreatedAt = createdAt });
+
+            foreach (var link in SeedScenarioConstants.GetAdditionalCourseTestEnrollments())
+            {
+                charges.Add(CreateCharge(
+                    id: link.EnrollmentId,
+                    enrollmentId: link.EnrollmentId,
+                    courseId: link.CourseId,
+                    schoolStudentId: link.SchoolStudentId,
+                    createdAt));
+            }
 
             modelBuilder.Entity<Charge>().HasData(charges);
+
             return modelBuilder;
+        }
+
+        private static bool CanSeedChargeForCourse(int courseId)
+        {
+            var status = SeedScenarioConstants.GetCourseStatus(courseId);
+
+            return status is not CourseStatus.Draft and not CourseStatus.Enrolling;
+        }
+
+        private static Charge CreateCharge(
+            int id,
+            int enrollmentId,
+            int courseId,
+            int schoolStudentId,
+            DateTime createdAt)
+        {
+            var courseFee = SeedScenarioConstants.GetCourseFee(courseId);
+            var miscFee = SeedScenarioConstants.GetMiscFee(courseId);
+            var gst = SeedScenarioConstants.GetGst(courseId);
+            var grossAmount = courseFee + miscFee + gst;
+            var subsidyAmount = courseId % 4 == 0 ? 30m : 0m;
+            var netAmount = grossAmount - subsidyAmount;
+            var status = GetChargeStatus(courseId, schoolStudentId);
+            var paidAmount = GetPaidAmount(status, courseId, schoolStudentId, netAmount);
+
+            var appliedFasApplicationId = courseId % 4 == 0
+                ? new[] { 4, 8, 2, 6, 10 }[(courseId / 4 - 1) % 5]
+                : (int?)null;
+
+            return new Charge
+            {
+                Id = id,
+                Status = status,
+                GrossAmount = grossAmount,
+                SubsidyAmount = subsidyAmount,
+                NetAmount = netAmount,
+                PaidAmount = paidAmount,
+                RemainingAmount = netAmount - paidAmount,
+                SchoolNameSnapshot = "Northview Secondary School",
+                CourseCodeSnapshot = SeedBusinessCodeUtil.Generate(BusinessCodeGenerator.CoursePrefix, courseId),
+                CourseNameSnapshot = SeedScenarioConstants.GetCourseName(courseId),
+                CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
+                CourseStartDateSnapshot = SeedScenarioConstants.GetCourseStartDate(courseId),
+                CourseEndDateSnapshot = SeedScenarioConstants.GetCourseEndDate(courseId),
+                CourseFeeAmountSnapshot = courseFee,
+                MiscFeeAmountSnapshot = miscFee,
+                GstAmountSnapshot = gst,
+                TaxRateSnapshot = 0.09m,
+                AppliedFasSchemeNameSnapshot = appliedFasApplicationId.HasValue
+                    ? "Low Income Course Fee Support"
+                    : null,
+                AppliedFasTierNameSnapshot = appliedFasApplicationId.HasValue ? "Tier 1" : null,
+                AppliedFasSubsidyTypeSnapshot = appliedFasApplicationId.HasValue
+                    ? FasSubsidyType.FixedAmount
+                    : null,
+                AppliedFasIsPerComponentSnapshot = false,
+                AppliedFasSubsidyValueSnapshot = appliedFasApplicationId.HasValue ? 30m : null,
+                EnrollmentId = enrollmentId,
+                AppliedFasApplicationId = appliedFasApplicationId,
+                CreatedAt = createdAt
+            };
+        }
+
+        private static ChargeStatus GetChargeStatus(int courseId, int schoolStudentId)
+        {
+            if (SeedScenarioConstants.IsSterlingEnrollment(schoolStudentId))
+            {
+                var sterlingCourseIndex = SeedScenarioConstants.GetSterlingCourseIndex(courseId);
+                if (sterlingCourseIndex is >= 0 and < 3)
+                {
+                    return ChargeStatus.Paid;
+                }
+            }
+
+            return SeedScenarioConstants.GetCourseStatus(courseId) == CourseStatus.Closed
+                ? ChargeStatus.Overdue
+                : ChargeStatus.PendingPayment;
+        }
+
+        private static decimal GetPaidAmount(
+            ChargeStatus status,
+            int courseId,
+            int schoolStudentId,
+            decimal netAmount)
+        {
+            if (status == ChargeStatus.Paid)
+            {
+                return netAmount;
+            }
+
+            if (status == ChargeStatus.Overdue && SeedScenarioConstants.IsSterlingEnrollment(schoolStudentId))
+            {
+                return Math.Round(netAmount / 6m, 2);
+            }
+
+            return 0m;
         }
     }
 }

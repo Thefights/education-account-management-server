@@ -178,17 +178,20 @@ namespace Services.Courses
                         return false;
                     }
 
-                    var generatedChargeCount = 0;
-                    if (course.Status == CourseStatus.Enrolling)
-                    {
-                        generatedChargeCount = await GenerateMissingChargesAsync(course, token);
-                    }
-
                     var previousStatus = course.Status;
                     var targetStatus = DetermineNextStatus(course, utcNow);
                     if (targetStatus == previousStatus)
                     {
                         return false;
+                    }
+
+                    course.Status = targetStatus;
+                    _courseRepository.Update(course);
+
+                    var generatedChargeCount = 0;
+                    if (previousStatus == CourseStatus.Enrolling)
+                    {
+                        generatedChargeCount = await GenerateMissingChargesAsync(course, token);
                     }
 
                     var overdueCharges = targetStatus == CourseStatus.Closed
@@ -216,9 +219,6 @@ namespace Services.Courses
                             cancellationToken: token);
                     }
 
-                    course.Status = targetStatus;
-                    _courseRepository.Update(course);
-
                     if (generatedChargeCount > 0)
                     {
                         await _auditLogWriter.LogAsync(
@@ -241,6 +241,12 @@ namespace Services.Courses
             Course course,
             CancellationToken cancellationToken)
         {
+            if (course.Status is CourseStatus.Draft or CourseStatus.Enrolling)
+            {
+                throw new DataConflictException(
+                    "Charges can only be generated after enrollment has been finalized.");
+            }
+
             var generatedCount = 0;
             foreach (var enrollment in course.Enrollments)
             {

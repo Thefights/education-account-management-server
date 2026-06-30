@@ -1,5 +1,3 @@
-using Enums;
-
 namespace Models
 {
     public class EducationAccountSweepTarget : BaseEntity
@@ -7,6 +5,12 @@ namespace Models
         [NotDefaultValue]
         public int SweepReportId { get; set; }
         public EducationAccountSweepReport SweepReport { get; set; } = null!;
+
+        [NotDefaultValue]
+        public int CitizenId { get; set; }
+
+        [OnDelete(OnDeleteBehavior.Restrict)]
+        public Citizen Citizen { get; set; } = null!;
 
         [MessageRequired, MessageMaxLength(9), SingaporeNric]
         public string Nric { get; set; } = string.Empty;
