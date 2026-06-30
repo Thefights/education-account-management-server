@@ -280,7 +280,7 @@ namespace Services.FasApplications
                     ValidityEndDate = a.ValidityEndDate,
                     ExternalRejectionReason = a.ExternalRejectionReason
                 }),
-                a => a.SchoolStudentId == studentInfo.Id && (filter.Status.HasValue || a.Status != FasApplicationStatus.Draft),
+                a => a.SchoolStudentId == studentInfo.Id,
                 filter.Filter,
                 filter.Search,
                 filter.SearchFields,
@@ -447,14 +447,13 @@ namespace Services.FasApplications
                     && a.FasSchemeId == schemeId
                     && (!excludeApplicationId.HasValue || a.Id != excludeApplicationId.Value)
                     && (a.Status == FasApplicationStatus.Pending
-                        || a.Status == FasApplicationStatus.Draft
                         || (a.Status == FasApplicationStatus.Approved
                             && (a.ValidityEndDate == null || a.ValidityEndDate >= today))),
                     cancellationToken);
 
             if (exists)
             {
-                throw new DataConflictException("You already have an active (draft, pending, or approved) application for this scheme.");
+                throw new DataConflictException("You already have a pending or active approved application for this scheme.");
             }
         }
 
