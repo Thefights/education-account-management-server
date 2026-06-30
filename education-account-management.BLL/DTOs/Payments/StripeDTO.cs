@@ -13,7 +13,7 @@ namespace DTOs.Payments
     public class PaymentRequest
     {
         public List<ChargePaymentRequestInfor> ChargePaymentRequestInfors { get; set; } = [];
-        [Range(0, (double)decimal.MaxValue)]
+        [NumberPositive]
         public decimal CreditBalanceApplied { get; set; } = 0m;
     }
 

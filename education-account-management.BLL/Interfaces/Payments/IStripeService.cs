@@ -4,7 +4,7 @@ namespace BLL.Interfaces.Payments
 {
     public interface IStripeService
     {
-        Task<PaymentSessionResponseDTO> CreateCheckoutSessionAsync(PaymentRequest request, CancellationToken token);
+        Task<PaymentSessionResponseDTO> HandlePaymentSessionAsync(PaymentRequest request, CancellationToken token);
         Task HandleWebhookAsync(string payload, string stripeSignature);
         Task<PaymentSessionResponseDTO> HandleSessionCancelledAsync(string sessionId, CancellationToken token);
         Task<PaymentSessionResponseDTO> HandleSessionSuccessAsync(string sessionId, CancellationToken token);
