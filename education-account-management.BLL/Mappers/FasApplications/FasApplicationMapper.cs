@@ -14,6 +14,8 @@ namespace Mappers.FasApplications
         [MapProperty(nameof(FasApplication.PerCapitaIncomeSnapshot), $"{nameof(GetFasApplicationSchoolAdminDetailDTO.StudentProfile)}.{nameof(StudentProfileDTO.PerCapitaIncome)}")]
         [MapperIgnoreTarget(nameof(GetFasApplicationSchoolAdminDetailDTO.Scheme))]
         [MapperIgnoreTarget(nameof(GetFasApplicationSchoolAdminDetailDTO.SystemSuggestedTier))]
+        [MapperIgnoreTarget(nameof(GetFasApplicationSchoolAdminDetailDTO.ApprovedTier))]
+        [MapperIgnoreTarget(nameof(GetFasApplicationSchoolAdminDetailDTO.TierOverrideHistories))]
         [MapperIgnoreTarget(nameof(GetFasApplicationSchoolAdminDetailDTO.Status))]
         private partial GetFasApplicationSchoolAdminDetailDTO MapToDetailDTOInternal(FasApplication model);
 
@@ -53,6 +55,34 @@ namespace Mappers.FasApplications
                 };
             }
 
+            if (model.ApprovedTier != null)
+            {
+                target.ApprovedTier = new ApprovedTierDTO
+                {
+                    Id = model.ApprovedTier.Id,
+                    TierName = model.ApprovedTier.TierName
+                };
+            }
+
+            target.TierOverrideHistories = model.TierOverrideHistories
+                .OrderByDescending(history => history.ModifiedAt)
+                .Select(history => new TierOverrideHistoryDTO
+                {
+                    Id = history.Id,
+                    OldTierId = history.OldTierId,
+                    OldTierName = history.OldTier?.TierName,
+                    NewTierId = history.NewTierId,
+                    NewTierName = history.NewTier?.TierName ?? string.Empty,
+                    RecommendationReason = model.RecommendationReason ?? string.Empty,
+                    Reason = history.Reason,
+                    ModifiedByUserId = history.ModifiedByUserId,
+                    ModifiedByName = history.ModifiedByUser?.AdminProfile != null
+                        ? history.ModifiedByUser.AdminProfile.FullName
+                        : null,
+                    ModifiedAt = history.ModifiedAt
+                })
+                .ToList();
+
             target.AdditionalAnswers = model.AdditionalQuestionAnswers.Select(a => new ApplicationAdditionalAnswerDTO
             {
                 Id = a.Id,
@@ -67,6 +97,7 @@ namespace Mappers.FasApplications
         [MapProperty(nameof(FasSchemeTier.Id), nameof(TierDetailsDTO.Id))]
         [MapProperty(nameof(FasSchemeTier.TierName), nameof(TierDetailsDTO.TierName))]
         [MapProperty(nameof(FasSchemeTier.MaxPerCapitaIncome), nameof(TierDetailsDTO.MaxPerCapitaIncome))]
+        [MapProperty(nameof(FasSchemeTier.MaxGrossHouseholdIncome), nameof(TierDetailsDTO.MaxGrossHouseholdIncome))]
         [MapProperty(nameof(FasSchemeTier.SubsidyValue), nameof(TierDetailsDTO.SubsidyValue))]
         [MapProperty(nameof(FasSchemeTier.CourseFeeSubsidyValue), nameof(TierDetailsDTO.CourseFeeSubsidyValue))]
         [MapProperty(nameof(FasSchemeTier.MiscFeeSubsidyValue), nameof(TierDetailsDTO.MiscFeeSubsidyValue))]

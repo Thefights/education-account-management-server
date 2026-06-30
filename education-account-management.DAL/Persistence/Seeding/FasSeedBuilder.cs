@@ -59,8 +59,15 @@ namespace Persistence.Seeding
                 tiers.Add(new FasSchemeTier 
                 { 
                     Id = i, FasSchemeId = i, TierName = "Tier 1", 
-                    MaxPerCapitaIncome = 5000m, SubsidyValue = 100m, 
-                    DisplayOrder = 1, CreatedAt = createdAt 
+                    MaxPerCapitaIncome = 500m, SubsidyValue = 100m,
+                    DisplayOrder = 1, CreatedAt = createdAt
+                });
+
+                tiers.Add(new FasSchemeTier
+                {
+                    Id = 60 + i, FasSchemeId = i, TierName = "Tier 2",
+                    MaxPerCapitaIncome = 1000m, SubsidyValue = 70m,
+                    DisplayOrder = 2, CreatedAt = createdAt
                 });
 
                 documents.Add(new FasSchemeRequiredDocument 
@@ -101,29 +108,52 @@ namespace Persistence.Seeding
             var applications = new List<FasApplication>();
             var appDocs = new List<FasApplicationDocument>();
             var answers = new List<FasApplicationAdditionalQuestionAnswer>();
-            
-            int appId = 1;
-            
-            // Generate 25 applications for Student 2 to satisfy ChargeSeedBuilder
-            for (int i = 1; i <= 25; i++)
+
+            for (int appId = 1; appId <= 20; appId++)
             {
-                int schemeId = i;
+                int schemeId = appId;
+                var status = appId switch
+                {
+                    2 or 4 or 6 or 8 or 10 => FasApplicationStatus.Approved,
+                    >= 11 and <= 15 => FasApplicationStatus.Expired,
+                    >= 16 and <= 20 => FasApplicationStatus.Rejected,
+                    _ => FasApplicationStatus.Pending
+                };
+                var recommendedTierId = appId % 2 == 1 ? schemeId : 60 + schemeId;
+                var pci = appId % 2 == 1 ? 450m : 750m;
+                var grossIncome = pci * 4;
+                var approved = status is FasApplicationStatus.Approved or FasApplicationStatus.Expired;
+                var validityStartDate = approved ? new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddDays(appId) : (DateTime?)null;
+
                 applications.Add(new FasApplication
                 {
                     Id = appId,
                     FasSchemeId = schemeId,
-                    SchoolStudentId = 2, 
-                    RecommendedTierId = schemeId,
+                    SchoolStudentId = 1,
+                    RecommendedTierId = recommendedTierId,
+                    ApprovedTierId = approved ? recommendedTierId : null,
                     ApplicationNumber = $"FASAPP-2026-{appId:D4}",
-                    Status = FasApplicationStatus.Pending,
+                    Status = status,
                     StudentAgeSnapshot = 18,
                     StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen,
                     GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen,
-                    GrossHouseholdIncomeSnapshot = 2500m,
+                    GrossHouseholdIncomeSnapshot = grossIncome,
                     HouseholdMemberCountSnapshot = 4,
-                    PerCapitaIncomeSnapshot = 625m,
-                    RecommendationReason = "PCI <= 5000",
-                    CreatedAt = createdAt
+                    PerCapitaIncomeSnapshot = pci,
+                    RecommendationReason = appId % 2 == 1 ? "PCI <= 500" : "PCI <= 1000",
+                    RejectionReason = status == FasApplicationStatus.Rejected
+                        ? "Income documents are incomplete."
+                        : null,
+                    ApprovedAt = approved ? createdAt.AddDays(appId) : null,
+                    ApprovedByUserId = approved ? 3 : null,
+                    DurationInMonthsSnapshot = approved ? 12 : null,
+                    ValidityStartDate = validityStartDate,
+                    ValidityEndDate = status == FasApplicationStatus.Expired
+                        ? new DateTime(2026, 3, 1, 0, 0, 0, DateTimeKind.Utc).AddDays(appId)
+                        : approved
+                            ? validityStartDate?.AddMonths(12)
+                            : null,
+                    CreatedAt = createdAt.AddDays(appId)
                 });
 
                 appDocs.Add(new FasApplicationDocument
@@ -147,69 +177,6 @@ namespace Persistence.Seeding
                     AnswerText = "Need help.",
                     CreatedAt = createdAt
                 });
-
-                appId++;
-            }
-
-            // Generate 30 applications for Student 1 (current user)
-            // 6 statuses * 5 records
-            var statuses = new[] { 
-                FasApplicationStatus.Pending, 
-                FasApplicationStatus.Approved, 
-                FasApplicationStatus.Rejected, 
-                FasApplicationStatus.Withdrawn, 
-                FasApplicationStatus.Draft, 
-                FasApplicationStatus.Expired 
-            };
-            
-            int schemeIdForUser = 26;
-            foreach (var appStatus in statuses)
-            {
-                for (int i = 0; i < 5; i++)
-                {
-                    applications.Add(new FasApplication
-                    {
-                        Id = appId,
-                        FasSchemeId = schemeIdForUser,
-                        SchoolStudentId = 1, // Current User
-                        RecommendedTierId = schemeIdForUser,
-                        ApplicationNumber = $"FASAPP-2026-{appId:D4}",
-                        Status = appStatus,
-                        StudentAgeSnapshot = 18,
-                        StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen,
-                        GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen,
-                        GrossHouseholdIncomeSnapshot = 2500m,
-                        HouseholdMemberCountSnapshot = 4,
-                        PerCapitaIncomeSnapshot = 625m,
-                        RecommendationReason = "PCI <= 5000",
-                        CreatedAt = createdAt
-                    });
-
-                    appDocs.Add(new FasApplicationDocument
-                    {
-                        Id = appId,
-                        FasApplicationId = appId,
-                        FasSchemeRequiredDocumentId = schemeIdForUser,
-                        DocumentNameSnapshot = "Income Statement",
-                        FileKey = $"fas/applications/{appId}/document.pdf",
-                        FileName = $"fas-application-{appId:D2}.pdf",
-                        CreatedAt = createdAt
-                    });
-
-                    answers.Add(new FasApplicationAdditionalQuestionAnswer
-                    {
-                        Id = appId * 2 - 1,
-                        FasApplicationId = appId,
-                        FasSchemeAdditionalQuestionId = schemeIdForUser * 2 - 1,
-                        QuestionTextSnapshot = "Reason",
-                        IsRequiredSnapshot = true,
-                        AnswerText = "Need help.",
-                        CreatedAt = createdAt
-                    });
-
-                    appId++;
-                    schemeIdForUser++;
-                }
             }
 
             modelBuilder.Entity<FasApplication>().HasData(applications);
