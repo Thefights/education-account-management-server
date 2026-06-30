@@ -2400,6 +2400,31 @@ namespace educationaccountmanagement.DAL.Migrations
                             Status = 1,
                             SubsidyAmount = 0m,
                             TaxRateSnapshot = 0.09m
+                        },
+                        new
+                        {
+                            Id = 52,
+                            AppliedFasIsPerComponentSnapshot = false,
+                            CourseCodeSnapshot = "CRS-2026-6YV5VO9",
+                            CourseDescriptionSnapshot = "Tuition charge generated from enrollment.",
+                            CourseEndDateSnapshot = new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CourseFeeAmountSnapshot = 220m,
+                            CourseNameSnapshot = "Applied Science Cohort 52",
+                            CourseStartDateSnapshot = new DateTime(2026, 8, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EnrollmentId = 52,
+                            GrossAmount = 250m,
+                            GstAmountSnapshot = 22.50m,
+                            IsDeleted = false,
+                            MiscFeeAmountSnapshot = 30m,
+                            NetAmount = 250m,
+                            PaidAmount = 0m,
+                            RemainingAmount = 250m,
+                            RowVersion = new byte[0],
+                            SchoolNameSnapshot = "Northview Secondary School",
+                            Status = 1,
+                            SubsidyAmount = 0m,
+                            TaxRateSnapshot = 0.09m
                         });
                 });
 
@@ -4418,6 +4443,17 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             InstallmentNumber = 6,
+                            IsDeleted = false,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 57,
+                            Amount = 250m,
+                            ChargeId = 52,
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DueDate = new DateTime(2026, 8, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            InstallmentNumber = 1,
                             IsDeleted = false,
                             Status = 1
                         });
@@ -9187,6 +9223,23 @@ namespace educationaccountmanagement.DAL.Migrations
                             IsDeleted = false,
                             SchoolNameSnapshot = "Northview Secondary School",
                             SchoolStudentId = 1,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 52,
+                            AccountNumberSnapshot = "EDU-2026-K6CAJET",
+                            CitizenEmailSnapshot = "priya.nair@example.com",
+                            CitizenFullNameSnapshot = "Priya Nair",
+                            CitizenNricSnapshot = "S0000004C",
+                            CitizenPhoneNumberSnapshot = "+6590000004",
+                            CourseDescriptionSnapshot = "Additional course enrollment with unpaid full charge.",
+                            CourseId = 5,
+                            CourseNameSnapshot = "Applied Science Cohort 52",
+                            CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsDeleted = false,
+                            SchoolNameSnapshot = "Northview Secondary School",
+                            SchoolStudentId = 4,
                             Status = 1
                         });
                 });

@@ -63,6 +63,9 @@ namespace Persistence.Seeding
             installments.Add(new ChargeInstallment { Id = 55, ChargeId = 51, InstallmentNumber = 5, Status = ChargeInstallmentStatus.PendingPayment, DueDate = new DateTime(2026, 9, 1, 0, 0, 0, DateTimeKind.Utc), Amount = 185m, CreatedAt = createdAt });
             installments.Add(new ChargeInstallment { Id = 56, ChargeId = 51, InstallmentNumber = 6, Status = ChargeInstallmentStatus.PendingPayment, DueDate = new DateTime(2026, 10, 1, 0, 0, 0, DateTimeKind.Utc), Amount = 185m, CreatedAt = createdAt });
 
+            // Singpass 004 unpaid non-installment installment (ChargeId=52, NetAmount=250)
+            installments.Add(new ChargeInstallment { Id = 57, ChargeId = 52, InstallmentNumber = 1, Status = ChargeInstallmentStatus.PendingPayment, DueDate = new DateTime(2026, 8, 1, 0, 0, 0, DateTimeKind.Utc), Amount = 250m, CreatedAt = createdAt });
+
             modelBuilder.Entity<ChargeInstallment>().HasData(installments);
             return modelBuilder;
         }
