@@ -347,14 +347,29 @@ namespace Services.Admin
 
             foreach (var item in rows.Items)
             {
+                var normalizedNric = string.IsNullOrWhiteSpace(item.Row.Nric)
+                    ? null
+                    : item.Row.Nric.Trim().ToUpperInvariant();
+
                 try
                 {
                     await CreateAsync(item.Row, cancellationToken);
                     successCount++;
                 }
+                catch (ValidationFailureException ex)
+                {
+                    foreach (var err in ex.FieldErrors)
+                    {
+                        errors.Add(BatchImportErrorDTO.Create(item.RowNumber, err.Key, err.Value, normalizedNric));
+                    }
+                    foreach (var err in ex.GlobalErrors)
+                    {
+                        errors.Add(BatchImportErrorDTO.Create(item.RowNumber, "Row", err, normalizedNric));
+                    }
+                }
                 catch (Exception ex)
                 {
-                    errors.Add(BatchImportErrorDTO.Create(item.RowNumber, "Row", ex.Message));
+                    errors.Add(BatchImportErrorDTO.Create(item.RowNumber, "Row", ex.Message, normalizedNric));
                 }
             }
 
