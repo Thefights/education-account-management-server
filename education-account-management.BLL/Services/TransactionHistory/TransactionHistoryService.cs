@@ -3,6 +3,7 @@ using Filters.TransactionHistory;
 using Interfaces.TransactionHistory;
 using Results;
 using Services.Base;
+using System.Linq.Expressions;
 
 
 namespace Services.TransactionHistory
@@ -30,7 +31,7 @@ namespace Services.TransactionHistory
 
             return await GetAllPaginatedAsync(
                 filterDTO,
-                transaction => transaction.EducationAccountId == educationAccountId,
+                BuildAccountSearchPredicate(educationAccountId, filterDTO.Search),
                 cancellationToken);
         }
 
@@ -53,8 +54,27 @@ namespace Services.TransactionHistory
 
             return await GetAllPaginatedAsync(
                 filterDTO,
-                transaction => transaction.EducationAccountId == educationAccountId,
+                BuildAccountSearchPredicate(educationAccountId, filterDTO.Search),
                 cancellationToken);
+        }
+
+        private static Expression<Func<EducationCreditTransaction, bool>> BuildAccountSearchPredicate(
+            int educationAccountId,
+            string? search)
+        {
+            if (string.IsNullOrWhiteSpace(search))
+            {
+                return transaction => transaction.EducationAccountId == educationAccountId;
+            }
+
+            var normalizedSearch = search.Trim().ToLowerInvariant();
+
+            return transaction => transaction.EducationAccountId == educationAccountId
+                && (
+                    transaction.TransactionCode.ToString().ToLower().Contains(normalizedSearch)
+                    || (transaction.Description != null
+                        && transaction.Description.ToLower().Contains(normalizedSearch))
+                );
         }
     }
 }

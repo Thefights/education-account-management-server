@@ -138,7 +138,16 @@ namespace Persistence.Seeding.Constants
 
         public static int GetSterlingInstallmentId(int chargeId, int installmentNumber)
         {
-            return 100000 + (chargeId * 10) + installmentNumber;
+            var courseIndex = SterlingCourseIds
+                .Select((courseId, index) => new
+                {
+                    ChargeId = GetEnrollmentId(courseId, schoolStudentId: 1),
+                    Index = index
+                })
+                .Single(item => item.ChargeId == chargeId)
+                .Index;
+
+            return 2000 + (courseIndex * 10) + installmentNumber;
         }
 
         public static Guid GetSeedGuid(string scope, int id)

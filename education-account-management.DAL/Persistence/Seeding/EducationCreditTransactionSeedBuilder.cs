@@ -19,7 +19,7 @@ namespace Persistence.Seeding
                     Id = 100 + i,
                     TransactionCode = SeedScenarioConstants.GetSeedGuid("initial-topup", i),
                     Type = EducationCreditTransactionType.Topup,
-                    Direction = EducationCreditTransactionDirection.Credit,
+                    Direction = EducationCreditTransactionDirection.Increased,
                     Amount = 1000m,
                     BalanceBefore = 0m,
                     BalanceAfter = 1000m,
@@ -34,7 +34,7 @@ namespace Persistence.Seeding
                 Id = 203,
                 TransactionCode = SeedScenarioConstants.GetSeedGuid("manual-adjustment", 203),
                 Type = EducationCreditTransactionType.Topup,
-                Direction = EducationCreditTransactionDirection.Credit,
+                Direction = EducationCreditTransactionDirection.Increased,
                 Amount = 105m,
                 BalanceBefore = 1000m,
                 BalanceAfter = 1105m,
@@ -48,7 +48,7 @@ namespace Persistence.Seeding
                 Id = 207,
                 TransactionCode = SeedScenarioConstants.GetSeedGuid("stem-enrichment-credit", 207),
                 Type = EducationCreditTransactionType.Topup,
-                Direction = EducationCreditTransactionDirection.Credit,
+                Direction = EducationCreditTransactionDirection.Increased,
                 Amount = 145m,
                 BalanceBefore = 1000m,
                 BalanceAfter = 1145m,
@@ -65,7 +65,7 @@ namespace Persistence.Seeding
                     Id = paidCharge.TransactionId,
                     TransactionCode = SeedScenarioConstants.GetSeedGuid("sterling-course-fee", paidCharge.TransactionId),
                     Type = EducationCreditTransactionType.CourseFeePayment,
-                    Direction = EducationCreditTransactionDirection.Debit,
+                    Direction = EducationCreditTransactionDirection.Decreased,
                     Amount = paidCharge.Amount,
                     BalanceBefore = balance,
                     BalanceAfter = balance - paidCharge.Amount,
@@ -90,29 +90,46 @@ namespace Persistence.Seeding
                 var courseId = SeedScenarioConstants.SterlingCourseIds[index];
                 if (index < 3)
                 {
-                    paidCharges.Add(new SterlingPaidChargeSeed(
-                        CourseIndex: index,
-                        CourseId: courseId,
-                        ChargeId: SeedScenarioConstants.GetEnrollmentId(courseId, schoolStudentId: 1),
-                        TransactionId: 3000 + index,
-                        PaymentId: 3000 + index,
-                        Amount: SeedScenarioConstants.GetNetAmount(courseId),
-                        PaidInstallmentNumbers: [1, 2, 3, 4, 5, 6]));
+                    AddPaidInstallments(paidCharges, index, courseId, [1, 2, 3, 4, 5, 6]);
                 }
                 else if (SeedScenarioConstants.GetCourseStatus(courseId) == CourseStatus.Closed)
                 {
-                    paidCharges.Add(new SterlingPaidChargeSeed(
-                        CourseIndex: index,
-                        CourseId: courseId,
-                        ChargeId: SeedScenarioConstants.GetEnrollmentId(courseId, schoolStudentId: 1),
-                        TransactionId: 3000 + index,
-                        PaymentId: 3000 + index,
-                        Amount: Math.Round(SeedScenarioConstants.GetNetAmount(courseId) / 6m, 2),
-                        PaidInstallmentNumbers: [1]));
+                    AddPaidInstallments(paidCharges, index, courseId, [1]);
                 }
             }
 
             return paidCharges;
+        }
+
+        private static void AddPaidInstallments(
+            List<SterlingPaidChargeSeed> paidCharges,
+            int courseIndex,
+            int courseId,
+            int[] installmentNumbers)
+        {
+            var netAmount = SeedScenarioConstants.GetNetAmount(courseId);
+            var baseInstallmentAmount = Math.Round(netAmount / 6m, 2);
+            var chargeId = SeedScenarioConstants.GetEnrollmentId(courseId, schoolStudentId: 1);
+
+            foreach (var installmentNumber in installmentNumbers)
+            {
+                var amount = installmentNumber < 6
+                    ? baseInstallmentAmount
+                    : netAmount - (baseInstallmentAmount * 5m);
+                var seedId = 3000 + (courseIndex * 10) + installmentNumber;
+
+                paidCharges.Add(new SterlingPaidChargeSeed(
+                    CourseIndex: courseIndex,
+                    CourseId: courseId,
+                    ChargeId: chargeId,
+                    ChargeInstallmentId: SeedScenarioConstants.GetSterlingInstallmentId(
+                        chargeId,
+                        installmentNumber),
+                    InstallmentNumber: installmentNumber,
+                    TransactionId: seedId,
+                    PaymentId: seedId,
+                    Amount: amount));
+            }
         }
     }
 
@@ -120,8 +137,9 @@ namespace Persistence.Seeding
         int CourseIndex,
         int CourseId,
         int ChargeId,
+        int ChargeInstallmentId,
+        int InstallmentNumber,
         int TransactionId,
         int PaymentId,
-        decimal Amount,
-        int[] PaidInstallmentNumbers);
+        decimal Amount);
 }

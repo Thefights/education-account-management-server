@@ -7,34 +7,41 @@ namespace Persistence.Seeding
     {
         public int Priority => 40;
 
+        private static readonly string[] Names =
+        [
+            "Aaron Lim", "Belinda Tan", "Cheryl Ng", "Daniel Koh", "Elaine Chua",
+            "Farhan Rahman", "Grace Lee", "Hannah Wong", "Isaac Teo", "Jasmine Goh",
+            "Kenneth Low", "Liyana Hassan", "Marcus Chen", "Nadia Ismail", "Oliver Tan",
+            "Priya Nair", "Qiao En Lim", "Rachel Ong", "Samuel Neo", "Theresa Yeo"
+        ];
+
         public ModelBuilder Seed(ModelBuilder modelBuilder)
         {
             var createdAt = SeedDataConstants.CreatedAt;
-
             var adminProfiles = new List<AdminProfile>();
 
-            string[] names = new[] { "Aaron Lim", "Belinda Tan", "Cheryl Ng", "Daniel Koh", "Elaine Chua", "Farhan Rahman", "Grace Lee", "Hannah Wong", "Isaac Teo", "Jasmine Goh", "Kenneth Low", "Liyana Hassan", "Marcus Chen", "Nadia Ismail", "Oliver Tan", "Priya Nair", "Qiao En Lim", "Rachel Ong", "Samuel Neo", "Theresa Yeo" };
-            
-            for (int i = 1; i <= 20; i++)
+            for (int i = 1; i <= Names.Length; i++)
             {
-                int mappedUserId = i;
-                if (i == 4) mappedUserId = 21; // Since UserId=4 is an AccountHolder, we map this admin profile to the 21st user which is a SchoolAdmin.
+                var mappedUserId = i == 4
+                    ? 21
+                    : i;
 
-                                int? schoolId = null;
-                int[] schoolAdminIds = { 3, 7, 10, 13, 16, 17, 18, 19, 20, 21 };
-                if (System.Array.IndexOf(schoolAdminIds, mappedUserId) >= 0)
+                int? schoolId = null;
+                int[] schoolAdminIds = [3, 7, 10, 13, 16, 17, 18, 19, 20, 21];
+                var schoolAdminIndex = Array.IndexOf(schoolAdminIds, mappedUserId);
+                if (schoolAdminIndex >= 0)
                 {
-                    schoolId = System.Array.IndexOf(schoolAdminIds, mappedUserId) + 1;
+                    schoolId = schoolAdminIndex + 1;
                 }
 
                 adminProfiles.Add(new AdminProfile
                 {
                     Id = i,
                     StaffCode = SeedBusinessCodeUtil.Generate(BusinessCodeGenerator.StaffPrefix, i),
-                    FullName = names[i - 1],
+                    FullName = Names[i - 1],
                     Nric = SingaporeNricUtil.Generate(100 + i),
-                    Email = $"admin{i:D3}@example.com",
-                    PhoneNumber = $"+6580000{i:D3}",
+                    Email = CreateEmail(Names[i - 1]),
+                    PhoneNumber = CreatePhoneNumber(i),
                     UserId = mappedUserId,
                     SchoolId = schoolId,
                     CreatedAt = createdAt
@@ -44,6 +51,21 @@ namespace Persistence.Seeding
             modelBuilder.Entity<AdminProfile>().HasData(adminProfiles);
 
             return modelBuilder;
+        }
+
+        private static string CreateEmail(string name)
+        {
+            return $"{CreateEmailLocalPart(name)}@moe.gov.sg";
+        }
+
+        private static string CreatePhoneNumber(int id)
+        {
+            return $"+65{82000000 + ((id * 4739) % 17000000):D8}";
+        }
+
+        private static string CreateEmailLocalPart(string value)
+        {
+            return value.ToLowerInvariant().Replace(" ", ".");
         }
     }
 }

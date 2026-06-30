@@ -62,8 +62,8 @@ namespace Persistence.Seeding
                 CitizenFullNameSnapshot = name,
                 CitizenEmailSnapshot = schoolStudentId == 1
                     ? "phuckhang1088@gmail.com"
-                    : $"{emailName}@example.com",
-                CitizenPhoneNumberSnapshot = $"+659000{schoolStudentId:D4}",
+                    : $"{emailName}@studentmail.edu.sg",
+                CitizenPhoneNumberSnapshot = $"+65{81000000 + ((schoolStudentId * 7919) % 9000000):D8}",
                 AccountNumberSnapshot = SeedBusinessCodeUtil.Generate(
                     BusinessCodeGenerator.EducationAccountPrefix,
                     schoolStudentId),
