@@ -972,12 +972,11 @@ public class StripeService(
         var session = await sessionService.GetAsync(sessionId, cancellationToken: cancellationToken);
         if (session == null) throw new DataNotFoundException($"Session not found for sessionId {sessionId}");
 
-        //var accountId = _currentUserService.UserId;
-        var accountId = 4;
+        var currentUserId = _currentUserService.UserId;
         var educationAccount = await _accountRepository.Query(tracking: false)
-            .FirstOrDefaultAsync(a => a.Citizen != null && a.Citizen.User != null && a.Citizen.User.Id == accountId, cancellationToken);
+            .FirstOrDefaultAsync(a => a.Citizen != null && a.Citizen.User != null && a.Citizen.User.Id == currentUserId, cancellationToken);
 
-        if (educationAccount == null) throw new InternalAppException("Account holder not found in process success payment!");
+        if (educationAccount == null) throw new InternalAppException("Account holder not found in process session!");
 
         return (session, educationAccount);
     }
