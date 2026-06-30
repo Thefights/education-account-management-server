@@ -26,5 +26,14 @@ namespace DTOs.FasApplications
         public int HouseholdMemberCount { get; set; }
 
         public List<SubmitFasApplicationDocumentDTO> Documents { get; set; } = [];
+        public List<SubmitFasApplicationAdditionalAnswerDTO> AdditionalAnswers { get; set; } = [];
+    }
+
+    public class SubmitFasApplicationAdditionalAnswerDTO
+    {
+        [NotDefaultValue]
+        public int FasSchemeAdditionalQuestionId { get; set; }
+        
+        public string? AnswerText { get; set; }
     }
 }
