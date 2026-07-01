@@ -16,6 +16,8 @@ namespace DTOs.FasSchemes
         [MessageMaxLength(500)]
         public string? TemplateFileKey { get; set; }
 
+        public IFormFile? TemplateFile { get; set; }
+
         public int DisplayOrder { get; set; }
     }
 }

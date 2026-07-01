@@ -101,7 +101,11 @@ namespace Services.FasSchemes
                     {
                         Id = t.Id,
                         TierName = t.TierName,
+                        TierIncomeBasis = t.TierIncomeBasis,
+                        MinPerCapitaIncome = t.MinPerCapitaIncome,
                         MaxPerCapitaIncome = t.MaxPerCapitaIncome,
+                        MinGrossHouseholdIncome = t.MinGrossHouseholdIncome,
+                        MaxGrossHouseholdIncome = t.MaxGrossHouseholdIncome,
                         SubsidyValue = t.SubsidyValue,
                         CourseFeeSubsidyValue = t.CourseFeeSubsidyValue,
                         MiscFeeSubsidyValue = t.MiscFeeSubsidyValue,

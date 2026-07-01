@@ -22,6 +22,11 @@ namespace DTOs.FasApplications
     public class FasApplicationTierDetailDTO
     {
         public string TierName { get; set; } = string.Empty;
+        public FasTierIncomeBasis TierIncomeBasis { get; set; }
+        public decimal? MinPerCapitaIncome { get; set; }
+        public decimal? MaxPerCapitaIncome { get; set; }
+        public decimal? MinGrossHouseholdIncome { get; set; }
+        public decimal? MaxGrossHouseholdIncome { get; set; }
         public decimal? SubsidyValue { get; set; }
         public decimal? CourseFeeSubsidyValue { get; set; }
         public decimal? MiscFeeSubsidyValue { get; set; }
@@ -50,6 +55,8 @@ namespace DTOs.FasApplications
         public DateTime? ApprovedAt { get; set; }
         public DateTime? ValidityStartDate { get; set; }
         public DateTime? ValidityEndDate { get; set; }
+        public FasSubsidyType SubsidyType { get; set; }
+        public bool IsPerComponent { get; set; }
         public FasApplicationTierDetailDTO? ApprovedTier { get; set; }
 
         public List<FasApplicationDocumentDetailDTO> Documents { get; set; } = [];

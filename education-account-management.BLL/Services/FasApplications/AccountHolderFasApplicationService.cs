@@ -5,6 +5,7 @@ using Filters.FasApplications;
 using Helpers.FasSchemes;
 using Interfaces.Base;
 using Interfaces.FasApplications;
+using Interfaces.Storage;
 using Microsoft.EntityFrameworkCore;
 using Models;
 using Results;
@@ -14,10 +15,12 @@ namespace Services.FasApplications
 {
     public class AccountHolderFasApplicationService(
         IUnitOfWork unitOfWork,
-        ICurrentUserService currentUserService) : IAccountHolderFasApplicationService
+        ICurrentUserService currentUserService,
+        IUploadService uploadService) : IAccountHolderFasApplicationService
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly ICurrentUserService _currentUserService = currentUserService;
+        private readonly IUploadService _uploadService = uploadService;
 
         private sealed record AccountHolderStudentInfo(int Id, int SchoolId, bool IsSingaporean, DateOnly DateOfBirth);
 
@@ -38,7 +41,7 @@ namespace Services.FasApplications
                 Status = FasApplicationStatus.Pending
             };
 
-            ApplySubmission(application, dto, studentInfo, scheme, FasApplicationStatus.Pending);
+            await ApplySubmissionAsync(application, dto, studentInfo, scheme, FasApplicationStatus.Pending, cancellationToken);
             application.TryValidate();
 
             await _unitOfWork.Repository<FasApplication>().AddAsync(application, cancellationToken);
@@ -64,7 +67,7 @@ namespace Services.FasApplications
                 Status = FasApplicationStatus.Draft
             };
 
-            ApplySubmission(application, dto, studentInfo, scheme, FasApplicationStatus.Draft);
+            await ApplySubmissionAsync(application, dto, studentInfo, scheme, FasApplicationStatus.Draft, cancellationToken);
             application.TryValidate();
 
             await _unitOfWork.Repository<FasApplication>().AddAsync(application, cancellationToken);
@@ -100,7 +103,7 @@ namespace Services.FasApplications
 
             var scheme = await GetActiveSchemeAsync(dto.FasSchemeId, studentInfo.SchoolId, cancellationToken);
 
-            ApplySubmission(draft, dto, studentInfo, scheme, FasApplicationStatus.Draft);
+            await ApplySubmissionAsync(draft, dto, studentInfo, scheme, FasApplicationStatus.Draft, cancellationToken);
             draft.TryValidate();
 
             await _unitOfWork.SaveChangeAsync(cancellationToken);
@@ -253,7 +256,7 @@ namespace Services.FasApplications
 
             await EnsureNoActiveApplicationAsync(studentInfo.Id, draft.FasSchemeId, draft.Id, cancellationToken);
 
-            ApplySubmission(draft, dto, studentInfo, draft.FasScheme, FasApplicationStatus.Pending);
+            await ApplySubmissionAsync(draft, dto, studentInfo, draft.FasScheme, FasApplicationStatus.Pending, cancellationToken);
             draft.CreatedAt = DateTime.UtcNow;
             draft.TryValidate();
 
@@ -346,7 +349,7 @@ namespace Services.FasApplications
                     Id = application.FasScheme.Id,
                     SchemeCode = application.FasScheme.SchemeCode,
                     SchemeName = application.FasScheme.SchemeName,
-                    Description = application.FasScheme.Description
+                    Description = application.FasScheme.Description ?? string.Empty
                 },
                 StudentAgeSnapshot = application.StudentAgeSnapshot,
                 StudentNationalitySnapshot = application.StudentNationalitySnapshot,
@@ -361,10 +364,17 @@ namespace Services.FasApplications
                 ApprovedTier = application.ApprovedTier != null ? new FasApplicationTierDetailDTO
                 {
                     TierName = application.ApprovedTier.TierName,
+                    TierIncomeBasis = application.ApprovedTier.TierIncomeBasis,
+                    MinPerCapitaIncome = application.ApprovedTier.MinPerCapitaIncome,
+                    MaxPerCapitaIncome = application.ApprovedTier.MaxPerCapitaIncome,
+                    MinGrossHouseholdIncome = application.ApprovedTier.MinGrossHouseholdIncome,
+                    MaxGrossHouseholdIncome = application.ApprovedTier.MaxGrossHouseholdIncome,
                     SubsidyValue = application.ApprovedTier.SubsidyValue,
                     CourseFeeSubsidyValue = application.ApprovedTier.CourseFeeSubsidyValue,
                     MiscFeeSubsidyValue = application.ApprovedTier.MiscFeeSubsidyValue
                 } : null,
+                SubsidyType = application.FasScheme.SubsidyType,
+                IsPerComponent = application.FasScheme.IsPerComponent,
                 Documents = application.Documents.Select(d => new FasApplicationDocumentDetailDTO
                 {
                     Id = d.Id,
@@ -457,12 +467,13 @@ namespace Services.FasApplications
             }
         }
 
-        private void ApplySubmission(
+        private async Task ApplySubmissionAsync(
             FasApplication application,
             SubmitFasApplicationDTO dto,
             AccountHolderStudentInfo studentInfo,
             FasScheme scheme,
-            FasApplicationStatus status)
+            FasApplicationStatus status,
+            CancellationToken cancellationToken)
         {
             var studentAge = GetStudentAge(studentInfo.DateOfBirth);
             var pci = dto.HouseholdMemberCount > 0 ? dto.GrossHouseholdIncome / dto.HouseholdMemberCount : 0;
@@ -504,7 +515,7 @@ namespace Services.FasApplications
             application.ValidityStartDate = null;
             application.ValidityEndDate = null;
             application.WithdrawnAt = null;
-            application.Documents = BuildDocuments(dto.Documents, scheme, application.Id == 0 ? -1 : application.Id);
+            application.Documents = await BuildDocumentsAsync(dto.Documents, scheme, application.Id == 0 ? -1 : application.Id, cancellationToken);
             application.AdditionalQuestionAnswers = BuildAdditionalAnswers(dto.AdditionalAnswers, scheme, application.Id == 0 ? -1 : application.Id);
         }
 
@@ -530,43 +541,17 @@ namespace Services.FasApplications
                 return (null, recommendationReason);
             }
 
-            // Support tier basis configuration by checking both Per-Capita Income (PCI) and Gross Household Income.
-            var eligibleTiers = scheme.Tiers.Where(t =>
-                (!t.MaxPerCapitaIncome.HasValue || pci <= t.MaxPerCapitaIncome.Value) &&
-                (!t.MaxGrossHouseholdIncome.HasValue || dto.GrossHouseholdIncome <= t.MaxGrossHouseholdIncome.Value)
-            ).ToList();
-
-            if (eligibleTiers.Count == 0)
-            {
-                return (null, "Eligible for scheme but exceeded all tier limits");
-            }
-
-            // Calculate benefit score based on total subsidy value to determine the most beneficial tier.
-            decimal GetBenefitScore(FasSchemeTier tier)
-            {
-                if (scheme.IsPerComponent)
-                {
-                    return (tier.CourseFeeSubsidyValue ?? 0) + (tier.MiscFeeSubsidyValue ?? 0);
-                }
-                return tier.SubsidyValue ?? 0;
-            }
-
-            // Select the most beneficial tier automatically for the student by ordering scores descendingly.
-            var eligibleTier = eligibleTiers
-                .OrderByDescending(GetBenefitScore)
-                .ThenBy(t => t.DisplayOrder)
-                .FirstOrDefault();
+            var eligibleTier = FasTierMatcher.SelectHighestMatchingTier(
+                scheme.Tiers,
+                pci,
+                dto.GrossHouseholdIncome);
 
             if (eligibleTier == null)
             {
                 return (null, "Eligible for scheme but exceeded all tier limits");
             }
 
-            var reasons = new List<string>();
-            if (eligibleTier.MaxPerCapitaIncome.HasValue) reasons.Add($"PCI <= {eligibleTier.MaxPerCapitaIncome}");
-            if (eligibleTier.MaxGrossHouseholdIncome.HasValue) reasons.Add($"Gross Income <= {eligibleTier.MaxGrossHouseholdIncome}");
-            if (reasons.Count == 0) reasons.Add("Matched tier with no limits");
-            recommendationReason = string.Join(" AND ", reasons);
+            recommendationReason = FasTierMatcher.BuildRecommendationReason(eligibleTier);
 
             return (eligibleTier.Id, recommendationReason);
         }
@@ -579,10 +564,11 @@ namespace Services.FasApplications
             return age;
         }
 
-        private static List<FasApplicationDocument> BuildDocuments(
+        private async Task<List<FasApplicationDocument>> BuildDocumentsAsync(
             IEnumerable<SubmitFasApplicationDocumentDTO> documents,
             FasScheme scheme,
-            int applicationId)
+            int applicationId,
+            CancellationToken cancellationToken)
         {
             var result = new List<FasApplicationDocument>();
             foreach (var document in documents)
@@ -590,12 +576,21 @@ namespace Services.FasApplications
                 var requiredDocument = scheme.RequiredDocuments.FirstOrDefault(r => r.Id == document.RequiredDocumentId);
                 if (requiredDocument != null)
                 {
+                    var fileKey = document.FileKey;
+                    var fileName = document.FileName;
+                    if (document.File != null)
+                    {
+                        var uploadResult = await _uploadService.UploadAsync(document.File, "fas/applications", cancellationToken);
+                        fileKey = uploadResult.FileName;
+                        fileName = document.File.FileName;
+                    }
+
                     result.Add(new FasApplicationDocument
                     {
                         FasApplicationId = applicationId,
                         FasSchemeRequiredDocumentId = document.RequiredDocumentId,
-                        FileKey = document.FileKey,
-                        FileName = document.FileName,
+                        FileKey = fileKey,
+                        FileName = fileName,
                         DocumentNameSnapshot = requiredDocument.DocumentName
                     });
                 }

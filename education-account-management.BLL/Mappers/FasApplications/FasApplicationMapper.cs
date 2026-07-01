@@ -96,7 +96,10 @@ namespace Mappers.FasApplications
 
         [MapProperty(nameof(FasSchemeTier.Id), nameof(TierDetailsDTO.Id))]
         [MapProperty(nameof(FasSchemeTier.TierName), nameof(TierDetailsDTO.TierName))]
+        [MapProperty(nameof(FasSchemeTier.TierIncomeBasis), nameof(TierDetailsDTO.TierIncomeBasis))]
+        [MapProperty(nameof(FasSchemeTier.MinPerCapitaIncome), nameof(TierDetailsDTO.MinPerCapitaIncome))]
         [MapProperty(nameof(FasSchemeTier.MaxPerCapitaIncome), nameof(TierDetailsDTO.MaxPerCapitaIncome))]
+        [MapProperty(nameof(FasSchemeTier.MinGrossHouseholdIncome), nameof(TierDetailsDTO.MinGrossHouseholdIncome))]
         [MapProperty(nameof(FasSchemeTier.MaxGrossHouseholdIncome), nameof(TierDetailsDTO.MaxGrossHouseholdIncome))]
         [MapProperty(nameof(FasSchemeTier.SubsidyValue), nameof(TierDetailsDTO.SubsidyValue))]
         [MapProperty(nameof(FasSchemeTier.CourseFeeSubsidyValue), nameof(TierDetailsDTO.CourseFeeSubsidyValue))]

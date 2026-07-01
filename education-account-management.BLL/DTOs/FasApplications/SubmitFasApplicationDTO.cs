@@ -11,6 +11,8 @@ namespace DTOs.FasApplications
         public string FileKey { get; set; } = string.Empty;
 
         public string FileName { get; set; } = string.Empty;
+
+        public IFormFile? File { get; set; }
     }
 
     public class SubmitFasApplicationDTO

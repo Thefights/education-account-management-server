@@ -59,14 +59,20 @@ namespace Persistence.Seeding
                 tiers.Add(new FasSchemeTier 
                 { 
                     Id = i, FasSchemeId = i, TierName = "Tier 1", 
-                    MaxPerCapitaIncome = 500m, SubsidyValue = 100m,
+                    TierIncomeBasis = FasTierIncomeBasis.PerCapitaIncome,
+                    MinPerCapitaIncome = 0m,
+                    MaxPerCapitaIncome = 500m,
+                    SubsidyValue = 100m,
                     DisplayOrder = 1, CreatedAt = createdAt
                 });
 
                 tiers.Add(new FasSchemeTier
                 {
                     Id = 60 + i, FasSchemeId = i, TierName = "Tier 2",
-                    MaxPerCapitaIncome = 1000m, SubsidyValue = 70m,
+                    TierIncomeBasis = FasTierIncomeBasis.PerCapitaIncome,
+                    MinPerCapitaIncome = 500m,
+                    MaxPerCapitaIncome = null,
+                    SubsidyValue = 70m,
                     DisplayOrder = 2, CreatedAt = createdAt
                 });
 

@@ -11,8 +11,17 @@ namespace Models
         [MessageRequired, MessageMaxLength(100)]
         public string TierName { get; set; } = string.Empty;
 
+        [EnumDefined]
+        public FasTierIncomeBasis TierIncomeBasis { get; set; } = FasTierIncomeBasis.PerCapitaIncome;
+
+        [Column(TypeName = "decimal(18,2)"), NumberPositive]
+        public decimal? MinPerCapitaIncome { get; set; }
+
         [Column(TypeName = "decimal(18,2)"), NumberPositive]
         public decimal? MaxPerCapitaIncome { get; set; }
+
+        [Column(TypeName = "decimal(18,2)"), NumberPositive]
+        public decimal? MinGrossHouseholdIncome { get; set; }
 
         [Column(TypeName = "decimal(18,2)"), NumberPositive]
         public decimal? MaxGrossHouseholdIncome { get; set; }

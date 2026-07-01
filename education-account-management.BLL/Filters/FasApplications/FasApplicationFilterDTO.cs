@@ -13,7 +13,10 @@ namespace Filters.FasApplications
                 ["createdAt"] = nameof(FasApplication.CreatedAt),
                 ["approvedAt"] = nameof(FasApplication.ApprovedAt),
                 ["status"] = nameof(FasApplication.Status),
-                ["schemeName"] = $"{nameof(FasApplication.FasScheme)}.{nameof(FasScheme.SchemeName)}"
+                ["schemeName"] = $"{nameof(FasApplication.FasScheme)}.{nameof(FasScheme.SchemeName)}",
+                ["accountName"] = $"{nameof(FasApplication.SchoolStudent)}.{nameof(SchoolStudent.EducationAccount)}.{nameof(EducationAccount.Citizen)}.{nameof(Citizen.FullName)}",
+                ["accountNumber"] = $"{nameof(FasApplication.SchoolStudent)}.{nameof(SchoolStudent.EducationAccount)}.{nameof(EducationAccount.AccountNumber)}",
+                ["submittedAt"] = nameof(FasApplication.CreatedAt)
             };
 
         public override IReadOnlyDictionary<string, string> SortFields => AllowedSortFields;
@@ -36,5 +39,14 @@ namespace Filters.FasApplications
 
         [FilterField(TargetField: nameof(FasApplication.Status))]
         public FasApplicationStatus? Status { get; set; }
+
+        [FilterField(FilterOperationEnum.GreaterThanOrEqual, nameof(FasApplication.CreatedAt))]
+        public DateTime? SubmittedFrom { get; set; }
+
+        [FilterField(FilterOperationEnum.LessThanOrEqual, nameof(FasApplication.CreatedAt))]
+        public DateTime? SubmittedTo { get; set; }
+
+        [FilterField(FilterOperationEnum.Equal, nameof(FasApplication.FasSchemeId))]
+        public int? SchemeId { get; set; }
     }
 }
