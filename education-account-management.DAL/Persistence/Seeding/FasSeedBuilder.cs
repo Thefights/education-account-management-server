@@ -35,7 +35,7 @@ namespace Persistence.Seeding
                 { 
                     Id = i, SchoolId = 1, Status = status, 
                     SchemeCode = SeedBusinessCodeUtil.Generate(BusinessCodeGenerator.FasSchemePrefix, i), 
-                    SchemeName = $"Seed FAS Scheme {i:D2}", 
+                    SchemeName = BuildSchemeName(i), 
                     Description = "Seed financial assistance scheme.", 
                     DurationInMonths = 12,
                     PublishedAt = status == FasSchemeStatus.Active ? publishedAt.AddDays(i) : null, 
@@ -139,7 +139,7 @@ namespace Persistence.Seeding
                     SchoolStudentId = 1,
                     RecommendedTierId = recommendedTierId,
                     ApprovedTierId = approved ? recommendedTierId : null,
-                    ApplicationNumber = $"FASAPP-2026-{appId:D4}",
+                    ApplicationNumber = SeedBusinessCodeUtil.Generate(BusinessCodeGenerator.FasApplicationPrefix, appId),
                     Status = status,
                     StudentAgeSnapshot = 18,
                     StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen,
@@ -199,6 +199,38 @@ namespace Persistence.Seeding
                 new FasTierOverrideHistory { Id = 3, FasApplicationId = 10, OldTierId = 10, NewTierId = 10, ModifiedByUserId = 1, ModifiedAt = approvedAt.AddDays(10), Reason = "Seed tier review trail.", CreatedAt = createdAt });
 
             return modelBuilder;
+        }
+
+        private static string BuildSchemeName(int index)
+        {
+            var supportTypes = new[]
+            {
+                "Student Essentials",
+                "Tuition Support",
+                "Transport Support",
+                "Learning Materials",
+                "Digital Learning",
+                "Meal Support",
+                "Examination Fee Support",
+                "Course Fee Relief",
+                "Family Assistance",
+                "Bridging Support",
+                "Hardship Relief",
+                "Community Education"
+            };
+
+            var studentGroups = new[]
+            {
+                "Primary",
+                "Secondary",
+                "Post-Secondary",
+                "Full-Time",
+                "Low-Income"
+            };
+
+            var supportType = supportTypes[(index - 1) % supportTypes.Length];
+            var studentGroup = studentGroups[(index - 1) / supportTypes.Length % studentGroups.Length];
+            return $"{studentGroup} {supportType} Scheme";
         }
     }
 }
