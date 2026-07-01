@@ -1,6 +1,5 @@
 using DTOs.Payments;
 using education_account_management.Tests.Fakes;
-using education_account_management.Tests.Support;
 using Enums;
 using Filters.Courses;
 using Filters.TransactionHistory;
@@ -8,8 +7,9 @@ using Mappers;
 using Microsoft.EntityFrameworkCore;
 using Services.Payments;
 using Services.TransactionHistory;
+using Support;
 
-namespace education_account_management.Tests.Workflow;
+namespace Workflow;
 
 public class TuitionQueryTransactionHistoryTests
 {
