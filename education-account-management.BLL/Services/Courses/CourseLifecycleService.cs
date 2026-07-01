@@ -247,6 +247,7 @@ namespace Services.Courses
             }
 
             var generatedCount = 0;
+            var taxRate = await GetTaxRateAsync(cancellationToken);
             foreach (var enrollment in course.Enrollments)
             {
                 if (enrollment.Charge != null
@@ -256,7 +257,6 @@ namespace Services.Courses
                     continue;
                 }
 
-                var taxRate = await GetTaxRateAsync(cancellationToken);
                 var taxAmount = CourseFeeCalculator.CalculateTaxAmount(
                     course.CourseFeeAmount,
                     course.MiscFeeAmount,
@@ -271,6 +271,7 @@ namespace Services.Courses
                     SchoolNameSnapshot = course.School.SchoolName,
                     CourseCodeSnapshot = course.CourseCode,
                     CourseNameSnapshot = course.CourseName,
+                    CourseDescriptionSnapshot = enrollment.CourseDescriptionSnapshot,
                     CourseStartDateSnapshot = course.StartDate,
                     CourseEndDateSnapshot = course.EndDate,
                     CourseFeeAmountSnapshot = course.CourseFeeAmount,

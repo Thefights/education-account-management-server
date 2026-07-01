@@ -1,19 +1,8 @@
 using DTOs.Courses;
-using Enums;
-using Exceptions;
 using Filters.Courses;
-using Infrastructure.Interface;
 using Interfaces.Payments;
-using Microsoft.EntityFrameworkCore;
-using Models;
-using Repositories.Interfaces;
 using Results;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Services.Payments
 {
@@ -21,7 +10,6 @@ namespace Services.Payments
         IUnitOfWork unitOfWork,
         ICurrentUserService currentUserService) : IStudentTuitionService
     {
-        private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly ICurrentUserService _currentUserService = currentUserService;
         private readonly IGenericRepository<EducationAccount> _educationAccountRepository = unitOfWork.Repository<EducationAccount>();
         private readonly IGenericRepository<Enrollment> _enrollmentRepository = unitOfWork.Repository<Enrollment>();
@@ -93,10 +81,7 @@ namespace Services.Payments
                     CourseName = e.CourseNameSnapshot,
                     CourseDescription = e.CourseDescriptionSnapshot,
                     PaymentDueDate = e.Charge.CourseEndDateSnapshot,
-                    PaymentStatus = e.Charge.Status == ChargeStatus.Paid ? "Paid" :
-                                    e.Charge.Status == ChargeStatus.Overdue ? "Overdue" :
-                                    e.Charge.Installments.Count > 1 ? "Installment" :
-                                    "Due",
+                    Status = e.Charge.Status,
                     CourseFee = e.Charge.CourseFeeAmountSnapshot,
                     MiscFee = e.Charge.MiscFeeAmountSnapshot,
                     GstAmount = e.Charge.GstAmountSnapshot,
@@ -106,9 +91,6 @@ namespace Services.Payments
                     PaidAmount = e.Charge.PaidAmount,
                     RemainingAmount = e.Charge.RemainingAmount,
                     TaxRate = e.Charge.TaxRateSnapshot,
-                    IsInstallment = e.Charge.Installments.Count > 1,
-                    CurrentInstallmentNumber = e.Charge.Installments.Count > 1 ? e.Charge.Installments.Where(i => i.Status != ChargeInstallmentStatus.Paid).OrderBy(i => i.InstallmentNumber).Select(i => (int?)i.InstallmentNumber).FirstOrDefault() : null,
-                    TotalInstallments = e.Charge.Installments.Count > 1 ? (int?)e.Charge.Installments.Count : null,
                     Installments = e.Charge.Installments.OrderBy(i => i.InstallmentNumber).Select(i => new StudentTuitionInstallmentDTO
                     {
                         Id = i.Id,
@@ -118,8 +100,7 @@ namespace Services.Payments
                         Status = i.Status
                     }).ToList(),
                     AppliedFasSchemeName = e.Charge.AppliedFasSchemeNameSnapshot,
-                    AppliedFasTierName = e.Charge.AppliedFasTierNameSnapshot,
-                    HasFasApplication = e.Charge.AppliedFasApplicationId.HasValue
+                    AppliedFasTierName = e.Charge.AppliedFasTierNameSnapshot
                 }),
                 filterExpr: filterExpr,
                 filterStr: null,

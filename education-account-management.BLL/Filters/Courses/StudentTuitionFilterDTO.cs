@@ -1,9 +1,3 @@
-using Enums;
-using Filters.Base;
-using Models;
-using System;
-using System.Collections.Generic;
-
 namespace Filters.Courses
 {
     public class StudentTuitionFilterDTO : FilterDTO
@@ -19,8 +13,6 @@ namespace Filters.Courses
         public bool? IsInstallment { get; set; }
 
         public List<int>? EnrollmentIds { get; set; }
-
-        public override string Sort { get; set; } = "createdAt desc";
 
         public override IReadOnlyDictionary<string, string> SortFields => AllowedSortFields;
     }

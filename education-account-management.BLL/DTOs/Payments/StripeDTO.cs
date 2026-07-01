@@ -4,27 +4,70 @@ namespace DTOs.Payments
     public class StripeSessionMetadataDTO
     {
         public int AccountId { get; set; }
-        public List<int> PaymentIds { get; set; } = [];
+        public List<StripeSessionBillingActionDTO> BillingActions { get; set; } = [];
     }
 
-    public class PaymentRequest
+    public class StripeSessionBillingActionDTO
     {
-        public List<ChargePaymentRequestInfor> ChargePaymentRequestInfors { get; set; } = [];
+        public int ChargeId { get; set; }
+        public PaymentIntent Intent { get; set; }
+        public int? PaymentPlanMonths { get; set; }
+    }
+
+    public class PayFullChargesRequest
+    {
+        [MessageMinLength(1)]
+        public List<int> ChargeIds { get; set; } = [];
+
         [NumberPositive]
         public decimal CreditBalanceApplied { get; set; } = 0m;
     }
 
-    public class ChargePaymentRequestInfor
+    public class CreateInstallmentPlansRequest
+    {
+        [MessageMinLength(1)]
+        public List<CreateInstallmentPlanItemRequest> Items { get; set; } = [];
+
+        [NumberPositive]
+        public decimal CreditBalanceApplied { get; set; } = 0m;
+    }
+
+    public class CreateInstallmentPlanItemRequest
     {
         public int ChargeId { get; set; }
-        [EnumDefined]
-        public PaymentIntent Intent { get; set; }
+
         [PaymentPlanMonths]
-        public int? PaymentPlanMonths { get; set; }
+        public int PaymentPlanMonths { get; set; }
     }
+
+    public class PayNextInstallmentsRequest
+    {
+        [MessageMinLength(1)]
+        public List<int> ChargeIds { get; set; } = [];
+
+        [NumberPositive]
+        public decimal CreditBalanceApplied { get; set; } = 0m;
+    }
+
+    public class PayRemainingInstallmentsRequest
+    {
+        [MessageMinLength(1)]
+        public List<int> ChargeIds { get; set; } = [];
+
+        [NumberPositive]
+        public decimal CreditBalanceApplied { get; set; } = 0m;
+    }
+
     public class PaymentSessionResponseDTO
     {
         public string Link { get; set; } = string.Empty;
         public string Status { get; set; } = string.Empty;
+        public string PaymentMode { get; set; } = string.Empty;
+        public List<int> PaymentIds { get; set; } = [];
+        public decimal TotalAmount { get; set; }
+        public decimal WalletAmount { get; set; }
+        public decimal OnlineAmount { get; set; }
+        public bool IsWalletOnly { get; set; }
+        public bool RequiresRedirect { get; set; }
     }
 }
