@@ -7,7 +7,7 @@ namespace DTOs.FasSchemes
         public string? Operator { get; set; }
         public decimal? ValueNumber { get; set; }
         public decimal? ValueNumberTo { get; set; }
-        public int? CountryId { get; set; }
+        public string? Nationality { get; set; }
         public int DisplayOrder { get; set; }
     }
 
@@ -30,7 +30,7 @@ namespace DTOs.FasSchemes
 
         public decimal? ValueNumber { get; set; }
         public decimal? ValueNumberTo { get; set; }
-        public int? CountryId { get; set; }
+        public NationalityCategory? Nationality { get; set; }
         public int DisplayOrder { get; set; }
     }
 

@@ -126,8 +126,13 @@ namespace Persistence.SqlServer.ModelConfigurations
             {
                 table.HasCheckConstraint(
                     "CK_FasSchemeTier_Amounts_NonNegative",
+                    "[TierIncomeBasis] IN (1, 2, 3) AND " +
+                    "([MinPerCapitaIncome] IS NULL OR [MinPerCapitaIncome] >= 0) AND " +
                     "([MaxPerCapitaIncome] IS NULL OR [MaxPerCapitaIncome] >= 0) AND " +
+                    "([MinGrossHouseholdIncome] IS NULL OR [MinGrossHouseholdIncome] >= 0) AND " +
                     "([MaxGrossHouseholdIncome] IS NULL OR [MaxGrossHouseholdIncome] >= 0) AND " +
+                    "([MinPerCapitaIncome] IS NULL OR [MaxPerCapitaIncome] IS NULL OR [MinPerCapitaIncome] < [MaxPerCapitaIncome]) AND " +
+                    "([MinGrossHouseholdIncome] IS NULL OR [MaxGrossHouseholdIncome] IS NULL OR [MinGrossHouseholdIncome] < [MaxGrossHouseholdIncome]) AND " +
                     "([SubsidyValue] IS NULL OR [SubsidyValue] >= 0) AND " +
                     "([CourseFeeSubsidyValue] IS NULL OR [CourseFeeSubsidyValue] >= 0) AND " +
                     "([MiscFeeSubsidyValue] IS NULL OR [MiscFeeSubsidyValue] >= 0)");

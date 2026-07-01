@@ -3,10 +3,13 @@ using DTOs.FasSchemes;
 using Interfaces.Audit;
 using Interfaces.Base;
 using Interfaces.FasSchemes;
+using Interfaces.Storage;
 using Mappers.FasSchemes;
 using Results;
 using Services.Base;
 using Validators;
+using Helpers.FasSchemes;
+using Utils;
 
 namespace Services.FasSchemes
 {
@@ -17,10 +20,12 @@ namespace Services.FasSchemes
         IAuditLogWriter auditLogWriter,
         TimeProvider timeProvider,
         IFileValidator fileValidator,
-        IManagementActionLogService managementActionLogService)
+        IManagementActionLogService managementActionLogService,
+        IUploadService uploadService)
         : BaseService<FasScheme, CreateFasSchemeDTO, GetFasSchemeDTO, UpdateFasSchemeDTO>(
             unitOfWork,
             mapper,
+            uploadService,
             includes: [nameof(FasScheme.Tiers), nameof(FasScheme.RequiredDocuments), $"{nameof(FasScheme.SchemeCourses)}.{nameof(FasSchemeCourse.Course)}", nameof(FasScheme.AdditionalQuestions)]),
           IFasSchemeService
     {
@@ -54,11 +59,17 @@ namespace Services.FasSchemes
 
             ValidateInput(createDTO.SchemeName, createDTO.Tiers, createDTO.RootConditionGroup);
             FasConditionTreeUtility.Validate(createDTO.RootConditionGroup);
+            FasConditionSemanticAnalyzer.Validate(createDTO.RootConditionGroup);
             await ValidateCoursesExistAsync(createDTO.SchemeCourses.Select(c => c.CourseId).ToList(), schoolId, cancellationToken);
-            await ValidateDocumentTemplatesAsync(createDTO.RequiredDocuments, cancellationToken);
 
-            var id = await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
+            var id = await _unitOfWork.ExecuteInTransactionAsync(async (transaction, token) =>
             {
+                var uploadedTemplateKeys = await UploadDocumentTemplatesAsync(createDTO.RequiredDocuments, token);
+                foreach (var uploadedTemplateKey in uploadedTemplateKeys)
+                {
+                    ImageTransactionHookHelper.RegisterUploadedImageRollback(transaction, _uploadService, uploadedTemplateKey);
+                }
+
                 var scheme = _mapper.MapFromCreateDTO(createDTO);
                 scheme.SchoolId = schoolId;
                 scheme.Status = FasSchemeStatus.Draft;
@@ -82,8 +93,13 @@ namespace Services.FasSchemes
                 {
                     FasSchemeId = scheme.Id,
                     TierName = t.TierName,
+                    TierIncomeBasis = t.TierIncomeBasis,
+                    MinPerCapitaIncome = t.MinPerCapitaIncome,
                     MaxPerCapitaIncome = t.MaxPerCapitaIncome,
+                    MinGrossHouseholdIncome = t.MinGrossHouseholdIncome,
                     MaxGrossHouseholdIncome = t.MaxGrossHouseholdIncome,
+                    SubsidyType = t.SubsidyType,
+                    IsPerComponent = t.IsPerComponent,
                     SubsidyValue = t.SubsidyValue,
                     CourseFeeSubsidyValue = t.CourseFeeSubsidyValue,
                     MiscFeeSubsidyValue = t.MiscFeeSubsidyValue,
@@ -137,15 +153,21 @@ namespace Services.FasSchemes
 
             ValidateInput(updateDTO.SchemeName, updateDTO.Tiers, updateDTO.RootConditionGroup);
             FasConditionTreeUtility.Validate(updateDTO.RootConditionGroup);
+            FasConditionSemanticAnalyzer.Validate(updateDTO.RootConditionGroup);
             await ValidateCoursesExistAsync(updateDTO.SchemeCourses.Select(c => c.CourseId).ToList(), schoolId, cancellationToken);
-            await ValidateDocumentTemplatesAsync(updateDTO.RequiredDocuments, cancellationToken);
 
-            await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
+            await _unitOfWork.ExecuteInTransactionAsync(async (transaction, token) =>
             {
                 var scheme = await GetTrackedScopedSchemeAsync(id, schoolId, token);
                 if (scheme.Status != FasSchemeStatus.Draft)
                 {
                     throw new ValidationFailureException(nameof(scheme.Status), "Only draft schemes can be edited.");
+                }
+
+                var uploadedTemplateKeys = await UploadDocumentTemplatesAsync(updateDTO.RequiredDocuments, token);
+                foreach (var uploadedTemplateKey in uploadedTemplateKeys)
+                {
+                    ImageTransactionHookHelper.RegisterUploadedImageRollback(transaction, _uploadService, uploadedTemplateKey);
                 }
 
                 // Clear condition tree
@@ -166,6 +188,16 @@ namespace Services.FasSchemes
                 var docs = await _requiredDocRepository.Query(tracking: true)
                     .Where(d => d.FasSchemeId == id)
                     .ToListAsync(token);
+                var newTemplateKeys = updateDTO.RequiredDocuments
+                    .Select(d => d.TemplateFileKey)
+                    .Where(key => !string.IsNullOrWhiteSpace(key))
+                    .ToHashSet(StringComparer.OrdinalIgnoreCase);
+                foreach (var oldTemplateKey in docs
+                    .Select(d => d.TemplateFileKey)
+                    .Where(key => !string.IsNullOrWhiteSpace(key) && !newTemplateKeys.Contains(key)))
+                {
+                    ImageTransactionHookHelper.RegisterImageDeleteAfterCommit(transaction, _uploadService, oldTemplateKey);
+                }
                 _requiredDocRepository.RemoveRange(docs);
 
                 // Clear links
@@ -196,8 +228,13 @@ namespace Services.FasSchemes
                 {
                     FasSchemeId = scheme.Id,
                     TierName = t.TierName,
+                    TierIncomeBasis = t.TierIncomeBasis,
+                    MinPerCapitaIncome = t.MinPerCapitaIncome,
                     MaxPerCapitaIncome = t.MaxPerCapitaIncome,
+                    MinGrossHouseholdIncome = t.MinGrossHouseholdIncome,
                     MaxGrossHouseholdIncome = t.MaxGrossHouseholdIncome,
+                    SubsidyType = t.SubsidyType,
+                    IsPerComponent = t.IsPerComponent,
                     SubsidyValue = t.SubsidyValue,
                     CourseFeeSubsidyValue = t.CourseFeeSubsidyValue,
                     MiscFeeSubsidyValue = t.MiscFeeSubsidyValue,
@@ -266,6 +303,7 @@ namespace Services.FasSchemes
                         {
                             throw new ValidationFailureException(nameof(scheme.DurationInMonths), "A positive validity duration (in months) is required before publishing.");
                         }
+                        await ValidateSchemeCanActivateAsync(scheme, token);
                     }
 
                     scheme.Status = dto.Status;
@@ -337,9 +375,7 @@ namespace Services.FasSchemes
                         cancellationToken: token),
                     SchemeName = nameCopy,
                     Description = source.Description,
-                    DurationInMonths = source.DurationInMonths,
-                    SubsidyType = source.SubsidyType,
-                    IsPerComponent = source.IsPerComponent
+                    DurationInMonths = source.DurationInMonths
                 };
                 newScheme.TryValidate();
                 await _repository.AddAsync(newScheme, token);
@@ -350,8 +386,13 @@ namespace Services.FasSchemes
                 {
                     FasSchemeId = newScheme.Id,
                     TierName = t.TierName,
+                    TierIncomeBasis = t.TierIncomeBasis,
+                    MinPerCapitaIncome = t.MinPerCapitaIncome,
                     MaxPerCapitaIncome = t.MaxPerCapitaIncome,
+                    MinGrossHouseholdIncome = t.MinGrossHouseholdIncome,
                     MaxGrossHouseholdIncome = t.MaxGrossHouseholdIncome,
+                    SubsidyType = t.SubsidyType,
+                    IsPerComponent = t.IsPerComponent,
                     SubsidyValue = t.SubsidyValue,
                     CourseFeeSubsidyValue = t.CourseFeeSubsidyValue,
                     MiscFeeSubsidyValue = t.MiscFeeSubsidyValue,
@@ -455,7 +496,7 @@ namespace Services.FasSchemes
         public override async Task DeleteAsync(int id, CancellationToken cancellationToken = default)
         {
             var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
-            await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
+            await _unitOfWork.ExecuteInTransactionAsync(async (transaction, token) =>
             {
                 var scheme = await GetTrackedScopedSchemeAsync(id, schoolId, token);
                 if (scheme.Status != FasSchemeStatus.Draft)
@@ -478,6 +519,12 @@ namespace Services.FasSchemes
                 var docs = await _requiredDocRepository.Query(tracking: true)
                     .Where(d => d.FasSchemeId == id)
                     .ToListAsync(token);
+                foreach (var templateKey in docs
+                    .Select(d => d.TemplateFileKey)
+                    .Where(key => !string.IsNullOrWhiteSpace(key)))
+                {
+                    ImageTransactionHookHelper.RegisterImageDeleteAfterCommit(transaction, _uploadService, templateKey);
+                }
                 _requiredDocRepository.RemoveRange(docs);
 
                 var links = await _courseLinkRepository.Query(tracking: true)
@@ -497,7 +544,7 @@ namespace Services.FasSchemes
             var batchId = Guid.NewGuid();
             var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
 
-            await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
+            await _unitOfWork.ExecuteInTransactionAsync(async (transaction, token) =>
             {
                 var schemes = await _repository.Query(tracking: true)
                     .Where(s => dto.Ids.Contains(s.Id) && s.SchoolId == schoolId)
@@ -527,6 +574,12 @@ namespace Services.FasSchemes
                     var docs = await _requiredDocRepository.Query(tracking: true)
                         .Where(d => d.FasSchemeId == scheme.Id)
                         .ToListAsync(token);
+                    foreach (var templateKey in docs
+                        .Select(d => d.TemplateFileKey)
+                        .Where(key => !string.IsNullOrWhiteSpace(key)))
+                    {
+                        ImageTransactionHookHelper.RegisterImageDeleteAfterCommit(transaction, _uploadService, templateKey);
+                    }
                     _requiredDocRepository.RemoveRange(docs);
 
                     var links = await _courseLinkRepository.Query(tracking: true)
@@ -585,7 +638,10 @@ namespace Services.FasSchemes
             }
         }
 
-        private static void ValidateInput(string name, List<FasSchemeTierRequestDTO> tiers, FasConditionGroupRequestDTO rootConditionGroup)
+        private static void ValidateInput(
+            string name,
+            List<FasSchemeTierRequestDTO> tiers,
+            FasConditionGroupRequestDTO rootConditionGroup)
         {
             if (string.IsNullOrWhiteSpace(name))
                 throw new ValidationFailureException(nameof(CreateFasSchemeDTO.SchemeName), "Scheme name is required.");
@@ -593,17 +649,7 @@ namespace Services.FasSchemes
                 throw new ValidationFailureException(nameof(CreateFasSchemeDTO.Tiers), "At least one tier is required.");
             if (rootConditionGroup.Conditions.Count + rootConditionGroup.Groups.Count == 0)
                 throw new ValidationFailureException(nameof(CreateFasSchemeDTO.RootConditionGroup), "At least one condition is required.");
-
-            // Prevent overlapping tiers: Ensure no multiple tiers share the exact same income limits.
-            var groups = tiers.GroupBy(t => new { t.MaxPerCapitaIncome, t.MaxGrossHouseholdIncome });
-            foreach (var group in groups)
-            {
-                if (group.Count() > 1)
-                {
-                    var tierNames = string.Join(", ", group.Select(t => $"'{t.TierName}'"));
-                    throw new ValidationFailureException(nameof(CreateFasSchemeDTO.Tiers), $"Overlapping tier ranges detected for tiers: {tierNames}. Multiple tiers cannot have identical income limits.");
-                }
-            }
+            FasTierMatcher.ValidateTierConfiguration(tiers);
         }
 
         private async Task ValidateCoursesExistAsync(List<int> courseIds, int schoolId, CancellationToken cancellationToken)
@@ -618,47 +664,105 @@ namespace Services.FasSchemes
             }
         }
 
-        private async Task ValidateDocumentTemplatesAsync(
+        private async Task ValidateSchemeCanActivateAsync(FasScheme scheme, CancellationToken cancellationToken)
+        {
+            var tiers = await _tierRepository.Query()
+                .Where(t => t.FasSchemeId == scheme.Id)
+                .Select(t => new FasSchemeTierRequestDTO
+                {
+                    TierName = t.TierName,
+                    TierIncomeBasis = t.TierIncomeBasis,
+                    MinPerCapitaIncome = t.MinPerCapitaIncome,
+                    MaxPerCapitaIncome = t.MaxPerCapitaIncome,
+                    MinGrossHouseholdIncome = t.MinGrossHouseholdIncome,
+                    MaxGrossHouseholdIncome = t.MaxGrossHouseholdIncome,
+                    SubsidyType = t.SubsidyType,
+                    IsPerComponent = t.IsPerComponent,
+                    SubsidyValue = t.SubsidyValue,
+                    CourseFeeSubsidyValue = t.CourseFeeSubsidyValue,
+                    MiscFeeSubsidyValue = t.MiscFeeSubsidyValue,
+                    DisplayOrder = t.DisplayOrder
+                })
+                .ToListAsync(cancellationToken);
+
+            FasTierMatcher.ValidateTierConfiguration(tiers);
+
+            var groups = await _groupRepository.Query()
+                .Include(g => g.Conditions)
+                .Where(g => g.FasSchemeId == scheme.Id)
+                .ToListAsync(cancellationToken);
+            var root = groups.SingleOrDefault(g => g.ParentGroupId == null);
+            if (root == null)
+            {
+                throw new ValidationFailureException(nameof(CreateFasSchemeDTO.RootConditionGroup), "A root condition group is required.");
+            }
+
+            var children = groups.Where(g => g.ParentGroupId.HasValue)
+                .GroupBy(g => g.ParentGroupId!.Value)
+                .ToDictionary(g => g.Key, g => g.ToList());
+            var requestRoot = BuildConditionRequest(root, children);
+            FasConditionTreeUtility.Validate(requestRoot);
+            FasConditionSemanticAnalyzer.Validate(requestRoot);
+        }
+
+        private static FasConditionGroupRequestDTO BuildConditionRequest(
+            FasSchemeConditionGroup group,
+            IReadOnlyDictionary<int, List<FasSchemeConditionGroup>> children)
+        {
+            return new FasConditionGroupRequestDTO
+            {
+                LogicalOperator = group.LogicalOperator,
+                DisplayOrder = group.DisplayOrder,
+                Conditions = group.Conditions.Select(condition => new FasConditionRequestDTO
+                {
+                    Field = condition.Field,
+                    Operator = condition.Operator,
+                    ValueNumber = condition.ValueNumber,
+                    ValueNumberTo = condition.ValueNumberTo,
+                    Nationality = ParseNationality(condition.Field, condition.ValueText),
+                    DisplayOrder = condition.DisplayOrder
+                }).ToList(),
+                Groups = children.GetValueOrDefault(group.Id, [])
+                    .Select(child => BuildConditionRequest(child, children))
+                    .ToList()
+            };
+        }
+
+        private static NationalityCategory? ParseNationality(FasConditionField field, string? valueText)
+        {
+            if (field is not (FasConditionField.StudentNationality or FasConditionField.GuardianNationality))
+            {
+                return null;
+            }
+
+            if (string.Equals(valueText, "Singapore", StringComparison.OrdinalIgnoreCase))
+            {
+                return NationalityCategory.SingaporeCitizen;
+            }
+
+            return Enum.TryParse<NationalityCategory>(valueText, true, out var nationality)
+                ? nationality
+                : null;
+        }
+
+        private async Task<List<string>> UploadDocumentTemplatesAsync(
             List<FasRequiredDocumentRequestDTO> documents,
             CancellationToken cancellationToken)
         {
+            var uploadedTemplateKeys = new List<string>();
             foreach (var doc in documents)
             {
-                if (string.IsNullOrWhiteSpace(doc.TemplateFileKey)) continue;
-
-                var extension = Path.GetExtension(doc.TemplateFileKey).ToLowerInvariant();
+                if (doc.TemplateFile == null) continue;
+                var extension = Path.GetExtension(doc.TemplateFile.FileName).ToLowerInvariant();
                 if (extension is not ".docx" and not ".pdf")
-                {
-                    throw new ValidationFailureException(nameof(doc.TemplateFileKey), "Only .docx and .pdf templates are allowed.");
-                }
+                    throw new ValidationFailureException(nameof(doc.TemplateFile), "Only .docx and .pdf templates are allowed.");
 
-                byte[] signature;
-                string contentType;
-
-                if (extension == ".pdf")
-                {
-                    signature = System.Text.Encoding.ASCII.GetBytes("%PDF-");
-                    contentType = "application/pdf";
-                }
-                else
-                {
-                    signature = new byte[] { 0x50, 0x4B, 0x03, 0x04 };
-                    contentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-                }
-
-                using var stream = new MemoryStream(signature);
-                var formFile = new FormFile(stream, 0, stream.Length, "file", doc.TemplateFileKey)
-                {
-                    Headers = new HeaderDictionary(),
-                    ContentType = contentType
-                };
-
-                var validationResult = await _fileValidator.ValidateAsync(formFile, cancellationToken);
-                if (!validationResult.IsValid)
-                {
-                    throw new ValidationFailureException(nameof(doc.TemplateFileKey), validationResult.ErrorMessage ?? "Invalid template file.");
-                }
+                var uploadResult = await _uploadService!.UploadAsync(doc.TemplateFile, "fas/templates", cancellationToken);
+                doc.TemplateFileKey = uploadResult.FileName;
+                uploadedTemplateKeys.Add(uploadResult.FileName);
             }
+
+            return uploadedTemplateKeys;
         }
 
         private static void ValidatePersistedTree(FasSchemeConditionGroup root)

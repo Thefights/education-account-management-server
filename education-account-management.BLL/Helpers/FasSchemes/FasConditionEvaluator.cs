@@ -75,10 +75,10 @@ namespace Helpers.FasSchemes
                     valueToCompare = studentAge;
                     break;
                 case FasConditionField.StudentNationality:
-                    textToCompare = isSingaporean ? "Singapore" : "Other";
+                    textToCompare = isSingaporean ? NationalityCategory.SingaporeCitizen.ToString() : NationalityCategory.Other.ToString();
                     break;
                 case FasConditionField.GuardianNationality:
-                    textToCompare = guardianNationality == NationalityCategory.SingaporeCitizen ? "Singapore" : "Other";
+                    textToCompare = guardianNationality.ToString();
                     break;
                 case FasConditionField.GrossHouseholdIncome:
                     valueToCompare = grossHouseholdIncome;
@@ -90,7 +90,9 @@ namespace Helpers.FasSchemes
 
             if (textToCompare != null)
             {
-                string conditionText = condition.ValueText ?? "";
+                string conditionText = string.Equals(condition.ValueText, "Singapore", StringComparison.OrdinalIgnoreCase)
+                    ? NationalityCategory.SingaporeCitizen.ToString()
+                    : condition.ValueText ?? "";
                 return condition.Operator switch
                 {
                     FasConditionOperator.Equal => string.Equals(textToCompare, conditionText, StringComparison.OrdinalIgnoreCase),

@@ -10,7 +10,11 @@ namespace Filters.Courses
             new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
             {
                 ["id"] = nameof(Enrollment.Id),
-                ["startDate"] = $"{nameof(Course)}.{nameof(Course.StartDate)}"
+                ["courseCode"] = $"{nameof(Enrollment.Course)}.{nameof(Course.CourseCode)}",
+                ["courseName"] = $"{nameof(Enrollment.Course)}.{nameof(Course.CourseName)}",
+                ["status"] = $"{nameof(Enrollment.Course)}.{nameof(Course.Status)}",
+                ["startDate"] = $"{nameof(Enrollment.Course)}.{nameof(Course.StartDate)}",
+                ["endDate"] = $"{nameof(Enrollment.Course)}.{nameof(Course.EndDate)}"
             };
 
         public CourseStatus Tab { get; set; } = CourseStatus.Upcoming;

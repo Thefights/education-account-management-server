@@ -13,9 +13,11 @@ namespace DTOs.FasSchemes
         public string SchemeName { get; set; } = string.Empty;
         public string? Description { get; set; }
         public int DurationInMonths { get; set; }
-        public string? SubsidyType { get; set; }
-        public bool IsPerComponent { get; set; }
         public DateTime? PublishedAt { get; set; }
+        public bool HasBlockingApplication { get; set; }
+        public int? BlockingApplicationId { get; set; }
+        public FasApplicationStatus? BlockingApplicationStatus { get; set; }
+        public string? ApplyUnavailableReason { get; set; }
 
         public List<FasSchemeTierDTO> Tiers { get; set; } = [];
         public List<FasSchemeRequiredDocumentDTO> RequiredDocuments { get; set; } = [];

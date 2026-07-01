@@ -36,6 +36,13 @@ namespace Controllers.AccountHolder
             return Result.SuccessData(result);
         }
 
+        [HttpGet("courses/{id:int}")]
+        public async Task<IActionResult> GetMyCourseDetail(int id, CancellationToken cancellationToken)
+        {
+            var result = await _studentCourseService.GetMyCourseDetailAsync(id, cancellationToken);
+            return Result.SuccessData(result);
+        }
+
         [HttpGet("tuition-summary")]
         public async Task<IActionResult> GetTuitionSummary(CancellationToken cancellationToken)
         {

@@ -205,25 +205,30 @@ public class PaymentWorkflowTests
             dueDates);
     }
 
-    [Fact]
-    public async Task PayNextInstallments_BalanceOnly_MarksOnlyNextInstallmentPaid()
+    [Theory]
+    [InlineData(1)]
+    [InlineData(2)]
+    [InlineData(3)]
+    public async Task PayDueInstallments_BalanceOnly_MarksRequestedOldestInstallmentsPaid(int installmentCount)
     {
         await using var db = new TestDatabase();
-        var graph = await db.CreateAccountGraphAsync("2000005", balance: 40m);
+        var graph = await db.CreateAccountGraphAsync("2000005", balance: 90m);
         var (_, charge) = await CreateChargeForAccountAsync(db, graph, "PN00005");
-        await SetChargeProgressAsync(db, charge.Id, paid: 40m, remaining: 80m, planMonths: 3);
+        await SetChargeProgressAsync(db, charge.Id, paid: 30m, remaining: 90m, planMonths: 6);
         await db.CreateInstallmentsAsync(
             charge,
-            (1, 40m, ChargeInstallmentStatus.Paid),
-            (2, 40m, ChargeInstallmentStatus.Overdue),
-            (3, 40m, ChargeInstallmentStatus.PendingPayment));
+            (1, 30m, ChargeInstallmentStatus.Paid),
+            (2, 30m, ChargeInstallmentStatus.Overdue),
+            (3, 30m, ChargeInstallmentStatus.Overdue),
+            (4, 30m, ChargeInstallmentStatus.Overdue));
+        await SetUnpaidInstallmentsDueAsync(db, charge.Id);
         var stripe = new FakeStripeCheckoutGateway();
         var service = db.CreateStripeService(graph.UserId, stripe);
 
-        await service.PayNextInstallmentsAsync(new PayNextInstallmentsRequest
+        await service.PayDueInstallmentsAsync(new PayDueInstallmentsRequest
         {
-            ChargeIds = [charge.Id],
-            CreditBalanceApplied = 40m
+            Items = [new PayDueInstallmentsItemRequest { ChargeId = charge.Id, InstallmentCount = installmentCount }],
+            CreditBalanceApplied = installmentCount * 30m
         });
 
         db.Context.ChangeTracker.Clear();
@@ -233,11 +238,162 @@ public class PaymentWorkflowTests
             .ToListAsync();
         var reloadedCharge = await db.Context.Charge.FindAsync(charge.Id);
 
-        Assert.Equal(ChargeInstallmentStatus.Paid, installments[0].Status);
-        Assert.Equal(ChargeInstallmentStatus.Paid, installments[1].Status);
-        Assert.Equal(ChargeInstallmentStatus.PendingPayment, installments[2].Status);
-        Assert.Equal(80m, reloadedCharge!.PaidAmount);
-        Assert.Equal(40m, reloadedCharge.RemainingAmount);
+        Assert.All(
+            installments.Take(installmentCount + 1),
+            installment => Assert.Equal(ChargeInstallmentStatus.Paid, installment.Status));
+        Assert.All(
+            installments.Skip(installmentCount + 1),
+            installment => Assert.Equal(ChargeInstallmentStatus.Overdue, installment.Status));
+        Assert.Equal(30m + installmentCount * 30m, reloadedCharge!.PaidAmount);
+        Assert.Equal(90m - installmentCount * 30m, reloadedCharge.RemainingAmount);
+    }
+
+    [Fact]
+    public async Task PayDueInstallments_FutureOnlyInstallment_IsRejected()
+    {
+        await using var db = new TestDatabase();
+        var graph = await db.CreateAccountGraphAsync("2000018", balance: 40m);
+        var (_, charge) = await CreateChargeForAccountAsync(db, graph, "PN00018");
+        await SetChargeProgressAsync(db, charge.Id, paid: 40m, remaining: 80m, planMonths: 3);
+        await db.CreateInstallmentsAsync(
+            charge,
+            (1, 40m, ChargeInstallmentStatus.Paid),
+            (2, 40m, ChargeInstallmentStatus.PendingPayment));
+        var service = db.CreateStripeService(graph.UserId, new FakeStripeCheckoutGateway());
+
+        var exception = await Assert.ThrowsAsync<ValidationFailureException>(() =>
+            service.PayDueInstallmentsAsync(new PayDueInstallmentsRequest
+            {
+                Items = [new PayDueInstallmentsItemRequest { ChargeId = charge.Id, InstallmentCount = 1 }],
+                CreditBalanceApplied = 40m
+            }));
+
+        Assert.Contains($"Charge_{charge.Id}_NoInstallmentDue", exception.FieldErrors.Keys);
+    }
+
+    [Fact]
+    public async Task PayDueInstallments_CountExceedsUnlockedInstallments_IsRejected()
+    {
+        await using var db = new TestDatabase();
+        var graph = await db.CreateAccountGraphAsync("2000020", balance: 80m);
+        var (_, charge) = await CreateChargeForAccountAsync(db, graph, "PD00020");
+        await SetChargeProgressAsync(db, charge.Id, paid: 40m, remaining: 80m, planMonths: 3);
+        await db.CreateInstallmentsAsync(
+            charge,
+            (1, 40m, ChargeInstallmentStatus.Paid),
+            (2, 40m, ChargeInstallmentStatus.Overdue),
+            (3, 40m, ChargeInstallmentStatus.PendingPayment));
+        await SetUnpaidInstallmentsDueAsync(db, charge.Id);
+        var service = db.CreateStripeService(graph.UserId, new FakeStripeCheckoutGateway());
+
+        var exception = await Assert.ThrowsAsync<ValidationFailureException>(() =>
+            service.PayDueInstallmentsAsync(new PayDueInstallmentsRequest
+            {
+                Items = [new PayDueInstallmentsItemRequest { ChargeId = charge.Id, InstallmentCount = 3 }],
+                CreditBalanceApplied = 80m
+            }));
+
+        Assert.Contains($"Charge_{charge.Id}_InstallmentCount", exception.FieldErrors.Keys);
+    }
+
+    [Fact]
+    public async Task PayDueInstallments_BatchCreatesAllocationsForEachRequestedCount()
+    {
+        await using var db = new TestDatabase();
+        var graph = await db.CreateAccountGraphAsync("2000021");
+        var (_, firstCharge) = await CreateChargeForAccountAsync(db, graph, "PB00021");
+        var (_, secondCharge) = await CreateChargeForAccountAsync(db, graph, "PB00022");
+        await SetChargeProgressAsync(db, firstCharge.Id, paid: 40m, remaining: 80m, planMonths: 3);
+        await SetChargeProgressAsync(db, secondCharge.Id, paid: 40m, remaining: 80m, planMonths: 3);
+        await db.CreateInstallmentsAsync(
+            firstCharge,
+            (1, 40m, ChargeInstallmentStatus.Overdue),
+            (2, 40m, ChargeInstallmentStatus.Overdue));
+        await db.CreateInstallmentsAsync(
+            secondCharge,
+            (1, 40m, ChargeInstallmentStatus.Overdue),
+            (2, 40m, ChargeInstallmentStatus.Overdue));
+        await SetUnpaidInstallmentsDueAsync(db, firstCharge.Id, secondCharge.Id);
+        var service = db.CreateStripeService(graph.UserId, new FakeStripeCheckoutGateway());
+
+        await service.PayDueInstallmentsAsync(new PayDueInstallmentsRequest
+        {
+            Items =
+            [
+                new PayDueInstallmentsItemRequest { ChargeId = firstCharge.Id, InstallmentCount = 1 },
+                new PayDueInstallmentsItemRequest { ChargeId = secondCharge.Id, InstallmentCount = 2 }
+            ]
+        });
+
+        var allocations = await db.Context.PaymentAllocation
+            .Where(allocation => allocation.Payment.Status == PaymentStatus.Pending)
+            .ToListAsync();
+
+        Assert.Single(allocations, allocation => allocation.ChargeId == firstCharge.Id);
+        Assert.Equal(2, allocations.Count(allocation => allocation.ChargeId == secondCharge.Id));
+        Assert.All(allocations, allocation => Assert.NotNull(allocation.ChargeInstallmentId));
+    }
+
+    [Fact]
+    public async Task PayDueInstallments_PendingSessionMatchesInstallmentCount()
+    {
+        await using var db = new TestDatabase();
+        var graph = await db.CreateAccountGraphAsync("2000022");
+        var (_, charge) = await CreateChargeForAccountAsync(db, graph, "PM00022");
+        await SetChargeProgressAsync(db, charge.Id, paid: 40m, remaining: 80m, planMonths: 3);
+        await db.CreateInstallmentsAsync(
+            charge,
+            (1, 40m, ChargeInstallmentStatus.Overdue),
+            (2, 40m, ChargeInstallmentStatus.Overdue));
+        await SetUnpaidInstallmentsDueAsync(db, charge.Id);
+        var stripe = new FakeStripeCheckoutGateway();
+        var service = db.CreateStripeService(graph.UserId, stripe);
+        var request = new PayDueInstallmentsRequest
+        {
+            Items = [new PayDueInstallmentsItemRequest { ChargeId = charge.Id, InstallmentCount = 2 }]
+        };
+
+        var first = await service.PayDueInstallmentsAsync(request);
+        db.Context.ChangeTracker.Clear();
+        var resumed = await service.PayDueInstallmentsAsync(request);
+
+        Assert.Equal(first.Link, resumed.Link);
+        Assert.Equal(1, stripe.CreateCallCount);
+
+        await Assert.ThrowsAsync<ValidationFailureException>(() =>
+            service.PayDueInstallmentsAsync(new PayDueInstallmentsRequest
+            {
+                Items = [new PayDueInstallmentsItemRequest { ChargeId = charge.Id, InstallmentCount = 1 }]
+            }));
+        Assert.Equal(1, stripe.CreateCallCount);
+    }
+
+    [Fact]
+    public async Task PayRemainingInstallments_AllowsFutureInstallments()
+    {
+        await using var db = new TestDatabase();
+        var graph = await db.CreateAccountGraphAsync("2000019", balance: 80m);
+        var (_, charge) = await CreateChargeForAccountAsync(db, graph, "PR00019");
+        await SetChargeProgressAsync(db, charge.Id, paid: 40m, remaining: 80m, planMonths: 3);
+        await db.CreateInstallmentsAsync(
+            charge,
+            (1, 40m, ChargeInstallmentStatus.Paid),
+            (2, 40m, ChargeInstallmentStatus.PendingPayment),
+            (3, 40m, ChargeInstallmentStatus.PendingPayment));
+        var service = db.CreateStripeService(graph.UserId, new FakeStripeCheckoutGateway());
+
+        await service.PayRemainingInstallmentsAsync(new PayRemainingInstallmentsRequest
+        {
+            ChargeIds = [charge.Id],
+            CreditBalanceApplied = 80m
+        });
+
+        db.Context.ChangeTracker.Clear();
+        var installments = await db.Context.ChargeInstallment
+            .Where(i => i.ChargeId == charge.Id)
+            .ToListAsync();
+
+        Assert.All(installments, installment => Assert.Equal(ChargeInstallmentStatus.Paid, installment.Status));
     }
 
     [Fact]
@@ -385,6 +541,145 @@ public class PaymentWorkflowTests
         Assert.Equal(PaymentStatus.Pending, payments[1].Status);
     }
 
+    [Fact]
+    public async Task PayFullCharges_MatchingPendingSession_ReturnsExistingCheckoutLink()
+    {
+        await using var db = new TestDatabase();
+        var graph = await db.CreateAccountGraphAsync("2000012");
+        var (_, charge) = await CreateChargeForAccountAsync(db, graph, "PR00012");
+        var stripe = new FakeStripeCheckoutGateway();
+        var service = db.CreateStripeService(graph.UserId, stripe);
+        var request = new PayFullChargesRequest { ChargeIds = [charge.Id] };
+
+        var first = await service.PayFullChargesAsync(request);
+        db.Context.ChangeTracker.Clear();
+        var resumed = await service.PayFullChargesAsync(request);
+
+        Assert.Equal(1, stripe.CreateCallCount);
+        Assert.Equal(first.Link, resumed.Link);
+        Assert.Equal(first.PaymentIds, resumed.PaymentIds);
+        Assert.True(resumed.RequiresRedirect);
+        Assert.Single(await db.Context.Payment.ToListAsync());
+    }
+
+    [Fact]
+    public async Task PayFullCharges_PaidPendingSession_FinalizesInsteadOfCreatingAnotherSession()
+    {
+        await using var db = new TestDatabase();
+        var graph = await db.CreateAccountGraphAsync("2000013");
+        var (_, charge) = await CreateChargeForAccountAsync(db, graph, "PP00013");
+        var stripe = new FakeStripeCheckoutGateway();
+        var service = db.CreateStripeService(graph.UserId, stripe);
+        var request = new PayFullChargesRequest { ChargeIds = [charge.Id] };
+
+        await service.PayFullChargesAsync(request);
+        var sessionId = await db.Context.Payment.Select(payment => payment.ExternalReference!).SingleAsync();
+        stripe.MarkPaid(sessionId);
+        db.Context.ChangeTracker.Clear();
+
+        var recovered = await service.PayFullChargesAsync(request);
+
+        db.Context.ChangeTracker.Clear();
+        var reloadedCharge = await db.Context.Charge.FindAsync(charge.Id);
+        Assert.Equal(1, stripe.CreateCallCount);
+        Assert.Equal(PaymentStatus.Succeeded.ToString(), recovered.Status);
+        Assert.Equal(ChargeStatus.Paid, reloadedCharge!.Status);
+        Assert.Equal(120m, reloadedCharge.PaidAmount);
+        Assert.Single(await db.Context.Payment.ToListAsync());
+        Assert.Single(await db.Context.EducationCreditTransaction.ToListAsync());
+    }
+
+    [Fact]
+    public async Task PayFullCharges_StripeLookupFailure_KeepsExistingPaymentPending()
+    {
+        await using var db = new TestDatabase();
+        var graph = await db.CreateAccountGraphAsync("2000014");
+        var (_, charge) = await CreateChargeForAccountAsync(db, graph, "PL00014");
+        var stripe = new FakeStripeCheckoutGateway();
+        var service = db.CreateStripeService(graph.UserId, stripe);
+        var request = new PayFullChargesRequest { ChargeIds = [charge.Id] };
+
+        await service.PayFullChargesAsync(request);
+        db.Context.ChangeTracker.Clear();
+        stripe.GetException = new InvalidOperationException("Stripe unavailable");
+
+        await Assert.ThrowsAsync<InvalidOperationException>(() => service.PayFullChargesAsync(request));
+
+        db.Context.ChangeTracker.Clear();
+        var payment = await db.Context.Payment.SingleAsync();
+        Assert.Equal(1, stripe.CreateCallCount);
+        Assert.Equal(PaymentStatus.Pending, payment.Status);
+    }
+
+    [Fact]
+    public async Task PayFullCharges_StripeCreateFailure_MarksReservationFailed()
+    {
+        await using var db = new TestDatabase();
+        var graph = await db.CreateAccountGraphAsync("2000015");
+        var (_, charge) = await CreateChargeForAccountAsync(db, graph, "PC00015");
+        var stripe = new FakeStripeCheckoutGateway
+        {
+            CreateException = new InvalidOperationException("Stripe unavailable")
+        };
+        var service = db.CreateStripeService(graph.UserId, stripe);
+
+        await Assert.ThrowsAsync<InvalidOperationException>(() =>
+            service.PayFullChargesAsync(new PayFullChargesRequest { ChargeIds = [charge.Id] }));
+
+        db.Context.ChangeTracker.Clear();
+        var payment = await db.Context.Payment.SingleAsync();
+        var reloadedCharge = await db.Context.Charge.FindAsync(charge.Id);
+        Assert.Equal(PaymentStatus.Failed, payment.Status);
+        Assert.Equal(0m, reloadedCharge!.PaidAmount);
+        Assert.Equal(120m, reloadedCharge.RemainingAmount);
+    }
+
+    [Fact]
+    public async Task HandleSessionSuccess_RepeatedCall_DoesNotApplyPaymentTwice()
+    {
+        await using var db = new TestDatabase();
+        var graph = await db.CreateAccountGraphAsync("2000016");
+        var (_, charge) = await CreateChargeForAccountAsync(db, graph, "PI00016");
+        var stripe = new FakeStripeCheckoutGateway();
+        var service = db.CreateStripeService(graph.UserId, stripe);
+
+        await service.PayFullChargesAsync(new PayFullChargesRequest { ChargeIds = [charge.Id] });
+        var sessionId = await db.Context.Payment.Select(payment => payment.ExternalReference!).SingleAsync();
+        stripe.MarkPaid(sessionId);
+
+        await service.HandleSessionSuccessAsync(sessionId);
+        await service.HandleSessionSuccessAsync(sessionId);
+
+        db.Context.ChangeTracker.Clear();
+        var reloadedCharge = await db.Context.Charge.FindAsync(charge.Id);
+        Assert.Equal(120m, reloadedCharge!.PaidAmount);
+        Assert.Equal(0m, reloadedCharge.RemainingAmount);
+        Assert.Single(await db.Context.EducationCreditTransaction.ToListAsync());
+    }
+
+    [Fact]
+    public async Task HandleSessionCancelled_WhenPaymentCompletesDuringExpire_FinalizesSuccess()
+    {
+        await using var db = new TestDatabase();
+        var graph = await db.CreateAccountGraphAsync("2000017");
+        var (_, charge) = await CreateChargeForAccountAsync(db, graph, "CR00017");
+        var stripe = new FakeStripeCheckoutGateway { CompletePaymentOnExpire = true };
+        var service = db.CreateStripeService(graph.UserId, stripe);
+
+        await service.PayFullChargesAsync(new PayFullChargesRequest { ChargeIds = [charge.Id] });
+        var sessionId = await db.Context.Payment.Select(payment => payment.ExternalReference!).SingleAsync();
+
+        var response = await service.HandleSessionCancelledAsync(sessionId);
+
+        db.Context.ChangeTracker.Clear();
+        var payment = await db.Context.Payment.SingleAsync();
+        var reloadedCharge = await db.Context.Charge.FindAsync(charge.Id);
+        Assert.Equal(PaymentStatus.Succeeded.ToString(), response.Status);
+        Assert.Equal(PaymentStatus.Succeeded, payment.Status);
+        Assert.Equal(ChargeStatus.Paid, reloadedCharge!.Status);
+        Assert.Equal(1, stripe.ExpireCallCount);
+    }
+
     private static async Task<(Course Course, Charge Charge)> CreateChargeForAccountAsync(
         TestDatabase db,
         AccountGraph graph,
@@ -408,6 +703,20 @@ public class PaymentWorkflowTests
         charge.RemainingAmount = remaining;
         charge.PaymentPlanMonths = planMonths;
         charge.Status = ChargeStatus.Overdue;
+        await db.Context.SaveChangesAsync();
+        db.Context.ChangeTracker.Clear();
+    }
+
+    private static async Task SetUnpaidInstallmentsDueAsync(TestDatabase db, params int[] chargeIds)
+    {
+        var installments = await db.Context.ChargeInstallment
+            .Where(installment => chargeIds.Contains(installment.ChargeId) &&
+                                  installment.Status != ChargeInstallmentStatus.Paid)
+            .ToListAsync();
+
+        foreach (var installment in installments)
+            installment.DueDate = DateTime.UtcNow.AddDays(-1);
+
         await db.Context.SaveChangesAsync();
         db.Context.ChangeTracker.Clear();
     }

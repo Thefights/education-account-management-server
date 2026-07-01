@@ -99,6 +99,7 @@ namespace Extensions.DependencyInjection
             services.AddScoped<ITopupService, TopupService>();
             services.AddScoped<ITopupManagementQueryService, TopupManagementQueryService>();
             services.AddScoped<ITopupBackgroundService, TopupBackgroundService>();
+            services.AddScoped<IStripeCheckoutGateway, StripeCheckoutGateway>();
             services.AddScoped<IStripeService, StripeService>();
 
 

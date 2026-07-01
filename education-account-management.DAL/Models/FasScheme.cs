@@ -27,13 +27,6 @@ namespace Models
         [DurationInMonths]
         public int DurationInMonths { get; set; }
 
-        // Cách tính hỗ trợ của scheme: phần trăm hoặc số tiền cố định.
-        [EnumDefined]
-        public FasSubsidyType SubsidyType { get; set; } = FasSubsidyType.Percent;
-
-        // Cho biết tier có tách giá trị hỗ trợ riêng cho Course Fee và Misc Fee hay không.
-        public bool IsPerComponent { get; set; }
-
         // Thời điểm scheme được publish lần đầu; scheme không có ngày hết hạn.
         public DateTime? PublishedAt { get; set; }
 

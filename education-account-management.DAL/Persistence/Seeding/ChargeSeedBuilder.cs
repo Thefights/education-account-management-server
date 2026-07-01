@@ -97,6 +97,9 @@ namespace Persistence.Seeding
                 AppliedFasSubsidyValueSnapshot = appliedFasApplicationId.HasValue ? 30m : null,
                 EnrollmentId = enrollmentId,
                 AppliedFasApplicationId = appliedFasApplicationId,
+                PaymentPlanMonths = SeedScenarioConstants.IsSterlingEnrollment(schoolStudentId)
+                    ? 6
+                    : null,
                 CreatedAt = createdAt
             };
         }

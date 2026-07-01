@@ -160,10 +160,9 @@ namespace Services.FasApplications
 
         public async Task ApproveAsync(
             int id,
-            ApproveFasApplicationDTO? dto = null,
+            ApproveFasApplicationDTO dto,
             CancellationToken cancellationToken = default)
         {
-            dto ??= new ApproveFasApplicationDTO();
             var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
 
             await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
@@ -198,7 +197,7 @@ namespace Services.FasApplications
                     throw new DataConflictException("Cannot approve application because no tier is eligible.");
                 }
 
-                var selectedTierId = dto.SelectedTierId ?? application.RecommendedTierId.Value;
+                var selectedTierId = dto.ApprovedTierId ?? application.RecommendedTierId.Value;
                 var selectedTier = application.FasScheme.Tiers.FirstOrDefault(t => t.Id == selectedTierId);
                 if (selectedTier == null)
                 {
@@ -206,7 +205,7 @@ namespace Services.FasApplications
                 }
 
                 var isOverride = selectedTier.Id != application.RecommendedTierId.Value;
-                var reason = dto.EffectiveReason?.Trim() ?? string.Empty;
+                var reason = dto.Reason?.Trim() ?? string.Empty;
                 if (isOverride)
                 {
                     ValidateOverrideReason(reason);
