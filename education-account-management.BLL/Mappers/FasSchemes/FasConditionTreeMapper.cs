@@ -21,7 +21,7 @@ namespace Mappers.FasSchemes
                     Operator = condition.Operator,
                     ValueNumber = condition.ValueNumber,
                     ValueNumberTo = condition.ValueNumberTo,
-                    ValueText = MapCountryIdToValueText(condition.Field, condition.CountryId),
+                    ValueText = condition.Nationality?.ToString(),
                     DisplayOrder = condition.DisplayOrder
                 }).ToList()
             };
@@ -58,7 +58,9 @@ namespace Mappers.FasSchemes
                     Operator = condition.Operator.ToString(),
                     ValueNumber = condition.ValueNumber,
                     ValueNumberTo = condition.ValueNumberTo,
-                    CountryId = MapValueTextToCountryId(condition.Field, condition.ValueText),
+                    Nationality = string.Equals(condition.ValueText, "Singapore", StringComparison.OrdinalIgnoreCase)
+                        ? NationalityCategory.SingaporeCitizen.ToString()
+                        : condition.ValueText,
                     DisplayOrder = condition.DisplayOrder
                 }).ToList(),
                 Groups = children.GetValueOrDefault(group.Id, [])
@@ -66,48 +68,6 @@ namespace Mappers.FasSchemes
                     .Select(child => MapFasGroup(child, children))
                     .ToList()
             };
-        }
-
-
-        private static string? MapCountryIdToValueText(FasConditionField field, int? countryId)
-        {
-            if (field is not (FasConditionField.StudentNationality or FasConditionField.GuardianNationality))
-            {
-                return null;
-            }
-
-            return countryId switch
-            {
-                1 => "Singapore",
-                2 => "Other",
-                _ => null
-            };        }
-
-        private static int? MapValueTextToCountryId(FasConditionField field, string? valueText)
-        {
-            if (field is not (FasConditionField.StudentNationality or FasConditionField.GuardianNationality))
-            {
-                return null;
-            }
-
-            var normalized = valueText?.Trim();
-            if (string.IsNullOrEmpty(normalized))
-            {
-                return null;
-            }
-
-            if (string.Equals(normalized, "Singapore", StringComparison.OrdinalIgnoreCase))
-            {
-                return 1;
-            }
-
-            if (string.Equals(normalized, "Other", StringComparison.OrdinalIgnoreCase))
-            {
-                return 2;
-            }
-
-            return null;
-
         }
     }
 }

@@ -106,6 +106,7 @@ namespace Services.FasSchemes
                         MaxPerCapitaIncome = t.MaxPerCapitaIncome,
                         MinGrossHouseholdIncome = t.MinGrossHouseholdIncome,
                         MaxGrossHouseholdIncome = t.MaxGrossHouseholdIncome,
+                        IsPerComponent = t.IsPerComponent,
                         SubsidyValue = t.SubsidyValue,
                         CourseFeeSubsidyValue = t.CourseFeeSubsidyValue,
                         MiscFeeSubsidyValue = t.MiscFeeSubsidyValue,

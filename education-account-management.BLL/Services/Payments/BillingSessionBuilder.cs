@@ -26,13 +26,21 @@ public partial class StripeService
                     decimal amountToPay = Math.Round(charge.RemainingAmount / billingAction.PaymentPlanMonths!.Value, 2, MidpointRounding.AwayFromZero);
                     billingItems.Add(new BillingItem(charge, billingAction.Intent, billingAction.PaymentPlanMonths, null, amountToPay));
                     break;
-                case PaymentIntent.PayCurrentInstallment:
-                    var firstPending = charge.Installments
-                        .Where(installment => IsInstallmentUnlockedForNextPayment(installment, utcNow))
+                case PaymentIntent.PayDueInstallments:
+                    var dueInstallments = charge.Installments
+                        .Where(installment => IsInstallmentDueForPayment(installment, utcNow))
                         .OrderBy(installment => installment.DueDate)
                         .ThenBy(installment => installment.InstallmentNumber)
-                        .First();
-                    billingItems.Add(new BillingItem(charge, billingAction.Intent, null, firstPending.Id, firstPending.Amount));
+                        .Take(billingAction.InstallmentCount!.Value);
+                    foreach (var installment in dueInstallments)
+                    {
+                        billingItems.Add(new BillingItem(
+                            charge,
+                            billingAction.Intent,
+                            null,
+                            installment.Id,
+                            installment.Amount));
+                    }
                     break;
                 case PaymentIntent.PayRemainingInstallments:
                     foreach (var inst in charge.Installments.OrderBy(installment => installment.InstallmentNumber))

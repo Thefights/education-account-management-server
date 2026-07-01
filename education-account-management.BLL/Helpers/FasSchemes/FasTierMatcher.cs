@@ -57,8 +57,7 @@ namespace Helpers.FasSchemes
 
         public static void ValidateTierConfiguration(
             IReadOnlyCollection<FasSchemeTierRequestDTO> tiers,
-            FasSubsidyType subsidyType,
-            bool isPerComponent)
+            FasSubsidyType subsidyType)
         {
             var errors = new Dictionary<string, string>();
             if (tiers.Count == 0)
@@ -69,7 +68,7 @@ namespace Helpers.FasSchemes
 
             foreach (var tier in tiers.Select((value, index) => new { value, index }))
             {
-                ValidateTier(tier.value, tier.index, subsidyType, isPerComponent, errors);
+                ValidateTier(tier.value, tier.index, subsidyType, errors);
             }
 
             ValidateRanges(
@@ -96,7 +95,6 @@ namespace Helpers.FasSchemes
             FasSchemeTierRequestDTO tier,
             int index,
             FasSubsidyType subsidyType,
-            bool isPerComponent,
             Dictionary<string, string> errors)
         {
             var prefix = $"{nameof(CreateFasSchemeDTO.Tiers)}[{index}]";
@@ -121,7 +119,7 @@ namespace Helpers.FasSchemes
                     break;
             }
 
-            if (isPerComponent)
+            if (tier.IsPerComponent)
             {
                 ValidateSubsidyValue(tier.CourseFeeSubsidyValue, $"{prefix}.{nameof(tier.CourseFeeSubsidyValue)}", subsidyType, errors);
                 ValidateSubsidyValue(tier.MiscFeeSubsidyValue, $"{prefix}.{nameof(tier.MiscFeeSubsidyValue)}", subsidyType, errors);

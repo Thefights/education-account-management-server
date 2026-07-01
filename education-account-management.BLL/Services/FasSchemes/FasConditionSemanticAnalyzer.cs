@@ -152,16 +152,16 @@ namespace Services.FasSchemes
             string path,
             Dictionary<string, string> errors)
         {
-            int? required = null;
-            var excluded = new HashSet<int>();
+            NationalityCategory? required = null;
+            var excluded = new HashSet<NationalityCategory>();
             foreach (var condition in conditions)
             {
-                var value = condition.CountryId ?? 0;
-                if (value is not (1 or 2))
+                if (!condition.Nationality.HasValue || !Enum.IsDefined(condition.Nationality.Value))
                 {
                     errors[path] = "Nationality condition only supports Singapore Citizen or Foreigner.";
                     return;
                 }
+                var value = condition.Nationality.Value;
 
                 if (condition.Operator == FasConditionOperator.Equal)
                 {

@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace DTOs.Payments
 {
 
@@ -12,6 +14,7 @@ namespace DTOs.Payments
         public int ChargeId { get; set; }
         public PaymentIntent Intent { get; set; }
         public int? PaymentPlanMonths { get; set; }
+        public int? InstallmentCount { get; set; }
     }
 
     public class PayFullChargesRequest
@@ -40,13 +43,21 @@ namespace DTOs.Payments
         public int PaymentPlanMonths { get; set; }
     }
 
-    public class PayNextInstallmentsRequest
+    public class PayDueInstallmentsRequest
     {
         [MessageMinLength(1)]
-        public List<int> ChargeIds { get; set; } = [];
+        public List<PayDueInstallmentsItemRequest> Items { get; set; } = [];
 
         [NumberPositive]
         public decimal CreditBalanceApplied { get; set; } = 0m;
+    }
+
+    public class PayDueInstallmentsItemRequest
+    {
+        public int ChargeId { get; set; }
+
+        [Range(1, int.MaxValue)]
+        public int InstallmentCount { get; set; }
     }
 
     public class PayRemainingInstallmentsRequest

@@ -37,8 +37,8 @@ namespace Filters.FasApplications
         [FilterField(FilterOperationEnum.Contains, $"{nameof(FasApplication.FasScheme)}.{nameof(FasScheme.SchemeName)}")]
         public string? SchemeName { get; set; }
 
-        [FilterField(TargetField: nameof(FasApplication.Status))]
-        public FasApplicationStatus? Status { get; set; }
+        [FilterField(FilterOperationEnum.In, nameof(FasApplication.Status))]
+        public List<FasApplicationStatus>? Statuses { get; set; }
 
         [FilterField(FilterOperationEnum.GreaterThanOrEqual, nameof(FasApplication.CreatedAt))]
         public DateTime? SubmittedFrom { get; set; }

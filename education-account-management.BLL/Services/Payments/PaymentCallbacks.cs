@@ -48,7 +48,11 @@ public partial class StripeService
         if (accountId != null && sessionData.AccountId != accountId) throw new DataConflictException($"Current User not belong to payment Session {session.Id}");
 
         var billingActions = sessionData.BillingActions
-            .Select(action => new ChargeBillingActionItem(action.ChargeId, action.Intent, action.PaymentPlanMonths))
+            .Select(action => new ChargeBillingActionItem(
+                action.ChargeId,
+                action.Intent,
+                action.PaymentPlanMonths,
+                action.InstallmentCount))
             .ToList();
         var paymentIds = await GetPaymentIdsBySessionReferenceAsync(session.Id, cancellationToken);
 

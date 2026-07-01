@@ -30,11 +30,14 @@ namespace Models
         [Column(TypeName = "decimal(18,2)"), NumberPositive]
         public decimal? SubsidyValue { get; set; }
 
-        // Giá trị hỗ trợ riêng cho Course Fee khi scheme bật IsPerComponent.
+        // Cho biết tier này có tách giá trị hỗ trợ riêng cho Course Fee và Misc Fee hay không.
+        public bool IsPerComponent { get; set; }
+
+        // Giá trị hỗ trợ riêng cho Course Fee khi tier bật IsPerComponent.
         [Column(TypeName = "decimal(18,2)"), NumberPositive]
         public decimal? CourseFeeSubsidyValue { get; set; }
 
-        // Giá trị hỗ trợ riêng cho Misc Fee khi scheme bật IsPerComponent.
+        // Giá trị hỗ trợ riêng cho Misc Fee khi tier bật IsPerComponent.
         [Column(TypeName = "decimal(18,2)"), NumberPositive]
         public decimal? MiscFeeSubsidyValue { get; set; }
 

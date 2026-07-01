@@ -121,11 +121,11 @@ public partial class StripeService
 
         var existingActions = metadata.BillingActions
             .OrderBy(action => action.ChargeId)
-            .Select(action => (action.ChargeId, action.Intent, action.PaymentPlanMonths))
+            .Select(action => (action.ChargeId, action.Intent, action.PaymentPlanMonths, action.InstallmentCount))
             .ToList();
         var expectedActions = requestedActions
             .OrderBy(action => action.ChargeId)
-            .Select(action => (action.ChargeId, action.Intent, action.PaymentPlanMonths))
+            .Select(action => (action.ChargeId, action.Intent, action.PaymentPlanMonths, action.InstallmentCount))
             .ToList();
 
         return existingActions.SequenceEqual(expectedActions);
@@ -228,13 +228,13 @@ public partial class StripeService
 
             bool hasUnpaidInstallments = charge.Installments.Any();
             bool hasUnlockedInstallment = charge.Installments.Any(installment =>
-                IsInstallmentUnlockedForNextPayment(installment, utcNow));
+                IsInstallmentDueForPayment(installment, utcNow));
 
             switch (info.Intent)
             {
                 case PaymentIntent.PayFull:
                     if (hasUnpaidInstallments || charge.PaymentPlanMonths.HasValue)
-                        errors[$"{nameof(Charge)}_{charge.Id}"] = $"Cannot {nameof(PaymentIntent.PayFull)} while an installment plan is active. Use {nameof(PaymentIntent.PayCurrentInstallment)} instead.";
+                        errors[$"{nameof(Charge)}_{charge.Id}"] = $"Cannot {nameof(PaymentIntent.PayFull)} while an installment plan is active. Use {nameof(PaymentIntent.PayDueInstallments)} instead.";
                     break;
                 case PaymentIntent.CreateInstallment:
                     if (hasUnpaidInstallments || charge.PaymentPlanMonths.HasValue)
@@ -243,16 +243,23 @@ public partial class StripeService
                         break;
                     }
                     break;
-                case PaymentIntent.PayCurrentInstallment:
+                case PaymentIntent.PayDueInstallments:
                     if (!hasUnpaidInstallments || !charge.PaymentPlanMonths.HasValue)
                     {
-                        errors[$"{nameof(Charge)}_{charge.Id}_MissingPlan"] = $"Cannot pay current {nameof(ChargeInstallment)} because no active {nameof(ChargeInstallment)} plan exists.";
+                        errors[$"{nameof(Charge)}_{charge.Id}_MissingPlan"] = $"Cannot pay due {nameof(ChargeInstallment)}s because no active {nameof(ChargeInstallment)} plan exists.";
                         break;
                     }
                     if (!hasUnlockedInstallment)
                     {
                         errors[$"{nameof(Charge)}_{charge.Id}_NoInstallmentDue"] = $"No {nameof(ChargeInstallment)} is due yet for '{enrollment.CourseNameSnapshot}'. Future installments can only be paid through {nameof(PaymentIntent.PayRemainingInstallments)}.";
                         break;
+                    }
+                    var unlockedInstallmentCount = charge.Installments.Count(installment =>
+                        IsInstallmentDueForPayment(installment, utcNow));
+                    if (info.InstallmentCount is null or < 1 || info.InstallmentCount > unlockedInstallmentCount)
+                    {
+                        errors[$"{nameof(Charge)}_{charge.Id}_InstallmentCount"] =
+                            $"Installment count must be between 1 and {unlockedInstallmentCount} for '{enrollment.CourseNameSnapshot}'.";
                     }
                     break;
                 case PaymentIntent.PayRemainingInstallments:
@@ -268,10 +275,9 @@ public partial class StripeService
         if (errors.Count != 0) throw new ValidationFailureException(errors);
     }
 
-    private static bool IsInstallmentUnlockedForNextPayment(ChargeInstallment installment, DateTime utcNow)
+    private static bool IsInstallmentDueForPayment(ChargeInstallment installment, DateTime utcNow)
     {
         return installment.Status != ChargeInstallmentStatus.Paid &&
-               (installment.Status == ChargeInstallmentStatus.Overdue ||
-                installment.DueDate.Date <= utcNow.Date);
+               installment.DueDate.Date <= utcNow.Date;
     }
 }

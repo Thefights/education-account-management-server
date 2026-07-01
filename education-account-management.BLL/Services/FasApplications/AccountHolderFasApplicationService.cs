@@ -1,15 +1,10 @@
 using DTOs.FasApplications;
-using Enums;
-using Exceptions;
+using DTOs.FasSchemes;
 using Filters.FasApplications;
 using Helpers.FasSchemes;
-using Interfaces.Base;
 using Interfaces.FasApplications;
 using Interfaces.Storage;
-using Microsoft.EntityFrameworkCore;
-using Models;
 using Results;
-using Utils;
 
 namespace Services.FasApplications
 {
@@ -363,6 +358,9 @@ namespace Services.FasApplications
             var application = await _unitOfWork.Repository<FasApplication>()
                 .Query()
                 .Include(a => a.FasScheme)
+                    .ThenInclude(scheme => scheme.RequiredDocuments)
+                .Include(a => a.FasScheme)
+                    .ThenInclude(scheme => scheme.AdditionalQuestions)
                 .Include(a => a.ApprovedTier)
                 .Include(a => a.Documents)
                 .Include(a => a.AdditionalQuestionAnswers)
@@ -385,7 +383,23 @@ namespace Services.FasApplications
                     Id = application.FasScheme.Id,
                     SchemeCode = application.FasScheme.SchemeCode,
                     SchemeName = application.FasScheme.SchemeName,
-                    Description = application.FasScheme.Description ?? string.Empty
+                    Description = application.FasScheme.Description ?? string.Empty,
+                    RequiredDocuments = application.FasScheme.RequiredDocuments
+                        .OrderBy(document => document.DisplayOrder)
+                        .Select(document => new FasSchemeRequiredDocumentDTO
+                        {
+                            Id = document.Id,
+                            DocumentName = document.DocumentName
+                        })
+                        .ToList(),
+                    AdditionalQuestions = application.FasScheme.AdditionalQuestions
+                        .Select(question => new FasSchemeAdditionalQuestionDTO
+                        {
+                            Id = question.Id,
+                            QuestionText = question.QuestionText,
+                            IsRequired = question.IsRequired
+                        })
+                        .ToList()
                 },
                 StudentAgeSnapshot = application.StudentAgeSnapshot,
                 StudentNationalitySnapshot = application.StudentNationalitySnapshot,
@@ -405,12 +419,13 @@ namespace Services.FasApplications
                     MaxPerCapitaIncome = application.ApprovedTier.MaxPerCapitaIncome,
                     MinGrossHouseholdIncome = application.ApprovedTier.MinGrossHouseholdIncome,
                     MaxGrossHouseholdIncome = application.ApprovedTier.MaxGrossHouseholdIncome,
+                    IsPerComponent = application.ApprovedTier.IsPerComponent,
                     SubsidyValue = application.ApprovedTier.SubsidyValue,
                     CourseFeeSubsidyValue = application.ApprovedTier.CourseFeeSubsidyValue,
                     MiscFeeSubsidyValue = application.ApprovedTier.MiscFeeSubsidyValue
                 } : null,
                 SubsidyType = application.FasScheme.SubsidyType,
-                IsPerComponent = application.FasScheme.IsPerComponent,
+                IsPerComponent = application.ApprovedTier?.IsPerComponent ?? false,
                 Documents = application.Documents.Select(d => new FasApplicationDocumentDetailDTO
                 {
                     Id = d.Id,
@@ -743,7 +758,7 @@ namespace Services.FasApplications
             IEnumerable<FasApplicationAdditionalQuestionAnswer>? answers,
             int applicationId)
         {
-            if (answers == null) return new List<FasApplicationAdditionalQuestionAnswer>();
+            if (answers == null) return [];
 
             return answers.Select(answer => new FasApplicationAdditionalQuestionAnswer
             {

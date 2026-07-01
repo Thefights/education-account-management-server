@@ -27,11 +27,11 @@ namespace Controllers.Payment
             return Result.SuccessData(response);
         }
 
-        [HttpPost("installments/next")]
+        [HttpPost("installments/due")]
         [Authorize(Roles = RolePolicy.AccountHolder)]
-        public async Task<IActionResult> PayNextInstallments([FromForm] PayNextInstallmentsRequest request, CancellationToken token)
+        public async Task<IActionResult> PayDueInstallments([FromForm] PayDueInstallmentsRequest request, CancellationToken token)
         {
-            var response = await _stripeService.PayNextInstallmentsAsync(request, token);
+            var response = await _stripeService.PayDueInstallmentsAsync(request, token);
             return Result.SuccessData(response);
         }
 

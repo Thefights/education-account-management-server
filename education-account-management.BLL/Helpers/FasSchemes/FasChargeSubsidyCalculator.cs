@@ -21,7 +21,7 @@ namespace Helpers.FasSchemes
 
             var scheme = application.FasScheme;
             var tier = application.ApprovedTier;
-            var subsidyAmount = scheme.IsPerComponent
+            var subsidyAmount = tier.IsPerComponent
                 ? CalculatePerComponent(courseFee, miscFee, taxRate, scheme.SubsidyType, tier)
                 : CalculateNormal(grossAmount, scheme.SubsidyType, tier.SubsidyValue);
 

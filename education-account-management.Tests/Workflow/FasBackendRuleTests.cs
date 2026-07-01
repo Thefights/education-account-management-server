@@ -91,7 +91,7 @@ public class FasBackendRuleTests
         };
 
         Assert.Throws<ValidationFailureException>(() =>
-            FasTierMatcher.ValidateTierConfiguration(gap, FasSubsidyType.Percent, isPerComponent: false));
+            FasTierMatcher.ValidateTierConfiguration(gap, FasSubsidyType.Percent));
 
         var overlap = new List<FasSchemeTierRequestDTO>
         {
@@ -100,7 +100,7 @@ public class FasBackendRuleTests
         };
 
         Assert.Throws<ValidationFailureException>(() =>
-            FasTierMatcher.ValidateTierConfiguration(overlap, FasSubsidyType.Percent, isPerComponent: false));
+            FasTierMatcher.ValidateTierConfiguration(overlap, FasSubsidyType.Percent));
 
         var finiteFinalRange = new List<FasSchemeTierRequestDTO>
         {
@@ -109,7 +109,7 @@ public class FasBackendRuleTests
         };
 
         Assert.Throws<ValidationFailureException>(() =>
-            FasTierMatcher.ValidateTierConfiguration(finiteFinalRange, FasSubsidyType.Percent, isPerComponent: false));
+            FasTierMatcher.ValidateTierConfiguration(finiteFinalRange, FasSubsidyType.Percent));
     }
 
     [Fact]
@@ -177,6 +177,7 @@ public class FasBackendRuleTests
                 },
                 ApprovedTier = new FasSchemeTier
                 {
+                    IsPerComponent = true,
                     CourseFeeSubsidyValue = 50m,
                     MiscFeeSubsidyValue = 20m
                 }

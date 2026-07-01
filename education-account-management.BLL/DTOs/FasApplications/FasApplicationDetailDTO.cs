@@ -1,4 +1,5 @@
 using Enums;
+using DTOs.FasSchemes;
 
 namespace DTOs.FasApplications
 {
@@ -17,6 +18,8 @@ namespace DTOs.FasApplications
         public string SchemeCode { get; set; } = string.Empty;
         public string SchemeName { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
+        public List<FasSchemeRequiredDocumentDTO> RequiredDocuments { get; set; } = [];
+        public List<FasSchemeAdditionalQuestionDTO> AdditionalQuestions { get; set; } = [];
     }
 
     public class FasApplicationTierDetailDTO
@@ -27,6 +30,7 @@ namespace DTOs.FasApplications
         public decimal? MaxPerCapitaIncome { get; set; }
         public decimal? MinGrossHouseholdIncome { get; set; }
         public decimal? MaxGrossHouseholdIncome { get; set; }
+        public bool IsPerComponent { get; set; }
         public decimal? SubsidyValue { get; set; }
         public decimal? CourseFeeSubsidyValue { get; set; }
         public decimal? MiscFeeSubsidyValue { get; set; }

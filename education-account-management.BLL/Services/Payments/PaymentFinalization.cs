@@ -192,7 +192,7 @@ public partial class StripeService
                     await CreateInstallmentPlanAsync(charge, group.ToList(), paidForCharge, billingAction.PaymentPlanMonths!.Value, token);
                     break;
 
-                case PaymentIntent.PayCurrentInstallment:
+                case PaymentIntent.PayDueInstallments:
                 case PaymentIntent.PayRemainingInstallments:
                     ApplyChargePayment(charge, paidForCharge);
                     MarkTargetInstallmentsPaid(charge, group);

@@ -31,7 +31,11 @@ public partial class StripeService(
     private readonly IGenericRepository<ApplicationSetting> _applicationSettingRepository = unitOfWork.Repository<ApplicationSetting>();
 
     private record BillingItem(Charge Charge, PaymentIntent Intent, int? PaymentPlanMonths, int? TargetInstallmentId, decimal AmountToPay);
-    private record ChargeBillingActionItem(int ChargeId, PaymentIntent Intent, int? PaymentPlanMonths);
+    private record ChargeBillingActionItem(
+        int ChargeId,
+        PaymentIntent Intent,
+        int? PaymentPlanMonths,
+        int? InstallmentCount);
     private record PaymentSplit(decimal TotalOwed, decimal BalanceToApply, decimal StripeAmount);
     private record ReservedPaymentResult(
         List<Payment>? Payments,
@@ -50,7 +54,7 @@ public partial class StripeService(
         CancellationToken cancellationToken = default)
     {
         var requestItems = request.ChargeIds
-            .Select(chargeId => new ChargeBillingActionItem(chargeId, PaymentIntent.PayFull, null))
+            .Select(chargeId => new ChargeBillingActionItem(chargeId, PaymentIntent.PayFull, null, null))
             .ToList();
 
         return HandlePaymentSessionAsync(requestItems, request.CreditBalanceApplied, cancellationToken);
@@ -61,18 +65,22 @@ public partial class StripeService(
         CancellationToken cancellationToken = default)
     {
         var requestItems = request.Items
-            .Select(item => new ChargeBillingActionItem(item.ChargeId, PaymentIntent.CreateInstallment, item.PaymentPlanMonths))
+            .Select(item => new ChargeBillingActionItem(item.ChargeId, PaymentIntent.CreateInstallment, item.PaymentPlanMonths, null))
             .ToList();
 
         return HandlePaymentSessionAsync(requestItems, request.CreditBalanceApplied, cancellationToken);
     }
 
-    public Task<PaymentSessionResponseDTO> PayNextInstallmentsAsync(
-        PayNextInstallmentsRequest request,
+    public Task<PaymentSessionResponseDTO> PayDueInstallmentsAsync(
+        PayDueInstallmentsRequest request,
         CancellationToken cancellationToken = default)
     {
-        var requestItems = request.ChargeIds
-            .Select(chargeId => new ChargeBillingActionItem(chargeId, PaymentIntent.PayCurrentInstallment, null))
+        var requestItems = request.Items
+            .Select(item => new ChargeBillingActionItem(
+                item.ChargeId,
+                PaymentIntent.PayDueInstallments,
+                null,
+                item.InstallmentCount))
             .ToList();
 
         return HandlePaymentSessionAsync(requestItems, request.CreditBalanceApplied, cancellationToken);
@@ -83,7 +91,7 @@ public partial class StripeService(
         CancellationToken cancellationToken = default)
     {
         var requestItems = request.ChargeIds
-            .Select(chargeId => new ChargeBillingActionItem(chargeId, PaymentIntent.PayRemainingInstallments, null))
+            .Select(chargeId => new ChargeBillingActionItem(chargeId, PaymentIntent.PayRemainingInstallments, null, null))
             .ToList();
 
         return HandlePaymentSessionAsync(requestItems, request.CreditBalanceApplied, cancellationToken);
@@ -267,7 +275,8 @@ public partial class StripeService(
             {
                 ChargeId = item.ChargeId,
                 Intent = item.Intent,
-                PaymentPlanMonths = item.PaymentPlanMonths
+                PaymentPlanMonths = item.PaymentPlanMonths,
+                InstallmentCount = item.InstallmentCount
             }).ToList()
         };
 
