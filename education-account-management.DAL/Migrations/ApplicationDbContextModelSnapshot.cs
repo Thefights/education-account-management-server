@@ -1059,6 +1059,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             MiscFeeAmountSnapshot = 23m,
                             NetAmount = 166.77m,
                             PaidAmount = 166.77m,
+                            PaymentPlanMonths = 6,
                             RemainingAmount = 0.00m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
@@ -2834,6 +2835,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             MiscFeeAmountSnapshot = 29m,
                             NetAmount = 184.21m,
                             PaidAmount = 184.21m,
+                            PaymentPlanMonths = 6,
                             RemainingAmount = 0.00m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
@@ -3564,6 +3566,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             MiscFeeAmountSnapshot = 32m,
                             NetAmount = 162.93m,
                             PaidAmount = 162.93m,
+                            PaymentPlanMonths = 6,
                             RemainingAmount = 0.00m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
@@ -4429,6 +4432,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             MiscFeeAmountSnapshot = 20m,
                             NetAmount = 185.30m,
                             PaidAmount = 30.88m,
+                            PaymentPlanMonths = 6,
                             RemainingAmount = 154.42m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
@@ -5154,6 +5158,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             MiscFeeAmountSnapshot = 23m,
                             NetAmount = 194.02m,
                             PaidAmount = 0m,
+                            PaymentPlanMonths = 6,
                             RemainingAmount = 194.02m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
@@ -5884,6 +5889,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             MiscFeeAmountSnapshot = 29m,
                             NetAmount = 181.46m,
                             PaidAmount = 0m,
+                            PaymentPlanMonths = 6,
                             RemainingAmount = 181.46m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
@@ -6749,6 +6755,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             MiscFeeAmountSnapshot = 32m,
                             NetAmount = 220.18m,
                             PaidAmount = 0m,
+                            PaymentPlanMonths = 6,
                             RemainingAmount = 220.18m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
@@ -7474,6 +7481,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             MiscFeeAmountSnapshot = 23m,
                             NetAmount = 221.27m,
                             PaidAmount = 0m,
+                            PaymentPlanMonths = 6,
                             RemainingAmount = 221.27m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
@@ -8199,6 +8207,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             MiscFeeAmountSnapshot = 29m,
                             NetAmount = 238.71m,
                             PaidAmount = 0m,
+                            PaymentPlanMonths = 6,
                             RemainingAmount = 238.71m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
@@ -8924,6 +8933,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             MiscFeeAmountSnapshot = 32m,
                             NetAmount = 247.43m,
                             PaidAmount = 0m,
+                            PaymentPlanMonths = 6,
                             RemainingAmount = 247.43m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
@@ -54642,7 +54652,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            ApplicationNumber = "FASAPP-2026-0001",
+                            ApplicationNumber = "FASAPP-2026-8547NGZ",
                             CreatedAt = new DateTime(2026, 1, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasSchemeId = 1,
                             GrossHouseholdIncomeSnapshot = 1800m,
@@ -54660,7 +54670,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            ApplicationNumber = "FASAPP-2026-0002",
+                            ApplicationNumber = "FASAPP-2026-ADYNC9M",
                             ApprovedAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
                             ApprovedByUserId = 3,
                             ApprovedTierId = 62,
@@ -54684,7 +54694,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            ApplicationNumber = "FASAPP-2026-0003",
+                            ApplicationNumber = "FASAPP-2026-PP1DDKP",
                             CreatedAt = new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasSchemeId = 3,
                             GrossHouseholdIncomeSnapshot = 1800m,
@@ -54702,7 +54712,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 4,
-                            ApplicationNumber = "FASAPP-2026-0004",
+                            ApplicationNumber = "FASAPP-2026-6SU5UB3",
                             ApprovedAt = new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc),
                             ApprovedByUserId = 3,
                             ApprovedTierId = 64,
@@ -54726,7 +54736,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 5,
-                            ApplicationNumber = "FASAPP-2026-0005",
+                            ApplicationNumber = "FASAPP-2026-847XK6R",
                             CreatedAt = new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasSchemeId = 5,
                             GrossHouseholdIncomeSnapshot = 1800m,
@@ -54744,7 +54754,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 6,
-                            ApplicationNumber = "FASAPP-2026-0006",
+                            ApplicationNumber = "FASAPP-2026-D64HO8J",
                             ApprovedAt = new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc),
                             ApprovedByUserId = 3,
                             ApprovedTierId = 66,
@@ -54768,7 +54778,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 7,
-                            ApplicationNumber = "FASAPP-2026-0007",
+                            ApplicationNumber = "FASAPP-2026-XZV9JSC",
                             CreatedAt = new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasSchemeId = 7,
                             GrossHouseholdIncomeSnapshot = 1800m,
@@ -54786,7 +54796,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 8,
-                            ApplicationNumber = "FASAPP-2026-0008",
+                            ApplicationNumber = "FASAPP-2026-P7W7JTZ",
                             ApprovedAt = new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc),
                             ApprovedByUserId = 3,
                             ApprovedTierId = 68,
@@ -54810,7 +54820,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 9,
-                            ApplicationNumber = "FASAPP-2026-0009",
+                            ApplicationNumber = "FASAPP-2026-UM8D6ZI",
                             CreatedAt = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
                             FasSchemeId = 9,
                             GrossHouseholdIncomeSnapshot = 1800m,
@@ -54828,7 +54838,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 10,
-                            ApplicationNumber = "FASAPP-2026-0010",
+                            ApplicationNumber = "FASAPP-2026-HRZNVEH",
                             ApprovedAt = new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc),
                             ApprovedByUserId = 3,
                             ApprovedTierId = 70,
@@ -54852,7 +54862,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 11,
-                            ApplicationNumber = "FASAPP-2026-0011",
+                            ApplicationNumber = "FASAPP-2026-2RU6KUP",
                             ApprovedAt = new DateTime(2026, 1, 12, 0, 0, 0, 0, DateTimeKind.Utc),
                             ApprovedByUserId = 3,
                             ApprovedTierId = 11,
@@ -54876,7 +54886,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 12,
-                            ApplicationNumber = "FASAPP-2026-0012",
+                            ApplicationNumber = "FASAPP-2026-8FT9PZ7",
                             ApprovedAt = new DateTime(2026, 1, 13, 0, 0, 0, 0, DateTimeKind.Utc),
                             ApprovedByUserId = 3,
                             ApprovedTierId = 72,
@@ -54900,7 +54910,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 13,
-                            ApplicationNumber = "FASAPP-2026-0013",
+                            ApplicationNumber = "FASAPP-2026-9TZSOXH",
                             ApprovedAt = new DateTime(2026, 1, 14, 0, 0, 0, 0, DateTimeKind.Utc),
                             ApprovedByUserId = 3,
                             ApprovedTierId = 13,
@@ -54924,7 +54934,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 14,
-                            ApplicationNumber = "FASAPP-2026-0014",
+                            ApplicationNumber = "FASAPP-2026-WX594T6",
                             ApprovedAt = new DateTime(2026, 1, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             ApprovedByUserId = 3,
                             ApprovedTierId = 74,
@@ -54948,7 +54958,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 15,
-                            ApplicationNumber = "FASAPP-2026-0015",
+                            ApplicationNumber = "FASAPP-2026-QFVL524",
                             ApprovedAt = new DateTime(2026, 1, 16, 0, 0, 0, 0, DateTimeKind.Utc),
                             ApprovedByUserId = 3,
                             ApprovedTierId = 15,
@@ -54972,7 +54982,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 16,
-                            ApplicationNumber = "FASAPP-2026-0016",
+                            ApplicationNumber = "FASAPP-2026-UFVEFR7",
                             CreatedAt = new DateTime(2026, 1, 17, 0, 0, 0, 0, DateTimeKind.Utc),
                             ExternalRejectionReason = "Income documents are incomplete.",
                             FasSchemeId = 16,
@@ -54992,7 +55002,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 17,
-                            ApplicationNumber = "FASAPP-2026-0017",
+                            ApplicationNumber = "FASAPP-2026-OY9KAQ7",
                             CreatedAt = new DateTime(2026, 1, 18, 0, 0, 0, 0, DateTimeKind.Utc),
                             ExternalRejectionReason = "Income documents are incomplete.",
                             FasSchemeId = 17,
@@ -55012,7 +55022,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 18,
-                            ApplicationNumber = "FASAPP-2026-0018",
+                            ApplicationNumber = "FASAPP-2026-1OGD09I",
                             CreatedAt = new DateTime(2026, 1, 19, 0, 0, 0, 0, DateTimeKind.Utc),
                             ExternalRejectionReason = "Income documents are incomplete.",
                             FasSchemeId = 18,
@@ -55032,7 +55042,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 19,
-                            ApplicationNumber = "FASAPP-2026-0019",
+                            ApplicationNumber = "FASAPP-2026-K96161O",
                             CreatedAt = new DateTime(2026, 1, 20, 0, 0, 0, 0, DateTimeKind.Utc),
                             ExternalRejectionReason = "Income documents are incomplete.",
                             FasSchemeId = 19,
@@ -55052,7 +55062,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 20,
-                            ApplicationNumber = "FASAPP-2026-0020",
+                            ApplicationNumber = "FASAPP-2026-B8I2GPL",
                             CreatedAt = new DateTime(2026, 1, 21, 0, 0, 0, 0, DateTimeKind.Utc),
                             ExternalRejectionReason = "Income documents are incomplete.",
                             FasSchemeId = 20,
@@ -55651,9 +55661,6 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsPerComponent")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime?>("PublishedAt")
                         .HasColumnType("datetime2");
 
@@ -55671,9 +55678,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SubsidyType")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -55704,13 +55708,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 1, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-99JIVES",
-                            SchemeName = "Seed FAS Scheme 01",
+                            SchemeName = "Primary Student Essentials Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -55719,13 +55721,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 1, 3, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-ETESJRO",
-                            SchemeName = "Seed FAS Scheme 02",
+                            SchemeName = "Primary Tuition Support Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -55734,13 +55734,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-BCKWR0F",
-                            SchemeName = "Seed FAS Scheme 03",
+                            SchemeName = "Primary Transport Support Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -55749,13 +55747,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 1, 5, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-XY25JRK",
-                            SchemeName = "Seed FAS Scheme 04",
+                            SchemeName = "Primary Learning Materials Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -55764,13 +55760,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-14PI50K",
-                            SchemeName = "Seed FAS Scheme 05",
+                            SchemeName = "Primary Digital Learning Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -55779,13 +55773,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-94EERHM",
-                            SchemeName = "Seed FAS Scheme 06",
+                            SchemeName = "Primary Meal Support Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -55794,13 +55786,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-Z2RKIYE",
-                            SchemeName = "Seed FAS Scheme 07",
+                            SchemeName = "Primary Examination Fee Support Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -55809,13 +55799,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-3ZNQSMN",
-                            SchemeName = "Seed FAS Scheme 08",
+                            SchemeName = "Primary Course Fee Relief Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -55824,13 +55812,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-T3E6QO3",
-                            SchemeName = "Seed FAS Scheme 09",
+                            SchemeName = "Primary Family Assistance Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -55839,13 +55825,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-5AED0DC",
-                            SchemeName = "Seed FAS Scheme 10",
+                            SchemeName = "Primary Bridging Support Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -55854,13 +55838,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 1, 12, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-7F2AA2W",
-                            SchemeName = "Seed FAS Scheme 11",
+                            SchemeName = "Primary Hardship Relief Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -55869,13 +55851,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 1, 13, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-MDR3M24",
-                            SchemeName = "Seed FAS Scheme 12",
+                            SchemeName = "Primary Community Education Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -55884,13 +55864,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 1, 14, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-X7LT4SX",
-                            SchemeName = "Seed FAS Scheme 13",
+                            SchemeName = "Secondary Student Essentials Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -55899,13 +55877,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 1, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-B2B3OO9",
-                            SchemeName = "Seed FAS Scheme 14",
+                            SchemeName = "Secondary Tuition Support Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -55914,13 +55890,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 1, 16, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-NYLMULZ",
-                            SchemeName = "Seed FAS Scheme 15",
+                            SchemeName = "Secondary Transport Support Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -55929,12 +55903,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             SchemeCode = "FAS-2026-ICZOJ17",
-                            SchemeName = "Seed FAS Scheme 16",
+                            SchemeName = "Secondary Learning Materials Scheme",
                             SchoolId = 1,
-                            Status = 1,
-                            SubsidyType = 2
+                            Status = 1
                         },
                         new
                         {
@@ -55943,12 +55915,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             SchemeCode = "FAS-2026-L682KDM",
-                            SchemeName = "Seed FAS Scheme 17",
+                            SchemeName = "Secondary Digital Learning Scheme",
                             SchoolId = 1,
-                            Status = 1,
-                            SubsidyType = 2
+                            Status = 1
                         },
                         new
                         {
@@ -55957,12 +55927,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             SchemeCode = "FAS-2026-QC170M4",
-                            SchemeName = "Seed FAS Scheme 18",
+                            SchemeName = "Secondary Meal Support Scheme",
                             SchoolId = 1,
-                            Status = 1,
-                            SubsidyType = 2
+                            Status = 1
                         },
                         new
                         {
@@ -55971,12 +55939,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             SchemeCode = "FAS-2026-PYAD7M3",
-                            SchemeName = "Seed FAS Scheme 19",
+                            SchemeName = "Secondary Examination Fee Support Scheme",
                             SchoolId = 1,
-                            Status = 1,
-                            SubsidyType = 2
+                            Status = 1
                         },
                         new
                         {
@@ -55985,12 +55951,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             SchemeCode = "FAS-2026-MLG12JM",
-                            SchemeName = "Seed FAS Scheme 20",
+                            SchemeName = "Secondary Course Fee Relief Scheme",
                             SchoolId = 1,
-                            Status = 1,
-                            SubsidyType = 2
+                            Status = 1
                         },
                         new
                         {
@@ -55999,12 +55963,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             SchemeCode = "FAS-2026-NR4ZOWZ",
-                            SchemeName = "Seed FAS Scheme 21",
+                            SchemeName = "Secondary Family Assistance Scheme",
                             SchoolId = 1,
-                            Status = 3,
-                            SubsidyType = 2
+                            Status = 3
                         },
                         new
                         {
@@ -56013,12 +55975,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             SchemeCode = "FAS-2026-M4KYXRX",
-                            SchemeName = "Seed FAS Scheme 22",
+                            SchemeName = "Secondary Bridging Support Scheme",
                             SchoolId = 1,
-                            Status = 3,
-                            SubsidyType = 2
+                            Status = 3
                         },
                         new
                         {
@@ -56027,12 +55987,10 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             SchemeCode = "FAS-2026-GZ0R7EF",
-                            SchemeName = "Seed FAS Scheme 23",
+                            SchemeName = "Secondary Hardship Relief Scheme",
                             SchoolId = 1,
-                            Status = 3,
-                            SubsidyType = 2
+                            Status = 3
                         },
                         new
                         {
@@ -56041,13 +55999,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 1, 25, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-PYNOHDE",
-                            SchemeName = "Seed FAS Scheme 24",
+                            SchemeName = "Secondary Community Education Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56056,13 +56012,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 1, 26, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-KND633Z",
-                            SchemeName = "Seed FAS Scheme 25",
+                            SchemeName = "Post-Secondary Student Essentials Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56071,13 +56025,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 1, 27, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-07EPV3J",
-                            SchemeName = "Seed FAS Scheme 26",
+                            SchemeName = "Post-Secondary Tuition Support Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56086,13 +56038,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 1, 28, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-FD1GSLY",
-                            SchemeName = "Seed FAS Scheme 27",
+                            SchemeName = "Post-Secondary Transport Support Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56101,13 +56051,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 1, 29, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-A6Q5DL4",
-                            SchemeName = "Seed FAS Scheme 28",
+                            SchemeName = "Post-Secondary Learning Materials Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56116,13 +56064,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 1, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-6I8DUHA",
-                            SchemeName = "Seed FAS Scheme 29",
+                            SchemeName = "Post-Secondary Digital Learning Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56131,13 +56077,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 1, 31, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-ZDFM1CJ",
-                            SchemeName = "Seed FAS Scheme 30",
+                            SchemeName = "Post-Secondary Meal Support Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56146,13 +56090,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 2, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-18WS9SO",
-                            SchemeName = "Seed FAS Scheme 31",
+                            SchemeName = "Post-Secondary Examination Fee Support Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56161,13 +56103,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 2, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-4BU2HMW",
-                            SchemeName = "Seed FAS Scheme 32",
+                            SchemeName = "Post-Secondary Course Fee Relief Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56176,13 +56116,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 2, 3, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-2H4T6CQ",
-                            SchemeName = "Seed FAS Scheme 33",
+                            SchemeName = "Post-Secondary Family Assistance Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56191,13 +56129,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 2, 4, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-7LJJC53",
-                            SchemeName = "Seed FAS Scheme 34",
+                            SchemeName = "Post-Secondary Bridging Support Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56206,13 +56142,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 2, 5, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-FQ40IYS",
-                            SchemeName = "Seed FAS Scheme 35",
+                            SchemeName = "Post-Secondary Hardship Relief Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56221,13 +56155,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 2, 6, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-WNMI04D",
-                            SchemeName = "Seed FAS Scheme 36",
+                            SchemeName = "Post-Secondary Community Education Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56236,13 +56168,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 2, 7, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-8YOA8J5",
-                            SchemeName = "Seed FAS Scheme 37",
+                            SchemeName = "Full-Time Student Essentials Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56251,13 +56181,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 2, 8, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-F5C5H8Q",
-                            SchemeName = "Seed FAS Scheme 38",
+                            SchemeName = "Full-Time Tuition Support Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56266,13 +56194,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-WBI1M2R",
-                            SchemeName = "Seed FAS Scheme 39",
+                            SchemeName = "Full-Time Transport Support Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56281,13 +56207,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-557IYXH",
-                            SchemeName = "Seed FAS Scheme 40",
+                            SchemeName = "Full-Time Learning Materials Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56296,13 +56220,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-PG813XQ",
-                            SchemeName = "Seed FAS Scheme 41",
+                            SchemeName = "Full-Time Digital Learning Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56311,13 +56233,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 2, 12, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-I6J2I8R",
-                            SchemeName = "Seed FAS Scheme 42",
+                            SchemeName = "Full-Time Meal Support Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56326,13 +56246,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 2, 13, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-K2PZ04U",
-                            SchemeName = "Seed FAS Scheme 43",
+                            SchemeName = "Full-Time Examination Fee Support Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56341,13 +56259,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 2, 14, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-8RLS525",
-                            SchemeName = "Seed FAS Scheme 44",
+                            SchemeName = "Full-Time Course Fee Relief Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56356,13 +56272,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 2, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-549GJC5",
-                            SchemeName = "Seed FAS Scheme 45",
+                            SchemeName = "Full-Time Family Assistance Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56371,13 +56285,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 2, 16, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-BA22U8Z",
-                            SchemeName = "Seed FAS Scheme 46",
+                            SchemeName = "Full-Time Bridging Support Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56386,13 +56298,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 2, 17, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-3K472GX",
-                            SchemeName = "Seed FAS Scheme 47",
+                            SchemeName = "Full-Time Hardship Relief Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56401,13 +56311,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 2, 18, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-8NS1G9W",
-                            SchemeName = "Seed FAS Scheme 48",
+                            SchemeName = "Full-Time Community Education Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56416,13 +56324,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 2, 19, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-2PUZCYD",
-                            SchemeName = "Seed FAS Scheme 49",
+                            SchemeName = "Low-Income Student Essentials Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56431,13 +56337,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 2, 20, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-1V9CJ5T",
-                            SchemeName = "Seed FAS Scheme 50",
+                            SchemeName = "Low-Income Tuition Support Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56446,13 +56350,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 2, 21, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-U33PLCY",
-                            SchemeName = "Seed FAS Scheme 51",
+                            SchemeName = "Low-Income Transport Support Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56461,13 +56363,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 2, 22, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-7Q75CVE",
-                            SchemeName = "Seed FAS Scheme 52",
+                            SchemeName = "Low-Income Learning Materials Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56476,13 +56376,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 2, 23, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-QUBAMWD",
-                            SchemeName = "Seed FAS Scheme 53",
+                            SchemeName = "Low-Income Digital Learning Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56491,13 +56389,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 2, 24, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-6CWEG3J",
-                            SchemeName = "Seed FAS Scheme 54",
+                            SchemeName = "Low-Income Meal Support Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56506,13 +56402,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 2, 25, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-M3EU0F4",
-                            SchemeName = "Seed FAS Scheme 55",
+                            SchemeName = "Low-Income Examination Fee Support Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56521,13 +56415,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 2, 26, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-1259CWR",
-                            SchemeName = "Seed FAS Scheme 56",
+                            SchemeName = "Low-Income Course Fee Relief Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56536,13 +56428,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 2, 27, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-JDAMPQ2",
-                            SchemeName = "Seed FAS Scheme 57",
+                            SchemeName = "Low-Income Family Assistance Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56551,13 +56441,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 2, 28, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-CRDWLCK",
-                            SchemeName = "Seed FAS Scheme 58",
+                            SchemeName = "Low-Income Bridging Support Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56566,13 +56454,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 3, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-2YED0P1",
-                            SchemeName = "Seed FAS Scheme 59",
+                            SchemeName = "Low-Income Hardship Relief Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         },
                         new
                         {
@@ -56581,13 +56467,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             Description = "Seed financial assistance scheme.",
                             DurationInMonths = 12,
                             IsDeleted = false,
-                            IsPerComponent = false,
                             PublishedAt = new DateTime(2026, 3, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             SchemeCode = "FAS-2026-Y1RBVLN",
-                            SchemeName = "Seed FAS Scheme 60",
+                            SchemeName = "Low-Income Community Education Scheme",
                             SchoolId = 1,
-                            Status = 2,
-                            SubsidyType = 2
+                            Status = 2
                         });
                 });
 
@@ -60249,17 +60133,32 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsPerComponent")
+                        .HasColumnType("bit");
+
                     b.Property<decimal?>("MaxGrossHouseholdIncome")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal?>("MaxPerCapitaIncome")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<decimal?>("MinGrossHouseholdIncome")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("MinPerCapitaIncome")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<decimal?>("MiscFeeSubsidyValue")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("SubsidyType")
+                        .HasColumnType("int");
+
                     b.Property<decimal?>("SubsidyValue")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("TierIncomeBasis")
+                        .HasColumnType("int");
 
                     b.Property<string>("TierName")
                         .IsRequired()
@@ -60282,7 +60181,7 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.ToTable("FasSchemeTier", t =>
                         {
-                            t.HasCheckConstraint("CK_FasSchemeTier_Amounts_NonNegative", "([MaxPerCapitaIncome] IS NULL OR [MaxPerCapitaIncome] >= 0) AND ([MaxGrossHouseholdIncome] IS NULL OR [MaxGrossHouseholdIncome] >= 0) AND ([SubsidyValue] IS NULL OR [SubsidyValue] >= 0) AND ([CourseFeeSubsidyValue] IS NULL OR [CourseFeeSubsidyValue] >= 0) AND ([MiscFeeSubsidyValue] IS NULL OR [MiscFeeSubsidyValue] >= 0)");
+                            t.HasCheckConstraint("CK_FasSchemeTier_Amounts_NonNegative", "[TierIncomeBasis] IN (1, 2, 3) AND ([MinPerCapitaIncome] IS NULL OR [MinPerCapitaIncome] >= 0) AND ([MaxPerCapitaIncome] IS NULL OR [MaxPerCapitaIncome] >= 0) AND ([MinGrossHouseholdIncome] IS NULL OR [MinGrossHouseholdIncome] >= 0) AND ([MaxGrossHouseholdIncome] IS NULL OR [MaxGrossHouseholdIncome] >= 0) AND ([MinPerCapitaIncome] IS NULL OR [MaxPerCapitaIncome] IS NULL OR [MinPerCapitaIncome] < [MaxPerCapitaIncome]) AND ([MinGrossHouseholdIncome] IS NULL OR [MaxGrossHouseholdIncome] IS NULL OR [MinGrossHouseholdIncome] < [MaxGrossHouseholdIncome]) AND ([SubsidyValue] IS NULL OR [SubsidyValue] >= 0) AND ([CourseFeeSubsidyValue] IS NULL OR [CourseFeeSubsidyValue] >= 0) AND ([MiscFeeSubsidyValue] IS NULL OR [MiscFeeSubsidyValue] >= 0)");
 
                             t.HasCheckConstraint("CK_FasSchemeTier_DisplayOrder_NonNegative", "[DisplayOrder] >= 0");
                         });
@@ -60295,8 +60194,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 1,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60306,8 +60209,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 1,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60317,8 +60223,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 2,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60328,8 +60238,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 2,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60339,8 +60252,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 3,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60350,8 +60267,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 3,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60361,8 +60281,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 4,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60372,8 +60296,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 4,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60383,8 +60310,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 5,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60394,8 +60325,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 5,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60405,8 +60339,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 6,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60416,8 +60354,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 6,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60427,8 +60368,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 7,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60438,8 +60383,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 7,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60449,8 +60397,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 8,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60460,8 +60412,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 8,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60471,8 +60426,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 9,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60482,8 +60441,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 9,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60493,8 +60455,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 10,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60504,8 +60470,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 10,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60515,8 +60484,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 11,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60526,8 +60499,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 11,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60537,8 +60513,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 12,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60548,8 +60528,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 12,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60559,8 +60542,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 13,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60570,8 +60557,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 13,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60581,8 +60571,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 14,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60592,8 +60586,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 14,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60603,8 +60600,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 15,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60614,8 +60615,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 15,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60625,8 +60629,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 16,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60636,8 +60644,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 16,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60647,8 +60658,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 17,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60658,8 +60673,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 17,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60669,8 +60687,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 18,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60680,8 +60702,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 18,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60691,8 +60716,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 19,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60702,8 +60731,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 19,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60713,8 +60745,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 20,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60724,8 +60760,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 20,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60735,8 +60774,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 21,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60746,8 +60789,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 21,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60757,8 +60803,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 22,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60768,8 +60818,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 22,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60779,8 +60832,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 23,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60790,8 +60847,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 23,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60801,8 +60861,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 24,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60812,8 +60876,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 24,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60823,8 +60890,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 25,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60834,8 +60905,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 25,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60845,8 +60919,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 26,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60856,8 +60934,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 26,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60867,8 +60948,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 27,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60878,8 +60963,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 27,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60889,8 +60977,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 28,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60900,8 +60992,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 28,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60911,8 +61006,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 29,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60922,8 +61021,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 29,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60933,8 +61035,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 30,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60944,8 +61050,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 30,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60955,8 +61064,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 31,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60966,8 +61079,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 31,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60977,8 +61093,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 32,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60988,8 +61108,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 32,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60999,8 +61122,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 33,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61010,8 +61137,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 33,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61021,8 +61151,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 34,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61032,8 +61166,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 34,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61043,8 +61180,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 35,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61054,8 +61195,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 35,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61065,8 +61209,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 36,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61076,8 +61224,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 36,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61087,8 +61238,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 37,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61098,8 +61253,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 37,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61109,8 +61267,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 38,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61120,8 +61282,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 38,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61131,8 +61296,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 39,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61142,8 +61311,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 39,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61153,8 +61325,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 40,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61164,8 +61340,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 40,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61175,8 +61354,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 41,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61186,8 +61369,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 41,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61197,8 +61383,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 42,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61208,8 +61398,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 42,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61219,8 +61412,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 43,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61230,8 +61427,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 43,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61241,8 +61441,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 44,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61252,8 +61456,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 44,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61263,8 +61470,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 45,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61274,8 +61485,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 45,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61285,8 +61499,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 46,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61296,8 +61514,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 46,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61307,8 +61528,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 47,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61318,8 +61543,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 47,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61329,8 +61557,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 48,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61340,8 +61572,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 48,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61351,8 +61586,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 49,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61362,8 +61601,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 49,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61373,8 +61615,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 50,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61384,8 +61630,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 50,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61395,8 +61644,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 51,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61406,8 +61659,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 51,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61417,8 +61673,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 52,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61428,8 +61688,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 52,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61439,8 +61702,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 53,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61450,8 +61717,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 53,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61461,8 +61731,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 54,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61472,8 +61746,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 54,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61483,8 +61760,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 55,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61494,8 +61775,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 55,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61505,8 +61789,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 56,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61516,8 +61804,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 56,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61527,8 +61818,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 57,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61538,8 +61833,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 57,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61549,8 +61847,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 58,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61560,8 +61862,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 58,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61571,8 +61876,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 59,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61582,8 +61891,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 59,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61593,8 +61905,12 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 1,
                             FasSchemeId = 60,
                             IsDeleted = false,
+                            IsPerComponent = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
+                            SubsidyType = 2,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61604,8 +61920,11 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 60,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            IsPerComponent = false,
+                            MinPerCapitaIncome = 500m,
+                            SubsidyType = 2,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         });
                 });

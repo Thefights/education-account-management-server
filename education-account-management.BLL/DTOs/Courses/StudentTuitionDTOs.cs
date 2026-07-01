@@ -28,7 +28,7 @@ namespace DTOs.Courses
         public string CourseName { get; set; } = string.Empty;
         public string? CourseDescription { get; set; }
         public DateTime PaymentDueDate { get; set; }
-        public string PaymentStatus { get; set; } = string.Empty; // "Paid", "Due", "Overdue"
+        public ChargeStatus Status { get; set; }
         
         public decimal CourseFee { get; set; }
         public decimal MiscFee { get; set; }
@@ -39,12 +39,8 @@ namespace DTOs.Courses
         public decimal PaidAmount { get; set; }
         public decimal RemainingAmount { get; set; }
         public decimal TaxRate { get; set; }
-        public bool IsInstallment { get; set; }
-        public int? CurrentInstallmentNumber { get; set; }
-        public int? TotalInstallments { get; set; }
         public List<StudentTuitionInstallmentDTO> Installments { get; set; } = [];
         public string? AppliedFasSchemeName { get; set; }
         public string? AppliedFasTierName { get; set; }
-        public bool HasFasApplication { get; set; }
     }
 }

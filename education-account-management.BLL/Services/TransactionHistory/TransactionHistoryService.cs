@@ -29,7 +29,7 @@ namespace Services.TransactionHistory
                 throw new DataNotFoundException(typeof(EducationAccount), educationAccountId);
             }
 
-            return await GetAllPaginatedAsync(
+            return await GetTransactionHistoryPaginatedAsync(
                 filterDTO,
                 BuildAccountSearchPredicate(educationAccountId, filterDTO.Search),
                 cancellationToken);
@@ -52,10 +52,42 @@ namespace Services.TransactionHistory
                 throw new DataNotFoundException("Education account for the current account holder was not found.");
             }
 
-            return await GetAllPaginatedAsync(
+            return await GetTransactionHistoryPaginatedAsync(
                 filterDTO,
                 BuildAccountSearchPredicate(educationAccountId, filterDTO.Search),
                 cancellationToken);
+        }
+
+        private async Task<PaginationResult<EducationCreditTransactionDTO>> GetTransactionHistoryPaginatedAsync(
+            EducationCreditTransactionFilterDTO filterDTO,
+            Expression<Func<EducationCreditTransaction, bool>> predicate,
+            CancellationToken cancellationToken)
+        {
+            var pageSize = Math.Clamp(filterDTO.PageSize, 1, 100);
+            var (total, items) = await _repository.GetProjectedPaginatedAsync(
+                projection: query => query.Select(transaction => new EducationCreditTransactionDTO
+                {
+                    TransactionCode = transaction.TransactionCode,
+                    Type = transaction.Type.ToString(),
+                    Direction = transaction.Direction.ToString(),
+                    PaymentMethod = transaction.Payment != null ? transaction.Payment.PaymentMethod : null,
+                    Amount = transaction.Amount,
+                    BalanceBefore = transaction.BalanceBefore,
+                    BalanceAfter = transaction.BalanceAfter,
+                    Description = transaction.Description,
+                    CreatedAt = transaction.CreatedAt
+                }),
+                filterExpr: predicate,
+                filterStr: filterDTO.Filter,
+                search: filterDTO.Search,
+                searchFields: filterDTO.SearchFields,
+                order: filterDTO.SortExpression,
+                page: filterDTO.Page,
+                pageSize: pageSize,
+                includes: null,
+                cancellationToken: cancellationToken);
+
+            return new PaginationResult<EducationCreditTransactionDTO>(total, pageSize, items);
         }
 
         private static Expression<Func<EducationCreditTransaction, bool>> BuildAccountSearchPredicate(

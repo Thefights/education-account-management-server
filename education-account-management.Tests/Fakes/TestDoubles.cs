@@ -72,11 +72,16 @@ internal sealed class FakeStripeCheckoutGateway : IStripeCheckoutGateway
     public int CreateCallCount { get; private set; }
     public int ExpireCallCount { get; private set; }
     public SessionCreateOptions? LastCreateOptions { get; private set; }
+    public Exception? CreateException { get; set; }
+    public Exception? GetException { get; set; }
+    public bool CompletePaymentOnExpire { get; set; }
 
     public Task<Session> CreateAsync(
         SessionCreateOptions options,
         CancellationToken cancellationToken = default)
     {
+        if (CreateException != null) throw CreateException;
+
         CreateCallCount++;
         LastCreateOptions = options;
         var session = new Session
@@ -95,6 +100,8 @@ internal sealed class FakeStripeCheckoutGateway : IStripeCheckoutGateway
         string sessionId,
         CancellationToken cancellationToken = default)
     {
+        if (GetException != null) throw GetException;
+
         return Task.FromResult(_sessions[sessionId]);
     }
 
@@ -104,7 +111,15 @@ internal sealed class FakeStripeCheckoutGateway : IStripeCheckoutGateway
     {
         ExpireCallCount++;
         var session = _sessions[sessionId];
-        session.Status = "expired";
+        if (CompletePaymentOnExpire)
+        {
+            session.PaymentStatus = "paid";
+            session.Status = "complete";
+        }
+        else
+        {
+            session.Status = "expired";
+        }
         return Task.FromResult(session);
     }
 

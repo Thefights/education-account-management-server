@@ -48,6 +48,108 @@ public class LifecycleChargeGenerationTests
     }
 
     [Fact]
+    public async Task ProcessDateTransitions_AppliesBestApprovedFasApplicationToGeneratedCharge()
+    {
+        await using var db = new TestDatabase();
+        var graph = await db.CreateAccountGraphAsync("1000005");
+        var course = await db.CreateCourseAsync(graph, "LC00005");
+        await db.CreateEnrollmentAsync(graph, course);
+
+        var lowerScheme = new FasScheme
+        {
+            SchoolId = graph.SchoolId,
+            Status = FasSchemeStatus.Inactive,
+            SchemeCode = "FAS-2026-LOW",
+            SchemeName = "Inactive approved lower FAS",
+            DurationInMonths = 12,
+            SchemeCourses = [new FasSchemeCourse { CourseId = course.Id }]
+        };
+        var lowerTier = new FasSchemeTier
+        {
+            FasScheme = lowerScheme,
+            TierName = "Lower",
+            TierIncomeBasis = FasTierIncomeBasis.PerCapitaIncome,
+            MinPerCapitaIncome = 0m,
+            MaxPerCapitaIncome = null,
+            SubsidyType = FasSubsidyType.FixedAmount,
+            SubsidyValue = 10m,
+            DisplayOrder = 1
+        };
+        var higherScheme = new FasScheme
+        {
+            SchoolId = graph.SchoolId,
+            Status = FasSchemeStatus.Inactive,
+            SchemeCode = "FAS-2026-HIGH",
+            SchemeName = "Inactive approved higher FAS",
+            DurationInMonths = 12,
+            SchemeCourses = [new FasSchemeCourse { CourseId = course.Id }]
+        };
+        var higherTier = new FasSchemeTier
+        {
+            FasScheme = higherScheme,
+            TierName = "Higher",
+            TierIncomeBasis = FasTierIncomeBasis.PerCapitaIncome,
+            MinPerCapitaIncome = 0m,
+            MaxPerCapitaIncome = null,
+            SubsidyType = FasSubsidyType.FixedAmount,
+            SubsidyValue = 30m,
+            DisplayOrder = 1
+        };
+        var lowerApplication = new FasApplication
+        {
+            FasScheme = lowerScheme,
+            SchoolStudentId = graph.SchoolStudentId,
+            ApplicationNumber = "FASAPP-LOW",
+            Status = FasApplicationStatus.Approved,
+            ApprovedAt = DateTime.UtcNow.AddDays(-2),
+            ValidityStartDate = DateTime.UtcNow.Date.AddDays(-10),
+            ValidityEndDate = DateTime.UtcNow.Date.AddDays(10),
+            ApprovedTier = lowerTier,
+            StudentAgeSnapshot = 16,
+            StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen,
+            GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen,
+            GrossHouseholdIncomeSnapshot = 1000m,
+            HouseholdMemberCountSnapshot = 1,
+            PerCapitaIncomeSnapshot = 1000m,
+            RecommendationReason = "test"
+        };
+        var higherApplication = new FasApplication
+        {
+            FasScheme = higherScheme,
+            SchoolStudentId = graph.SchoolStudentId,
+            ApplicationNumber = "FASAPP-HIGH",
+            Status = FasApplicationStatus.Approved,
+            ApprovedAt = DateTime.UtcNow.AddDays(-1),
+            ValidityStartDate = DateTime.UtcNow.Date.AddDays(-10),
+            ValidityEndDate = DateTime.UtcNow.Date.AddDays(10),
+            ApprovedTier = higherTier,
+            StudentAgeSnapshot = 16,
+            StudentNationalitySnapshot = NationalityCategory.SingaporeCitizen,
+            GuardianNationalitySnapshot = NationalityCategory.SingaporeCitizen,
+            GrossHouseholdIncomeSnapshot = 1000m,
+            HouseholdMemberCountSnapshot = 1,
+            PerCapitaIncomeSnapshot = 1000m,
+            RecommendationReason = "test"
+        };
+        db.Context.AddRange(lowerApplication, higherApplication);
+        await db.Context.SaveChangesAsync();
+        db.Context.ChangeTracker.Clear();
+
+        var service = db.CreateCourseLifecycleService();
+
+        await service.ProcessDateTransitionsAsync(DateTime.UtcNow);
+
+        var charge = await db.Context.Charge.SingleAsync();
+        Assert.Equal(30m, charge.SubsidyAmount);
+        Assert.Equal(90m, charge.NetAmount);
+        Assert.Equal(90m, charge.RemainingAmount);
+        Assert.Equal("Inactive approved higher FAS", charge.AppliedFasSchemeNameSnapshot);
+        Assert.Equal("Higher", charge.AppliedFasTierNameSnapshot);
+        Assert.Equal(FasSubsidyType.FixedAmount, charge.AppliedFasSubsidyTypeSnapshot);
+        Assert.Equal(higherApplication.Id, charge.AppliedFasApplicationId);
+    }
+
+    [Fact]
     public async Task ProcessDateTransitions_WhenCourseCloses_MarksUnpaidChargesOverdue()
     {
         await using var db = new TestDatabase();

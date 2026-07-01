@@ -85,9 +85,41 @@ namespace DTOs.Courses
 
         public string? Status { get; set; }
 
-        public string? SubsidyType { get; set; }
+    }
 
-        public bool IsPerComponent { get; set; }
+    public class StudentCourseDetailDTO
+    {
+        public int Id { get; set; }
+
+        public string CourseCode { get; set; } = string.Empty;
+
+        public string CourseName { get; set; } = string.Empty;
+
+        public string? Status { get; set; }
+
+        public DateTime EnrollmentDeadline { get; set; }
+
+        public DateTime StartDate { get; set; }
+
+        public DateTime EndDate { get; set; }
+
+        public decimal CourseFeeAmount { get; set; }
+
+        public decimal MiscFeeAmount { get; set; }
+
+        public decimal GstAmount { get; set; }
+
+        public decimal GrossAmount { get; set; }
+
+        public decimal FasDeductionAmount { get; set; }
+
+        public decimal TotalToPay { get; set; }
+
+        public string? AppliedFasSchemeName { get; set; }
+
+        public string? AppliedFasTierName { get; set; }
+
+        public List<GetCourseFasSchemeDTO> ApplicableFasSchemes { get; set; } = [];
     }
 
     public class AssignCourseStudentsDTO

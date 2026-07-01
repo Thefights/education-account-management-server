@@ -75,8 +75,8 @@ namespace Services.FasSchemes
             {
                 if (condition.ValueNumber is null or < 0)
                     errors[$"{path}.{nameof(condition.ValueNumber)}"] = "A non-negative numeric value is required.";
-                if (condition.CountryId != null)
-                    errors[$"{path}.{nameof(condition.CountryId)}"] = "Country ID must be null for numeric fields.";
+                if (condition.Nationality != null)
+                    errors[$"{path}.{nameof(condition.Nationality)}"] = "Nationality must be null for numeric fields.";
                 if (condition.Field == FasConditionField.StudentAge && condition.ValueNumber.HasValue && condition.ValueNumber.Value % 1 != 0)
                     errors[$"{path}.{nameof(condition.ValueNumber)}"] = "Age must be a whole number.";
 
@@ -96,11 +96,11 @@ namespace Services.FasSchemes
                 return;
             }
 
-            // Nationality fields: StudentNationality or ParentNationality
+            // Nationality fields: StudentNationality or GuardianNationality
             if (condition.Operator is not FasConditionOperator.Equal and not FasConditionOperator.NotEqual)
                 errors[$"{path}.{nameof(condition.Operator)}"] = "Nationality fields only support Equal or NotEqual.";
-            if (condition.CountryId is null or <= 0)
-                errors[$"{path}.{nameof(condition.CountryId)}"] = "A valid Country ID is required.";
+            if (!condition.Nationality.HasValue || !Enum.IsDefined(condition.Nationality.Value))
+                errors[$"{path}.{nameof(condition.Nationality)}"] = "Nationality is required.";
             if (condition.ValueNumber != null || condition.ValueNumberTo != null)
                 errors[$"{path}.{nameof(condition.ValueNumber)}"] = "Numeric values must be null for nationality fields.";
         }

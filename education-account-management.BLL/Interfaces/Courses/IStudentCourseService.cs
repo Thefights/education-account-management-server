@@ -9,5 +9,9 @@ namespace Interfaces.Courses
         Task<PaginationResult<GetCourseDTO>> GetMyCoursesPaginatedAsync(
             StudentCourseFilterDTO filter, 
             CancellationToken cancellationToken = default);
+
+        Task<StudentCourseDetailDTO> GetMyCourseDetailAsync(
+            int courseId,
+            CancellationToken cancellationToken = default);
     }
 }

@@ -1,5 +1,6 @@
 using Interfaces.Audit;
 using Interfaces.Courses;
+using Helpers.FasSchemes;
 using Services.Courses.Utils;
 
 namespace Services.Courses
@@ -16,6 +17,8 @@ namespace Services.Courses
             unitOfWork.Repository<ChargeInstallment>();
         private readonly IGenericRepository<ApplicationSetting> _settingRepository =
             unitOfWork.Repository<ApplicationSetting>();
+        private readonly IGenericRepository<FasApplication> _fasApplicationRepository =
+            unitOfWork.Repository<FasApplication>();
         private readonly IAuditLogWriter _auditLogWriter = auditLogWriter;
 
         public async Task<int> ProcessDateTransitionsAsync(
@@ -190,7 +193,7 @@ namespace Services.Courses
                     var generatedChargeCount = 0;
                     if (previousStatus == CourseStatus.Enrolling)
                     {
-                        generatedChargeCount = await GenerateMissingChargesAsync(course, token);
+                        generatedChargeCount = await GenerateMissingChargesAsync(course, utcNow, token);
                     }
 
                     var overdueCharges = targetStatus == CourseStatus.Closed
@@ -238,6 +241,7 @@ namespace Services.Courses
 
         private async Task<int> GenerateMissingChargesAsync(
             Course course,
+            DateTime utcNow,
             CancellationToken cancellationToken)
         {
             if (course.Status is CourseStatus.Draft or CourseStatus.Enrolling)
@@ -247,6 +251,7 @@ namespace Services.Courses
             }
 
             var generatedCount = 0;
+            var taxRate = await GetTaxRateAsync(cancellationToken);
             foreach (var enrollment in course.Enrollments)
             {
                 if (enrollment.Charge != null
@@ -256,7 +261,6 @@ namespace Services.Courses
                     continue;
                 }
 
-                var taxRate = await GetTaxRateAsync(cancellationToken);
                 var taxAmount = CourseFeeCalculator.CalculateTaxAmount(
                     course.CourseFeeAmount,
                     course.MiscFeeAmount,
@@ -264,13 +268,30 @@ namespace Services.Courses
                 var grossAmount = course.CourseFeeAmount
                     + course.MiscFeeAmount
                     + taxAmount;
+                var selectedFasApplication = await SelectBestFasApplicationAsync(
+                    enrollment.SchoolStudentId,
+                    course.Id,
+                    course.CourseFeeAmount,
+                    course.MiscFeeAmount,
+                    taxRate,
+                    grossAmount,
+                    utcNow.Date,
+                    cancellationToken);
+                var subsidyResult = FasChargeSubsidyCalculator.Calculate(
+                    course.CourseFeeAmount,
+                    course.MiscFeeAmount,
+                    taxRate,
+                    grossAmount,
+                    selectedFasApplication);
+
                 var charge = new Charge
                 {
                     EnrollmentId = enrollment.Id,
-                    Status = grossAmount == 0m ? ChargeStatus.Paid : ChargeStatus.PendingPayment,
+                    Status = subsidyResult.NetAmount == 0m ? ChargeStatus.Paid : ChargeStatus.PendingPayment,
                     SchoolNameSnapshot = course.School.SchoolName,
                     CourseCodeSnapshot = course.CourseCode,
                     CourseNameSnapshot = course.CourseName,
+                    CourseDescriptionSnapshot = enrollment.CourseDescriptionSnapshot,
                     CourseStartDateSnapshot = course.StartDate,
                     CourseEndDateSnapshot = course.EndDate,
                     CourseFeeAmountSnapshot = course.CourseFeeAmount,
@@ -278,10 +299,18 @@ namespace Services.Courses
                     GstAmountSnapshot = taxAmount,
                     TaxRateSnapshot = taxRate,
                     GrossAmount = grossAmount,
-                    SubsidyAmount = 0m,
-                    NetAmount = grossAmount,
+                    SubsidyAmount = subsidyResult.SubsidyAmount,
+                    NetAmount = subsidyResult.NetAmount,
                     PaidAmount = 0m,
-                    RemainingAmount = grossAmount
+                    RemainingAmount = subsidyResult.NetAmount,
+                    AppliedFasApplicationId = selectedFasApplication?.Id,
+                    AppliedFasSchemeNameSnapshot = selectedFasApplication?.FasScheme.SchemeName,
+                    AppliedFasTierNameSnapshot = selectedFasApplication?.ApprovedTier?.TierName,
+                    AppliedFasSubsidyTypeSnapshot = selectedFasApplication?.ApprovedTier?.SubsidyType,
+                    AppliedFasIsPerComponentSnapshot = selectedFasApplication?.ApprovedTier?.IsPerComponent ?? false,
+                    AppliedFasSubsidyValueSnapshot = selectedFasApplication?.ApprovedTier?.SubsidyValue,
+                    AppliedFasCourseFeeSubsidyValueSnapshot = selectedFasApplication?.ApprovedTier?.CourseFeeSubsidyValue,
+                    AppliedFasMiscFeeSubsidyValueSnapshot = selectedFasApplication?.ApprovedTier?.MiscFeeSubsidyValue
                 };
 
                 charge.TryValidate();
@@ -291,6 +320,48 @@ namespace Services.Courses
             }
 
             return generatedCount;
+        }
+
+        private async Task<FasApplication?> SelectBestFasApplicationAsync(
+            int schoolStudentId,
+            int courseId,
+            decimal courseFee,
+            decimal miscFee,
+            decimal taxRate,
+            decimal grossAmount,
+            DateTime effectiveDate,
+            CancellationToken cancellationToken)
+        {
+            var candidates = await _fasApplicationRepository.Query()
+                .Include(application => application.FasScheme)
+                    .ThenInclude(scheme => scheme.SchemeCourses)
+                .Include(application => application.ApprovedTier)
+                .Where(application =>
+                    application.SchoolStudentId == schoolStudentId
+                    && application.Status == FasApplicationStatus.Approved
+                    && application.ApprovedTierId.HasValue
+                    && application.ValidityStartDate.HasValue
+                    && application.ValidityStartDate.Value.Date <= effectiveDate
+                    && (!application.ValidityEndDate.HasValue || application.ValidityEndDate.Value.Date >= effectiveDate)
+                    && application.FasScheme.SchemeCourses.Any(link => link.CourseId == courseId))
+                .ToListAsync(cancellationToken);
+
+            return candidates
+                .Select(application => new
+                {
+                    Application = application,
+                    SubsidyAmount = FasChargeSubsidyCalculator.CalculateSubsidyOnly(
+                        courseFee,
+                        miscFee,
+                        taxRate,
+                        grossAmount,
+                        application)
+                })
+                .OrderByDescending(item => item.SubsidyAmount)
+                .ThenBy(item => item.Application.ApprovedAt)
+                .ThenBy(item => item.Application.Id)
+                .Select(item => item.Application)
+                .FirstOrDefault();
         }
 
         private async Task<decimal> GetTaxRateAsync(CancellationToken cancellationToken)

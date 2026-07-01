@@ -4,8 +4,13 @@ namespace DTOs.FasSchemes
     {
         public int Id { get; set; }
         public string TierName { get; set; } = string.Empty;
+        public FasTierIncomeBasis TierIncomeBasis { get; set; }
+        public decimal? MinPerCapitaIncome { get; set; }
         public decimal? MaxPerCapitaIncome { get; set; }
+        public decimal? MinGrossHouseholdIncome { get; set; }
         public decimal? MaxGrossHouseholdIncome { get; set; }
+        public FasSubsidyType SubsidyType { get; set; }
+        public bool IsPerComponent { get; set; }
         public decimal? SubsidyValue { get; set; }
         public decimal? CourseFeeSubsidyValue { get; set; }
         public decimal? MiscFeeSubsidyValue { get; set; }
@@ -17,8 +22,16 @@ namespace DTOs.FasSchemes
         [MessageRequired, MessageMaxLength(100)]
         public string TierName { get; set; } = string.Empty;
 
+        [EnumDefined]
+        public FasTierIncomeBasis TierIncomeBasis { get; set; } = FasTierIncomeBasis.PerCapitaIncome;
+
+        public decimal? MinPerCapitaIncome { get; set; }
         public decimal? MaxPerCapitaIncome { get; set; }
+        public decimal? MinGrossHouseholdIncome { get; set; }
         public decimal? MaxGrossHouseholdIncome { get; set; }
+        [EnumDefined]
+        public FasSubsidyType SubsidyType { get; set; } = FasSubsidyType.Percent;
+        public bool IsPerComponent { get; set; }
         public decimal? SubsidyValue { get; set; }
         public decimal? CourseFeeSubsidyValue { get; set; }
         public decimal? MiscFeeSubsidyValue { get; set; }
