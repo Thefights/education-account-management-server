@@ -66,10 +66,7 @@ namespace Persistence.Seeding
                     Status = status,
                     DueDate = GetDueDate(courseId, 1),
                     Amount = netAmount,
-                    CreatedAt = createdAt,
-                    BecameOverdueAt = status == ChargeInstallmentStatus.Overdue
-                        ? new DateTime(2026, 6, 30, 0, 0, 0, DateTimeKind.Utc)
-                        : null
+                    CreatedAt = createdAt
                 });
 
                 return;
@@ -92,10 +89,7 @@ namespace Persistence.Seeding
                     Status = status,
                     DueDate = GetDueDate(courseId, installmentNumber),
                     Amount = amount,
-                    CreatedAt = createdAt,
-                    BecameOverdueAt = status == ChargeInstallmentStatus.Overdue
-                        ? new DateTime(2026, 6, 30, 0, 0, 0, DateTimeKind.Utc).AddDays(installmentNumber)
-                        : null
+                    CreatedAt = createdAt
                 });
             }
         }

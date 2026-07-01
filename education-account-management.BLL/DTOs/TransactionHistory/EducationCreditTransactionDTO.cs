@@ -1,3 +1,5 @@
+using Enums;
+
 namespace DTOs.TransactionHistory
 {
     public class EducationCreditTransactionDTO
@@ -7,6 +9,8 @@ namespace DTOs.TransactionHistory
         public string Type { get; set; } = string.Empty;
 
         public string Direction { get; set; } = string.Empty;
+
+        public PaymentMethod? PaymentMethod { get; set; }
 
         public decimal Amount { get; set; }
 

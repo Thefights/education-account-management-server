@@ -29,9 +29,6 @@ namespace Models
         [NotDefaultValue, DateValidator(NotAfter = nameof(StartDate))]
         public DateTime EnrollmentDeadline { get; set; }
 
-        [NotDefaultValue, DateValidator(NotAfter = nameof(StartDate))]
-        public DateTime FasApplicationDueDate { get; set; }
-
         [NotDefaultValue, DateValidator(NotBefore = nameof(EnrollmentDeadline), NotAfter = nameof(EndDate))]
         public DateTime StartDate { get; set; }
 

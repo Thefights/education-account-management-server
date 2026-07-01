@@ -94,7 +94,6 @@ namespace Services.Courses
                     foreach (var installment in installments)
                     {
                         installment.Status = ChargeInstallmentStatus.Overdue;
-                        installment.BecameOverdueAt ??= utcNow;
                         installment.TryValidate();
 
                         if (installment.Charge.Status != ChargeStatus.Paid)

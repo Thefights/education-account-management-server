@@ -52,7 +52,6 @@ namespace Services.Courses
                     var course = _mapper.MapFromCreateDTO(createDTO);
                     course.SchoolId = schoolId;
                     course.Status = CourseStatus.Draft;
-                    course.FasApplicationDueDate = course.EnrollmentDeadline;
                     var taxRate = await GetTaxRateAsync(token);
                     course.GstAmount = CourseFeeCalculator.CalculateTaxAmount(
                         course.CourseFeeAmount,
@@ -111,7 +110,6 @@ namespace Services.Courses
                     }
 
                     _mapper.MapFromUpdateDTO(updateDTO, course);
-                    course.FasApplicationDueDate = course.EnrollmentDeadline;
                     var taxRate = await GetTaxRateAsync(token);
                     course.GstAmount = CourseFeeCalculator.CalculateTaxAmount(
                         course.CourseFeeAmount,
@@ -244,7 +242,6 @@ namespace Services.Courses
                         MiscFeeAmount = source.MiscFeeAmount,
                         GstAmount = source.GstAmount,
                         EnrollmentDeadline = source.EnrollmentDeadline,
-                        FasApplicationDueDate = source.EnrollmentDeadline,
                         StartDate = source.StartDate,
                         EndDate = source.EndDate
                     };

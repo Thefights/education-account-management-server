@@ -69,7 +69,6 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(course => course.SchoolId);
                 entity.HasIndex(course => course.Status);
                 entity.HasIndex(course => course.CourseName);
-                entity.HasIndex(course => course.FasApplicationDueDate);
                 entity.HasIndex(course => course.EnrollmentDeadline);
                 entity.HasIndex(course => course.StartDate);
                 entity.HasIndex(course => course.EndDate);

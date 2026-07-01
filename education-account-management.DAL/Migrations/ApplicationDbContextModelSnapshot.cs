@@ -9644,9 +9644,6 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime?>("BecameOverdueAt")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("ChargeId")
                         .HasColumnType("int");
 
@@ -9789,7 +9786,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 5,
                             Amount = 185.30m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 5,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9834,7 +9830,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 10,
                             Amount = 212.55m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 10,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 10, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9879,7 +9874,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 15,
                             Amount = 239.80m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 15,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 15, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9924,7 +9918,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 20,
                             Amount = 237.05m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 20,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 20, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -9969,7 +9962,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 25,
                             Amount = 294.30m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 25,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 25, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -10014,7 +10006,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 30,
                             Amount = 321.55m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 30,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 2, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -10059,7 +10050,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 35,
                             Amount = 348.80m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 35,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 7, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -10104,7 +10094,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 40,
                             Amount = 346.05m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 40,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 12, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -10149,7 +10138,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 45,
                             Amount = 403.30m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 45,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 17, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -10194,7 +10182,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 50,
                             Amount = 430.55m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 50,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 22, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11284,7 +11271,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 2032,
                             Amount = 30.88m,
-                            BecameOverdueAt = new DateTime(2026, 7, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1087,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 4, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11296,7 +11282,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 2033,
                             Amount = 30.88m,
-                            BecameOverdueAt = new DateTime(2026, 7, 3, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1087,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 5, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11308,7 +11293,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 2034,
                             Amount = 30.88m,
-                            BecameOverdueAt = new DateTime(2026, 7, 4, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1087,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 6, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11320,7 +11304,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 2035,
                             Amount = 30.88m,
-                            BecameOverdueAt = new DateTime(2026, 7, 5, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1087,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 7, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11332,7 +11315,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 2036,
                             Amount = 30.90m,
-                            BecameOverdueAt = new DateTime(2026, 7, 6, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1087,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 8, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11344,7 +11326,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1088,
                             Amount = 185.30m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1088,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11356,7 +11337,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1089,
                             Amount = 185.30m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1089,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11368,7 +11348,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1090,
                             Amount = 185.30m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1090,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11380,7 +11359,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1091,
                             Amount = 185.30m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1091,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11392,7 +11370,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1092,
                             Amount = 185.30m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1092,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11404,7 +11381,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1093,
                             Amount = 185.30m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1093,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11416,7 +11392,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1094,
                             Amount = 185.30m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1094,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11428,7 +11403,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1095,
                             Amount = 185.30m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1095,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11440,7 +11414,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1096,
                             Amount = 185.30m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1096,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11452,7 +11425,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1097,
                             Amount = 185.30m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1097,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11464,7 +11436,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1098,
                             Amount = 185.30m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1098,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11476,7 +11447,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1099,
                             Amount = 185.30m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1099,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11488,7 +11458,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1100,
                             Amount = 185.30m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1100,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11500,7 +11469,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1101,
                             Amount = 185.30m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1101,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11512,7 +11480,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1102,
                             Amount = 185.30m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1102,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11524,7 +11491,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1103,
                             Amount = 185.30m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1103,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11536,7 +11502,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1104,
                             Amount = 185.30m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1104,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11548,7 +11513,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1105,
                             Amount = 185.30m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1105,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11560,7 +11524,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1106,
                             Amount = 185.30m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1106,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11572,7 +11535,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1107,
                             Amount = 185.30m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1107,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11584,7 +11546,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1108,
                             Amount = 185.30m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1108,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11596,7 +11557,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1109,
                             Amount = 185.30m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1109,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11608,7 +11568,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1110,
                             Amount = 185.30m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1110,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11620,7 +11579,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1111,
                             Amount = 185.30m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1111,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11632,7 +11590,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1112,
                             Amount = 185.30m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1112,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11644,7 +11601,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1113,
                             Amount = 185.30m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1113,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11656,7 +11612,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1114,
                             Amount = 185.30m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1114,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -11668,7 +11623,6 @@ namespace educationaccountmanagement.DAL.Migrations
                         {
                             Id = 1115,
                             Amount = 185.30m,
-                            BecameOverdueAt = new DateTime(2026, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             ChargeId = 1115,
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             DueDate = new DateTime(2026, 3, 5, 0, 0, 0, 0, DateTimeKind.Utc),
@@ -27800,9 +27754,6 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<DateTime>("EnrollmentDeadline")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("FasApplicationDueDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<decimal>("GstAmount")
                         .HasColumnType("decimal(18,2)");
 
@@ -27847,8 +27798,6 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.HasIndex("EnrollmentDeadline");
 
-                    b.HasIndex("FasApplicationDueDate");
-
                     b.HasIndex("SchoolId");
 
                     b.HasIndex("StartDate");
@@ -27876,7 +27825,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 13.32m,
                             IsDeleted = false,
                             MiscFeeAmount = 23m,
@@ -27894,7 +27842,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 10, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 7, 15, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 7, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 14.04m,
                             IsDeleted = false,
                             MiscFeeAmount = 26m,
@@ -27912,7 +27859,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 10, 3, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 3, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 3, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 14.76m,
                             IsDeleted = false,
                             MiscFeeAmount = 29m,
@@ -27930,7 +27876,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 9, 4, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 4, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 4, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 15.48m,
                             IsDeleted = false,
                             MiscFeeAmount = 32m,
@@ -27948,7 +27893,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 5, 5, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 5, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 5, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 14.85m,
                             IsDeleted = false,
                             MiscFeeAmount = 20m,
@@ -27966,7 +27910,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 10, 6, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 6, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 6, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 15.57m,
                             IsDeleted = false,
                             MiscFeeAmount = 23m,
@@ -27984,7 +27927,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 10, 7, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 7, 15, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 7, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 16.29m,
                             IsDeleted = false,
                             MiscFeeAmount = 26m,
@@ -28002,7 +27944,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 10, 8, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 8, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 8, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 17.01m,
                             IsDeleted = false,
                             MiscFeeAmount = 29m,
@@ -28020,7 +27961,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 9, 9, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 9, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 17.73m,
                             IsDeleted = false,
                             MiscFeeAmount = 32m,
@@ -28038,7 +27978,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 5, 10, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 17.10m,
                             IsDeleted = false,
                             MiscFeeAmount = 20m,
@@ -28056,7 +27995,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 10, 11, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 17.82m,
                             IsDeleted = false,
                             MiscFeeAmount = 23m,
@@ -28074,7 +28012,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 10, 12, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 7, 15, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 7, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 18.54m,
                             IsDeleted = false,
                             MiscFeeAmount = 26m,
@@ -28092,7 +28029,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 10, 13, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 13, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 13, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 19.26m,
                             IsDeleted = false,
                             MiscFeeAmount = 29m,
@@ -28110,7 +28046,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 9, 14, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 14, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 14, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 19.98m,
                             IsDeleted = false,
                             MiscFeeAmount = 32m,
@@ -28128,7 +28063,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 5, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 15, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 19.35m,
                             IsDeleted = false,
                             MiscFeeAmount = 20m,
@@ -28146,7 +28080,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 10, 16, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 16, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 20.07m,
                             IsDeleted = false,
                             MiscFeeAmount = 23m,
@@ -28164,7 +28097,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 10, 17, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 7, 15, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 7, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 20.79m,
                             IsDeleted = false,
                             MiscFeeAmount = 26m,
@@ -28182,7 +28114,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 10, 18, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 18, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 18, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 21.51m,
                             IsDeleted = false,
                             MiscFeeAmount = 29m,
@@ -28200,7 +28131,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 9, 19, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 19, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 19, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 22.23m,
                             IsDeleted = false,
                             MiscFeeAmount = 32m,
@@ -28218,7 +28148,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 5, 20, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 20, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 20, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 21.60m,
                             IsDeleted = false,
                             MiscFeeAmount = 20m,
@@ -28236,7 +28165,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 10, 21, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 21, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 21, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 22.32m,
                             IsDeleted = false,
                             MiscFeeAmount = 23m,
@@ -28254,7 +28182,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 10, 22, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 7, 15, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 7, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 23.04m,
                             IsDeleted = false,
                             MiscFeeAmount = 26m,
@@ -28272,7 +28199,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 10, 23, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 23, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 23, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 23.76m,
                             IsDeleted = false,
                             MiscFeeAmount = 29m,
@@ -28290,7 +28216,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 9, 24, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 24, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 24, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 24.48m,
                             IsDeleted = false,
                             MiscFeeAmount = 32m,
@@ -28308,7 +28233,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 5, 25, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 25, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 25, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 23.85m,
                             IsDeleted = false,
                             MiscFeeAmount = 20m,
@@ -28326,7 +28250,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 10, 26, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 26, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 26, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 24.57m,
                             IsDeleted = false,
                             MiscFeeAmount = 23m,
@@ -28344,7 +28267,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 10, 27, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 7, 15, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 7, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 25.29m,
                             IsDeleted = false,
                             MiscFeeAmount = 26m,
@@ -28362,7 +28284,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 10, 28, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 28, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 28, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 26.01m,
                             IsDeleted = false,
                             MiscFeeAmount = 29m,
@@ -28380,7 +28301,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 9, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 26.73m,
                             IsDeleted = false,
                             MiscFeeAmount = 32m,
@@ -28398,7 +28318,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 5, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 2, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 2, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 26.10m,
                             IsDeleted = false,
                             MiscFeeAmount = 20m,
@@ -28416,7 +28335,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 10, 3, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 3, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 3, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 26.82m,
                             IsDeleted = false,
                             MiscFeeAmount = 23m,
@@ -28434,7 +28352,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 10, 4, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 7, 15, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 7, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 27.54m,
                             IsDeleted = false,
                             MiscFeeAmount = 26m,
@@ -28452,7 +28369,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 10, 5, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 5, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 5, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 28.26m,
                             IsDeleted = false,
                             MiscFeeAmount = 29m,
@@ -28470,7 +28386,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 9, 6, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 6, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 6, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 28.98m,
                             IsDeleted = false,
                             MiscFeeAmount = 32m,
@@ -28488,7 +28403,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 5, 7, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 7, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 7, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 28.35m,
                             IsDeleted = false,
                             MiscFeeAmount = 20m,
@@ -28506,7 +28420,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 10, 8, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 8, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 8, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 29.07m,
                             IsDeleted = false,
                             MiscFeeAmount = 23m,
@@ -28524,7 +28437,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 10, 9, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 7, 15, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 7, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 29.79m,
                             IsDeleted = false,
                             MiscFeeAmount = 26m,
@@ -28542,7 +28454,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 10, 10, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 10, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 30.51m,
                             IsDeleted = false,
                             MiscFeeAmount = 29m,
@@ -28560,7 +28471,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 9, 11, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 11, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 31.23m,
                             IsDeleted = false,
                             MiscFeeAmount = 32m,
@@ -28578,7 +28488,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 5, 12, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 12, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 12, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 30.60m,
                             IsDeleted = false,
                             MiscFeeAmount = 20m,
@@ -28596,7 +28505,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 10, 13, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 13, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 13, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 31.32m,
                             IsDeleted = false,
                             MiscFeeAmount = 23m,
@@ -28614,7 +28522,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 10, 14, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 7, 15, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 7, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 32.04m,
                             IsDeleted = false,
                             MiscFeeAmount = 26m,
@@ -28632,7 +28539,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 10, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 15, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 32.76m,
                             IsDeleted = false,
                             MiscFeeAmount = 29m,
@@ -28650,7 +28556,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 9, 16, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 16, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 16, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 33.48m,
                             IsDeleted = false,
                             MiscFeeAmount = 32m,
@@ -28668,7 +28573,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 5, 17, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 17, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 17, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 32.85m,
                             IsDeleted = false,
                             MiscFeeAmount = 20m,
@@ -28686,7 +28590,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 10, 18, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 18, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 18, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 33.57m,
                             IsDeleted = false,
                             MiscFeeAmount = 23m,
@@ -28704,7 +28607,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 10, 19, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 7, 15, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 7, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 34.29m,
                             IsDeleted = false,
                             MiscFeeAmount = 26m,
@@ -28722,7 +28624,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 10, 20, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 20, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 20, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 35.01m,
                             IsDeleted = false,
                             MiscFeeAmount = 29m,
@@ -28740,7 +28641,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 9, 21, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 21, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 21, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 35.73m,
                             IsDeleted = false,
                             MiscFeeAmount = 32m,
@@ -28758,7 +28658,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 5, 22, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 22, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 22, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 35.10m,
                             IsDeleted = false,
                             MiscFeeAmount = 20m,
@@ -28776,7 +28675,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 5, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 15.30m,
                             IsDeleted = false,
                             MiscFeeAmount = 20m,
@@ -28794,7 +28692,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 9, 5, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 2, 5, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 2, 5, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 16.65m,
                             IsDeleted = false,
                             MiscFeeAmount = 25m,
@@ -28812,7 +28709,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 10, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 7, 15, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 7, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 14.22m,
                             IsDeleted = false,
                             MiscFeeAmount = 18m,
@@ -28830,7 +28726,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 4, 10, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 17.28m,
                             IsDeleted = false,
                             MiscFeeAmount = 22m,
@@ -28848,7 +28743,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2026, 9, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2026, 3, 15, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2026, 3, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 15.75m,
                             IsDeleted = false,
                             MiscFeeAmount = 20m,
@@ -28866,7 +28760,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2027, 9, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2027, 3, 15, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2027, 3, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 15.75m,
                             IsDeleted = false,
                             MiscFeeAmount = 20m,
@@ -28884,7 +28777,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2027, 10, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2027, 4, 15, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2027, 4, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 19.80m,
                             IsDeleted = false,
                             MiscFeeAmount = 20m,
@@ -28902,7 +28794,6 @@ namespace educationaccountmanagement.DAL.Migrations
                             CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             EndDate = new DateTime(2027, 11, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             EnrollmentDeadline = new DateTime(2027, 5, 15, 0, 0, 0, 0, DateTimeKind.Utc),
-                            FasApplicationDueDate = new DateTime(2027, 5, 15, 0, 0, 0, 0, DateTimeKind.Utc),
                             GstAmount = 28.80m,
                             IsDeleted = false,
                             MiscFeeAmount = 20m,

@@ -18,7 +18,6 @@ namespace DTOs.Courses
         public decimal Amount { get; set; }
         public DateTime DueDate { get; set; }
         public ChargeInstallmentStatus Status { get; set; }
-        public DateTime? BecameOverdueAt { get; set; }
     }
 
     public class StudentTuitionChargeDTO
