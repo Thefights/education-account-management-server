@@ -8,6 +8,8 @@ namespace Mappers
     public partial class TransactionHistoryMapper
         : IReadMapper<EducationCreditTransaction, EducationCreditTransactionDTO>
     {
+        [MapProperty($"{nameof(EducationCreditTransaction.Payment)}.{nameof(Payment.PaymentMethod)}",
+            nameof(EducationCreditTransactionDTO.PaymentMethod))]
         public partial EducationCreditTransactionDTO MapToGetDTO(EducationCreditTransaction model);
 
         public partial List<EducationCreditTransactionDTO> MapToGetDTOList(
