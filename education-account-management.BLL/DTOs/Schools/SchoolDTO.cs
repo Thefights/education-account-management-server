@@ -1,24 +1,34 @@
+using EntityAnnotations.RegExAttributes;
+
 namespace DTOs.Schools
 {
     public class CreateSchoolDTO
     {
+        [MessageRequired, MessageMaxLength(150)]
         public string SchoolName { get; set; } = string.Empty;
 
+        [MessageRequired, MessageMaxLength(300)]
         public string Address { get; set; } = string.Empty;
 
+        [MessageRequired, MessageMaxLength(20), PhoneNumberValidator]
         public string PhoneNumber { get; set; } = string.Empty;
 
+        [MessageRequired, MessageMaxLength(320), EmailValidator]
         public string Email { get; set; } = string.Empty;
     }
 
     public class UpdateSchoolDTO
     {
+        [MessageRequired, MessageMaxLength(150)]
         public string SchoolName { get; set; } = string.Empty;
 
+        [MessageRequired, MessageMaxLength(300)]
         public string Address { get; set; } = string.Empty;
 
+        [MessageRequired, MessageMaxLength(20), PhoneNumberValidator]
         public string PhoneNumber { get; set; } = string.Empty;
 
+        [MessageRequired, MessageMaxLength(320), EmailValidator]
         public string Email { get; set; } = string.Empty;
     }
 
