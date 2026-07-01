@@ -102,9 +102,10 @@ public partial class StripeService(
         var charges = await GetPayableChargesAsync(educationAccount.Id, chargeIds, cancellationToken);
 
         // Validate action-specific business rules before any payment row is reserved.
-        ValidateBillingActions(chargeBillingActionItems, charges, educationAccount, creditBalanceApplied);
+        var utcNow = DateTime.UtcNow;
+        ValidateBillingActions(chargeBillingActionItems, charges, educationAccount, creditBalanceApplied, utcNow);
 
-        var billingItems = CreateBillingItems(chargeBillingActionItems, charges);
+        var billingItems = CreateBillingItems(chargeBillingActionItems, charges, utcNow);
         var split = CreatePaymentSplit(billingItems, creditBalanceApplied);
 
         var reservation = await ReservePaymentsForCheckoutAsync(

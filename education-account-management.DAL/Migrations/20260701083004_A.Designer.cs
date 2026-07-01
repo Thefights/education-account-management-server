@@ -12,7 +12,7 @@ using Persistence.SqlServer;
 namespace educationaccountmanagement.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260701022156_A")]
+    [Migration("20260701083004_A")]
     partial class A
     {
         /// <inheritdoc />
@@ -1062,6 +1062,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             MiscFeeAmountSnapshot = 23m,
                             NetAmount = 166.77m,
                             PaidAmount = 166.77m,
+                            PaymentPlanMonths = 6,
                             RemainingAmount = 0.00m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
@@ -2837,6 +2838,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             MiscFeeAmountSnapshot = 29m,
                             NetAmount = 184.21m,
                             PaidAmount = 184.21m,
+                            PaymentPlanMonths = 6,
                             RemainingAmount = 0.00m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
@@ -3567,6 +3569,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             MiscFeeAmountSnapshot = 32m,
                             NetAmount = 162.93m,
                             PaidAmount = 162.93m,
+                            PaymentPlanMonths = 6,
                             RemainingAmount = 0.00m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
@@ -4432,6 +4435,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             MiscFeeAmountSnapshot = 20m,
                             NetAmount = 185.30m,
                             PaidAmount = 30.88m,
+                            PaymentPlanMonths = 6,
                             RemainingAmount = 154.42m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
@@ -5157,6 +5161,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             MiscFeeAmountSnapshot = 23m,
                             NetAmount = 194.02m,
                             PaidAmount = 0m,
+                            PaymentPlanMonths = 6,
                             RemainingAmount = 194.02m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
@@ -5887,6 +5892,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             MiscFeeAmountSnapshot = 29m,
                             NetAmount = 181.46m,
                             PaidAmount = 0m,
+                            PaymentPlanMonths = 6,
                             RemainingAmount = 181.46m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
@@ -6752,6 +6758,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             MiscFeeAmountSnapshot = 32m,
                             NetAmount = 220.18m,
                             PaidAmount = 0m,
+                            PaymentPlanMonths = 6,
                             RemainingAmount = 220.18m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
@@ -7477,6 +7484,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             MiscFeeAmountSnapshot = 23m,
                             NetAmount = 221.27m,
                             PaidAmount = 0m,
+                            PaymentPlanMonths = 6,
                             RemainingAmount = 221.27m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
@@ -8202,6 +8210,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             MiscFeeAmountSnapshot = 29m,
                             NetAmount = 238.71m,
                             PaidAmount = 0m,
+                            PaymentPlanMonths = 6,
                             RemainingAmount = 238.71m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
@@ -8927,6 +8936,7 @@ namespace educationaccountmanagement.DAL.Migrations
                             MiscFeeAmountSnapshot = 32m,
                             NetAmount = 247.43m,
                             PaidAmount = 0m,
+                            PaymentPlanMonths = 6,
                             RemainingAmount = 247.43m,
                             RowVersion = new byte[0],
                             SchoolNameSnapshot = "Northview Secondary School",
@@ -60258,11 +60268,20 @@ namespace educationaccountmanagement.DAL.Migrations
                     b.Property<decimal?>("MaxPerCapitaIncome")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<decimal?>("MinGrossHouseholdIncome")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("MinPerCapitaIncome")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<decimal?>("MiscFeeSubsidyValue")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal?>("SubsidyValue")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("TierIncomeBasis")
+                        .HasColumnType("int");
 
                     b.Property<string>("TierName")
                         .IsRequired()
@@ -60285,7 +60304,7 @@ namespace educationaccountmanagement.DAL.Migrations
 
                     b.ToTable("FasSchemeTier", t =>
                         {
-                            t.HasCheckConstraint("CK_FasSchemeTier_Amounts_NonNegative", "([MaxPerCapitaIncome] IS NULL OR [MaxPerCapitaIncome] >= 0) AND ([MaxGrossHouseholdIncome] IS NULL OR [MaxGrossHouseholdIncome] >= 0) AND ([SubsidyValue] IS NULL OR [SubsidyValue] >= 0) AND ([CourseFeeSubsidyValue] IS NULL OR [CourseFeeSubsidyValue] >= 0) AND ([MiscFeeSubsidyValue] IS NULL OR [MiscFeeSubsidyValue] >= 0)");
+                            t.HasCheckConstraint("CK_FasSchemeTier_Amounts_NonNegative", "[TierIncomeBasis] IN (1, 2, 3) AND ([MinPerCapitaIncome] IS NULL OR [MinPerCapitaIncome] >= 0) AND ([MaxPerCapitaIncome] IS NULL OR [MaxPerCapitaIncome] >= 0) AND ([MinGrossHouseholdIncome] IS NULL OR [MinGrossHouseholdIncome] >= 0) AND ([MaxGrossHouseholdIncome] IS NULL OR [MaxGrossHouseholdIncome] >= 0) AND ([MinPerCapitaIncome] IS NULL OR [MaxPerCapitaIncome] IS NULL OR [MinPerCapitaIncome] < [MaxPerCapitaIncome]) AND ([MinGrossHouseholdIncome] IS NULL OR [MaxGrossHouseholdIncome] IS NULL OR [MinGrossHouseholdIncome] < [MaxGrossHouseholdIncome]) AND ([SubsidyValue] IS NULL OR [SubsidyValue] >= 0) AND ([CourseFeeSubsidyValue] IS NULL OR [CourseFeeSubsidyValue] >= 0) AND ([MiscFeeSubsidyValue] IS NULL OR [MiscFeeSubsidyValue] >= 0)");
 
                             t.HasCheckConstraint("CK_FasSchemeTier_DisplayOrder_NonNegative", "[DisplayOrder] >= 0");
                         });
@@ -60299,7 +60318,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 1,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60309,8 +60330,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 1,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60321,7 +60343,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 2,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60331,8 +60355,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 2,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60343,7 +60368,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 3,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60353,8 +60380,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 3,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60365,7 +60393,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 4,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60375,8 +60405,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 4,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60387,7 +60418,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 5,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60397,8 +60430,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 5,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60409,7 +60443,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 6,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60419,8 +60455,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 6,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60431,7 +60468,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 7,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60441,8 +60480,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 7,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60453,7 +60493,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 8,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60463,8 +60505,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 8,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60475,7 +60518,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 9,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60485,8 +60530,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 9,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60497,7 +60543,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 10,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60507,8 +60555,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 10,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60519,7 +60568,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 11,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60529,8 +60580,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 11,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60541,7 +60593,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 12,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60551,8 +60605,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 12,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60563,7 +60618,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 13,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60573,8 +60630,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 13,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60585,7 +60643,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 14,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60595,8 +60655,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 14,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60607,7 +60668,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 15,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60617,8 +60680,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 15,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60629,7 +60693,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 16,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60639,8 +60705,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 16,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60651,7 +60718,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 17,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60661,8 +60730,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 17,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60673,7 +60743,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 18,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60683,8 +60755,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 18,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60695,7 +60768,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 19,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60705,8 +60780,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 19,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60717,7 +60793,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 20,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60727,8 +60805,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 20,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60739,7 +60818,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 21,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60749,8 +60830,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 21,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60761,7 +60843,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 22,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60771,8 +60855,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 22,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60783,7 +60868,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 23,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60793,8 +60880,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 23,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60805,7 +60893,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 24,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60815,8 +60905,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 24,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60827,7 +60918,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 25,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60837,8 +60930,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 25,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60849,7 +60943,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 26,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60859,8 +60955,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 26,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60871,7 +60968,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 27,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60881,8 +60980,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 27,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60893,7 +60993,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 28,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60903,8 +61005,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 28,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60915,7 +61018,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 29,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60925,8 +61030,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 29,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60937,7 +61043,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 30,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60947,8 +61055,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 30,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60959,7 +61068,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 31,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60969,8 +61080,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 31,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -60981,7 +61093,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 32,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -60991,8 +61105,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 32,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61003,7 +61118,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 33,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61013,8 +61130,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 33,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61025,7 +61143,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 34,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61035,8 +61155,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 34,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61047,7 +61168,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 35,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61057,8 +61180,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 35,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61069,7 +61193,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 36,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61079,8 +61205,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 36,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61091,7 +61218,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 37,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61101,8 +61230,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 37,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61113,7 +61243,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 38,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61123,8 +61255,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 38,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61135,7 +61268,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 39,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61145,8 +61280,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 39,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61157,7 +61293,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 40,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61167,8 +61305,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 40,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61179,7 +61318,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 41,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61189,8 +61330,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 41,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61201,7 +61343,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 42,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61211,8 +61355,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 42,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61223,7 +61368,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 43,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61233,8 +61380,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 43,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61245,7 +61393,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 44,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61255,8 +61405,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 44,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61267,7 +61418,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 45,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61277,8 +61430,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 45,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61289,7 +61443,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 46,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61299,8 +61455,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 46,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61311,7 +61468,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 47,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61321,8 +61480,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 47,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61333,7 +61493,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 48,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61343,8 +61505,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 48,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61355,7 +61518,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 49,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61365,8 +61530,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 49,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61377,7 +61543,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 50,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61387,8 +61555,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 50,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61399,7 +61568,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 51,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61409,8 +61580,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 51,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61421,7 +61593,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 52,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61431,8 +61605,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 52,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61443,7 +61618,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 53,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61453,8 +61630,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 53,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61465,7 +61643,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 54,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61475,8 +61655,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 54,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61487,7 +61668,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 55,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61497,8 +61680,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 55,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61509,7 +61693,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 56,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61519,8 +61705,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 56,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61531,7 +61718,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 57,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61541,8 +61730,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 57,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61553,7 +61743,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 58,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61563,8 +61755,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 58,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61575,7 +61768,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 59,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61585,8 +61780,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 59,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         },
                         new
@@ -61597,7 +61793,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             FasSchemeId = 60,
                             IsDeleted = false,
                             MaxPerCapitaIncome = 500m,
+                            MinPerCapitaIncome = 0m,
                             SubsidyValue = 100m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 1"
                         },
                         new
@@ -61607,8 +61805,9 @@ namespace educationaccountmanagement.DAL.Migrations
                             DisplayOrder = 2,
                             FasSchemeId = 60,
                             IsDeleted = false,
-                            MaxPerCapitaIncome = 1000m,
+                            MinPerCapitaIncome = 500m,
                             SubsidyValue = 70m,
+                            TierIncomeBasis = 1,
                             TierName = "Tier 2"
                         });
                 });

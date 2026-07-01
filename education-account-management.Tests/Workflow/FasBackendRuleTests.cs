@@ -101,6 +101,15 @@ public class FasBackendRuleTests
 
         Assert.Throws<ValidationFailureException>(() =>
             FasTierMatcher.ValidateTierConfiguration(overlap, FasSubsidyType.Percent, isPerComponent: false));
+
+        var finiteFinalRange = new List<FasSchemeTierRequestDTO>
+        {
+            Tier("Tier 1", 0m, 1000m, 1),
+            Tier("Tier 2", 1000m, 2000m, 2)
+        };
+
+        Assert.Throws<ValidationFailureException>(() =>
+            FasTierMatcher.ValidateTierConfiguration(finiteFinalRange, FasSubsidyType.Percent, isPerComponent: false));
     }
 
     [Fact]

@@ -9,7 +9,8 @@ public partial class StripeService
     // or to a specific installment depending on the action endpoint.
     private static List<BillingItem> CreateBillingItems(
         List<ChargeBillingActionItem> chargeBillingActionItems,
-        List<Charge> charges)
+        List<Charge> charges,
+        DateTime utcNow)
     {
         var billingItems = new List<BillingItem>();
         foreach (var charge in charges)
@@ -26,7 +27,11 @@ public partial class StripeService
                     billingItems.Add(new BillingItem(charge, billingAction.Intent, billingAction.PaymentPlanMonths, null, amountToPay));
                     break;
                 case PaymentIntent.PayCurrentInstallment:
-                    var firstPending = charge.Installments.OrderBy(installment => installment.InstallmentNumber).First();
+                    var firstPending = charge.Installments
+                        .Where(installment => IsInstallmentUnlockedForNextPayment(installment, utcNow))
+                        .OrderBy(installment => installment.DueDate)
+                        .ThenBy(installment => installment.InstallmentNumber)
+                        .First();
                     billingItems.Add(new BillingItem(charge, billingAction.Intent, null, firstPending.Id, firstPending.Amount));
                     break;
                 case PaymentIntent.PayRemainingInstallments:

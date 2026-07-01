@@ -26,54 +26,72 @@ namespace Services.FasApplications
 
         public async Task<string> SubmitApplicationAsync(SubmitFasApplicationDTO dto, CancellationToken cancellationToken = default)
         {
+            var uploadedFileKeys = new List<string>();
             var studentInfo = await GetCurrentStudentInfoAsync(cancellationToken);
             var scheme = await GetActiveSchemeAsync(dto.FasSchemeId, studentInfo.SchoolId, cancellationToken);
 
-            await EnsureNoActiveApplicationAsync(studentInfo.Id, dto.FasSchemeId, null, cancellationToken);
-
-            var applicationNumber = await GenerateApplicationNumberAsync(cancellationToken);
-
-            var application = new FasApplication
+            try
             {
-                FasSchemeId = dto.FasSchemeId,
-                SchoolStudentId = studentInfo.Id,
-                ApplicationNumber = applicationNumber,
-                Status = FasApplicationStatus.Pending
-            };
+                await EnsureNoActiveApplicationAsync(studentInfo.Id, dto.FasSchemeId, null, cancellationToken);
 
-            await ApplySubmissionAsync(application, dto, studentInfo, scheme, FasApplicationStatus.Pending, cancellationToken);
-            application.TryValidate();
+                var applicationNumber = await GenerateApplicationNumberAsync(cancellationToken);
 
-            await _unitOfWork.Repository<FasApplication>().AddAsync(application, cancellationToken);
-            await _unitOfWork.SaveChangeAsync(cancellationToken);
+                var application = new FasApplication
+                {
+                    FasSchemeId = dto.FasSchemeId,
+                    SchoolStudentId = studentInfo.Id,
+                    ApplicationNumber = applicationNumber,
+                    Status = FasApplicationStatus.Pending
+                };
 
-            return application.ApplicationNumber;
+                await ApplySubmissionAsync(application, dto, studentInfo, scheme, FasApplicationStatus.Pending, uploadedFileKeys, cancellationToken);
+                application.TryValidate();
+
+                await _unitOfWork.Repository<FasApplication>().AddAsync(application, cancellationToken);
+                await _unitOfWork.SaveChangeAsync(cancellationToken);
+
+                return application.ApplicationNumber;
+            }
+            catch
+            {
+                await DeleteUploadedFilesAsync(uploadedFileKeys);
+                throw;
+            }
         }
 
         public async Task<int> SaveDraftApplicationAsync(SubmitFasApplicationDTO dto, CancellationToken cancellationToken = default)
         {
+            var uploadedFileKeys = new List<string>();
             var studentInfo = await GetCurrentStudentInfoAsync(cancellationToken);
             var scheme = await GetActiveSchemeAsync(dto.FasSchemeId, studentInfo.SchoolId, cancellationToken);
 
-            await EnsureNoActiveApplicationAsync(studentInfo.Id, dto.FasSchemeId, null, cancellationToken);
-
-            var applicationNumber = await GenerateApplicationNumberAsync(cancellationToken);
-
-            var application = new FasApplication
+            try
             {
-                FasSchemeId = dto.FasSchemeId,
-                SchoolStudentId = studentInfo.Id,
-                ApplicationNumber = applicationNumber,
-                Status = FasApplicationStatus.Draft
-            };
+                await EnsureNoActiveApplicationAsync(studentInfo.Id, dto.FasSchemeId, null, cancellationToken);
 
-            await ApplySubmissionAsync(application, dto, studentInfo, scheme, FasApplicationStatus.Draft, cancellationToken);
-            application.TryValidate();
+                var applicationNumber = await GenerateApplicationNumberAsync(cancellationToken);
 
-            await _unitOfWork.Repository<FasApplication>().AddAsync(application, cancellationToken);
-            await _unitOfWork.SaveChangeAsync(cancellationToken);
+                var application = new FasApplication
+                {
+                    FasSchemeId = dto.FasSchemeId,
+                    SchoolStudentId = studentInfo.Id,
+                    ApplicationNumber = applicationNumber,
+                    Status = FasApplicationStatus.Draft
+                };
 
-            return application.Id;
+                await ApplySubmissionAsync(application, dto, studentInfo, scheme, FasApplicationStatus.Draft, uploadedFileKeys, cancellationToken);
+                application.TryValidate();
+
+                await _unitOfWork.Repository<FasApplication>().AddAsync(application, cancellationToken);
+                await _unitOfWork.SaveChangeAsync(cancellationToken);
+
+                return application.Id;
+            }
+            catch
+            {
+                await DeleteUploadedFilesAsync(uploadedFileKeys);
+                throw;
+            }
         }
 
         public async Task UpdateDraftApplicationAsync(int id, SubmitFasApplicationDTO dto, CancellationToken cancellationToken = default)
@@ -103,10 +121,19 @@ namespace Services.FasApplications
 
             var scheme = await GetActiveSchemeAsync(dto.FasSchemeId, studentInfo.SchoolId, cancellationToken);
 
-            await ApplySubmissionAsync(draft, dto, studentInfo, scheme, FasApplicationStatus.Draft, cancellationToken);
-            draft.TryValidate();
+            var uploadedFileKeys = new List<string>();
+            try
+            {
+                await ApplySubmissionAsync(draft, dto, studentInfo, scheme, FasApplicationStatus.Draft, uploadedFileKeys, cancellationToken);
+                draft.TryValidate();
 
-            await _unitOfWork.SaveChangeAsync(cancellationToken);
+                await _unitOfWork.SaveChangeAsync(cancellationToken);
+            }
+            catch
+            {
+                await DeleteUploadedFilesAsync(uploadedFileKeys);
+                throw;
+            }
         }
 
         public async Task DeleteDraftApplicationAsync(int id, CancellationToken cancellationToken = default)
@@ -256,11 +283,20 @@ namespace Services.FasApplications
 
             await EnsureNoActiveApplicationAsync(studentInfo.Id, draft.FasSchemeId, draft.Id, cancellationToken);
 
-            await ApplySubmissionAsync(draft, dto, studentInfo, draft.FasScheme, FasApplicationStatus.Pending, cancellationToken);
-            draft.CreatedAt = DateTime.UtcNow;
-            draft.TryValidate();
+            var uploadedFileKeys = new List<string>();
+            try
+            {
+                await ApplySubmissionAsync(draft, dto, studentInfo, draft.FasScheme, FasApplicationStatus.Pending, uploadedFileKeys, cancellationToken);
+                draft.CreatedAt = DateTime.UtcNow;
+                draft.TryValidate();
 
-            await _unitOfWork.SaveChangeAsync(cancellationToken);
+                await _unitOfWork.SaveChangeAsync(cancellationToken);
+            }
+            catch
+            {
+                await DeleteUploadedFilesAsync(uploadedFileKeys);
+                throw;
+            }
 
             return draft.ApplicationNumber;
         }
@@ -473,6 +509,7 @@ namespace Services.FasApplications
             AccountHolderStudentInfo studentInfo,
             FasScheme scheme,
             FasApplicationStatus status,
+            ICollection<string> uploadedFileKeys,
             CancellationToken cancellationToken)
         {
             var studentAge = GetStudentAge(studentInfo.DateOfBirth);
@@ -489,6 +526,8 @@ namespace Services.FasApplications
                         throw new ValidationFailureException(nameof(dto.AdditionalAnswers), $"Question '{q.QuestionText}' is required.");
                     }
                 }
+
+                ValidateRequiredDocuments(dto.Documents, scheme);
             }
 
             RemoveDocuments(application.Documents);
@@ -515,7 +554,13 @@ namespace Services.FasApplications
             application.ValidityStartDate = null;
             application.ValidityEndDate = null;
             application.WithdrawnAt = null;
-            application.Documents = await BuildDocumentsAsync(dto.Documents, scheme, application.Id == 0 ? -1 : application.Id, cancellationToken);
+            application.Documents = await BuildDocumentsAsync(
+                dto.Documents,
+                scheme,
+                application.Id == 0 ? -1 : application.Id,
+                requireFiles: status != FasApplicationStatus.Draft,
+                uploadedFileKeys,
+                cancellationToken);
             application.AdditionalQuestionAnswers = BuildAdditionalAnswers(dto.AdditionalAnswers, scheme, application.Id == 0 ? -1 : application.Id);
         }
 
@@ -568,6 +613,8 @@ namespace Services.FasApplications
             IEnumerable<SubmitFasApplicationDocumentDTO> documents,
             FasScheme scheme,
             int applicationId,
+            bool requireFiles,
+            ICollection<string> uploadedFileKeys,
             CancellationToken cancellationToken)
         {
             var result = new List<FasApplicationDocument>();
@@ -583,19 +630,64 @@ namespace Services.FasApplications
                         var uploadResult = await _uploadService.UploadAsync(document.File, "fas/applications", cancellationToken);
                         fileKey = uploadResult.FileName;
                         fileName = document.File.FileName;
+                        uploadedFileKeys.Add(uploadResult.FileName);
                     }
 
-                    result.Add(new FasApplicationDocument
+                    if (requireFiles && (string.IsNullOrWhiteSpace(fileKey) || string.IsNullOrWhiteSpace(fileName)))
+                    {
+                        throw new ValidationFailureException(
+                            nameof(SubmitFasApplicationDTO.Documents),
+                            $"Document '{requiredDocument.DocumentName}' requires an uploaded file.");
+                    }
+
+                    if (!requireFiles && (string.IsNullOrWhiteSpace(fileKey) || string.IsNullOrWhiteSpace(fileName)))
+                    {
+                        continue;
+                    }
+
+                    var applicationDocument = new FasApplicationDocument
                     {
                         FasApplicationId = applicationId,
                         FasSchemeRequiredDocumentId = document.RequiredDocumentId,
                         FileKey = fileKey,
                         FileName = fileName,
                         DocumentNameSnapshot = requiredDocument.DocumentName
-                    });
+                    };
+                    applicationDocument.TryValidate();
+                    result.Add(applicationDocument);
                 }
             }
             return result;
+        }
+
+        private static void ValidateRequiredDocuments(
+            IEnumerable<SubmitFasApplicationDocumentDTO> documents,
+            FasScheme scheme)
+        {
+            var providedDocuments = documents.ToList();
+            foreach (var requiredDocument in scheme.RequiredDocuments)
+            {
+                var providedDocument = providedDocuments.FirstOrDefault(document =>
+                    document.RequiredDocumentId == requiredDocument.Id
+                    && (document.File != null
+                        || (!string.IsNullOrWhiteSpace(document.FileKey)
+                            && !string.IsNullOrWhiteSpace(document.FileName))));
+
+                if (providedDocument == null)
+                {
+                    throw new ValidationFailureException(
+                        nameof(SubmitFasApplicationDTO.Documents),
+                        $"Document '{requiredDocument.DocumentName}' is required.");
+                }
+            }
+        }
+
+        private async Task DeleteUploadedFilesAsync(IEnumerable<string> uploadedFileKeys)
+        {
+            foreach (var fileKey in uploadedFileKeys.Where(key => !string.IsNullOrWhiteSpace(key)).Distinct(StringComparer.OrdinalIgnoreCase))
+            {
+                await _uploadService.DeleteAsync(fileKey, CancellationToken.None);
+            }
         }
 
         private static List<FasApplicationDocument> CloneDocuments(

@@ -224,6 +224,11 @@ namespace Helpers.FasSchemes
             {
                 errors[$"{label}.OpenEnded"] = $"Only one open-ended {label} tier range is allowed.";
             }
+
+            if (openEndedCount == 0)
+            {
+                errors[$"{label}.RangeEnd"] = $"The final {label} tier range must be open-ended.";
+            }
         }
 
         private static bool InRange(decimal value, decimal? min, decimal? max)

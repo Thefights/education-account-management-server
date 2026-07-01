@@ -193,7 +193,7 @@ namespace Services.Courses
                     var generatedChargeCount = 0;
                     if (previousStatus == CourseStatus.Enrolling)
                     {
-                        generatedChargeCount = await GenerateMissingChargesAsync(course, token);
+                        generatedChargeCount = await GenerateMissingChargesAsync(course, utcNow, token);
                     }
 
                     var overdueCharges = targetStatus == CourseStatus.Closed
@@ -241,6 +241,7 @@ namespace Services.Courses
 
         private async Task<int> GenerateMissingChargesAsync(
             Course course,
+            DateTime utcNow,
             CancellationToken cancellationToken)
         {
             if (course.Status is CourseStatus.Draft or CourseStatus.Enrolling)
@@ -274,6 +275,7 @@ namespace Services.Courses
                     course.MiscFeeAmount,
                     taxRate,
                     grossAmount,
+                    utcNow.Date,
                     cancellationToken);
                 var subsidyResult = FasChargeSubsidyCalculator.Calculate(
                     course.CourseFeeAmount,
@@ -327,9 +329,9 @@ namespace Services.Courses
             decimal miscFee,
             decimal taxRate,
             decimal grossAmount,
+            DateTime effectiveDate,
             CancellationToken cancellationToken)
         {
-            var today = DateTime.UtcNow.Date;
             var candidates = await _fasApplicationRepository.Query()
                 .Include(application => application.FasScheme)
                     .ThenInclude(scheme => scheme.SchemeCourses)
@@ -339,8 +341,8 @@ namespace Services.Courses
                     && application.Status == FasApplicationStatus.Approved
                     && application.ApprovedTierId.HasValue
                     && application.ValidityStartDate.HasValue
-                    && application.ValidityStartDate.Value.Date <= today
-                    && (!application.ValidityEndDate.HasValue || application.ValidityEndDate.Value.Date >= today)
+                    && application.ValidityStartDate.Value.Date <= effectiveDate
+                    && (!application.ValidityEndDate.HasValue || application.ValidityEndDate.Value.Date >= effectiveDate)
                     && application.FasScheme.SchemeCourses.Any(link => link.CourseId == courseId))
                 .ToListAsync(cancellationToken);
 

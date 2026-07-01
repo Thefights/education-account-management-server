@@ -9,6 +9,7 @@ using Results;
 using Services.Base;
 using Validators;
 using Helpers.FasSchemes;
+using Utils;
 
 namespace Services.FasSchemes
 {
@@ -60,10 +61,15 @@ namespace Services.FasSchemes
             FasConditionTreeUtility.Validate(createDTO.RootConditionGroup);
             FasConditionSemanticAnalyzer.Validate(createDTO.RootConditionGroup);
             await ValidateCoursesExistAsync(createDTO.SchemeCourses.Select(c => c.CourseId).ToList(), schoolId, cancellationToken);
-            await UploadDocumentTemplatesAsync(createDTO.RequiredDocuments, cancellationToken);
 
-            var id = await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
+            var id = await _unitOfWork.ExecuteInTransactionAsync(async (transaction, token) =>
             {
+                var uploadedTemplateKeys = await UploadDocumentTemplatesAsync(createDTO.RequiredDocuments, token);
+                foreach (var uploadedTemplateKey in uploadedTemplateKeys)
+                {
+                    ImageTransactionHookHelper.RegisterUploadedImageRollback(transaction, _uploadService, uploadedTemplateKey);
+                }
+
                 var scheme = _mapper.MapFromCreateDTO(createDTO);
                 scheme.SchoolId = schoolId;
                 scheme.Status = FasSchemeStatus.Draft;
@@ -147,14 +153,19 @@ namespace Services.FasSchemes
             FasConditionTreeUtility.Validate(updateDTO.RootConditionGroup);
             FasConditionSemanticAnalyzer.Validate(updateDTO.RootConditionGroup);
             await ValidateCoursesExistAsync(updateDTO.SchemeCourses.Select(c => c.CourseId).ToList(), schoolId, cancellationToken);
-            await UploadDocumentTemplatesAsync(updateDTO.RequiredDocuments, cancellationToken);
 
-            await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
+            await _unitOfWork.ExecuteInTransactionAsync(async (transaction, token) =>
             {
                 var scheme = await GetTrackedScopedSchemeAsync(id, schoolId, token);
                 if (scheme.Status != FasSchemeStatus.Draft)
                 {
                     throw new ValidationFailureException(nameof(scheme.Status), "Only draft schemes can be edited.");
+                }
+
+                var uploadedTemplateKeys = await UploadDocumentTemplatesAsync(updateDTO.RequiredDocuments, token);
+                foreach (var uploadedTemplateKey in uploadedTemplateKeys)
+                {
+                    ImageTransactionHookHelper.RegisterUploadedImageRollback(transaction, _uploadService, uploadedTemplateKey);
                 }
 
                 // Clear condition tree
@@ -175,6 +186,16 @@ namespace Services.FasSchemes
                 var docs = await _requiredDocRepository.Query(tracking: true)
                     .Where(d => d.FasSchemeId == id)
                     .ToListAsync(token);
+                var newTemplateKeys = updateDTO.RequiredDocuments
+                    .Select(d => d.TemplateFileKey)
+                    .Where(key => !string.IsNullOrWhiteSpace(key))
+                    .ToHashSet(StringComparer.OrdinalIgnoreCase);
+                foreach (var oldTemplateKey in docs
+                    .Select(d => d.TemplateFileKey)
+                    .Where(key => !string.IsNullOrWhiteSpace(key) && !newTemplateKeys.Contains(key)))
+                {
+                    ImageTransactionHookHelper.RegisterImageDeleteAfterCommit(transaction, _uploadService, oldTemplateKey);
+                }
                 _requiredDocRepository.RemoveRange(docs);
 
                 // Clear links
@@ -471,7 +492,7 @@ namespace Services.FasSchemes
         public override async Task DeleteAsync(int id, CancellationToken cancellationToken = default)
         {
             var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
-            await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
+            await _unitOfWork.ExecuteInTransactionAsync(async (transaction, token) =>
             {
                 var scheme = await GetTrackedScopedSchemeAsync(id, schoolId, token);
                 if (scheme.Status != FasSchemeStatus.Draft)
@@ -494,6 +515,12 @@ namespace Services.FasSchemes
                 var docs = await _requiredDocRepository.Query(tracking: true)
                     .Where(d => d.FasSchemeId == id)
                     .ToListAsync(token);
+                foreach (var templateKey in docs
+                    .Select(d => d.TemplateFileKey)
+                    .Where(key => !string.IsNullOrWhiteSpace(key)))
+                {
+                    ImageTransactionHookHelper.RegisterImageDeleteAfterCommit(transaction, _uploadService, templateKey);
+                }
                 _requiredDocRepository.RemoveRange(docs);
 
                 var links = await _courseLinkRepository.Query(tracking: true)
@@ -513,7 +540,7 @@ namespace Services.FasSchemes
             var batchId = Guid.NewGuid();
             var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
 
-            await _unitOfWork.ExecuteInTransactionAsync(async (_, token) =>
+            await _unitOfWork.ExecuteInTransactionAsync(async (transaction, token) =>
             {
                 var schemes = await _repository.Query(tracking: true)
                     .Where(s => dto.Ids.Contains(s.Id) && s.SchoolId == schoolId)
@@ -543,6 +570,12 @@ namespace Services.FasSchemes
                     var docs = await _requiredDocRepository.Query(tracking: true)
                         .Where(d => d.FasSchemeId == scheme.Id)
                         .ToListAsync(token);
+                    foreach (var templateKey in docs
+                        .Select(d => d.TemplateFileKey)
+                        .Where(key => !string.IsNullOrWhiteSpace(key)))
+                    {
+                        ImageTransactionHookHelper.RegisterImageDeleteAfterCommit(transaction, _uploadService, templateKey);
+                    }
                     _requiredDocRepository.RemoveRange(docs);
 
                     var links = await _courseLinkRepository.Query(tracking: true)
@@ -706,10 +739,11 @@ namespace Services.FasSchemes
             };
         }
 
-        private async Task UploadDocumentTemplatesAsync(
+        private async Task<List<string>> UploadDocumentTemplatesAsync(
             List<FasRequiredDocumentRequestDTO> documents,
             CancellationToken cancellationToken)
         {
+            var uploadedTemplateKeys = new List<string>();
             foreach (var doc in documents)
             {
                 if (doc.TemplateFile == null) continue;
@@ -719,7 +753,10 @@ namespace Services.FasSchemes
 
                 var uploadResult = await _uploadService!.UploadAsync(doc.TemplateFile, "fas/templates", cancellationToken);
                 doc.TemplateFileKey = uploadResult.FileName;
+                uploadedTemplateKeys.Add(uploadResult.FileName);
             }
+
+            return uploadedTemplateKeys;
         }
 
         private static void ValidatePersistedTree(FasSchemeConditionGroup root)

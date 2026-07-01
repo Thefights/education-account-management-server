@@ -9,7 +9,7 @@ namespace Filters.Courses
                 ["createdAt"] = $"{nameof(Enrollment.Charge)}.{nameof(Charge.CreatedAt)}"
             };
 
-        public StudentTuitionFilterStatus Status { get; set; } = StudentTuitionFilterStatus.All;
+        public List<StudentTuitionFilterStatus>? Statuses { get; set; }
         public bool? IsInstallment { get; set; }
 
         public List<int>? EnrollmentIds { get; set; }

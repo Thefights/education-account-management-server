@@ -193,7 +193,7 @@ public partial class StripeService
     /// <summary>
     /// Kiểm tra tính hợp lệ của Request theo các luật Business (Ví dụ: Không tạo 2 luồng trả góp, trả đúng kỳ, v.v.)
     /// </summary>
-    private static void ValidateBillingActions(List<ChargeBillingActionItem> billingActions, List<Charge> charges, EducationAccount educationAccount, decimal creditBalanceApplied)
+    private static void ValidateBillingActions(List<ChargeBillingActionItem> billingActions, List<Charge> charges, EducationAccount educationAccount, decimal creditBalanceApplied, DateTime utcNow)
     {
         var errors = new Dictionary<string, string>();
 
@@ -227,6 +227,8 @@ public partial class StripeService
                 errors[$"{nameof(Charge)}_{charge.Id}"] = $"The {nameof(Charge)} for '{enrollment.CourseNameSnapshot}' has already been fully paid.";
 
             bool hasUnpaidInstallments = charge.Installments.Any();
+            bool hasUnlockedInstallment = charge.Installments.Any(installment =>
+                IsInstallmentUnlockedForNextPayment(installment, utcNow));
 
             switch (info.Intent)
             {
@@ -247,6 +249,11 @@ public partial class StripeService
                         errors[$"{nameof(Charge)}_{charge.Id}_MissingPlan"] = $"Cannot pay current {nameof(ChargeInstallment)} because no active {nameof(ChargeInstallment)} plan exists.";
                         break;
                     }
+                    if (!hasUnlockedInstallment)
+                    {
+                        errors[$"{nameof(Charge)}_{charge.Id}_NoInstallmentDue"] = $"No {nameof(ChargeInstallment)} is due yet for '{enrollment.CourseNameSnapshot}'. Future installments can only be paid through {nameof(PaymentIntent.PayRemainingInstallments)}.";
+                        break;
+                    }
                     break;
                 case PaymentIntent.PayRemainingInstallments:
                     if (!hasUnpaidInstallments || !charge.PaymentPlanMonths.HasValue)
@@ -259,5 +266,12 @@ public partial class StripeService
         }
 
         if (errors.Count != 0) throw new ValidationFailureException(errors);
+    }
+
+    private static bool IsInstallmentUnlockedForNextPayment(ChargeInstallment installment, DateTime utcNow)
+    {
+        return installment.Status != ChargeInstallmentStatus.Paid &&
+               (installment.Status == ChargeInstallmentStatus.Overdue ||
+                installment.DueDate.Date <= utcNow.Date);
     }
 }

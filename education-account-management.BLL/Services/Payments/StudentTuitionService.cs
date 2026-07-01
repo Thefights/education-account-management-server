@@ -60,20 +60,53 @@ namespace Services.Payments
                 throw new DataNotFoundException("Education account for the current account holder was not found.");
             }
 
+            var page = Math.Max(filter.Page, 1);
             var pageSize = Math.Clamp(filter.PageSize, 1, 100);
+            var statuses = filter.Statuses?
+                .Where(status => status != StudentTuitionFilterStatus.All)
+                .Distinct()
+                .ToList() ?? [];
+
+            var utcToday = DateTime.UtcNow.Date;
+            var hasRequestedEnrollmentIds = filter.EnrollmentIds != null && filter.EnrollmentIds.Count > 0;
 
             Expression<Func<Enrollment, bool>> filterExpr = e =>
                 e.SchoolStudent.EducationAccountId == accountId &&
                 e.Charge != null &&
-                (filter.IsInstallment == null || (filter.IsInstallment.Value ? e.Charge.Installments.Count > 1 : e.Charge.Installments.Count <= 1)) &&
+                (filter.IsInstallment == null ||
+                    (filter.IsInstallment.Value
+                        ? e.Charge.Installments.Count > 1 &&
+                          (hasRequestedEnrollmentIds ||
+                           e.Charge.Installments.Any(i =>
+                               i.Status != ChargeInstallmentStatus.Paid &&
+                               (i.Status == ChargeInstallmentStatus.Overdue || i.DueDate.Date <= utcToday)))
+                        : e.Charge.Installments.Count <= 1)) &&
                 (filter.EnrollmentIds == null || filter.EnrollmentIds.Count == 0 || filter.EnrollmentIds.Contains(e.Id)) &&
-                (filter.Status == StudentTuitionFilterStatus.All ||
-                 (filter.Status == StudentTuitionFilterStatus.Paid && e.Charge.Status == ChargeStatus.Paid) ||
-                 (filter.Status == StudentTuitionFilterStatus.Overdue && e.Charge.Status == ChargeStatus.Overdue) ||
-                 (filter.Status == StudentTuitionFilterStatus.Due && e.Charge.Status == ChargeStatus.PendingPayment));
+                (statuses.Count == 0 ||
+                 (statuses.Contains(StudentTuitionFilterStatus.Paid) && e.Charge.Status == ChargeStatus.Paid) ||
+                 (statuses.Contains(StudentTuitionFilterStatus.Overdue) && e.Charge.Status == ChargeStatus.Overdue) ||
+                 (statuses.Contains(StudentTuitionFilterStatus.Due) && e.Charge.Status == ChargeStatus.PendingPayment));
 
-            var (total, charges) = await _enrollmentRepository.GetProjectedPaginatedAsync(
-                projection: q => q.Select(e => new StudentTuitionChargeDTO
+            _ = filter.SortExpression;
+
+            var query = _enrollmentRepository.Query()
+                .Where(filterExpr);
+
+            if (!string.IsNullOrWhiteSpace(filter.Search))
+            {
+                var search = filter.Search.Trim().ToLowerInvariant();
+                query = query.Where(e =>
+                    e.Course.CourseCode.ToLower().Contains(search) ||
+                    e.CourseNameSnapshot.ToLower().Contains(search));
+            }
+
+            var total = await query.CountAsync(cancellationToken);
+            query = ApplyTuitionOrdering(query, filter)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize);
+
+            var charges = await query
+                .Select(e => new StudentTuitionChargeDTO
                 {
                     EnrollmentId = e.Id,
                     ChargeId = e.Charge!.Id,
@@ -91,7 +124,12 @@ namespace Services.Payments
                     PaidAmount = e.Charge.PaidAmount,
                     RemainingAmount = e.Charge.RemainingAmount,
                     TaxRate = e.Charge.TaxRateSnapshot,
-                    Installments = e.Charge.Installments.OrderBy(i => i.InstallmentNumber).Select(i => new StudentTuitionInstallmentDTO
+                    Installments = e.Charge.Installments
+                        .OrderBy(i => i.Status == ChargeInstallmentStatus.Overdue ? 0 :
+                                      i.Status == ChargeInstallmentStatus.PendingPayment ? 1 :
+                                      i.Status == ChargeInstallmentStatus.Paid ? 2 : 3)
+                        .ThenBy(i => i.InstallmentNumber)
+                        .Select(i => new StudentTuitionInstallmentDTO
                     {
                         Id = i.Id,
                         InstallmentNumber = i.InstallmentNumber,
@@ -101,18 +139,39 @@ namespace Services.Payments
                     }).ToList(),
                     AppliedFasSchemeName = e.Charge.AppliedFasSchemeNameSnapshot,
                     AppliedFasTierName = e.Charge.AppliedFasTierNameSnapshot
-                }),
-                filterExpr: filterExpr,
-                filterStr: null,
-                search: filter.Search,
-                searchFields: [$"{nameof(Enrollment.Course)}.{nameof(Course.CourseCode)}", nameof(Enrollment.CourseNameSnapshot)],
-                order: filter.SortExpression,
-                page: filter.Page,
-                pageSize: pageSize,
-                includes: null,
-                cancellationToken: cancellationToken);
+                })
+                .ToListAsync(cancellationToken);
 
             return new PaginationResult<StudentTuitionChargeDTO>(total, pageSize, charges);
+        }
+
+        private static IOrderedQueryable<Enrollment> ApplyTuitionOrdering(
+            IQueryable<Enrollment> query,
+            StudentTuitionFilterDTO filter)
+        {
+            var ordered = query
+                .OrderBy(e => e.Charge!.Status == ChargeStatus.Overdue ? 0 :
+                              e.Charge.Status == ChargeStatus.PendingPayment ? 1 :
+                              e.Charge.Status == ChargeStatus.Paid ? 2 : 3);
+
+            var firstSortTerm = (filter.Sort ?? string.Empty)
+                .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+                .FirstOrDefault() ?? string.Empty;
+            var tokens = firstSortTerm
+                .Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+            var alias = tokens.Length > 0 ? tokens[0] : "id";
+            var descending = tokens.Length < 2 ||
+                             string.Equals(tokens[1], "desc", StringComparison.OrdinalIgnoreCase);
+
+            return alias.ToLowerInvariant() switch
+            {
+                "createdat" => descending
+                    ? ordered.ThenByDescending(e => e.Charge!.CreatedAt).ThenByDescending(e => e.Id)
+                    : ordered.ThenBy(e => e.Charge!.CreatedAt).ThenBy(e => e.Id),
+                _ => descending
+                    ? ordered.ThenByDescending(e => e.Id)
+                    : ordered.ThenBy(e => e.Id)
+            };
         }
     }
 }

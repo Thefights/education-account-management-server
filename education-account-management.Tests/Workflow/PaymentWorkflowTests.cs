@@ -241,6 +241,57 @@ public class PaymentWorkflowTests
     }
 
     [Fact]
+    public async Task PayNextInstallments_FutureOnlyInstallment_IsRejected()
+    {
+        await using var db = new TestDatabase();
+        var graph = await db.CreateAccountGraphAsync("2000018", balance: 40m);
+        var (_, charge) = await CreateChargeForAccountAsync(db, graph, "PN00018");
+        await SetChargeProgressAsync(db, charge.Id, paid: 40m, remaining: 80m, planMonths: 3);
+        await db.CreateInstallmentsAsync(
+            charge,
+            (1, 40m, ChargeInstallmentStatus.Paid),
+            (2, 40m, ChargeInstallmentStatus.PendingPayment));
+        var service = db.CreateStripeService(graph.UserId, new FakeStripeCheckoutGateway());
+
+        var exception = await Assert.ThrowsAsync<ValidationFailureException>(() =>
+            service.PayNextInstallmentsAsync(new PayNextInstallmentsRequest
+            {
+                ChargeIds = [charge.Id],
+                CreditBalanceApplied = 40m
+            }));
+
+        Assert.Contains($"Charge_{charge.Id}_NoInstallmentDue", exception.FieldErrors.Keys);
+    }
+
+    [Fact]
+    public async Task PayRemainingInstallments_AllowsFutureInstallments()
+    {
+        await using var db = new TestDatabase();
+        var graph = await db.CreateAccountGraphAsync("2000019", balance: 80m);
+        var (_, charge) = await CreateChargeForAccountAsync(db, graph, "PR00019");
+        await SetChargeProgressAsync(db, charge.Id, paid: 40m, remaining: 80m, planMonths: 3);
+        await db.CreateInstallmentsAsync(
+            charge,
+            (1, 40m, ChargeInstallmentStatus.Paid),
+            (2, 40m, ChargeInstallmentStatus.PendingPayment),
+            (3, 40m, ChargeInstallmentStatus.PendingPayment));
+        var service = db.CreateStripeService(graph.UserId, new FakeStripeCheckoutGateway());
+
+        await service.PayRemainingInstallmentsAsync(new PayRemainingInstallmentsRequest
+        {
+            ChargeIds = [charge.Id],
+            CreditBalanceApplied = 80m
+        });
+
+        db.Context.ChangeTracker.Clear();
+        var installments = await db.Context.ChargeInstallment
+            .Where(i => i.ChargeId == charge.Id)
+            .ToListAsync();
+
+        Assert.All(installments, installment => Assert.Equal(ChargeInstallmentStatus.Paid, installment.Status));
+    }
+
+    [Fact]
     public async Task PayRemainingInstallments_BalanceOnly_MarksRemainingInstallmentsPaidAndChargePaid()
     {
         await using var db = new TestDatabase();
