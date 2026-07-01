@@ -37,8 +37,7 @@ namespace Persistence.Seeding
                     SchemeCode = SeedBusinessCodeUtil.Generate(BusinessCodeGenerator.FasSchemePrefix, i), 
                     SchemeName = $"Seed FAS Scheme {i:D2}", 
                     Description = "Seed financial assistance scheme.", 
-                    DurationInMonths = 12, SubsidyType = FasSubsidyType.FixedAmount, 
-                    IsPerComponent = false, 
+                    DurationInMonths = 12,
                     PublishedAt = status == FasSchemeStatus.Active ? publishedAt.AddDays(i) : null, 
                     CreatedAt = createdAt 
                 });
@@ -62,6 +61,7 @@ namespace Persistence.Seeding
                     TierIncomeBasis = FasTierIncomeBasis.PerCapitaIncome,
                     MinPerCapitaIncome = 0m,
                     MaxPerCapitaIncome = 500m,
+                    SubsidyType = FasSubsidyType.FixedAmount,
                     SubsidyValue = 100m,
                     DisplayOrder = 1, CreatedAt = createdAt
                 });
@@ -72,6 +72,7 @@ namespace Persistence.Seeding
                     TierIncomeBasis = FasTierIncomeBasis.PerCapitaIncome,
                     MinPerCapitaIncome = 500m,
                     MaxPerCapitaIncome = null,
+                    SubsidyType = FasSubsidyType.FixedAmount,
                     SubsidyValue = 70m,
                     DisplayOrder = 2, CreatedAt = createdAt
                 });

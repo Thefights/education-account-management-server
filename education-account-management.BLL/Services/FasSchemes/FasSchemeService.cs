@@ -57,7 +57,7 @@ namespace Services.FasSchemes
             ArgumentNullException.ThrowIfNull(createDTO);
             var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
 
-            ValidateInput(createDTO.SchemeName, createDTO.Tiers, createDTO.RootConditionGroup, createDTO.SubsidyType);
+            ValidateInput(createDTO.SchemeName, createDTO.Tiers, createDTO.RootConditionGroup);
             FasConditionTreeUtility.Validate(createDTO.RootConditionGroup);
             FasConditionSemanticAnalyzer.Validate(createDTO.RootConditionGroup);
             await ValidateCoursesExistAsync(createDTO.SchemeCourses.Select(c => c.CourseId).ToList(), schoolId, cancellationToken);
@@ -73,7 +73,6 @@ namespace Services.FasSchemes
                 var scheme = _mapper.MapFromCreateDTO(createDTO);
                 scheme.SchoolId = schoolId;
                 scheme.Status = FasSchemeStatus.Draft;
-                scheme.IsPerComponent = createDTO.Tiers.Any(t => t.IsPerComponent);
                 scheme.SchemeCode = await BusinessCodeGenerator.GenerateUniqueAsync(
                     BusinessCodeGenerator.FasSchemePrefix,
                     (code, innerToken) => _repository.AnyAsync(s => s.SchemeCode == code, innerToken),
@@ -99,6 +98,7 @@ namespace Services.FasSchemes
                     MaxPerCapitaIncome = t.MaxPerCapitaIncome,
                     MinGrossHouseholdIncome = t.MinGrossHouseholdIncome,
                     MaxGrossHouseholdIncome = t.MaxGrossHouseholdIncome,
+                    SubsidyType = t.SubsidyType,
                     IsPerComponent = t.IsPerComponent,
                     SubsidyValue = t.SubsidyValue,
                     CourseFeeSubsidyValue = t.CourseFeeSubsidyValue,
@@ -151,7 +151,7 @@ namespace Services.FasSchemes
             ArgumentNullException.ThrowIfNull(updateDTO);
             var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
 
-            ValidateInput(updateDTO.SchemeName, updateDTO.Tiers, updateDTO.RootConditionGroup, updateDTO.SubsidyType);
+            ValidateInput(updateDTO.SchemeName, updateDTO.Tiers, updateDTO.RootConditionGroup);
             FasConditionTreeUtility.Validate(updateDTO.RootConditionGroup);
             FasConditionSemanticAnalyzer.Validate(updateDTO.RootConditionGroup);
             await ValidateCoursesExistAsync(updateDTO.SchemeCourses.Select(c => c.CourseId).ToList(), schoolId, cancellationToken);
@@ -215,7 +215,6 @@ namespace Services.FasSchemes
                 await _unitOfWork.SaveChangeAsync(token);
 
                 _mapper.MapFromUpdateDTO(updateDTO, scheme);
-                scheme.IsPerComponent = updateDTO.Tiers.Any(t => t.IsPerComponent);
                 scheme.TryValidate();
 
                 await UniqueConstraintValidator.ValidateAsync(_repository, scheme, scheme.Id, token);
@@ -234,6 +233,7 @@ namespace Services.FasSchemes
                     MaxPerCapitaIncome = t.MaxPerCapitaIncome,
                     MinGrossHouseholdIncome = t.MinGrossHouseholdIncome,
                     MaxGrossHouseholdIncome = t.MaxGrossHouseholdIncome,
+                    SubsidyType = t.SubsidyType,
                     IsPerComponent = t.IsPerComponent,
                     SubsidyValue = t.SubsidyValue,
                     CourseFeeSubsidyValue = t.CourseFeeSubsidyValue,
@@ -375,9 +375,7 @@ namespace Services.FasSchemes
                         cancellationToken: token),
                     SchemeName = nameCopy,
                     Description = source.Description,
-                    DurationInMonths = source.DurationInMonths,
-                    SubsidyType = source.SubsidyType,
-                    IsPerComponent = source.IsPerComponent
+                    DurationInMonths = source.DurationInMonths
                 };
                 newScheme.TryValidate();
                 await _repository.AddAsync(newScheme, token);
@@ -393,6 +391,7 @@ namespace Services.FasSchemes
                     MaxPerCapitaIncome = t.MaxPerCapitaIncome,
                     MinGrossHouseholdIncome = t.MinGrossHouseholdIncome,
                     MaxGrossHouseholdIncome = t.MaxGrossHouseholdIncome,
+                    SubsidyType = t.SubsidyType,
                     IsPerComponent = t.IsPerComponent,
                     SubsidyValue = t.SubsidyValue,
                     CourseFeeSubsidyValue = t.CourseFeeSubsidyValue,
@@ -642,8 +641,7 @@ namespace Services.FasSchemes
         private static void ValidateInput(
             string name,
             List<FasSchemeTierRequestDTO> tiers,
-            FasConditionGroupRequestDTO rootConditionGroup,
-            FasSubsidyType subsidyType)
+            FasConditionGroupRequestDTO rootConditionGroup)
         {
             if (string.IsNullOrWhiteSpace(name))
                 throw new ValidationFailureException(nameof(CreateFasSchemeDTO.SchemeName), "Scheme name is required.");
@@ -651,7 +649,7 @@ namespace Services.FasSchemes
                 throw new ValidationFailureException(nameof(CreateFasSchemeDTO.Tiers), "At least one tier is required.");
             if (rootConditionGroup.Conditions.Count + rootConditionGroup.Groups.Count == 0)
                 throw new ValidationFailureException(nameof(CreateFasSchemeDTO.RootConditionGroup), "At least one condition is required.");
-            FasTierMatcher.ValidateTierConfiguration(tiers, subsidyType);
+            FasTierMatcher.ValidateTierConfiguration(tiers);
         }
 
         private async Task ValidateCoursesExistAsync(List<int> courseIds, int schoolId, CancellationToken cancellationToken)
@@ -678,6 +676,7 @@ namespace Services.FasSchemes
                     MaxPerCapitaIncome = t.MaxPerCapitaIncome,
                     MinGrossHouseholdIncome = t.MinGrossHouseholdIncome,
                     MaxGrossHouseholdIncome = t.MaxGrossHouseholdIncome,
+                    SubsidyType = t.SubsidyType,
                     IsPerComponent = t.IsPerComponent,
                     SubsidyValue = t.SubsidyValue,
                     CourseFeeSubsidyValue = t.CourseFeeSubsidyValue,
@@ -686,7 +685,7 @@ namespace Services.FasSchemes
                 })
                 .ToListAsync(cancellationToken);
 
-            FasTierMatcher.ValidateTierConfiguration(tiers, scheme.SubsidyType);
+            FasTierMatcher.ValidateTierConfiguration(tiers);
 
             var groups = await _groupRepository.Query()
                 .Include(g => g.Conditions)

@@ -55,6 +55,7 @@ namespace DTOs.FasApplications
         public decimal? MaxPerCapitaIncome { get; set; }
         public decimal? MinGrossHouseholdIncome { get; set; }
         public decimal? MaxGrossHouseholdIncome { get; set; }
+        public FasSubsidyType SubsidyType { get; set; }
         public bool IsPerComponent { get; set; }
         public decimal? SubsidyValue { get; set; }
         public decimal? CourseFeeSubsidyValue { get; set; }

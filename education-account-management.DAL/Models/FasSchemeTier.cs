@@ -14,6 +14,10 @@ namespace Models
         [EnumDefined]
         public FasTierIncomeBasis TierIncomeBasis { get; set; } = FasTierIncomeBasis.PerCapitaIncome;
 
+        // Cách tính hỗ trợ của tier: phần trăm hoặc số tiền cố định.
+        [EnumDefined]
+        public FasSubsidyType SubsidyType { get; set; } = FasSubsidyType.Percent;
+
         [Column(TypeName = "decimal(18,2)"), NumberPositive]
         public decimal? MinPerCapitaIncome { get; set; }
 

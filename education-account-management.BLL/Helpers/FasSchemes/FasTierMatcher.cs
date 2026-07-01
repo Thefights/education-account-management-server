@@ -56,8 +56,7 @@ namespace Helpers.FasSchemes
         }
 
         public static void ValidateTierConfiguration(
-            IReadOnlyCollection<FasSchemeTierRequestDTO> tiers,
-            FasSubsidyType subsidyType)
+            IReadOnlyCollection<FasSchemeTierRequestDTO> tiers)
         {
             var errors = new Dictionary<string, string>();
             if (tiers.Count == 0)
@@ -68,7 +67,7 @@ namespace Helpers.FasSchemes
 
             foreach (var tier in tiers.Select((value, index) => new { value, index }))
             {
-                ValidateTier(tier.value, tier.index, subsidyType, errors);
+                ValidateTier(tier.value, tier.index, errors);
             }
 
             ValidateRanges(
@@ -94,7 +93,6 @@ namespace Helpers.FasSchemes
         private static void ValidateTier(
             FasSchemeTierRequestDTO tier,
             int index,
-            FasSubsidyType subsidyType,
             Dictionary<string, string> errors)
         {
             var prefix = $"{nameof(CreateFasSchemeDTO.Tiers)}[{index}]";
@@ -102,6 +100,8 @@ namespace Helpers.FasSchemes
                 errors[$"{prefix}.{nameof(tier.DisplayOrder)}"] = "Display order cannot be negative.";
             if (!Enum.IsDefined(tier.TierIncomeBasis))
                 errors[$"{prefix}.{nameof(tier.TierIncomeBasis)}"] = "Tier income basis is invalid.";
+            if (!Enum.IsDefined(tier.SubsidyType))
+                errors[$"{prefix}.{nameof(tier.SubsidyType)}"] = "Subsidy type is invalid.";
 
             switch (tier.TierIncomeBasis)
             {
@@ -121,14 +121,14 @@ namespace Helpers.FasSchemes
 
             if (tier.IsPerComponent)
             {
-                ValidateSubsidyValue(tier.CourseFeeSubsidyValue, $"{prefix}.{nameof(tier.CourseFeeSubsidyValue)}", subsidyType, errors);
-                ValidateSubsidyValue(tier.MiscFeeSubsidyValue, $"{prefix}.{nameof(tier.MiscFeeSubsidyValue)}", subsidyType, errors);
+                ValidateSubsidyValue(tier.CourseFeeSubsidyValue, $"{prefix}.{nameof(tier.CourseFeeSubsidyValue)}", tier.SubsidyType, errors);
+                ValidateSubsidyValue(tier.MiscFeeSubsidyValue, $"{prefix}.{nameof(tier.MiscFeeSubsidyValue)}", tier.SubsidyType, errors);
                 if (tier.SubsidyValue.HasValue)
                     errors[$"{prefix}.{nameof(tier.SubsidyValue)}"] = "Subsidy value must be empty when per-component subsidy is enabled.";
             }
             else
             {
-                ValidateSubsidyValue(tier.SubsidyValue, $"{prefix}.{nameof(tier.SubsidyValue)}", subsidyType, errors);
+                ValidateSubsidyValue(tier.SubsidyValue, $"{prefix}.{nameof(tier.SubsidyValue)}", tier.SubsidyType, errors);
                 if (tier.CourseFeeSubsidyValue.HasValue || tier.MiscFeeSubsidyValue.HasValue)
                     errors[$"{prefix}.ComponentSubsidyValue"] = "Component subsidy values must be empty when per-component subsidy is disabled.";
             }

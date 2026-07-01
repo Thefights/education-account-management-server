@@ -19,11 +19,10 @@ namespace Helpers.FasSchemes
                 return new FasChargeSubsidyResult(0m, grossAmount, null);
             }
 
-            var scheme = application.FasScheme;
             var tier = application.ApprovedTier;
             var subsidyAmount = tier.IsPerComponent
-                ? CalculatePerComponent(courseFee, miscFee, taxRate, scheme.SubsidyType, tier)
-                : CalculateNormal(grossAmount, scheme.SubsidyType, tier.SubsidyValue);
+                ? CalculatePerComponent(courseFee, miscFee, taxRate, tier.SubsidyType, tier)
+                : CalculateNormal(grossAmount, tier.SubsidyType, tier.SubsidyValue);
 
             subsidyAmount = RoundMoney(Math.Min(subsidyAmount, grossAmount));
             var netAmount = RoundMoney(grossAmount - subsidyAmount);

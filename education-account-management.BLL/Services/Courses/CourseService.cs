@@ -535,9 +535,7 @@ namespace Services.Courses
                         Id = item.FasScheme.Id,
                         SchemeCode = item.FasScheme.SchemeCode,
                         SchemeName = item.FasScheme.SchemeName,
-                        Status = item.FasScheme.Status.ToString(),
-                        SubsidyType = item.FasScheme.SubsidyType.ToString(),
-                        IsPerComponent = item.FasScheme.IsPerComponent
+                        Status = item.FasScheme.Status.ToString()
                     })
                     .ToList()
             });

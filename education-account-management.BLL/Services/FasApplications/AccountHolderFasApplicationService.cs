@@ -419,13 +419,12 @@ namespace Services.FasApplications
                     MaxPerCapitaIncome = application.ApprovedTier.MaxPerCapitaIncome,
                     MinGrossHouseholdIncome = application.ApprovedTier.MinGrossHouseholdIncome,
                     MaxGrossHouseholdIncome = application.ApprovedTier.MaxGrossHouseholdIncome,
+                    SubsidyType = application.ApprovedTier.SubsidyType,
                     IsPerComponent = application.ApprovedTier.IsPerComponent,
                     SubsidyValue = application.ApprovedTier.SubsidyValue,
                     CourseFeeSubsidyValue = application.ApprovedTier.CourseFeeSubsidyValue,
                     MiscFeeSubsidyValue = application.ApprovedTier.MiscFeeSubsidyValue
                 } : null,
-                SubsidyType = application.FasScheme.SubsidyType,
-                IsPerComponent = application.ApprovedTier?.IsPerComponent ?? false,
                 Documents = application.Documents.Select(d => new FasApplicationDocumentDetailDTO
                 {
                     Id = d.Id,

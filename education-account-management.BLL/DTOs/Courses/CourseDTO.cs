@@ -85,9 +85,6 @@ namespace DTOs.Courses
 
         public string? Status { get; set; }
 
-        public string? SubsidyType { get; set; }
-
-        public bool IsPerComponent { get; set; }
     }
 
     public class AssignCourseStudentsDTO

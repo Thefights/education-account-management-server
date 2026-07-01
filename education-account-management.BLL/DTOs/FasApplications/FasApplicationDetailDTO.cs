@@ -1,4 +1,3 @@
-using Enums;
 using DTOs.FasSchemes;
 
 namespace DTOs.FasApplications
@@ -30,6 +29,7 @@ namespace DTOs.FasApplications
         public decimal? MaxPerCapitaIncome { get; set; }
         public decimal? MinGrossHouseholdIncome { get; set; }
         public decimal? MaxGrossHouseholdIncome { get; set; }
+        public FasSubsidyType SubsidyType { get; set; }
         public bool IsPerComponent { get; set; }
         public decimal? SubsidyValue { get; set; }
         public decimal? CourseFeeSubsidyValue { get; set; }
@@ -49,7 +49,7 @@ namespace DTOs.FasApplications
         public int StudentAgeSnapshot { get; set; }
         public NationalityCategory StudentNationalitySnapshot { get; set; }
         public NationalityCategory GuardianNationalitySnapshot { get; set; }
-        
+
         public decimal GrossHouseholdIncomeSnapshot { get; set; }
         public int HouseholdMemberCountSnapshot { get; set; }
         public decimal PerCapitaIncomeSnapshot { get; set; }
@@ -59,8 +59,6 @@ namespace DTOs.FasApplications
         public DateTime? ApprovedAt { get; set; }
         public DateTime? ValidityStartDate { get; set; }
         public DateTime? ValidityEndDate { get; set; }
-        public FasSubsidyType SubsidyType { get; set; }
-        public bool IsPerComponent { get; set; }
         public FasApplicationTierDetailDTO? ApprovedTier { get; set; }
 
         public List<FasApplicationDocumentDetailDTO> Documents { get; set; } = [];

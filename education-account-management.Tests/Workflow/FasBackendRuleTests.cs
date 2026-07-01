@@ -91,7 +91,7 @@ public class FasBackendRuleTests
         };
 
         Assert.Throws<ValidationFailureException>(() =>
-            FasTierMatcher.ValidateTierConfiguration(gap, FasSubsidyType.Percent));
+            FasTierMatcher.ValidateTierConfiguration(gap));
 
         var overlap = new List<FasSchemeTierRequestDTO>
         {
@@ -100,7 +100,7 @@ public class FasBackendRuleTests
         };
 
         Assert.Throws<ValidationFailureException>(() =>
-            FasTierMatcher.ValidateTierConfiguration(overlap, FasSubsidyType.Percent));
+            FasTierMatcher.ValidateTierConfiguration(overlap));
 
         var finiteFinalRange = new List<FasSchemeTierRequestDTO>
         {
@@ -109,7 +109,7 @@ public class FasBackendRuleTests
         };
 
         Assert.Throws<ValidationFailureException>(() =>
-            FasTierMatcher.ValidateTierConfiguration(finiteFinalRange, FasSubsidyType.Percent));
+            FasTierMatcher.ValidateTierConfiguration(finiteFinalRange));
     }
 
     [Fact]
@@ -149,13 +149,10 @@ public class FasBackendRuleTests
             grossAmount: 163.5m,
             new FasApplication
             {
-                FasScheme = new FasScheme
-                {
-                    SubsidyType = FasSubsidyType.Percent,
-                    IsPerComponent = false
-                },
+                FasScheme = new FasScheme(),
                 ApprovedTier = new FasSchemeTier
                 {
+                    SubsidyType = FasSubsidyType.Percent,
                     SubsidyValue = 50m
                 }
             });
@@ -170,13 +167,10 @@ public class FasBackendRuleTests
             grossAmount: 163.5m,
             new FasApplication
             {
-                FasScheme = new FasScheme
-                {
-                    SubsidyType = FasSubsidyType.Percent,
-                    IsPerComponent = true
-                },
+                FasScheme = new FasScheme(),
                 ApprovedTier = new FasSchemeTier
                 {
+                    SubsidyType = FasSubsidyType.Percent,
                     IsPerComponent = true,
                     CourseFeeSubsidyValue = 50m,
                     MiscFeeSubsidyValue = 20m
@@ -197,13 +191,10 @@ public class FasBackendRuleTests
             grossAmount: 100m,
             new FasApplication
             {
-                FasScheme = new FasScheme
-                {
-                    SubsidyType = FasSubsidyType.FixedAmount,
-                    IsPerComponent = false
-                },
+                FasScheme = new FasScheme(),
                 ApprovedTier = new FasSchemeTier
                 {
+                    SubsidyType = FasSubsidyType.FixedAmount,
                     SubsidyValue = 200m
                 }
             });
@@ -218,6 +209,7 @@ public class FasBackendRuleTests
         {
             TierName = name,
             TierIncomeBasis = FasTierIncomeBasis.PerCapitaIncome,
+            SubsidyType = FasSubsidyType.Percent,
             MinPerCapitaIncome = min,
             MaxPerCapitaIncome = max,
             SubsidyValue = 10m,

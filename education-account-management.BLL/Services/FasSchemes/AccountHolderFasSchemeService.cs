@@ -94,8 +94,6 @@ namespace Services.FasSchemes
                     SchemeName = s.SchemeName,
                     Description = s.Description,
                     DurationInMonths = s.DurationInMonths,
-                    SubsidyType = s.SubsidyType.ToString(),
-                    IsPerComponent = s.IsPerComponent,
                     PublishedAt = s.PublishedAt,
                     Tiers = s.Tiers.Select(t => new FasSchemeTierDTO
                     {
@@ -106,6 +104,7 @@ namespace Services.FasSchemes
                         MaxPerCapitaIncome = t.MaxPerCapitaIncome,
                         MinGrossHouseholdIncome = t.MinGrossHouseholdIncome,
                         MaxGrossHouseholdIncome = t.MaxGrossHouseholdIncome,
+                        SubsidyType = t.SubsidyType,
                         IsPerComponent = t.IsPerComponent,
                         SubsidyValue = t.SubsidyValue,
                         CourseFeeSubsidyValue = t.CourseFeeSubsidyValue,

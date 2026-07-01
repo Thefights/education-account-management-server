@@ -62,8 +62,6 @@ public class LifecycleChargeGenerationTests
             SchemeCode = "FAS-2026-LOW",
             SchemeName = "Inactive approved lower FAS",
             DurationInMonths = 12,
-            SubsidyType = FasSubsidyType.FixedAmount,
-            IsPerComponent = false,
             SchemeCourses = [new FasSchemeCourse { CourseId = course.Id }]
         };
         var lowerTier = new FasSchemeTier
@@ -73,6 +71,7 @@ public class LifecycleChargeGenerationTests
             TierIncomeBasis = FasTierIncomeBasis.PerCapitaIncome,
             MinPerCapitaIncome = 0m,
             MaxPerCapitaIncome = null,
+            SubsidyType = FasSubsidyType.FixedAmount,
             SubsidyValue = 10m,
             DisplayOrder = 1
         };
@@ -83,8 +82,6 @@ public class LifecycleChargeGenerationTests
             SchemeCode = "FAS-2026-HIGH",
             SchemeName = "Inactive approved higher FAS",
             DurationInMonths = 12,
-            SubsidyType = FasSubsidyType.FixedAmount,
-            IsPerComponent = false,
             SchemeCourses = [new FasSchemeCourse { CourseId = course.Id }]
         };
         var higherTier = new FasSchemeTier
@@ -94,6 +91,7 @@ public class LifecycleChargeGenerationTests
             TierIncomeBasis = FasTierIncomeBasis.PerCapitaIncome,
             MinPerCapitaIncome = 0m,
             MaxPerCapitaIncome = null,
+            SubsidyType = FasSubsidyType.FixedAmount,
             SubsidyValue = 30m,
             DisplayOrder = 1
         };

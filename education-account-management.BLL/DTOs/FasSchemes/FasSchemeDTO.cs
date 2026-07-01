@@ -10,8 +10,6 @@ namespace DTOs.FasSchemes
         public string SchemeName { get; set; } = string.Empty;
         public string? Description { get; set; }
         public int DurationInMonths { get; set; }
-        public string? SubsidyType { get; set; }
-        public bool IsPerComponent { get; set; }
         public DateTime? PublishedAt { get; set; }
         public FasConditionGroupDTO? RootConditionGroup { get; set; }
         public List<FasSchemeTierDTO> Tiers { get; set; } = [];
@@ -30,11 +28,6 @@ namespace DTOs.FasSchemes
 
         public int DurationInMonths { get; set; }
 
-        [EnumDefined]
-        public FasSubsidyType SubsidyType { get; set; }
-
-        public bool IsPerComponent { get; set; }
-
         public FasConditionGroupRequestDTO RootConditionGroup { get; set; } = new();
         public List<FasSchemeTierRequestDTO> Tiers { get; set; } = [];
         public List<FasRequiredDocumentRequestDTO> RequiredDocuments { get; set; } = [];
@@ -51,11 +44,6 @@ namespace DTOs.FasSchemes
         public string? Description { get; set; }
 
         public int DurationInMonths { get; set; }
-
-        [EnumDefined]
-        public FasSubsidyType SubsidyType { get; set; }
-
-        public bool IsPerComponent { get; set; }
 
         public FasConditionGroupRequestDTO RootConditionGroup { get; set; } = new();
         public List<FasSchemeTierRequestDTO> Tiers { get; set; } = [];

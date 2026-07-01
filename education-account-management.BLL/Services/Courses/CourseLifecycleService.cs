@@ -306,7 +306,7 @@ namespace Services.Courses
                     AppliedFasApplicationId = selectedFasApplication?.Id,
                     AppliedFasSchemeNameSnapshot = selectedFasApplication?.FasScheme.SchemeName,
                     AppliedFasTierNameSnapshot = selectedFasApplication?.ApprovedTier?.TierName,
-                    AppliedFasSubsidyTypeSnapshot = selectedFasApplication?.FasScheme.SubsidyType,
+                    AppliedFasSubsidyTypeSnapshot = selectedFasApplication?.ApprovedTier?.SubsidyType,
                     AppliedFasIsPerComponentSnapshot = selectedFasApplication?.ApprovedTier?.IsPerComponent ?? false,
                     AppliedFasSubsidyValueSnapshot = selectedFasApplication?.ApprovedTier?.SubsidyValue,
                     AppliedFasCourseFeeSubsidyValueSnapshot = selectedFasApplication?.ApprovedTier?.CourseFeeSubsidyValue,
