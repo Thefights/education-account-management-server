@@ -1,8 +1,8 @@
 namespace EntityAnnotations.RegExAttributes
 {
-    public class PhoneNumberValidatorAttribute() : RegularExpressionAttribute(@"^\+65[689]\d{7}$")
+    public class PhoneNumberValidatorAttribute() : RegularExpressionAttribute(@"^\+65[3689]\d{7}$")
     {
         public override string FormatErrorMessage(string name) =>
-            $"{name} is not valid. Must be a valid Singapore phone number in E.164 format, for example +6561234567 or +6581234567.";
+            $"{name} is not valid. Must start with +65 followed by 8 digits beginning with 3, 6, 8, or 9.";
     }
 }
