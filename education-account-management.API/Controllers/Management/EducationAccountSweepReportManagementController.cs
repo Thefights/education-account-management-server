@@ -13,10 +13,19 @@ namespace Controllers.Management
 
         [HttpGet]
         public async Task<IActionResult> GetReport(
-            [FromQuery] DateOnly? date,
+            [FromQuery] EducationAccountSweepReportQueryDTO query,
             CancellationToken cancellationToken)
         {
-            var result = await _batchReportService.GetReportAsync(date, cancellationToken);
+            var result = await _batchReportService.GetReportAsync(query, cancellationToken);
+            return Result.SuccessData(result);
+        }
+
+        [HttpGet("targets")]
+        public async Task<IActionResult> GetReportTargets(
+            [FromQuery] EducationAccountSweepTargetRangeFilterDTO filter,
+            CancellationToken cancellationToken)
+        {
+            var result = await _batchReportService.GetReportTargetsAsync(filter, cancellationToken);
             return Result.SuccessData(result);
         }
 

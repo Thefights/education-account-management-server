@@ -7,13 +7,17 @@ namespace Interfaces.EducationAccounts
 {
     public interface IEducationAccountSweepReportService
     {
-        Task<EducationAccountSweepReportDTO> GetReportAsync(
-            DateOnly? date,
+        Task<EducationAccountSweepReportSummaryDTO> GetReportAsync(
+            EducationAccountSweepReportQueryDTO query,
             CancellationToken cancellationToken = default);
 
         Task<PaginationResult<EducationAccountSweepTargetRecordDTO>> GetReportTargetsAsync(
             DateOnly batchDate,
             EducationAccountSweepTargetFilterDTO filter,
+            CancellationToken cancellationToken = default);
+
+        Task<PaginationResult<EducationAccountSweepTargetRecordDTO>> GetReportTargetsAsync(
+            EducationAccountSweepTargetRangeFilterDTO filter,
             CancellationToken cancellationToken = default);
 
         Task<EducationAccountSweepManualHandlingDTO> GetFailedRecordForManualHandlingAsync(
