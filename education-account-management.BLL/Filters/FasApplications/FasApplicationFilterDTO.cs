@@ -17,9 +17,10 @@ namespace Filters.FasApplications
                 ["accountName"] = $"{nameof(FasApplication.SchoolStudent)}.{nameof(SchoolStudent.EducationAccount)}.{nameof(EducationAccount.Citizen)}.{nameof(Citizen.FullName)}",
                 ["accountNumber"] = $"{nameof(FasApplication.SchoolStudent)}.{nameof(SchoolStudent.EducationAccount)}.{nameof(EducationAccount.AccountNumber)}",
                 ["submittedAt"] = nameof(FasApplication.CreatedAt)
-            };
+        };
 
         public override IReadOnlyDictionary<string, string> SortFields => AllowedSortFields;
+        public override string Sort { get; set; } = "createdAt desc";
 
         [SearchField(nameof(FasApplication.ApplicationNumber))]
         [FilterField(FilterOperationEnum.Contains, nameof(FasApplication.ApplicationNumber))]

@@ -82,16 +82,22 @@ public class FasBackendRuleTests
     }
 
     [Fact]
-    public void ValidateTierConfiguration_BlocksGapAndOverlap()
+    public void ValidateTierConfiguration_AllowsPartialCoverageAndBlocksOverlap()
     {
-        var gap = new List<FasSchemeTierRequestDTO>
+        var partialCoverage = new List<FasSchemeTierRequestDTO>
         {
-            Tier("Tier 1", 0m, 1000m, 1),
-            Tier("Tier 2", 1500m, null, 2)
+            Tier("Tier 1", 1000m, 2000m, 1),
         };
 
-        Assert.Throws<ValidationFailureException>(() =>
-            FasTierMatcher.ValidateTierConfiguration(gap));
+        FasTierMatcher.ValidateTierConfiguration(partialCoverage);
+
+        var finiteFinalRange = new List<FasSchemeTierRequestDTO>
+        {
+            Tier("Tier 1", 0m, 1000m, 1),
+            Tier("Tier 2", 1000m, 2000m, 2)
+        };
+
+        FasTierMatcher.ValidateTierConfiguration(finiteFinalRange);
 
         var overlap = new List<FasSchemeTierRequestDTO>
         {
@@ -102,14 +108,14 @@ public class FasBackendRuleTests
         Assert.Throws<ValidationFailureException>(() =>
             FasTierMatcher.ValidateTierConfiguration(overlap));
 
-        var finiteFinalRange = new List<FasSchemeTierRequestDTO>
+        var openEndedBeforeFinalRange = new List<FasSchemeTierRequestDTO>
         {
-            Tier("Tier 1", 0m, 1000m, 1),
-            Tier("Tier 2", 1000m, 2000m, 2)
+            Tier("Tier 1", 1000m, null, 1),
+            Tier("Tier 2", 2000m, 3000m, 2)
         };
 
         Assert.Throws<ValidationFailureException>(() =>
-            FasTierMatcher.ValidateTierConfiguration(finiteFinalRange));
+            FasTierMatcher.ValidateTierConfiguration(openEndedBeforeFinalRange));
     }
 
     [Fact]

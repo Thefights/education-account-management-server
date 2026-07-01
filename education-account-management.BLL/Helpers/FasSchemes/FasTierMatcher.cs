@@ -191,19 +191,13 @@ namespace Helpers.FasSchemes
                 .ThenBy(r => r.DisplayOrder)
                 .ToList();
 
-            if (ordered[0].Min != 0)
-            {
-                errors[$"{label}.RangeStart"] = $"The first {label} tier range must start at 0.";
-            }
-
-            decimal? expectedMin = null;
             var openEndedCount = 0;
             for (var index = 0; index < ordered.Count; index++)
             {
                 var range = ordered[index];
-                if (expectedMin.HasValue && range.Min != expectedMin.Value)
+                if (index > 0 && ordered[index - 1].Max.HasValue && range.Min < ordered[index - 1].Max!.Value)
                 {
-                    errors[$"{label}.RangeGap"] = $"Tier '{range.TierName}' creates a gap or overlap in {label} ranges.";
+                    errors[$"{label}.RangeOverlap"] = $"Tier '{range.TierName}' overlaps another {label} tier range.";
                 }
 
                 if (!range.Max.HasValue)
@@ -214,18 +208,11 @@ namespace Helpers.FasSchemes
                         errors[$"{label}.OpenEnded"] = $"Open-ended {label} tier '{range.TierName}' must be the final range.";
                     }
                 }
-
-                expectedMin = range.Max;
             }
 
             if (openEndedCount > 1)
             {
                 errors[$"{label}.OpenEnded"] = $"Only one open-ended {label} tier range is allowed.";
-            }
-
-            if (openEndedCount == 0)
-            {
-                errors[$"{label}.RangeEnd"] = $"The final {label} tier range must be open-ended.";
             }
         }
 

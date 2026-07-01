@@ -14,6 +14,7 @@ namespace Services.FasSchemes
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly ICurrentUserService _currentUserService = currentUserService;
+        private sealed record BlockingApplicationInfo(int Id, FasApplicationStatus Status);
 
         public async Task<FasSchemeAvailableResponseDTO> GetAvailableSchemesAsync(FasSchemeFilterDTO filter, CancellationToken cancellationToken = default)
         {
@@ -52,6 +53,32 @@ namespace Services.FasSchemes
                         .ThenInclude(child => child.Conditions);
 
             var activeSchemes = await activeSchemesQuery.ToListAsync(cancellationToken);
+
+            var today = DateTime.UtcNow.Date;
+            var blockingApplications = await _unitOfWork.Repository<FasApplication>()
+                .Query()
+                .Where(application => application.SchoolStudentId == studentInfo.Id
+                    && (application.Status == FasApplicationStatus.Pending
+                        || (application.Status == FasApplicationStatus.Approved
+                            && (application.ValidityEndDate == null || application.ValidityEndDate >= today))))
+                .OrderBy(application => application.Status == FasApplicationStatus.Pending ? 0 : 1)
+                .ThenByDescending(application => application.CreatedAt)
+                .Select(application => new
+                {
+                    application.Id,
+                    application.FasSchemeId,
+                    application.Status
+                })
+                .ToListAsync(cancellationToken);
+            var blockingApplicationBySchemeId = blockingApplications
+                .GroupBy(application => application.FasSchemeId)
+                .ToDictionary(
+                    group => group.Key,
+                    group =>
+                    {
+                        var application = group.First();
+                        return new BlockingApplicationInfo(application.Id, application.Status);
+                    });
 
             // 3. Keep all active schemes visible. The frontend disables Apply for schemes that
             // already have a pending or currently valid approved application.
@@ -95,6 +122,14 @@ namespace Services.FasSchemes
                     Description = s.Description,
                     DurationInMonths = s.DurationInMonths,
                     PublishedAt = s.PublishedAt,
+                    HasBlockingApplication = blockingApplicationBySchemeId.ContainsKey(s.Id),
+                    BlockingApplicationId = blockingApplicationBySchemeId.TryGetValue(s.Id, out var blockingApplication)
+                        ? blockingApplication.Id
+                        : null,
+                    BlockingApplicationStatus = blockingApplication?.Status,
+                    ApplyUnavailableReason = blockingApplication == null
+                        ? null
+                        : "You already have a pending or active approved application for this scheme.",
                     Tiers = s.Tiers.Select(t => new FasSchemeTierDTO
                     {
                         Id = t.Id,
@@ -124,7 +159,11 @@ namespace Services.FasSchemes
                         IsRequired = q.IsRequired
                     }).ToList(),
                     ConditionsSummary = GenerateConditionsSummary(s.ConditionGroups)
-                }).ToList();
+                })
+                .OrderBy(s => s.HasBlockingApplication)
+                .ThenByDescending(s => s.PublishedAt)
+                .ThenBy(s => s.SchemeName)
+                .ToList();
 
             return new FasSchemeAvailableResponseDTO
             {

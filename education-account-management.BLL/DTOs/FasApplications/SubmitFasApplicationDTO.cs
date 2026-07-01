@@ -8,9 +8,9 @@ namespace DTOs.FasApplications
         [NotDefaultValue]
         public int RequiredDocumentId { get; set; }
 
-        public string FileKey { get; set; } = string.Empty;
+        public string? FileKey { get; set; }
 
-        public string FileName { get; set; } = string.Empty;
+        public string? FileName { get; set; }
 
         public IFormFile? File { get; set; }
     }

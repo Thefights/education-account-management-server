@@ -659,12 +659,14 @@ namespace Services.FasApplications
                         continue;
                     }
 
+                    var resolvedFileKey = fileKey!;
+                    var resolvedFileName = fileName!;
                     var applicationDocument = new FasApplicationDocument
                     {
                         FasApplicationId = applicationId,
                         FasSchemeRequiredDocumentId = document.RequiredDocumentId,
-                        FileKey = fileKey,
-                        FileName = fileName,
+                        FileKey = resolvedFileKey,
+                        FileName = resolvedFileName,
                         DocumentNameSnapshot = requiredDocument.DocumentName
                     };
                     applicationDocument.TryValidate();
