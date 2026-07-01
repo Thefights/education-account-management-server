@@ -6,14 +6,12 @@ using Interfaces.Email;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Logging.Abstractions;
-using Models;
 using Persistence.SqlServer;
-using Repositories.Interfaces;
 using Services.Courses;
 using Services.Payments;
 using Utils;
 
-namespace education_account_management.Tests.Support;
+namespace Support;
 
 internal sealed class TestDatabase : IAsyncDisposable
 {

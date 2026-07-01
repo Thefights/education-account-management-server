@@ -1,9 +1,9 @@
 using DTOs.Payments;
 using education_account_management.Tests.Fakes;
-using education_account_management.Tests.Support;
 using Enums;
 using Exceptions;
 using Microsoft.EntityFrameworkCore;
+using Support;
 
 namespace education_account_management.Tests.Workflow;
 

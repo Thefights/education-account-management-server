@@ -1,8 +1,3 @@
-using Enums;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-
 namespace Interfaces.Notifications
 {
     public interface INotificationWriter

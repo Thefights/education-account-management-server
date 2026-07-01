@@ -1,8 +1,7 @@
-using education_account_management.Tests.Support;
 using Enums;
 using Microsoft.EntityFrameworkCore;
 
-namespace education_account_management.Tests.Workflow;
+namespace Workflow;
 
 public class LifecycleChargeGenerationTests
 {

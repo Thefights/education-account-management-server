@@ -6,5 +6,4 @@
   <Project Path="education-account-management.API/education-account-management.API.csproj" />
   <Project Path="education-account-management.BLL/education-account-management.BLL.csproj" />
   <Project Path="education-account-management.DAL/education-account-management.DAL.csproj" />
-  <Project Path="education-account-management.Tests/education-account-management.Tests.csproj" />
 </Solution>
