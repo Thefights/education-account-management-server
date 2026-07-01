@@ -1,6 +1,7 @@
 using DTOs.Payments;
 using Interfaces.Audit;
 using Interfaces.Email;
+using Interfaces.Notifications;
 using Interfaces.Payments;
 using Stripe.Checkout;
 using System.Text.Json;
@@ -13,7 +14,8 @@ public partial class StripeService(
     IOutboxWriter outboxWriter,
     ICurrentUserService currentUserService,
     IAuditLogWriter auditLogWriter,
-    IStripeCheckoutGateway stripeCheckoutGateway) : IStripeService
+    IStripeCheckoutGateway stripeCheckoutGateway,
+    INotificationWriter notificationWriter) : IStripeService
 {
     private readonly AppConfiguration _configuration = configuration;
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
@@ -21,6 +23,7 @@ public partial class StripeService(
     private readonly IAuditLogWriter _auditLogWriter = auditLogWriter;
     private readonly ICurrentUserService _currentUserService = currentUserService;
     private readonly IStripeCheckoutGateway _stripeCheckoutGateway = stripeCheckoutGateway;
+    private readonly INotificationWriter _notificationWriter = notificationWriter;
 
     private readonly IGenericRepository<EducationAccount> _accountRepository = unitOfWork.Repository<EducationAccount>();
     private readonly IGenericRepository<Charge> _chargeRepository = unitOfWork.Repository<Charge>();
@@ -414,4 +417,3 @@ internal static class PaymentSessionResponseFactory
         };
     }
 }
-

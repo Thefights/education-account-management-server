@@ -3,6 +3,7 @@ using DTOs.FasSchemes;
 using Filters.FasApplications;
 using Helpers.FasSchemes;
 using Interfaces.FasApplications;
+using Interfaces.Notifications;
 using Interfaces.Storage;
 using Results;
 
@@ -11,11 +12,13 @@ namespace Services.FasApplications
     public class AccountHolderFasApplicationService(
         IUnitOfWork unitOfWork,
         ICurrentUserService currentUserService,
-        IUploadService uploadService) : IAccountHolderFasApplicationService
+        IUploadService uploadService,
+        INotificationWriter notificationWriter) : IAccountHolderFasApplicationService
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly ICurrentUserService _currentUserService = currentUserService;
         private readonly IUploadService _uploadService = uploadService;
+        private readonly INotificationWriter _notificationWriter = notificationWriter;
 
         private sealed record AccountHolderStudentInfo(int Id, int SchoolId, bool IsSingaporean, DateOnly DateOfBirth);
 
@@ -44,6 +47,31 @@ namespace Services.FasApplications
 
                 await _unitOfWork.Repository<FasApplication>().AddAsync(application, cancellationToken);
                 await _unitOfWork.SaveChangeAsync(cancellationToken);
+
+                var schoolAdminUserIds = await _unitOfWork.Repository<User>()
+                    .Query()
+                    .Where(user => user.Role == UserRole.SchoolAdmin &&
+                        user.Status == UserStatus.Active &&
+                        user.AdminProfile != null &&
+                        user.AdminProfile.SchoolId == studentInfo.SchoolId)
+                    .Select(user => user.Id)
+                    .ToListAsync(cancellationToken);
+
+                await _notificationWriter.CreateForUsersAsync(
+                    schoolAdminUserIds,
+                    NotificationType.FasApplicationSubmitted,
+                    NotificationSeverity.Info,
+                    "New FAS application submitted",
+                    $"A new FAS application {application.ApplicationNumber} is waiting for review.",
+                    nameof(FasApplication),
+                    application.Id,
+                    new
+                    {
+                        application.ApplicationNumber,
+                        application.FasSchemeId,
+                        application.SchoolStudentId
+                    },
+                    cancellationToken);
 
                 return application.ApplicationNumber;
             }
@@ -293,6 +321,31 @@ namespace Services.FasApplications
                 throw;
             }
 
+            var schoolAdminUserIds = await _unitOfWork.Repository<User>()
+                .Query()
+                .Where(user => user.Role == UserRole.SchoolAdmin &&
+                    user.Status == UserStatus.Active &&
+                    user.AdminProfile != null &&
+                    user.AdminProfile.SchoolId == studentInfo.SchoolId)
+                .Select(user => user.Id)
+                .ToListAsync(cancellationToken);
+
+            await _notificationWriter.CreateForUsersAsync(
+                schoolAdminUserIds,
+                NotificationType.FasApplicationSubmitted,
+                NotificationSeverity.Info,
+                "New FAS application submitted",
+                $"A new FAS application {draft.ApplicationNumber} is waiting for review.",
+                nameof(FasApplication),
+                draft.Id,
+                new
+                {
+                    draft.ApplicationNumber,
+                    draft.FasSchemeId,
+                    draft.SchoolStudentId
+                },
+                cancellationToken);
+
             return draft.ApplicationNumber;
         }
 
@@ -349,6 +402,31 @@ namespace Services.FasApplications
             application.WithdrawnAt = DateTime.UtcNow;
 
             await _unitOfWork.SaveChangeAsync(cancellationToken);
+
+            var schoolAdminUserIds = await _unitOfWork.Repository<User>()
+                .Query()
+                .Where(user => user.Role == UserRole.SchoolAdmin &&
+                    user.Status == UserStatus.Active &&
+                    user.AdminProfile != null &&
+                    user.AdminProfile.SchoolId == studentInfo.SchoolId)
+                .Select(user => user.Id)
+                .ToListAsync(cancellationToken);
+
+            await _notificationWriter.CreateForUsersAsync(
+                schoolAdminUserIds,
+                NotificationType.FasApplicationWithdrawn,
+                NotificationSeverity.Info,
+                "FAS application withdrawn",
+                $"FAS application {application.ApplicationNumber} has been withdrawn by the applicant.",
+                nameof(FasApplication),
+                application.Id,
+                new
+                {
+                    application.ApplicationNumber,
+                    application.FasSchemeId,
+                    application.SchoolStudentId
+                },
+                cancellationToken);
         }
 
         public async Task<FasApplicationDetailDTO> GetApplicationDetailAsync(int id, CancellationToken cancellationToken = default)

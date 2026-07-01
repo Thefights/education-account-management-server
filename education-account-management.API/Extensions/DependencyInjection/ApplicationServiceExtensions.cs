@@ -54,6 +54,11 @@ using Services.TransactionHistory;
 using StackExchange.Redis;
 using System.Threading.RateLimiting;
 using Utils;
+using Hubs;
+using Interfaces.Notifications;
+using Mappers.Notifications;
+using Microsoft.AspNetCore.SignalR;
+using Services.Notifications;
 
 namespace Extensions.DependencyInjection
 {
@@ -138,6 +143,17 @@ namespace Extensions.DependencyInjection
 
             services.AddScoped<IAiChatService, AiChatService>();
             services.AddScoped<IAiDocumentManagementService, AiDocumentManagementService>();
+
+            services.AddSignalR();
+            services.AddSingleton<IUserIdProvider, NameIdentifierUserIdProvider>();
+            services.AddScoped<INotificationRealtimeSender, NotificationRealtimeSender>();
+
+            services.AddScoped<NotificationService>();
+            services.AddScoped<INotificationService>(provider =>
+                provider.GetRequiredService<NotificationService>());
+            services.AddScoped<INotificationWriter>(provider =>
+                provider.GetRequiredService<NotificationService>());
+            services.AddScoped<NotificationMapper>();
 
             AddAiServices(services, configuration);
 

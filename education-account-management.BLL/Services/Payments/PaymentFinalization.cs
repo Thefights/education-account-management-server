@@ -50,6 +50,7 @@ public partial class StripeService
     {
         var educationAccount = await _accountRepository.Query(tracking: true)
             .Include(a => a.Citizen)
+                .ThenInclude(c => c.User)
             .FirstOrDefaultAsync(a => a.Id == accountId, cancellationToken);
 
         return educationAccount ?? throw new InternalAppException($"Account holder not found for process payment!");
@@ -88,6 +89,58 @@ public partial class StripeService
             targetStatus, relatedPayments.First(), educationAccount, isSuccess,
             totalPaid, totals.CreditBalanceCovered, totals.OnlinePaymentCovered);
 
+        await SendPaymentNotificationAsync(
+            targetStatus, relatedPayments.First(), educationAccount, isSuccess,
+            totalPaid, totals.CreditBalanceCovered, totals.OnlinePaymentCovered, paymentIds, token);
+    }
+
+    private async Task SendPaymentNotificationAsync(
+        PaymentStatus targetStatus,
+        Payment payment,
+        EducationAccount educationAccount,
+        bool isSuccess,
+        decimal totalPaid,
+        decimal totalWalletCovered,
+        decimal totalStripeCovered,
+        List<int> paymentIds,
+        CancellationToken token)
+    {
+        var notificationType = targetStatus switch
+        {
+            PaymentStatus.Succeeded => NotificationType.PaymentSucceeded,
+            PaymentStatus.Failed => NotificationType.PaymentFailed,
+            PaymentStatus.Canceled => NotificationType.PaymentCanceled,
+            _ => (NotificationType?)null
+        };
+
+        if (!notificationType.HasValue || educationAccount.Citizen.User == null)
+        {
+            return;
+        }
+
+        var severity = isSuccess
+            ? NotificationSeverity.Success
+            : NotificationSeverity.Warning;
+
+        await _notificationWriter.CreateAsync(
+            educationAccount.Citizen.User.Id,
+            notificationType.Value,
+            severity,
+            isSuccess ? "Payment confirmed" : $"Payment {targetStatus}",
+            isSuccess
+                ? $"Your payment of ${totalPaid:N2} has been confirmed."
+                : $"Your payment session has been {targetStatus}.",
+            nameof(Payment),
+            payment.Id,
+            new
+            {
+                paymentIds,
+                totalPaid,
+                totalWalletCovered,
+                totalStripeCovered,
+                status = targetStatus.ToString()
+            },
+            token);
     }
 
     // ===== Cụm 8: Ledger transaction writing =====

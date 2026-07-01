@@ -3,15 +3,18 @@ using Interfaces.EducationAccounts;
 using Mappers.EducationAccounts;
 using Services.EducationAccounts.Utils;
 using Validators;
+using Interfaces.Notifications;
 
 namespace Services.EducationAccounts
 {
     public class EducationAccountSweepService(
         IUnitOfWork unitOfWork,
-        ICurrentUserService currentUserService) : IEducationAccountSweepService
+        ICurrentUserService currentUserService,
+        INotificationWriter notificationWriter) : IEducationAccountSweepService
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly ICurrentUserService _currentUserService = currentUserService;
+        private readonly INotificationWriter _notificationWriter = notificationWriter;
 
         private readonly IGenericRepository<Citizen> _citizenRepository = unitOfWork.Repository<Citizen>();
         private readonly IGenericRepository<EducationAccount> _repository = unitOfWork.Repository<EducationAccount>();
@@ -193,6 +196,42 @@ namespace Services.EducationAccounts
                 await UniqueConstraintValidator.ValidateAsync(_sweepReportRepository, report, cancellationToken: token);
                 await _sweepReportRepository.AddAsync(report, token);
             }, cancellationToken);
+
+            var savedReport = await _sweepReportRepository.Query()
+                .FirstOrDefaultAsync(r => r.BatchDate == result.BatchDate, cancellationToken);
+
+            var failedCount = result.Targets.Count(t => t.Status == SweepTargetStatus.Failed);
+
+            var systemAdminUserIds = await _unitOfWork.Repository<User>()
+                .Query()
+                .Where(user => user.Role == UserRole.SystemAdmin &&
+                    user.Status == UserStatus.Active)
+                .Select(user => user.Id)
+                .ToListAsync(cancellationToken);
+
+            await _notificationWriter.CreateForUsersAsync(
+                systemAdminUserIds,
+                failedCount > 0
+                    ? NotificationType.AccountSweepFailedRecords
+                    : NotificationType.AccountSweepCompleted,
+                failedCount > 0
+                    ? NotificationSeverity.Warning
+                    : NotificationSeverity.Success,
+                failedCount > 0
+                    ? "Account sweep completed with failed records"
+                    : "Account sweep completed",
+                $"Batch {result.BatchDate.ToString("yyyy-MM-dd")} completed: {result.AccountsCreatedCount} created, {failedCount} failed, {result.AccountsClosedCount} closed, {result.AccountsExtendedCount} extended.",
+                nameof(EducationAccountSweepReport),
+                savedReport?.Id,
+                new
+                {
+                    result.BatchDate,
+                    result.AccountsCreatedCount,
+                    result.AccountsClosedCount,
+                    result.AccountsExtendedCount,
+                    failedCount
+                },
+                cancellationToken);
 
             return result;
         }

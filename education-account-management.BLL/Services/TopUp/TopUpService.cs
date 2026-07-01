@@ -1,16 +1,19 @@
 using DTOs.TopUp;
 using Interfaces.Audit;
 using Interfaces.TopUp;
+using Interfaces.Notifications;
 
 namespace Services.TopUp
 {
     public class TopupService(
         IUnitOfWork unitOfWork,
-        IAuditLogWriter auditLogWriter)
+        IAuditLogWriter auditLogWriter,
+        INotificationWriter notificationWriter)
         : ITopupService
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly IAuditLogWriter _auditLogWriter = auditLogWriter;
+        private readonly INotificationWriter _notificationWriter = notificationWriter;
         private readonly IGenericRepository<EducationAccount> _accountRepository = unitOfWork.Repository<EducationAccount>();
         private readonly IGenericRepository<EducationCreditTransaction> _transactionRepository = unitOfWork.Repository<EducationCreditTransaction>();
         private readonly IGenericRepository<TopupExecution> _executionRepository = unitOfWork.Repository<TopupExecution>();
@@ -128,6 +131,28 @@ namespace Services.TopUp
                         execution.TotalExecutedAmount += request.TopUpAmount;
                         result.SuccessList.Add(success);
                         await LogAuditAsync("Success", account, token);
+
+                        if (account.Citizen.User != null)
+                        {
+                            await _notificationWriter.CreateAsync(
+                                account.Citizen.User.Id,
+                                NotificationType.TopupSucceeded,
+                                NotificationSeverity.Success,
+                                "Top-up received",
+                                $"Your education account was topped up by ${request.TopUpAmount:N2}. New balance: ${balanceAfter:N2}.",
+                                nameof(EducationCreditTransaction),
+                                transaction.Id,
+                                new
+                                {
+                                    account.Id,
+                                    account.AccountNumber,
+                                    amount = request.TopUpAmount,
+                                    balanceBefore,
+                                    balanceAfter,
+                                    transaction.TransactionCode
+                                },
+                                token);
+                        }
                     }
                     catch (Exception exception) when (exception is not OperationCanceledException)
                     {
@@ -143,6 +168,31 @@ namespace Services.TopUp
             result.TotalSuccess = execution.SuccessCount;
             result.TotalFailed = execution.FailedCount;
             result.TotalAmountCredited = execution.TotalExecutedAmount;
+
+            var financeAdminUserIds = await _unitOfWork.Repository<User>()
+                .Query()
+                .Where(user => user.Role == UserRole.FinanceAdmin &&
+                    user.Status == UserStatus.Active)
+                .Select(user => user.Id)
+                .ToListAsync(cancellationToken);
+
+            await _notificationWriter.CreateForUsersAsync(
+                financeAdminUserIds,
+                execution.FailedCount > 0 ? NotificationType.TopupBatchFailed : NotificationType.TopupBatchCompleted,
+                execution.FailedCount > 0 ? NotificationSeverity.Warning : NotificationSeverity.Success,
+                execution.FailedCount > 0 ? "Top-up completed with failures" : "Top-up completed",
+                $"Top-up batch {execution.ExecutionCode} completed: {execution.SuccessCount} success, {execution.FailedCount} failed.",
+                nameof(TopupExecution),
+                execution.Id,
+                new
+                {
+                    execution.ExecutionCode,
+                    execution.SuccessCount,
+                    execution.FailedCount,
+                    execution.TotalExecutedAmount
+                },
+                cancellationToken);
+
             return result;
         }
 
@@ -152,6 +202,7 @@ namespace Services.TopUp
         {
             var accounts = await _accountRepository.Query(tracking: true)
                 .Include(account => account.Citizen)
+                    .ThenInclude(citizen => citizen.User)
                 .Where(account => accountIds.Contains(account.Id))
                 .ToListAsync(cancellationToken);
             var byId = accounts.ToDictionary(account => account.Id);
@@ -183,6 +234,7 @@ namespace Services.TopUp
                 .ToList();
             var accounts = await _accountRepository.Query(tracking: true)
                 .Include(account => account.Citizen)
+                    .ThenInclude(citizen => citizen.User)
                 .Where(account => accountNumbers.Contains(account.AccountNumber))
                 .ToListAsync(cancellationToken);
             var byNumber = accounts.ToDictionary(account => account.AccountNumber, StringComparer.OrdinalIgnoreCase);

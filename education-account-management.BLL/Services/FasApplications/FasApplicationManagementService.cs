@@ -4,6 +4,7 @@ using Interfaces.FasApplications;
 using Mappers.FasApplications;
 using Results;
 using Services.Base;
+using Interfaces.Notifications;
 
 namespace Services.FasApplications
 {
@@ -13,13 +14,15 @@ namespace Services.FasApplications
         SchoolScopeResolver schoolScopeResolver,
         FasApplicationMapper mapper,
         IAuditLogWriter auditLogWriter,
-        IManagementActionLogService managementActionLogService) : BaseGetService<FasApplication, GetFasApplicationSchoolAdminDTO>(unitOfWork, mapper), IFasApplicationManagementService
+        IManagementActionLogService managementActionLogService,
+        INotificationWriter notificationWriter) : BaseGetService<FasApplication, GetFasApplicationSchoolAdminDTO>(unitOfWork, mapper), IFasApplicationManagementService
     {
         private readonly ICurrentUserService _currentUserService = currentUserService;
         private readonly SchoolScopeResolver _schoolScopeResolver = schoolScopeResolver;
         private readonly FasApplicationMapper _mapper = mapper;
         private readonly IAuditLogWriter _auditLogWriter = auditLogWriter;
         private readonly IManagementActionLogService _managementActionLogService = managementActionLogService;
+        private readonly INotificationWriter _notificationWriter = notificationWriter;
         private readonly IGenericRepository<FasTierOverrideHistory> _tierOverrideRepository =
             unitOfWork.Repository<FasTierOverrideHistory>();
 
@@ -107,6 +110,9 @@ namespace Services.FasApplications
                 .Query()
                 .Include(a => a.FasScheme)
                 .Include(a => a.SchoolStudent)
+                    .ThenInclude(student => student.EducationAccount)
+                        .ThenInclude(account => account.Citizen)
+                            .ThenInclude(citizen => citizen.User)
                 .FirstOrDefaultAsync(
                     a => a.Id == id &&
                         a.SchoolStudent.SchoolId == schoolId &&
@@ -129,6 +135,25 @@ namespace Services.FasApplications
 
             application.TryValidate();
 
+            var recipientUserId = application.SchoolStudent.EducationAccount.Citizen.User?.Id;
+            if (recipientUserId.HasValue)
+            {
+                await _notificationWriter.CreateAsync(
+                    recipientUserId.Value,
+                    NotificationType.FasApplicationRejected,
+                    NotificationSeverity.Warning,
+                    "FAS application rejected",
+                    $"Your FAS application {application.ApplicationNumber} was rejected. Reason: {application.ExternalRejectionReason}",
+                    nameof(FasApplication),
+                    application.Id,
+                    new
+                    {
+                        application.ApplicationNumber,
+                        application.ExternalRejectionReason
+                    },
+                    cancellationToken);
+            }
+
             _repository.Update(application);
             await _unitOfWork.SaveChangeAsync(cancellationToken);
         }
@@ -147,6 +172,9 @@ namespace Services.FasApplications
                     .Include(a => a.FasScheme)
                         .ThenInclude(s => s.Tiers)
                     .Include(a => a.SchoolStudent)
+                        .ThenInclude(student => student.EducationAccount)
+                            .ThenInclude(account => account.Citizen)
+                                .ThenInclude(citizen => citizen.User)
                     .Include(a => a.RecommendedTier)
                     .FirstOrDefaultAsync(
                         a => a.Id == id &&
@@ -238,6 +266,28 @@ namespace Services.FasApplications
                         ? $"OverrideFasApplicationTier: ApplicationId {application.Id}, OldTierId {application.RecommendedTierId}, NewTierId {selectedTier.Id}"
                         : $"ApproveFasApplication: ApplicationId {application.Id}, TierId {selectedTier.Id}",
                     cancellationToken: token);
+
+                var recipientUserId = application.SchoolStudent.EducationAccount.Citizen.User?.Id;
+                if (recipientUserId.HasValue)
+                {
+                    await _notificationWriter.CreateAsync(
+                        recipientUserId.Value,
+                        NotificationType.FasApplicationApproved,
+                        NotificationSeverity.Success,
+                        "FAS application approved",
+                        $"Your FAS application {application.ApplicationNumber} has been approved under {selectedTier.TierName}.",
+                        nameof(FasApplication),
+                        application.Id,
+                        new
+                        {
+                            application.ApplicationNumber,
+                            approvedTierId = selectedTier.Id,
+                            selectedTier.TierName,
+                            application.ValidityStartDate,
+                            application.ValidityEndDate
+                        },
+                        token);
+                }
 
                 await _unitOfWork.SaveChangeAsync(token);
             }, cancellationToken);
