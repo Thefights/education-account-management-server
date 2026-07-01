@@ -397,6 +397,40 @@ public class PaymentWorkflowTests
     }
 
     [Fact]
+    public async Task PayRemainingInstallments_OnlineOnly_CreatesAllocationsPerRemainingInstallment()
+    {
+        await using var db = new TestDatabase();
+        var graph = await db.CreateAccountGraphAsync("2000020");
+        var (_, charge) = await CreateChargeForAccountAsync(db, graph, "PR00020");
+        await SetChargeProgressAsync(db, charge.Id, paid: 40m, remaining: 80m, planMonths: 3);
+        await db.CreateInstallmentsAsync(
+            charge,
+            (1, 40m, ChargeInstallmentStatus.Paid),
+            (2, 40m, ChargeInstallmentStatus.Overdue),
+            (3, 40m, ChargeInstallmentStatus.PendingPayment));
+        var stripe = new FakeStripeCheckoutGateway();
+        var service = db.CreateStripeService(graph.UserId, stripe);
+
+        var response = await service.PayRemainingInstallmentsAsync(new PayRemainingInstallmentsRequest
+        {
+            ChargeIds = [charge.Id],
+            CreditBalanceApplied = 0m
+        });
+
+        db.Context.ChangeTracker.Clear();
+        var payment = await db.Context.Payment
+            .Include(p => p.PaymentAllocations)
+            .SingleAsync();
+
+        Assert.Equal(PaymentStatus.Pending.ToString(), response.Status);
+        Assert.Equal("OnlineOnly", response.PaymentMode);
+        Assert.Equal(80m, response.OnlineAmount);
+        Assert.Equal(1, stripe.CreateCallCount);
+        Assert.Equal(2, payment.PaymentAllocations.Count);
+        Assert.All(payment.PaymentAllocations, allocation => Assert.NotNull(allocation.ChargeInstallmentId));
+    }
+
+    [Fact]
     public async Task PayRemainingInstallments_BalanceOnly_MarksRemainingInstallmentsPaidAndChargePaid()
     {
         await using var db = new TestDatabase();
