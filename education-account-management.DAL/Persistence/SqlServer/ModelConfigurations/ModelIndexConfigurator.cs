@@ -320,6 +320,16 @@ namespace Persistence.SqlServer.ModelConfigurations
                 entity.HasIndex(message => message.OccurredAt);
             });
 
+            modelBuilder.Entity<Notification>(entity =>
+            {
+                entity.HasIndex(notification => notification.RecipientUserId);
+                entity.HasIndex(notification => notification.Type);
+                entity.HasIndex(notification => notification.Severity);
+                entity.HasIndex(notification => notification.IsRead);
+                entity.HasIndex(notification => notification.CreatedAt);
+                entity.HasIndex(notification => new { notification.RecipientUserId, notification.IsRead, notification.CreatedAt });
+            });
+
         }
     }
 }

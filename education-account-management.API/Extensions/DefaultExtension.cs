@@ -3,6 +3,7 @@ using Conventions;
 using Filters;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using System.Text.Json.Serialization;
+using Hubs;
 
 namespace Extensions
 {
@@ -69,6 +70,8 @@ namespace Extensions
                 timestamp = DateTimeOffset.UtcNow
             }))
             .AllowAnonymous();
+
+            app.MapHub<NotificationHub>("/hubs/notifications").RequireAuthorization();
 
             app.MapControllers();
 

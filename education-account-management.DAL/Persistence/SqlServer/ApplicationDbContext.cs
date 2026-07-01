@@ -96,6 +96,8 @@ namespace Persistence.SqlServer
 
         public DbSet<ApplicationSetting> ApplicationSetting { get; set; }
 
+        public DbSet<Notification> Notification { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

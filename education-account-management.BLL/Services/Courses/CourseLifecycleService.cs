@@ -1,12 +1,14 @@
 using Interfaces.Audit;
 using Interfaces.Courses;
 using Services.Courses.Utils;
+using Interfaces.Notifications;
 
 namespace Services.Courses
 {
     public class CourseLifecycleService(
         IUnitOfWork unitOfWork,
-        IAuditLogWriter auditLogWriter)
+        IAuditLogWriter auditLogWriter,
+        INotificationWriter notificationWriter)
         : ICourseLifecycleService
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
@@ -17,6 +19,7 @@ namespace Services.Courses
         private readonly IGenericRepository<ApplicationSetting> _settingRepository =
             unitOfWork.Repository<ApplicationSetting>();
         private readonly IAuditLogWriter _auditLogWriter = auditLogWriter;
+        private readonly INotificationWriter _notificationWriter = notificationWriter;
 
         public async Task<int> ProcessDateTransitionsAsync(
             DateTime utcNow,
@@ -81,6 +84,11 @@ namespace Services.Courses
                 {
                     var installments = await _installmentRepository.Query(tracking: true)
                         .Include(installment => installment.Charge)
+                            .ThenInclude(charge => charge.Enrollment)
+                                .ThenInclude(enrollment => enrollment.SchoolStudent)
+                                    .ThenInclude(student => student.EducationAccount)
+                                        .ThenInclude(account => account.Citizen)
+                                            .ThenInclude(citizen => citizen.User)
                         .Where(installment => installment.Status == ChargeInstallmentStatus.PendingPayment
                             && installment.DueDate < utcNow)
                         .ToListAsync(token);
@@ -100,6 +108,27 @@ namespace Services.Courses
                         {
                             installment.Charge.Status = ChargeStatus.Overdue;
                             chargesToUpdate[installment.ChargeId] = installment.Charge;
+                        }
+
+                        var user = installment.Charge.Enrollment.SchoolStudent.EducationAccount.Citizen.User;
+                        if (user != null)
+                        {
+                            await _notificationWriter.CreateAsync(
+                                user.Id,
+                                NotificationType.TuitionChargeOverdue,
+                                NotificationSeverity.Warning,
+                                "Payment overdue",
+                                $"Your tuition fee for {installment.Charge.CourseNameSnapshot} is overdue.",
+                                nameof(Charge),
+                                installment.ChargeId,
+                                new
+                                {
+                                    installment.Id,
+                                    installment.DueDate,
+                                    installment.Amount,
+                                    chargeId = installment.ChargeId
+                                },
+                                token);
                         }
                     }
 
@@ -148,6 +177,8 @@ namespace Services.Courses
                         .Include(item => item.Enrollments)
                             .ThenInclude(enrollment => enrollment.SchoolStudent)
                             .ThenInclude(student => student.EducationAccount)
+                            .ThenInclude(account => account.Citizen)
+                            .ThenInclude(citizen => citizen.User)
                         .FirstOrDefaultAsync(item => item.Id == courseId, token)
                         ?? throw new DataNotFoundException(typeof(Course), courseId);
 
@@ -286,6 +317,32 @@ namespace Services.Courses
 
                 charge.TryValidate();
                 await _chargeRepository.AddAsync(charge, cancellationToken);
+
+                var user = enrollment.SchoolStudent.EducationAccount.Citizen.User;
+                if (user != null &&
+                    charge.Status == ChargeStatus.PendingPayment &&
+                    charge.RemainingAmount > 0)
+                {
+                    await _notificationWriter.CreateAsync(
+                        user.Id,
+                        NotificationType.TuitionChargeCreated,
+                        NotificationSeverity.Info,
+                        "New tuition fee generated",
+                        $"A tuition fee for {course.CourseName} is now available for payment. Amount due: ${charge.RemainingAmount:N2}.",
+                        nameof(Charge),
+                        charge.Id,
+                        new
+                        {
+                            course.Id,
+                            course.CourseCode,
+                            course.CourseName,
+                            charge.GrossAmount,
+                            charge.NetAmount,
+                            charge.RemainingAmount
+                        },
+                        cancellationToken);
+                }
+
                 enrollment.Charge = charge;
                 generatedCount++;
             }

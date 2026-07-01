@@ -7,6 +7,7 @@ using System.Text.Json;
 using PaymentMethod = Enums.PaymentMethod;
 using PaymentIntent = Enums.PaymentIntent;
 using Interfaces.Payments;
+using Interfaces.Notifications;
 
 namespace Services.Payments;
 
@@ -15,13 +16,15 @@ public class StripeService(
     IUnitOfWork unitOfWork,
     IOutboxWriter outboxWriter,
     ICurrentUserService currentUserService,
-    IAuditLogWriter auditLogWriter) : IStripeService
+    IAuditLogWriter auditLogWriter,
+    INotificationWriter notificationWriter) : IStripeService
 {
     private readonly AppConfiguration _configuration = configuration;
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly IOutboxWriter _outboxWriter = outboxWriter;
     private readonly IAuditLogWriter _auditLogWriter = auditLogWriter;
     private readonly ICurrentUserService _currentUserService = currentUserService;
+    private readonly INotificationWriter _notificationWriter = notificationWriter;
     private readonly StripeClient _stripeClient = new StripeClient(configuration.StripeConfig.SecretKey);
 
     private readonly IGenericRepository<EducationAccount> _accountRepository = unitOfWork.Repository<EducationAccount>();
@@ -632,6 +635,7 @@ public class StripeService(
 
             var educationAccount = await _accountRepository.Query(tracking: true)
                 .Include(a => a.Citizen)
+                    .ThenInclude(c => c.User)
                 .FirstOrDefaultAsync(a => a.Id == accountId, cancellationToken);
 
             if (educationAccount == null) throw new InternalAppException($"Account holder not found for process payment!");
@@ -666,6 +670,42 @@ public class StripeService(
 
                 //Gửi mail về thông báo giao dịch
                 await SendPaymentEmailNotificationAsync(targetStatus, relatedPayments.First(), educationAccount, isSuccess, totalPaid, totalCreditBalanceCovered, remainingPaymentViaStripe);
+
+                var notificationType = targetStatus switch
+                {
+                    PaymentStatus.Succeeded => NotificationType.PaymentSucceeded,
+                    PaymentStatus.Failed => NotificationType.PaymentFailed,
+                    PaymentStatus.Canceled => NotificationType.PaymentCanceled,
+                    _ => (NotificationType?)null
+                };
+
+                if (notificationType.HasValue && educationAccount.Citizen.User != null)
+                {
+                    var severity = targetStatus == PaymentStatus.Succeeded
+                        ? NotificationSeverity.Success
+                        : NotificationSeverity.Warning;
+
+                    await _notificationWriter.CreateAsync(
+                        educationAccount.Citizen.User.Id,
+                        notificationType.Value,
+                        severity,
+                        targetStatus == PaymentStatus.Succeeded ? "Payment confirmed" : $"Payment {targetStatus}",
+                        targetStatus == PaymentStatus.Succeeded
+                            ? $"Your payment of ${totalPaid:N2} has been confirmed."
+                            : $"Your payment session has been {targetStatus}.",
+                        nameof(Payment),
+                        relatedPayments.First().Id,
+                        new
+                        {
+                            paymentIds,
+                            totalPaid,
+                            totalWalletCovered = totalCreditBalanceCovered,
+                            totalStripeCovered = remainingPaymentViaStripe,
+                            status = targetStatus.ToString()
+                        },
+                        token);
+                }
+
                 await _unitOfWork.SaveChangeAsync(token);
             }, cancellationToken);
         }
