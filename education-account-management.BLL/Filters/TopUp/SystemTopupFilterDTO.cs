@@ -17,6 +17,7 @@
         [FilterField(FilterOperationEnum.In, nameof(SystemTopup.Status))]
         public List<SystemTopupStatus>? Statuses { get; set; }
 
+        [FilterField(FilterOperationEnum.Contains, nameof(SystemTopup.Name))]
         [SearchField(nameof(SystemTopup.Name))]
         public string? Name { get; set; }
     }
