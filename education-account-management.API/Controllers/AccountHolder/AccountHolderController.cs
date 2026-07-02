@@ -9,6 +9,9 @@ using Filters.FasSchemes;
 using Interfaces.FasSchemes;
 using Interfaces.FasApplications;
 using DTOs.FasApplications;
+using DTOs.SupportTicket;
+using Filters.SupportTickets;
+using Interfaces.SupportTicket;
 
 namespace Controllers.AccountHolder
 {
@@ -16,11 +19,13 @@ namespace Controllers.AccountHolder
     public class AccountHolderController(
         IEducationAccountService educationAccountService,
         IStudentCourseService studentCourseService,
-        IStudentTuitionService studentTuitionService) : BaseController
+        IStudentTuitionService studentTuitionService,
+        ISupportTicketService supportTicketService) : BaseController
     {
         private readonly IEducationAccountService _educationAccountService = educationAccountService;
         private readonly IStudentCourseService _studentCourseService = studentCourseService;
         private readonly IStudentTuitionService _studentTuitionService = studentTuitionService;
+        private readonly ISupportTicketService _supportTicketService = supportTicketService;
 
         [HttpGet("profile")]
         public async Task<IActionResult> GetProfile(CancellationToken cancellationToken)
@@ -57,5 +62,18 @@ namespace Controllers.AccountHolder
             return Result.SuccessData(result);
         }
 
+        [HttpPost("support-tickets")]
+        public async Task<IActionResult> CreateTicket(CreateSupportTicketDTO request, CancellationToken cancellationToken)
+        {
+            await _supportTicketService.CreateTicketAsync(request, cancellationToken);
+            return Result.SuccessAction("Ticket created successfully");
+        }
+
+        [HttpGet("support-tickets")]
+        public async Task<IActionResult> GetMyTickets([FromQuery] SupportTicketFilterDTO filterDTO, CancellationToken cancellationToken)
+        {
+            var tickets = await _supportTicketService.GetMyTicketsAsync(filterDTO, cancellationToken);
+            return Result.SuccessData(tickets);
+        }
     }
 }

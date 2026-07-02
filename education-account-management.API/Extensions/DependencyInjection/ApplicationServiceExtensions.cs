@@ -21,6 +21,7 @@ using Interfaces.Maintenance;
 using Interfaces.Payments;
 using Interfaces.Schools;
 using Interfaces.Storage;
+using Interfaces.SupportTicket;
 using Interfaces.TransactionHistory;
 using Mappers;
 using Mappers.Admin;
@@ -49,6 +50,7 @@ using Services.Payments;
 using Services.Schools;
 using Services.SchoolStudents;
 using Services.Storage;
+using Services.SupportTicket;
 using Services.TopUp;
 using Services.TransactionHistory;
 using StackExchange.Redis;
@@ -117,7 +119,7 @@ namespace Extensions.DependencyInjection
             services.AddScoped<ISchoolStudentService, SchoolStudentService>();
             services.AddScoped<ISchoolStudentImportService, SchoolStudentImportService>();
             services.AddScoped<IFasSchemeService, FasSchemeService>();
-
+            services.AddScoped<ISupportTicketService, SupportTicketService>();
 
             services.AddScoped<IDataCleanupService, DataCleanupService>();
             services.AddHostedService<DataCleanupWorker>();

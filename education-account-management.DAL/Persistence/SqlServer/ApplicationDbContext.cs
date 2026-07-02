@@ -98,6 +98,8 @@ namespace Persistence.SqlServer
 
         public DbSet<Notification> Notification { get; set; }
 
+        public DbSet<SupportTicket> SupportTicket { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

@@ -1,4 +1,4 @@
-﻿namespace Enums
+namespace Enums
 {
     public enum NotificationType
     {
@@ -15,6 +15,7 @@
         TopupBatchCompleted = 11,
         TopupBatchFailed = 12,
         AccountSweepCompleted = 13,
-        AccountSweepFailedRecords = 14
+        AccountSweepFailedRecords = 14,
+        SupportTicketReply = 15
     }
 }
