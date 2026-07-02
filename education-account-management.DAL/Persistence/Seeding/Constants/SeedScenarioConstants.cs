@@ -10,6 +10,13 @@ namespace Persistence.Seeding.Constants
         public static readonly DateOnly SweepStartDate = new(2026, 6, 30);
         public const int SweepDayCount = 8;
         public const int SweepAccountsPerDay = 100;
+        public const int SweepCreateRatio = 5;
+        public const int SweepExtendRatio = 2;
+        public const int SweepCloseRatio = 3;
+        public const int SweepRatioTotal = SweepCreateRatio + SweepExtendRatio + SweepCloseRatio;
+        public const int SweepCreateCountPerDay = SweepAccountsPerDay * SweepCreateRatio / SweepRatioTotal;
+        public const int SweepExtendCountPerDay = SweepAccountsPerDay * SweepExtendRatio / SweepRatioTotal;
+        public const int SweepCloseCountPerDay = SweepAccountsPerDay - SweepCreateCountPerDay - SweepExtendCountPerDay;
         public const int SweepCitizenStartId = 1001;
         public const int ManualCitizenStartId = 9001;
         public const int ManualCitizenCount = 10;

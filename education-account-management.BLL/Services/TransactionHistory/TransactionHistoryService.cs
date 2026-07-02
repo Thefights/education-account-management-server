@@ -75,7 +75,30 @@ namespace Services.TransactionHistory
                     BalanceBefore = transaction.BalanceBefore,
                     BalanceAfter = transaction.BalanceAfter,
                     Description = transaction.Description,
-                    CreatedAt = transaction.CreatedAt
+                    CreatedAt = transaction.CreatedAt,
+                    Receipt = transaction.Payment == null
+                        ? null
+                        : new EducationCreditTransactionReceiptDTO
+                        {
+                            PaymentMethod = transaction.Payment.PaymentMethod.ToString(),
+                            AccountNumber = transaction.Payment.AccountNumberSnapshot,
+                            CitizenNric = transaction.Payment.CitizenNricSnapshot,
+                            CitizenFullName = transaction.Payment.CitizenFullNameSnapshot,
+                            TotalAmount = transaction.Payment.TotalAmount,
+                            PaidAt = transaction.Payment.PaidAt,
+                            ExternalReference = transaction.Payment.ExternalReference,
+                            Items = transaction.Payment.PaymentAllocations
+                                .Select(allocation => new EducationCreditTransactionReceiptItemDTO
+                                {
+                                    CourseName = allocation.CourseNameSnapshot,
+                                    SchoolName = allocation.SchoolNameSnapshot,
+                                    InstallmentNumber = allocation.ChargeInstallment != null
+                                        ? allocation.ChargeInstallment.InstallmentNumber
+                                        : null,
+                                    Amount = allocation.Amount
+                                })
+                                .ToList()
+                        }
                 }),
                 filterExpr: predicate,
                 filterStr: filterDTO.Filter,
