@@ -68,6 +68,7 @@ namespace Services.Payments
                 .ToList() ?? [];
 
             var utcToday = DateTime.UtcNow.Date;
+            var payableThrough = PaymentDueWindow.GetPayableThrough(utcToday);
             var hasRequestedEnrollmentIds = filter.EnrollmentIds != null && filter.EnrollmentIds.Count > 0;
 
             Expression<Func<Enrollment, bool>> filterExpr = e =>
@@ -79,13 +80,23 @@ namespace Services.Payments
                           (hasRequestedEnrollmentIds ||
                            e.Charge.Installments.Any(i =>
                                i.Status != ChargeInstallmentStatus.Paid &&
-                               (i.Status == ChargeInstallmentStatus.Overdue || i.DueDate.Date <= utcToday)))
-                        : e.Charge.Installments.Count <= 1)) &&
+                               (i.Status == ChargeInstallmentStatus.Overdue || i.DueDate.Date <= payableThrough)))
+                        : e.Charge.Installments.Count <= 1 &&
+                          (hasRequestedEnrollmentIds ||
+                           e.Charge.Status == ChargeStatus.Paid ||
+                           e.Charge.Status == ChargeStatus.Overdue ||
+                           e.Charge.CourseEndDateSnapshot.Date <= payableThrough))) &&
                 (filter.EnrollmentIds == null || filter.EnrollmentIds.Count == 0 || filter.EnrollmentIds.Contains(e.Id)) &&
                 (statuses.Count == 0 ||
                  (statuses.Contains(StudentTuitionFilterStatus.Paid) && e.Charge.Status == ChargeStatus.Paid) ||
                  (statuses.Contains(StudentTuitionFilterStatus.Overdue) && e.Charge.Status == ChargeStatus.Overdue) ||
-                 (statuses.Contains(StudentTuitionFilterStatus.Due) && e.Charge.Status == ChargeStatus.PendingPayment));
+                 (statuses.Contains(StudentTuitionFilterStatus.Due) &&
+                  e.Charge.Status == ChargeStatus.PendingPayment &&
+                  (filter.IsInstallment == true
+                    ? e.Charge.Installments.Any(i =>
+                        i.Status != ChargeInstallmentStatus.Paid &&
+                        i.DueDate.Date <= payableThrough)
+                    : e.Charge.CourseEndDateSnapshot.Date <= payableThrough)));
 
             _ = filter.SortExpression;
 

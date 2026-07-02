@@ -22,6 +22,7 @@
         [FilterField(FilterOperationEnum.In, nameof(ScheduleTopUp.Status))]
         public List<ScheduleTopUpStatus>? Statuses { get; set; }
 
+        [FilterField(FilterOperationEnum.Contains, nameof(ScheduleTopUp.Name))]
         [SearchField(nameof(ScheduleTopUp.Name))]
         public string? Name { get; set; }
 

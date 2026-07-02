@@ -9,6 +9,7 @@ namespace Enums
         Close = 5,
         Approve = 6,
         Reject = 7,
-        Override = 8
+        Override = 8,
+        Withdraw = 9
     }
 }

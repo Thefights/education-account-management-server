@@ -155,6 +155,7 @@ namespace Services.Courses
 
             var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
             var utcNow = _timeProvider.GetUtcNow().UtcDateTime;
+            const string publishAuditReason = "Course published by user action.";
 
             await _unitOfWork.ExecuteInTransactionAsync(
                 async (_, token) =>
@@ -193,7 +194,7 @@ namespace Services.Courses
                             ManagementActionEntityType.Course,
                             course.Id,
                             ManagementAction.Publish,
-                            publishDTO.Reason,
+                            publishAuditReason,
                             oldStatus.ToString(),
                             course.Status.ToString(),
                             cancellationToken: token);
@@ -527,6 +528,8 @@ namespace Services.Courses
                 StartDate = course.StartDate,
                 EndDate = course.EndDate,
                 EnrollmentCount = course.Enrollments.Count,
+                ActiveEnrollmentCount = course.Enrollments.Count(item => item.Status == EnrollmentStatus.Active),
+                WithdrawnEnrollmentCount = course.Enrollments.Count(item => item.Status == EnrollmentStatus.Withdrawn),
                 RowVersion = course.RowVersion,
                 ApplicableFasSchemes = course.FasSchemeCourses
                     .OrderBy(item => item.FasScheme.SchemeName)

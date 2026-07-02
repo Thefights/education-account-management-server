@@ -19,8 +19,12 @@ namespace Services.FasApplications
         private readonly ICurrentUserService _currentUserService = currentUserService;
         private readonly IUploadService _uploadService = uploadService;
         private readonly INotificationWriter _notificationWriter = notificationWriter;
+        private static readonly HashSet<string> AllowedApplicationDocumentExtensions = new(StringComparer.OrdinalIgnoreCase)
+        {
+            ".pdf", ".docx"
+        };
 
-        private sealed record AccountHolderStudentInfo(int Id, int SchoolId, bool IsSingaporean, DateOnly DateOfBirth);
+        private sealed record AccountHolderStudentInfo(int Id, int SchoolId, string FullName, bool IsSingaporean, DateOnly DateOfBirth);
 
         public async Task<string> SubmitApplicationAsync(SubmitFasApplicationDTO dto, CancellationToken cancellationToken = default)
         {
@@ -207,6 +211,7 @@ namespace Services.FasApplications
 
             var canReapply =
                 sourceApplication.Status == FasApplicationStatus.Rejected ||
+                sourceApplication.Status == FasApplicationStatus.Withdrawn ||
                 sourceApplication.Status == FasApplicationStatus.Expired ||
                 (sourceApplication.Status == FasApplicationStatus.Approved &&
                  sourceApplication.ValidityEndDate.HasValue &&
@@ -214,7 +219,7 @@ namespace Services.FasApplications
 
             if (!canReapply)
             {
-                throw new DataConflictException("Only rejected or expired applications can be used for reapply.");
+                throw new DataConflictException("Only rejected, withdrawn, or expired applications can be used for reapply.");
             }
 
             await GetActiveSchemeAsync(sourceApplication.FasSchemeId, studentInfo.SchoolId, cancellationToken);
@@ -467,7 +472,8 @@ namespace Services.FasApplications
                         .Select(document => new FasSchemeRequiredDocumentDTO
                         {
                             Id = document.Id,
-                            DocumentName = document.DocumentName
+                            DocumentName = document.DocumentName,
+                            TemplateUrl = document.TemplateFileKey
                         })
                         .ToList(),
                     AdditionalQuestions = application.FasScheme.AdditionalQuestions
@@ -478,6 +484,12 @@ namespace Services.FasApplications
                             IsRequired = question.IsRequired
                         })
                         .ToList()
+                },
+                StudentProfile = new FasStudentProfileDTO
+                {
+                    FullName = studentInfo.FullName,
+                    Age = application.StudentAgeSnapshot,
+                    Nationality = application.StudentNationalitySnapshot
                 },
                 StudentAgeSnapshot = application.StudentAgeSnapshot,
                 StudentNationalitySnapshot = application.StudentNationalitySnapshot,
@@ -536,6 +548,7 @@ namespace Services.FasApplications
                 .Select(student => new AccountHolderStudentInfo(
                     student.Id,
                     student.SchoolId,
+                    student.EducationAccount.Citizen.FullName,
                     student.EducationAccount.Citizen.IsSingaporean,
                     student.EducationAccount.Citizen.DateOfBirth))
                 .SingleOrDefaultAsync(cancellationToken);
@@ -715,6 +728,8 @@ namespace Services.FasApplications
                 var requiredDocument = scheme.RequiredDocuments.FirstOrDefault(r => r.Id == document.RequiredDocumentId);
                 if (requiredDocument != null)
                 {
+                    ValidateApplicationDocumentFile(document, requiredDocument);
+
                     var fileKey = document.FileKey;
                     var fileName = document.FileName;
                     if (document.File != null)
@@ -752,6 +767,27 @@ namespace Services.FasApplications
                 }
             }
             return result;
+        }
+
+        private static void ValidateApplicationDocumentFile(
+            SubmitFasApplicationDocumentDTO document,
+            FasSchemeRequiredDocument requiredDocument)
+        {
+            var fileName = document.File?.FileName ?? document.FileName;
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                return;
+            }
+
+            var extension = Path.GetExtension(fileName);
+            if (AllowedApplicationDocumentExtensions.Contains(extension))
+            {
+                return;
+            }
+
+            throw new ValidationFailureException(
+                nameof(SubmitFasApplicationDTO.Documents),
+                $"Document '{requiredDocument.DocumentName}' must be a Word or PDF file (.pdf, .docx).");
         }
 
         private static void ValidateRequiredDocuments(

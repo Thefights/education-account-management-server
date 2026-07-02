@@ -23,6 +23,7 @@ namespace Interfaces.Enrollments
 
         Task WithdrawAsync(
             int id,
+            WithdrawEnrollmentDTO withdrawDTO,
             CancellationToken cancellationToken = default);
     }
 }

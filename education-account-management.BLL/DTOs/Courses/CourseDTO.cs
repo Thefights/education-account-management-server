@@ -70,6 +70,12 @@ namespace DTOs.Courses
 
         public int EnrollmentCount { get; set; }
 
+        public int ActiveEnrollmentCount { get; set; }
+
+        public int WithdrawnEnrollmentCount { get; set; }
+
+        public string? EnrollmentStatus { get; set; }
+
         public List<GetCourseFasSchemeDTO> ApplicableFasSchemes { get; set; } = [];
 
         public byte[] RowVersion { get; set; } = [];
@@ -132,8 +138,7 @@ namespace DTOs.Courses
     {
         public List<int> Ids { get; set; } = [];
 
-        [MessageRequired, MessageMinLength(10), MessageMaxLength(500)]
-        public string Reason { get; set; } = string.Empty;
+        public string? Reason { get; set; }
     }
 
     public class AssignCourseFasSchemesDTO

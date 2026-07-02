@@ -5,7 +5,6 @@ using Filters.Courses;
 using Infrastructure.Interface;
 using Interfaces.Base;
 using Interfaces.Courses;
-using Mappers;
 using Microsoft.EntityFrameworkCore;
 using Models;
 using Results;
@@ -15,11 +14,9 @@ namespace Services.Courses
 {
     public class StudentCourseService(
         IUnitOfWork unitOfWork,
-        CourseMapper mapper,
         ICurrentUserService currentUserService) : IStudentCourseService
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
-        private readonly CourseMapper _mapper = mapper;
         private readonly ICurrentUserService _currentUserService = currentUserService;
         private readonly IGenericRepository<EducationAccount> _educationAccountRepository = unitOfWork.Repository<EducationAccount>();
         private readonly IGenericRepository<Enrollment> _enrollmentRepository = unitOfWork.Repository<Enrollment>();
@@ -52,7 +49,36 @@ namespace Services.Courses
 
             //Default StartDate Desc
             var (total, courses) = await _enrollmentRepository.GetProjectedPaginatedAsync(
-                projection: query => _mapper.ProjectToGetDTO(query.Select(e => e.Course)),
+                projection: query => query.Select(e => new GetCourseDTO
+                {
+                    Id = e.Course.Id,
+                    SchoolId = e.Course.SchoolId,
+                    CreatedAt = e.Course.CreatedAt,
+                    SchoolName = e.Course.School.SchoolName,
+                    Status = e.Course.Status.ToString(),
+                    CourseCode = e.Course.CourseCode,
+                    CourseName = e.Course.CourseName,
+                    CourseFeeAmount = e.Course.CourseFeeAmount,
+                    MiscFeeAmount = e.Course.MiscFeeAmount,
+                    GstAmount = e.Course.GstAmount,
+                    EnrollmentDeadline = e.Course.EnrollmentDeadline,
+                    StartDate = e.Course.StartDate,
+                    EndDate = e.Course.EndDate,
+                    EnrollmentCount = e.Course.Enrollments.Count,
+                    ActiveEnrollmentCount = e.Course.Enrollments.Count(item => item.Status == EnrollmentStatus.Active),
+                    WithdrawnEnrollmentCount = e.Course.Enrollments.Count(item => item.Status == EnrollmentStatus.Withdrawn),
+                    EnrollmentStatus = e.Status.ToString(),
+                    ApplicableFasSchemes = e.Course.FasSchemeCourses
+                        .OrderBy(item => item.FasScheme.SchemeName)
+                        .Select(item => new GetCourseFasSchemeDTO
+                        {
+                            Id = item.FasScheme.Id,
+                            SchemeCode = item.FasScheme.SchemeCode,
+                            SchemeName = item.FasScheme.SchemeName,
+                            Status = item.FasScheme.Status.ToString()
+                        })
+                        .ToList()
+                }),
                 filterExpr: e => e.SchoolStudent.EducationAccountId == accountId
                               && e.Course.Status != CourseStatus.Draft
                               && e.Course.Status != CourseStatus.Enrolling

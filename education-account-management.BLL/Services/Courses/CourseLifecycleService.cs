@@ -3,6 +3,7 @@ using Interfaces.Courses;
 using Helpers.FasSchemes;
 using Services.Courses.Utils;
 using Interfaces.Notifications;
+using Services.Payments;
 
 namespace Services.Courses
 {
@@ -29,6 +30,7 @@ namespace Services.Courses
             CancellationToken cancellationToken = default)
         {
             utcNow = CourseDateTimeHelper.NormalizeToUtc(utcNow, nameof(utcNow));
+            var overdueChargeCount = await MarkOverdueChargesAsync(utcNow, cancellationToken);
             var overdueInstallmentCount = await MarkOverdueInstallmentsAsync(utcNow, cancellationToken);
             var courseIds = await _courseRepository.Query()
                 .Where(course =>
@@ -75,13 +77,77 @@ namespace Services.Courses
                     failures);
             }
 
-            return transitionCount + overdueInstallmentCount;
+            return transitionCount + overdueChargeCount + overdueInstallmentCount;
+        }
+
+        private async Task<int> MarkOverdueChargesAsync(
+            DateTime utcNow,
+            CancellationToken cancellationToken)
+        {
+            var utcToday = utcNow.Date;
+            return await _unitOfWork.ExecuteInTransactionAsync(
+                async (_, token) =>
+                {
+                    var charges = await _chargeRepository.Query(tracking: true)
+                        .Include(charge => charge.Enrollment)
+                            .ThenInclude(enrollment => enrollment.SchoolStudent)
+                                .ThenInclude(student => student.EducationAccount)
+                                    .ThenInclude(account => account.Citizen)
+                                        .ThenInclude(citizen => citizen.User)
+                        .Where(charge => charge.Status == ChargeStatus.PendingPayment
+                            && charge.RemainingAmount > 0
+                            && !charge.PaymentPlanMonths.HasValue
+                            && !charge.Installments.Any()
+                            && charge.CourseEndDateSnapshot.Date < utcToday)
+                        .ToListAsync(token);
+
+                    if (charges.Count == 0)
+                    {
+                        return 0;
+                    }
+
+                    foreach (var charge in charges)
+                    {
+                        charge.Status = ChargeStatus.Overdue;
+                        charge.TryValidate();
+
+                        var user = charge.Enrollment.SchoolStudent.EducationAccount.Citizen.User;
+                        if (user != null)
+                        {
+                            await _notificationWriter.CreateAsync(
+                                user.Id,
+                                NotificationType.TuitionChargeOverdue,
+                                NotificationSeverity.Warning,
+                                "Payment overdue",
+                                $"Your tuition fee for {charge.CourseNameSnapshot} is overdue.",
+                                nameof(Charge),
+                                charge.Id,
+                                new
+                                {
+                                    charge.Id,
+                                    dueDate = charge.CourseEndDateSnapshot,
+                                    charge.RemainingAmount
+                                },
+                                token);
+                        }
+                    }
+
+                    _chargeRepository.UpdateRange(charges);
+                    await _auditLogWriter.LogAsync(
+                        AuditLogCategory.Billing,
+                        $"Marked {charges.Count} charge(s) overdue.",
+                        cancellationToken: token);
+                    await _unitOfWork.SaveChangeAsync(token);
+                    return charges.Count;
+                },
+                cancellationToken);
         }
 
         private async Task<int> MarkOverdueInstallmentsAsync(
             DateTime utcNow,
             CancellationToken cancellationToken)
         {
+            var utcToday = utcNow.Date;
             return await _unitOfWork.ExecuteInTransactionAsync(
                 async (_, token) =>
                 {
@@ -93,7 +159,7 @@ namespace Services.Courses
                                         .ThenInclude(account => account.Citizen)
                                             .ThenInclude(citizen => citizen.User)
                         .Where(installment => installment.Status == ChargeInstallmentStatus.PendingPayment
-                            && installment.DueDate < utcNow)
+                            && installment.DueDate.Date < utcToday)
                         .ToListAsync(token);
 
                     if (installments.Count == 0)
@@ -232,7 +298,8 @@ namespace Services.Courses
                             .Select(enrollment => enrollment.Charge)
                             .Where(charge => charge != null
                                 && charge.RemainingAmount > 0
-                                && charge.Status == ChargeStatus.PendingPayment)
+                                && charge.Status == ChargeStatus.PendingPayment
+                                && PaymentDueWindow.IsOverdue(charge.CourseEndDateSnapshot, utcNow))
                             .Cast<Charge>()
                             .ToList()
                         : [];

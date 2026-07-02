@@ -215,8 +215,10 @@ namespace Services.Enrollments
 
         public async Task WithdrawAsync(
             int id,
+            WithdrawEnrollmentDTO withdrawDTO,
             CancellationToken cancellationToken = default)
         {
+            ArgumentNullException.ThrowIfNull(withdrawDTO);
             var schoolId = await _schoolScopeResolver.GetSchoolIdAsync(cancellationToken);
             var enrollment = await _repository.Query(tracking: true)
                 .Include(item => item.Course)
@@ -236,9 +238,22 @@ namespace Services.Enrollments
                 throw new DataConflictException("The student has already withdrawn from this course.");
             }
 
+            var previousStatus = enrollment.Status.ToString();
             enrollment.Status = EnrollmentStatus.Withdrawn;
             enrollment.UpdatedAt = _timeProvider.GetUtcNow().UtcDateTime;
+            enrollment.Course.UpdatedAt = enrollment.UpdatedAt;
             _repository.Update(enrollment);
+
+            await _managementActionLogService.LogAsync(
+                Guid.NewGuid(),
+                ManagementActionEntityType.Enrollment,
+                enrollment.Id,
+                ManagementAction.Withdraw,
+                withdrawDTO.Reason,
+                previousStatus,
+                enrollment.Status.ToString(),
+                cancellationToken);
+
             await _unitOfWork.SaveChangeAsync(cancellationToken);
         }
 
