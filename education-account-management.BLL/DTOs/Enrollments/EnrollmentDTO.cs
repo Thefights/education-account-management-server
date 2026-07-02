@@ -17,6 +17,12 @@
         public string Reason { get; set; } = string.Empty;
     }
 
+    public class WithdrawEnrollmentDTO
+    {
+        [MessageRequired, MessageMinLength(10), MessageMaxLength(500)]
+        public string Reason { get; set; } = string.Empty;
+    }
+
     public class GetEnrollmentDTO
     {
         public int Id { get; set; }

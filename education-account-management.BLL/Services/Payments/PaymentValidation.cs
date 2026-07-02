@@ -229,14 +229,29 @@ public partial class StripeService
             bool hasUnpaidInstallments = charge.Installments.Any();
             bool hasUnlockedInstallment = charge.Installments.Any(installment =>
                 IsInstallmentDueForPayment(installment, utcNow));
+            bool isChargeDueForPayment = PaymentDueWindow.IsDueForPayment(
+                charge.CourseEndDateSnapshot,
+                utcNow);
 
             switch (info.Intent)
             {
                 case PaymentIntent.PayFull:
+                    if (!isChargeDueForPayment)
+                    {
+                        errors[$"{nameof(Charge)}_{charge.Id}_NotDue"] =
+                            $"The {nameof(Charge)} for '{enrollment.CourseNameSnapshot}' is not due for payment yet.";
+                        break;
+                    }
                     if (hasUnpaidInstallments || charge.PaymentPlanMonths.HasValue)
                         errors[$"{nameof(Charge)}_{charge.Id}"] = $"Cannot {nameof(PaymentIntent.PayFull)} while an installment plan is active. Use {nameof(PaymentIntent.PayDueInstallments)} instead.";
                     break;
                 case PaymentIntent.CreateInstallment:
+                    if (!isChargeDueForPayment)
+                    {
+                        errors[$"{nameof(Charge)}_{charge.Id}_NotDue"] =
+                            $"The {nameof(Charge)} for '{enrollment.CourseNameSnapshot}' is not due for payment yet.";
+                        break;
+                    }
                     if (hasUnpaidInstallments || charge.PaymentPlanMonths.HasValue)
                     {
                         errors[$"{nameof(Charge)}_{charge.Id}_PlanExists"] = $"Cannot create new {nameof(ChargeInstallment)} plan. An {nameof(ChargeInstallment)} plan already exists.";
@@ -278,6 +293,6 @@ public partial class StripeService
     private static bool IsInstallmentDueForPayment(ChargeInstallment installment, DateTime utcNow)
     {
         return installment.Status != ChargeInstallmentStatus.Paid &&
-               installment.DueDate.Date <= utcNow.Date;
+               PaymentDueWindow.IsDueForPayment(installment.DueDate, utcNow);
     }
 }

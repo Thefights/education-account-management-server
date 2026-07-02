@@ -184,7 +184,7 @@ namespace Persistence.Seeding
                     FasSchemeAdditionalQuestionId = schemeId * 2 - 1,
                     QuestionTextSnapshot = "Reason",
                     IsRequiredSnapshot = true,
-                    AnswerText = "Need help.",
+                    AnswerText = "My household has limited income and needs support to cover education-related expenses.",
                     CreatedAt = createdAt
                 });
             }
