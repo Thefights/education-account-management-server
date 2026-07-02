@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace educationaccountmanagement.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class D : Migration
+    public partial class A : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -2433,7 +2433,9 @@ namespace educationaccountmanagement.DAL.Migrations
                 {
                     { 3, "Matched active eligibility conditions", new DateTime(2026, 1, 4, 0, 0, 0, 0, DateTimeKind.Utc), 2, null, "TOPUP-RUN-003", 0, "topup-run-003", false, 105m, "Manual support credit adjustment", null, 3, 3, 1, null, 105m, "Manual Account Adjustment", 105m, 1, null, null },
                     { 6, "Matched active eligibility conditions", new DateTime(2026, 1, 7, 0, 0, 0, 0, DateTimeKind.Utc), 2, null, "TOPUP-RUN-006", 0, "topup-run-006", false, 135m, "Manual support credit adjustment", null, 3, 3, 1, null, 135m, "Manual Transport Reimbursement", 135m, 1, null, null },
-                    { 9, "Matched active eligibility conditions", new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc), 2, null, "TOPUP-RUN-009", 0, "topup-run-009", false, 165m, "Manual support credit adjustment", null, 3, 3, 1, null, 165m, "Manual Materials Reimbursement", 165m, 1, null, null }
+                    { 9, "Matched active eligibility conditions", new DateTime(2026, 1, 10, 0, 0, 0, 0, DateTimeKind.Utc), 2, null, "TOPUP-RUN-009", 0, "topup-run-009", false, 165m, "Manual support credit adjustment", null, 3, 3, 1, null, 165m, "Manual Materials Reimbursement", 165m, 1, null, null },
+                    { 13, "Dashboard seed batch for finance top-up trend", new DateTime(2026, 6, 28, 2, 0, 0, 0, DateTimeKind.Utc), 2, null, "TOPUP-RUN-013", 1, "topup-run-013", false, 400m, "Manual support batch for dashboard seed", null, 3, 3, 75, null, 400m, "Manual Support Batch", 39000m, 76, null, null },
+                    { 16, "Dashboard seed batch for finance top-up trend", new DateTime(2026, 7, 1, 2, 0, 0, 0, DateTimeKind.Utc), 2, null, "TOPUP-RUN-016", 5, "topup-run-016", false, 420m, "Manual targeted assistance batch for dashboard seed", null, 3, 3, 115, null, 420m, "Manual Targeted Assistance", 57500m, 120, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -4395,7 +4397,12 @@ namespace educationaccountmanagement.DAL.Migrations
                     { 5, "Matched active eligibility conditions", new DateTime(2026, 1, 6, 0, 0, 0, 0, DateTimeKind.Utc), 2, null, "TOPUP-RUN-005", 0, "topup-run-005", false, null, null, 5, 2, 2, 1, null, 125m, "Monthly Attendance Support", 125m, 1, null, null },
                     { 7, "Matched active eligibility conditions", new DateTime(2026, 1, 8, 0, 0, 0, 0, DateTimeKind.Utc), 2, null, "TOPUP-RUN-007", 0, "topup-run-007", false, null, null, null, 1, 1, 1, 7, 145m, "STEM Enrichment Credit", 145m, 1, null, null },
                     { 8, "Matched active eligibility conditions", new DateTime(2026, 1, 9, 0, 0, 0, 0, DateTimeKind.Utc), 2, null, "TOPUP-RUN-008", 1, "topup-run-008", false, null, null, 8, 2, 2, 0, null, 155m, "Monthly Commuter Credit", 0m, 1, null, null },
-                    { 10, "Matched active eligibility conditions", new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc), 2, null, "TOPUP-RUN-010", 0, "topup-run-010", false, null, null, null, 1, 1, 1, 10, 175m, "Holiday Programme Support", 175m, 1, null, null }
+                    { 10, "Matched active eligibility conditions", new DateTime(2026, 1, 11, 0, 0, 0, 0, DateTimeKind.Utc), 2, null, "TOPUP-RUN-010", 0, "topup-run-010", false, null, null, null, 1, 1, 1, 10, 175m, "Holiday Programme Support", 175m, 1, null, null },
+                    { 11, "Dashboard seed batch for finance top-up trend", new DateTime(2026, 6, 26, 2, 0, 0, 0, DateTimeKind.Utc), 2, null, "TOPUP-RUN-011", 2, "topup-run-011", false, null, null, 1, 2, 3, 372, null, 65m, "July Intake Welcome Credit", 37200m, 374, null, null },
+                    { 12, "Dashboard seed batch for finance top-up trend", new DateTime(2026, 6, 27, 2, 0, 0, 0, DateTimeKind.Utc), 2, null, "TOPUP-RUN-012", 3, "topup-run-012", false, null, null, null, 1, 3, 192, 5, 180m, "Exam Preparation Support", 42240m, 195, null, null },
+                    { 14, "Dashboard seed batch for finance top-up trend", new DateTime(2026, 6, 29, 2, 0, 0, 0, DateTimeKind.Utc), 2, null, "TOPUP-RUN-014", 4, "topup-run-014", false, null, null, 4, 2, 3, 434, null, 110m, "Orientation Transport Credit", 52080m, 438, null, null },
+                    { 15, "Dashboard seed batch for finance top-up trend", new DateTime(2026, 6, 30, 2, 0, 0, 0, DateTimeKind.Utc), 2, null, "TOPUP-RUN-015", 2, "topup-run-015", false, null, null, null, 1, 3, 179, 7, 220m, "STEM Enrichment Credit", 46540m, 181, null, null },
+                    { 17, "Dashboard seed batch for finance top-up trend", new DateTime(2026, 7, 2, 2, 0, 0, 0, DateTimeKind.Utc), 2, null, "TOPUP-RUN-017", 3, "topup-run-017", false, null, null, 10, 2, 3, 264, null, 200m, "Workshop Participation Credit", 68640m, 267, null, null }
                 });
 
             migrationBuilder.InsertData(
