@@ -39229,9 +39229,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            AccountsClosedCount = 1,
-                            AccountsCreatedCount = 100,
-                            AccountsExtendedCount = 1,
+                            AccountsClosedCount = 30,
+                            AccountsCreatedCount = 50,
+                            AccountsExtendedCount = 20,
                             BatchDate = new DateOnly(2026, 6, 30),
                             CompletedAt = new DateTime(2026, 6, 30, 1, 0, 0, 0, DateTimeKind.Utc),
                             StartedAt = new DateTime(2026, 6, 30, 0, 5, 0, 0, DateTimeKind.Utc)
@@ -39239,9 +39239,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 2,
-                            AccountsClosedCount = 1,
-                            AccountsCreatedCount = 100,
-                            AccountsExtendedCount = 1,
+                            AccountsClosedCount = 30,
+                            AccountsCreatedCount = 50,
+                            AccountsExtendedCount = 20,
                             BatchDate = new DateOnly(2026, 7, 1),
                             CompletedAt = new DateTime(2026, 7, 1, 1, 0, 0, 0, DateTimeKind.Utc),
                             StartedAt = new DateTime(2026, 7, 1, 0, 5, 0, 0, DateTimeKind.Utc)
@@ -39249,9 +39249,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 3,
-                            AccountsClosedCount = 1,
-                            AccountsCreatedCount = 100,
-                            AccountsExtendedCount = 1,
+                            AccountsClosedCount = 30,
+                            AccountsCreatedCount = 50,
+                            AccountsExtendedCount = 20,
                             BatchDate = new DateOnly(2026, 7, 2),
                             CompletedAt = new DateTime(2026, 7, 2, 1, 0, 0, 0, DateTimeKind.Utc),
                             StartedAt = new DateTime(2026, 7, 2, 0, 5, 0, 0, DateTimeKind.Utc)
@@ -39259,9 +39259,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 4,
-                            AccountsClosedCount = 1,
-                            AccountsCreatedCount = 100,
-                            AccountsExtendedCount = 1,
+                            AccountsClosedCount = 30,
+                            AccountsCreatedCount = 50,
+                            AccountsExtendedCount = 20,
                             BatchDate = new DateOnly(2026, 7, 3),
                             CompletedAt = new DateTime(2026, 7, 3, 1, 0, 0, 0, DateTimeKind.Utc),
                             StartedAt = new DateTime(2026, 7, 3, 0, 5, 0, 0, DateTimeKind.Utc)
@@ -39269,9 +39269,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 5,
-                            AccountsClosedCount = 1,
-                            AccountsCreatedCount = 100,
-                            AccountsExtendedCount = 1,
+                            AccountsClosedCount = 30,
+                            AccountsCreatedCount = 50,
+                            AccountsExtendedCount = 20,
                             BatchDate = new DateOnly(2026, 7, 4),
                             CompletedAt = new DateTime(2026, 7, 4, 1, 0, 0, 0, DateTimeKind.Utc),
                             StartedAt = new DateTime(2026, 7, 4, 0, 5, 0, 0, DateTimeKind.Utc)
@@ -39279,9 +39279,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 6,
-                            AccountsClosedCount = 1,
-                            AccountsCreatedCount = 100,
-                            AccountsExtendedCount = 1,
+                            AccountsClosedCount = 30,
+                            AccountsCreatedCount = 50,
+                            AccountsExtendedCount = 20,
                             BatchDate = new DateOnly(2026, 7, 5),
                             CompletedAt = new DateTime(2026, 7, 5, 1, 0, 0, 0, DateTimeKind.Utc),
                             StartedAt = new DateTime(2026, 7, 5, 0, 5, 0, 0, DateTimeKind.Utc)
@@ -39289,9 +39289,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 7,
-                            AccountsClosedCount = 1,
-                            AccountsCreatedCount = 100,
-                            AccountsExtendedCount = 1,
+                            AccountsClosedCount = 30,
+                            AccountsCreatedCount = 50,
+                            AccountsExtendedCount = 20,
                             BatchDate = new DateOnly(2026, 7, 6),
                             CompletedAt = new DateTime(2026, 7, 6, 1, 0, 0, 0, DateTimeKind.Utc),
                             StartedAt = new DateTime(2026, 7, 6, 0, 5, 0, 0, DateTimeKind.Utc)
@@ -39299,9 +39299,9 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 8,
-                            AccountsClosedCount = 1,
-                            AccountsCreatedCount = 100,
-                            AccountsExtendedCount = 1,
+                            AccountsClosedCount = 30,
+                            AccountsCreatedCount = 50,
+                            AccountsExtendedCount = 20,
                             BatchDate = new DateOnly(2026, 7, 7),
                             CompletedAt = new DateTime(2026, 7, 7, 1, 0, 0, 0, DateTimeKind.Utc),
                             StartedAt = new DateTime(2026, 7, 7, 0, 5, 0, 0, DateTimeKind.Utc)
@@ -39853,536 +39853,506 @@ namespace educationaccountmanagement.DAL.Migrations
                         new
                         {
                             Id = 51,
-                            Action = 0,
+                            Action = 2,
                             CitizenId = 1051,
                             Nric = "S0001051J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 52,
-                            Action = 0,
-                            CitizenId = 1052,
-                            Nric = "S0001052I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 53,
-                            Action = 0,
-                            CitizenId = 1053,
-                            Nric = "S0001053G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 54,
-                            Action = 0,
-                            CitizenId = 1054,
-                            Nric = "S0001054E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 55,
-                            Action = 0,
-                            CitizenId = 1055,
-                            Nric = "S0001055C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 56,
-                            Action = 0,
-                            CitizenId = 1056,
-                            Nric = "S0001056A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 57,
-                            Action = 0,
-                            CitizenId = 1057,
-                            Nric = "S0001057Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 58,
-                            Action = 0,
-                            CitizenId = 1058,
-                            Nric = "S0001058H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 59,
-                            Action = 0,
-                            CitizenId = 1059,
-                            Nric = "S0001059F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 60,
-                            Action = 0,
-                            CitizenId = 1060,
-                            Nric = "S0001060Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 61,
-                            Action = 0,
-                            CitizenId = 1061,
-                            Nric = "S0001061H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 62,
-                            Action = 0,
-                            CitizenId = 1062,
-                            Nric = "S0001062F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 63,
-                            Action = 0,
-                            CitizenId = 1063,
-                            Nric = "S0001063D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 64,
-                            Action = 0,
-                            CitizenId = 1064,
-                            Nric = "S0001064B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 65,
-                            Action = 0,
-                            CitizenId = 1065,
-                            Nric = "S0001065J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 66,
-                            Action = 0,
-                            CitizenId = 1066,
-                            Nric = "S0001066I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 67,
-                            Action = 0,
-                            CitizenId = 1067,
-                            Nric = "S0001067G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 68,
-                            Action = 0,
-                            CitizenId = 1068,
-                            Nric = "S0001068E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 69,
-                            Action = 0,
-                            CitizenId = 1069,
-                            Nric = "S0001069C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 70,
-                            Action = 0,
-                            CitizenId = 1070,
-                            Nric = "S0001070G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 71,
-                            Action = 0,
-                            CitizenId = 1071,
-                            Nric = "S0001071E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 72,
-                            Action = 0,
-                            CitizenId = 1072,
-                            Nric = "S0001072C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 73,
-                            Action = 0,
-                            CitizenId = 1073,
-                            Nric = "S0001073A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 74,
-                            Action = 0,
-                            CitizenId = 1074,
-                            Nric = "S0001074Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 75,
-                            Action = 0,
-                            CitizenId = 1075,
-                            Nric = "S0001075H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 76,
-                            Action = 0,
-                            CitizenId = 1076,
-                            Nric = "S0001076F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 77,
-                            Action = 0,
-                            CitizenId = 1077,
-                            Nric = "S0001077D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 78,
-                            Action = 0,
-                            CitizenId = 1078,
-                            Nric = "S0001078B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 79,
-                            Action = 0,
-                            CitizenId = 1079,
-                            Nric = "S0001079J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 80,
-                            Action = 0,
-                            CitizenId = 1080,
-                            Nric = "S0001080D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 81,
-                            Action = 0,
-                            CitizenId = 1081,
-                            Nric = "S0001081B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 82,
-                            Action = 0,
-                            CitizenId = 1082,
-                            Nric = "S0001082J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 83,
-                            Action = 0,
-                            CitizenId = 1083,
-                            Nric = "S0001083I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 84,
-                            Action = 0,
-                            CitizenId = 1084,
-                            Nric = "S0001084G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 85,
-                            Action = 0,
-                            CitizenId = 1085,
-                            Nric = "S0001085E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 86,
-                            Action = 0,
-                            CitizenId = 1086,
-                            Nric = "S0001086C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 87,
-                            Action = 0,
-                            CitizenId = 1087,
-                            Nric = "S0001087A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 88,
-                            Action = 0,
-                            CitizenId = 1088,
-                            Nric = "S0001088Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 89,
-                            Action = 0,
-                            CitizenId = 1089,
-                            Nric = "S0001089H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 90,
-                            Action = 0,
-                            CitizenId = 1090,
-                            Nric = "S0001090A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 91,
-                            Action = 0,
-                            CitizenId = 1091,
-                            Nric = "S0001091Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 92,
-                            Action = 0,
-                            CitizenId = 1092,
-                            Nric = "S0001092H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 93,
-                            Action = 0,
-                            CitizenId = 1093,
-                            Nric = "S0001093F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 94,
-                            Action = 0,
-                            CitizenId = 1094,
-                            Nric = "S0001094D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 95,
-                            Action = 0,
-                            CitizenId = 1095,
-                            Nric = "S0001095B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 96,
-                            Action = 0,
-                            CitizenId = 1096,
-                            Nric = "S0001096J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 97,
-                            Action = 0,
-                            CitizenId = 1097,
-                            Nric = "S0001097I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 98,
-                            Action = 0,
-                            CitizenId = 1098,
-                            Nric = "S0001098G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 99,
-                            Action = 0,
-                            CitizenId = 1099,
-                            Nric = "S0001099E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 100,
-                            Action = 0,
-                            CitizenId = 1100,
-                            Nric = "S0001100B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 101,
-                            Action = 1,
-                            CitizenId = 2,
-                            Nric = "S0000002G",
-                            Reason = "Account closure completed successfully.",
-                            Status = 1,
-                            SweepReportId = 1
-                        },
-                        new
-                        {
-                            Id = 102,
-                            Action = 2,
-                            CitizenId = 3,
-                            Nric = "S0000003E",
                             Reason = "Account extension completed successfully.",
                             Status = 1,
                             SweepReportId = 1
                         },
                         new
                         {
-                            Id = 103,
-                            Action = 0,
-                            CitizenId = 4,
-                            Nric = "S0000004C",
-                            Reason = "Seeded failed target for report filtering.",
-                            Status = 2,
+                            Id = 52,
+                            Action = 2,
+                            CitizenId = 1052,
+                            Nric = "S0001052I",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
                             SweepReportId = 1
                         },
                         new
                         {
-                            Id = 104,
+                            Id = 53,
+                            Action = 2,
+                            CitizenId = 1053,
+                            Nric = "S0001053G",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 54,
+                            Action = 2,
+                            CitizenId = 1054,
+                            Nric = "S0001054E",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 55,
+                            Action = 2,
+                            CitizenId = 1055,
+                            Nric = "S0001055C",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 56,
+                            Action = 2,
+                            CitizenId = 1056,
+                            Nric = "S0001056A",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 57,
+                            Action = 2,
+                            CitizenId = 1057,
+                            Nric = "S0001057Z",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 58,
+                            Action = 2,
+                            CitizenId = 1058,
+                            Nric = "S0001058H",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 59,
+                            Action = 2,
+                            CitizenId = 1059,
+                            Nric = "S0001059F",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 60,
+                            Action = 2,
+                            CitizenId = 1060,
+                            Nric = "S0001060Z",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 61,
+                            Action = 2,
+                            CitizenId = 1061,
+                            Nric = "S0001061H",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 62,
+                            Action = 2,
+                            CitizenId = 1062,
+                            Nric = "S0001062F",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 63,
+                            Action = 2,
+                            CitizenId = 1063,
+                            Nric = "S0001063D",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 64,
+                            Action = 2,
+                            CitizenId = 1064,
+                            Nric = "S0001064B",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 65,
+                            Action = 2,
+                            CitizenId = 1065,
+                            Nric = "S0001065J",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 66,
+                            Action = 2,
+                            CitizenId = 1066,
+                            Nric = "S0001066I",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 67,
+                            Action = 2,
+                            CitizenId = 1067,
+                            Nric = "S0001067G",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 68,
+                            Action = 2,
+                            CitizenId = 1068,
+                            Nric = "S0001068E",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 69,
+                            Action = 2,
+                            CitizenId = 1069,
+                            Nric = "S0001069C",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 70,
+                            Action = 2,
+                            CitizenId = 1070,
+                            Nric = "S0001070G",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 71,
+                            Action = 1,
+                            CitizenId = 1071,
+                            Nric = "S0001071E",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 72,
+                            Action = 1,
+                            CitizenId = 1072,
+                            Nric = "S0001072C",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 73,
+                            Action = 1,
+                            CitizenId = 1073,
+                            Nric = "S0001073A",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 74,
+                            Action = 1,
+                            CitizenId = 1074,
+                            Nric = "S0001074Z",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 75,
+                            Action = 1,
+                            CitizenId = 1075,
+                            Nric = "S0001075H",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 76,
+                            Action = 1,
+                            CitizenId = 1076,
+                            Nric = "S0001076F",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 77,
+                            Action = 1,
+                            CitizenId = 1077,
+                            Nric = "S0001077D",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 78,
+                            Action = 1,
+                            CitizenId = 1078,
+                            Nric = "S0001078B",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 79,
+                            Action = 1,
+                            CitizenId = 1079,
+                            Nric = "S0001079J",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 80,
+                            Action = 1,
+                            CitizenId = 1080,
+                            Nric = "S0001080D",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 81,
+                            Action = 1,
+                            CitizenId = 1081,
+                            Nric = "S0001081B",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 82,
+                            Action = 1,
+                            CitizenId = 1082,
+                            Nric = "S0001082J",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 83,
+                            Action = 1,
+                            CitizenId = 1083,
+                            Nric = "S0001083I",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 84,
+                            Action = 1,
+                            CitizenId = 1084,
+                            Nric = "S0001084G",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 85,
+                            Action = 1,
+                            CitizenId = 1085,
+                            Nric = "S0001085E",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 86,
+                            Action = 1,
+                            CitizenId = 1086,
+                            Nric = "S0001086C",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 87,
+                            Action = 1,
+                            CitizenId = 1087,
+                            Nric = "S0001087A",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 88,
+                            Action = 1,
+                            CitizenId = 1088,
+                            Nric = "S0001088Z",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 89,
+                            Action = 1,
+                            CitizenId = 1089,
+                            Nric = "S0001089H",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 90,
+                            Action = 1,
+                            CitizenId = 1090,
+                            Nric = "S0001090A",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 91,
+                            Action = 1,
+                            CitizenId = 1091,
+                            Nric = "S0001091Z",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 92,
+                            Action = 1,
+                            CitizenId = 1092,
+                            Nric = "S0001092H",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 93,
+                            Action = 1,
+                            CitizenId = 1093,
+                            Nric = "S0001093F",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 94,
+                            Action = 1,
+                            CitizenId = 1094,
+                            Nric = "S0001094D",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 95,
+                            Action = 1,
+                            CitizenId = 1095,
+                            Nric = "S0001095B",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 96,
+                            Action = 1,
+                            CitizenId = 1096,
+                            Nric = "S0001096J",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 97,
+                            Action = 1,
+                            CitizenId = 1097,
+                            Nric = "S0001097I",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 98,
+                            Action = 1,
+                            CitizenId = 1098,
+                            Nric = "S0001098G",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 99,
+                            Action = 1,
+                            CitizenId = 1099,
+                            Nric = "S0001099E",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 100,
+                            Action = 1,
+                            CitizenId = 1100,
+                            Nric = "S0001100B",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 1
+                        },
+                        new
+                        {
+                            Id = 101,
                             Action = 0,
                             CitizenId = 1101,
                             Nric = "S0001101J",
@@ -40392,7 +40362,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 105,
+                            Id = 102,
                             Action = 0,
                             CitizenId = 1102,
                             Nric = "S0001102I",
@@ -40402,7 +40372,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 106,
+                            Id = 103,
                             Action = 0,
                             CitizenId = 1103,
                             Nric = "S0001103G",
@@ -40412,7 +40382,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 107,
+                            Id = 104,
                             Action = 0,
                             CitizenId = 1104,
                             Nric = "S0001104E",
@@ -40422,7 +40392,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 108,
+                            Id = 105,
                             Action = 0,
                             CitizenId = 1105,
                             Nric = "S0001105C",
@@ -40432,7 +40402,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 109,
+                            Id = 106,
                             Action = 0,
                             CitizenId = 1106,
                             Nric = "S0001106A",
@@ -40442,7 +40412,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 110,
+                            Id = 107,
                             Action = 0,
                             CitizenId = 1107,
                             Nric = "S0001107Z",
@@ -40452,7 +40422,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 111,
+                            Id = 108,
                             Action = 0,
                             CitizenId = 1108,
                             Nric = "S0001108H",
@@ -40462,7 +40432,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 112,
+                            Id = 109,
                             Action = 0,
                             CitizenId = 1109,
                             Nric = "S0001109F",
@@ -40472,7 +40442,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 113,
+                            Id = 110,
                             Action = 0,
                             CitizenId = 1110,
                             Nric = "S0001110Z",
@@ -40482,7 +40452,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 114,
+                            Id = 111,
                             Action = 0,
                             CitizenId = 1111,
                             Nric = "S0001111H",
@@ -40492,7 +40462,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 115,
+                            Id = 112,
                             Action = 0,
                             CitizenId = 1112,
                             Nric = "S0001112F",
@@ -40502,7 +40472,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 116,
+                            Id = 113,
                             Action = 0,
                             CitizenId = 1113,
                             Nric = "S0001113D",
@@ -40512,7 +40482,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 117,
+                            Id = 114,
                             Action = 0,
                             CitizenId = 1114,
                             Nric = "S0001114B",
@@ -40522,7 +40492,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 118,
+                            Id = 115,
                             Action = 0,
                             CitizenId = 1115,
                             Nric = "S0001115J",
@@ -40532,7 +40502,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 119,
+                            Id = 116,
                             Action = 0,
                             CitizenId = 1116,
                             Nric = "S0001116I",
@@ -40542,7 +40512,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 120,
+                            Id = 117,
                             Action = 0,
                             CitizenId = 1117,
                             Nric = "S0001117G",
@@ -40552,7 +40522,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 121,
+                            Id = 118,
                             Action = 0,
                             CitizenId = 1118,
                             Nric = "S0001118E",
@@ -40562,7 +40532,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 122,
+                            Id = 119,
                             Action = 0,
                             CitizenId = 1119,
                             Nric = "S0001119C",
@@ -40572,7 +40542,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 123,
+                            Id = 120,
                             Action = 0,
                             CitizenId = 1120,
                             Nric = "S0001120G",
@@ -40582,7 +40552,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 124,
+                            Id = 121,
                             Action = 0,
                             CitizenId = 1121,
                             Nric = "S0001121E",
@@ -40592,7 +40562,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 125,
+                            Id = 122,
                             Action = 0,
                             CitizenId = 1122,
                             Nric = "S0001122C",
@@ -40602,7 +40572,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 126,
+                            Id = 123,
                             Action = 0,
                             CitizenId = 1123,
                             Nric = "S0001123A",
@@ -40612,7 +40582,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 127,
+                            Id = 124,
                             Action = 0,
                             CitizenId = 1124,
                             Nric = "S0001124Z",
@@ -40622,7 +40592,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 128,
+                            Id = 125,
                             Action = 0,
                             CitizenId = 1125,
                             Nric = "S0001125H",
@@ -40632,7 +40602,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 129,
+                            Id = 126,
                             Action = 0,
                             CitizenId = 1126,
                             Nric = "S0001126F",
@@ -40642,7 +40612,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 130,
+                            Id = 127,
                             Action = 0,
                             CitizenId = 1127,
                             Nric = "S0001127D",
@@ -40652,7 +40622,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 131,
+                            Id = 128,
                             Action = 0,
                             CitizenId = 1128,
                             Nric = "S0001128B",
@@ -40662,7 +40632,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 132,
+                            Id = 129,
                             Action = 0,
                             CitizenId = 1129,
                             Nric = "S0001129J",
@@ -40672,7 +40642,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 133,
+                            Id = 130,
                             Action = 0,
                             CitizenId = 1130,
                             Nric = "S0001130D",
@@ -40682,7 +40652,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 134,
+                            Id = 131,
                             Action = 0,
                             CitizenId = 1131,
                             Nric = "S0001131B",
@@ -40692,7 +40662,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 135,
+                            Id = 132,
                             Action = 0,
                             CitizenId = 1132,
                             Nric = "S0001132J",
@@ -40702,7 +40672,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 136,
+                            Id = 133,
                             Action = 0,
                             CitizenId = 1133,
                             Nric = "S0001133I",
@@ -40712,7 +40682,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 137,
+                            Id = 134,
                             Action = 0,
                             CitizenId = 1134,
                             Nric = "S0001134G",
@@ -40722,7 +40692,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 138,
+                            Id = 135,
                             Action = 0,
                             CitizenId = 1135,
                             Nric = "S0001135E",
@@ -40732,7 +40702,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 139,
+                            Id = 136,
                             Action = 0,
                             CitizenId = 1136,
                             Nric = "S0001136C",
@@ -40742,7 +40712,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 140,
+                            Id = 137,
                             Action = 0,
                             CitizenId = 1137,
                             Nric = "S0001137A",
@@ -40752,7 +40722,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 141,
+                            Id = 138,
                             Action = 0,
                             CitizenId = 1138,
                             Nric = "S0001138Z",
@@ -40762,7 +40732,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 142,
+                            Id = 139,
                             Action = 0,
                             CitizenId = 1139,
                             Nric = "S0001139H",
@@ -40772,7 +40742,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 143,
+                            Id = 140,
                             Action = 0,
                             CitizenId = 1140,
                             Nric = "S0001140A",
@@ -40782,7 +40752,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 144,
+                            Id = 141,
                             Action = 0,
                             CitizenId = 1141,
                             Nric = "S0001141Z",
@@ -40792,7 +40762,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 145,
+                            Id = 142,
                             Action = 0,
                             CitizenId = 1142,
                             Nric = "S0001142H",
@@ -40802,7 +40772,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 146,
+                            Id = 143,
                             Action = 0,
                             CitizenId = 1143,
                             Nric = "S0001143F",
@@ -40812,7 +40782,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 147,
+                            Id = 144,
                             Action = 0,
                             CitizenId = 1144,
                             Nric = "S0001144D",
@@ -40822,7 +40792,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 148,
+                            Id = 145,
                             Action = 0,
                             CitizenId = 1145,
                             Nric = "S0001145B",
@@ -40832,7 +40802,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 149,
+                            Id = 146,
                             Action = 0,
                             CitizenId = 1146,
                             Nric = "S0001146J",
@@ -40842,7 +40812,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 150,
+                            Id = 147,
                             Action = 0,
                             CitizenId = 1147,
                             Nric = "S0001147I",
@@ -40852,7 +40822,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 151,
+                            Id = 148,
                             Action = 0,
                             CitizenId = 1148,
                             Nric = "S0001148G",
@@ -40862,7 +40832,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 152,
+                            Id = 149,
                             Action = 0,
                             CitizenId = 1149,
                             Nric = "S0001149E",
@@ -40872,7 +40842,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 153,
+                            Id = 150,
                             Action = 0,
                             CitizenId = 1150,
                             Nric = "S0001150I",
@@ -40882,537 +40852,507 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 154,
-                            Action = 0,
+                            Id = 151,
+                            Action = 2,
                             CitizenId = 1151,
                             Nric = "S0001151G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 155,
-                            Action = 0,
-                            CitizenId = 1152,
-                            Nric = "S0001152E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 156,
-                            Action = 0,
-                            CitizenId = 1153,
-                            Nric = "S0001153C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 157,
-                            Action = 0,
-                            CitizenId = 1154,
-                            Nric = "S0001154A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 158,
-                            Action = 0,
-                            CitizenId = 1155,
-                            Nric = "S0001155Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 159,
-                            Action = 0,
-                            CitizenId = 1156,
-                            Nric = "S0001156H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 160,
-                            Action = 0,
-                            CitizenId = 1157,
-                            Nric = "S0001157F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 161,
-                            Action = 0,
-                            CitizenId = 1158,
-                            Nric = "S0001158D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 162,
-                            Action = 0,
-                            CitizenId = 1159,
-                            Nric = "S0001159B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 163,
-                            Action = 0,
-                            CitizenId = 1160,
-                            Nric = "S0001160F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 164,
-                            Action = 0,
-                            CitizenId = 1161,
-                            Nric = "S0001161D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 165,
-                            Action = 0,
-                            CitizenId = 1162,
-                            Nric = "S0001162B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 166,
-                            Action = 0,
-                            CitizenId = 1163,
-                            Nric = "S0001163J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 167,
-                            Action = 0,
-                            CitizenId = 1164,
-                            Nric = "S0001164I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 168,
-                            Action = 0,
-                            CitizenId = 1165,
-                            Nric = "S0001165G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 169,
-                            Action = 0,
-                            CitizenId = 1166,
-                            Nric = "S0001166E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 170,
-                            Action = 0,
-                            CitizenId = 1167,
-                            Nric = "S0001167C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 171,
-                            Action = 0,
-                            CitizenId = 1168,
-                            Nric = "S0001168A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 172,
-                            Action = 0,
-                            CitizenId = 1169,
-                            Nric = "S0001169Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 173,
-                            Action = 0,
-                            CitizenId = 1170,
-                            Nric = "S0001170C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 174,
-                            Action = 0,
-                            CitizenId = 1171,
-                            Nric = "S0001171A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 175,
-                            Action = 0,
-                            CitizenId = 1172,
-                            Nric = "S0001172Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 176,
-                            Action = 0,
-                            CitizenId = 1173,
-                            Nric = "S0001173H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 177,
-                            Action = 0,
-                            CitizenId = 1174,
-                            Nric = "S0001174F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 178,
-                            Action = 0,
-                            CitizenId = 1175,
-                            Nric = "S0001175D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 179,
-                            Action = 0,
-                            CitizenId = 1176,
-                            Nric = "S0001176B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 180,
-                            Action = 0,
-                            CitizenId = 1177,
-                            Nric = "S0001177J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 181,
-                            Action = 0,
-                            CitizenId = 1178,
-                            Nric = "S0001178I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 182,
-                            Action = 0,
-                            CitizenId = 1179,
-                            Nric = "S0001179G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 183,
-                            Action = 0,
-                            CitizenId = 1180,
-                            Nric = "S0001180J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 184,
-                            Action = 0,
-                            CitizenId = 1181,
-                            Nric = "S0001181I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 185,
-                            Action = 0,
-                            CitizenId = 1182,
-                            Nric = "S0001182G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 186,
-                            Action = 0,
-                            CitizenId = 1183,
-                            Nric = "S0001183E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 187,
-                            Action = 0,
-                            CitizenId = 1184,
-                            Nric = "S0001184C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 188,
-                            Action = 0,
-                            CitizenId = 1185,
-                            Nric = "S0001185A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 189,
-                            Action = 0,
-                            CitizenId = 1186,
-                            Nric = "S0001186Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 190,
-                            Action = 0,
-                            CitizenId = 1187,
-                            Nric = "S0001187H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 191,
-                            Action = 0,
-                            CitizenId = 1188,
-                            Nric = "S0001188F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 192,
-                            Action = 0,
-                            CitizenId = 1189,
-                            Nric = "S0001189D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 193,
-                            Action = 0,
-                            CitizenId = 1190,
-                            Nric = "S0001190H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 194,
-                            Action = 0,
-                            CitizenId = 1191,
-                            Nric = "S0001191F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 195,
-                            Action = 0,
-                            CitizenId = 1192,
-                            Nric = "S0001192D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 196,
-                            Action = 0,
-                            CitizenId = 1193,
-                            Nric = "S0001193B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 197,
-                            Action = 0,
-                            CitizenId = 1194,
-                            Nric = "S0001194J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 198,
-                            Action = 0,
-                            CitizenId = 1195,
-                            Nric = "S0001195I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 199,
-                            Action = 0,
-                            CitizenId = 1196,
-                            Nric = "S0001196G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 200,
-                            Action = 0,
-                            CitizenId = 1197,
-                            Nric = "S0001197E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 201,
-                            Action = 0,
-                            CitizenId = 1198,
-                            Nric = "S0001198C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 202,
-                            Action = 0,
-                            CitizenId = 1199,
-                            Nric = "S0001199A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 203,
-                            Action = 0,
-                            CitizenId = 1200,
-                            Nric = "S0001200I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 204,
-                            Action = 1,
-                            CitizenId = 2,
-                            Nric = "S0000002G",
-                            Reason = "Account closure completed successfully.",
-                            Status = 1,
-                            SweepReportId = 2
-                        },
-                        new
-                        {
-                            Id = 205,
-                            Action = 2,
-                            CitizenId = 3,
-                            Nric = "S0000003E",
                             Reason = "Account extension completed successfully.",
                             Status = 1,
                             SweepReportId = 2
                         },
                         new
                         {
-                            Id = 206,
-                            Action = 0,
-                            CitizenId = 4,
-                            Nric = "S0000004C",
-                            Reason = "Seeded failed target for report filtering.",
-                            Status = 2,
+                            Id = 152,
+                            Action = 2,
+                            CitizenId = 1152,
+                            Nric = "S0001152E",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
                             SweepReportId = 2
                         },
                         new
                         {
-                            Id = 207,
+                            Id = 153,
+                            Action = 2,
+                            CitizenId = 1153,
+                            Nric = "S0001153C",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 154,
+                            Action = 2,
+                            CitizenId = 1154,
+                            Nric = "S0001154A",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 155,
+                            Action = 2,
+                            CitizenId = 1155,
+                            Nric = "S0001155Z",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 156,
+                            Action = 2,
+                            CitizenId = 1156,
+                            Nric = "S0001156H",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 157,
+                            Action = 2,
+                            CitizenId = 1157,
+                            Nric = "S0001157F",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 158,
+                            Action = 2,
+                            CitizenId = 1158,
+                            Nric = "S0001158D",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 159,
+                            Action = 2,
+                            CitizenId = 1159,
+                            Nric = "S0001159B",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 160,
+                            Action = 2,
+                            CitizenId = 1160,
+                            Nric = "S0001160F",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 161,
+                            Action = 2,
+                            CitizenId = 1161,
+                            Nric = "S0001161D",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 162,
+                            Action = 2,
+                            CitizenId = 1162,
+                            Nric = "S0001162B",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 163,
+                            Action = 2,
+                            CitizenId = 1163,
+                            Nric = "S0001163J",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 164,
+                            Action = 2,
+                            CitizenId = 1164,
+                            Nric = "S0001164I",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 165,
+                            Action = 2,
+                            CitizenId = 1165,
+                            Nric = "S0001165G",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 166,
+                            Action = 2,
+                            CitizenId = 1166,
+                            Nric = "S0001166E",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 167,
+                            Action = 2,
+                            CitizenId = 1167,
+                            Nric = "S0001167C",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 168,
+                            Action = 2,
+                            CitizenId = 1168,
+                            Nric = "S0001168A",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 169,
+                            Action = 2,
+                            CitizenId = 1169,
+                            Nric = "S0001169Z",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 170,
+                            Action = 2,
+                            CitizenId = 1170,
+                            Nric = "S0001170C",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 171,
+                            Action = 1,
+                            CitizenId = 1171,
+                            Nric = "S0001171A",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 172,
+                            Action = 1,
+                            CitizenId = 1172,
+                            Nric = "S0001172Z",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 173,
+                            Action = 1,
+                            CitizenId = 1173,
+                            Nric = "S0001173H",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 174,
+                            Action = 1,
+                            CitizenId = 1174,
+                            Nric = "S0001174F",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 175,
+                            Action = 1,
+                            CitizenId = 1175,
+                            Nric = "S0001175D",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 176,
+                            Action = 1,
+                            CitizenId = 1176,
+                            Nric = "S0001176B",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 177,
+                            Action = 1,
+                            CitizenId = 1177,
+                            Nric = "S0001177J",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 178,
+                            Action = 1,
+                            CitizenId = 1178,
+                            Nric = "S0001178I",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 179,
+                            Action = 1,
+                            CitizenId = 1179,
+                            Nric = "S0001179G",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 180,
+                            Action = 1,
+                            CitizenId = 1180,
+                            Nric = "S0001180J",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 181,
+                            Action = 1,
+                            CitizenId = 1181,
+                            Nric = "S0001181I",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 182,
+                            Action = 1,
+                            CitizenId = 1182,
+                            Nric = "S0001182G",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 183,
+                            Action = 1,
+                            CitizenId = 1183,
+                            Nric = "S0001183E",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 184,
+                            Action = 1,
+                            CitizenId = 1184,
+                            Nric = "S0001184C",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 185,
+                            Action = 1,
+                            CitizenId = 1185,
+                            Nric = "S0001185A",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 186,
+                            Action = 1,
+                            CitizenId = 1186,
+                            Nric = "S0001186Z",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 187,
+                            Action = 1,
+                            CitizenId = 1187,
+                            Nric = "S0001187H",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 188,
+                            Action = 1,
+                            CitizenId = 1188,
+                            Nric = "S0001188F",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 189,
+                            Action = 1,
+                            CitizenId = 1189,
+                            Nric = "S0001189D",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 190,
+                            Action = 1,
+                            CitizenId = 1190,
+                            Nric = "S0001190H",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 191,
+                            Action = 1,
+                            CitizenId = 1191,
+                            Nric = "S0001191F",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 192,
+                            Action = 1,
+                            CitizenId = 1192,
+                            Nric = "S0001192D",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 193,
+                            Action = 1,
+                            CitizenId = 1193,
+                            Nric = "S0001193B",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 194,
+                            Action = 1,
+                            CitizenId = 1194,
+                            Nric = "S0001194J",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 195,
+                            Action = 1,
+                            CitizenId = 1195,
+                            Nric = "S0001195I",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 196,
+                            Action = 1,
+                            CitizenId = 1196,
+                            Nric = "S0001196G",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 197,
+                            Action = 1,
+                            CitizenId = 1197,
+                            Nric = "S0001197E",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 198,
+                            Action = 1,
+                            CitizenId = 1198,
+                            Nric = "S0001198C",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 199,
+                            Action = 1,
+                            CitizenId = 1199,
+                            Nric = "S0001199A",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 200,
+                            Action = 1,
+                            CitizenId = 1200,
+                            Nric = "S0001200I",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 2
+                        },
+                        new
+                        {
+                            Id = 201,
                             Action = 0,
                             CitizenId = 1201,
                             Nric = "S0001201G",
@@ -41422,7 +41362,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 208,
+                            Id = 202,
                             Action = 0,
                             CitizenId = 1202,
                             Nric = "S0001202E",
@@ -41432,7 +41372,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 209,
+                            Id = 203,
                             Action = 0,
                             CitizenId = 1203,
                             Nric = "S0001203C",
@@ -41442,7 +41382,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 210,
+                            Id = 204,
                             Action = 0,
                             CitizenId = 1204,
                             Nric = "S0001204A",
@@ -41452,7 +41392,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 211,
+                            Id = 205,
                             Action = 0,
                             CitizenId = 1205,
                             Nric = "S0001205Z",
@@ -41462,7 +41402,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 212,
+                            Id = 206,
                             Action = 0,
                             CitizenId = 1206,
                             Nric = "S0001206H",
@@ -41472,7 +41412,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 213,
+                            Id = 207,
                             Action = 0,
                             CitizenId = 1207,
                             Nric = "S0001207F",
@@ -41482,7 +41422,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 214,
+                            Id = 208,
                             Action = 0,
                             CitizenId = 1208,
                             Nric = "S0001208D",
@@ -41492,7 +41432,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 215,
+                            Id = 209,
                             Action = 0,
                             CitizenId = 1209,
                             Nric = "S0001209B",
@@ -41502,7 +41442,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 216,
+                            Id = 210,
                             Action = 0,
                             CitizenId = 1210,
                             Nric = "S0001210F",
@@ -41512,7 +41452,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 217,
+                            Id = 211,
                             Action = 0,
                             CitizenId = 1211,
                             Nric = "S0001211D",
@@ -41522,7 +41462,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 218,
+                            Id = 212,
                             Action = 0,
                             CitizenId = 1212,
                             Nric = "S0001212B",
@@ -41532,7 +41472,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 219,
+                            Id = 213,
                             Action = 0,
                             CitizenId = 1213,
                             Nric = "S0001213J",
@@ -41542,7 +41482,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 220,
+                            Id = 214,
                             Action = 0,
                             CitizenId = 1214,
                             Nric = "S0001214I",
@@ -41552,7 +41492,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 221,
+                            Id = 215,
                             Action = 0,
                             CitizenId = 1215,
                             Nric = "S0001215G",
@@ -41562,7 +41502,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 222,
+                            Id = 216,
                             Action = 0,
                             CitizenId = 1216,
                             Nric = "S0001216E",
@@ -41572,7 +41512,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 223,
+                            Id = 217,
                             Action = 0,
                             CitizenId = 1217,
                             Nric = "S0001217C",
@@ -41582,7 +41522,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 224,
+                            Id = 218,
                             Action = 0,
                             CitizenId = 1218,
                             Nric = "S0001218A",
@@ -41592,7 +41532,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 225,
+                            Id = 219,
                             Action = 0,
                             CitizenId = 1219,
                             Nric = "S0001219Z",
@@ -41602,7 +41542,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 226,
+                            Id = 220,
                             Action = 0,
                             CitizenId = 1220,
                             Nric = "S0001220C",
@@ -41612,7 +41552,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 227,
+                            Id = 221,
                             Action = 0,
                             CitizenId = 1221,
                             Nric = "S0001221A",
@@ -41622,7 +41562,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 228,
+                            Id = 222,
                             Action = 0,
                             CitizenId = 1222,
                             Nric = "S0001222Z",
@@ -41632,7 +41572,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 229,
+                            Id = 223,
                             Action = 0,
                             CitizenId = 1223,
                             Nric = "S0001223H",
@@ -41642,7 +41582,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 230,
+                            Id = 224,
                             Action = 0,
                             CitizenId = 1224,
                             Nric = "S0001224F",
@@ -41652,7 +41592,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 231,
+                            Id = 225,
                             Action = 0,
                             CitizenId = 1225,
                             Nric = "S0001225D",
@@ -41662,7 +41602,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 232,
+                            Id = 226,
                             Action = 0,
                             CitizenId = 1226,
                             Nric = "S0001226B",
@@ -41672,7 +41612,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 233,
+                            Id = 227,
                             Action = 0,
                             CitizenId = 1227,
                             Nric = "S0001227J",
@@ -41682,7 +41622,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 234,
+                            Id = 228,
                             Action = 0,
                             CitizenId = 1228,
                             Nric = "S0001228I",
@@ -41692,7 +41632,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 235,
+                            Id = 229,
                             Action = 0,
                             CitizenId = 1229,
                             Nric = "S0001229G",
@@ -41702,7 +41642,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 236,
+                            Id = 230,
                             Action = 0,
                             CitizenId = 1230,
                             Nric = "S0001230J",
@@ -41712,7 +41652,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 237,
+                            Id = 231,
                             Action = 0,
                             CitizenId = 1231,
                             Nric = "S0001231I",
@@ -41722,7 +41662,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 238,
+                            Id = 232,
                             Action = 0,
                             CitizenId = 1232,
                             Nric = "S0001232G",
@@ -41732,7 +41672,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 239,
+                            Id = 233,
                             Action = 0,
                             CitizenId = 1233,
                             Nric = "S0001233E",
@@ -41742,7 +41682,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 240,
+                            Id = 234,
                             Action = 0,
                             CitizenId = 1234,
                             Nric = "S0001234C",
@@ -41752,7 +41692,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 241,
+                            Id = 235,
                             Action = 0,
                             CitizenId = 1235,
                             Nric = "S0001235A",
@@ -41762,7 +41702,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 242,
+                            Id = 236,
                             Action = 0,
                             CitizenId = 1236,
                             Nric = "S0001236Z",
@@ -41772,7 +41712,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 243,
+                            Id = 237,
                             Action = 0,
                             CitizenId = 1237,
                             Nric = "S0001237H",
@@ -41782,7 +41722,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 244,
+                            Id = 238,
                             Action = 0,
                             CitizenId = 1238,
                             Nric = "S0001238F",
@@ -41792,7 +41732,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 245,
+                            Id = 239,
                             Action = 0,
                             CitizenId = 1239,
                             Nric = "S0001239D",
@@ -41802,7 +41742,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 246,
+                            Id = 240,
                             Action = 0,
                             CitizenId = 1240,
                             Nric = "S0001240H",
@@ -41812,7 +41752,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 247,
+                            Id = 241,
                             Action = 0,
                             CitizenId = 1241,
                             Nric = "S0001241F",
@@ -41822,7 +41762,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 248,
+                            Id = 242,
                             Action = 0,
                             CitizenId = 1242,
                             Nric = "S0001242D",
@@ -41832,7 +41772,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 249,
+                            Id = 243,
                             Action = 0,
                             CitizenId = 1243,
                             Nric = "S0001243B",
@@ -41842,7 +41782,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 250,
+                            Id = 244,
                             Action = 0,
                             CitizenId = 1244,
                             Nric = "S0001244J",
@@ -41852,7 +41792,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 251,
+                            Id = 245,
                             Action = 0,
                             CitizenId = 1245,
                             Nric = "S0001245I",
@@ -41862,7 +41802,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 252,
+                            Id = 246,
                             Action = 0,
                             CitizenId = 1246,
                             Nric = "S0001246G",
@@ -41872,7 +41812,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 253,
+                            Id = 247,
                             Action = 0,
                             CitizenId = 1247,
                             Nric = "S0001247E",
@@ -41882,7 +41822,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 254,
+                            Id = 248,
                             Action = 0,
                             CitizenId = 1248,
                             Nric = "S0001248C",
@@ -41892,7 +41832,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 255,
+                            Id = 249,
                             Action = 0,
                             CitizenId = 1249,
                             Nric = "S0001249A",
@@ -41902,7 +41842,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 256,
+                            Id = 250,
                             Action = 0,
                             CitizenId = 1250,
                             Nric = "S0001250E",
@@ -41912,537 +41852,507 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 257,
-                            Action = 0,
+                            Id = 251,
+                            Action = 2,
                             CitizenId = 1251,
                             Nric = "S0001251C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 258,
-                            Action = 0,
-                            CitizenId = 1252,
-                            Nric = "S0001252A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 259,
-                            Action = 0,
-                            CitizenId = 1253,
-                            Nric = "S0001253Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 260,
-                            Action = 0,
-                            CitizenId = 1254,
-                            Nric = "S0001254H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 261,
-                            Action = 0,
-                            CitizenId = 1255,
-                            Nric = "S0001255F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 262,
-                            Action = 0,
-                            CitizenId = 1256,
-                            Nric = "S0001256D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 263,
-                            Action = 0,
-                            CitizenId = 1257,
-                            Nric = "S0001257B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 264,
-                            Action = 0,
-                            CitizenId = 1258,
-                            Nric = "S0001258J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 265,
-                            Action = 0,
-                            CitizenId = 1259,
-                            Nric = "S0001259I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 266,
-                            Action = 0,
-                            CitizenId = 1260,
-                            Nric = "S0001260B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 267,
-                            Action = 0,
-                            CitizenId = 1261,
-                            Nric = "S0001261J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 268,
-                            Action = 0,
-                            CitizenId = 1262,
-                            Nric = "S0001262I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 269,
-                            Action = 0,
-                            CitizenId = 1263,
-                            Nric = "S0001263G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 270,
-                            Action = 0,
-                            CitizenId = 1264,
-                            Nric = "S0001264E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 271,
-                            Action = 0,
-                            CitizenId = 1265,
-                            Nric = "S0001265C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 272,
-                            Action = 0,
-                            CitizenId = 1266,
-                            Nric = "S0001266A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 273,
-                            Action = 0,
-                            CitizenId = 1267,
-                            Nric = "S0001267Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 274,
-                            Action = 0,
-                            CitizenId = 1268,
-                            Nric = "S0001268H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 275,
-                            Action = 0,
-                            CitizenId = 1269,
-                            Nric = "S0001269F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 276,
-                            Action = 0,
-                            CitizenId = 1270,
-                            Nric = "S0001270Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 277,
-                            Action = 0,
-                            CitizenId = 1271,
-                            Nric = "S0001271H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 278,
-                            Action = 0,
-                            CitizenId = 1272,
-                            Nric = "S0001272F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 279,
-                            Action = 0,
-                            CitizenId = 1273,
-                            Nric = "S0001273D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 280,
-                            Action = 0,
-                            CitizenId = 1274,
-                            Nric = "S0001274B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 281,
-                            Action = 0,
-                            CitizenId = 1275,
-                            Nric = "S0001275J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 282,
-                            Action = 0,
-                            CitizenId = 1276,
-                            Nric = "S0001276I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 283,
-                            Action = 0,
-                            CitizenId = 1277,
-                            Nric = "S0001277G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 284,
-                            Action = 0,
-                            CitizenId = 1278,
-                            Nric = "S0001278E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 285,
-                            Action = 0,
-                            CitizenId = 1279,
-                            Nric = "S0001279C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 286,
-                            Action = 0,
-                            CitizenId = 1280,
-                            Nric = "S0001280G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 287,
-                            Action = 0,
-                            CitizenId = 1281,
-                            Nric = "S0001281E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 288,
-                            Action = 0,
-                            CitizenId = 1282,
-                            Nric = "S0001282C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 289,
-                            Action = 0,
-                            CitizenId = 1283,
-                            Nric = "S0001283A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 290,
-                            Action = 0,
-                            CitizenId = 1284,
-                            Nric = "S0001284Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 291,
-                            Action = 0,
-                            CitizenId = 1285,
-                            Nric = "S0001285H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 292,
-                            Action = 0,
-                            CitizenId = 1286,
-                            Nric = "S0001286F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 293,
-                            Action = 0,
-                            CitizenId = 1287,
-                            Nric = "S0001287D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 294,
-                            Action = 0,
-                            CitizenId = 1288,
-                            Nric = "S0001288B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 295,
-                            Action = 0,
-                            CitizenId = 1289,
-                            Nric = "S0001289J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 296,
-                            Action = 0,
-                            CitizenId = 1290,
-                            Nric = "S0001290D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 297,
-                            Action = 0,
-                            CitizenId = 1291,
-                            Nric = "S0001291B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 298,
-                            Action = 0,
-                            CitizenId = 1292,
-                            Nric = "S0001292J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 299,
-                            Action = 0,
-                            CitizenId = 1293,
-                            Nric = "S0001293I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 300,
-                            Action = 0,
-                            CitizenId = 1294,
-                            Nric = "S0001294G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 301,
-                            Action = 0,
-                            CitizenId = 1295,
-                            Nric = "S0001295E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 302,
-                            Action = 0,
-                            CitizenId = 1296,
-                            Nric = "S0001296C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 303,
-                            Action = 0,
-                            CitizenId = 1297,
-                            Nric = "S0001297A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 304,
-                            Action = 0,
-                            CitizenId = 1298,
-                            Nric = "S0001298Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 305,
-                            Action = 0,
-                            CitizenId = 1299,
-                            Nric = "S0001299H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 306,
-                            Action = 0,
-                            CitizenId = 1300,
-                            Nric = "S0001300E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 307,
-                            Action = 1,
-                            CitizenId = 2,
-                            Nric = "S0000002G",
-                            Reason = "Account closure completed successfully.",
-                            Status = 1,
-                            SweepReportId = 3
-                        },
-                        new
-                        {
-                            Id = 308,
-                            Action = 2,
-                            CitizenId = 3,
-                            Nric = "S0000003E",
                             Reason = "Account extension completed successfully.",
                             Status = 1,
                             SweepReportId = 3
                         },
                         new
                         {
-                            Id = 309,
-                            Action = 0,
-                            CitizenId = 4,
-                            Nric = "S0000004C",
-                            Reason = "Seeded failed target for report filtering.",
-                            Status = 2,
+                            Id = 252,
+                            Action = 2,
+                            CitizenId = 1252,
+                            Nric = "S0001252A",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
                             SweepReportId = 3
                         },
                         new
                         {
-                            Id = 310,
+                            Id = 253,
+                            Action = 2,
+                            CitizenId = 1253,
+                            Nric = "S0001253Z",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 254,
+                            Action = 2,
+                            CitizenId = 1254,
+                            Nric = "S0001254H",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 255,
+                            Action = 2,
+                            CitizenId = 1255,
+                            Nric = "S0001255F",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 256,
+                            Action = 2,
+                            CitizenId = 1256,
+                            Nric = "S0001256D",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 257,
+                            Action = 2,
+                            CitizenId = 1257,
+                            Nric = "S0001257B",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 258,
+                            Action = 2,
+                            CitizenId = 1258,
+                            Nric = "S0001258J",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 259,
+                            Action = 2,
+                            CitizenId = 1259,
+                            Nric = "S0001259I",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 260,
+                            Action = 2,
+                            CitizenId = 1260,
+                            Nric = "S0001260B",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 261,
+                            Action = 2,
+                            CitizenId = 1261,
+                            Nric = "S0001261J",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 262,
+                            Action = 2,
+                            CitizenId = 1262,
+                            Nric = "S0001262I",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 263,
+                            Action = 2,
+                            CitizenId = 1263,
+                            Nric = "S0001263G",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 264,
+                            Action = 2,
+                            CitizenId = 1264,
+                            Nric = "S0001264E",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 265,
+                            Action = 2,
+                            CitizenId = 1265,
+                            Nric = "S0001265C",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 266,
+                            Action = 2,
+                            CitizenId = 1266,
+                            Nric = "S0001266A",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 267,
+                            Action = 2,
+                            CitizenId = 1267,
+                            Nric = "S0001267Z",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 268,
+                            Action = 2,
+                            CitizenId = 1268,
+                            Nric = "S0001268H",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 269,
+                            Action = 2,
+                            CitizenId = 1269,
+                            Nric = "S0001269F",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 270,
+                            Action = 2,
+                            CitizenId = 1270,
+                            Nric = "S0001270Z",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 271,
+                            Action = 1,
+                            CitizenId = 1271,
+                            Nric = "S0001271H",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 272,
+                            Action = 1,
+                            CitizenId = 1272,
+                            Nric = "S0001272F",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 273,
+                            Action = 1,
+                            CitizenId = 1273,
+                            Nric = "S0001273D",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 274,
+                            Action = 1,
+                            CitizenId = 1274,
+                            Nric = "S0001274B",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 275,
+                            Action = 1,
+                            CitizenId = 1275,
+                            Nric = "S0001275J",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 276,
+                            Action = 1,
+                            CitizenId = 1276,
+                            Nric = "S0001276I",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 277,
+                            Action = 1,
+                            CitizenId = 1277,
+                            Nric = "S0001277G",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 278,
+                            Action = 1,
+                            CitizenId = 1278,
+                            Nric = "S0001278E",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 279,
+                            Action = 1,
+                            CitizenId = 1279,
+                            Nric = "S0001279C",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 280,
+                            Action = 1,
+                            CitizenId = 1280,
+                            Nric = "S0001280G",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 281,
+                            Action = 1,
+                            CitizenId = 1281,
+                            Nric = "S0001281E",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 282,
+                            Action = 1,
+                            CitizenId = 1282,
+                            Nric = "S0001282C",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 283,
+                            Action = 1,
+                            CitizenId = 1283,
+                            Nric = "S0001283A",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 284,
+                            Action = 1,
+                            CitizenId = 1284,
+                            Nric = "S0001284Z",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 285,
+                            Action = 1,
+                            CitizenId = 1285,
+                            Nric = "S0001285H",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 286,
+                            Action = 1,
+                            CitizenId = 1286,
+                            Nric = "S0001286F",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 287,
+                            Action = 1,
+                            CitizenId = 1287,
+                            Nric = "S0001287D",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 288,
+                            Action = 1,
+                            CitizenId = 1288,
+                            Nric = "S0001288B",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 289,
+                            Action = 1,
+                            CitizenId = 1289,
+                            Nric = "S0001289J",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 290,
+                            Action = 1,
+                            CitizenId = 1290,
+                            Nric = "S0001290D",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 291,
+                            Action = 1,
+                            CitizenId = 1291,
+                            Nric = "S0001291B",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 292,
+                            Action = 1,
+                            CitizenId = 1292,
+                            Nric = "S0001292J",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 293,
+                            Action = 1,
+                            CitizenId = 1293,
+                            Nric = "S0001293I",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 294,
+                            Action = 1,
+                            CitizenId = 1294,
+                            Nric = "S0001294G",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 295,
+                            Action = 1,
+                            CitizenId = 1295,
+                            Nric = "S0001295E",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 296,
+                            Action = 1,
+                            CitizenId = 1296,
+                            Nric = "S0001296C",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 297,
+                            Action = 1,
+                            CitizenId = 1297,
+                            Nric = "S0001297A",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 298,
+                            Action = 1,
+                            CitizenId = 1298,
+                            Nric = "S0001298Z",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 299,
+                            Action = 1,
+                            CitizenId = 1299,
+                            Nric = "S0001299H",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 300,
+                            Action = 1,
+                            CitizenId = 1300,
+                            Nric = "S0001300E",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 3
+                        },
+                        new
+                        {
+                            Id = 301,
                             Action = 0,
                             CitizenId = 1301,
                             Nric = "S0001301C",
@@ -42452,7 +42362,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 311,
+                            Id = 302,
                             Action = 0,
                             CitizenId = 1302,
                             Nric = "S0001302A",
@@ -42462,7 +42372,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 312,
+                            Id = 303,
                             Action = 0,
                             CitizenId = 1303,
                             Nric = "S0001303Z",
@@ -42472,7 +42382,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 313,
+                            Id = 304,
                             Action = 0,
                             CitizenId = 1304,
                             Nric = "S0001304H",
@@ -42482,7 +42392,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 314,
+                            Id = 305,
                             Action = 0,
                             CitizenId = 1305,
                             Nric = "S0001305F",
@@ -42492,7 +42402,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 315,
+                            Id = 306,
                             Action = 0,
                             CitizenId = 1306,
                             Nric = "S0001306D",
@@ -42502,7 +42412,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 316,
+                            Id = 307,
                             Action = 0,
                             CitizenId = 1307,
                             Nric = "S0001307B",
@@ -42512,7 +42422,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 317,
+                            Id = 308,
                             Action = 0,
                             CitizenId = 1308,
                             Nric = "S0001308J",
@@ -42522,7 +42432,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 318,
+                            Id = 309,
                             Action = 0,
                             CitizenId = 1309,
                             Nric = "S0001309I",
@@ -42532,7 +42442,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 319,
+                            Id = 310,
                             Action = 0,
                             CitizenId = 1310,
                             Nric = "S0001310B",
@@ -42542,7 +42452,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 320,
+                            Id = 311,
                             Action = 0,
                             CitizenId = 1311,
                             Nric = "S0001311J",
@@ -42552,7 +42462,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 321,
+                            Id = 312,
                             Action = 0,
                             CitizenId = 1312,
                             Nric = "S0001312I",
@@ -42562,7 +42472,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 322,
+                            Id = 313,
                             Action = 0,
                             CitizenId = 1313,
                             Nric = "S0001313G",
@@ -42572,7 +42482,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 323,
+                            Id = 314,
                             Action = 0,
                             CitizenId = 1314,
                             Nric = "S0001314E",
@@ -42582,7 +42492,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 324,
+                            Id = 315,
                             Action = 0,
                             CitizenId = 1315,
                             Nric = "S0001315C",
@@ -42592,7 +42502,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 325,
+                            Id = 316,
                             Action = 0,
                             CitizenId = 1316,
                             Nric = "S0001316A",
@@ -42602,7 +42512,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 326,
+                            Id = 317,
                             Action = 0,
                             CitizenId = 1317,
                             Nric = "S0001317Z",
@@ -42612,7 +42522,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 327,
+                            Id = 318,
                             Action = 0,
                             CitizenId = 1318,
                             Nric = "S0001318H",
@@ -42622,7 +42532,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 328,
+                            Id = 319,
                             Action = 0,
                             CitizenId = 1319,
                             Nric = "S0001319F",
@@ -42632,7 +42542,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 329,
+                            Id = 320,
                             Action = 0,
                             CitizenId = 1320,
                             Nric = "S0001320Z",
@@ -42642,7 +42552,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 330,
+                            Id = 321,
                             Action = 0,
                             CitizenId = 1321,
                             Nric = "S0001321H",
@@ -42652,7 +42562,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 331,
+                            Id = 322,
                             Action = 0,
                             CitizenId = 1322,
                             Nric = "S0001322F",
@@ -42662,7 +42572,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 332,
+                            Id = 323,
                             Action = 0,
                             CitizenId = 1323,
                             Nric = "S0001323D",
@@ -42672,7 +42582,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 333,
+                            Id = 324,
                             Action = 0,
                             CitizenId = 1324,
                             Nric = "S0001324B",
@@ -42682,7 +42592,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 334,
+                            Id = 325,
                             Action = 0,
                             CitizenId = 1325,
                             Nric = "S0001325J",
@@ -42692,7 +42602,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 335,
+                            Id = 326,
                             Action = 0,
                             CitizenId = 1326,
                             Nric = "S0001326I",
@@ -42702,7 +42612,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 336,
+                            Id = 327,
                             Action = 0,
                             CitizenId = 1327,
                             Nric = "S0001327G",
@@ -42712,7 +42622,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 337,
+                            Id = 328,
                             Action = 0,
                             CitizenId = 1328,
                             Nric = "S0001328E",
@@ -42722,7 +42632,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 338,
+                            Id = 329,
                             Action = 0,
                             CitizenId = 1329,
                             Nric = "S0001329C",
@@ -42732,7 +42642,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 339,
+                            Id = 330,
                             Action = 0,
                             CitizenId = 1330,
                             Nric = "S0001330G",
@@ -42742,7 +42652,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 340,
+                            Id = 331,
                             Action = 0,
                             CitizenId = 1331,
                             Nric = "S0001331E",
@@ -42752,7 +42662,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 341,
+                            Id = 332,
                             Action = 0,
                             CitizenId = 1332,
                             Nric = "S0001332C",
@@ -42762,7 +42672,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 342,
+                            Id = 333,
                             Action = 0,
                             CitizenId = 1333,
                             Nric = "S0001333A",
@@ -42772,7 +42682,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 343,
+                            Id = 334,
                             Action = 0,
                             CitizenId = 1334,
                             Nric = "S0001334Z",
@@ -42782,7 +42692,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 344,
+                            Id = 335,
                             Action = 0,
                             CitizenId = 1335,
                             Nric = "S0001335H",
@@ -42792,7 +42702,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 345,
+                            Id = 336,
                             Action = 0,
                             CitizenId = 1336,
                             Nric = "S0001336F",
@@ -42802,7 +42712,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 346,
+                            Id = 337,
                             Action = 0,
                             CitizenId = 1337,
                             Nric = "S0001337D",
@@ -42812,7 +42722,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 347,
+                            Id = 338,
                             Action = 0,
                             CitizenId = 1338,
                             Nric = "S0001338B",
@@ -42822,7 +42732,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 348,
+                            Id = 339,
                             Action = 0,
                             CitizenId = 1339,
                             Nric = "S0001339J",
@@ -42832,7 +42742,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 349,
+                            Id = 340,
                             Action = 0,
                             CitizenId = 1340,
                             Nric = "S0001340D",
@@ -42842,7 +42752,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 350,
+                            Id = 341,
                             Action = 0,
                             CitizenId = 1341,
                             Nric = "S0001341B",
@@ -42852,7 +42762,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 351,
+                            Id = 342,
                             Action = 0,
                             CitizenId = 1342,
                             Nric = "S0001342J",
@@ -42862,7 +42772,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 352,
+                            Id = 343,
                             Action = 0,
                             CitizenId = 1343,
                             Nric = "S0001343I",
@@ -42872,7 +42782,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 353,
+                            Id = 344,
                             Action = 0,
                             CitizenId = 1344,
                             Nric = "S0001344G",
@@ -42882,7 +42792,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 354,
+                            Id = 345,
                             Action = 0,
                             CitizenId = 1345,
                             Nric = "S0001345E",
@@ -42892,7 +42802,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 355,
+                            Id = 346,
                             Action = 0,
                             CitizenId = 1346,
                             Nric = "S0001346C",
@@ -42902,7 +42812,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 356,
+                            Id = 347,
                             Action = 0,
                             CitizenId = 1347,
                             Nric = "S0001347A",
@@ -42912,7 +42822,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 357,
+                            Id = 348,
                             Action = 0,
                             CitizenId = 1348,
                             Nric = "S0001348Z",
@@ -42922,7 +42832,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 358,
+                            Id = 349,
                             Action = 0,
                             CitizenId = 1349,
                             Nric = "S0001349H",
@@ -42932,7 +42842,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 359,
+                            Id = 350,
                             Action = 0,
                             CitizenId = 1350,
                             Nric = "S0001350A",
@@ -42942,537 +42852,507 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 360,
-                            Action = 0,
+                            Id = 351,
+                            Action = 2,
                             CitizenId = 1351,
                             Nric = "S0001351Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 361,
-                            Action = 0,
-                            CitizenId = 1352,
-                            Nric = "S0001352H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 362,
-                            Action = 0,
-                            CitizenId = 1353,
-                            Nric = "S0001353F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 363,
-                            Action = 0,
-                            CitizenId = 1354,
-                            Nric = "S0001354D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 364,
-                            Action = 0,
-                            CitizenId = 1355,
-                            Nric = "S0001355B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 365,
-                            Action = 0,
-                            CitizenId = 1356,
-                            Nric = "S0001356J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 366,
-                            Action = 0,
-                            CitizenId = 1357,
-                            Nric = "S0001357I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 367,
-                            Action = 0,
-                            CitizenId = 1358,
-                            Nric = "S0001358G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 368,
-                            Action = 0,
-                            CitizenId = 1359,
-                            Nric = "S0001359E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 369,
-                            Action = 0,
-                            CitizenId = 1360,
-                            Nric = "S0001360I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 370,
-                            Action = 0,
-                            CitizenId = 1361,
-                            Nric = "S0001361G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 371,
-                            Action = 0,
-                            CitizenId = 1362,
-                            Nric = "S0001362E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 372,
-                            Action = 0,
-                            CitizenId = 1363,
-                            Nric = "S0001363C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 373,
-                            Action = 0,
-                            CitizenId = 1364,
-                            Nric = "S0001364A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 374,
-                            Action = 0,
-                            CitizenId = 1365,
-                            Nric = "S0001365Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 375,
-                            Action = 0,
-                            CitizenId = 1366,
-                            Nric = "S0001366H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 376,
-                            Action = 0,
-                            CitizenId = 1367,
-                            Nric = "S0001367F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 377,
-                            Action = 0,
-                            CitizenId = 1368,
-                            Nric = "S0001368D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 378,
-                            Action = 0,
-                            CitizenId = 1369,
-                            Nric = "S0001369B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 379,
-                            Action = 0,
-                            CitizenId = 1370,
-                            Nric = "S0001370F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 380,
-                            Action = 0,
-                            CitizenId = 1371,
-                            Nric = "S0001371D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 381,
-                            Action = 0,
-                            CitizenId = 1372,
-                            Nric = "S0001372B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 382,
-                            Action = 0,
-                            CitizenId = 1373,
-                            Nric = "S0001373J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 383,
-                            Action = 0,
-                            CitizenId = 1374,
-                            Nric = "S0001374I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 384,
-                            Action = 0,
-                            CitizenId = 1375,
-                            Nric = "S0001375G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 385,
-                            Action = 0,
-                            CitizenId = 1376,
-                            Nric = "S0001376E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 386,
-                            Action = 0,
-                            CitizenId = 1377,
-                            Nric = "S0001377C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 387,
-                            Action = 0,
-                            CitizenId = 1378,
-                            Nric = "S0001378A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 388,
-                            Action = 0,
-                            CitizenId = 1379,
-                            Nric = "S0001379Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 389,
-                            Action = 0,
-                            CitizenId = 1380,
-                            Nric = "S0001380C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 390,
-                            Action = 0,
-                            CitizenId = 1381,
-                            Nric = "S0001381A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 391,
-                            Action = 0,
-                            CitizenId = 1382,
-                            Nric = "S0001382Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 392,
-                            Action = 0,
-                            CitizenId = 1383,
-                            Nric = "S0001383H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 393,
-                            Action = 0,
-                            CitizenId = 1384,
-                            Nric = "S0001384F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 394,
-                            Action = 0,
-                            CitizenId = 1385,
-                            Nric = "S0001385D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 395,
-                            Action = 0,
-                            CitizenId = 1386,
-                            Nric = "S0001386B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 396,
-                            Action = 0,
-                            CitizenId = 1387,
-                            Nric = "S0001387J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 397,
-                            Action = 0,
-                            CitizenId = 1388,
-                            Nric = "S0001388I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 398,
-                            Action = 0,
-                            CitizenId = 1389,
-                            Nric = "S0001389G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 399,
-                            Action = 0,
-                            CitizenId = 1390,
-                            Nric = "S0001390J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 400,
-                            Action = 0,
-                            CitizenId = 1391,
-                            Nric = "S0001391I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 401,
-                            Action = 0,
-                            CitizenId = 1392,
-                            Nric = "S0001392G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 402,
-                            Action = 0,
-                            CitizenId = 1393,
-                            Nric = "S0001393E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 403,
-                            Action = 0,
-                            CitizenId = 1394,
-                            Nric = "S0001394C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 404,
-                            Action = 0,
-                            CitizenId = 1395,
-                            Nric = "S0001395A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 405,
-                            Action = 0,
-                            CitizenId = 1396,
-                            Nric = "S0001396Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 406,
-                            Action = 0,
-                            CitizenId = 1397,
-                            Nric = "S0001397H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 407,
-                            Action = 0,
-                            CitizenId = 1398,
-                            Nric = "S0001398F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 408,
-                            Action = 0,
-                            CitizenId = 1399,
-                            Nric = "S0001399D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 409,
-                            Action = 0,
-                            CitizenId = 1400,
-                            Nric = "S0001400A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 410,
-                            Action = 1,
-                            CitizenId = 2,
-                            Nric = "S0000002G",
-                            Reason = "Account closure completed successfully.",
-                            Status = 1,
-                            SweepReportId = 4
-                        },
-                        new
-                        {
-                            Id = 411,
-                            Action = 2,
-                            CitizenId = 3,
-                            Nric = "S0000003E",
                             Reason = "Account extension completed successfully.",
                             Status = 1,
                             SweepReportId = 4
                         },
                         new
                         {
-                            Id = 412,
-                            Action = 0,
-                            CitizenId = 4,
-                            Nric = "S0000004C",
-                            Reason = "Seeded failed target for report filtering.",
-                            Status = 2,
+                            Id = 352,
+                            Action = 2,
+                            CitizenId = 1352,
+                            Nric = "S0001352H",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
                             SweepReportId = 4
                         },
                         new
                         {
-                            Id = 413,
+                            Id = 353,
+                            Action = 2,
+                            CitizenId = 1353,
+                            Nric = "S0001353F",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 354,
+                            Action = 2,
+                            CitizenId = 1354,
+                            Nric = "S0001354D",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 355,
+                            Action = 2,
+                            CitizenId = 1355,
+                            Nric = "S0001355B",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 356,
+                            Action = 2,
+                            CitizenId = 1356,
+                            Nric = "S0001356J",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 357,
+                            Action = 2,
+                            CitizenId = 1357,
+                            Nric = "S0001357I",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 358,
+                            Action = 2,
+                            CitizenId = 1358,
+                            Nric = "S0001358G",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 359,
+                            Action = 2,
+                            CitizenId = 1359,
+                            Nric = "S0001359E",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 360,
+                            Action = 2,
+                            CitizenId = 1360,
+                            Nric = "S0001360I",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 361,
+                            Action = 2,
+                            CitizenId = 1361,
+                            Nric = "S0001361G",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 362,
+                            Action = 2,
+                            CitizenId = 1362,
+                            Nric = "S0001362E",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 363,
+                            Action = 2,
+                            CitizenId = 1363,
+                            Nric = "S0001363C",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 364,
+                            Action = 2,
+                            CitizenId = 1364,
+                            Nric = "S0001364A",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 365,
+                            Action = 2,
+                            CitizenId = 1365,
+                            Nric = "S0001365Z",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 366,
+                            Action = 2,
+                            CitizenId = 1366,
+                            Nric = "S0001366H",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 367,
+                            Action = 2,
+                            CitizenId = 1367,
+                            Nric = "S0001367F",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 368,
+                            Action = 2,
+                            CitizenId = 1368,
+                            Nric = "S0001368D",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 369,
+                            Action = 2,
+                            CitizenId = 1369,
+                            Nric = "S0001369B",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 370,
+                            Action = 2,
+                            CitizenId = 1370,
+                            Nric = "S0001370F",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 371,
+                            Action = 1,
+                            CitizenId = 1371,
+                            Nric = "S0001371D",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 372,
+                            Action = 1,
+                            CitizenId = 1372,
+                            Nric = "S0001372B",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 373,
+                            Action = 1,
+                            CitizenId = 1373,
+                            Nric = "S0001373J",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 374,
+                            Action = 1,
+                            CitizenId = 1374,
+                            Nric = "S0001374I",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 375,
+                            Action = 1,
+                            CitizenId = 1375,
+                            Nric = "S0001375G",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 376,
+                            Action = 1,
+                            CitizenId = 1376,
+                            Nric = "S0001376E",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 377,
+                            Action = 1,
+                            CitizenId = 1377,
+                            Nric = "S0001377C",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 378,
+                            Action = 1,
+                            CitizenId = 1378,
+                            Nric = "S0001378A",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 379,
+                            Action = 1,
+                            CitizenId = 1379,
+                            Nric = "S0001379Z",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 380,
+                            Action = 1,
+                            CitizenId = 1380,
+                            Nric = "S0001380C",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 381,
+                            Action = 1,
+                            CitizenId = 1381,
+                            Nric = "S0001381A",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 382,
+                            Action = 1,
+                            CitizenId = 1382,
+                            Nric = "S0001382Z",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 383,
+                            Action = 1,
+                            CitizenId = 1383,
+                            Nric = "S0001383H",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 384,
+                            Action = 1,
+                            CitizenId = 1384,
+                            Nric = "S0001384F",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 385,
+                            Action = 1,
+                            CitizenId = 1385,
+                            Nric = "S0001385D",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 386,
+                            Action = 1,
+                            CitizenId = 1386,
+                            Nric = "S0001386B",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 387,
+                            Action = 1,
+                            CitizenId = 1387,
+                            Nric = "S0001387J",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 388,
+                            Action = 1,
+                            CitizenId = 1388,
+                            Nric = "S0001388I",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 389,
+                            Action = 1,
+                            CitizenId = 1389,
+                            Nric = "S0001389G",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 390,
+                            Action = 1,
+                            CitizenId = 1390,
+                            Nric = "S0001390J",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 391,
+                            Action = 1,
+                            CitizenId = 1391,
+                            Nric = "S0001391I",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 392,
+                            Action = 1,
+                            CitizenId = 1392,
+                            Nric = "S0001392G",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 393,
+                            Action = 1,
+                            CitizenId = 1393,
+                            Nric = "S0001393E",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 394,
+                            Action = 1,
+                            CitizenId = 1394,
+                            Nric = "S0001394C",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 395,
+                            Action = 1,
+                            CitizenId = 1395,
+                            Nric = "S0001395A",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 396,
+                            Action = 1,
+                            CitizenId = 1396,
+                            Nric = "S0001396Z",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 397,
+                            Action = 1,
+                            CitizenId = 1397,
+                            Nric = "S0001397H",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 398,
+                            Action = 1,
+                            CitizenId = 1398,
+                            Nric = "S0001398F",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 399,
+                            Action = 1,
+                            CitizenId = 1399,
+                            Nric = "S0001399D",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 400,
+                            Action = 1,
+                            CitizenId = 1400,
+                            Nric = "S0001400A",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 4
+                        },
+                        new
+                        {
+                            Id = 401,
                             Action = 0,
                             CitizenId = 1401,
                             Nric = "S0001401Z",
@@ -43482,7 +43362,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 414,
+                            Id = 402,
                             Action = 0,
                             CitizenId = 1402,
                             Nric = "S0001402H",
@@ -43492,7 +43372,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 415,
+                            Id = 403,
                             Action = 0,
                             CitizenId = 1403,
                             Nric = "S0001403F",
@@ -43502,7 +43382,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 416,
+                            Id = 404,
                             Action = 0,
                             CitizenId = 1404,
                             Nric = "S0001404D",
@@ -43512,7 +43392,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 417,
+                            Id = 405,
                             Action = 0,
                             CitizenId = 1405,
                             Nric = "S0001405B",
@@ -43522,7 +43402,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 418,
+                            Id = 406,
                             Action = 0,
                             CitizenId = 1406,
                             Nric = "S0001406J",
@@ -43532,7 +43412,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 419,
+                            Id = 407,
                             Action = 0,
                             CitizenId = 1407,
                             Nric = "S0001407I",
@@ -43542,7 +43422,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 420,
+                            Id = 408,
                             Action = 0,
                             CitizenId = 1408,
                             Nric = "S0001408G",
@@ -43552,7 +43432,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 421,
+                            Id = 409,
                             Action = 0,
                             CitizenId = 1409,
                             Nric = "S0001409E",
@@ -43562,7 +43442,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 422,
+                            Id = 410,
                             Action = 0,
                             CitizenId = 1410,
                             Nric = "S0001410I",
@@ -43572,7 +43452,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 423,
+                            Id = 411,
                             Action = 0,
                             CitizenId = 1411,
                             Nric = "S0001411G",
@@ -43582,7 +43462,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 424,
+                            Id = 412,
                             Action = 0,
                             CitizenId = 1412,
                             Nric = "S0001412E",
@@ -43592,7 +43472,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 425,
+                            Id = 413,
                             Action = 0,
                             CitizenId = 1413,
                             Nric = "S0001413C",
@@ -43602,7 +43482,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 426,
+                            Id = 414,
                             Action = 0,
                             CitizenId = 1414,
                             Nric = "S0001414A",
@@ -43612,7 +43492,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 427,
+                            Id = 415,
                             Action = 0,
                             CitizenId = 1415,
                             Nric = "S0001415Z",
@@ -43622,7 +43502,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 428,
+                            Id = 416,
                             Action = 0,
                             CitizenId = 1416,
                             Nric = "S0001416H",
@@ -43632,7 +43512,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 429,
+                            Id = 417,
                             Action = 0,
                             CitizenId = 1417,
                             Nric = "S0001417F",
@@ -43642,7 +43522,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 430,
+                            Id = 418,
                             Action = 0,
                             CitizenId = 1418,
                             Nric = "S0001418D",
@@ -43652,7 +43532,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 431,
+                            Id = 419,
                             Action = 0,
                             CitizenId = 1419,
                             Nric = "S0001419B",
@@ -43662,7 +43542,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 432,
+                            Id = 420,
                             Action = 0,
                             CitizenId = 1420,
                             Nric = "S0001420F",
@@ -43672,7 +43552,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 433,
+                            Id = 421,
                             Action = 0,
                             CitizenId = 1421,
                             Nric = "S0001421D",
@@ -43682,7 +43562,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 434,
+                            Id = 422,
                             Action = 0,
                             CitizenId = 1422,
                             Nric = "S0001422B",
@@ -43692,7 +43572,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 435,
+                            Id = 423,
                             Action = 0,
                             CitizenId = 1423,
                             Nric = "S0001423J",
@@ -43702,7 +43582,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 436,
+                            Id = 424,
                             Action = 0,
                             CitizenId = 1424,
                             Nric = "S0001424I",
@@ -43712,7 +43592,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 437,
+                            Id = 425,
                             Action = 0,
                             CitizenId = 1425,
                             Nric = "S0001425G",
@@ -43722,7 +43602,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 438,
+                            Id = 426,
                             Action = 0,
                             CitizenId = 1426,
                             Nric = "S0001426E",
@@ -43732,7 +43612,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 439,
+                            Id = 427,
                             Action = 0,
                             CitizenId = 1427,
                             Nric = "S0001427C",
@@ -43742,7 +43622,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 440,
+                            Id = 428,
                             Action = 0,
                             CitizenId = 1428,
                             Nric = "S0001428A",
@@ -43752,7 +43632,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 441,
+                            Id = 429,
                             Action = 0,
                             CitizenId = 1429,
                             Nric = "S0001429Z",
@@ -43762,7 +43642,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 442,
+                            Id = 430,
                             Action = 0,
                             CitizenId = 1430,
                             Nric = "S0001430C",
@@ -43772,7 +43652,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 443,
+                            Id = 431,
                             Action = 0,
                             CitizenId = 1431,
                             Nric = "S0001431A",
@@ -43782,7 +43662,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 444,
+                            Id = 432,
                             Action = 0,
                             CitizenId = 1432,
                             Nric = "S0001432Z",
@@ -43792,7 +43672,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 445,
+                            Id = 433,
                             Action = 0,
                             CitizenId = 1433,
                             Nric = "S0001433H",
@@ -43802,7 +43682,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 446,
+                            Id = 434,
                             Action = 0,
                             CitizenId = 1434,
                             Nric = "S0001434F",
@@ -43812,7 +43692,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 447,
+                            Id = 435,
                             Action = 0,
                             CitizenId = 1435,
                             Nric = "S0001435D",
@@ -43822,7 +43702,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 448,
+                            Id = 436,
                             Action = 0,
                             CitizenId = 1436,
                             Nric = "S0001436B",
@@ -43832,7 +43712,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 449,
+                            Id = 437,
                             Action = 0,
                             CitizenId = 1437,
                             Nric = "S0001437J",
@@ -43842,7 +43722,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 450,
+                            Id = 438,
                             Action = 0,
                             CitizenId = 1438,
                             Nric = "S0001438I",
@@ -43852,7 +43732,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 451,
+                            Id = 439,
                             Action = 0,
                             CitizenId = 1439,
                             Nric = "S0001439G",
@@ -43862,7 +43742,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 452,
+                            Id = 440,
                             Action = 0,
                             CitizenId = 1440,
                             Nric = "S0001440J",
@@ -43872,7 +43752,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 453,
+                            Id = 441,
                             Action = 0,
                             CitizenId = 1441,
                             Nric = "S0001441I",
@@ -43882,7 +43762,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 454,
+                            Id = 442,
                             Action = 0,
                             CitizenId = 1442,
                             Nric = "S0001442G",
@@ -43892,7 +43772,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 455,
+                            Id = 443,
                             Action = 0,
                             CitizenId = 1443,
                             Nric = "S0001443E",
@@ -43902,7 +43782,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 456,
+                            Id = 444,
                             Action = 0,
                             CitizenId = 1444,
                             Nric = "S0001444C",
@@ -43912,7 +43792,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 457,
+                            Id = 445,
                             Action = 0,
                             CitizenId = 1445,
                             Nric = "S0001445A",
@@ -43922,7 +43802,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 458,
+                            Id = 446,
                             Action = 0,
                             CitizenId = 1446,
                             Nric = "S0001446Z",
@@ -43932,7 +43812,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 459,
+                            Id = 447,
                             Action = 0,
                             CitizenId = 1447,
                             Nric = "S0001447H",
@@ -43942,7 +43822,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 460,
+                            Id = 448,
                             Action = 0,
                             CitizenId = 1448,
                             Nric = "S0001448F",
@@ -43952,7 +43832,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 461,
+                            Id = 449,
                             Action = 0,
                             CitizenId = 1449,
                             Nric = "S0001449D",
@@ -43962,7 +43842,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 462,
+                            Id = 450,
                             Action = 0,
                             CitizenId = 1450,
                             Nric = "S0001450H",
@@ -43972,537 +43852,507 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 463,
-                            Action = 0,
+                            Id = 451,
+                            Action = 2,
                             CitizenId = 1451,
                             Nric = "S0001451F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 464,
-                            Action = 0,
-                            CitizenId = 1452,
-                            Nric = "S0001452D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 465,
-                            Action = 0,
-                            CitizenId = 1453,
-                            Nric = "S0001453B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 466,
-                            Action = 0,
-                            CitizenId = 1454,
-                            Nric = "S0001454J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 467,
-                            Action = 0,
-                            CitizenId = 1455,
-                            Nric = "S0001455I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 468,
-                            Action = 0,
-                            CitizenId = 1456,
-                            Nric = "S0001456G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 469,
-                            Action = 0,
-                            CitizenId = 1457,
-                            Nric = "S0001457E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 470,
-                            Action = 0,
-                            CitizenId = 1458,
-                            Nric = "S0001458C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 471,
-                            Action = 0,
-                            CitizenId = 1459,
-                            Nric = "S0001459A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 472,
-                            Action = 0,
-                            CitizenId = 1460,
-                            Nric = "S0001460E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 473,
-                            Action = 0,
-                            CitizenId = 1461,
-                            Nric = "S0001461C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 474,
-                            Action = 0,
-                            CitizenId = 1462,
-                            Nric = "S0001462A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 475,
-                            Action = 0,
-                            CitizenId = 1463,
-                            Nric = "S0001463Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 476,
-                            Action = 0,
-                            CitizenId = 1464,
-                            Nric = "S0001464H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 477,
-                            Action = 0,
-                            CitizenId = 1465,
-                            Nric = "S0001465F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 478,
-                            Action = 0,
-                            CitizenId = 1466,
-                            Nric = "S0001466D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 479,
-                            Action = 0,
-                            CitizenId = 1467,
-                            Nric = "S0001467B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 480,
-                            Action = 0,
-                            CitizenId = 1468,
-                            Nric = "S0001468J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 481,
-                            Action = 0,
-                            CitizenId = 1469,
-                            Nric = "S0001469I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 482,
-                            Action = 0,
-                            CitizenId = 1470,
-                            Nric = "S0001470B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 483,
-                            Action = 0,
-                            CitizenId = 1471,
-                            Nric = "S0001471J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 484,
-                            Action = 0,
-                            CitizenId = 1472,
-                            Nric = "S0001472I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 485,
-                            Action = 0,
-                            CitizenId = 1473,
-                            Nric = "S0001473G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 486,
-                            Action = 0,
-                            CitizenId = 1474,
-                            Nric = "S0001474E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 487,
-                            Action = 0,
-                            CitizenId = 1475,
-                            Nric = "S0001475C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 488,
-                            Action = 0,
-                            CitizenId = 1476,
-                            Nric = "S0001476A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 489,
-                            Action = 0,
-                            CitizenId = 1477,
-                            Nric = "S0001477Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 490,
-                            Action = 0,
-                            CitizenId = 1478,
-                            Nric = "S0001478H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 491,
-                            Action = 0,
-                            CitizenId = 1479,
-                            Nric = "S0001479F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 492,
-                            Action = 0,
-                            CitizenId = 1480,
-                            Nric = "S0001480Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 493,
-                            Action = 0,
-                            CitizenId = 1481,
-                            Nric = "S0001481H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 494,
-                            Action = 0,
-                            CitizenId = 1482,
-                            Nric = "S0001482F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 495,
-                            Action = 0,
-                            CitizenId = 1483,
-                            Nric = "S0001483D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 496,
-                            Action = 0,
-                            CitizenId = 1484,
-                            Nric = "S0001484B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 497,
-                            Action = 0,
-                            CitizenId = 1485,
-                            Nric = "S0001485J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 498,
-                            Action = 0,
-                            CitizenId = 1486,
-                            Nric = "S0001486I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 499,
-                            Action = 0,
-                            CitizenId = 1487,
-                            Nric = "S0001487G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 500,
-                            Action = 0,
-                            CitizenId = 1488,
-                            Nric = "S0001488E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 501,
-                            Action = 0,
-                            CitizenId = 1489,
-                            Nric = "S0001489C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 502,
-                            Action = 0,
-                            CitizenId = 1490,
-                            Nric = "S0001490G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 503,
-                            Action = 0,
-                            CitizenId = 1491,
-                            Nric = "S0001491E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 504,
-                            Action = 0,
-                            CitizenId = 1492,
-                            Nric = "S0001492C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 505,
-                            Action = 0,
-                            CitizenId = 1493,
-                            Nric = "S0001493A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 506,
-                            Action = 0,
-                            CitizenId = 1494,
-                            Nric = "S0001494Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 507,
-                            Action = 0,
-                            CitizenId = 1495,
-                            Nric = "S0001495H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 508,
-                            Action = 0,
-                            CitizenId = 1496,
-                            Nric = "S0001496F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 509,
-                            Action = 0,
-                            CitizenId = 1497,
-                            Nric = "S0001497D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 510,
-                            Action = 0,
-                            CitizenId = 1498,
-                            Nric = "S0001498B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 511,
-                            Action = 0,
-                            CitizenId = 1499,
-                            Nric = "S0001499J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 512,
-                            Action = 0,
-                            CitizenId = 1500,
-                            Nric = "S0001500H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 513,
-                            Action = 1,
-                            CitizenId = 2,
-                            Nric = "S0000002G",
-                            Reason = "Account closure completed successfully.",
-                            Status = 1,
-                            SweepReportId = 5
-                        },
-                        new
-                        {
-                            Id = 514,
-                            Action = 2,
-                            CitizenId = 3,
-                            Nric = "S0000003E",
                             Reason = "Account extension completed successfully.",
                             Status = 1,
                             SweepReportId = 5
                         },
                         new
                         {
-                            Id = 515,
-                            Action = 0,
-                            CitizenId = 4,
-                            Nric = "S0000004C",
-                            Reason = "Seeded failed target for report filtering.",
-                            Status = 2,
+                            Id = 452,
+                            Action = 2,
+                            CitizenId = 1452,
+                            Nric = "S0001452D",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
                             SweepReportId = 5
                         },
                         new
                         {
-                            Id = 516,
+                            Id = 453,
+                            Action = 2,
+                            CitizenId = 1453,
+                            Nric = "S0001453B",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 454,
+                            Action = 2,
+                            CitizenId = 1454,
+                            Nric = "S0001454J",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 455,
+                            Action = 2,
+                            CitizenId = 1455,
+                            Nric = "S0001455I",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 456,
+                            Action = 2,
+                            CitizenId = 1456,
+                            Nric = "S0001456G",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 457,
+                            Action = 2,
+                            CitizenId = 1457,
+                            Nric = "S0001457E",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 458,
+                            Action = 2,
+                            CitizenId = 1458,
+                            Nric = "S0001458C",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 459,
+                            Action = 2,
+                            CitizenId = 1459,
+                            Nric = "S0001459A",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 460,
+                            Action = 2,
+                            CitizenId = 1460,
+                            Nric = "S0001460E",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 461,
+                            Action = 2,
+                            CitizenId = 1461,
+                            Nric = "S0001461C",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 462,
+                            Action = 2,
+                            CitizenId = 1462,
+                            Nric = "S0001462A",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 463,
+                            Action = 2,
+                            CitizenId = 1463,
+                            Nric = "S0001463Z",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 464,
+                            Action = 2,
+                            CitizenId = 1464,
+                            Nric = "S0001464H",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 465,
+                            Action = 2,
+                            CitizenId = 1465,
+                            Nric = "S0001465F",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 466,
+                            Action = 2,
+                            CitizenId = 1466,
+                            Nric = "S0001466D",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 467,
+                            Action = 2,
+                            CitizenId = 1467,
+                            Nric = "S0001467B",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 468,
+                            Action = 2,
+                            CitizenId = 1468,
+                            Nric = "S0001468J",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 469,
+                            Action = 2,
+                            CitizenId = 1469,
+                            Nric = "S0001469I",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 470,
+                            Action = 2,
+                            CitizenId = 1470,
+                            Nric = "S0001470B",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 471,
+                            Action = 1,
+                            CitizenId = 1471,
+                            Nric = "S0001471J",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 472,
+                            Action = 1,
+                            CitizenId = 1472,
+                            Nric = "S0001472I",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 473,
+                            Action = 1,
+                            CitizenId = 1473,
+                            Nric = "S0001473G",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 474,
+                            Action = 1,
+                            CitizenId = 1474,
+                            Nric = "S0001474E",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 475,
+                            Action = 1,
+                            CitizenId = 1475,
+                            Nric = "S0001475C",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 476,
+                            Action = 1,
+                            CitizenId = 1476,
+                            Nric = "S0001476A",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 477,
+                            Action = 1,
+                            CitizenId = 1477,
+                            Nric = "S0001477Z",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 478,
+                            Action = 1,
+                            CitizenId = 1478,
+                            Nric = "S0001478H",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 479,
+                            Action = 1,
+                            CitizenId = 1479,
+                            Nric = "S0001479F",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 480,
+                            Action = 1,
+                            CitizenId = 1480,
+                            Nric = "S0001480Z",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 481,
+                            Action = 1,
+                            CitizenId = 1481,
+                            Nric = "S0001481H",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 482,
+                            Action = 1,
+                            CitizenId = 1482,
+                            Nric = "S0001482F",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 483,
+                            Action = 1,
+                            CitizenId = 1483,
+                            Nric = "S0001483D",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 484,
+                            Action = 1,
+                            CitizenId = 1484,
+                            Nric = "S0001484B",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 485,
+                            Action = 1,
+                            CitizenId = 1485,
+                            Nric = "S0001485J",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 486,
+                            Action = 1,
+                            CitizenId = 1486,
+                            Nric = "S0001486I",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 487,
+                            Action = 1,
+                            CitizenId = 1487,
+                            Nric = "S0001487G",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 488,
+                            Action = 1,
+                            CitizenId = 1488,
+                            Nric = "S0001488E",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 489,
+                            Action = 1,
+                            CitizenId = 1489,
+                            Nric = "S0001489C",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 490,
+                            Action = 1,
+                            CitizenId = 1490,
+                            Nric = "S0001490G",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 491,
+                            Action = 1,
+                            CitizenId = 1491,
+                            Nric = "S0001491E",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 492,
+                            Action = 1,
+                            CitizenId = 1492,
+                            Nric = "S0001492C",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 493,
+                            Action = 1,
+                            CitizenId = 1493,
+                            Nric = "S0001493A",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 494,
+                            Action = 1,
+                            CitizenId = 1494,
+                            Nric = "S0001494Z",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 495,
+                            Action = 1,
+                            CitizenId = 1495,
+                            Nric = "S0001495H",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 496,
+                            Action = 1,
+                            CitizenId = 1496,
+                            Nric = "S0001496F",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 497,
+                            Action = 1,
+                            CitizenId = 1497,
+                            Nric = "S0001497D",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 498,
+                            Action = 1,
+                            CitizenId = 1498,
+                            Nric = "S0001498B",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 499,
+                            Action = 1,
+                            CitizenId = 1499,
+                            Nric = "S0001499J",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 500,
+                            Action = 1,
+                            CitizenId = 1500,
+                            Nric = "S0001500H",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 5
+                        },
+                        new
+                        {
+                            Id = 501,
                             Action = 0,
                             CitizenId = 1501,
                             Nric = "S0001501F",
@@ -44512,7 +44362,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 517,
+                            Id = 502,
                             Action = 0,
                             CitizenId = 1502,
                             Nric = "S0001502D",
@@ -44522,7 +44372,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 518,
+                            Id = 503,
                             Action = 0,
                             CitizenId = 1503,
                             Nric = "S0001503B",
@@ -44532,7 +44382,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 519,
+                            Id = 504,
                             Action = 0,
                             CitizenId = 1504,
                             Nric = "S0001504J",
@@ -44542,7 +44392,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 520,
+                            Id = 505,
                             Action = 0,
                             CitizenId = 1505,
                             Nric = "S0001505I",
@@ -44552,7 +44402,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 521,
+                            Id = 506,
                             Action = 0,
                             CitizenId = 1506,
                             Nric = "S0001506G",
@@ -44562,7 +44412,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 522,
+                            Id = 507,
                             Action = 0,
                             CitizenId = 1507,
                             Nric = "S0001507E",
@@ -44572,7 +44422,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 523,
+                            Id = 508,
                             Action = 0,
                             CitizenId = 1508,
                             Nric = "S0001508C",
@@ -44582,7 +44432,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 524,
+                            Id = 509,
                             Action = 0,
                             CitizenId = 1509,
                             Nric = "S0001509A",
@@ -44592,7 +44442,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 525,
+                            Id = 510,
                             Action = 0,
                             CitizenId = 1510,
                             Nric = "S0001510E",
@@ -44602,7 +44452,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 526,
+                            Id = 511,
                             Action = 0,
                             CitizenId = 1511,
                             Nric = "S0001511C",
@@ -44612,7 +44462,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 527,
+                            Id = 512,
                             Action = 0,
                             CitizenId = 1512,
                             Nric = "S0001512A",
@@ -44622,7 +44472,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 528,
+                            Id = 513,
                             Action = 0,
                             CitizenId = 1513,
                             Nric = "S0001513Z",
@@ -44632,7 +44482,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 529,
+                            Id = 514,
                             Action = 0,
                             CitizenId = 1514,
                             Nric = "S0001514H",
@@ -44642,7 +44492,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 530,
+                            Id = 515,
                             Action = 0,
                             CitizenId = 1515,
                             Nric = "S0001515F",
@@ -44652,7 +44502,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 531,
+                            Id = 516,
                             Action = 0,
                             CitizenId = 1516,
                             Nric = "S0001516D",
@@ -44662,7 +44512,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 532,
+                            Id = 517,
                             Action = 0,
                             CitizenId = 1517,
                             Nric = "S0001517B",
@@ -44672,7 +44522,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 533,
+                            Id = 518,
                             Action = 0,
                             CitizenId = 1518,
                             Nric = "S0001518J",
@@ -44682,7 +44532,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 534,
+                            Id = 519,
                             Action = 0,
                             CitizenId = 1519,
                             Nric = "S0001519I",
@@ -44692,7 +44542,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 535,
+                            Id = 520,
                             Action = 0,
                             CitizenId = 1520,
                             Nric = "S0001520B",
@@ -44702,7 +44552,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 536,
+                            Id = 521,
                             Action = 0,
                             CitizenId = 1521,
                             Nric = "S0001521J",
@@ -44712,7 +44562,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 537,
+                            Id = 522,
                             Action = 0,
                             CitizenId = 1522,
                             Nric = "S0001522I",
@@ -44722,7 +44572,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 538,
+                            Id = 523,
                             Action = 0,
                             CitizenId = 1523,
                             Nric = "S0001523G",
@@ -44732,7 +44582,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 539,
+                            Id = 524,
                             Action = 0,
                             CitizenId = 1524,
                             Nric = "S0001524E",
@@ -44742,7 +44592,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 540,
+                            Id = 525,
                             Action = 0,
                             CitizenId = 1525,
                             Nric = "S0001525C",
@@ -44752,7 +44602,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 541,
+                            Id = 526,
                             Action = 0,
                             CitizenId = 1526,
                             Nric = "S0001526A",
@@ -44762,7 +44612,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 542,
+                            Id = 527,
                             Action = 0,
                             CitizenId = 1527,
                             Nric = "S0001527Z",
@@ -44772,7 +44622,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 543,
+                            Id = 528,
                             Action = 0,
                             CitizenId = 1528,
                             Nric = "S0001528H",
@@ -44782,7 +44632,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 544,
+                            Id = 529,
                             Action = 0,
                             CitizenId = 1529,
                             Nric = "S0001529F",
@@ -44792,7 +44642,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 545,
+                            Id = 530,
                             Action = 0,
                             CitizenId = 1530,
                             Nric = "S0001530Z",
@@ -44802,7 +44652,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 546,
+                            Id = 531,
                             Action = 0,
                             CitizenId = 1531,
                             Nric = "S0001531H",
@@ -44812,7 +44662,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 547,
+                            Id = 532,
                             Action = 0,
                             CitizenId = 1532,
                             Nric = "S0001532F",
@@ -44822,7 +44672,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 548,
+                            Id = 533,
                             Action = 0,
                             CitizenId = 1533,
                             Nric = "S0001533D",
@@ -44832,7 +44682,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 549,
+                            Id = 534,
                             Action = 0,
                             CitizenId = 1534,
                             Nric = "S0001534B",
@@ -44842,7 +44692,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 550,
+                            Id = 535,
                             Action = 0,
                             CitizenId = 1535,
                             Nric = "S0001535J",
@@ -44852,7 +44702,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 551,
+                            Id = 536,
                             Action = 0,
                             CitizenId = 1536,
                             Nric = "S0001536I",
@@ -44862,7 +44712,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 552,
+                            Id = 537,
                             Action = 0,
                             CitizenId = 1537,
                             Nric = "S0001537G",
@@ -44872,7 +44722,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 553,
+                            Id = 538,
                             Action = 0,
                             CitizenId = 1538,
                             Nric = "S0001538E",
@@ -44882,7 +44732,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 554,
+                            Id = 539,
                             Action = 0,
                             CitizenId = 1539,
                             Nric = "S0001539C",
@@ -44892,7 +44742,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 555,
+                            Id = 540,
                             Action = 0,
                             CitizenId = 1540,
                             Nric = "S0001540G",
@@ -44902,7 +44752,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 556,
+                            Id = 541,
                             Action = 0,
                             CitizenId = 1541,
                             Nric = "S0001541E",
@@ -44912,7 +44762,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 557,
+                            Id = 542,
                             Action = 0,
                             CitizenId = 1542,
                             Nric = "S0001542C",
@@ -44922,7 +44772,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 558,
+                            Id = 543,
                             Action = 0,
                             CitizenId = 1543,
                             Nric = "S0001543A",
@@ -44932,7 +44782,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 559,
+                            Id = 544,
                             Action = 0,
                             CitizenId = 1544,
                             Nric = "S0001544Z",
@@ -44942,7 +44792,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 560,
+                            Id = 545,
                             Action = 0,
                             CitizenId = 1545,
                             Nric = "S0001545H",
@@ -44952,7 +44802,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 561,
+                            Id = 546,
                             Action = 0,
                             CitizenId = 1546,
                             Nric = "S0001546F",
@@ -44962,7 +44812,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 562,
+                            Id = 547,
                             Action = 0,
                             CitizenId = 1547,
                             Nric = "S0001547D",
@@ -44972,7 +44822,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 563,
+                            Id = 548,
                             Action = 0,
                             CitizenId = 1548,
                             Nric = "S0001548B",
@@ -44982,7 +44832,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 564,
+                            Id = 549,
                             Action = 0,
                             CitizenId = 1549,
                             Nric = "S0001549J",
@@ -44992,7 +44842,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 565,
+                            Id = 550,
                             Action = 0,
                             CitizenId = 1550,
                             Nric = "S0001550D",
@@ -45002,537 +44852,507 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 566,
-                            Action = 0,
+                            Id = 551,
+                            Action = 2,
                             CitizenId = 1551,
                             Nric = "S0001551B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 567,
-                            Action = 0,
-                            CitizenId = 1552,
-                            Nric = "S0001552J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 568,
-                            Action = 0,
-                            CitizenId = 1553,
-                            Nric = "S0001553I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 569,
-                            Action = 0,
-                            CitizenId = 1554,
-                            Nric = "S0001554G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 570,
-                            Action = 0,
-                            CitizenId = 1555,
-                            Nric = "S0001555E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 571,
-                            Action = 0,
-                            CitizenId = 1556,
-                            Nric = "S0001556C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 572,
-                            Action = 0,
-                            CitizenId = 1557,
-                            Nric = "S0001557A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 573,
-                            Action = 0,
-                            CitizenId = 1558,
-                            Nric = "S0001558Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 574,
-                            Action = 0,
-                            CitizenId = 1559,
-                            Nric = "S0001559H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 575,
-                            Action = 0,
-                            CitizenId = 1560,
-                            Nric = "S0001560A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 576,
-                            Action = 0,
-                            CitizenId = 1561,
-                            Nric = "S0001561Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 577,
-                            Action = 0,
-                            CitizenId = 1562,
-                            Nric = "S0001562H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 578,
-                            Action = 0,
-                            CitizenId = 1563,
-                            Nric = "S0001563F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 579,
-                            Action = 0,
-                            CitizenId = 1564,
-                            Nric = "S0001564D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 580,
-                            Action = 0,
-                            CitizenId = 1565,
-                            Nric = "S0001565B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 581,
-                            Action = 0,
-                            CitizenId = 1566,
-                            Nric = "S0001566J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 582,
-                            Action = 0,
-                            CitizenId = 1567,
-                            Nric = "S0001567I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 583,
-                            Action = 0,
-                            CitizenId = 1568,
-                            Nric = "S0001568G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 584,
-                            Action = 0,
-                            CitizenId = 1569,
-                            Nric = "S0001569E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 585,
-                            Action = 0,
-                            CitizenId = 1570,
-                            Nric = "S0001570I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 586,
-                            Action = 0,
-                            CitizenId = 1571,
-                            Nric = "S0001571G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 587,
-                            Action = 0,
-                            CitizenId = 1572,
-                            Nric = "S0001572E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 588,
-                            Action = 0,
-                            CitizenId = 1573,
-                            Nric = "S0001573C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 589,
-                            Action = 0,
-                            CitizenId = 1574,
-                            Nric = "S0001574A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 590,
-                            Action = 0,
-                            CitizenId = 1575,
-                            Nric = "S0001575Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 591,
-                            Action = 0,
-                            CitizenId = 1576,
-                            Nric = "S0001576H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 592,
-                            Action = 0,
-                            CitizenId = 1577,
-                            Nric = "S0001577F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 593,
-                            Action = 0,
-                            CitizenId = 1578,
-                            Nric = "S0001578D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 594,
-                            Action = 0,
-                            CitizenId = 1579,
-                            Nric = "S0001579B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 595,
-                            Action = 0,
-                            CitizenId = 1580,
-                            Nric = "S0001580F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 596,
-                            Action = 0,
-                            CitizenId = 1581,
-                            Nric = "S0001581D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 597,
-                            Action = 0,
-                            CitizenId = 1582,
-                            Nric = "S0001582B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 598,
-                            Action = 0,
-                            CitizenId = 1583,
-                            Nric = "S0001583J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 599,
-                            Action = 0,
-                            CitizenId = 1584,
-                            Nric = "S0001584I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 600,
-                            Action = 0,
-                            CitizenId = 1585,
-                            Nric = "S0001585G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 601,
-                            Action = 0,
-                            CitizenId = 1586,
-                            Nric = "S0001586E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 602,
-                            Action = 0,
-                            CitizenId = 1587,
-                            Nric = "S0001587C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 603,
-                            Action = 0,
-                            CitizenId = 1588,
-                            Nric = "S0001588A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 604,
-                            Action = 0,
-                            CitizenId = 1589,
-                            Nric = "S0001589Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 605,
-                            Action = 0,
-                            CitizenId = 1590,
-                            Nric = "S0001590C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 606,
-                            Action = 0,
-                            CitizenId = 1591,
-                            Nric = "S0001591A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 607,
-                            Action = 0,
-                            CitizenId = 1592,
-                            Nric = "S0001592Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 608,
-                            Action = 0,
-                            CitizenId = 1593,
-                            Nric = "S0001593H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 609,
-                            Action = 0,
-                            CitizenId = 1594,
-                            Nric = "S0001594F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 610,
-                            Action = 0,
-                            CitizenId = 1595,
-                            Nric = "S0001595D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 611,
-                            Action = 0,
-                            CitizenId = 1596,
-                            Nric = "S0001596B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 612,
-                            Action = 0,
-                            CitizenId = 1597,
-                            Nric = "S0001597J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 613,
-                            Action = 0,
-                            CitizenId = 1598,
-                            Nric = "S0001598I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 614,
-                            Action = 0,
-                            CitizenId = 1599,
-                            Nric = "S0001599G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 615,
-                            Action = 0,
-                            CitizenId = 1600,
-                            Nric = "S0001600D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 616,
-                            Action = 1,
-                            CitizenId = 2,
-                            Nric = "S0000002G",
-                            Reason = "Account closure completed successfully.",
-                            Status = 1,
-                            SweepReportId = 6
-                        },
-                        new
-                        {
-                            Id = 617,
-                            Action = 2,
-                            CitizenId = 3,
-                            Nric = "S0000003E",
                             Reason = "Account extension completed successfully.",
                             Status = 1,
                             SweepReportId = 6
                         },
                         new
                         {
-                            Id = 618,
-                            Action = 0,
-                            CitizenId = 4,
-                            Nric = "S0000004C",
-                            Reason = "Seeded failed target for report filtering.",
-                            Status = 2,
+                            Id = 552,
+                            Action = 2,
+                            CitizenId = 1552,
+                            Nric = "S0001552J",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
                             SweepReportId = 6
                         },
                         new
                         {
-                            Id = 619,
+                            Id = 553,
+                            Action = 2,
+                            CitizenId = 1553,
+                            Nric = "S0001553I",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 554,
+                            Action = 2,
+                            CitizenId = 1554,
+                            Nric = "S0001554G",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 555,
+                            Action = 2,
+                            CitizenId = 1555,
+                            Nric = "S0001555E",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 556,
+                            Action = 2,
+                            CitizenId = 1556,
+                            Nric = "S0001556C",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 557,
+                            Action = 2,
+                            CitizenId = 1557,
+                            Nric = "S0001557A",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 558,
+                            Action = 2,
+                            CitizenId = 1558,
+                            Nric = "S0001558Z",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 559,
+                            Action = 2,
+                            CitizenId = 1559,
+                            Nric = "S0001559H",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 560,
+                            Action = 2,
+                            CitizenId = 1560,
+                            Nric = "S0001560A",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 561,
+                            Action = 2,
+                            CitizenId = 1561,
+                            Nric = "S0001561Z",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 562,
+                            Action = 2,
+                            CitizenId = 1562,
+                            Nric = "S0001562H",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 563,
+                            Action = 2,
+                            CitizenId = 1563,
+                            Nric = "S0001563F",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 564,
+                            Action = 2,
+                            CitizenId = 1564,
+                            Nric = "S0001564D",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 565,
+                            Action = 2,
+                            CitizenId = 1565,
+                            Nric = "S0001565B",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 566,
+                            Action = 2,
+                            CitizenId = 1566,
+                            Nric = "S0001566J",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 567,
+                            Action = 2,
+                            CitizenId = 1567,
+                            Nric = "S0001567I",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 568,
+                            Action = 2,
+                            CitizenId = 1568,
+                            Nric = "S0001568G",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 569,
+                            Action = 2,
+                            CitizenId = 1569,
+                            Nric = "S0001569E",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 570,
+                            Action = 2,
+                            CitizenId = 1570,
+                            Nric = "S0001570I",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 571,
+                            Action = 1,
+                            CitizenId = 1571,
+                            Nric = "S0001571G",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 572,
+                            Action = 1,
+                            CitizenId = 1572,
+                            Nric = "S0001572E",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 573,
+                            Action = 1,
+                            CitizenId = 1573,
+                            Nric = "S0001573C",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 574,
+                            Action = 1,
+                            CitizenId = 1574,
+                            Nric = "S0001574A",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 575,
+                            Action = 1,
+                            CitizenId = 1575,
+                            Nric = "S0001575Z",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 576,
+                            Action = 1,
+                            CitizenId = 1576,
+                            Nric = "S0001576H",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 577,
+                            Action = 1,
+                            CitizenId = 1577,
+                            Nric = "S0001577F",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 578,
+                            Action = 1,
+                            CitizenId = 1578,
+                            Nric = "S0001578D",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 579,
+                            Action = 1,
+                            CitizenId = 1579,
+                            Nric = "S0001579B",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 580,
+                            Action = 1,
+                            CitizenId = 1580,
+                            Nric = "S0001580F",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 581,
+                            Action = 1,
+                            CitizenId = 1581,
+                            Nric = "S0001581D",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 582,
+                            Action = 1,
+                            CitizenId = 1582,
+                            Nric = "S0001582B",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 583,
+                            Action = 1,
+                            CitizenId = 1583,
+                            Nric = "S0001583J",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 584,
+                            Action = 1,
+                            CitizenId = 1584,
+                            Nric = "S0001584I",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 585,
+                            Action = 1,
+                            CitizenId = 1585,
+                            Nric = "S0001585G",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 586,
+                            Action = 1,
+                            CitizenId = 1586,
+                            Nric = "S0001586E",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 587,
+                            Action = 1,
+                            CitizenId = 1587,
+                            Nric = "S0001587C",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 588,
+                            Action = 1,
+                            CitizenId = 1588,
+                            Nric = "S0001588A",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 589,
+                            Action = 1,
+                            CitizenId = 1589,
+                            Nric = "S0001589Z",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 590,
+                            Action = 1,
+                            CitizenId = 1590,
+                            Nric = "S0001590C",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 591,
+                            Action = 1,
+                            CitizenId = 1591,
+                            Nric = "S0001591A",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 592,
+                            Action = 1,
+                            CitizenId = 1592,
+                            Nric = "S0001592Z",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 593,
+                            Action = 1,
+                            CitizenId = 1593,
+                            Nric = "S0001593H",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 594,
+                            Action = 1,
+                            CitizenId = 1594,
+                            Nric = "S0001594F",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 595,
+                            Action = 1,
+                            CitizenId = 1595,
+                            Nric = "S0001595D",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 596,
+                            Action = 1,
+                            CitizenId = 1596,
+                            Nric = "S0001596B",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 597,
+                            Action = 1,
+                            CitizenId = 1597,
+                            Nric = "S0001597J",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 598,
+                            Action = 1,
+                            CitizenId = 1598,
+                            Nric = "S0001598I",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 599,
+                            Action = 1,
+                            CitizenId = 1599,
+                            Nric = "S0001599G",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 600,
+                            Action = 1,
+                            CitizenId = 1600,
+                            Nric = "S0001600D",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 6
+                        },
+                        new
+                        {
+                            Id = 601,
                             Action = 0,
                             CitizenId = 1601,
                             Nric = "S0001601B",
@@ -45542,7 +45362,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 620,
+                            Id = 602,
                             Action = 0,
                             CitizenId = 1602,
                             Nric = "S0001602J",
@@ -45552,7 +45372,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 621,
+                            Id = 603,
                             Action = 0,
                             CitizenId = 1603,
                             Nric = "S0001603I",
@@ -45562,7 +45382,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 622,
+                            Id = 604,
                             Action = 0,
                             CitizenId = 1604,
                             Nric = "S0001604G",
@@ -45572,7 +45392,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 623,
+                            Id = 605,
                             Action = 0,
                             CitizenId = 1605,
                             Nric = "S0001605E",
@@ -45582,7 +45402,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 624,
+                            Id = 606,
                             Action = 0,
                             CitizenId = 1606,
                             Nric = "S0001606C",
@@ -45592,7 +45412,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 625,
+                            Id = 607,
                             Action = 0,
                             CitizenId = 1607,
                             Nric = "S0001607A",
@@ -45602,7 +45422,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 626,
+                            Id = 608,
                             Action = 0,
                             CitizenId = 1608,
                             Nric = "S0001608Z",
@@ -45612,7 +45432,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 627,
+                            Id = 609,
                             Action = 0,
                             CitizenId = 1609,
                             Nric = "S0001609H",
@@ -45622,7 +45442,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 628,
+                            Id = 610,
                             Action = 0,
                             CitizenId = 1610,
                             Nric = "S0001610A",
@@ -45632,7 +45452,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 629,
+                            Id = 611,
                             Action = 0,
                             CitizenId = 1611,
                             Nric = "S0001611Z",
@@ -45642,7 +45462,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 630,
+                            Id = 612,
                             Action = 0,
                             CitizenId = 1612,
                             Nric = "S0001612H",
@@ -45652,7 +45472,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 631,
+                            Id = 613,
                             Action = 0,
                             CitizenId = 1613,
                             Nric = "S0001613F",
@@ -45662,7 +45482,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 632,
+                            Id = 614,
                             Action = 0,
                             CitizenId = 1614,
                             Nric = "S0001614D",
@@ -45672,7 +45492,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 633,
+                            Id = 615,
                             Action = 0,
                             CitizenId = 1615,
                             Nric = "S0001615B",
@@ -45682,7 +45502,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 634,
+                            Id = 616,
                             Action = 0,
                             CitizenId = 1616,
                             Nric = "S0001616J",
@@ -45692,7 +45512,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 635,
+                            Id = 617,
                             Action = 0,
                             CitizenId = 1617,
                             Nric = "S0001617I",
@@ -45702,7 +45522,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 636,
+                            Id = 618,
                             Action = 0,
                             CitizenId = 1618,
                             Nric = "S0001618G",
@@ -45712,7 +45532,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 637,
+                            Id = 619,
                             Action = 0,
                             CitizenId = 1619,
                             Nric = "S0001619E",
@@ -45722,7 +45542,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 638,
+                            Id = 620,
                             Action = 0,
                             CitizenId = 1620,
                             Nric = "S0001620I",
@@ -45732,7 +45552,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 639,
+                            Id = 621,
                             Action = 0,
                             CitizenId = 1621,
                             Nric = "S0001621G",
@@ -45742,7 +45562,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 640,
+                            Id = 622,
                             Action = 0,
                             CitizenId = 1622,
                             Nric = "S0001622E",
@@ -45752,7 +45572,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 641,
+                            Id = 623,
                             Action = 0,
                             CitizenId = 1623,
                             Nric = "S0001623C",
@@ -45762,7 +45582,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 642,
+                            Id = 624,
                             Action = 0,
                             CitizenId = 1624,
                             Nric = "S0001624A",
@@ -45772,7 +45592,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 643,
+                            Id = 625,
                             Action = 0,
                             CitizenId = 1625,
                             Nric = "S0001625Z",
@@ -45782,7 +45602,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 644,
+                            Id = 626,
                             Action = 0,
                             CitizenId = 1626,
                             Nric = "S0001626H",
@@ -45792,7 +45612,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 645,
+                            Id = 627,
                             Action = 0,
                             CitizenId = 1627,
                             Nric = "S0001627F",
@@ -45802,7 +45622,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 646,
+                            Id = 628,
                             Action = 0,
                             CitizenId = 1628,
                             Nric = "S0001628D",
@@ -45812,7 +45632,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 647,
+                            Id = 629,
                             Action = 0,
                             CitizenId = 1629,
                             Nric = "S0001629B",
@@ -45822,7 +45642,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 648,
+                            Id = 630,
                             Action = 0,
                             CitizenId = 1630,
                             Nric = "S0001630F",
@@ -45832,7 +45652,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 649,
+                            Id = 631,
                             Action = 0,
                             CitizenId = 1631,
                             Nric = "S0001631D",
@@ -45842,7 +45662,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 650,
+                            Id = 632,
                             Action = 0,
                             CitizenId = 1632,
                             Nric = "S0001632B",
@@ -45852,7 +45672,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 651,
+                            Id = 633,
                             Action = 0,
                             CitizenId = 1633,
                             Nric = "S0001633J",
@@ -45862,7 +45682,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 652,
+                            Id = 634,
                             Action = 0,
                             CitizenId = 1634,
                             Nric = "S0001634I",
@@ -45872,7 +45692,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 653,
+                            Id = 635,
                             Action = 0,
                             CitizenId = 1635,
                             Nric = "S0001635G",
@@ -45882,7 +45702,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 654,
+                            Id = 636,
                             Action = 0,
                             CitizenId = 1636,
                             Nric = "S0001636E",
@@ -45892,7 +45712,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 655,
+                            Id = 637,
                             Action = 0,
                             CitizenId = 1637,
                             Nric = "S0001637C",
@@ -45902,7 +45722,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 656,
+                            Id = 638,
                             Action = 0,
                             CitizenId = 1638,
                             Nric = "S0001638A",
@@ -45912,7 +45732,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 657,
+                            Id = 639,
                             Action = 0,
                             CitizenId = 1639,
                             Nric = "S0001639Z",
@@ -45922,7 +45742,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 658,
+                            Id = 640,
                             Action = 0,
                             CitizenId = 1640,
                             Nric = "S0001640C",
@@ -45932,7 +45752,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 659,
+                            Id = 641,
                             Action = 0,
                             CitizenId = 1641,
                             Nric = "S0001641A",
@@ -45942,7 +45762,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 660,
+                            Id = 642,
                             Action = 0,
                             CitizenId = 1642,
                             Nric = "S0001642Z",
@@ -45952,7 +45772,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 661,
+                            Id = 643,
                             Action = 0,
                             CitizenId = 1643,
                             Nric = "S0001643H",
@@ -45962,7 +45782,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 662,
+                            Id = 644,
                             Action = 0,
                             CitizenId = 1644,
                             Nric = "S0001644F",
@@ -45972,7 +45792,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 663,
+                            Id = 645,
                             Action = 0,
                             CitizenId = 1645,
                             Nric = "S0001645D",
@@ -45982,7 +45802,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 664,
+                            Id = 646,
                             Action = 0,
                             CitizenId = 1646,
                             Nric = "S0001646B",
@@ -45992,7 +45812,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 665,
+                            Id = 647,
                             Action = 0,
                             CitizenId = 1647,
                             Nric = "S0001647J",
@@ -46002,7 +45822,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 666,
+                            Id = 648,
                             Action = 0,
                             CitizenId = 1648,
                             Nric = "S0001648I",
@@ -46012,7 +45832,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 667,
+                            Id = 649,
                             Action = 0,
                             CitizenId = 1649,
                             Nric = "S0001649G",
@@ -46022,7 +45842,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 668,
+                            Id = 650,
                             Action = 0,
                             CitizenId = 1650,
                             Nric = "S0001650J",
@@ -46032,537 +45852,507 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 669,
-                            Action = 0,
+                            Id = 651,
+                            Action = 2,
                             CitizenId = 1651,
                             Nric = "S0001651I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 670,
-                            Action = 0,
-                            CitizenId = 1652,
-                            Nric = "S0001652G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 671,
-                            Action = 0,
-                            CitizenId = 1653,
-                            Nric = "S0001653E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 672,
-                            Action = 0,
-                            CitizenId = 1654,
-                            Nric = "S0001654C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 673,
-                            Action = 0,
-                            CitizenId = 1655,
-                            Nric = "S0001655A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 674,
-                            Action = 0,
-                            CitizenId = 1656,
-                            Nric = "S0001656Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 675,
-                            Action = 0,
-                            CitizenId = 1657,
-                            Nric = "S0001657H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 676,
-                            Action = 0,
-                            CitizenId = 1658,
-                            Nric = "S0001658F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 677,
-                            Action = 0,
-                            CitizenId = 1659,
-                            Nric = "S0001659D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 678,
-                            Action = 0,
-                            CitizenId = 1660,
-                            Nric = "S0001660H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 679,
-                            Action = 0,
-                            CitizenId = 1661,
-                            Nric = "S0001661F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 680,
-                            Action = 0,
-                            CitizenId = 1662,
-                            Nric = "S0001662D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 681,
-                            Action = 0,
-                            CitizenId = 1663,
-                            Nric = "S0001663B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 682,
-                            Action = 0,
-                            CitizenId = 1664,
-                            Nric = "S0001664J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 683,
-                            Action = 0,
-                            CitizenId = 1665,
-                            Nric = "S0001665I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 684,
-                            Action = 0,
-                            CitizenId = 1666,
-                            Nric = "S0001666G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 685,
-                            Action = 0,
-                            CitizenId = 1667,
-                            Nric = "S0001667E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 686,
-                            Action = 0,
-                            CitizenId = 1668,
-                            Nric = "S0001668C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 687,
-                            Action = 0,
-                            CitizenId = 1669,
-                            Nric = "S0001669A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 688,
-                            Action = 0,
-                            CitizenId = 1670,
-                            Nric = "S0001670E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 689,
-                            Action = 0,
-                            CitizenId = 1671,
-                            Nric = "S0001671C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 690,
-                            Action = 0,
-                            CitizenId = 1672,
-                            Nric = "S0001672A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 691,
-                            Action = 0,
-                            CitizenId = 1673,
-                            Nric = "S0001673Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 692,
-                            Action = 0,
-                            CitizenId = 1674,
-                            Nric = "S0001674H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 693,
-                            Action = 0,
-                            CitizenId = 1675,
-                            Nric = "S0001675F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 694,
-                            Action = 0,
-                            CitizenId = 1676,
-                            Nric = "S0001676D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 695,
-                            Action = 0,
-                            CitizenId = 1677,
-                            Nric = "S0001677B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 696,
-                            Action = 0,
-                            CitizenId = 1678,
-                            Nric = "S0001678J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 697,
-                            Action = 0,
-                            CitizenId = 1679,
-                            Nric = "S0001679I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 698,
-                            Action = 0,
-                            CitizenId = 1680,
-                            Nric = "S0001680B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 699,
-                            Action = 0,
-                            CitizenId = 1681,
-                            Nric = "S0001681J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 700,
-                            Action = 0,
-                            CitizenId = 1682,
-                            Nric = "S0001682I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 701,
-                            Action = 0,
-                            CitizenId = 1683,
-                            Nric = "S0001683G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 702,
-                            Action = 0,
-                            CitizenId = 1684,
-                            Nric = "S0001684E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 703,
-                            Action = 0,
-                            CitizenId = 1685,
-                            Nric = "S0001685C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 704,
-                            Action = 0,
-                            CitizenId = 1686,
-                            Nric = "S0001686A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 705,
-                            Action = 0,
-                            CitizenId = 1687,
-                            Nric = "S0001687Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 706,
-                            Action = 0,
-                            CitizenId = 1688,
-                            Nric = "S0001688H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 707,
-                            Action = 0,
-                            CitizenId = 1689,
-                            Nric = "S0001689F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 708,
-                            Action = 0,
-                            CitizenId = 1690,
-                            Nric = "S0001690Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 709,
-                            Action = 0,
-                            CitizenId = 1691,
-                            Nric = "S0001691H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 710,
-                            Action = 0,
-                            CitizenId = 1692,
-                            Nric = "S0001692F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 711,
-                            Action = 0,
-                            CitizenId = 1693,
-                            Nric = "S0001693D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 712,
-                            Action = 0,
-                            CitizenId = 1694,
-                            Nric = "S0001694B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 713,
-                            Action = 0,
-                            CitizenId = 1695,
-                            Nric = "S0001695J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 714,
-                            Action = 0,
-                            CitizenId = 1696,
-                            Nric = "S0001696I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 715,
-                            Action = 0,
-                            CitizenId = 1697,
-                            Nric = "S0001697G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 716,
-                            Action = 0,
-                            CitizenId = 1698,
-                            Nric = "S0001698E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 717,
-                            Action = 0,
-                            CitizenId = 1699,
-                            Nric = "S0001699C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 718,
-                            Action = 0,
-                            CitizenId = 1700,
-                            Nric = "S0001700J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 719,
-                            Action = 1,
-                            CitizenId = 2,
-                            Nric = "S0000002G",
-                            Reason = "Account closure completed successfully.",
-                            Status = 1,
-                            SweepReportId = 7
-                        },
-                        new
-                        {
-                            Id = 720,
-                            Action = 2,
-                            CitizenId = 3,
-                            Nric = "S0000003E",
                             Reason = "Account extension completed successfully.",
                             Status = 1,
                             SweepReportId = 7
                         },
                         new
                         {
-                            Id = 721,
-                            Action = 0,
-                            CitizenId = 4,
-                            Nric = "S0000004C",
-                            Reason = "Seeded failed target for report filtering.",
-                            Status = 2,
+                            Id = 652,
+                            Action = 2,
+                            CitizenId = 1652,
+                            Nric = "S0001652G",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
                             SweepReportId = 7
                         },
                         new
                         {
-                            Id = 722,
+                            Id = 653,
+                            Action = 2,
+                            CitizenId = 1653,
+                            Nric = "S0001653E",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 654,
+                            Action = 2,
+                            CitizenId = 1654,
+                            Nric = "S0001654C",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 655,
+                            Action = 2,
+                            CitizenId = 1655,
+                            Nric = "S0001655A",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 656,
+                            Action = 2,
+                            CitizenId = 1656,
+                            Nric = "S0001656Z",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 657,
+                            Action = 2,
+                            CitizenId = 1657,
+                            Nric = "S0001657H",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 658,
+                            Action = 2,
+                            CitizenId = 1658,
+                            Nric = "S0001658F",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 659,
+                            Action = 2,
+                            CitizenId = 1659,
+                            Nric = "S0001659D",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 660,
+                            Action = 2,
+                            CitizenId = 1660,
+                            Nric = "S0001660H",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 661,
+                            Action = 2,
+                            CitizenId = 1661,
+                            Nric = "S0001661F",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 662,
+                            Action = 2,
+                            CitizenId = 1662,
+                            Nric = "S0001662D",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 663,
+                            Action = 2,
+                            CitizenId = 1663,
+                            Nric = "S0001663B",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 664,
+                            Action = 2,
+                            CitizenId = 1664,
+                            Nric = "S0001664J",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 665,
+                            Action = 2,
+                            CitizenId = 1665,
+                            Nric = "S0001665I",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 666,
+                            Action = 2,
+                            CitizenId = 1666,
+                            Nric = "S0001666G",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 667,
+                            Action = 2,
+                            CitizenId = 1667,
+                            Nric = "S0001667E",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 668,
+                            Action = 2,
+                            CitizenId = 1668,
+                            Nric = "S0001668C",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 669,
+                            Action = 2,
+                            CitizenId = 1669,
+                            Nric = "S0001669A",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 670,
+                            Action = 2,
+                            CitizenId = 1670,
+                            Nric = "S0001670E",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 671,
+                            Action = 1,
+                            CitizenId = 1671,
+                            Nric = "S0001671C",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 672,
+                            Action = 1,
+                            CitizenId = 1672,
+                            Nric = "S0001672A",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 673,
+                            Action = 1,
+                            CitizenId = 1673,
+                            Nric = "S0001673Z",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 674,
+                            Action = 1,
+                            CitizenId = 1674,
+                            Nric = "S0001674H",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 675,
+                            Action = 1,
+                            CitizenId = 1675,
+                            Nric = "S0001675F",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 676,
+                            Action = 1,
+                            CitizenId = 1676,
+                            Nric = "S0001676D",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 677,
+                            Action = 1,
+                            CitizenId = 1677,
+                            Nric = "S0001677B",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 678,
+                            Action = 1,
+                            CitizenId = 1678,
+                            Nric = "S0001678J",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 679,
+                            Action = 1,
+                            CitizenId = 1679,
+                            Nric = "S0001679I",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 680,
+                            Action = 1,
+                            CitizenId = 1680,
+                            Nric = "S0001680B",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 681,
+                            Action = 1,
+                            CitizenId = 1681,
+                            Nric = "S0001681J",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 682,
+                            Action = 1,
+                            CitizenId = 1682,
+                            Nric = "S0001682I",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 683,
+                            Action = 1,
+                            CitizenId = 1683,
+                            Nric = "S0001683G",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 684,
+                            Action = 1,
+                            CitizenId = 1684,
+                            Nric = "S0001684E",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 685,
+                            Action = 1,
+                            CitizenId = 1685,
+                            Nric = "S0001685C",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 686,
+                            Action = 1,
+                            CitizenId = 1686,
+                            Nric = "S0001686A",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 687,
+                            Action = 1,
+                            CitizenId = 1687,
+                            Nric = "S0001687Z",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 688,
+                            Action = 1,
+                            CitizenId = 1688,
+                            Nric = "S0001688H",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 689,
+                            Action = 1,
+                            CitizenId = 1689,
+                            Nric = "S0001689F",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 690,
+                            Action = 1,
+                            CitizenId = 1690,
+                            Nric = "S0001690Z",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 691,
+                            Action = 1,
+                            CitizenId = 1691,
+                            Nric = "S0001691H",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 692,
+                            Action = 1,
+                            CitizenId = 1692,
+                            Nric = "S0001692F",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 693,
+                            Action = 1,
+                            CitizenId = 1693,
+                            Nric = "S0001693D",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 694,
+                            Action = 1,
+                            CitizenId = 1694,
+                            Nric = "S0001694B",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 695,
+                            Action = 1,
+                            CitizenId = 1695,
+                            Nric = "S0001695J",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 696,
+                            Action = 1,
+                            CitizenId = 1696,
+                            Nric = "S0001696I",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 697,
+                            Action = 1,
+                            CitizenId = 1697,
+                            Nric = "S0001697G",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 698,
+                            Action = 1,
+                            CitizenId = 1698,
+                            Nric = "S0001698E",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 699,
+                            Action = 1,
+                            CitizenId = 1699,
+                            Nric = "S0001699C",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 700,
+                            Action = 1,
+                            CitizenId = 1700,
+                            Nric = "S0001700J",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 7
+                        },
+                        new
+                        {
+                            Id = 701,
                             Action = 0,
                             CitizenId = 1701,
                             Nric = "S0001701I",
@@ -46572,7 +46362,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 723,
+                            Id = 702,
                             Action = 0,
                             CitizenId = 1702,
                             Nric = "S0001702G",
@@ -46582,7 +46372,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 724,
+                            Id = 703,
                             Action = 0,
                             CitizenId = 1703,
                             Nric = "S0001703E",
@@ -46592,7 +46382,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 725,
+                            Id = 704,
                             Action = 0,
                             CitizenId = 1704,
                             Nric = "S0001704C",
@@ -46602,7 +46392,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 726,
+                            Id = 705,
                             Action = 0,
                             CitizenId = 1705,
                             Nric = "S0001705A",
@@ -46612,7 +46402,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 727,
+                            Id = 706,
                             Action = 0,
                             CitizenId = 1706,
                             Nric = "S0001706Z",
@@ -46622,7 +46412,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 728,
+                            Id = 707,
                             Action = 0,
                             CitizenId = 1707,
                             Nric = "S0001707H",
@@ -46632,7 +46422,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 729,
+                            Id = 708,
                             Action = 0,
                             CitizenId = 1708,
                             Nric = "S0001708F",
@@ -46642,7 +46432,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 730,
+                            Id = 709,
                             Action = 0,
                             CitizenId = 1709,
                             Nric = "S0001709D",
@@ -46652,7 +46442,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 731,
+                            Id = 710,
                             Action = 0,
                             CitizenId = 1710,
                             Nric = "S0001710H",
@@ -46662,7 +46452,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 732,
+                            Id = 711,
                             Action = 0,
                             CitizenId = 1711,
                             Nric = "S0001711F",
@@ -46672,7 +46462,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 733,
+                            Id = 712,
                             Action = 0,
                             CitizenId = 1712,
                             Nric = "S0001712D",
@@ -46682,7 +46472,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 734,
+                            Id = 713,
                             Action = 0,
                             CitizenId = 1713,
                             Nric = "S0001713B",
@@ -46692,7 +46482,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 735,
+                            Id = 714,
                             Action = 0,
                             CitizenId = 1714,
                             Nric = "S0001714J",
@@ -46702,7 +46492,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 736,
+                            Id = 715,
                             Action = 0,
                             CitizenId = 1715,
                             Nric = "S0001715I",
@@ -46712,7 +46502,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 737,
+                            Id = 716,
                             Action = 0,
                             CitizenId = 1716,
                             Nric = "S0001716G",
@@ -46722,7 +46512,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 738,
+                            Id = 717,
                             Action = 0,
                             CitizenId = 1717,
                             Nric = "S0001717E",
@@ -46732,7 +46522,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 739,
+                            Id = 718,
                             Action = 0,
                             CitizenId = 1718,
                             Nric = "S0001718C",
@@ -46742,7 +46532,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 740,
+                            Id = 719,
                             Action = 0,
                             CitizenId = 1719,
                             Nric = "S0001719A",
@@ -46752,7 +46542,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 741,
+                            Id = 720,
                             Action = 0,
                             CitizenId = 1720,
                             Nric = "S0001720E",
@@ -46762,7 +46552,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 742,
+                            Id = 721,
                             Action = 0,
                             CitizenId = 1721,
                             Nric = "S0001721C",
@@ -46772,7 +46562,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 743,
+                            Id = 722,
                             Action = 0,
                             CitizenId = 1722,
                             Nric = "S0001722A",
@@ -46782,7 +46572,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 744,
+                            Id = 723,
                             Action = 0,
                             CitizenId = 1723,
                             Nric = "S0001723Z",
@@ -46792,7 +46582,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 745,
+                            Id = 724,
                             Action = 0,
                             CitizenId = 1724,
                             Nric = "S0001724H",
@@ -46802,7 +46592,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 746,
+                            Id = 725,
                             Action = 0,
                             CitizenId = 1725,
                             Nric = "S0001725F",
@@ -46812,7 +46602,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 747,
+                            Id = 726,
                             Action = 0,
                             CitizenId = 1726,
                             Nric = "S0001726D",
@@ -46822,7 +46612,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 748,
+                            Id = 727,
                             Action = 0,
                             CitizenId = 1727,
                             Nric = "S0001727B",
@@ -46832,7 +46622,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 749,
+                            Id = 728,
                             Action = 0,
                             CitizenId = 1728,
                             Nric = "S0001728J",
@@ -46842,7 +46632,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 750,
+                            Id = 729,
                             Action = 0,
                             CitizenId = 1729,
                             Nric = "S0001729I",
@@ -46852,7 +46642,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 751,
+                            Id = 730,
                             Action = 0,
                             CitizenId = 1730,
                             Nric = "S0001730B",
@@ -46862,7 +46652,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 752,
+                            Id = 731,
                             Action = 0,
                             CitizenId = 1731,
                             Nric = "S0001731J",
@@ -46872,7 +46662,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 753,
+                            Id = 732,
                             Action = 0,
                             CitizenId = 1732,
                             Nric = "S0001732I",
@@ -46882,7 +46672,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 754,
+                            Id = 733,
                             Action = 0,
                             CitizenId = 1733,
                             Nric = "S0001733G",
@@ -46892,7 +46682,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 755,
+                            Id = 734,
                             Action = 0,
                             CitizenId = 1734,
                             Nric = "S0001734E",
@@ -46902,7 +46692,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 756,
+                            Id = 735,
                             Action = 0,
                             CitizenId = 1735,
                             Nric = "S0001735C",
@@ -46912,7 +46702,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 757,
+                            Id = 736,
                             Action = 0,
                             CitizenId = 1736,
                             Nric = "S0001736A",
@@ -46922,7 +46712,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 758,
+                            Id = 737,
                             Action = 0,
                             CitizenId = 1737,
                             Nric = "S0001737Z",
@@ -46932,7 +46722,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 759,
+                            Id = 738,
                             Action = 0,
                             CitizenId = 1738,
                             Nric = "S0001738H",
@@ -46942,7 +46732,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 760,
+                            Id = 739,
                             Action = 0,
                             CitizenId = 1739,
                             Nric = "S0001739F",
@@ -46952,7 +46742,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 761,
+                            Id = 740,
                             Action = 0,
                             CitizenId = 1740,
                             Nric = "S0001740Z",
@@ -46962,7 +46752,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 762,
+                            Id = 741,
                             Action = 0,
                             CitizenId = 1741,
                             Nric = "S0001741H",
@@ -46972,7 +46762,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 763,
+                            Id = 742,
                             Action = 0,
                             CitizenId = 1742,
                             Nric = "S0001742F",
@@ -46982,7 +46772,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 764,
+                            Id = 743,
                             Action = 0,
                             CitizenId = 1743,
                             Nric = "S0001743D",
@@ -46992,7 +46782,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 765,
+                            Id = 744,
                             Action = 0,
                             CitizenId = 1744,
                             Nric = "S0001744B",
@@ -47002,7 +46792,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 766,
+                            Id = 745,
                             Action = 0,
                             CitizenId = 1745,
                             Nric = "S0001745J",
@@ -47012,7 +46802,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 767,
+                            Id = 746,
                             Action = 0,
                             CitizenId = 1746,
                             Nric = "S0001746I",
@@ -47022,7 +46812,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 768,
+                            Id = 747,
                             Action = 0,
                             CitizenId = 1747,
                             Nric = "S0001747G",
@@ -47032,7 +46822,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 769,
+                            Id = 748,
                             Action = 0,
                             CitizenId = 1748,
                             Nric = "S0001748E",
@@ -47042,7 +46832,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 770,
+                            Id = 749,
                             Action = 0,
                             CitizenId = 1749,
                             Nric = "S0001749C",
@@ -47052,7 +46842,7 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 771,
+                            Id = 750,
                             Action = 0,
                             CitizenId = 1750,
                             Nric = "S0001750G",
@@ -47062,532 +46852,502 @@ namespace educationaccountmanagement.DAL.Migrations
                         },
                         new
                         {
-                            Id = 772,
-                            Action = 0,
+                            Id = 751,
+                            Action = 2,
                             CitizenId = 1751,
                             Nric = "S0001751E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 773,
-                            Action = 0,
-                            CitizenId = 1752,
-                            Nric = "S0001752C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 774,
-                            Action = 0,
-                            CitizenId = 1753,
-                            Nric = "S0001753A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 775,
-                            Action = 0,
-                            CitizenId = 1754,
-                            Nric = "S0001754Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 776,
-                            Action = 0,
-                            CitizenId = 1755,
-                            Nric = "S0001755H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 777,
-                            Action = 0,
-                            CitizenId = 1756,
-                            Nric = "S0001756F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 778,
-                            Action = 0,
-                            CitizenId = 1757,
-                            Nric = "S0001757D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 779,
-                            Action = 0,
-                            CitizenId = 1758,
-                            Nric = "S0001758B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 780,
-                            Action = 0,
-                            CitizenId = 1759,
-                            Nric = "S0001759J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 781,
-                            Action = 0,
-                            CitizenId = 1760,
-                            Nric = "S0001760D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 782,
-                            Action = 0,
-                            CitizenId = 1761,
-                            Nric = "S0001761B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 783,
-                            Action = 0,
-                            CitizenId = 1762,
-                            Nric = "S0001762J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 784,
-                            Action = 0,
-                            CitizenId = 1763,
-                            Nric = "S0001763I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 785,
-                            Action = 0,
-                            CitizenId = 1764,
-                            Nric = "S0001764G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 786,
-                            Action = 0,
-                            CitizenId = 1765,
-                            Nric = "S0001765E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 787,
-                            Action = 0,
-                            CitizenId = 1766,
-                            Nric = "S0001766C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 788,
-                            Action = 0,
-                            CitizenId = 1767,
-                            Nric = "S0001767A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 789,
-                            Action = 0,
-                            CitizenId = 1768,
-                            Nric = "S0001768Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 790,
-                            Action = 0,
-                            CitizenId = 1769,
-                            Nric = "S0001769H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 791,
-                            Action = 0,
-                            CitizenId = 1770,
-                            Nric = "S0001770A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 792,
-                            Action = 0,
-                            CitizenId = 1771,
-                            Nric = "S0001771Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 793,
-                            Action = 0,
-                            CitizenId = 1772,
-                            Nric = "S0001772H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 794,
-                            Action = 0,
-                            CitizenId = 1773,
-                            Nric = "S0001773F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 795,
-                            Action = 0,
-                            CitizenId = 1774,
-                            Nric = "S0001774D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 796,
-                            Action = 0,
-                            CitizenId = 1775,
-                            Nric = "S0001775B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 797,
-                            Action = 0,
-                            CitizenId = 1776,
-                            Nric = "S0001776J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 798,
-                            Action = 0,
-                            CitizenId = 1777,
-                            Nric = "S0001777I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 799,
-                            Action = 0,
-                            CitizenId = 1778,
-                            Nric = "S0001778G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 800,
-                            Action = 0,
-                            CitizenId = 1779,
-                            Nric = "S0001779E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 801,
-                            Action = 0,
-                            CitizenId = 1780,
-                            Nric = "S0001780I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 802,
-                            Action = 0,
-                            CitizenId = 1781,
-                            Nric = "S0001781G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 803,
-                            Action = 0,
-                            CitizenId = 1782,
-                            Nric = "S0001782E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 804,
-                            Action = 0,
-                            CitizenId = 1783,
-                            Nric = "S0001783C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 805,
-                            Action = 0,
-                            CitizenId = 1784,
-                            Nric = "S0001784A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 806,
-                            Action = 0,
-                            CitizenId = 1785,
-                            Nric = "S0001785Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 807,
-                            Action = 0,
-                            CitizenId = 1786,
-                            Nric = "S0001786H",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 808,
-                            Action = 0,
-                            CitizenId = 1787,
-                            Nric = "S0001787F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 809,
-                            Action = 0,
-                            CitizenId = 1788,
-                            Nric = "S0001788D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 810,
-                            Action = 0,
-                            CitizenId = 1789,
-                            Nric = "S0001789B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 811,
-                            Action = 0,
-                            CitizenId = 1790,
-                            Nric = "S0001790F",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 812,
-                            Action = 0,
-                            CitizenId = 1791,
-                            Nric = "S0001791D",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 813,
-                            Action = 0,
-                            CitizenId = 1792,
-                            Nric = "S0001792B",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 814,
-                            Action = 0,
-                            CitizenId = 1793,
-                            Nric = "S0001793J",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 815,
-                            Action = 0,
-                            CitizenId = 1794,
-                            Nric = "S0001794I",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 816,
-                            Action = 0,
-                            CitizenId = 1795,
-                            Nric = "S0001795G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 817,
-                            Action = 0,
-                            CitizenId = 1796,
-                            Nric = "S0001796E",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 818,
-                            Action = 0,
-                            CitizenId = 1797,
-                            Nric = "S0001797C",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 819,
-                            Action = 0,
-                            CitizenId = 1798,
-                            Nric = "S0001798A",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 820,
-                            Action = 0,
-                            CitizenId = 1799,
-                            Nric = "S0001799Z",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 821,
-                            Action = 0,
-                            CitizenId = 1800,
-                            Nric = "S0001800G",
-                            Reason = "Account created successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 822,
-                            Action = 1,
-                            CitizenId = 2,
-                            Nric = "S0000002G",
-                            Reason = "Account closure completed successfully.",
-                            Status = 1,
-                            SweepReportId = 8
-                        },
-                        new
-                        {
-                            Id = 823,
-                            Action = 2,
-                            CitizenId = 3,
-                            Nric = "S0000003E",
                             Reason = "Account extension completed successfully.",
                             Status = 1,
                             SweepReportId = 8
                         },
                         new
                         {
-                            Id = 824,
-                            Action = 0,
-                            CitizenId = 4,
-                            Nric = "S0000004C",
-                            Reason = "Seeded failed target for report filtering.",
-                            Status = 2,
+                            Id = 752,
+                            Action = 2,
+                            CitizenId = 1752,
+                            Nric = "S0001752C",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 753,
+                            Action = 2,
+                            CitizenId = 1753,
+                            Nric = "S0001753A",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 754,
+                            Action = 2,
+                            CitizenId = 1754,
+                            Nric = "S0001754Z",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 755,
+                            Action = 2,
+                            CitizenId = 1755,
+                            Nric = "S0001755H",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 756,
+                            Action = 2,
+                            CitizenId = 1756,
+                            Nric = "S0001756F",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 757,
+                            Action = 2,
+                            CitizenId = 1757,
+                            Nric = "S0001757D",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 758,
+                            Action = 2,
+                            CitizenId = 1758,
+                            Nric = "S0001758B",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 759,
+                            Action = 2,
+                            CitizenId = 1759,
+                            Nric = "S0001759J",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 760,
+                            Action = 2,
+                            CitizenId = 1760,
+                            Nric = "S0001760D",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 761,
+                            Action = 2,
+                            CitizenId = 1761,
+                            Nric = "S0001761B",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 762,
+                            Action = 2,
+                            CitizenId = 1762,
+                            Nric = "S0001762J",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 763,
+                            Action = 2,
+                            CitizenId = 1763,
+                            Nric = "S0001763I",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 764,
+                            Action = 2,
+                            CitizenId = 1764,
+                            Nric = "S0001764G",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 765,
+                            Action = 2,
+                            CitizenId = 1765,
+                            Nric = "S0001765E",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 766,
+                            Action = 2,
+                            CitizenId = 1766,
+                            Nric = "S0001766C",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 767,
+                            Action = 2,
+                            CitizenId = 1767,
+                            Nric = "S0001767A",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 768,
+                            Action = 2,
+                            CitizenId = 1768,
+                            Nric = "S0001768Z",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 769,
+                            Action = 2,
+                            CitizenId = 1769,
+                            Nric = "S0001769H",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 770,
+                            Action = 2,
+                            CitizenId = 1770,
+                            Nric = "S0001770A",
+                            Reason = "Account extension completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 771,
+                            Action = 1,
+                            CitizenId = 1771,
+                            Nric = "S0001771Z",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 772,
+                            Action = 1,
+                            CitizenId = 1772,
+                            Nric = "S0001772H",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 773,
+                            Action = 1,
+                            CitizenId = 1773,
+                            Nric = "S0001773F",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 774,
+                            Action = 1,
+                            CitizenId = 1774,
+                            Nric = "S0001774D",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 775,
+                            Action = 1,
+                            CitizenId = 1775,
+                            Nric = "S0001775B",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 776,
+                            Action = 1,
+                            CitizenId = 1776,
+                            Nric = "S0001776J",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 777,
+                            Action = 1,
+                            CitizenId = 1777,
+                            Nric = "S0001777I",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 778,
+                            Action = 1,
+                            CitizenId = 1778,
+                            Nric = "S0001778G",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 779,
+                            Action = 1,
+                            CitizenId = 1779,
+                            Nric = "S0001779E",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 780,
+                            Action = 1,
+                            CitizenId = 1780,
+                            Nric = "S0001780I",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 781,
+                            Action = 1,
+                            CitizenId = 1781,
+                            Nric = "S0001781G",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 782,
+                            Action = 1,
+                            CitizenId = 1782,
+                            Nric = "S0001782E",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 783,
+                            Action = 1,
+                            CitizenId = 1783,
+                            Nric = "S0001783C",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 784,
+                            Action = 1,
+                            CitizenId = 1784,
+                            Nric = "S0001784A",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 785,
+                            Action = 1,
+                            CitizenId = 1785,
+                            Nric = "S0001785Z",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 786,
+                            Action = 1,
+                            CitizenId = 1786,
+                            Nric = "S0001786H",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 787,
+                            Action = 1,
+                            CitizenId = 1787,
+                            Nric = "S0001787F",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 788,
+                            Action = 1,
+                            CitizenId = 1788,
+                            Nric = "S0001788D",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 789,
+                            Action = 1,
+                            CitizenId = 1789,
+                            Nric = "S0001789B",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 790,
+                            Action = 1,
+                            CitizenId = 1790,
+                            Nric = "S0001790F",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 791,
+                            Action = 1,
+                            CitizenId = 1791,
+                            Nric = "S0001791D",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 792,
+                            Action = 1,
+                            CitizenId = 1792,
+                            Nric = "S0001792B",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 793,
+                            Action = 1,
+                            CitizenId = 1793,
+                            Nric = "S0001793J",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 794,
+                            Action = 1,
+                            CitizenId = 1794,
+                            Nric = "S0001794I",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 795,
+                            Action = 1,
+                            CitizenId = 1795,
+                            Nric = "S0001795G",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 796,
+                            Action = 1,
+                            CitizenId = 1796,
+                            Nric = "S0001796E",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 797,
+                            Action = 1,
+                            CitizenId = 1797,
+                            Nric = "S0001797C",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 798,
+                            Action = 1,
+                            CitizenId = 1798,
+                            Nric = "S0001798A",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 799,
+                            Action = 1,
+                            CitizenId = 1799,
+                            Nric = "S0001799Z",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
+                            SweepReportId = 8
+                        },
+                        new
+                        {
+                            Id = 800,
+                            Action = 1,
+                            CitizenId = 1800,
+                            Nric = "S0001800G",
+                            Reason = "Account closure completed successfully.",
+                            Status = 1,
                             SweepReportId = 8
                         });
                 });
