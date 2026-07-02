@@ -106,7 +106,7 @@ namespace Services.Courses
 
                     if (course.Status == CourseStatus.Enrolling)
                     {
-                        ValidateEnrollingLockedFields(course, updateDTO);
+                        ValidateEnrollingLockedFees(course, updateDTO);
                     }
 
                     _mapper.MapFromUpdateDTO(updateDTO, course);
@@ -476,28 +476,15 @@ namespace Services.Courses
             }
         }
 
-        private static void ValidateEnrollingLockedFields(
+        private static void ValidateEnrollingLockedFees(
             Course course,
             UpdateCourseDTO updateDTO)
         {
-            var enrollmentDeadline = CourseDateTimeHelper.NormalizeToUtc(
-                updateDTO.EnrollmentDeadline,
-                nameof(updateDTO.EnrollmentDeadline));
-            var startDate = CourseDateTimeHelper.NormalizeToUtc(
-                updateDTO.StartDate,
-                nameof(updateDTO.StartDate));
-            var endDate = CourseDateTimeHelper.NormalizeToUtc(
-                updateDTO.EndDate,
-                nameof(updateDTO.EndDate));
-
             if (course.CourseFeeAmount != updateDTO.CourseFeeAmount
-                || course.MiscFeeAmount != updateDTO.MiscFeeAmount
-                || course.EnrollmentDeadline != enrollmentDeadline
-                || course.StartDate != startDate
-                || course.EndDate != endDate)
+                || course.MiscFeeAmount != updateDTO.MiscFeeAmount)
             {
                 throw new DataConflictException(
-                    "Fees and deadlines cannot be changed after a course is published.");
+                    "Fees cannot be changed after a course is published.");
             }
         }
 
