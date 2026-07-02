@@ -15,6 +15,7 @@ namespace Services.FasSchemes
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly ICurrentUserService _currentUserService = currentUserService;
         private sealed record BlockingApplicationInfo(int Id, FasApplicationStatus Status);
+        private sealed record CurrentCourseInfo(int Id, string CourseCode, string CourseName, CourseStatus Status);
 
         public async Task<FasSchemeAvailableResponseDTO> GetAvailableSchemesAsync(FasSchemeFilterDTO filter, CancellationToken cancellationToken = default)
         {
@@ -28,6 +29,7 @@ namespace Services.FasSchemes
                 .Select(student => new {
                     student.Id,
                     student.SchoolId,
+                    student.EducationAccount.Citizen.FullName,
                     student.EducationAccount.Citizen.IsSingaporean,
                     student.EducationAccount.Citizen.DateOfBirth
                 })
@@ -46,6 +48,8 @@ namespace Services.FasSchemes
                 .Include(s => s.Tiers)
                 .Include(s => s.RequiredDocuments)
                 .Include(s => s.AdditionalQuestions)
+                .Include(s => s.SchemeCourses)
+                    .ThenInclude(link => link.Course)
                 .Include(s => s.ConditionGroups)
                     .ThenInclude(cg => cg.Conditions)
                 .Include(s => s.ConditionGroups)
@@ -79,6 +83,23 @@ namespace Services.FasSchemes
                         var application = group.First();
                         return new BlockingApplicationInfo(application.Id, application.Status);
                     });
+
+            var currentCourses = await _unitOfWork.Repository<Enrollment>()
+                .Query()
+                .Where(enrollment => enrollment.SchoolStudentId == studentInfo.Id
+                    && enrollment.Status == EnrollmentStatus.Active
+                    && (enrollment.Course.Status == CourseStatus.Enrolling
+                        || enrollment.Course.Status == CourseStatus.Upcoming
+                        || enrollment.Course.Status == CourseStatus.InProgress))
+                .Select(enrollment => new CurrentCourseInfo(
+                    enrollment.CourseId,
+                    enrollment.Course.CourseCode,
+                    enrollment.Course.CourseName,
+                    enrollment.Course.Status))
+                .ToListAsync(cancellationToken);
+            var currentCourseIds = currentCourses
+                .Select(course => course.Id)
+                .ToHashSet();
 
             // 3. Keep all active schemes visible. The frontend disables Apply for schemes that
             // already have a pending or currently valid approved application.
@@ -114,23 +135,43 @@ namespace Services.FasSchemes
 
             // 6. Map các Scheme đã qua bộ lọc sang DTO để trả về cho UI
             var schemeDTOs = availableSchemes
-                .Select(s => new FasSchemeAvailableDTO
+                .Select(s =>
                 {
-                    Id = s.Id,
-                    SchemeCode = s.SchemeCode,
-                    SchemeName = s.SchemeName,
-                    Description = s.Description,
-                    DurationInMonths = s.DurationInMonths,
-                    PublishedAt = s.PublishedAt,
-                    HasBlockingApplication = blockingApplicationBySchemeId.ContainsKey(s.Id),
-                    BlockingApplicationId = blockingApplicationBySchemeId.TryGetValue(s.Id, out var blockingApplication)
-                        ? blockingApplication.Id
-                        : null,
-                    BlockingApplicationStatus = blockingApplication?.Status,
-                    ApplyUnavailableReason = blockingApplication == null
-                        ? null
-                        : "You already have a pending or active approved application for this scheme.",
-                    Tiers = s.Tiers.Select(t => new FasSchemeTierDTO
+                    var matchedCurrentCourses = currentCourses
+                        .Where(course => s.SchemeCourses.Any(link => link.CourseId == course.Id))
+                        .OrderBy(course => course.CourseName)
+                        .Select(course => new FasSchemeCurrentCourseDTO
+                        {
+                            Id = course.Id,
+                            CourseCode = course.CourseCode,
+                            CourseName = course.CourseName,
+                            Status = course.Status.ToString()
+                        })
+                        .ToList();
+                    var appliesToCurrentCourses = currentCourseIds.Count > 0
+                        && matchedCurrentCourses.Count > 0;
+                    var hasBlockingApplication = blockingApplicationBySchemeId.TryGetValue(
+                        s.Id,
+                        out var blockingApplication);
+
+                    return new FasSchemeAvailableDTO
+                    {
+                        Id = s.Id,
+                        SchemeCode = s.SchemeCode,
+                        SchemeName = s.SchemeName,
+                        Description = s.Description,
+                        DurationInMonths = s.DurationInMonths,
+                        PublishedAt = s.PublishedAt,
+                        HasBlockingApplication = hasBlockingApplication,
+                        BlockingApplicationId = blockingApplication?.Id,
+                        BlockingApplicationStatus = blockingApplication?.Status,
+                        AppliesToCurrentCourses = appliesToCurrentCourses,
+                        MatchedCurrentCourseCount = matchedCurrentCourses.Count,
+                        MatchedCurrentCourses = matchedCurrentCourses,
+                        ApplyUnavailableReason = blockingApplication != null
+                            ? "You already have a pending or active approved application for this scheme."
+                            : null,
+                        Tiers = s.Tiers.Select(t => new FasSchemeTierDTO
                     {
                         Id = t.Id,
                         TierName = t.TierName,
@@ -158,9 +199,11 @@ namespace Services.FasSchemes
                         QuestionText = q.QuestionText,
                         IsRequired = q.IsRequired
                     }).ToList(),
-                    ConditionsSummary = GenerateConditionsSummary(s.ConditionGroups)
+                        ConditionsSummary = GenerateConditionsSummary(s.ConditionGroups)
+                    };
                 })
                 .OrderBy(s => s.HasBlockingApplication)
+                .ThenByDescending(s => s.AppliesToCurrentCourses)
                 .ThenByDescending(s => s.PublishedAt)
                 .ThenBy(s => s.SchemeName)
                 .ToList();
@@ -168,6 +211,14 @@ namespace Services.FasSchemes
             return new FasSchemeAvailableResponseDTO
             {
                 CalculatedPerCapitaIncome = calculatedPerCapitaIncome,
+                StudentProfile = new FasStudentProfileDTO
+                {
+                    FullName = studentInfo.FullName,
+                    Age = studentAge,
+                    Nationality = studentInfo.IsSingaporean
+                        ? NationalityCategory.SingaporeCitizen
+                        : NationalityCategory.Other
+                },
                 Schemes = schemeDTOs
             };
         }

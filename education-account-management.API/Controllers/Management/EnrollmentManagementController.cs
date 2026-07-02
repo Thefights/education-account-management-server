@@ -31,9 +31,10 @@ namespace Controllers.Management
         [HttpPut("{id}/withdraw")]
         public async Task<IActionResult> Withdraw(
             int id,
+            WithdrawEnrollmentDTO withdrawDTO,
             CancellationToken cancellationToken)
         {
-            await _service.WithdrawAsync(id, cancellationToken);
+            await _service.WithdrawAsync(id, withdrawDTO, cancellationToken);
             return Result.SuccessAction("Student withdrawn successfully");
         }
     }

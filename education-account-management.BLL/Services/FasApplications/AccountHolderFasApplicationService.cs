@@ -20,7 +20,7 @@ namespace Services.FasApplications
         private readonly IUploadService _uploadService = uploadService;
         private readonly INotificationWriter _notificationWriter = notificationWriter;
 
-        private sealed record AccountHolderStudentInfo(int Id, int SchoolId, bool IsSingaporean, DateOnly DateOfBirth);
+        private sealed record AccountHolderStudentInfo(int Id, int SchoolId, string FullName, bool IsSingaporean, DateOnly DateOfBirth);
 
         public async Task<string> SubmitApplicationAsync(SubmitFasApplicationDTO dto, CancellationToken cancellationToken = default)
         {
@@ -207,6 +207,7 @@ namespace Services.FasApplications
 
             var canReapply =
                 sourceApplication.Status == FasApplicationStatus.Rejected ||
+                sourceApplication.Status == FasApplicationStatus.Withdrawn ||
                 sourceApplication.Status == FasApplicationStatus.Expired ||
                 (sourceApplication.Status == FasApplicationStatus.Approved &&
                  sourceApplication.ValidityEndDate.HasValue &&
@@ -214,7 +215,7 @@ namespace Services.FasApplications
 
             if (!canReapply)
             {
-                throw new DataConflictException("Only rejected or expired applications can be used for reapply.");
+                throw new DataConflictException("Only rejected, withdrawn, or expired applications can be used for reapply.");
             }
 
             await GetActiveSchemeAsync(sourceApplication.FasSchemeId, studentInfo.SchoolId, cancellationToken);
@@ -467,7 +468,8 @@ namespace Services.FasApplications
                         .Select(document => new FasSchemeRequiredDocumentDTO
                         {
                             Id = document.Id,
-                            DocumentName = document.DocumentName
+                            DocumentName = document.DocumentName,
+                            TemplateUrl = document.TemplateFileKey
                         })
                         .ToList(),
                     AdditionalQuestions = application.FasScheme.AdditionalQuestions
@@ -478,6 +480,12 @@ namespace Services.FasApplications
                             IsRequired = question.IsRequired
                         })
                         .ToList()
+                },
+                StudentProfile = new FasStudentProfileDTO
+                {
+                    FullName = studentInfo.FullName,
+                    Age = application.StudentAgeSnapshot,
+                    Nationality = application.StudentNationalitySnapshot
                 },
                 StudentAgeSnapshot = application.StudentAgeSnapshot,
                 StudentNationalitySnapshot = application.StudentNationalitySnapshot,
@@ -536,6 +544,7 @@ namespace Services.FasApplications
                 .Select(student => new AccountHolderStudentInfo(
                     student.Id,
                     student.SchoolId,
+                    student.EducationAccount.Citizen.FullName,
                     student.EducationAccount.Citizen.IsSingaporean,
                     student.EducationAccount.Citizen.DateOfBirth))
                 .SingleOrDefaultAsync(cancellationToken);

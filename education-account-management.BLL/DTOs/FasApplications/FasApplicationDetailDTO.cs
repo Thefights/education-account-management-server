@@ -45,6 +45,7 @@ namespace DTOs.FasApplications
         public DateTime? WithdrawnAt { get; set; }
 
         public FasSchemeBasicInfoDTO Scheme { get; set; } = null!;
+        public FasStudentProfileDTO StudentProfile { get; set; } = new();
 
         public int StudentAgeSnapshot { get; set; }
         public NationalityCategory StudentNationalitySnapshot { get; set; }
