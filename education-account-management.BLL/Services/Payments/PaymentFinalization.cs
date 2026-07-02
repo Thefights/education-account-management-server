@@ -89,9 +89,83 @@ public partial class StripeService
             targetStatus, relatedPayments.First(), educationAccount, isSuccess,
             totalPaid, totals.CreditBalanceCovered, totals.OnlinePaymentCovered);
 
+        if (isSuccess)
+        {
+            await SendInstallmentEmailsAsync(
+                relatedPayments,
+                educationAccount,
+                billingActions,
+                token);
+        }
+
         await SendPaymentNotificationAsync(
             targetStatus, relatedPayments.First(), educationAccount, isSuccess,
             totalPaid, totals.CreditBalanceCovered, totals.OnlinePaymentCovered, paymentIds, token);
+    }
+
+    private async Task SendInstallmentEmailsAsync(
+        List<Payment> relatedPayments,
+        EducationAccount educationAccount,
+        List<ChargeBillingActionItem> billingActions,
+        CancellationToken cancellationToken)
+    {
+        var recipientEmail = educationAccount.Citizen.Email;
+        if (string.IsNullOrWhiteSpace(recipientEmail))
+        {
+            return;
+        }
+
+        var allocationsByCharge = relatedPayments
+            .SelectMany(payment => payment.PaymentAllocations)
+            .GroupBy(allocation => allocation.Charge)
+            .ToList();
+
+        foreach (var chargeGroup in allocationsByCharge)
+        {
+            var charge = chargeGroup.Key;
+            var action = billingActions.FirstOrDefault(item => item.ChargeId == charge.Id);
+            if (action == null)
+            {
+                continue;
+            }
+
+            EmailTemplate? template = null;
+            if (action.Intent == PaymentIntent.CreateInstallment && action.PaymentPlanMonths.HasValue)
+            {
+                var nextInstallment = charge.Installments
+                    .Where(installment => installment.Status == ChargeInstallmentStatus.PendingPayment)
+                    .OrderBy(installment => installment.InstallmentNumber)
+                    .FirstOrDefault();
+
+                if (nextInstallment != null)
+                {
+                    template = _emailTemplateBuilder.BuildInstallmentPlanCreatedEmail(
+                        educationAccount.Citizen.FullName,
+                        charge.CourseNameSnapshot,
+                        action.PaymentPlanMonths.Value,
+                        nextInstallment.Amount,
+                        nextInstallment.DueDate,
+                        BuildAccountHolderPortalLink("/account-holder/tuition-payment"));
+                }
+            }
+            else if (action.Intent is PaymentIntent.PayDueInstallments or PaymentIntent.PayRemainingInstallments)
+            {
+                template = _emailTemplateBuilder.BuildInstallmentPaidEmail(
+                    educationAccount.Citizen.FullName,
+                    charge.CourseNameSnapshot,
+                    chargeGroup.Sum(allocation => allocation.Amount),
+                    DateTime.UtcNow,
+                    BuildAccountHolderPortalLink("/account-holder/tuition-payment"));
+            }
+
+            if (template != null)
+            {
+                await _outboxWriter.EnqueueEmailAsync(
+                    recipientEmail,
+                    template,
+                    cancellationToken);
+            }
+        }
     }
 
     private async Task SendPaymentNotificationAsync(

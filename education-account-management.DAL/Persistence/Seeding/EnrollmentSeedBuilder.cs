@@ -30,7 +30,10 @@ namespace Persistence.Seeding
                     id: link.EnrollmentId,
                     courseId: link.CourseId,
                     schoolStudentId: link.SchoolStudentId,
-                    status: EnrollmentStatus.Active,
+                    status: SeedScenarioConstants.IsSterlingEnrollment(link.SchoolStudentId)
+                        && SeedScenarioConstants.IsSterlingWithdrawnCourse(link.CourseId)
+                            ? EnrollmentStatus.Withdrawn
+                            : EnrollmentStatus.Active,
                     createdAt));
             }
 

@@ -2,6 +2,7 @@ using DTOs.Enrollments;
 using DTOs.SchoolStudents;
 using Filters.SchoolStudents;
 using Interfaces.Audit;
+using Interfaces.Email;
 using Interfaces.Enrollments;
 using Mappers.Enrollments;
 using Mappers.SchoolStudents;
@@ -16,7 +17,10 @@ namespace Services.Enrollments
         SchoolStudentMapper schoolStudentMapper,
         SchoolScopeResolver schoolScopeResolver,
         TimeProvider timeProvider,
-        IManagementActionLogService managementActionLogService)
+        IManagementActionLogService managementActionLogService,
+        IOutboxWriter outboxWriter,
+        EmailTemplateBuilder emailTemplateBuilder,
+        AppConfiguration configuration)
         : BaseGetService<Enrollment, GetEnrollmentDTO>(unitOfWork, mapper),
             IEnrollmentService
     {
@@ -25,6 +29,9 @@ namespace Services.Enrollments
         private readonly SchoolScopeResolver _schoolScopeResolver = schoolScopeResolver;
         private readonly TimeProvider _timeProvider = timeProvider;
         private readonly IManagementActionLogService _managementActionLogService = managementActionLogService;
+        private readonly IOutboxWriter _outboxWriter = outboxWriter;
+        private readonly EmailTemplateBuilder _emailTemplateBuilder = emailTemplateBuilder;
+        private readonly AppConfiguration _configuration = configuration;
         private readonly IGenericRepository<Course> _courseRepository = unitOfWork.Repository<Course>();
         private readonly IGenericRepository<SchoolStudent> _schoolStudentRepository = unitOfWork.Repository<SchoolStudent>();
 
@@ -112,6 +119,22 @@ namespace Services.Enrollments
 
                     await _repository.AddRangeAsync(enrollments, token);
                     course.UpdatedAt = _timeProvider.GetUtcNow().UtcDateTime;
+
+                    foreach (var enrollment in enrollments.Where(item => !string.IsNullOrWhiteSpace(item.CitizenEmailSnapshot)))
+                    {
+                        var template = _emailTemplateBuilder.BuildCourseEnrollmentConfirmedEmail(
+                            enrollment.CitizenFullNameSnapshot,
+                            course.CourseName,
+                            course.StartDate,
+                            course.EndDate,
+                            BuildAccountHolderPortalLink("/account-holder/course-management"));
+
+                        await _outboxWriter.EnqueueEmailAsync(
+                            enrollment.CitizenEmailSnapshot!,
+                            template,
+                            token);
+                    }
+
                     await _unitOfWork.SaveChangeAsync(token);
                     return enrollments.Select(enrollment => enrollment.Id).ToList();
                 },
@@ -200,6 +223,19 @@ namespace Services.Enrollments
                             enrollment.Status.ToString(),
                             null,
                             cancellationToken: token);
+
+                        if (!string.IsNullOrWhiteSpace(enrollment.CitizenEmailSnapshot))
+                        {
+                            var template = _emailTemplateBuilder.BuildEnrollmentRemovedEmail(
+                                enrollment.CitizenFullNameSnapshot,
+                                enrollment.Course.CourseName,
+                                BuildAccountHolderPortalLink("/account-holder/course-management"));
+
+                            await _outboxWriter.EnqueueEmailAsync(
+                                enrollment.CitizenEmailSnapshot!,
+                                template,
+                                token);
+                        }
                     }
 
                     _repository.RemoveRange(enrollments);
@@ -352,6 +388,17 @@ namespace Services.Enrollments
             {
                 throw new ValidationFailureException(fieldName, "Duplicate IDs are not allowed.");
             }
+        }
+
+        private string BuildAccountHolderPortalLink(string path)
+        {
+            var frontendUrl = _configuration.UrlsConfig?.FrontendUrl?.Trim();
+            if (string.IsNullOrWhiteSpace(frontendUrl))
+            {
+                return "#";
+            }
+
+            return $"{frontendUrl.TrimEnd('/')}{path}";
         }
     }
 }

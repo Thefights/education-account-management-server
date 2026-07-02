@@ -8,5 +8,10 @@ namespace Interfaces.Email
             string toEmail,
             EmailTemplate template,
             CancellationToken cancellationToken = default);
+
+        Task EnqueueEmailOnceAsync(
+            string toEmail,
+            EmailTemplate template,
+            CancellationToken cancellationToken = default);
     }
 }

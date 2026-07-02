@@ -2,6 +2,7 @@ using DTOs.FasApplications;
 using DTOs.FasSchemes;
 using Filters.FasApplications;
 using Helpers.FasSchemes;
+using Interfaces.Email;
 using Interfaces.FasApplications;
 using Interfaces.Notifications;
 using Interfaces.Storage;
@@ -13,18 +14,24 @@ namespace Services.FasApplications
         IUnitOfWork unitOfWork,
         ICurrentUserService currentUserService,
         IUploadService uploadService,
-        INotificationWriter notificationWriter) : IAccountHolderFasApplicationService
+        INotificationWriter notificationWriter,
+        IOutboxWriter outboxWriter,
+        EmailTemplateBuilder emailTemplateBuilder,
+        AppConfiguration configuration) : IAccountHolderFasApplicationService
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly ICurrentUserService _currentUserService = currentUserService;
         private readonly IUploadService _uploadService = uploadService;
         private readonly INotificationWriter _notificationWriter = notificationWriter;
+        private readonly IOutboxWriter _outboxWriter = outboxWriter;
+        private readonly EmailTemplateBuilder _emailTemplateBuilder = emailTemplateBuilder;
+        private readonly AppConfiguration _configuration = configuration;
         private static readonly HashSet<string> AllowedApplicationDocumentExtensions = new(StringComparer.OrdinalIgnoreCase)
         {
             ".pdf", ".docx"
         };
 
-        private sealed record AccountHolderStudentInfo(int Id, int SchoolId, string FullName, bool IsSingaporean, DateOnly DateOfBirth);
+        private sealed record AccountHolderStudentInfo(int Id, int SchoolId, string FullName, string? Email, bool IsSingaporean, DateOnly DateOfBirth);
 
         public async Task<string> SubmitApplicationAsync(SubmitFasApplicationDTO dto, CancellationToken cancellationToken = default)
         {
@@ -51,6 +58,13 @@ namespace Services.FasApplications
 
                 await _unitOfWork.Repository<FasApplication>().AddAsync(application, cancellationToken);
                 await _unitOfWork.SaveChangeAsync(cancellationToken);
+
+                await EnqueueSubmittedEmailAsync(
+                    studentInfo,
+                    scheme.SchemeName,
+                    application.ApplicationNumber,
+                    application.CreatedAt,
+                    cancellationToken);
 
                 var schoolAdminUserIds = await _unitOfWork.Repository<User>()
                     .Query()
@@ -326,6 +340,13 @@ namespace Services.FasApplications
                 throw;
             }
 
+            await EnqueueSubmittedEmailAsync(
+                studentInfo,
+                draft.FasScheme.SchemeName,
+                draft.ApplicationNumber,
+                draft.CreatedAt,
+                cancellationToken);
+
             var schoolAdminUserIds = await _unitOfWork.Repository<User>()
                 .Query()
                 .Where(user => user.Role == UserRole.SchoolAdmin &&
@@ -549,6 +570,7 @@ namespace Services.FasApplications
                     student.Id,
                     student.SchoolId,
                     student.EducationAccount.Citizen.FullName,
+                    student.EducationAccount.Citizen.Email,
                     student.EducationAccount.Citizen.IsSingaporean,
                     student.EducationAccount.Citizen.DateOfBirth))
                 .SingleOrDefaultAsync(cancellationToken);
@@ -904,6 +926,40 @@ namespace Services.FasApplications
                     token),
                 conflictMessage: "Unable to generate a unique FAS application number.",
                 cancellationToken: cancellationToken);
+        }
+
+        private async Task EnqueueSubmittedEmailAsync(
+            AccountHolderStudentInfo studentInfo,
+            string fasName,
+            string applicationNumber,
+            DateTime submittedDate,
+            CancellationToken cancellationToken)
+        {
+            if (string.IsNullOrWhiteSpace(studentInfo.Email))
+            {
+                return;
+            }
+
+            var template = _emailTemplateBuilder.BuildFasApplicationSubmittedEmail(
+                studentInfo.FullName,
+                fasName,
+                applicationNumber,
+                submittedDate,
+                BuildAccountHolderPortalLink("/account-holder/fas/management"));
+
+            await _outboxWriter.EnqueueEmailAsync(studentInfo.Email, template, cancellationToken);
+            await _unitOfWork.SaveChangeAsync(cancellationToken);
+        }
+
+        private string BuildAccountHolderPortalLink(string path)
+        {
+            var frontendUrl = _configuration.UrlsConfig?.FrontendUrl?.Trim();
+            if (string.IsNullOrWhiteSpace(frontendUrl))
+            {
+                return "#";
+            }
+
+            return $"{frontendUrl.TrimEnd('/')}{path}";
         }
     }
 }

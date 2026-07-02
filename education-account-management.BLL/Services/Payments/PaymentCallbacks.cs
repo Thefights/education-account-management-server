@@ -89,18 +89,69 @@ public partial class StripeService
     /// </summary>
     private async Task SendPaymentEmailNotificationAsync(PaymentStatus targetStatus, Payment payment, EducationAccount educationAccount, bool isSuccess, decimal totalPaid, decimal totalWalletCovered, decimal totalStripeCovered)
     {
-        var subject = isSuccess ? "Payment Confirmed - MOS" : $"Payment {targetStatus} - MOS";
-        var subMessage = isSuccess
-        ? $"Deduction from your credit balance: {totalWalletCovered:C} SGD and deduction via online payment: {totalStripeCovered:C} SGD"
-        : "Contact MOS Staff for more information!";
-        var message = isSuccess
-            ? $"Dear {payment.CitizenFullNameSnapshot}, your payment of {totalPaid:C} SGD has been confirmed.\n" + subMessage
-            : $"Dear {payment.CitizenFullNameSnapshot}, your payment session has been {targetStatus}.\n" + subMessage;
+        if (string.IsNullOrWhiteSpace(educationAccount.Citizen.Email))
+        {
+            return;
+        }
+
+        var courseName = string.Join(
+            ", ",
+            payment.PaymentAllocations
+                .Select(allocation => allocation.CourseNameSnapshot)
+                .Where(name => !string.IsNullOrWhiteSpace(name))
+                .Distinct());
+        if (string.IsNullOrWhiteSpace(courseName))
+        {
+            courseName = "your course fees";
+        }
+
+        var paymentMethod = (totalWalletCovered, totalStripeCovered) switch
+        {
+            (> 0m, > 0m) => "Education Balance and Online Payment",
+            (> 0m, _) => "Education Balance",
+            (_, > 0m) => "Online Payment",
+            _ => payment.PaymentMethod.ToString()
+        };
+        var paymentAmount = isSuccess ? totalPaid : payment.TotalAmount;
+        var portalLink = BuildAccountHolderPortalLink("/account-holder/transaction-history");
+        var template = _emailTemplateBuilder.BuildPaymentStatusEmail(
+            payment.CitizenFullNameSnapshot,
+            courseName,
+            targetStatus,
+            paymentAmount,
+            paymentMethod,
+            payment.PaidAt ?? DateTime.UtcNow,
+            payment.ExternalReference,
+            portalLink);
 
         await _outboxWriter.EnqueueEmailAsync(
-            educationAccount.Citizen.Email ?? "",
-            new EmailTemplate(Subject: subject, HtmlBody: message, TextBody: message)
-        );
+            educationAccount.Citizen.Email,
+            template);
+
+        if (isSuccess)
+        {
+            var receiptTemplate = _emailTemplateBuilder.BuildReceiptAvailableEmail(
+                payment.CitizenFullNameSnapshot,
+                courseName,
+                totalPaid,
+                payment.ExternalReference ?? payment.Id.ToString(),
+                portalLink);
+
+            await _outboxWriter.EnqueueEmailAsync(
+                educationAccount.Citizen.Email,
+                receiptTemplate);
+        }
+    }
+
+    private string BuildAccountHolderPortalLink(string path)
+    {
+        var frontendUrl = _configuration.UrlsConfig?.FrontendUrl?.Trim();
+        if (string.IsNullOrWhiteSpace(frontendUrl))
+        {
+            return "#";
+        }
+
+        return $"{frontendUrl.TrimEnd('/')}{path}";
     }
 
     public async Task<PaymentSessionResponseDTO> HandleSessionSuccessAsync(string sessionId, CancellationToken cancellationToken = default)

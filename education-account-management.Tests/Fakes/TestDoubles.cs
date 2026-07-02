@@ -3,6 +3,7 @@ using Enums;
 using Infrastructure.Interface;
 using Interfaces.Audit;
 using Interfaces.Email;
+using Interfaces.Notifications;
 using Interfaces.Payments;
 using Repositories.Interfaces;
 using Stripe;
@@ -60,6 +61,52 @@ internal sealed class NoopOutboxWriter : IOutboxWriter
         CancellationToken cancellationToken = default)
     {
         Emails.Add((toEmail, template));
+        return Task.CompletedTask;
+    }
+
+    public Task EnqueueEmailOnceAsync(
+        string toEmail,
+        EmailTemplate template,
+        CancellationToken cancellationToken = default)
+    {
+        if (!Emails.Any(email =>
+                email.ToEmail == toEmail
+                && email.Template == template))
+        {
+            Emails.Add((toEmail, template));
+        }
+
+        return Task.CompletedTask;
+    }
+}
+
+internal sealed class NoopNotificationWriter : INotificationWriter
+{
+    public Task CreateAsync(
+        int recipientUserId,
+        NotificationType type,
+        NotificationSeverity severity,
+        string title,
+        string message,
+        string? relatedEntityType = null,
+        int? relatedEntityId = null,
+        object? metadata = null,
+        CancellationToken cancellationToken = default)
+    {
+        return Task.CompletedTask;
+    }
+
+    public Task CreateForUsersAsync(
+        IReadOnlyCollection<int> recipientUserIds,
+        NotificationType type,
+        NotificationSeverity severity,
+        string title,
+        string message,
+        string? relatedEntityType = null,
+        int? relatedEntityId = null,
+        object? metadata = null,
+        CancellationToken cancellationToken = default)
+    {
         return Task.CompletedTask;
     }
 }

@@ -15,6 +15,7 @@ namespace Persistence.Seeding.Constants
         public const int ManualCitizenCount = 10;
 
         public static readonly int[] SterlingCourseIds = [1, 3, 4, 5, 6, 8, 9, 11, 13, 14];
+        public static readonly int[] SterlingWithdrawnCourseIds = [8, 11, 14];
         public static readonly int[] CourseTestStudentIds =
             Enumerable.Range(1, 33).Where(id => id is not 10 and not 20 and not 30).ToArray();
 
@@ -135,6 +136,9 @@ namespace Persistence.Seeding.Constants
         }
 
         public static bool IsSterlingEnrollment(int schoolStudentId) => schoolStudentId == 1;
+
+        public static bool IsSterlingWithdrawnCourse(int courseId) =>
+            SterlingWithdrawnCourseIds.Contains(courseId);
 
         public static int GetSterlingInstallmentId(int chargeId, int installmentNumber)
         {

@@ -3,6 +3,7 @@ using Interfaces.EducationAccounts;
 using Mappers.EducationAccounts;
 using Services.EducationAccounts.Utils;
 using Validators;
+using Interfaces.Email;
 using Interfaces.Notifications;
 
 namespace Services.EducationAccounts
@@ -10,11 +11,17 @@ namespace Services.EducationAccounts
     public class EducationAccountSweepService(
         IUnitOfWork unitOfWork,
         ICurrentUserService currentUserService,
-        INotificationWriter notificationWriter) : IEducationAccountSweepService
+        INotificationWriter notificationWriter,
+        IOutboxWriter outboxWriter,
+        EmailTemplateBuilder emailTemplateBuilder,
+        AppConfiguration configuration) : IEducationAccountSweepService
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly ICurrentUserService _currentUserService = currentUserService;
         private readonly INotificationWriter _notificationWriter = notificationWriter;
+        private readonly IOutboxWriter _outboxWriter = outboxWriter;
+        private readonly EmailTemplateBuilder _emailTemplateBuilder = emailTemplateBuilder;
+        private readonly AppConfiguration _configuration = configuration;
 
         private readonly IGenericRepository<Citizen> _citizenRepository = unitOfWork.Repository<Citizen>();
         private readonly IGenericRepository<EducationAccount> _repository = unitOfWork.Repository<EducationAccount>();
@@ -115,6 +122,7 @@ namespace Services.EducationAccounts
                     try
                     {
                         var account = await _repository.Query(tracking: true)
+                            .Include(item => item.Citizen)
                             .FirstOrDefaultAsync(item => item.Id == candidate.Id, token)
                             ?? throw new DataNotFoundException(typeof(EducationAccount), candidate.Id);
 
@@ -141,6 +149,24 @@ namespace Services.EducationAccounts
                         if (finalStatus == EducationAccountStatus.Extended
                             && candidate.Status != EducationAccountStatus.Extended)
                         {
+                            if (!string.IsNullOrWhiteSpace(account.Citizen.Email))
+                            {
+                                var outstandingAmount = await _chargeRepository.Query(tracking: false)
+                                    .Where(charge => charge.Enrollment.SchoolStudent.EducationAccountId == account.Id
+                                        && charge.RemainingAmount > 0)
+                                    .SumAsync(charge => charge.RemainingAmount, token);
+                                var template = _emailTemplateBuilder.BuildEducationAccountExtendedEmail(
+                                    account.Citizen.FullName,
+                                    account.AccountNumber,
+                                    outstandingAmount,
+                                    BuildAccountHolderPortalLink("/account-holder/tuition-payment"));
+
+                                await _outboxWriter.EnqueueEmailAsync(
+                                    account.Citizen.Email,
+                                    template,
+                                    token);
+                            }
+
                             result.AccountsExtendedCount++;
                             result.Targets.Add(new EducationAccountSweepTargetDTO
                             {
@@ -254,6 +280,17 @@ namespace Services.EducationAccounts
             };
             history.TryValidate();
             await _statusHistoryRepository.AddAsync(history, cancellationToken);
+        }
+
+        private string BuildAccountHolderPortalLink(string path)
+        {
+            var frontendUrl = _configuration.UrlsConfig?.FrontendUrl?.Trim();
+            if (string.IsNullOrWhiteSpace(frontendUrl))
+            {
+                return "#";
+            }
+
+            return $"{frontendUrl.TrimEnd('/')}{path}";
         }
     }
 }
