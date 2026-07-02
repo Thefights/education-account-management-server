@@ -19,6 +19,10 @@ namespace Services.FasApplications
         private readonly ICurrentUserService _currentUserService = currentUserService;
         private readonly IUploadService _uploadService = uploadService;
         private readonly INotificationWriter _notificationWriter = notificationWriter;
+        private static readonly HashSet<string> AllowedApplicationDocumentExtensions = new(StringComparer.OrdinalIgnoreCase)
+        {
+            ".pdf", ".docx"
+        };
 
         private sealed record AccountHolderStudentInfo(int Id, int SchoolId, string FullName, bool IsSingaporean, DateOnly DateOfBirth);
 
@@ -724,6 +728,8 @@ namespace Services.FasApplications
                 var requiredDocument = scheme.RequiredDocuments.FirstOrDefault(r => r.Id == document.RequiredDocumentId);
                 if (requiredDocument != null)
                 {
+                    ValidateApplicationDocumentFile(document, requiredDocument);
+
                     var fileKey = document.FileKey;
                     var fileName = document.FileName;
                     if (document.File != null)
@@ -761,6 +767,27 @@ namespace Services.FasApplications
                 }
             }
             return result;
+        }
+
+        private static void ValidateApplicationDocumentFile(
+            SubmitFasApplicationDocumentDTO document,
+            FasSchemeRequiredDocument requiredDocument)
+        {
+            var fileName = document.File?.FileName ?? document.FileName;
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                return;
+            }
+
+            var extension = Path.GetExtension(fileName);
+            if (AllowedApplicationDocumentExtensions.Contains(extension))
+            {
+                return;
+            }
+
+            throw new ValidationFailureException(
+                nameof(SubmitFasApplicationDTO.Documents),
+                $"Document '{requiredDocument.DocumentName}' must be a Word or PDF file (.pdf, .docx).");
         }
 
         private static void ValidateRequiredDocuments(
