@@ -33,7 +33,11 @@ namespace Controllers.Management
         public async Task<IActionResult> GetDocuments()
         {
             var result = await _aiDocumentManagementService.GetDocumentsAsync();
-            if (result.IsSuccess) return Content(result.Content!, "application/json");
+            if (result.IsSuccess)
+            {
+                var data = System.Text.Json.JsonSerializer.Deserialize<System.Text.Json.JsonElement>(result.Content!);
+                return Result.SuccessData(data);
+            }
             return Result.FailError<object?>(null, result.ErrorMessage ?? "Error", result.StatusCode);
         }
 
@@ -41,7 +45,11 @@ namespace Controllers.Management
         public async Task<IActionResult> DeleteDocument(string documentId)
         {
             var result = await _aiDocumentManagementService.DeleteDocumentAsync(documentId);
-            if (result.IsSuccess) return Content(result.Content!, "application/json");
+            if (result.IsSuccess)
+            {
+                var data = System.Text.Json.JsonSerializer.Deserialize<System.Text.Json.JsonElement>(result.Content!);
+                return Result.SuccessData(data);
+            }
             return Result.FailError<object?>(null, result.ErrorMessage ?? "Error", result.StatusCode);
         }
 
@@ -49,8 +57,25 @@ namespace Controllers.Management
         public async Task<IActionResult> UploadDocument(IFormFile file, [FromForm] bool admin_only = false)
         {
             var result = await _aiDocumentManagementService.UploadDocumentAsync(file, admin_only);
-            if (result.IsSuccess) return Content(result.Content!, "application/json");
+            if (result.IsSuccess)
+            {
+                var data = System.Text.Json.JsonSerializer.Deserialize<System.Text.Json.JsonElement>(result.Content!);
+                return Result.SuccessData(data);
+            }
             return Result.FailError<object?>(null, result.ErrorMessage ?? "Error", result.StatusCode);
+        }
+
+        [HttpGet("{docId}/download")]
+        [AllowAnonymous]
+        public async Task<IActionResult> DownloadDocument(string docId, [FromQuery] string fileName)
+        {
+            var result = await _aiDocumentManagementService.DownloadDocumentAsync(docId, fileName);
+            if (result.HasValue)
+            {
+                var (stream, contentType, name) = result.Value;
+                return File(stream, contentType, name);
+            }
+            return Result.FailError<object?>(null, "Document not found or file missing on server.", StatusCodes.Status404NotFound);
         }
     }
 }
