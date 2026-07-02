@@ -21,50 +21,29 @@ namespace Persistence.Seeding
                 for (var accountIndex = 0; accountIndex < SeedScenarioConstants.SweepAccountsPerDay; accountIndex++)
                 {
                     var citizenId = startCitizenId + accountIndex;
+                    var action = accountIndex < SeedScenarioConstants.SweepCreateCountPerDay
+                        ? SweepAction.Create
+                        : accountIndex < SeedScenarioConstants.SweepCreateCountPerDay
+                            + SeedScenarioConstants.SweepExtendCountPerDay
+                            ? SweepAction.Extend
+                            : SweepAction.Close;
+
                     targets.Add(new EducationAccountSweepTarget
                     {
                         Id = id++,
                         SweepReportId = reportId,
                         CitizenId = citizenId,
                         Nric = SingaporeNricUtil.Generate(citizenId),
-                        Action = SweepAction.Create,
+                        Action = action,
                         Status = SweepTargetStatus.Success,
-                        Reason = "Account created successfully."
+                        Reason = action switch
+                        {
+                            SweepAction.Create => "Account created successfully.",
+                            SweepAction.Extend => "Account extension completed successfully.",
+                            _ => "Account closure completed successfully."
+                        }
                     });
                 }
-
-                targets.Add(new EducationAccountSweepTarget
-                {
-                    Id = id++,
-                    SweepReportId = reportId,
-                    CitizenId = 2,
-                    Nric = SingaporeNricUtil.Generate(2),
-                    Action = SweepAction.Close,
-                    Status = SweepTargetStatus.Success,
-                    Reason = "Account closure completed successfully."
-                });
-
-                targets.Add(new EducationAccountSweepTarget
-                {
-                    Id = id++,
-                    SweepReportId = reportId,
-                    CitizenId = 3,
-                    Nric = SingaporeNricUtil.Generate(3),
-                    Action = SweepAction.Extend,
-                    Status = SweepTargetStatus.Success,
-                    Reason = "Account extension completed successfully."
-                });
-
-                targets.Add(new EducationAccountSweepTarget
-                {
-                    Id = id++,
-                    SweepReportId = reportId,
-                    CitizenId = 4,
-                    Nric = SingaporeNricUtil.Generate(4),
-                    Action = SweepAction.Create,
-                    Status = SweepTargetStatus.Failed,
-                    Reason = "Seeded failed target for report filtering."
-                });
             }
 
             modelBuilder.Entity<EducationAccountSweepTarget>().HasData(targets);

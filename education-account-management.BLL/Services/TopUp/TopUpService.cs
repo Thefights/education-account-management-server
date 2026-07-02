@@ -1,5 +1,6 @@
 using DTOs.TopUp;
 using Interfaces.Audit;
+using Interfaces.Email;
 using Interfaces.TopUp;
 using Interfaces.Notifications;
 
@@ -8,12 +9,18 @@ namespace Services.TopUp
     public class TopupService(
         IUnitOfWork unitOfWork,
         IAuditLogWriter auditLogWriter,
-        INotificationWriter notificationWriter)
+        INotificationWriter notificationWriter,
+        IOutboxWriter outboxWriter,
+        EmailTemplateBuilder emailTemplateBuilder,
+        AppConfiguration configuration)
         : ITopupService
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly IAuditLogWriter _auditLogWriter = auditLogWriter;
         private readonly INotificationWriter _notificationWriter = notificationWriter;
+        private readonly IOutboxWriter _outboxWriter = outboxWriter;
+        private readonly EmailTemplateBuilder _emailTemplateBuilder = emailTemplateBuilder;
+        private readonly AppConfiguration _configuration = configuration;
         private readonly IGenericRepository<EducationAccount> _accountRepository = unitOfWork.Repository<EducationAccount>();
         private readonly IGenericRepository<EducationCreditTransaction> _transactionRepository = unitOfWork.Repository<EducationCreditTransaction>();
         private readonly IGenericRepository<TopupExecution> _executionRepository = unitOfWork.Repository<TopupExecution>();
@@ -151,6 +158,22 @@ namespace Services.TopUp
                                     balanceAfter,
                                     transaction.TransactionCode
                                 },
+                                token);
+                        }
+
+                        if (!string.IsNullOrWhiteSpace(account.Citizen.Email))
+                        {
+                            var template = _emailTemplateBuilder.BuildEducationAccountCreditedEmail(
+                                account.Citizen.FullName,
+                                request.TopUpAmount,
+                                request.DisbursementReason,
+                                transaction.CreatedAt,
+                                balanceAfter,
+                                BuildPortalLink());
+
+                            await _outboxWriter.EnqueueEmailAsync(
+                                account.Citizen.Email,
+                                template,
                                 token);
                         }
                     }
@@ -310,6 +333,17 @@ namespace Services.TopUp
             if (hasIds && request.AccountIds!.Any(id => id <= 0))
                 errors[nameof(request.AccountIds)] = "All account IDs must be positive.";
             if (errors.Count != 0) throw new ValidationFailureException(errors);
+        }
+
+        private string BuildPortalLink()
+        {
+            var frontendUrl = _configuration.UrlsConfig?.FrontendUrl?.Trim();
+            if (string.IsNullOrWhiteSpace(frontendUrl))
+            {
+                return "#";
+            }
+
+            return $"{frontendUrl.TrimEnd('/')}/account-holder/transaction-history";
         }
 
         private static ExecuteTopupResultDTO BuildResult(TopupExecution execution)

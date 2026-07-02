@@ -1,5 +1,6 @@
 using DTOs.TopUp;
 using Interfaces.Audit;
+using Interfaces.Email;
 using Interfaces.TopUp;
 using System.Text.Json;
 
@@ -7,11 +8,17 @@ namespace Services.TopUp
 {
     public class TopupBackgroundService(
         IUnitOfWork unitOfWork,
-        IAuditLogWriter auditLogWriter)
+        IAuditLogWriter auditLogWriter,
+        IOutboxWriter outboxWriter,
+        EmailTemplateBuilder emailTemplateBuilder,
+        AppConfiguration configuration)
         : ITopupBackgroundService
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
         private readonly IAuditLogWriter _auditLogWriter = auditLogWriter;
+        private readonly IOutboxWriter _outboxWriter = outboxWriter;
+        private readonly EmailTemplateBuilder _emailTemplateBuilder = emailTemplateBuilder;
+        private readonly AppConfiguration _configuration = configuration;
         private readonly IGenericRepository<SystemTopup> _systemTopupRepository = unitOfWork.Repository<SystemTopup>();
         private readonly IGenericRepository<ScheduleTopUp> _scheduleRepository = unitOfWork.Repository<ScheduleTopUp>();
         private readonly IGenericRepository<EducationAccount> _accountRepository = unitOfWork.Repository<EducationAccount>();
@@ -199,6 +206,22 @@ namespace Services.TopUp
                                 TopUpAmount = amount,
                                 TopUpTransactionId = transaction.TransactionCode
                             });
+
+                            if (!string.IsNullOrWhiteSpace(account.Citizen.Email))
+                            {
+                                var template = _emailTemplateBuilder.BuildEducationAccountCreditedEmail(
+                                    account.Citizen.FullName,
+                                    amount,
+                                    transaction.Description,
+                                    transaction.CreatedAt,
+                                    balanceAfter,
+                                    BuildAccountHolderPortalLink("/account-holder/transaction-history"));
+
+                                await _outboxWriter.EnqueueEmailAsync(
+                                    account.Citizen.Email,
+                                    template,
+                                    token);
+                            }
                         }
                         catch (Exception exception) when (exception is not OperationCanceledException)
                         {
@@ -243,6 +266,17 @@ namespace Services.TopUp
                 $"{sourceType} Top-Up Completed",
                 cancellationToken: cancellationToken);
             return true;
+        }
+
+        private string BuildAccountHolderPortalLink(string path)
+        {
+            var frontendUrl = _configuration.UrlsConfig?.FrontendUrl?.Trim();
+            if (string.IsNullOrWhiteSpace(frontendUrl))
+            {
+                return "#";
+            }
+
+            return $"{frontendUrl.TrimEnd('/')}{path}";
         }
 
         private static DateTime ComputeNextExecutionDate(ScheduleTopUp schedule, DateTime nowSgt)

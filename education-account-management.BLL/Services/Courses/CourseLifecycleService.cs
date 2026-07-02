@@ -2,6 +2,7 @@ using Interfaces.Audit;
 using Interfaces.Courses;
 using Helpers.FasSchemes;
 using Services.Courses.Utils;
+using Interfaces.Email;
 using Interfaces.Notifications;
 using Services.Payments;
 
@@ -10,7 +11,10 @@ namespace Services.Courses
     public class CourseLifecycleService(
         IUnitOfWork unitOfWork,
         IAuditLogWriter auditLogWriter,
-        INotificationWriter notificationWriter)
+        INotificationWriter notificationWriter,
+        IOutboxWriter outboxWriter,
+        EmailTemplateBuilder emailTemplateBuilder,
+        AppConfiguration configuration)
         : ICourseLifecycleService
     {
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
@@ -24,12 +28,16 @@ namespace Services.Courses
             unitOfWork.Repository<FasApplication>();
         private readonly IAuditLogWriter _auditLogWriter = auditLogWriter;
         private readonly INotificationWriter _notificationWriter = notificationWriter;
+        private readonly IOutboxWriter _outboxWriter = outboxWriter;
+        private readonly EmailTemplateBuilder _emailTemplateBuilder = emailTemplateBuilder;
+        private readonly AppConfiguration _configuration = configuration;
 
         public async Task<int> ProcessDateTransitionsAsync(
             DateTime utcNow,
             CancellationToken cancellationToken = default)
         {
             utcNow = CourseDateTimeHelper.NormalizeToUtc(utcNow, nameof(utcNow));
+            var reminderCount = await SendDueRemindersAsync(utcNow, cancellationToken);
             var overdueChargeCount = await MarkOverdueChargesAsync(utcNow, cancellationToken);
             var overdueInstallmentCount = await MarkOverdueInstallmentsAsync(utcNow, cancellationToken);
             var courseIds = await _courseRepository.Query()
@@ -77,7 +85,78 @@ namespace Services.Courses
                     failures);
             }
 
-            return transitionCount + overdueChargeCount + overdueInstallmentCount;
+            return transitionCount + reminderCount + overdueChargeCount + overdueInstallmentCount;
+        }
+
+        private async Task<int> SendDueRemindersAsync(
+            DateTime utcNow,
+            CancellationToken cancellationToken)
+        {
+            var reminderDate = utcNow.Date.AddDays(7);
+            var reminderCount = 0;
+
+            var charges = await _chargeRepository.Query(tracking: false)
+                .Include(charge => charge.Enrollment)
+                    .ThenInclude(enrollment => enrollment.SchoolStudent)
+                        .ThenInclude(student => student.EducationAccount)
+                            .ThenInclude(account => account.Citizen)
+                .Where(charge => charge.Status == ChargeStatus.PendingPayment
+                    && charge.RemainingAmount > 0
+                    && !charge.PaymentPlanMonths.HasValue
+                    && !charge.Installments.Any()
+                    && charge.CourseEndDateSnapshot.Date == reminderDate)
+                .ToListAsync(cancellationToken);
+
+            foreach (var charge in charges)
+            {
+                var citizen = charge.Enrollment.SchoolStudent.EducationAccount.Citizen;
+                if (string.IsNullOrWhiteSpace(citizen.Email))
+                {
+                    continue;
+                }
+
+                var template = _emailTemplateBuilder.BuildPaymentDueReminderEmail(
+                    citizen.FullName,
+                    charge.CourseNameSnapshot,
+                    charge.RemainingAmount,
+                    charge.CourseEndDateSnapshot,
+                    BuildAccountHolderPortalLink("/account-holder/tuition-payment"));
+
+                await _outboxWriter.EnqueueEmailOnceAsync(citizen.Email, template, cancellationToken);
+                reminderCount++;
+            }
+
+            var installments = await _installmentRepository.Query(tracking: false)
+                .Include(installment => installment.Charge)
+                    .ThenInclude(charge => charge.Enrollment)
+                        .ThenInclude(enrollment => enrollment.SchoolStudent)
+                            .ThenInclude(student => student.EducationAccount)
+                                .ThenInclude(account => account.Citizen)
+                .Where(installment => installment.Status == ChargeInstallmentStatus.PendingPayment
+                    && installment.DueDate.Date == reminderDate)
+                .ToListAsync(cancellationToken);
+
+            foreach (var installment in installments)
+            {
+                var citizen = installment.Charge.Enrollment.SchoolStudent.EducationAccount.Citizen;
+                if (string.IsNullOrWhiteSpace(citizen.Email))
+                {
+                    continue;
+                }
+
+                var template = _emailTemplateBuilder.BuildInstallmentDueReminderEmail(
+                    citizen.FullName,
+                    installment.Charge.CourseNameSnapshot,
+                    installment.Amount,
+                    installment.DueDate,
+                    BuildAccountHolderPortalLink("/account-holder/tuition-payment"));
+
+                await _outboxWriter.EnqueueEmailOnceAsync(citizen.Email, template, cancellationToken);
+                reminderCount++;
+            }
+
+            await _unitOfWork.SaveChangeAsync(cancellationToken);
+            return reminderCount;
         }
 
         private async Task<int> MarkOverdueChargesAsync(
@@ -129,6 +208,18 @@ namespace Services.Courses
                                     charge.RemainingAmount
                                 },
                                 token);
+                        }
+
+                        var citizen = charge.Enrollment.SchoolStudent.EducationAccount.Citizen;
+                        if (!string.IsNullOrWhiteSpace(citizen.Email))
+                        {
+                            var template = _emailTemplateBuilder.BuildPaymentOverdueEmail(
+                                citizen.FullName,
+                                charge.CourseNameSnapshot,
+                                charge.RemainingAmount,
+                                BuildAccountHolderPortalLink("/account-holder/tuition-payment"));
+
+                            await _outboxWriter.EnqueueEmailAsync(citizen.Email, template, token);
                         }
                     }
 
@@ -198,6 +289,18 @@ namespace Services.Courses
                                     chargeId = installment.ChargeId
                                 },
                                 token);
+                        }
+
+                        var citizen = installment.Charge.Enrollment.SchoolStudent.EducationAccount.Citizen;
+                        if (!string.IsNullOrWhiteSpace(citizen.Email))
+                        {
+                            var template = _emailTemplateBuilder.BuildPaymentOverdueEmail(
+                                citizen.FullName,
+                                installment.Charge.CourseNameSnapshot,
+                                installment.Amount,
+                                BuildAccountHolderPortalLink("/account-holder/tuition-payment"));
+
+                            await _outboxWriter.EnqueueEmailAsync(citizen.Email, template, token);
                         }
                     }
 
@@ -439,6 +542,23 @@ namespace Services.Courses
                         cancellationToken);
                 }
 
+                var citizen = enrollment.SchoolStudent.EducationAccount.Citizen;
+                if (!string.IsNullOrWhiteSpace(citizen.Email)
+                    && charge.Status == ChargeStatus.PendingPayment
+                    && charge.RemainingAmount > 0)
+                {
+                    var template = _emailTemplateBuilder.BuildCourseFeePayableEmail(
+                        citizen.FullName,
+                        course.CourseName,
+                        charge.GrossAmount,
+                        charge.SubsidyAmount,
+                        charge.NetAmount,
+                        charge.CourseEndDateSnapshot,
+                        BuildAccountHolderPortalLink("/account-holder/tuition-payment"));
+
+                    await _outboxWriter.EnqueueEmailAsync(citizen.Email, template, cancellationToken);
+                }
+
                 enrollment.Charge = charge;
                 generatedCount++;
             }
@@ -520,6 +640,17 @@ namespace Services.Courses
 
                 _ => course.Status
             };
+        }
+
+        private string BuildAccountHolderPortalLink(string path)
+        {
+            var frontendUrl = _configuration.UrlsConfig?.FrontendUrl?.Trim();
+            if (string.IsNullOrWhiteSpace(frontendUrl))
+            {
+                return "#";
+            }
+
+            return $"{frontendUrl.TrimEnd('/')}{path}";
         }
     }
 }

@@ -1,5 +1,6 @@
 using education_account_management.BLL;
 using education_account_management.Tests.Fakes;
+using Emails;
 using Enums;
 using Interfaces.Audit;
 using Interfaces.Email;
@@ -34,7 +35,13 @@ internal sealed class TestDatabase : IAsyncDisposable
 
     public CourseLifecycleService CreateCourseLifecycleService(IAuditLogWriter? auditLogWriter = null)
     {
-        return new CourseLifecycleService(CreateUnitOfWork(), auditLogWriter ?? new NoopAuditLogWriter());
+        return new CourseLifecycleService(
+            CreateUnitOfWork(),
+            auditLogWriter ?? new NoopAuditLogWriter(),
+            new NoopNotificationWriter(),
+            new NoopOutboxWriter(),
+            new EmailTemplateBuilder(),
+            CreateAppConfiguration());
     }
 
     public StripeService CreateStripeService(
@@ -49,13 +56,19 @@ internal sealed class TestDatabase : IAsyncDisposable
             outboxWriter ?? new NoopOutboxWriter(),
             new TestCurrentUserService(currentUserId),
             auditLogWriter ?? new NoopAuditLogWriter(),
-            stripeGateway);
+            stripeGateway,
+            new NoopNotificationWriter(),
+            new EmailTemplateBuilder());
     }
 
     public static AppConfiguration CreateAppConfiguration()
     {
         return new AppConfiguration
         {
+            UrlsConfig = new UrlsConfig
+            {
+                FrontendUrl = "https://app.test"
+            },
             StripeConfig = new StripeConfig
             {
                 SecretKey = "sk_test_fake",

@@ -4,6 +4,7 @@ using Interfaces.FasApplications;
 using Mappers.FasApplications;
 using Results;
 using Services.Base;
+using Interfaces.Email;
 using Interfaces.Notifications;
 
 namespace Services.FasApplications
@@ -15,7 +16,10 @@ namespace Services.FasApplications
         FasApplicationMapper mapper,
         IAuditLogWriter auditLogWriter,
         IManagementActionLogService managementActionLogService,
-        INotificationWriter notificationWriter) : BaseGetService<FasApplication, GetFasApplicationSchoolAdminDTO>(unitOfWork, mapper), IFasApplicationManagementService
+        INotificationWriter notificationWriter,
+        IOutboxWriter outboxWriter,
+        EmailTemplateBuilder emailTemplateBuilder,
+        AppConfiguration configuration) : BaseGetService<FasApplication, GetFasApplicationSchoolAdminDTO>(unitOfWork, mapper), IFasApplicationManagementService
     {
         private readonly ICurrentUserService _currentUserService = currentUserService;
         private readonly SchoolScopeResolver _schoolScopeResolver = schoolScopeResolver;
@@ -23,6 +27,9 @@ namespace Services.FasApplications
         private readonly IAuditLogWriter _auditLogWriter = auditLogWriter;
         private readonly IManagementActionLogService _managementActionLogService = managementActionLogService;
         private readonly INotificationWriter _notificationWriter = notificationWriter;
+        private readonly IOutboxWriter _outboxWriter = outboxWriter;
+        private readonly EmailTemplateBuilder _emailTemplateBuilder = emailTemplateBuilder;
+        private readonly AppConfiguration _configuration = configuration;
         private readonly IGenericRepository<FasTierOverrideHistory> _tierOverrideRepository =
             unitOfWork.Repository<FasTierOverrideHistory>();
 
@@ -152,6 +159,19 @@ namespace Services.FasApplications
                         application.ExternalRejectionReason
                     },
                     cancellationToken);
+            }
+
+            var recipientEmail = application.SchoolStudent.EducationAccount.Citizen.Email;
+            if (!string.IsNullOrWhiteSpace(recipientEmail))
+            {
+                var template = _emailTemplateBuilder.BuildFasApplicationRejectedEmail(
+                    application.SchoolStudent.EducationAccount.Citizen.FullName,
+                    application.FasScheme.SchemeName,
+                    application.ApplicationNumber,
+                    application.ExternalRejectionReason,
+                    BuildAccountHolderPortalLink("/account-holder/fas/management"));
+
+                await _outboxWriter.EnqueueEmailAsync(recipientEmail, template, cancellationToken);
             }
 
             _repository.Update(application);
@@ -289,6 +309,22 @@ namespace Services.FasApplications
                         token);
                 }
 
+                var recipientEmail = application.SchoolStudent.EducationAccount.Citizen.Email;
+                if (!string.IsNullOrWhiteSpace(recipientEmail))
+                {
+                    var template = _emailTemplateBuilder.BuildFasApplicationApprovedEmail(
+                        application.SchoolStudent.EducationAccount.Citizen.FullName,
+                        application.FasScheme.SchemeName,
+                        application.ApplicationNumber,
+                        selectedTier.TierName,
+                        FormatApprovedSubsidy(selectedTier),
+                        application.ValidityStartDate,
+                        application.ValidityEndDate,
+                        BuildAccountHolderPortalLink("/account-holder/fas/management"));
+
+                    await _outboxWriter.EnqueueEmailAsync(recipientEmail, template, token);
+                }
+
                 await _unitOfWork.SaveChangeAsync(token);
             }, cancellationToken);
         }
@@ -358,6 +394,39 @@ namespace Services.FasApplications
         {
             var reason = $"Override reason: {overrideReason}; Recommendation reason: {recommendationReason ?? "N/A"}; Tier: {oldTierName ?? "N/A"} -> {newTierName}";
             return reason.Length <= 500 ? reason : reason[..500];
+        }
+
+        private static string FormatApprovedSubsidy(FasSchemeTier tier)
+        {
+            static string FormatValue(FasSubsidyType type, decimal? value)
+            {
+                if (!value.HasValue)
+                {
+                    return "N/A";
+                }
+
+                return type == FasSubsidyType.Percent
+                    ? $"{value.Value:N2}%"
+                    : $"SGD {value.Value:N2}";
+            }
+
+            if (!tier.IsPerComponent)
+            {
+                return FormatValue(tier.SubsidyType, tier.SubsidyValue);
+            }
+
+            return $"Course Fee: {FormatValue(tier.SubsidyType, tier.CourseFeeSubsidyValue)}, Misc Fee: {FormatValue(tier.SubsidyType, tier.MiscFeeSubsidyValue)}";
+        }
+
+        private string BuildAccountHolderPortalLink(string path)
+        {
+            var frontendUrl = _configuration.UrlsConfig?.FrontendUrl?.Trim();
+            if (string.IsNullOrWhiteSpace(frontendUrl))
+            {
+                return "#";
+            }
+
+            return $"{frontendUrl.TrimEnd('/')}{path}";
         }
     }
 }

@@ -22,9 +22,9 @@ namespace Persistence.Seeding
                     BatchDate = batchDate,
                     StartedAt = startedAt,
                     CompletedAt = startedAt.AddMinutes(55),
-                    AccountsCreatedCount = SeedScenarioConstants.SweepAccountsPerDay,
-                    AccountsClosedCount = 1,
-                    AccountsExtendedCount = 1
+                    AccountsCreatedCount = SeedScenarioConstants.SweepCreateCountPerDay,
+                    AccountsClosedCount = SeedScenarioConstants.SweepCloseCountPerDay,
+                    AccountsExtendedCount = SeedScenarioConstants.SweepExtendCountPerDay
                 });
             }
 

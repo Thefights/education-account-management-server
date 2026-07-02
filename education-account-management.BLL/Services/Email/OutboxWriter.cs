@@ -20,6 +20,35 @@ namespace Services.Email
             EmailTemplate template,
             CancellationToken cancellationToken = default)
         {
+            var outboxMessage = CreateOutboxMessage(toEmail, template);
+            outboxMessage.TryValidate();
+
+            await _outboxMessageRepository.AddAsync(outboxMessage, cancellationToken);
+        }
+
+        public async Task EnqueueEmailOnceAsync(
+            string toEmail,
+            EmailTemplate template,
+            CancellationToken cancellationToken = default)
+        {
+            var outboxMessage = CreateOutboxMessage(toEmail, template);
+            var exists = await _outboxMessageRepository.AnyAsync(
+                message => message.Type == SendEmailMessageType
+                    && message.PayloadJson == outboxMessage.PayloadJson,
+                cancellationToken);
+            if (exists)
+            {
+                return;
+            }
+
+            outboxMessage.TryValidate();
+            await _outboxMessageRepository.AddAsync(outboxMessage, cancellationToken);
+        }
+
+        private static OutboxMessage CreateOutboxMessage(
+            string toEmail,
+            EmailTemplate template)
+        {
             var payload = new EmailOutboxPayloadDTO
             {
                 ToEmail = toEmail,
@@ -28,14 +57,11 @@ namespace Services.Email
                 TextBody = template.TextBody
             };
 
-            var outboxMessage = new OutboxMessage
+            return new OutboxMessage
             {
                 Type = SendEmailMessageType,
                 PayloadJson = JsonSerializer.Serialize(payload)
             };
-            outboxMessage.TryValidate();
-
-            await _outboxMessageRepository.AddAsync(outboxMessage, cancellationToken);
         }
     }
 }

@@ -15,7 +15,8 @@ public partial class StripeService(
     ICurrentUserService currentUserService,
     IAuditLogWriter auditLogWriter,
     IStripeCheckoutGateway stripeCheckoutGateway,
-    INotificationWriter notificationWriter) : IStripeService
+    INotificationWriter notificationWriter,
+    EmailTemplateBuilder emailTemplateBuilder) : IStripeService
 {
     private readonly AppConfiguration _configuration = configuration;
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
@@ -24,6 +25,7 @@ public partial class StripeService(
     private readonly ICurrentUserService _currentUserService = currentUserService;
     private readonly IStripeCheckoutGateway _stripeCheckoutGateway = stripeCheckoutGateway;
     private readonly INotificationWriter _notificationWriter = notificationWriter;
+    private readonly EmailTemplateBuilder _emailTemplateBuilder = emailTemplateBuilder;
 
     private readonly IGenericRepository<EducationAccount> _accountRepository = unitOfWork.Repository<EducationAccount>();
     private readonly IGenericRepository<Charge> _chargeRepository = unitOfWork.Repository<Charge>();

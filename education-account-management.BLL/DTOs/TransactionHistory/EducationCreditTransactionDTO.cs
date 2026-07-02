@@ -21,5 +21,37 @@ namespace DTOs.TransactionHistory
         public string? Description { get; set; }
 
         public DateTime CreatedAt { get; set; }
+
+        public EducationCreditTransactionReceiptDTO? Receipt { get; set; }
+    }
+
+    public class EducationCreditTransactionReceiptDTO
+    {
+        public string PaymentMethod { get; set; } = string.Empty;
+
+        public string AccountNumber { get; set; } = string.Empty;
+
+        public string CitizenNric { get; set; } = string.Empty;
+
+        public string CitizenFullName { get; set; } = string.Empty;
+
+        public decimal TotalAmount { get; set; }
+
+        public DateTime? PaidAt { get; set; }
+
+        public string? ExternalReference { get; set; }
+
+        public List<EducationCreditTransactionReceiptItemDTO> Items { get; set; } = [];
+    }
+
+    public class EducationCreditTransactionReceiptItemDTO
+    {
+        public string CourseName { get; set; } = string.Empty;
+
+        public string SchoolName { get; set; } = string.Empty;
+
+        public int? InstallmentNumber { get; set; }
+
+        public decimal Amount { get; set; }
     }
 }
