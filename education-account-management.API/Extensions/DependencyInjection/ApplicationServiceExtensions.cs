@@ -13,6 +13,7 @@ using Interfaces.Auth;
 using Interfaces.Base;
 using Interfaces.Courses;
 using Interfaces.Csv;
+using Interfaces.Dashboards;
 using Interfaces.EducationAccounts;
 using Interfaces.Email;
 using Interfaces.FasApplications;
@@ -39,6 +40,7 @@ using Services.ApplicationSettings;
 using Services.Audit;
 using Services.Auth;
 using Services.Base;
+using Services.Dashboards;
 using Services.EducationAccounts;
 using Services.Email;
 using Services.Enrollments;
@@ -117,6 +119,7 @@ namespace Extensions.DependencyInjection
             services.AddScoped<ISchoolStudentService, SchoolStudentService>();
             services.AddScoped<ISchoolStudentImportService, SchoolStudentImportService>();
             services.AddScoped<IFasSchemeService, FasSchemeService>();
+            services.AddScoped<IDashboardManagementService, DashboardManagementService>();
 
 
             services.AddScoped<IDataCleanupService, DataCleanupService>();
