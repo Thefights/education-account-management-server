@@ -44,6 +44,17 @@ namespace Controllers.Management
             return Result.SuccessAction($"{dto.Ids.Count} selected Admins deleted successfully");
         }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(
+            int id,
+            DeleteSelectedIdsDTO dto,
+            CancellationToken cancellationToken)
+        {
+            dto.Ids = [id];
+            await _service.DeleteSelectedIdsAsync(dto, cancellationToken);
+            return Result.SuccessAction("Admin deleted successfully");
+        }
+
         [HttpPost("import")]
         public async Task<IActionResult> Import(
             [FromForm] IFormFile file,

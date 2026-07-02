@@ -28,6 +28,17 @@ namespace Controllers.Management
             return Result.SuccessAction($"{removeDTO.Ids.Count} enrollment(s) removed successfully");
         }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Remove(
+            int id,
+            RemoveSelectedEnrollmentsDTO removeDTO,
+            CancellationToken cancellationToken)
+        {
+            removeDTO.Ids = [id];
+            await _service.RemoveSelectedAsync(removeDTO, cancellationToken);
+            return Result.SuccessAction("Enrollment removed successfully");
+        }
+
         [HttpPut("{id}/withdraw")]
         public async Task<IActionResult> Withdraw(
             int id,

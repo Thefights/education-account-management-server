@@ -66,6 +66,14 @@ namespace Controllers.Management
             return Result.SuccessData(result, "Course FAS schemes updated successfully");
         }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id, CancellationToken cancellationToken)
+        {
+            var rowVersion = ParseIfMatchHeader(Request.Headers.IfMatch.ToString());
+            await _service.DeleteAsync(id, rowVersion, cancellationToken);
+            return Result.SuccessAction("Course deleted successfully");
+        }
+
         [HttpDelete("selected")]
         public async Task<IActionResult> DeleteSelected(
             DeleteSelectedCoursesDTO deleteDTO,
